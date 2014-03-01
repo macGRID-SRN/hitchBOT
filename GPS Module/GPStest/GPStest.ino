@@ -180,20 +180,20 @@ void loop()
     else if (latdir == 'S')
        Serial.print('-');
 
-    Serial.print(latitude/1000000, DEC); Serial.print("* ");
-    Serial.print((latitude/10000)%100, DEC); Serial.print('\''); Serial.print(' ');
+    Serial.print(latitude/1000000, DEC); Serial.print(":");
+    Serial.print((latitude/10000)%100, DEC); Serial.print(':');
     Serial.print((latitude%10000)*6/1000, DEC); Serial.print('.');
-    Serial.print(((latitude%10000)*6/10)%100, DEC); Serial.println('"');
+    Serial.print(((latitude%10000)*6/10)%100, DEC);
    
     Serial.print("\tLong: ");
     if (longdir == 'E')
        Serial.print('+');
     else if (longdir == 'W')
        Serial.print('-');
-    Serial.print(longitude/1000000, DEC); Serial.print("* ");
-    Serial.print((longitude/10000)%100, DEC); Serial.print('\''); Serial.print(' ');
+    Serial.print(longitude/1000000, DEC); Serial.print(":");
+    Serial.print((longitude/10000)%100, DEC); Serial.print(':');
     Serial.print((longitude%10000)*6/1000, DEC); Serial.print('.');
-    Serial.print(((longitude%10000)*6/10)%100, DEC); Serial.println('"');
+    Serial.print(((longitude%10000)*6/10)%100, DEC);
    
   }
   //Serial.println(buffer);
