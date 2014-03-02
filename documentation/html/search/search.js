@@ -12,7 +12,7 @@ var indexSectionsWithContent =
   2: "cglprs",
   3: "bcdghlmpsty",
   4: "bcdgpw",
-  5: "h"
+  5: "dh"
 };
 
 var indexSectionNames =
