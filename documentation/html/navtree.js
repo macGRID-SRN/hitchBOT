@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "hitchBOT", "index.html", [
+    [ "Documentation", "md_hitch_b_o_t_documentation__r_e_a_d_m_e.html", null ],
     [ "hitchBOT", "md_hitch_b_o_t__r_e_a_d_m_e.html", null ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
