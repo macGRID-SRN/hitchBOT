@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['trackangle',['trackangle',['../_g_p_stest_8ino.html#a357dd7e5446bd0b88726ea5d6051313c',1,'trackangle():&#160;GPStest.ino'],['../_g_p_stest___r_m_c_8ino.html#a357dd7e5446bd0b88726ea5d6051313c',1,'trackangle():&#160;GPStest_RMC.ino']]]
+  ['originx',['originx',['../wifi_module_8ino.html#a9d4f26f0f6b5a998dde27d2ea7a64caa',1,'wifiModule.ino']]],
+  ['originy',['originy',['../wifi_module_8ino.html#a456ee41493fc93c2c5fc759e1cf2fcee',1,'wifiModule.ino']]]
 ];

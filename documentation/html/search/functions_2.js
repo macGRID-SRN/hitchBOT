@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loop',['loop',['../_g_p_stest_8ino.html#afe461d27b9c48d5921c00d521181f12f',1,'loop():&#160;GPStest.ino'],['../_g_p_stest___r_m_c_8ino.html#afe461d27b9c48d5921c00d521181f12f',1,'loop():&#160;GPStest_RMC.ino'],['../matrixdemo_8ino.html#afe461d27b9c48d5921c00d521181f12f',1,'loop():&#160;matrixdemo.ino'],['../scrolldemo_8ino.html#afe461d27b9c48d5921c00d521181f12f',1,'loop():&#160;scrolldemo.ino'],['../sketch__jul22a_8ino.html#afe461d27b9c48d5921c00d521181f12f',1,'loop():&#160;sketch_jul22a.ino']]]
+  ['initoverlay',['initOverlay',['../wifi_module_8ino.html#a4b2457e38ce7dc4e3f7d7d62984fe644',1,'wifiModule.ino']]]
 ];

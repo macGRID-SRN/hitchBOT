@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['hour',['hour',['../_g_p_stest_8ino.html#ae5af4ff48939d13d480f87e56a9385d6',1,'hour():&#160;GPStest.ino'],['../_g_p_stest___r_m_c_8ino.html#ae5af4ff48939d13d480f87e56a9385d6',1,'hour():&#160;GPStest_RMC.ino']]],
-  ['hitchbot',['hitchBOT',['../md_hitch_b_o_t__r_e_a_d_m_e.html',1,'']]]
+  ['gprs',['GPRS',['../sketch__jul22a_8ino.html#ab7c26743184b9a7e9b913bd3b5ae48f2',1,'sketch_jul22a.ino']]],
+  ['gpsrate',['GPSRATE',['../_g_p_stest_8ino.html#aa314563cc9699d40e06334d9c6ef2dc0',1,'GPSRATE():&#160;GPStest.ino'],['../_g_p_stest___r_m_c_8ino.html#aa314563cc9699d40e06334d9c6ef2dc0',1,'GPSRATE():&#160;GPStest_RMC.ino']]],
+  ['gpstest_2eino',['GPStest.ino',['../_g_p_stest_8ino.html',1,'']]],
+  ['gpstest_5frmc_2eino',['GPStest_RMC.ino',['../_g_p_stest___r_m_c_8ino.html',1,'']]],
+  ['groundspeed',['groundspeed',['../_g_p_stest_8ino.html#af071c6ef0bc987bfc760d6e321cce19f',1,'groundspeed():&#160;GPStest.ino'],['../_g_p_stest___r_m_c_8ino.html#af071c6ef0bc987bfc760d6e321cce19f',1,'groundspeed():&#160;GPStest_RMC.ino']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['gpstest_2eino',['GPStest.ino',['../_g_p_stest_8ino.html',1,'']]],
-  ['gpstest_5frmc_2eino',['GPStest_RMC.ino',['../_g_p_stest___r_m_c_8ino.html',1,'']]]
+  ['7827_2edic',['7827.dic',['../7827_8dic.html',1,'']]],
+  ['7827_2elm',['7827.lm',['../7827_8lm.html',1,'']]]
 ];
