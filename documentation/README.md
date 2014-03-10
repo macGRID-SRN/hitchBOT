@@ -3,7 +3,7 @@
 View the documentation for this project at the following links:
 
 - [LaTeX](latex/refman.pdf?raw=true)
-- [HTML](http://rawgithub.com/macGRID-SRN/hitchBOT/documentation/documentation/html/index.html)
+- [HTML](http://rawgithub.com/macGRID-SRN/hitchBOT/master/documentation/html/index.html)
 
 *****
 
