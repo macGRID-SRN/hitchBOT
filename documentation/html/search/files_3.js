@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['readme_2emd',['README.md',['../documentation_2_r_e_a_d_m_e_8md.html',1,'']]],
-  ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]]
+  ['jquery_2emin_2ejs',['jquery.min.js',['../jquery_8min_8js.html',1,'']]]
 ];

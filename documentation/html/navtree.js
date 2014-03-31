@@ -2,13 +2,26 @@ var NAVTREE =
 [
   [ "hitchBOT", "index.html", [
     [ "Documentation", "md_hitch_b_o_t_documentation__r_e_a_d_m_e.html", null ],
+    [ "Adafruit-GPS-Shield-v1.1-Netduino", "md_hitch_b_o_t_gps_module__r_e_a_d_m_e.html", null ],
     [ "hitchBOT", "md_hitch_b_o_t__r_e_a_d_m_e.html", null ],
+    [ "Packages", null, [
+      [ "Packages", "namespaces.html", "namespaces" ]
+    ] ],
+    [ "Classes", null, [
+      [ "Class List", "annotated.html", "annotated" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ]
+      ] ]
+    ] ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
       [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
+        [ "All", "globals.html", "globals_dup" ],
         [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
+        [ "Variables", "globals_vars.html", "globals_vars" ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -17,7 +30,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"7827_8dic.html"
+"7827_8dic.html",
+"ga_8js.html#aa038845c524d47d77c9529c0f35978c8",
+"jquery_8min_8js.html#a8ac9d5c1e90c48e6dd7efb7db22f1093"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

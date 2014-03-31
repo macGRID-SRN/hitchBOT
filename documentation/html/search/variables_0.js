@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['buffer',['buffer',['../_g_p_stest_8ino.html#a7b6112797b7b380fc5f9b3080f2b9518',1,'buffer():&#160;GPStest.ino'],['../_g_p_stest___r_m_c_8ino.html#a7b6112797b7b380fc5f9b3080f2b9518',1,'buffer():&#160;GPStest_RMC.ino'],['../sketch__jul22a_8ino.html#a59e96eea04541ecd67c3faca41b13feb',1,'buffer():&#160;sketch_jul22a.ino'],['../wifi_module_8ino.html#ac8f7977bf7ed2357ae44b6061ece5995',1,'buffer():&#160;wifiModule.ino']]],
-  ['buffidx',['buffidx',['../_g_p_stest_8ino.html#af390f43b34e280cd1e0f68c6cea2ca6c',1,'buffidx():&#160;GPStest.ino'],['../_g_p_stest___r_m_c_8ino.html#af390f43b34e280cd1e0f68c6cea2ca6c',1,'buffidx():&#160;GPStest_RMC.ino']]]
+  ['_24a',['$a',['../ga_8js.html#a53fccbec88b87339d35b44ab265a07a2',1,'ga.js']]],
+  ['_24b',['$b',['../ga_8js.html#acc5d3c13488a6e7aaef78b6f0a331dd3',1,'ga.js']]],
+  ['_24d',['$d',['../ga_8js.html#adf8a866e87c139bcb04dd0ac640f3791',1,'ga.js']]],
+  ['_24e',['$e',['../ga_8js.html#ad99935de800c6a288208162efe1b262d',1,'ga.js']]],
+  ['_24t',['$t',['../jquery_8min_8js.html#a5a188274831b027a2be077bb2a5826e9',1,'jquery.min.js']]]
 ];

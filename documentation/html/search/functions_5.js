@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['readline',['readline',['../_g_p_stest_8ino.html#a6e0e3356c051d9846f6c5d586e6e26e1',1,'readline(void):&#160;GPStest.ino'],['../_g_p_stest___r_m_c_8ino.html#a6e0e3356c051d9846f6c5d586e6e26e1',1,'readline(void):&#160;GPStest_RMC.ino']]]
+  ['da',['Da',['../ga_8js.html#a7ce61c3ece5a3925b2f7a9768224f74d',1,'ga.js']]],
+  ['dt',['dt',['../jquery_8min_8js.html#a028d4f44bc5f773deb3b148855423d57',1,'jquery.min.js']]],
+  ['dumpobject',['dumpObject',['../utils_8js.html#a37c37db30fba90435090bcc04194304c',1,'utils.js']]]
 ];

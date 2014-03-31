@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['parseptr',['parseptr',['../_g_p_stest_8ino.html#a06c2af369226e9a719f134e642a114a2',1,'parseptr():&#160;GPStest.ino'],['../_g_p_stest___r_m_c_8ino.html#a06c2af369226e9a719f134e642a114a2',1,'parseptr():&#160;GPStest_RMC.ino']]],
-  ['pass',['pass',['../wifi_module_8ino.html#a0c2356d302e37fcf49be9c6dab314eb2',1,'wifiModule.ino']]],
-  ['plotx',['plotx',['../wifi_module_8ino.html#abb18f950bc80a0b1b8d1690daf77e6d3',1,'wifiModule.ino']]],
-  ['ploty',['ploty',['../wifi_module_8ino.html#a6a29d9b9b34545d405360a64b4850001',1,'wifiModule.ino']]],
-  ['progmem',['PROGMEM',['../wifi_module_8ino.html#ad39d1f3c8bfeb2a69d83784a7d888a70',1,'wifiModule.ino']]]
+  ['j',['J',['../ga_8js.html#a133afe29d6e08c112f924a70ec773034',1,'ga.js']]],
+  ['ja',['Ja',['../ga_8js.html#a1b94384704a86db4d4cdeb06792ab307',1,'Ja():&#160;ga.js'],['../ga_8js.html#acd7b471493ff0ccc599f7a2b0fe0c643',1,'ja():&#160;ga.js']]],
+  ['jb',['jb',['../ga_8js.html#ac15bc281cfa02b80e2b71369850b1eb0',1,'jb():&#160;ga.js'],['../ga_8js.html#a509e6301c0307bd0d3697cd6fd02e0b3',1,'Jb():&#160;ga.js']]],
+  ['jc',['jc',['../ga_8js.html#ae1d844a91b34be568dc821362a34a94a',1,'ga.js']]],
+  ['jd',['Jd',['../ga_8js.html#ae1ffb0d9493241574a1b70f82186d7f9',1,'ga.js']]],
+  ['je',['je',['../ga_8js.html#ae537180f87a1d521c430103959b33070',1,'ga.js']]]
 ];

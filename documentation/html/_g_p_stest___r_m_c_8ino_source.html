@@ -45,6 +45,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Packages</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -90,7 +92,7 @@ $(document).ready(function(){initNavTree('_g_p_stest___r_m_c_8ino_source.html','
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -185,7 +187,7 @@ $(document).ready(function(){initNavTree('_g_p_stest___r_m_c_8ino_source.html','
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
 <div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="_g_p_stest___r_m_c_8ino.html#a6e0e3356c051d9846f6c5d586e6e26e1">   81</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_g_p_stest___r_m_c_8ino.html#a6e0e3356c051d9846f6c5d586e6e26e1">readline</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keywordtype">char</span> c;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <span class="keywordtype">char</span> <a class="code" href="jquery_8min_8js.html#a3fc7800392ca414b649cfe0282440252">c</a>;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  </div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <a class="code" href="_g_p_stest___r_m_c_8ino.html#af390f43b34e280cd1e0f68c6cea2ca6c">buffidx</a> = 0; <span class="comment">// start at begninning</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keywordflow">while</span> (1) {</div>
@@ -199,7 +201,7 @@ $(document).ready(function(){initNavTree('_g_p_stest___r_m_c_8ino_source.html','
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <a class="code" href="_g_p_stest___r_m_c_8ino.html#a7b6112797b7b380fc5f9b3080f2b9518">buffer</a>[<a class="code" href="_g_p_stest___r_m_c_8ino.html#af390f43b34e280cd1e0f68c6cea2ca6c">buffidx</a>] = 0;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;      }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      <a class="code" href="_g_p_stest___r_m_c_8ino.html#a7b6112797b7b380fc5f9b3080f2b9518">buffer</a>[<a class="code" href="_g_p_stest___r_m_c_8ino.html#af390f43b34e280cd1e0f68c6cea2ca6c">buffidx</a>++]= c;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      <a class="code" href="_g_p_stest___r_m_c_8ino.html#a7b6112797b7b380fc5f9b3080f2b9518">buffer</a>[<a class="code" href="_g_p_stest___r_m_c_8ino.html#af390f43b34e280cd1e0f68c6cea2ca6c">buffidx</a>++]= <a class="code" href="jquery_8min_8js.html#a3fc7800392ca414b649cfe0282440252">c</a>;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
@@ -324,6 +326,7 @@ $(document).ready(function(){initNavTree('_g_p_stest___r_m_c_8ino_source.html','
 <div class="ttc" id="_g_p_stest___r_m_c_8ino_html_a357dd7e5446bd0b88726ea5d6051313c"><div class="ttname"><a href="_g_p_stest___r_m_c_8ino.html#a357dd7e5446bd0b88726ea5d6051313c">trackangle</a></div><div class="ttdeci">uint8_t trackangle</div><div class="ttdef"><b>Definition:</b> <a href="_g_p_stest___r_m_c_8ino_source.html#l00043">GPStest_RMC.ino:43</a></div></div>
 <div class="ttc" id="_g_p_stest___r_m_c_8ino_html_af071c6ef0bc987bfc760d6e321cce19f"><div class="ttname"><a href="_g_p_stest___r_m_c_8ino.html#af071c6ef0bc987bfc760d6e321cce19f">groundspeed</a></div><div class="ttdeci">uint8_t groundspeed</div><div class="ttdef"><b>Definition:</b> <a href="_g_p_stest___r_m_c_8ino_source.html#l00043">GPStest_RMC.ino:43</a></div></div>
 <div class="ttc" id="_g_p_stest___r_m_c_8ino_html_ae5af4ff48939d13d480f87e56a9385d6"><div class="ttname"><a href="_g_p_stest___r_m_c_8ino.html#ae5af4ff48939d13d480f87e56a9385d6">hour</a></div><div class="ttdeci">uint8_t hour</div><div class="ttdef"><b>Definition:</b> <a href="_g_p_stest___r_m_c_8ino_source.html#l00041">GPStest_RMC.ino:41</a></div></div>
+<div class="ttc" id="jquery_8min_8js_html_a3fc7800392ca414b649cfe0282440252"><div class="ttname"><a href="jquery_8min_8js.html#a3fc7800392ca414b649cfe0282440252">c</a></div><div class="ttdeci">i i c()</div></div>
 <div class="ttc" id="_g_p_stest___r_m_c_8ino_html_a8920283b1d9b64c32c21a298dd051cf2"><div class="ttname"><a href="_g_p_stest___r_m_c_8ino.html#a8920283b1d9b64c32c21a298dd051cf2">longitude</a></div><div class="ttdeci">uint32_t longitude</div><div class="ttdef"><b>Definition:</b> <a href="_g_p_stest___r_m_c_8ino_source.html#l00042">GPStest_RMC.ino:42</a></div></div>
 <div class="ttc" id="_g_p_stest___r_m_c_8ino_html_aa314563cc9699d40e06334d9c6ef2dc0"><div class="ttname"><a href="_g_p_stest___r_m_c_8ino.html#aa314563cc9699d40e06334d9c6ef2dc0">GPSRATE</a></div><div class="ttdeci">#define GPSRATE</div><div class="ttdef"><b>Definition:</b> <a href="_g_p_stest___r_m_c_8ino_source.html#l00027">GPStest_RMC.ino:27</a></div></div>
 <div class="ttc" id="_g_p_stest___r_m_c_8ino_html_a7b6112797b7b380fc5f9b3080f2b9518"><div class="ttname"><a href="_g_p_stest___r_m_c_8ino.html#a7b6112797b7b380fc5f9b3080f2b9518">buffer</a></div><div class="ttdeci">char buffer[BUFFSIZ]</div><div class="ttdef"><b>Definition:</b> <a href="_g_p_stest___r_m_c_8ino_source.html#l00036">GPStest_RMC.ino:36</a></div></div>
@@ -335,7 +338,7 @@ $(document).ready(function(){initNavTree('_g_p_stest___r_m_c_8ino_source.html','
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_aaa6f5c918f8826a02ee6a9dac1732b3.html">hitchBOT</a></li><li class="navelem"><a class="el" href="dir_763892131daba1ac3276f4a336f39f0c.html">old code</a></li><li class="navelem"><a class="el" href="dir_c0130cde49a490e14b6f8a6295b9b4e3.html">GPS-shield-RMC-test-sketch-master</a></li><li class="navelem"><a class="el" href="dir_21bce364427785914b3083fcf0fb7389.html">GPS-shield-RMC-test-sketch-master</a></li><li class="navelem"><a class="el" href="dir_dd44f248afb840d9a963e94c08867a7a.html">GPStest_RMC</a></li><li class="navelem"><a class="el" href="_g_p_stest___r_m_c_8ino.html">GPStest_RMC.ino</a></li>
-    <li class="footer">Generated on Sun Mar 9 2014 22:10:24 for hitchBOT by
+    <li class="footer">Generated on Sun Mar 30 2014 23:53:26 for hitchBOT by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

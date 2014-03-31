@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clearbufferarray',['clearBufferArray',['../sketch__jul22a_8ino.html#a4f1c28d1fb0bb44c7561c798a7c414e9',1,'sketch_jul22a.ino']]]
+  ['_24c',['$c',['../ga_8js.html#a9246810fc4a7f1daaf220346f8a44127',1,'ga.js']]]
 ];

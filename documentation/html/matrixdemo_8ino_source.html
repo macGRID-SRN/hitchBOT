@@ -45,6 +45,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Packages</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -90,7 +92,7 @@ $(document).ready(function(){initNavTree('matrixdemo_8ino_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -137,13 +139,13 @@ $(document).ready(function(){initNavTree('matrixdemo_8ino_source.html','');});
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <a class="code" href="matrixdemo_8ino.html#a67727a8b49c18e307f9600a916db080f">matrix</a>.blink(<span class="keyword">false</span>);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  </div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="comment">// Adjust the brightness down </span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keywordflow">for</span> (int8_t i=15; i&gt;=0; i--) {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;   <a class="code" href="matrixdemo_8ino.html#a67727a8b49c18e307f9600a916db080f">matrix</a>.setBrightness(i);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keywordflow">for</span> (int8_t <a class="code" href="jquery_8min_8js.html#a7e98b8a17c0aad30ba64d47b74e2a6c1">i</a>=15; <a class="code" href="jquery_8min_8js.html#a7e98b8a17c0aad30ba64d47b74e2a6c1">i</a>&gt;=0; <a class="code" href="jquery_8min_8js.html#a7e98b8a17c0aad30ba64d47b74e2a6c1">i</a>--) {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;   <a class="code" href="matrixdemo_8ino.html#a67727a8b49c18e307f9600a916db080f">matrix</a>.setBrightness(<a class="code" href="jquery_8min_8js.html#a7e98b8a17c0aad30ba64d47b74e2a6c1">i</a>);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;   delay(100);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  }</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="comment">// then back up</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordflow">for</span> (uint8_t i=0; i&lt;16; i++) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;   <a class="code" href="matrixdemo_8ino.html#a67727a8b49c18e307f9600a916db080f">matrix</a>.setBrightness(i);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordflow">for</span> (uint8_t <a class="code" href="jquery_8min_8js.html#a7e98b8a17c0aad30ba64d47b74e2a6c1">i</a>=0; <a class="code" href="jquery_8min_8js.html#a7e98b8a17c0aad30ba64d47b74e2a6c1">i</a>&lt;16; <a class="code" href="jquery_8min_8js.html#a7e98b8a17c0aad30ba64d47b74e2a6c1">i</a>++) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;   <a class="code" href="matrixdemo_8ino.html#a67727a8b49c18e307f9600a916db080f">matrix</a>.setBrightness(<a class="code" href="jquery_8min_8js.html#a7e98b8a17c0aad30ba64d47b74e2a6c1">i</a>);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;   delay(100);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
@@ -159,6 +161,7 @@ $(document).ready(function(){initNavTree('matrixdemo_8ino_source.html','');});
 <div class="ttc" id="matrixdemo_8ino_html_a4fc01d736fe50cf5b977f755b675f11d"><div class="ttname"><a href="matrixdemo_8ino.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a></div><div class="ttdeci">void setup()</div><div class="ttdef"><b>Definition:</b> <a href="matrixdemo_8ino_source.html#l00013">matrixdemo.ino:13</a></div></div>
 <div class="ttc" id="matrixdemo_8ino_html_a67727a8b49c18e307f9600a916db080f"><div class="ttname"><a href="matrixdemo_8ino.html#a67727a8b49c18e307f9600a916db080f">matrix</a></div><div class="ttdeci">HT1632LEDMatrix matrix</div><div class="ttdef"><b>Definition:</b> <a href="matrixdemo_8ino_source.html#l00011">matrixdemo.ino:11</a></div></div>
 <div class="ttc" id="matrixdemo_8ino_html_aad9ae913bdfab20dd94ad04ee2d5b045"><div class="ttname"><a href="matrixdemo_8ino.html#aad9ae913bdfab20dd94ad04ee2d5b045">DATA</a></div><div class="ttdeci">#define DATA</div><div class="ttdef"><b>Definition:</b> <a href="matrixdemo_8ino_source.html#l00003">matrixdemo.ino:3</a></div></div>
+<div class="ttc" id="jquery_8min_8js_html_a7e98b8a17c0aad30ba64d47b74e2a6c1"><div class="ttname"><a href="jquery_8min_8js.html#a7e98b8a17c0aad30ba64d47b74e2a6c1">i</a></div><div class="ttdeci">i</div><div class="ttdef"><b>Definition:</b> <a href="jquery_8min_8js_source.html#l00004">jquery.min.js:4</a></div></div>
 <div class="ttc" id="matrixdemo_8ino_html_a3780e2fe762dc532df7d0f030b55caa0"><div class="ttname"><a href="matrixdemo_8ino.html#a3780e2fe762dc532df7d0f030b55caa0">CS</a></div><div class="ttdeci">#define CS</div><div class="ttdef"><b>Definition:</b> <a href="matrixdemo_8ino_source.html#l00005">matrixdemo.ino:5</a></div></div>
 <div class="ttc" id="matrixdemo_8ino_html_afe461d27b9c48d5921c00d521181f12f"><div class="ttname"><a href="matrixdemo_8ino.html#afe461d27b9c48d5921c00d521181f12f">loop</a></div><div class="ttdeci">void loop()</div><div class="ttdef"><b>Definition:</b> <a href="matrixdemo_8ino_source.html#l00021">matrixdemo.ino:21</a></div></div>
 <div class="ttc" id="matrixdemo_8ino_html_ac1efd35edf6555320eb2a4b0b2d9c3a7"><div class="ttname"><a href="matrixdemo_8ino.html#ac1efd35edf6555320eb2a4b0b2d9c3a7">WR</a></div><div class="ttdeci">#define WR</div><div class="ttdef"><b>Definition:</b> <a href="matrixdemo_8ino_source.html#l00004">matrixdemo.ino:4</a></div></div>
@@ -169,7 +172,7 @@ $(document).ready(function(){initNavTree('matrixdemo_8ino_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_aaa6f5c918f8826a02ee6a9dac1732b3.html">hitchBOT</a></li><li class="navelem"><a class="el" href="dir_763892131daba1ac3276f4a336f39f0c.html">old code</a></li><li class="navelem"><a class="el" href="dir_0bf658cf261e7c6b23acb213fab31142.html">matrixdemo</a></li><li class="navelem"><a class="el" href="matrixdemo_8ino.html">matrixdemo.ino</a></li>
-    <li class="footer">Generated on Sun Mar 9 2014 22:10:24 for hitchBOT by
+    <li class="footer">Generated on Sun Mar 30 2014 23:53:26 for hitchBOT by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

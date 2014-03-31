@@ -45,6 +45,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Packages</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -90,7 +92,7 @@ $(document).ready(function(){initNavTree('7827_8lm_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,16 +106,16 @@ $(document).ready(function(){initNavTree('7827_8lm_source.html','');});
 <div class="title">7827.lm</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="7827_8lm.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;Language model created by QuickLM on Sun <a class="code" href="7827_8lm.html#af3cfb5fb89482c3d936006c07c1ef17c">Mar</a>  9 21:49:44 EDT 2014</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky</div>
+<a href="7827_8lm.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;Language model created by QuickLM <a class="code" href="jquery_8min_8js.html#a5ecbff4c4e7972cd3a799b422038b564">on</a> Sun <a class="code" href="7827_8lm.html#af3cfb5fb89482c3d936006c07c1ef17c">Mar</a>  9 21:49:44 EDT 2014</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;Copyright (<a class="code" href="jquery_8min_8js.html#a3fc7800392ca414b649cfe0282440252">c</a>) 1996-2010 Carnegie Mellon University and Alexander <a class="code" href="ga_8js.html#a3429c330e37d903941a108d04b525b05">I</a>. Rudnicky</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="7827_8lm.html#af3cfb5fb89482c3d936006c07c1ef17c">    4</a></span>&#160;The model is in standard ARPA format, designed by Doug Paul <span class="keywordflow">while</span> he was at MITRE.</div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="7827_8lm.html#af3cfb5fb89482c3d936006c07c1ef17c">    4</a></span>&#160;The model is in standard ARPA format, designed by Doug Paul <span class="keywordflow">while</span> <a class="code" href="ga_8js.html#ad8e629ec3686ece88074310e97c75f90">he</a> was <a class="code" href="jquery_8min_8js.html#abe3e4a2a54ed6e49b6130fc5e7084868">at</a> MITRE.</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;The code that was used to produce <span class="keyword">this</span> language model is available in Open Source.</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;Please visit http:<span class="comment">//www.speech.cs.cmu.edu/tools/ for more information</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;This model based on a corpus of 8 sentences and 25 words</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;This model based <a class="code" href="jquery_8min_8js.html#a5ecbff4c4e7972cd3a799b422038b564">on</a> <a class="code" href="ga_8js.html#aa4d4888597588a84fd5b1184d00c91f3">a</a> corpus of 8 sentences and 25 words</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;\data\</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;ngram 1=25</div>
@@ -222,7 +224,13 @@ $(document).ready(function(){initNavTree('7827_8lm_source.html','');});
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;-0.3010 YOUR NAME? &lt;/<a class="code" href="wifi_module_8ino.html#a407ff69198cbeee15df9c6ee7dff5db3">s</a>&gt;</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;\end\</div>
+<div class="ttc" id="jquery_8min_8js_html_abe3e4a2a54ed6e49b6130fc5e7084868"><div class="ttname"><a href="jquery_8min_8js.html#abe3e4a2a54ed6e49b6130fc5e7084868">at</a></div><div class="ttdeci">var at</div><div class="ttdef"><b>Definition:</b> <a href="jquery_8min_8js_source.html#l00004">jquery.min.js:4</a></div></div>
+<div class="ttc" id="ga_8js_html_ad8e629ec3686ece88074310e97c75f90"><div class="ttname"><a href="ga_8js.html#ad8e629ec3686ece88074310e97c75f90">he</a></div><div class="ttdeci">var he</div><div class="ttdef"><b>Definition:</b> <a href="ga_8js_source.html#l00040">ga.js:40</a></div></div>
+<div class="ttc" id="jquery_8min_8js_html_a5ecbff4c4e7972cd3a799b422038b564"><div class="ttname"><a href="jquery_8min_8js.html#a5ecbff4c4e7972cd3a799b422038b564">on</a></div><div class="ttdeci">function on(e, t, n)</div><div class="ttdef"><b>Definition:</b> <a href="jquery_8min_8js_source.html#l00005">jquery.min.js:5</a></div></div>
+<div class="ttc" id="ga_8js_html_a3429c330e37d903941a108d04b525b05"><div class="ttname"><a href="ga_8js.html#a3429c330e37d903941a108d04b525b05">I</a></div><div class="ttdeci">function I(a)</div><div class="ttdef"><b>Definition:</b> <a href="ga_8js_source.html#l00003">ga.js:3</a></div></div>
 <div class="ttc" id="wifi_module_8ino_html_a407ff69198cbeee15df9c6ee7dff5db3"><div class="ttname"><a href="wifi_module_8ino.html#a407ff69198cbeee15df9c6ee7dff5db3">s</a></div><div class="ttdeci">char s[32]</div><div class="ttdef"><b>Definition:</b> <a href="wifi_module_8ino_source.html#l00013">wifiModule.ino:13</a></div></div>
+<div class="ttc" id="jquery_8min_8js_html_a3fc7800392ca414b649cfe0282440252"><div class="ttname"><a href="jquery_8min_8js.html#a3fc7800392ca414b649cfe0282440252">c</a></div><div class="ttdeci">i i c()</div></div>
+<div class="ttc" id="ga_8js_html_aa4d4888597588a84fd5b1184d00c91f3"><div class="ttname"><a href="ga_8js.html#aa4d4888597588a84fd5b1184d00c91f3">a</a></div><div class="ttdeci">function a</div><div class="ttdef"><b>Definition:</b> <a href="ga_8js_source.html#l00065">ga.js:65</a></div></div>
 <div class="ttc" id="7827_8lm_html_af3cfb5fb89482c3d936006c07c1ef17c"><div class="ttname"><a href="7827_8lm.html#af3cfb5fb89482c3d936006c07c1ef17c">Mar</a></div><div class="ttdeci">Language model created by QuickLM on Sun Mar</div><div class="ttdef"><b>Definition:</b> <a href="7827_8lm_source.html#l00004">7827.lm:4</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -230,7 +238,7 @@ $(document).ready(function(){initNavTree('7827_8lm_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_aaa6f5c918f8826a02ee6a9dac1732b3.html">hitchBOT</a></li><li class="navelem"><a class="el" href="dir_df17ce3d2edc5ef760287331a97167a0.html">pocketsphinx-0.8</a></li><li class="navelem"><a class="el" href="7827_8lm.html">7827.lm</a></li>
-    <li class="footer">Generated on Sun Mar 9 2014 22:10:24 for hitchBOT by
+    <li class="footer">Generated on Sun Mar 30 2014 23:53:26 for hitchBOT by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
