@@ -4453,8 +4453,8 @@ type 0309, grid 2.5 mm</description>
 <instance part="SUPPLY4" gate="GND" x="35.56" y="45.72"/>
 <instance part="C1" gate="G$1" x="12.7" y="83.82"/>
 <instance part="C2" gate="G$1" x="86.36" y="48.26" rot="R180"/>
-<instance part="C3" gate="G$1" x="78.74" y="66.04"/>
-<instance part="INDUCTOR" gate="G$1" x="106.68" y="66.04" rot="R90"/>
+<instance part="C3" gate="G$1" x="78.74" y="71.12"/>
+<instance part="INDUCTOR" gate="G$1" x="93.98" y="71.12" rot="R90"/>
 <instance part="U$1" gate="G$2" x="53.34" y="55.88" rot="R270"/>
 <instance part="SUPPLY2" gate="GND" x="53.34" y="33.02"/>
 <instance part="SUPPLY5" gate="GND" x="53.34" y="25.4"/>
@@ -4515,22 +4515,30 @@ type 0309, grid 2.5 mm</description>
 <segment>
 <pinref part="U$1" gate="G$2" pin="SENSE"/>
 <pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="68.58" y1="58.42" x2="83.82" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="58.42" x2="81.28" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="INDUCTOR" gate="G$1" pin="PIN1"/>
+<wire x1="81.28" y1="58.42" x2="83.82" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="68.58" x2="81.28" y2="63.5" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="63.5" x2="81.28" y2="58.42" width="0.1524" layer="91"/>
+<junction x="81.28" y="58.42"/>
 </segment>
 </net>
 <net name="N$4" class="0">
 <segment>
 <pinref part="U$1" gate="G$2" pin="SW"/>
 <pinref part="C3" gate="G$1" pin="1"/>
-<wire x1="68.58" y1="63.5" x2="73.66" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="63.5" x2="78.74" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="63.5" x2="68.58" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="73.66" x2="78.74" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="INDUCTOR" gate="G$1" pin="PIN2"/>
+<wire x1="78.74" y1="73.66" x2="86.36" y2="73.66" width="0.1524" layer="91"/>
+<junction x="78.74" y="73.66"/>
 </segment>
 </net>
 <net name="N$5" class="0">
 <segment>
 <pinref part="U$1" gate="G$2" pin="BOOST"/>
 <pinref part="C3" gate="G$1" pin="2"/>
-<wire x1="68.58" y1="60.96" x2="78.74" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="60.96" x2="78.74" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
