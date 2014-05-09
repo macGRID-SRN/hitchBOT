@@ -11,7 +11,10 @@ namespace hitchbotAPI.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public DateTime CreationTime { get; set; }
+        [JsonIgnore]
         public List<SpeechEvent> SpeechEvents { get; set; }
+        [JsonIgnore]
         public List<Location> Locations { get; set; }
     }
 }
