@@ -120,3 +120,6 @@ documentation/latex/*.bat
 documentation/latex/*.sty
 documentation/latex/MakeFile
 /documentation/README.html
+/app/.metadata
+/server/hitchbotAPI/hitchbotAPI/Properties/PublishProfiles/hitchbotAPI.pubxml
+/server/hitchbotAPI/PublishScripts
