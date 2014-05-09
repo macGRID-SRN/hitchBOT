@@ -10,6 +10,7 @@ namespace hitchbotAPI.Models
     public class Project
     {
         public int ID { get; set; }
+        [JsonIgnore]
         public virtual List<hitchBOT> hitchBOTs { get; set; }
         public string Name { get; set; }
         public DateTime StartTime { get; set; }

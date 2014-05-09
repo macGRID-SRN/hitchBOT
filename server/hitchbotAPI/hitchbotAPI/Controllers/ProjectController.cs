@@ -24,5 +24,34 @@ namespace hitchbotAPI.Controllers
             }
             return true;
         }
+
+        [HttpGet]
+        public List<Project> GetCurrentProjects()
+        {
+            using (var db = new Database())
+            {
+                return db.Projects.Where(p => p.EndTime == null).ToList();
+            }
+        }
+
+        [HttpGet]
+        public Project GetProjectByID(int ID)
+        {
+            using (var db = new Database())
+            {
+                return db.Projects.Single(p => p.ID == ID);
+            }
+        }
+
+        [HttpPost]
+        public bool EndProject(int ID)
+        {
+            using (var db = new Database()){
+                var projectToEnd = db.Projects.Single(p => p.ID == ID);
+                projectToEnd.EndTime = DateTime.UtcNow;
+                db.SaveChanges();
+                return true;
+            }
+        }
     }
 }
