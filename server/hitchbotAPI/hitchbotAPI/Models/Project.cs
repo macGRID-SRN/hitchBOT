@@ -14,7 +14,9 @@ namespace hitchbotAPI.Models
         public virtual List<hitchBOT> hitchBOTs { get; set; }
         public string Name { get; set; }
         public DateTime StartTime { get; set; }
+        public Location StartLocation { get; set; }
         public DateTime? EndTime { get; set; }
+        public Location EndLocation { get; set; }
         public string Description { get; set; }
     }
 }

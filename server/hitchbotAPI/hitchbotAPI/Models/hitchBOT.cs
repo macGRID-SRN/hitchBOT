@@ -13,8 +13,8 @@ namespace hitchbotAPI.Models
         public string Name { get; set; }
         public DateTime CreationTime { get; set; }
         [JsonIgnore]
-        public List<SpeechEvent> SpeechEvents { get; set; }
-        [JsonIgnore]
         public List<Location> Locations { get; set; }
+        [JsonIgnore]
+        public List<Conversation> Conversations { get; set; }
     }
 }

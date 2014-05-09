@@ -120,7 +120,6 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -160,17 +159,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\hitchBOTController.cs" />
-    <Compile Include="Migrations\201405091340190_Initial.cs" />
-    <Compile Include="Migrations\201405091340190_Initial.Designer.cs">
-      <DependentUpon>201405091340190_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405091908054_HitchbotCreationDate.cs" />
-    <Compile Include="Migrations\201405091908054_HitchbotCreationDate.Designer.cs">
-      <DependentUpon>201405091908054_HitchbotCreationDate.cs</DependentUpon>
+    <Compile Include="Migrations\201405092227410_Initial.cs" />
+    <Compile Include="Migrations\201405092227410_Initial.Designer.cs">
+      <DependentUpon>201405092227410_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\hitchBOT.cs" />
+    <Compile Include="Models\ListenEvent.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\SpeechEvent.cs" />
@@ -239,11 +236,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405091340190_Initial.resx">
-      <DependentUpon>201405091340190_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405091908054_HitchbotCreationDate.resx">
-      <DependentUpon>201405091908054_HitchbotCreationDate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405092227410_Initial.resx">
+      <DependentUpon>201405092227410_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
