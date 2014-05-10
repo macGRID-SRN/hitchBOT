@@ -481,12 +481,53 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:hitchbotAPI.Controllers.ProjectController">
+            <summary>
+            This is for all things related to HitchBot projects. A HitchBot Project is a journey where one or more HitchBot's embark on a journey.
+            </summary>
+        </member>
+        <member name="M:hitchbotAPI.Controllers.ProjectController.StartProject(System.String,System.String)">
+            <summary>
+            Start a new HitchBot Project.
+            </summary>
+            <param name="Name">The name of the Project being created.</param>
+            <param name="Description">The description of the Project being created.</param>
+            <returns>Success.</returns>
+        </member>
+        <member name="M:hitchbotAPI.Controllers.ProjectController.GetCurrentProjects">
+            <summary>
+            Get all of the active HitchBot Projects.
+            </summary>
+            <returns>All of the active HitchBot Projects.</returns>
+        </member>
+        <member name="M:hitchbotAPI.Controllers.ProjectController.GetProjectByID(System.Int32)">
+            <summary>
+            Get the details of a Project.
+            </summary>
+            <param name="ID">ID of the requested Project.</param>
+            <returns></returns>
+        </member>
+        <member name="M:hitchbotAPI.Controllers.ProjectController.EndProject(System.Int32)">
+            <summary>
+            End a Project.
+            </summary>
+            <param name="toEndID">The ID of the Project to end.</param>
+            <returns></returns>
+        </member>
         <member name="M:hitchbotAPI.Controllers.hitchBOTController.GetHitchbot(System.Int32)">
             <summary>
             Given the ID of a hitchBOT instance, this will return it's information.
             </summary>
             <param name="ID">ID of the requested hitchBOT information.</param>
             <returns>The hitchBOT instance requested.</returns>
+        </member>
+        <member name="M:hitchbotAPI.Controllers.hitchBOTController.AddHitchBotToProject(System.Int32,System.String)">
+            <summary>
+            Call this method when adding a new HitchBot to an existing project.
+            </summary>
+            <param name="ProjectID">ID of the Project the HitchBot will be added to.</param>
+            <param name="HitchbotName">The name of the HitchBot that will be created.</param>
+            <returns></returns>
         </member>
     </members>
 </doc>

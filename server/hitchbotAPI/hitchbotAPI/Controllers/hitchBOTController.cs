@@ -24,6 +24,12 @@ namespace hitchbotAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Call this method when adding a new HitchBot to an existing project.
+        /// </summary>
+        /// <param name="ProjectID">ID of the Project the HitchBot will be added to.</param>
+        /// <param name="HitchbotName">The name of the HitchBot that will be created.</param>
+        /// <returns></returns>
         [HttpPost]
         public bool AddHitchBotToProject(int ProjectID, string HitchbotName)
         {
