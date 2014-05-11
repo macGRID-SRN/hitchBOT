@@ -17,5 +17,6 @@ namespace hitchbotAPI.Models
         public float Accuracy { get; set; }
         public float Velocity { get; set; }
         public DateTime TakenTime { get; set; }
+        public DateTime TimeAdded { get; set; }
     }
 }

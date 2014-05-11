@@ -8,12 +8,15 @@ using System.Web.Http;
 
 namespace hitchbotAPI.Controllers
 {
+    /// <summary>
+    /// For all things related to an instance of HitchBot.
+    /// </summary>
     public class hitchBOTController : ApiController
     {
         /// <summary>
         /// Given the ID of a hitchBOT instance, this will return it's information.
         /// </summary>
-        /// <param name="ID">ID of the requested hitchBOT information.</param>
+        /// <param name="ID">ID of the requested hitchBOT.</param>
         /// <returns>The hitchBOT instance requested.</returns>
         [HttpGet]
         public hitchBOT GetHitchbot(int ID)
@@ -29,7 +32,7 @@ namespace hitchbotAPI.Controllers
         /// </summary>
         /// <param name="ProjectID">ID of the Project the HitchBot will be added to.</param>
         /// <param name="HitchbotName">The name of the HitchBot that will be created.</param>
-        /// <returns></returns>
+        /// <returns>Success.</returns>
         [HttpPost]
         public bool AddHitchBotToProject(int ProjectID, string HitchbotName)
         {
@@ -45,6 +48,20 @@ namespace hitchbotAPI.Controllers
                 db.SaveChanges();
             }
             return true;
+        }
+
+        /// <summary>
+        /// Given the ID of a HitchBot instance, this will return it's most recent Location.
+        /// </summary>
+        /// <param name="HitchBotID">ID of the requested hitchBOT.</param>
+        /// <returns>The HitchBots most recent Location.</returns>
+        [HttpGet]
+        public Location GetMostRecentLocation(int HitchBotID)
+        {
+            using (var db = new Database())
+            {
+                return db.hitchBOTs.Single(h => h.ID == HitchBotID).Locations.Last();
+            }
         }
     }
 }

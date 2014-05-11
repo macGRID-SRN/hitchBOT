@@ -481,9 +481,22 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocation(System.Int32,System.Double,System.Double,System.Double,System.Single,System.Single,System.DateTime)">
+            <summary>
+            Given the ID of a HitchBot, add it's location.
+            </summary>
+            <param name="HitchBotID">The HitchBot to add a new Location to.</param>
+            <param name="Latitude">Latitude</param>
+            <param name="Longitude">Longitude</param>
+            <param name="Altitude">Altitude</param>
+            <param name="Accuracy">Accuracy</param>
+            <param name="Velocity">Velocity</param>
+            <param name="TakenTime">TakenTime</param>
+            <returns>Success</returns>
+        </member>
         <member name="T:hitchbotAPI.Controllers.ProjectController">
             <summary>
-            This is for all things related to HitchBot projects. A HitchBot Project is a journey where one or more HitchBot's embark on a journey.
+            This is for all things related to HitchBot projects. A HitchBot Project is when one or more HitchBot's embark on a journey.
             </summary>
         </member>
         <member name="M:hitchbotAPI.Controllers.ProjectController.StartProject(System.String,System.String)">
@@ -514,11 +527,16 @@
             <param name="toEndID">The ID of the Project to end.</param>
             <returns></returns>
         </member>
+        <member name="T:hitchbotAPI.Controllers.hitchBOTController">
+            <summary>
+            For all things related to an instance of HitchBot.
+            </summary>
+        </member>
         <member name="M:hitchbotAPI.Controllers.hitchBOTController.GetHitchbot(System.Int32)">
             <summary>
             Given the ID of a hitchBOT instance, this will return it's information.
             </summary>
-            <param name="ID">ID of the requested hitchBOT information.</param>
+            <param name="ID">ID of the requested hitchBOT.</param>
             <returns>The hitchBOT instance requested.</returns>
         </member>
         <member name="M:hitchbotAPI.Controllers.hitchBOTController.AddHitchBotToProject(System.Int32,System.String)">
@@ -527,7 +545,14 @@
             </summary>
             <param name="ProjectID">ID of the Project the HitchBot will be added to.</param>
             <param name="HitchbotName">The name of the HitchBot that will be created.</param>
-            <returns></returns>
+            <returns>Success.</returns>
+        </member>
+        <member name="M:hitchbotAPI.Controllers.hitchBOTController.GetMostRecentLocation(System.Int32)">
+            <summary>
+            Given the ID of a HitchBot instance, this will return it's most recent Location.
+            </summary>
+            <param name="HitchBotID">ID of the requested hitchBOT.</param>
+            <returns>The HitchBots most recent Location.</returns>
         </member>
     </members>
 </doc>
