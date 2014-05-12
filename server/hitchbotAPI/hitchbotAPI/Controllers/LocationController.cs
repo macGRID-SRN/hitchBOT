@@ -40,5 +40,16 @@ namespace hitchbotAPI.Controllers
             }
             return true;
         }
+
+        /// <summary>
+        /// Get a Location instance by it's ID.
+        /// </summary>
+        /// <param name="ID">ID of the Location requested.</param>
+        /// <returns>The requested Location instance.</returns>
+        [HttpGet]
+        public Location GetLocationByID(int ID)
+        {
+            return (new Database()).Locations.Single(l => l.ID == ID);
+        }
     }
 }

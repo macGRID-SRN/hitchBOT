@@ -13,7 +13,7 @@ namespace hitchbotAPI.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201405092227410_Initial"; }
+            get { return "201405121359288_Initial"; }
         }
         
         string IMigrationMetadata.Source

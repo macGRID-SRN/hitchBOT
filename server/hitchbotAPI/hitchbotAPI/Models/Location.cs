@@ -13,9 +13,11 @@ namespace hitchbotAPI.Models
         public string NearestCity { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public double Altitude { get; set; }
-        public float Accuracy { get; set; }
-        public float Velocity { get; set; }
+        [JsonIgnore]
+        public double? Altitude { get; set; }
+        [JsonIgnore]
+        public float? Accuracy { get; set; }
+        public float? Velocity { get; set; }
         public DateTime TakenTime { get; set; }
         public DateTime TimeAdded { get; set; }
     }

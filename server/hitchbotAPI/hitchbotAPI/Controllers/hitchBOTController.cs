@@ -32,16 +32,18 @@ namespace hitchbotAPI.Controllers
         /// </summary>
         /// <param name="ProjectID">ID of the Project the HitchBot will be added to.</param>
         /// <param name="HitchbotName">The name of the HitchBot that will be created.</param>
+        /// <param name="Creation">The time this HitchBot instance was created.</param>
         /// <returns>Success.</returns>
         [HttpPost]
-        public bool AddHitchBotToProject(int ProjectID, string HitchbotName)
+        public bool AddHitchBotToProject(int ProjectID, string HitchbotName, DateTime Creation)
         {
             using (var db = new Database())
             {
                 var project = db.Projects.Single(p => p.ID == ProjectID);
                 var newHitchBot = new hitchBOT
                 {
-                    CreationTime = DateTime.UtcNow,
+                    CreationTime = Creation,
+                    TimeAdded = DateTime.UtcNow,
                     Name = HitchbotName
                 };
                 project.hitchBOTs.Add(newHitchBot);
@@ -58,9 +60,19 @@ namespace hitchbotAPI.Controllers
         [HttpGet]
         public Location GetMostRecentLocation(int HitchBotID)
         {
+            //makes the assumption that the TakenTime is correct from the HitchBot. This will most likely be correct as the Tablets should get the time from cell networks.
             using (var db = new Database())
             {
-                return db.hitchBOTs.Single(h => h.ID == HitchBotID).Locations.Last();
+                return db.hitchBOTs.Single(h => h.ID == HitchBotID).Locations.OrderBy(l => l.TakenTime).First();
+            }
+        }
+
+        [HttpGet]
+        public List<Location> GetAllLocationsInOrder(int HitchBotLocationsID)
+        {
+            using (var db = new Database())
+            {
+                return db.hitchBOTs.Single(h => h.ID == HitchBotLocationsID).Locations.OrderBy(l => l.TakenTime).ToList();
             }
         }
     }

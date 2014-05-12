@@ -481,6 +481,15 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversation(System.Int32,System.DateTime,System.Int32)">
+            <summary>
+            Starts a new Conversation thread for a HitchBot and already defined Location.
+            </summary>
+            <param name="HitchBotID">The ID of the HitchBot to add a new Conversation to.</param>
+            <param name="StartTime">The time the Conversation started</param>
+            <param name="LocationID">The ID of the Location where the Conversation started.</param>
+            <returns></returns>
+        </member>
         <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocation(System.Int32,System.Double,System.Double,System.Double,System.Single,System.Single,System.DateTime)">
             <summary>
             Given the ID of a HitchBot, add it's location.
@@ -494,17 +503,25 @@
             <param name="TakenTime">TakenTime</param>
             <returns>Success</returns>
         </member>
+        <member name="M:hitchbotAPI.Controllers.LocationController.GetLocationByID(System.Int32)">
+            <summary>
+            Get a Location instance by it's ID.
+            </summary>
+            <param name="ID">ID of the Location requested.</param>
+            <returns>The requested Location instance.</returns>
+        </member>
         <member name="T:hitchbotAPI.Controllers.ProjectController">
             <summary>
             This is for all things related to HitchBot projects. A HitchBot Project is when one or more HitchBot's embark on a journey.
             </summary>
         </member>
-        <member name="M:hitchbotAPI.Controllers.ProjectController.StartProject(System.String,System.String)">
+        <member name="M:hitchbotAPI.Controllers.ProjectController.StartProject(System.String,System.String,System.DateTime)">
             <summary>
             Start a new HitchBot Project.
             </summary>
             <param name="Name">The name of the Project being created.</param>
             <param name="Description">The description of the Project being created.</param>
+            <param name="StartTime">The time the Project was Started</param>
             <returns>Success.</returns>
         </member>
         <member name="M:hitchbotAPI.Controllers.ProjectController.GetCurrentProjects">
@@ -527,6 +544,14 @@
             <param name="toEndID">The ID of the Project to end.</param>
             <returns></returns>
         </member>
+        <member name="M:hitchbotAPI.Controllers.ProjectController.SetStartLocation(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="ProjectID"></param>
+            <param name="LocationToAdd"></param>
+            <returns></returns>
+        </member>
         <member name="T:hitchbotAPI.Controllers.hitchBOTController">
             <summary>
             For all things related to an instance of HitchBot.
@@ -539,12 +564,13 @@
             <param name="ID">ID of the requested hitchBOT.</param>
             <returns>The hitchBOT instance requested.</returns>
         </member>
-        <member name="M:hitchbotAPI.Controllers.hitchBOTController.AddHitchBotToProject(System.Int32,System.String)">
+        <member name="M:hitchbotAPI.Controllers.hitchBOTController.AddHitchBotToProject(System.Int32,System.String,System.DateTime)">
             <summary>
             Call this method when adding a new HitchBot to an existing project.
             </summary>
             <param name="ProjectID">ID of the Project the HitchBot will be added to.</param>
             <param name="HitchbotName">The name of the HitchBot that will be created.</param>
+            <param name="Creation">The time this HitchBot instance was created.</param>
             <returns>Success.</returns>
         </member>
         <member name="M:hitchbotAPI.Controllers.hitchBOTController.GetMostRecentLocation(System.Int32)">

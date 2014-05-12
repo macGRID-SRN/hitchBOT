@@ -153,6 +153,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ConversationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -160,9 +161,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\hitchBOTController.cs" />
-    <Compile Include="Migrations\201405092227410_Initial.cs" />
-    <Compile Include="Migrations\201405092227410_Initial.Designer.cs">
-      <DependentUpon>201405092227410_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201405121359288_Initial.cs" />
+    <Compile Include="Migrations\201405121359288_Initial.Designer.cs">
+      <DependentUpon>201405121359288_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Conversation.cs" />
@@ -237,12 +238,13 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405092227410_Initial.resx">
-      <DependentUpon>201405092227410_Initial.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Views\Conversation\" />
+    <Folder Include="Views\Location\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Location\" />
+    <EmbeddedResource Include="Migrations\201405121359288_Initial.resx">
+      <DependentUpon>201405121359288_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

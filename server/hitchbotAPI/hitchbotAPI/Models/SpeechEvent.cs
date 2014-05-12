@@ -12,5 +12,6 @@ namespace hitchbotAPI.Models
         public int ID { get; set; }
         public string SpeechSaid { get; set; }
         public DateTime OccuredTime { get; set; }
+        public DateTime TimeAdded { get; set; }
     }
 }
