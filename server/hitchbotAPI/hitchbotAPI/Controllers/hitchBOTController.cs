@@ -68,6 +68,11 @@ namespace hitchbotAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Get's all the Locations a HitchBot has ever checked in to, ordered by when they were taken.
+        /// </summary>
+        /// <param name="HitchBotLocationsID">The ID of the HitchBot to get all the Locations for.</param>
+        /// <returns>A list of all the Locations, sorted.</returns>
         [HttpGet]
         public List<Models.Location> GetAllLocationsInOrder(int HitchBotLocationsID)
         {
