@@ -22,9 +22,9 @@ namespace hitchbotAPI.Models
             }
         }
         [JsonIgnore]
-        public List<ListenEvent> ListenEvents { get; set; }
+        public virtual List<ListenEvent> ListenEvents { get; set; }
         [JsonIgnore]
-        public List<SpeechEvent> SpeechEvents { get; set; }
+        public virtual List<SpeechEvent> SpeechEvents { get; set; }
         public DateTime TimeAdded { get; set; }
     }
 }

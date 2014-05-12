@@ -1,4 +1,4 @@
-﻿using hitchbotAPI.Models;
+﻿using hitchbotAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Globalization;
+using System.Data.Entity;
 
 namespace hitchbotAPI.Controllers
 {
@@ -22,9 +23,9 @@ namespace hitchbotAPI.Controllers
         public int StartNewConversation(int HitchBotID, string StartTime, int LocationID)
         {
             DateTime StartTimeReal = DateTime.ParseExact(StartTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
-                var newConversation = new Conversation();
+                var newConversation = new Models.Conversation();
                 newConversation.StartTime = StartTimeReal;
                 var location = db.Locations.Single(l => l.ID == LocationID);
                 newConversation.StartLocation = location;
@@ -34,6 +35,29 @@ namespace hitchbotAPI.Controllers
                 db.SaveChanges();
                 //untested, I am not sure if this will make bad stuff happen or not.
                 return newConversation.ID;
+            }
+        }
+
+        /// <summary>
+        /// Add's a SpeechEvent - Something a HitchBot says.
+        /// </summary>
+        /// <param name="convID">The ID of the Conversation being continued.</param>
+        /// <param name="SpeechSaid">The text which HitchBot said.</param>
+        /// <param name="TimeTaken">When HitchBot said this.</param>
+        /// <returns>The ID of the newly created SpeechEvent.</returns>
+        [HttpPost]
+        public int AddSpeech(int convID, string SpeechSaid, string TimeTaken)
+        {
+            using (var db = new Models.Database())
+            {
+                var speechEvent = new Models.SpeechEvent();
+                speechEvent.TimeAdded = DateTime.UtcNow;
+                speechEvent.SpeechSaid = SpeechSaid;
+                speechEvent.OccuredTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                var conversationThread = db.Conversations.Include(c => c.SpeechEvents).Single(c => c.ID == convID);
+                conversationThread.SpeechEvents.Add(speechEvent);
+                db.SaveChanges();
+                return speechEvent.ID;
             }
         }
     }
