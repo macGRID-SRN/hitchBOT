@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Globalization;
 
 namespace hitchbotAPI.Controllers
 {
@@ -16,14 +17,15 @@ namespace hitchbotAPI.Controllers
         /// <param name="HitchBotID">The ID of the HitchBot to add a new Conversation to.</param>
         /// <param name="StartTime">The time the Conversation started</param>
         /// <param name="LocationID">The ID of the Location where the Conversation started.</param>
-        /// <returns></returns>
+        /// <returns>The ID of the Conversation being added.</returns>
         [HttpPost]
-        public int StartNewConversation(int HitchBotID, DateTime StartTime, int LocationID)
+        public int StartNewConversation(int HitchBotID, string StartTime, int LocationID)
         {
+            DateTime StartTimeReal = DateTime.ParseExact(StartTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             using (var db = new Database())
             {
                 var newConversation = new Conversation();
-                newConversation.StartTime = StartTime;
+                newConversation.StartTime = StartTimeReal;
                 var location = db.Locations.Single(l => l.ID == LocationID);
                 newConversation.StartLocation = location;
                 newConversation.TimeAdded = DateTime.UtcNow;

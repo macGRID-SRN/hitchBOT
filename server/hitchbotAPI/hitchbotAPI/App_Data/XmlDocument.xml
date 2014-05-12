@@ -481,14 +481,14 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversation(System.Int32,System.DateTime,System.Int32)">
+        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversation(System.Int32,System.String,System.Int32)">
             <summary>
             Starts a new Conversation thread for a HitchBot and already defined Location.
             </summary>
             <param name="HitchBotID">The ID of the HitchBot to add a new Conversation to.</param>
             <param name="StartTime">The time the Conversation started</param>
             <param name="LocationID">The ID of the Location where the Conversation started.</param>
-            <returns></returns>
+            <returns>The ID of the Conversation being added.</returns>
         </member>
         <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocation(System.Int32,System.Double,System.Double,System.Double,System.Single,System.Single,System.DateTime)">
             <summary>
@@ -571,6 +571,13 @@
             </summary>
             <param name="HitchBotID">ID of the requested hitchBOT.</param>
             <returns>The HitchBots most recent Location.</returns>
+        </member>
+        <member name="M:hitchbotAPI.Controllers.hitchBOTController.GetAllLocationsInOrder(System.Int32)">
+            <summary>
+            Get's all the Locations a HitchBot has ever checked in to, ordered by when they were taken.
+            </summary>
+            <param name="HitchBotLocationsID">The ID of the HitchBot to get all the Locations for.</param>
+            <returns>A list of all the Locations, sorted.</returns>
         </member>
     </members>
 </doc>
