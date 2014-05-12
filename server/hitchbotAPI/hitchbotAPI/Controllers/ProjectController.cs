@@ -46,7 +46,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                return db.Projects.Where(p => p.EndTime == null).ToList();
+                return db.Projects.Where(p => p.EndTime == null).Include(p => p.EndLocation).Include(p => p.StartLocation).ToList();
             }
         }
 
@@ -60,7 +60,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                return db.Projects.Include(p => p.StartLocation).Include(p => p.EndLocation).Single(p => p.ID == ID);
+                return db.Projects.Where(p => p.ID == ID).Include(p => p.EndLocation).Include(p => p.StartLocation).FirstOrDefault();
             }
         }
 
