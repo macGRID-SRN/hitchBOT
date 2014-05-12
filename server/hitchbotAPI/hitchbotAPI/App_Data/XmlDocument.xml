@@ -535,22 +535,14 @@
             Get the details of a Project.
             </summary>
             <param name="ID">ID of the requested Project.</param>
-            <returns></returns>
+            <returns>The Project Requested</returns>
         </member>
         <member name="M:hitchbotAPI.Controllers.ProjectController.EndProject(System.Int32)">
             <summary>
             End a Project.
             </summary>
             <param name="toEndID">The ID of the Project to end.</param>
-            <returns></returns>
-        </member>
-        <member name="M:hitchbotAPI.Controllers.ProjectController.SetStartLocation(System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="ProjectID"></param>
-            <param name="LocationToAdd"></param>
-            <returns></returns>
+            <returns>Success.</returns>
         </member>
         <member name="T:hitchbotAPI.Controllers.hitchBOTController">
             <summary>

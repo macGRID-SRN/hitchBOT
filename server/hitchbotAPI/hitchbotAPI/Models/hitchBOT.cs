@@ -13,9 +13,9 @@ namespace hitchbotAPI.Models
         public string Name { get; set; }
         public DateTime CreationTime { get; set; }
         [JsonIgnore]
-        public List<Location> Locations { get; set; }
+        public virtual List<Location> Locations { get; set; }
         [JsonIgnore]
-        public List<Conversation> Conversations { get; set; }
+        public virtual List<Conversation> Conversations { get; set; }
         public DateTime TimeAdded { get; set; }
     }
 }

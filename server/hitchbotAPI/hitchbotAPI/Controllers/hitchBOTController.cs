@@ -1,10 +1,11 @@
-﻿using hitchbotAPI.Models;
+﻿using hitchbotAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace hitchbotAPI.Controllers
 {
@@ -19,9 +20,9 @@ namespace hitchbotAPI.Controllers
         /// <param name="ID">ID of the requested hitchBOT.</param>
         /// <returns>The hitchBOT instance requested.</returns>
         [HttpGet]
-        public hitchBOT GetHitchbot(int ID)
+        public Models.hitchBOT GetHitchbot(int ID)
         {
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
                 return db.hitchBOTs.Single(h => h.ID == ID);
             }
@@ -37,10 +38,10 @@ namespace hitchbotAPI.Controllers
         [HttpPost]
         public bool AddHitchBotToProject(int ProjectID, string HitchbotName, DateTime Creation)
         {
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
                 var project = db.Projects.Single(p => p.ID == ProjectID);
-                var newHitchBot = new hitchBOT
+                var newHitchBot = new Models.hitchBOT
                 {
                     CreationTime = Creation,
                     TimeAdded = DateTime.UtcNow,
@@ -58,19 +59,19 @@ namespace hitchbotAPI.Controllers
         /// <param name="HitchBotID">ID of the requested hitchBOT.</param>
         /// <returns>The HitchBots most recent Location.</returns>
         [HttpGet]
-        public Location GetMostRecentLocation(int HitchBotID)
+        public Models.Location GetMostRecentLocation(int HitchBotID)
         {
             //makes the assumption that the TakenTime is correct from the HitchBot. This will most likely be correct as the Tablets should get the time from cell networks.
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
-                return db.hitchBOTs.Single(h => h.ID == HitchBotID).Locations.OrderBy(l => l.TakenTime).First();
+                return db.hitchBOTs.Where(h => h.ID == HitchBotID).Include(l => l.Locations).FirstOrDefault().Locations.OrderByDescending(l => l.TakenTime).First();
             }
         }
 
         [HttpGet]
-        public List<Location> GetAllLocationsInOrder(int HitchBotLocationsID)
+        public List<Models.Location> GetAllLocationsInOrder(int HitchBotLocationsID)
         {
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
                 return db.hitchBOTs.Single(h => h.ID == HitchBotLocationsID).Locations.OrderBy(l => l.TakenTime).ToList();
             }

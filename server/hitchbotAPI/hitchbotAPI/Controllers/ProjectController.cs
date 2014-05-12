@@ -54,7 +54,7 @@ namespace hitchbotAPI.Controllers
         /// Get the details of a Project.
         /// </summary>
         /// <param name="ID">ID of the requested Project.</param>
-        /// <returns></returns>
+        /// <returns>The Project Requested</returns>
         [HttpGet]
         public Models.Project GetProjectByID(int ID)
         {
@@ -68,7 +68,7 @@ namespace hitchbotAPI.Controllers
         /// End a Project.
         /// </summary>
         /// <param name="toEndID">The ID of the Project to end.</param>
-        /// <returns></returns>
+        /// <returns>Success.</returns>
         [HttpPost]
         public bool EndProject(int toEndID)
         {
@@ -79,24 +79,6 @@ namespace hitchbotAPI.Controllers
                 db.SaveChanges();
                 return true;
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="ProjectID"></param>
-        /// <param name="LocationToAdd"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public bool SetStartLocation(int ProjectID, int LocationToAdd)
-        {
-            using (var db = new Models.Database())
-            {
-                var project = db.Projects.Single(p => p.ID == ProjectID);
-                project.StartLocation = db.Locations.Single(l => l.ID == LocationToAdd);
-                db.SaveChanges();
-            }
-            return true;
         }
     }
 }
