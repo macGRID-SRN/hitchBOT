@@ -60,5 +60,28 @@ namespace hitchbotAPI.Controllers
                 return speechEvent.ID;
             }
         }
+
+        /// <summary>
+        /// Add's a ListenEvent - Something a HitchBot hears.
+        /// </summary>
+        /// <param name="convID">The ID of the Conversation being continued.</param>
+        /// <param name="SpeechHeard">The text which HitchBot heard.</param>
+        /// <param name="TimeTaken">When HitchBot heard this.</param>
+        /// <returns>The ID of the newly created ListenEvent.</returns>
+        [HttpPost]
+        public int AddListen(int convID, string SpeechHeard, string TimeTaken)
+        {
+            using (var db = new Models.Database())
+            {
+                var listenEvent = new Models.ListenEvent();
+                listenEvent.TimeAdded = DateTime.UtcNow;
+                listenEvent.HeardTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                listenEvent.SpeechHeard = SpeechHeard;
+                var conversationThread = db.Conversations.Include(c => c.ListenEvents).Single(c => c.ID == convID);
+                conversationThread.ListenEvents.Add(listenEvent);
+                db.SaveChanges();
+                return listenEvent.ID;
+            }
+        }
     }
 }
