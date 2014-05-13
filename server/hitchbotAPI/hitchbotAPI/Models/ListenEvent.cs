@@ -7,11 +7,11 @@ using Newtonsoft.Json;
 
 namespace hitchbotAPI.Models
 {
-    public class SpeechEvent
+    public class ListenEvent
     {
         public int ID { get; set; }
-        public string SpeechSaid { get; set; }
-        public DateTime OccuredTime { get; set; }
+        public string SpeechHeard { get; set; }
+        public DateTime HeardTime { get; set; }
         public DateTime TimeAdded { get; set; }
     }
 }
