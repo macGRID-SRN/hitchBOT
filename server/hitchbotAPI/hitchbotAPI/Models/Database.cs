@@ -23,5 +23,6 @@ namespace hitchbotAPI.Models
         public DbSet<Project> Projects { get; set; }
         public DbSet<ListenEvent> ListenEvents { get; set; }
         public DbSet<Conversation> Conversations { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }
