@@ -5,11 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Data.Entity;
 using System.Configuration;
 using LinqToTwitter;
 using System.Threading.Tasks;
-using System.Diagnostics;
 
 namespace hitchbotAPI.Controllers
 {
@@ -57,6 +57,7 @@ namespace hitchbotAPI.Controllers
             return true;
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpPost]
         public async Task<string> Tweet(string TweetText)
         {
@@ -75,10 +76,6 @@ namespace hitchbotAPI.Controllers
             {
                 var twitterContext = new TwitterContext(auth);
                 var tweet = await twitterContext.TweetAsync(TweetText);
-            }
-            catch (System.IO.FileNotFoundException e)
-            {
-                return e.ToString();
             }
             catch (LinqToTwitter.TwitterQueryException e)
             {

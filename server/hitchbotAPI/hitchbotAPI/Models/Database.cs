@@ -24,5 +24,6 @@ namespace hitchbotAPI.Models
         public DbSet<ListenEvent> ListenEvents { get; set; }
         public DbSet<Conversation> Conversations { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<TwitterAccount> TwitterAccounts { get; set; }
     }
 }
