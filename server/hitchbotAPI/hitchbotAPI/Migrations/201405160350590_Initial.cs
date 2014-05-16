@@ -86,6 +86,20 @@ namespace hitchbotAPI.Migrations
                 .Index(t => t.Project_ID);
             
             CreateTable(
+                "dbo.Images",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        url = c.String(),
+                        TimeTaken = c.DateTime(nullable: false),
+                        TimeAdded = c.DateTime(nullable: false),
+                        location_ID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Locations", t => t.location_ID)
+                .Index(t => t.location_ID);
+            
+            CreateTable(
                 "dbo.Projects",
                 c => new
                     {
@@ -104,27 +118,49 @@ namespace hitchbotAPI.Migrations
                 .Index(t => t.EndLocation_ID)
                 .Index(t => t.StartLocation_ID);
             
+            CreateTable(
+                "dbo.TwitterAccounts",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        consumerKey = c.String(),
+                        consumerSecret = c.String(),
+                        accessToken = c.String(),
+                        accessTokenSecret = c.String(),
+                        TimeAdded = c.DateTime(nullable: false),
+                        HitchBot_ID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.hitchBOTs", t => t.HitchBot_ID)
+                .Index(t => t.HitchBot_ID);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.TwitterAccounts", "HitchBot_ID", "dbo.hitchBOTs");
             DropForeignKey("dbo.Projects", "StartLocation_ID", "dbo.Locations");
             DropForeignKey("dbo.hitchBOTs", "Project_ID", "dbo.Projects");
             DropForeignKey("dbo.Projects", "EndLocation_ID", "dbo.Locations");
+            DropForeignKey("dbo.Images", "location_ID", "dbo.Locations");
             DropForeignKey("dbo.Locations", "hitchBOT_ID", "dbo.hitchBOTs");
             DropForeignKey("dbo.Conversations", "hitchBOT_ID", "dbo.hitchBOTs");
             DropForeignKey("dbo.Conversations", "StartLocation_ID", "dbo.Locations");
             DropForeignKey("dbo.SpeechEvents", "Conversation_ID", "dbo.Conversations");
             DropForeignKey("dbo.ListenEvents", "Conversation_ID", "dbo.Conversations");
+            DropIndex("dbo.TwitterAccounts", new[] { "HitchBot_ID" });
             DropIndex("dbo.Projects", new[] { "StartLocation_ID" });
             DropIndex("dbo.Projects", new[] { "EndLocation_ID" });
+            DropIndex("dbo.Images", new[] { "location_ID" });
             DropIndex("dbo.hitchBOTs", new[] { "Project_ID" });
             DropIndex("dbo.Locations", new[] { "hitchBOT_ID" });
             DropIndex("dbo.SpeechEvents", new[] { "Conversation_ID" });
             DropIndex("dbo.ListenEvents", new[] { "Conversation_ID" });
             DropIndex("dbo.Conversations", new[] { "hitchBOT_ID" });
             DropIndex("dbo.Conversations", new[] { "StartLocation_ID" });
+            DropTable("dbo.TwitterAccounts");
             DropTable("dbo.Projects");
+            DropTable("dbo.Images");
             DropTable("dbo.hitchBOTs");
             DropTable("dbo.Locations");
             DropTable("dbo.SpeechEvents");

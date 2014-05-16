@@ -13,6 +13,9 @@ namespace hitchbotAPI.Models
         public string consumerKey { get; set; }
         [JsonIgnore]
         public string consumerSecret { get; set; }
+        public string accessToken { get; set; }
+        [JsonIgnore]
+        public string accessTokenSecret { get; set; }
         [JsonIgnore]
         public hitchBOT HitchBot { get; set; }
         public DateTime TimeAdded { get; set; }

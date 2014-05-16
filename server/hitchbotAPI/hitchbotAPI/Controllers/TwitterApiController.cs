@@ -7,7 +7,6 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Data.Entity;
-using System.Configuration;
 using LinqToTwitter;
 using System.Threading.Tasks;
 
@@ -17,7 +16,7 @@ namespace hitchbotAPI.Controllers
     public class TwitterApiController : ApiController
     {
         [HttpPost]
-        public bool PostTweetWithLocation(int HitchBotID, int LocationID, string TweetText)
+        public async Task<string> PostTweetWithLocation(int HitchBotID, int LocationID, string TweetText)
         {
             using (var db = new Models.Database())
             {
@@ -30,22 +29,23 @@ namespace hitchbotAPI.Controllers
                     {
                         ConsumerKey = TwitterAccount.consumerKey,
                         ConsumerSecret = TwitterAccount.consumerSecret,
-                        AccessToken = ConfigurationManager.AppSettings["accessToken"],
-                        AccessTokenSecret = ConfigurationManager.AppSettings["accessTokenSecret"]
+                        AccessToken = TwitterAccount.accessToken,
+                        AccessTokenSecret = TwitterAccount.accessTokenSecret
                     }
                 };
 
                 try
                 {
                     var twitterContext = new TwitterContext(auth);
-                    var response = twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
+                    var response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
+
                 }
                 catch (TwitterQueryException e)
                 {
-
+                    return string.Format("Consumer: {0} Secret: {1} API: {2} Secret: {3} Dump: {4}", auth.CredentialStore.ConsumerKey, auth.CredentialStore.ConsumerSecret, auth.CredentialStore.OAuthToken, auth.CredentialStore.OAuthTokenSecret, e.ToString());
                 }
             }
-            return true;
+            return "Tweet sent successfully.";
         }
     }
 }
