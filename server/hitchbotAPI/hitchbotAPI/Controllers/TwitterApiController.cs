@@ -20,25 +20,15 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                var TwitterAccount = db.TwitterAccounts.Single(t => t.HitchBot.ID == HitchBotID);
                 var Location = db.Locations.Single(l => l.ID == LocationID);
 
-                var auth = new SingleUserAuthorizer
-                {
-                    CredentialStore = new SingleUserInMemoryCredentialStore
-                    {
-                        ConsumerKey = TwitterAccount.consumerKey,
-                        ConsumerSecret = TwitterAccount.consumerSecret,
-                        AccessToken = TwitterAccount.accessToken,
-                        AccessTokenSecret = TwitterAccount.accessTokenSecret
-                    }
-                };
+                var auth = Helpers.TwitterHelper.GetAuthorization(HitchBotID);
 
                 try
                 {
                     var twitterContext = new TwitterContext(auth);
                     var response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
-
+                    return "Tweet from: " + response.Place.Name;
                 }
                 catch (TwitterQueryException e)
                 {
