@@ -9,7 +9,7 @@ using System.Web.Http.Description;
 using System.Data.Entity;
 using LinqToTwitter;
 using System.Threading.Tasks;
-
+using System.Diagnostics;
 namespace hitchbotAPI.Controllers
 {
     //[ApiExplorerSettings(IgnoreApi = true)]
@@ -24,11 +24,28 @@ namespace hitchbotAPI.Controllers
 
                 try
                 {
-                    var twitterContext = Helpers.TwitterHelper.GetContext(HitchBotID);
-                    var response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
-                    return "Tweet from: " + response.Place.Name;
+                    string UserID;
+                    var twitterContext = Helpers.TwitterHelper.GetContext(HitchBotID, out UserID);
+                    Status response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
+                    //Debug.WriteLine(response.ToString());
+                    //Debug.WriteLine(response.User.UserID);
+                    //Debug.WriteLine(response.Text);
+                    //Debug.WriteLine(response.StatusID);
+                    Helpers.TwitterHelper.AddTweetToDatabase(UserID, response);
                 }
                 catch (TwitterQueryException e)
+                {
+                    return e.ToString();
+                }
+                catch (InvalidOperationException e)
+                {
+                    return e.ToString();
+                }
+                catch (System.Data.SqlClient.SqlException e)
+                {
+                    return e.ToString();
+                }
+                catch (System.NotSupportedException e)
                 {
                     return e.ToString();
                 }
