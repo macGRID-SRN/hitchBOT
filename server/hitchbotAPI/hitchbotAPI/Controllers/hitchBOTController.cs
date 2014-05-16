@@ -28,7 +28,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                return db.hitchBOTs.Single(h => h.ID == ID);
+                return db.hitchBOTs.First(h => h.ID == ID);
             }
         }
 
@@ -44,7 +44,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                var project = db.Projects.Single(p => p.ID == ProjectID);
+                var project = db.Projects.First(p => p.ID == ProjectID);
                 var newHitchBot = new Models.hitchBOT
                 {
                     CreationTime = Creation,
@@ -82,7 +82,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                return db.hitchBOTs.Single(h => h.ID == HitchBotLocationsID).Locations.OrderBy(l => l.TakenTime).ToList();
+                return db.hitchBOTs.First(h => h.ID == HitchBotLocationsID).Locations.OrderBy(l => l.TakenTime).ToList();
             }
         }
     }

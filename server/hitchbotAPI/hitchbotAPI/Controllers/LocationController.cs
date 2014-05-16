@@ -49,7 +49,7 @@ namespace hitchbotAPI.Controllers
         [HttpGet]
         public Location GetLocationByID(int ID)
         {
-            return (new Database()).Locations.Single(l => l.ID == ID);
+            return (new Database()).Locations.First(l => l.ID == ID);
         }
     }
 }
