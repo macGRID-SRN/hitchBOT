@@ -20,7 +20,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                var Location = db.Locations.Single(l => l.ID == LocationID);
+                var Location = db.Locations.First(l => l.ID == LocationID);
 
                 try
                 {

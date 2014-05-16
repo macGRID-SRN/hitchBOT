@@ -26,7 +26,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Database())
             {
-                var hitchBOT = db.hitchBOTs.Single(h => h.ID == HitchBotID);
+                var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
                 var location = new Location();
                 location.Latitude = Latitude;
                 location.Longitude = Longitude;

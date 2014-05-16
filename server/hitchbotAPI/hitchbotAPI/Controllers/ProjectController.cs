@@ -74,7 +74,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                var projectToEnd = db.Projects.Single(p => p.ID == toEndID);
+                var projectToEnd = db.Projects.First(p => p.ID == toEndID);
                 projectToEnd.EndTime = DateTime.UtcNow;
                 db.SaveChanges();
                 return true;
