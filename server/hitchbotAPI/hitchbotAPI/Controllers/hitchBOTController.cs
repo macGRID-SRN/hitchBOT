@@ -57,33 +57,6 @@ namespace hitchbotAPI.Controllers
             return true;
         }
 
-        //[ApiExplorerSettings(IgnoreApi = true)]
-        //[HttpPost]
-        //public async Task<string> Tweet(string TweetText)
-        //{
-        //    var auth = new SingleUserAuthorizer
-        //    {
-        //        CredentialStore = new SingleUserInMemoryCredentialStore
-        //        {
-        //            ConsumerKey = ConfigurationManager.AppSettings["consumerKey"],
-        //            ConsumerSecret = ConfigurationManager.AppSettings["consumerSecret"],
-        //            AccessToken = ConfigurationManager.AppSettings["accessToken"],
-        //            AccessTokenSecret = ConfigurationManager.AppSettings["accessTokenSecret"]
-        //        }
-        //    };
-
-        //    try
-        //    {
-        //        var twitterContext = new TwitterContext(auth);
-        //        var tweet = await twitterContext.TweetAsync(TweetText);
-        //    }
-        //    catch (LinqToTwitter.TwitterQueryException e)
-        //    {
-        //        return e.ToString();
-        //    }
-        //    return "";
-        //}
-
         /// <summary>
         /// Given the ID of a HitchBot instance, this will return it's most recent Location.
         /// </summary>

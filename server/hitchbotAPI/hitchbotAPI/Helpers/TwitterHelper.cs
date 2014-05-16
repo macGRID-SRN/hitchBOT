@@ -14,9 +14,6 @@ namespace hitchbotAPI.Helpers
         {
             using (var db = new Models.Database())
             {
-                try
-                {
-                Debug.WriteLine("Adding Tweet..");
                 var TwitterStatus = new Models.TwitterStatus()
                 {
                     TwitterAccount = db.TwitterAccounts.First(ta => ta.UserID == UserID),
@@ -25,15 +22,9 @@ namespace hitchbotAPI.Helpers
                     TimeTweeted = newStatus.CreatedAt,
                     TimeAdded = DateTime.UtcNow
                 };
-                Debug.WriteLine("Tweet built.");
-                
-                    db.TwitterStatuses.Add(TwitterStatus);
-                    db.SaveChanges();
-                }
-                catch (System.Data.SqlClient.SqlException e)
-                {
-                    Debug.WriteLine(e.ToString());
-                }
+
+                db.TwitterStatuses.Add(TwitterStatus);
+                db.SaveChanges();
             }
         }
 

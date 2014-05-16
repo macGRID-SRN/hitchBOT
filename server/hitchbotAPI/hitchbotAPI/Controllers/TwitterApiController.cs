@@ -27,10 +27,7 @@ namespace hitchbotAPI.Controllers
                     string UserID;
                     var twitterContext = Helpers.TwitterHelper.GetContext(HitchBotID, out UserID);
                     Status response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
-                    //Debug.WriteLine(response.ToString());
-                    //Debug.WriteLine(response.User.UserID);
-                    //Debug.WriteLine(response.Text);
-                    //Debug.WriteLine(response.StatusID);
+
                     Helpers.TwitterHelper.AddTweetToDatabase(UserID, response);
                 }
                 catch (TwitterQueryException e)
