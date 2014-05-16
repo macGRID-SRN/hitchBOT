@@ -42,7 +42,7 @@ namespace hitchbotAPI.Controllers
                 }
                 catch (TwitterQueryException e)
                 {
-                    return string.Format("Consumer: {0} Secret: {1} API: {2} Secret: {3} Dump: {4}", auth.CredentialStore.ConsumerKey, auth.CredentialStore.ConsumerSecret, auth.CredentialStore.OAuthToken, auth.CredentialStore.OAuthTokenSecret, e.ToString());
+                    return e.ToString();
                 }
             }
             return "Tweet sent successfully.";
