@@ -25,5 +25,10 @@ namespace hitchbotAPI.Helpers
                 };
             }
         }
+
+        public static TwitterContext GetContext(int HitchBotID)
+        {
+            return new TwitterContext(GetAuthorization(HitchBotID));
+        }
     }
 }

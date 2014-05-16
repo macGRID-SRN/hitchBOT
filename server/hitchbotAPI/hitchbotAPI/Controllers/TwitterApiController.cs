@@ -22,11 +22,9 @@ namespace hitchbotAPI.Controllers
             {
                 var Location = db.Locations.Single(l => l.ID == LocationID);
 
-                var auth = Helpers.TwitterHelper.GetAuthorization(HitchBotID);
-
                 try
                 {
-                    var twitterContext = new TwitterContext(auth);
+                    var twitterContext = Helpers.TwitterHelper.GetContext(HitchBotID);
                     var response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
                     return "Tweet from: " + response.Place.Name;
                 }
