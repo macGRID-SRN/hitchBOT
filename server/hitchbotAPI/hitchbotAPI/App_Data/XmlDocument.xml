@@ -508,6 +508,23 @@
             <param name="TimeTaken">When HitchBot heard this.</param>
             <returns>The ID of the newly created ListenEvent.</returns>
         </member>
+        <member name="M:hitchbotAPI.Controllers.LocationController.GetGoogleMapsRoute(System.Int32)">
+            <summary>
+            Redirects to a static GMAPS image which is the total path of a HitchBot. Note: We can only build this map 25,000 times per day.
+            </summary>
+            <param name="HitchBotID">The HitchBot to get the route of.</param>
+            <returns>Redirects to the proper link.</returns>
+        </member>
+        <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocationMin(System.Int32,System.Double,System.Double,System.DateTime)">
+            <summary>
+            Adds a Locations with the bare minimum of data required for a complete entry
+            </summary>
+            <param name="HitchBotID">The HitchBot to add a new Location to.</param>
+            <param name="Latitude">Latitude</param>
+            <param name="Longitude">Longitude</param>
+            <param name="TakenTime">TakenTime</param>
+            <returns>Success</returns>
+        </member>
         <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocation(System.Int32,System.Double,System.Double,System.Double,System.Single,System.Single,System.DateTime)">
             <summary>
             Given the ID of a HitchBot, add it's location.

@@ -10,6 +10,11 @@ namespace hitchbotAPI.Controllers
 {
     public class LocationController : ApiController
     {
+        /// <summary>
+        /// Redirects to a static GMAPS image which is the total path of a HitchBot. Note: We can only build this map 25,000 times per day.
+        /// </summary>
+        /// <param name="HitchBotID">The HitchBot to get the route of.</param>
+        /// <returns>Redirects to the proper link.</returns>
         [HttpGet]
         public HttpResponseMessage GetGoogleMapsRoute(int HitchBotID)
         {
