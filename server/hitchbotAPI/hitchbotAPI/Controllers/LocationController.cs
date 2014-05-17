@@ -11,14 +11,11 @@ namespace hitchbotAPI.Controllers
     public class LocationController : ApiController
     {
         [HttpGet]
-        public string GetGoogleMapsRoute(int HitchBotID)
+        public HttpResponseMessage GetGoogleMapsRoute(int HitchBotID)
         {
-            using (var db = new Models.Database())
-            {
-                var OrderedLocations = db.hitchBOTs.First(h => h.ID == HitchBotID).Locations.OrderByDescending(l => l.TakenTime).ToList();
-
-                return Helpers.LocationHelper.EncodeCoordsForGMAPS(OrderedLocations);
-            }
+            var response = Request.CreateResponse(HttpStatusCode.Moved);
+            response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
+            return response;
         }
 
         /// <summary>

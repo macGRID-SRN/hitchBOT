@@ -15,6 +15,5 @@ namespace hitchbotAPI.Models
         public string ScreenName { get; set; }
         public DateTime TimeAdded { get; set; }
         public DateTime? TimeFollowed { get; set; }
-
     }
 }

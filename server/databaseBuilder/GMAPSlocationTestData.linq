@@ -15,4 +15,6 @@
 HitchBOTs.InsertOnSubmit(new HitchBOTs(){ Project_ID = 1, Name = "LocationTester", CreationTime = DateTime.UtcNow, TimeAdded = DateTime.UtcNow});
 SubmitChanges();
 Locations.InsertOnSubmit(new Locations(){ HitchBOT_ID = 2, Latitude = 38.5, Longitude = -120.2, TakenTime = DateTime.Parse("5/17/2014 13:05:05"), TimeAdded = DateTime.UtcNow});
+Locations.InsertOnSubmit(new Locations(){ HitchBOT_ID = 2, Latitude = 40.7, Longitude = -120.95, TakenTime = DateTime.Parse("5/17/2014 13:06:05"), TimeAdded = DateTime.UtcNow});
+Locations.InsertOnSubmit(new Locations(){ HitchBOT_ID = 2, Latitude = 43.252, Longitude = -126.453, TakenTime = DateTime.Parse("5/17/2014 13:07:05"), TimeAdded = DateTime.UtcNow});
 SubmitChanges();
