@@ -10,6 +10,17 @@ namespace hitchbotAPI.Controllers
 {
     public class LocationController : ApiController
     {
+        [HttpGet]
+        public string GetGoogleMapsRoute(int HitchBotID)
+        {
+            using (var db = new Models.Database())
+            {
+                var OrderedLocations = db.hitchBOTs.First(h => h.ID == HitchBotID).Locations.OrderByDescending(l => l.TakenTime).ToList();
+
+                return Helpers.LocationHelper.EncodeCoordsForGMAPS(OrderedLocations);
+            }
+        }
+
         /// <summary>
         /// Given the ID of a HitchBot, add it's location.
         /// </summary>

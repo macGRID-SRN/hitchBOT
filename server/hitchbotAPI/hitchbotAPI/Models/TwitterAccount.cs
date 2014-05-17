@@ -10,8 +10,7 @@ namespace hitchbotAPI.Models
 {
     public class TwitterAccount
     {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
         public string UserID { get; set; }
         [JsonIgnore]
         public string consumerKey { get; set; }

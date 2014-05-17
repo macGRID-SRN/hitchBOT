@@ -122,7 +122,8 @@ namespace hitchbotAPI.Migrations
                 "dbo.TwitterAccounts",
                 c => new
                     {
-                        UserID = c.String(nullable: false, maxLength: 128),
+                        ID = c.Int(nullable: false, identity: true),
+                        UserID = c.String(),
                         consumerKey = c.String(),
                         consumerSecret = c.String(),
                         accessToken = c.String(),
@@ -130,29 +131,42 @@ namespace hitchbotAPI.Migrations
                         TimeAdded = c.DateTime(nullable: false),
                         HitchBot_ID = c.Int(),
                     })
-                .PrimaryKey(t => t.UserID)
+                .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.hitchBOTs", t => t.HitchBot_ID)
                 .Index(t => t.HitchBot_ID);
+            
+            CreateTable(
+                "dbo.TwitterFriends",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        UserID = c.String(),
+                        ScreenName = c.String(),
+                        TimeAdded = c.DateTime(nullable: false),
+                        TimeFollowed = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.TwitterStatus",
                 c => new
                     {
-                        TweetID = c.String(nullable: false, maxLength: 128),
+                        ID = c.Int(nullable: false, identity: true),
+                        TweetID = c.String(),
                         Text = c.String(maxLength: 140),
                         TimeAdded = c.DateTime(nullable: false),
                         TimeTweeted = c.DateTime(nullable: false),
-                        TwitterAccount_UserID = c.String(maxLength: 128),
+                        TwitterAccount_ID = c.Int(),
                     })
-                .PrimaryKey(t => t.TweetID)
-                .ForeignKey("dbo.TwitterAccounts", t => t.TwitterAccount_UserID)
-                .Index(t => t.TwitterAccount_UserID);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.TwitterAccounts", t => t.TwitterAccount_ID)
+                .Index(t => t.TwitterAccount_ID);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.TwitterStatus", "TwitterAccount_UserID", "dbo.TwitterAccounts");
+            DropForeignKey("dbo.TwitterStatus", "TwitterAccount_ID", "dbo.TwitterAccounts");
             DropForeignKey("dbo.TwitterAccounts", "HitchBot_ID", "dbo.hitchBOTs");
             DropForeignKey("dbo.Projects", "StartLocation_ID", "dbo.Locations");
             DropForeignKey("dbo.hitchBOTs", "Project_ID", "dbo.Projects");
@@ -163,7 +177,7 @@ namespace hitchbotAPI.Migrations
             DropForeignKey("dbo.Conversations", "StartLocation_ID", "dbo.Locations");
             DropForeignKey("dbo.SpeechEvents", "Conversation_ID", "dbo.Conversations");
             DropForeignKey("dbo.ListenEvents", "Conversation_ID", "dbo.Conversations");
-            DropIndex("dbo.TwitterStatus", new[] { "TwitterAccount_UserID" });
+            DropIndex("dbo.TwitterStatus", new[] { "TwitterAccount_ID" });
             DropIndex("dbo.TwitterAccounts", new[] { "HitchBot_ID" });
             DropIndex("dbo.Projects", new[] { "StartLocation_ID" });
             DropIndex("dbo.Projects", new[] { "EndLocation_ID" });
@@ -175,6 +189,7 @@ namespace hitchbotAPI.Migrations
             DropIndex("dbo.Conversations", new[] { "hitchBOT_ID" });
             DropIndex("dbo.Conversations", new[] { "StartLocation_ID" });
             DropTable("dbo.TwitterStatus");
+            DropTable("dbo.TwitterFriends");
             DropTable("dbo.TwitterAccounts");
             DropTable("dbo.Projects");
             DropTable("dbo.Images");

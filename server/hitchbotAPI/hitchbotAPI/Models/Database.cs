@@ -26,5 +26,6 @@ namespace hitchbotAPI.Models
         public DbSet<Image> Images { get; set; }
         public DbSet<TwitterAccount> TwitterAccounts { get; set; }
         public DbSet<TwitterStatus> TwitterStatuses { get; set; }
+        public DbSet<TwitterFriend> TwitterFriends { get; set; }
     }
 }

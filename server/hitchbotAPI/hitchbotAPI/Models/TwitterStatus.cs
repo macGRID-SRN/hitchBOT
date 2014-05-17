@@ -14,8 +14,7 @@ namespace hitchbotAPI.Models
 {
     public class TwitterStatus
     {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
         public string TweetID { get; set; }
         public TwitterAccount TwitterAccount { get; set; }
         [MaxLength(140)]

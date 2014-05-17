@@ -174,10 +174,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\hitchBOTController.cs" />
+    <Compile Include="Helpers\LocationHelper.cs" />
     <Compile Include="Helpers\TwitterHelper.cs" />
-    <Compile Include="Migrations\201405162128510_Initial.cs" />
-    <Compile Include="Migrations\201405162128510_Initial.Designer.cs">
-      <DependentUpon>201405162128510_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201405171724063_Initial.cs" />
+    <Compile Include="Migrations\201405171724063_Initial.Designer.cs">
+      <DependentUpon>201405171724063_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Conversation.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\SpeechEvent.cs" />
     <Compile Include="Models\TwitterAccount.cs" />
+    <Compile Include="Models\TwitterFriend.cs" />
     <Compile Include="Models\TwitterStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -261,8 +263,8 @@
     <Folder Include="Views\Location\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405162128510_Initial.resx">
-      <DependentUpon>201405162128510_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405171724063_Initial.resx">
+      <DependentUpon>201405171724063_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
