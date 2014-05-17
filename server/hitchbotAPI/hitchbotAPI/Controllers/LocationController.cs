@@ -11,6 +11,43 @@ namespace hitchbotAPI.Controllers
     public class LocationController : ApiController
     {
         /// <summary>
+        /// Redirects to a static GMAPS image which is the total path of a HitchBot. Note: We can only build this map 25,000 times per day.
+        /// </summary>
+        /// <param name="HitchBotID">The HitchBot to get the route of.</param>
+        /// <returns>Redirects to the proper link.</returns>
+        [HttpGet]
+        public HttpResponseMessage GetGoogleMapsRoute(int HitchBotID)
+        {
+            var response = Request.CreateResponse(HttpStatusCode.Moved);
+            response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
+            return response;
+        }
+
+        /// <summary>
+        /// Adds a Locations with the bare minimum of data required for a complete entry
+        /// </summary>
+        /// <param name="HitchBotID">The HitchBot to add a new Location to.</param>
+        /// <param name="Latitude">Latitude</param>
+        /// <param name="Longitude">Longitude</param>
+        /// <param name="TakenTime">TakenTime</param>
+        /// <returns>Success</returns>
+        [HttpPost]
+        public bool UpdateHitchBotLocationMin(int HitchBotID, double Latitude, double Longitude, DateTime TakenTime)
+        {
+            using (var db = new Database())
+            {
+                var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
+                var location = new Location();
+                location.Latitude = Latitude;
+                location.Longitude = Longitude;
+                location.TakenTime = TakenTime;
+                location.TimeAdded = DateTime.UtcNow;
+                hitchBOT.Locations.Add(location);
+                db.SaveChanges();
+            }
+            return true;
+        }
+        /// <summary>
         /// Given the ID of a HitchBot, add it's location.
         /// </summary>
         /// <param name="HitchBotID">The HitchBot to add a new Location to.</param>
@@ -26,7 +63,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Database())
             {
-                var hitchBOT = db.hitchBOTs.Single(h => h.ID == HitchBotID);
+                var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
                 var location = new Location();
                 location.Latitude = Latitude;
                 location.Longitude = Longitude;
@@ -49,7 +86,7 @@ namespace hitchbotAPI.Controllers
         [HttpGet]
         public Location GetLocationByID(int ID)
         {
-            return (new Database()).Locations.Single(l => l.ID == ID);
+            return (new Database()).Locations.First(l => l.ID == ID);
         }
     }
 }

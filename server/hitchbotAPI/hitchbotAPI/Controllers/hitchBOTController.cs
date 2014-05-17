@@ -28,7 +28,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                return db.hitchBOTs.Single(h => h.ID == ID);
+                return db.hitchBOTs.First(h => h.ID == ID);
             }
         }
 
@@ -44,7 +44,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                var project = db.Projects.Single(p => p.ID == ProjectID);
+                var project = db.Projects.First(p => p.ID == ProjectID);
                 var newHitchBot = new Models.hitchBOT
                 {
                     CreationTime = Creation,
@@ -56,33 +56,6 @@ namespace hitchbotAPI.Controllers
             }
             return true;
         }
-
-        //[ApiExplorerSettings(IgnoreApi = true)]
-        //[HttpPost]
-        //public async Task<string> Tweet(string TweetText)
-        //{
-        //    var auth = new SingleUserAuthorizer
-        //    {
-        //        CredentialStore = new SingleUserInMemoryCredentialStore
-        //        {
-        //            ConsumerKey = ConfigurationManager.AppSettings["consumerKey"],
-        //            ConsumerSecret = ConfigurationManager.AppSettings["consumerSecret"],
-        //            AccessToken = ConfigurationManager.AppSettings["accessToken"],
-        //            AccessTokenSecret = ConfigurationManager.AppSettings["accessTokenSecret"]
-        //        }
-        //    };
-
-        //    try
-        //    {
-        //        var twitterContext = new TwitterContext(auth);
-        //        var tweet = await twitterContext.TweetAsync(TweetText);
-        //    }
-        //    catch (LinqToTwitter.TwitterQueryException e)
-        //    {
-        //        return e.ToString();
-        //    }
-        //    return "";
-        //}
 
         /// <summary>
         /// Given the ID of a HitchBot instance, this will return it's most recent Location.
@@ -109,7 +82,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                return db.hitchBOTs.Single(h => h.ID == HitchBotLocationsID).Locations.OrderBy(l => l.TakenTime).ToList();
+                return db.hitchBOTs.First(h => h.ID == HitchBotLocationsID).Locations.OrderBy(l => l.TakenTime).ToList();
             }
         }
     }

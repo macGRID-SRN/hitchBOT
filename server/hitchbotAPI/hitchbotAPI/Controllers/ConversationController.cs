@@ -27,10 +27,10 @@ namespace hitchbotAPI.Controllers
             {
                 var newConversation = new Models.Conversation();
                 newConversation.StartTime = StartTimeReal;
-                var location = db.Locations.Single(l => l.ID == LocationID);
+                var location = db.Locations.First(l => l.ID == LocationID);
                 newConversation.StartLocation = location;
                 newConversation.TimeAdded = DateTime.UtcNow;
-                var hitchbot = db.hitchBOTs.Single(h => h.ID == HitchBotID);
+                var hitchbot = db.hitchBOTs.First(h => h.ID == HitchBotID);
                 hitchbot.Conversations.Add(newConversation);
                 db.SaveChanges();
                 //untested, I am not sure if this will make bad stuff happen or not.
@@ -54,7 +54,7 @@ namespace hitchbotAPI.Controllers
                 speechEvent.TimeAdded = DateTime.UtcNow;
                 speechEvent.SpeechSaid = SpeechSaid;
                 speechEvent.OccuredTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-                var conversationThread = db.Conversations.Include(c => c.SpeechEvents).Single(c => c.ID == convID);
+                var conversationThread = db.Conversations.Include(c => c.SpeechEvents).First(c => c.ID == convID);
                 conversationThread.SpeechEvents.Add(speechEvent);
                 db.SaveChanges();
                 return speechEvent.ID;
@@ -77,7 +77,7 @@ namespace hitchbotAPI.Controllers
                 listenEvent.TimeAdded = DateTime.UtcNow;
                 listenEvent.HeardTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
                 listenEvent.SpeechHeard = SpeechHeard;
-                var conversationThread = db.Conversations.Include(c => c.ListenEvents).Single(c => c.ID == convID);
+                var conversationThread = db.Conversations.Include(c => c.ListenEvents).First(c => c.ID == convID);
                 conversationThread.ListenEvents.Add(listenEvent);
                 db.SaveChanges();
                 return listenEvent.ID;
