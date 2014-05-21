@@ -48,8 +48,8 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
         */
 		
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				12000,   // 3 sec
-				5, this);
+				50000,   // 3 sec
+				40, this);
 		
 		/********* After registration onLocationChanged method called periodically after each 3 sec ***********/
 	}
@@ -60,7 +60,7 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
 		   
 		Date date = new Date();
 		HttpClient httpclient = new DefaultHttpClient();
-		HttpPost httppost = new HttpPost("http://hitchbotapi.azurewebsites.net/api/Location?HitchBot=4&Latitude=" + location.getLatitude() + "&Longitude=" +location.getLongitude() + "&TakenTime=" +new SimpleDateFormat("yyyyMMddHHmmss").format(date));
+		HttpPost httppost = new HttpPost("http://hitchbotapi.azurewebsites.net/api/Location?HitchBot=5&Latitude=" + location.getLatitude() + "&Longitude=" +location.getLongitude() + "&TakenTime=" +new SimpleDateFormat("yyyyMMddHHmmss").format(date));
 		
 		// Request parameters and other properties.
 		//List<NameValuePair> params = new ArrayList<NameValuePair>(2);
