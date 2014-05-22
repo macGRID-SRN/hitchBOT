@@ -180,6 +180,10 @@
     <Compile Include="Migrations\201405171724063_Initial.Designer.cs">
       <DependentUpon>201405171724063_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405202317113_Add Twitter Locations.cs" />
+    <Compile Include="Migrations\201405202317113_Add Twitter Locations.Designer.cs">
+      <DependentUpon>201405202317113_Add Twitter Locations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Database.cs" />
@@ -191,6 +195,7 @@
     <Compile Include="Models\SpeechEvent.cs" />
     <Compile Include="Models\TwitterAccount.cs" />
     <Compile Include="Models\TwitterFriend.cs" />
+    <Compile Include="Models\TwitterLocationTarget.cs" />
     <Compile Include="Models\TwitterStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -265,6 +270,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201405171724063_Initial.resx">
       <DependentUpon>201405171724063_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405202317113_Add Twitter Locations.resx">
+      <DependentUpon>201405202317113_Add Twitter Locations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Globalization;
 using System.Web.Http;
 
 namespace hitchbotAPI.Controllers
@@ -32,15 +33,19 @@ namespace hitchbotAPI.Controllers
         /// <param name="TakenTime">TakenTime</param>
         /// <returns>Success</returns>
         [HttpPost]
-        public bool UpdateHitchBotLocationMin(int HitchBotID, double Latitude, double Longitude, DateTime TakenTime)
+        public bool UpdateHitchBotLocationMin(string HitchBot, string Latitude, string Longitude, string TakenTime)
         {
+            DateTime StartTimeReal = DateTime.ParseExact(TakenTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             using (var db = new Database())
             {
-                var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
+                int HitchBotIDint = int.Parse(HitchBot);
+                double LatDouble = double.Parse(Latitude);
+                double LongDouble = double.Parse(Longitude);
+                var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotIDint);
                 var location = new Location();
-                location.Latitude = Latitude;
-                location.Longitude = Longitude;
-                location.TakenTime = TakenTime;
+                location.Latitude = LatDouble;
+                location.Longitude = LongDouble;
+                location.TakenTime = StartTimeReal;
                 location.TimeAdded = DateTime.UtcNow;
                 hitchBOT.Locations.Add(location);
                 db.SaveChanges();

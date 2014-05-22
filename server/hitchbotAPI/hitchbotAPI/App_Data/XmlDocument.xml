@@ -515,7 +515,7 @@
             <param name="HitchBotID">The HitchBot to get the route of.</param>
             <returns>Redirects to the proper link.</returns>
         </member>
-        <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocationMin(System.Int32,System.Double,System.Double,System.DateTime)">
+        <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocationMin(System.String,System.String,System.String,System.String)">
             <summary>
             Adds a Locations with the bare minimum of data required for a complete entry
             </summary>

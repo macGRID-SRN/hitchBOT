@@ -10,6 +10,7 @@ using System.Data.Entity;
 using LinqToTwitter;
 using System.Threading.Tasks;
 using System.Diagnostics;
+
 namespace hitchbotAPI.Controllers
 {
     //[ApiExplorerSettings(IgnoreApi = true)]
@@ -48,6 +49,15 @@ namespace hitchbotAPI.Controllers
                 }
             }
             return "Tweet sent successfully.";
+        }
+
+        public void CheckForTargetLocation(int Location)
+        {
+            using (var db = new Models.Database())
+            {
+
+            }
+
         }
     }
 }
