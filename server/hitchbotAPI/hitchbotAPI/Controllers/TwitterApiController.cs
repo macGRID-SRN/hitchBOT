@@ -19,45 +19,10 @@ namespace hitchbotAPI.Controllers
         [HttpPost]
         public async Task<string> PostTweetWithLocation(int HitchBotID, int LocationID, string TweetText)
         {
-            using (var db = new Models.Database())
-            {
-                var Location = db.Locations.First(l => l.ID == LocationID);
+            int TweetID = await Helpers.TwitterHelper.PostTweetWithLocation(HitchBotID, LocationID, TweetText);
 
-                try
-                {
-                    string UserID;
-                    var twitterContext = Helpers.TwitterHelper.GetContext(HitchBotID, out UserID);
-                    Status response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
-
-                    Helpers.TwitterHelper.AddTweetToDatabase(UserID, response);
-                }
-                catch (TwitterQueryException e)
-                {
-                    return e.ToString();
-                }
-                catch (InvalidOperationException e)
-                {
-                    return e.ToString();
-                }
-                catch (System.Data.SqlClient.SqlException e)
-                {
-                    return e.ToString();
-                }
-                catch (System.NotSupportedException e)
-                {
-                    return e.ToString();
-                }
-            }
-            return "Tweet sent successfully.";
-        }
-
-        public void CheckForTargetLocation(int Location)
-        {
-            using (var db = new Models.Database())
-            {
-
-            }
-
+            if (TweetID != 0) { return "Tweet sent successfully. ID: " + TweetID; }
+            return "Something went wrong!";
         }
     }
 }

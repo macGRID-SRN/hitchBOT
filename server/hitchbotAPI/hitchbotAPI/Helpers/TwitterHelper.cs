@@ -5,12 +5,50 @@ using System.Linq;
 using System.Web;
 using LinqToTwitter;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace hitchbotAPI.Helpers
 {
     public static class TwitterHelper
     {
-        public static void AddTweetToDatabase(string UserID, Status newStatus)
+        public static async Task<int> PostTweetWithLocation(int HitchBotID, int LocationID, string TweetText)
+        {
+            using (var db = new Models.Database())
+            {
+                var Location = db.Locations.First(l => l.ID == LocationID);
+
+                try
+                {
+                    string UserID;
+                    var twitterContext = GetContext(HitchBotID, out UserID);
+                    Status response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
+
+                    return AddTweetToDatabase(UserID, response);
+                }
+                //catch (TwitterQueryException e)
+                //{
+                //    return e.ToString();
+                //}
+                //catch (InvalidOperationException e)
+                //{
+                //    return e.ToString();
+                //}
+                //catch (System.Data.SqlClient.SqlException e)
+                //{
+                //    return e.ToString();
+                //}
+                //catch (System.NotSupportedException e)
+                //{
+                //    return e.ToString();
+                //}
+                catch (Exception e)
+                {
+                }
+            }
+            return 0;
+        }
+
+        public static int AddTweetToDatabase(string UserID, Status newStatus)
         {
             using (var db = new Models.Database())
             {
@@ -25,6 +63,7 @@ namespace hitchbotAPI.Helpers
 
                 db.TwitterStatuses.Add(TwitterStatus);
                 db.SaveChanges();
+                return TwitterStatus.ID;
             }
         }
 
