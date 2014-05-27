@@ -27,7 +27,9 @@ namespace hitchbotAPI.Helpers
                     if (currentLocation.GetDistanceTo(targetLocation) <= thisTargetLocation.RadiusKM * 1000)
                     {
                         int TweetID = await Helpers.TwitterHelper.PostTweetWithLocation(HitchBotID, LocationID, thisTargetLocation.TweetText);
+                        Task<int> WeatherTweet = TwitterHelper.PostTweetWithLocationAndWeather(HitchBotID, LocationID);
                         LinkTargetLocationToTweet(TweetID, thisTargetLocation.ID);
+                        await WeatherTweet;
                         break;
                     }
                 }
