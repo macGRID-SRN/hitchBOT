@@ -36,12 +36,14 @@ namespace hitchbotAPI.Controllers
         public bool UpdateHitchBotLocationMin(string HitchBot, string Latitude, string Longitude, string TakenTime)
         {
             DateTime StartTimeReal = DateTime.ParseExact(TakenTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+            int newLocationID;
+            int hitchBotID;
             using (var db = new Database())
             {
-                int HitchBotIDint = int.Parse(HitchBot);
+                hitchBotID = int.Parse(HitchBot);
                 double LatDouble = double.Parse(Latitude);
                 double LongDouble = double.Parse(Longitude);
-                var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotIDint);
+                var hitchBOT = db.hitchBOTs.First(h => h.ID == hitchBotID);
                 var location = new Location();
                 location.Latitude = LatDouble;
                 location.Longitude = LongDouble;
@@ -49,7 +51,10 @@ namespace hitchbotAPI.Controllers
                 location.TimeAdded = DateTime.UtcNow;
                 hitchBOT.Locations.Add(location);
                 db.SaveChanges();
+                newLocationID = location.ID;
             }
+
+            Helpers.LocationHelper.CheckForTargetLocation(hitchBotID, newLocationID);
             return true;
         }
         /// <summary>

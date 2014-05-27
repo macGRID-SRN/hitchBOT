@@ -19,45 +19,19 @@ namespace hitchbotAPI.Controllers
         [HttpPost]
         public async Task<string> PostTweetWithLocation(int HitchBotID, int LocationID, string TweetText)
         {
-            using (var db = new Models.Database())
-            {
-                var Location = db.Locations.First(l => l.ID == LocationID);
+            int TweetID = await Helpers.TwitterHelper.PostTweetWithLocation(HitchBotID, LocationID, TweetText);
 
-                try
-                {
-                    string UserID;
-                    var twitterContext = Helpers.TwitterHelper.GetContext(HitchBotID, out UserID);
-                    Status response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
-
-                    Helpers.TwitterHelper.AddTweetToDatabase(UserID, response);
-                }
-                catch (TwitterQueryException e)
-                {
-                    return e.ToString();
-                }
-                catch (InvalidOperationException e)
-                {
-                    return e.ToString();
-                }
-                catch (System.Data.SqlClient.SqlException e)
-                {
-                    return e.ToString();
-                }
-                catch (System.NotSupportedException e)
-                {
-                    return e.ToString();
-                }
-            }
-            return "Tweet sent successfully.";
+            if (TweetID != 0) { return "Tweet sent successfully. ID: " + TweetID; }
+            return "Something went wrong!";
         }
 
-        public void CheckForTargetLocation(int Location)
+        [HttpPost]
+        public async Task<string> PostTweetWithLocation(int HitchBotID, int LocationID)
         {
-            using (var db = new Models.Database())
-            {
+            int TweetID = await Helpers.TwitterHelper.PostTweetWithLocationAndWeather(HitchBotID, LocationID);
 
-            }
-
+            if (TweetID != 0) { return "Tweet sent successfully. ID: " + TweetID; }
+            return "Something went wrong!";
         }
     }
 }
