@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace hitchbotAPI.Models.Database_Excluded
     {
         public List<WeatherDescription> WeatherDescriptions = new List<WeatherDescription>();
         public string temperature;
+        public decimal temperatureActual;
         public string humidity;
         public string pressure;
         public string sunset;
@@ -16,6 +18,9 @@ namespace hitchbotAPI.Models.Database_Excluded
         public string windSpeed;
         public string windSpeedGust;
         public string windDirection;
+        public string CityName;
+
+        private const decimal KELVIN = 273;
 
         public Weather(dynamic json)
         {
@@ -24,6 +29,7 @@ namespace hitchbotAPI.Models.Database_Excluded
             dynamic main = json["main"];
             dynamic wind = json["wind"];
 
+            this.CityName = json["name"].ToString();
             this.sunrise = sys["sunrise"].ToString();
             this.sunset = sys["sunset"].ToString();
 
@@ -44,8 +50,28 @@ namespace hitchbotAPI.Models.Database_Excluded
             }
 
             this.temperature = main["temp"].ToString();
+            this.temperatureActual = decimal.Parse(this.temperature) - KELVIN;
             this.humidity = main["humidity"].ToString();
+
+
             this.pressure = main["pressure"].ToString();
+        }
+
+        public string ToString(string CityName = "")
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("It is ");
+            sb.Append(this.temperatureActual + "°C ");
+            sb.Append("in ");
+
+            if (String.IsNullOrEmpty(CityName))
+                sb.Append(this.CityName);
+            else
+                sb.Append(CityName);
+
+            sb.Append(". ");
+
+            return sb.ToString();
         }
 
         public class WeatherDescription

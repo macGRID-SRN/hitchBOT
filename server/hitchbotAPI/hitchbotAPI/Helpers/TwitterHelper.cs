@@ -23,7 +23,7 @@ namespace hitchbotAPI.Helpers
                 dynamic weather = Helpers.WebHelper.GetJSON(Helpers.WebHelper.GetRequest(URL));
                 Models.Database_Excluded.Weather WeatherEvent = new Models.Database_Excluded.Weather(weather);
 
-                return await PostTweetWithLocation(HitchBotID, LocationID, "");
+                return await PostTweetWithLocation(HitchBotID, LocationID, WeatherEvent.ToString(location.NearestCity));
             }
         }
 
