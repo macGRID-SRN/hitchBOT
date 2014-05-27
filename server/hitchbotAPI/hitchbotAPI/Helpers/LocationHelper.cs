@@ -5,6 +5,7 @@ using System.Web;
 using System.Text;
 using System.Device.Location;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using LinqToTwitter;
 
 namespace hitchbotAPI.Helpers
@@ -17,12 +18,13 @@ namespace hitchbotAPI.Helpers
             {
                 var location = db.Locations.First(l => l.ID == LocationID);
                 var hitchbot = db.hitchBOTs.First(h => h.ID == HitchBotID);
-                var TargetLocations = db.TwitterLocations.Where(l => l.HitchBot.ID == HitchBotID && l.Status == null);
+                var TargetLocations = db.TwitterLocations.Where(l => l.HitchBot.ID == HitchBotID && l.Status == null).Include(l => l.TargetLocation);
 
                 foreach (hitchbotAPI.Models.TwitterLocationTarget thisTargetLocation in TargetLocations)
                 {
                     var currentLocation = new GeoCoordinate(location.Latitude, location.Longitude);
-                    if (currentLocation.GetDistanceTo(new GeoCoordinate(thisTargetLocation.TargetLocation.Latitude, thisTargetLocation.TargetLocation.Longitude)) <= thisTargetLocation.RadiusKM * 1000)
+                    var targetLocation = new GeoCoordinate(thisTargetLocation.TargetLocation.Latitude, thisTargetLocation.TargetLocation.Longitude);
+                    if (currentLocation.GetDistanceTo(targetLocation) <= thisTargetLocation.RadiusKM * 1000)
                     {
                         int TweetID = await Helpers.TwitterHelper.PostTweetWithLocation(HitchBotID, LocationID, thisTargetLocation.TweetText);
                         LinkTargetLocationToTweet(TweetID, thisTargetLocation.ID);

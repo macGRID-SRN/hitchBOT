@@ -24,5 +24,14 @@ namespace hitchbotAPI.Controllers
             if (TweetID != 0) { return "Tweet sent successfully. ID: " + TweetID; }
             return "Something went wrong!";
         }
+
+        [HttpPost]
+        public async Task<string> PostTweetWithLocation(int HitchBotID, int LocationID)
+        {
+            int TweetID = await Helpers.TwitterHelper.PostTweetWithLocationAndWeather(HitchBotID, LocationID);
+
+            if (TweetID != 0) { return "Tweet sent successfully. ID: " + TweetID; }
+            return "Something went wrong!";
+        }
     }
 }

@@ -11,6 +11,22 @@ namespace hitchbotAPI.Helpers
 {
     public static class TwitterHelper
     {
+        public static async Task<int> PostTweetWithLocationAndWeather(int HitchBotID, int LocationID)
+        {
+            string URL;
+            using (var db = new Models.Database())
+            {
+                db.Configuration.AutoDetectChangesEnabled = true;
+                db.SaveChanges();
+                var location = db.Locations.First(l => l.ID == LocationID);
+                URL = "http://api.openweathermap.org/data/2.5/weather?lat=" + location.Latitude + "&lon=" + location.Longitude;
+                dynamic weather = Helpers.WebHelper.GetJSON(Helpers.WebHelper.GetRequest(URL));
+                Models.Database_Excluded.Weather WeatherEvent = new Models.Database_Excluded.Weather(weather);
+
+                return await PostTweetWithLocation(HitchBotID, LocationID, "");
+            }
+        }
+
         public static async Task<int> PostTweetWithLocation(int HitchBotID, int LocationID, string TweetText)
         {
             using (var db = new Models.Database())
