@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Collections.Specialized;
 using System.Collections;
 
 namespace hitchbotAPI.Models.Database_Excluded
@@ -20,19 +21,38 @@ namespace hitchbotAPI.Models.Database_Excluded
         public string windSpeedGust;
         public string windDirection;
         public string CityName;
+        public const string timeZoneUrl = "https://maps.googleapis.com/maps/api/timezone/json?";
 
-        private const decimal KELVIN = 273;
+        private const decimal KELVIN = 273.15M;
 
-        public Weather(dynamic json)
+        public Weather(dynamic json, string cityName = null)
         {
             dynamic sys = json["sys"];
             dynamic weather = json["weather"];
             dynamic main = json["main"];
             dynamic wind = json["wind"];
 
-            this.CityName = json["name"].ToString();
-            this.sunrise = sys["sunrise"].ToString();
-            this.sunset = sys["sunset"].ToString();
+            decimal lat = decimal.Parse(json["coord"]["lat"].ToString());
+            decimal lon = decimal.Parse(json["coord"]["lon"].ToString());
+
+            NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
+            queryString["location"] = String.Join(",", lat.ToString(), lon.ToString());
+            queryString["timestamp"] = sys["sunrise"].ToString();
+            queryString["sensor"] = "true";
+
+            string jsonString = Helpers.WebHelper.GetRequest(timeZoneUrl + queryString.ToString());
+            dynamic timeOffsetJson = Helpers.WebHelper.GetJSON(jsonString);
+            dynamic totalTimeOffset = timeOffsetJson["dstOffset"] + timeOffsetJson["rawOffset"];
+
+            if (String.IsNullOrEmpty(cityName))
+            {
+                this.CityName = json["name"].ToString();
+            }
+            else
+                this.CityName = cityName;
+
+            this.sunrise = Helpers.TimeHelper.GetHourFromUnixTime((sys["sunrise"] + totalTimeOffset));
+            this.sunset = Helpers.TimeHelper.GetHourFromUnixTime((sys["sunset"] + totalTimeOffset));
 
             foreach (dynamic weatherItem in weather)
             {

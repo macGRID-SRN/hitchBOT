@@ -178,6 +178,7 @@
     <Compile Include="Controllers\hitchBOTController.cs" />
     <Compile Include="Helpers\CleverScriptHelper.cs" />
     <Compile Include="Helpers\LocationHelper.cs" />
+    <Compile Include="Helpers\TimeHelper.cs" />
     <Compile Include="Helpers\TwitterHelper.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
     <Compile Include="Migrations\201405171724063_Initial.cs" />

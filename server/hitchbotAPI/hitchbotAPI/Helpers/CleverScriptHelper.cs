@@ -14,6 +14,7 @@ namespace hitchbotAPI.Helpers
 
         public static string GetWeatherTweet(Models.Database_Excluded.Weather Weather, int CleverScriptApiID)
         {
+            string output = string.Empty;
             using (var db = new Models.Database())
             {
                 var CleverScriptKey = db.CleverScriptAPIkeys.First(cs => cs.ID == CleverScriptApiID);
@@ -23,12 +24,15 @@ namespace hitchbotAPI.Helpers
                     NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
                     queryString["key"] = CleverScriptKey.APIkey;
                     queryString["input"] = URLinput;
-                    queryString["cs"] = lastCS;
+                    if (!String.IsNullOrEmpty(lastCS))
+                        queryString["cs"] = lastCS;
 
                     dynamic json = WebHelper.GetJSON(WebHelper.GetRequest(testURl + queryString.ToString()));
+                    lastCS = json["cs"].ToString();
+                    output = json["output"];
                 }
             }
-            return String.Empty;
+            return HttpUtility.HtmlDecode(output);
         }
     }
 }
