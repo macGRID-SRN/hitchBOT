@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Collections;
 
 namespace hitchbotAPI.Models.Database_Excluded
 {
@@ -72,6 +73,19 @@ namespace hitchbotAPI.Models.Database_Excluded
             sb.Append(". ");
 
             return sb.ToString();
+        }
+
+        public IEnumerable<string> GetIterator()
+        {
+            yield return string.Join("|", new string[] { this.CityName, this.temperatureActual.ToString(), this.humidity });
+            yield return string.Join("|", new string[] { this.pressure, this.sunset, this.sunrise });
+            yield return string.Join("|", new string[] { this.windSpeed, this.windDirection, this.temperature });
+            if (this.WeatherDescriptions.Count > 0)
+            {
+                yield return string.Join("|", new string[] { this.WeatherDescriptions[0].main, this.WeatherDescriptions[0].description });
+            }
+            else
+                yield return " | ";
         }
 
         public class WeatherDescription

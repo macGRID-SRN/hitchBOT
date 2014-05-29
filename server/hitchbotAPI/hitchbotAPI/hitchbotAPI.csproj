@@ -176,6 +176,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\hitchBOTController.cs" />
+    <Compile Include="Helpers\CleverScriptHelper.cs" />
     <Compile Include="Helpers\LocationHelper.cs" />
     <Compile Include="Helpers\TwitterHelper.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
@@ -187,7 +188,12 @@
     <Compile Include="Migrations\201405202317113_Add Twitter Locations.Designer.cs">
       <DependentUpon>201405202317113_Add Twitter Locations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405281850185_CleverScriptAPI.cs" />
+    <Compile Include="Migrations\201405281850185_CleverScriptAPI.Designer.cs">
+      <DependentUpon>201405281850185_CleverScriptAPI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Database Excluded\Weather.cs" />
     <Compile Include="Models\Database.cs" />
@@ -277,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405202317113_Add Twitter Locations.resx">
       <DependentUpon>201405202317113_Add Twitter Locations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405281850185_CleverScriptAPI.resx">
+      <DependentUpon>201405281850185_CleverScriptAPI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
