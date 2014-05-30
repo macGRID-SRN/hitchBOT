@@ -9936,6 +9936,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="D3" library="diode" deviceset="BAT19" device=""/>
 <part name="D4" library="diode" deviceset="BAT19" device=""/>
 <part name="R2" library="rcl" deviceset="R-US_" device="M2012" value="634K"/>
+<part name="R3" library="rcl" deviceset="R-US_" device="M2012" value="412K"/>
 </parts>
 <sheets>
 <sheet>
@@ -9943,7 +9944,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </plain>
 <instances>
 <instance part="SUPPLY1" gate="GND" x="12.7" y="73.66"/>
-<instance part="SUPPLY3" gate="GND" x="111.76" y="12.7"/>
+<instance part="SUPPLY3" gate="GND" x="76.2" y="25.4"/>
 <instance part="SUPPLY4" gate="GND" x="35.56" y="45.72"/>
 <instance part="C1" gate="G$1" x="12.7" y="83.82"/>
 <instance part="C2" gate="G$1" x="86.36" y="48.26" rot="R180"/>
@@ -9961,6 +9962,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="D3" gate="1" x="-2.54" y="88.9"/>
 <instance part="D4" gate="1" x="111.76" y="73.66" rot="R90"/>
 <instance part="R2" gate="G$1" x="76.2" y="48.26" rot="R90"/>
+<instance part="R3" gate="G$1" x="76.2" y="35.56" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -10010,6 +10012,11 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="D2" gate="1" pin="A"/>
 <pinref part="SUPPLY8" gate="GND" pin="GND"/>
 <wire x1="68.58" y1="81.28" x2="60.96" y2="81.28" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY3" gate="GND" pin="GND"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="76.2" y1="27.94" x2="76.2" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -10078,6 +10085,9 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="73.66" y1="43.18" x2="73.66" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="U$1" gate="G$2" pin="VFB"/>
 <wire x1="73.66" y1="48.26" x2="68.58" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="76.2" y1="40.64" x2="76.2" y2="43.18" width="0.1524" layer="91"/>
+<junction x="76.2" y="43.18"/>
 </segment>
 </net>
 </nets>
