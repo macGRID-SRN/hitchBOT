@@ -1,0 +1,9 @@
+[submodule "GPS Module/GPStest/GPS"]
+	path = GPS Module/GPStest/GPS
+	url = git://github.com/macGRID-SRN/Adafruit-GPS-Shield-v1.1-Netduino
+[submodule "Adafruit-GPS-Shield-v1.1-Netduino"]
+	path = Adafruit-GPS-Shield-v1.1-Netduino
+	url = git://github.com/macGRID-SRN/Adafruit-GPS-Shield-v1.1-Netduino
+[submodule "gpsModule"]
+	path = gpsModule
+	url = git://github.com/macGRID-SRN/Adafruit-GPS-Shield-v1.1-Netduino
