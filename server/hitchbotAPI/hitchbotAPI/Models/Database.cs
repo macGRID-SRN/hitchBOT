@@ -15,6 +15,7 @@ namespace hitchbotAPI.Models
         public Database()
             : base("name=Database")
         {
+            Configuration.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<SpeechEvent> SpeechEvents { get; set; }
@@ -28,6 +29,7 @@ namespace hitchbotAPI.Models
         public DbSet<TwitterStatus> TwitterStatuses { get; set; }
         public DbSet<TwitterFriend> TwitterFriends { get; set; }
         public DbSet<TwitterLocationTarget> TwitterLocations { get; set; }
+        public DbSet<CleverScriptAPIkey> CleverScriptAPIkeys { get; set; }
 
     }
 }

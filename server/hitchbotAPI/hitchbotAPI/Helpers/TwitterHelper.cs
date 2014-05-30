@@ -16,14 +16,12 @@ namespace hitchbotAPI.Helpers
             string URL;
             using (var db = new Models.Database())
             {
-                db.Configuration.AutoDetectChangesEnabled = true;
-                db.SaveChanges();
                 var location = db.Locations.First(l => l.ID == LocationID);
                 URL = "http://api.openweathermap.org/data/2.5/weather?lat=" + location.Latitude + "&lon=" + location.Longitude;
                 dynamic weather = Helpers.WebHelper.GetJSON(Helpers.WebHelper.GetRequest(URL));
-                Models.Database_Excluded.Weather WeatherEvent = new Models.Database_Excluded.Weather(weather);
+                Models.Database_Excluded.Weather WeatherEvent = new Models.Database_Excluded.Weather(weather, location.NearestCity);
 
-                return await PostTweetWithLocation(HitchBotID, LocationID, WeatherEvent.ToString(location.NearestCity));
+                return await PostTweetWithLocation(HitchBotID, LocationID, CleverScriptHelper.GetWeatherTweet(WeatherEvent, 1));
             }
         }
 
@@ -38,7 +36,9 @@ namespace hitchbotAPI.Helpers
                     string UserID;
                     var twitterContext = GetContext(HitchBotID, out UserID);
                     Status response = await twitterContext.TweetAsync(TweetText, (decimal)Location.Latitude, (decimal)Location.Longitude, true);
-
+                    if (string.IsNullOrEmpty(Location.NearestCity))
+                        Location.NearestCity = response.Place.FullName;
+                    db.SaveChanges();
                     return AddTweetToDatabase(UserID, response);
                 }
                 //catch (TwitterQueryException e)

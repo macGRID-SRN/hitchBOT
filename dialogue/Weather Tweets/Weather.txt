@@ -1,0 +1,34 @@
+Type	Label	Description	Text	If	Learn	Goto	Accuracy	Mode
+output start	out_start		city name?			input_one		
+input	input_one		((city)) ((del)) ((temp)) ((del)) ((humid))			output_one		
+output	output_one		TRUE			input_two		
+input	input_two		((pres)) ((del)) ((sunset)) ((del)) ((sunrise))			output_two		
+output	output_two		TRUE			input_three		
+input	input_three		((wind)) ((del)) ((windD)) ((del)) ((kTemp))			output_three		
+output	output_three		TRUE			input_four		
+input	input_four		((mainDesc)) ((del)) ((desc))			city_output		
+output	city_output		It is $tempurature_other$°C in $cityname_other$.					random
+			The sun should set at $sunset_other$ tonight.					
+			The sun rose at $sunrise_other$ this morning!					
+			The air is $humidity_other$% water at the moment.					
+			It looks like it's $description_other$ here in $cityname_other$					
+			My head hurts .. It's probably because the pressure is $pressure_other$ hPa.					
+			In $cityname_other$ it's $tempurature_other$°C .. THAT'S $kelvintemp_other$ IN KELVIN.					
+phrase	city		~		cityname			
+phrase	temp		~		tempurature			
+phrase	kTemp		~		kelvintemp			
+phrase	mainDesc		~		main			
+phrase	desc		~		description			
+phrase	humid		~		humidity			
+phrase	pres		~		pressure			
+phrase	sunset		~		sunset			
+phrase	sunrise		~		sunrise			
+phrase	wind		~		windSpeed			
+phrase	windD		~		windDirection			
+phrase	del		|					
+								
+								
+								
+								
+								
+								
