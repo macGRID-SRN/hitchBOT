@@ -9,6 +9,7 @@ output	output_three		TRUE			input_four
 input	input_four		((mainDesc)) ((del)) ((desc))			city_output		
 output	city_output		It is $tempurature_other$°C in $cityname_other$.					random
 			The sun should set at $sunset_other$ tonight.					
+			The sun rose at $sunrise_other$ this morning!					
 			The air is $humidity_other$% water at the moment.					
 			It looks like it's $description_other$ here in $cityname_other$					
 			My head hurts .. It's probably because the pressure is $pressure_other$ hPa.					

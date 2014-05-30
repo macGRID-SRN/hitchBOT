@@ -8,6 +8,7 @@ using System.Collections;
 
 namespace hitchbotAPI.Models.Database_Excluded
 {
+    //Under no circumstance should a user use the characters 8b8
     public class Weather
     {
         public List<WeatherDescription> WeatherDescriptions = new List<WeatherDescription>();
@@ -51,8 +52,8 @@ namespace hitchbotAPI.Models.Database_Excluded
             else
                 this.CityName = cityName;
 
-            this.sunrise = Helpers.TimeHelper.GetHourFromUnixTime((sys["sunrise"] + totalTimeOffset));
-            this.sunset = Helpers.TimeHelper.GetHourFromUnixTime((sys["sunset"] + totalTimeOffset));
+            this.sunrise = ((string)Helpers.TimeHelper.GetHourFromUnixTime((sys["sunrise"] + totalTimeOffset))).Replace(":","8b8");
+            this.sunset = ((string)Helpers.TimeHelper.GetHourFromUnixTime((sys["sunset"] + totalTimeOffset))).Replace(":", "8b8");
 
             foreach (dynamic weatherItem in weather)
             {

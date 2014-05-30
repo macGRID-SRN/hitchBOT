@@ -32,7 +32,7 @@ namespace hitchbotAPI.Helpers
                     output = json["output"];
                 }
             }
-            return HttpUtility.HtmlDecode(output);
+            return HttpUtility.HtmlDecode(output).Replace("8b8", ":");
         }
     }
 }

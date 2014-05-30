@@ -9,7 +9,7 @@ namespace hitchbotAPI.Helpers
     {
         public static string GetHourFromUnixTime(double unixTimeStamp)
         {
-            return string.Format("{0: HHmm tt}", UnixTimeStampToDateTime(unixTimeStamp));
+            return string.Format("{0: %H:mmtt}", UnixTimeStampToDateTime(unixTimeStamp));
         }
 
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)

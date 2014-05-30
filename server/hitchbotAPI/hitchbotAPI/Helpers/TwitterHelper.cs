@@ -16,8 +16,6 @@ namespace hitchbotAPI.Helpers
             string URL;
             using (var db = new Models.Database())
             {
-                db.Configuration.AutoDetectChangesEnabled = true;
-                db.SaveChanges();
                 var location = db.Locations.First(l => l.ID == LocationID);
                 URL = "http://api.openweathermap.org/data/2.5/weather?lat=" + location.Latitude + "&lon=" + location.Longitude;
                 dynamic weather = Helpers.WebHelper.GetJSON(Helpers.WebHelper.GetRequest(URL));
