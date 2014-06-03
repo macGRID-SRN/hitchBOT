@@ -79,13 +79,17 @@
 <text x="43.18" y="1.27" size="1.778" layer="22" rot="MR0">Vbat</text>
 <text x="16.51" y="8.89" size="1.778" layer="22" rot="MR0">Vin</text>
 <rectangle x1="1.27" y1="43.18" x2="3.81" y2="48.26" layer="16"/>
-<text x="11.43" y="45.085" size="1.778" layer="21" rot="MR0">GND</text>
+<text x="11.43" y="45.085" size="1.778" layer="22" rot="MR0">GND</text>
 <rectangle x1="22.86" y1="48.895" x2="29.21" y2="53.975" layer="16"/>
 <text x="35.2425" y="51.435" size="1.778" layer="22" rot="MR0">Vout</text>
 <rectangle x1="1.27" y1="43.18" x2="3.81" y2="48.26" layer="30"/>
 <rectangle x1="22.86" y1="48.895" x2="29.21" y2="53.975" layer="30"/>
 <rectangle x1="12.7" y1="1.27" x2="16.51" y2="7.62" layer="30"/>
 <rectangle x1="29.21" y1="1.27" x2="35.56" y2="6.35" layer="30"/>
+<text x="35.2425" y="23.8125" size="1.27" layer="22" rot="MR0" align="center">Colin Gagich &amp;
+Dominik Kaukinen
+hitchBOT Charging Circuit
+www.hitchbot.me - 2014</text>
 </plain>
 <libraries>
 <library name="capacitor-wima">
@@ -2808,4 +2812,10 @@ Please make sure your boards conform to these design rules.</description>
 </signals>
 </board>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>

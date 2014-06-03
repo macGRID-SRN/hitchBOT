@@ -2674,6 +2674,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="29.21" y1="49.53" x2="31.75" y2="49.53" width="1.27" layer="16"/>
 <contactref element="U$1" pad="VIN_REG"/>
 <wire x1="15.11" y1="44.305" x2="15.11" y2="43.855" width="0" layer="19" extent="1-1"/>
+<wire x1="14.9225" y1="43.815" x2="13.335" y2="43.815" width="0.254" layer="1"/>
 </signal>
 <signal name="GND">
 <contactref element="U$1" pad="TIMER"/>
