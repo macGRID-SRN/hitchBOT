@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.05" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
@@ -71,10 +71,8 @@
 <library>
 <packages>
 <package name="AO21282CI">
-<smd name="LX" x="-0.95" y="1.2" dx="0.635" dy="0.8001" layer="1"/>
 <smd name="VIN" x="0" y="1.2" dx="0.635" dy="0.8001" layer="1"/>
 <smd name="EN" x="0.95" y="1.2" dx="0.635" dy="0.8001" layer="1"/>
-<smd name="BST" x="-0.95" y="-1.2" dx="0.635" dy="0.8001" layer="1"/>
 <smd name="GND" x="0" y="-1.2" dx="0.635" dy="0.8001" layer="1"/>
 <smd name="FB" x="0.95" y="-1.2" dx="0.63" dy="0.8" layer="1"/>
 <wire x1="-1.35" y1="1.65" x2="-1.35" y2="-1.608578125" width="0.1" layer="21"/>
@@ -93,6 +91,8 @@
 <text x="0.9" y="0.6" size="0.1" layer="25">EN</text>
 <text x="2.54" y="-1.27" size="1.27" layer="49">&gt;NAME</text>
 <text x="-1.27" y="0" size="0.3048" layer="49">AO21282CI</text>
+<smd name="P$1" x="-0.95" y="-1.2" dx="0.8" dy="0.63" layer="16" rot="R90"/>
+<smd name="P$2" x="-0.95" y="1.2" dx="0.8" dy="0.63" layer="16" rot="R90"/>
 </package>
 <package name="SRU1063">
 <smd name="1" x="-4.5" y="0" dx="3.8" dy="1.8" layer="1" rot="R90"/>
@@ -168,11 +168,9 @@
 <devices>
 <device name="" package="AO21282CI">
 <connects>
-<connect gate="G$1" pin="BST" pad="BST"/>
 <connect gate="G$1" pin="EN" pad="EN"/>
 <connect gate="G$1" pin="FB" pad="FB"/>
 <connect gate="G$1" pin="GND" pad="GND"/>
-<connect gate="G$1" pin="LX" pad="LX"/>
 <connect gate="G$1" pin="VIN" pad="VIN"/>
 </connects>
 <technologies>

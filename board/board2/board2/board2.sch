@@ -4283,12 +4283,12 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <text x="-3.4" y="-0.1" size="0.4064" layer="25">1</text>
 <text x="2.9" y="-0.1" size="0.4064" layer="25">2</text>
 <wire x1="-6.35" y1="2.54" x2="-6.35" y2="-2.54" width="0.127" layer="21"/>
-<wire x1="-6.35" y1="-2.54" x2="-1.27" y2="-6.35" width="0.127" layer="21"/>
-<wire x1="-1.27" y1="-6.35" x2="2.54" y2="-6.35" width="0.127" layer="21"/>
+<wire x1="-6.35" y1="-2.54" x2="-2.54" y2="-6.35" width="0.127" layer="21"/>
+<wire x1="-2.54" y1="-6.35" x2="2.54" y2="-6.35" width="0.127" layer="21"/>
 <wire x1="2.54" y1="-6.35" x2="6.35" y2="-2.54" width="0.127" layer="21"/>
 <wire x1="6.35" y1="-2.54" x2="6.35" y2="2.54" width="0.127" layer="21"/>
-<wire x1="6.35" y1="2.54" x2="3.81" y2="6.35" width="0.127" layer="21"/>
-<wire x1="3.81" y1="6.35" x2="-2.54" y2="6.35" width="0.127" layer="21"/>
+<wire x1="6.35" y1="2.54" x2="2.54" y2="6.35" width="0.127" layer="21"/>
+<wire x1="2.54" y1="6.35" x2="-2.54" y2="6.35" width="0.127" layer="21"/>
 <wire x1="-2.54" y1="6.35" x2="-6.35" y2="2.54" width="0.127" layer="21"/>
 <text x="-1.27" y="-2.54" size="0.3048" layer="21">Inductor</text>
 <text x="-1.27" y="-1.27" size="0.3048" layer="21">SRU1063</text>
