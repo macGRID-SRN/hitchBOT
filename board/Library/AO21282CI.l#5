@@ -137,12 +137,12 @@
 <wire x1="-33.02" y1="-25.4" x2="43.18" y2="-25.4" width="0.254" layer="94"/>
 <wire x1="43.18" y1="-25.4" x2="43.18" y2="15.24" width="0.254" layer="94"/>
 <wire x1="43.18" y1="15.24" x2="-33.02" y2="15.24" width="0.254" layer="94"/>
-<pin name="LX" x="-22.86" y="15.24" length="middle" rot="R90"/>
-<pin name="VIN" x="7.62" y="15.24" length="middle" rot="R90"/>
-<pin name="EN" x="35.56" y="15.24" length="middle" rot="R90"/>
-<pin name="BST" x="-22.86" y="-25.4" length="middle" rot="R270"/>
-<pin name="GND" x="7.62" y="-25.4" length="middle" rot="R270"/>
-<pin name="FB" x="35.56" y="-25.4" length="middle" rot="R270"/>
+<pin name="LX" x="-22.86" y="20.32" length="middle" rot="R270"/>
+<pin name="VIN" x="7.62" y="20.32" length="middle" rot="R270"/>
+<pin name="EN" x="35.56" y="20.32" length="middle" rot="R270"/>
+<pin name="BST" x="-22.86" y="-30.48" length="middle" rot="R90"/>
+<pin name="GND" x="7.62" y="-30.48" length="middle" rot="R90"/>
+<pin name="FB" x="35.56" y="-30.48" length="middle" rot="R90"/>
 <text x="25.4" y="-20.32" size="1.27" layer="95">AO21282CI</text>
 <text x="20.32" y="-30.48" size="1.778" layer="94">&gt;NAME</text>
 </symbol>

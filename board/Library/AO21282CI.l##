@@ -71,10 +71,8 @@
 <library>
 <packages>
 <package name="AO21282CI">
-<smd name="LX" x="-0.95" y="1.2" dx="0.635" dy="0.8001" layer="1"/>
 <smd name="VIN" x="0" y="1.2" dx="0.635" dy="0.8001" layer="1"/>
 <smd name="EN" x="0.95" y="1.2" dx="0.635" dy="0.8001" layer="1"/>
-<smd name="BST" x="-0.95" y="-1.2" dx="0.635" dy="0.8001" layer="1"/>
 <smd name="GND" x="0" y="-1.2" dx="0.635" dy="0.8001" layer="1"/>
 <smd name="FB" x="0.95" y="-1.2" dx="0.63" dy="0.8" layer="1"/>
 <wire x1="-1.35" y1="1.65" x2="-1.35" y2="-1.608578125" width="0.1" layer="21"/>
@@ -93,6 +91,8 @@
 <text x="0.9" y="0.6" size="0.1" layer="25">EN</text>
 <text x="2.54" y="-1.27" size="1.27" layer="49">&gt;NAME</text>
 <text x="-1.27" y="0" size="0.3048" layer="49">AO21282CI</text>
+<smd name="BST" x="-0.95" y="-1.2" dx="0.8" dy="0.63" layer="1" rot="R90"/>
+<smd name="LX" x="-0.95" y="1.2" dx="0.8" dy="0.63" layer="1" rot="R90"/>
 </package>
 <package name="SRU1063">
 <smd name="1" x="-4.5" y="0" dx="3.8" dy="1.8" layer="1" rot="R90"/>
@@ -111,6 +111,10 @@
 <wire x1="-2.54" y1="6.35" x2="-6.35" y2="2.54" width="0.127" layer="21"/>
 <text x="-1.27" y="-2.54" size="0.3048" layer="21">Inductor</text>
 <text x="-1.27" y="-1.27" size="0.3048" layer="21">SRU1063</text>
+</package>
+<package name="LED">
+<smd name="P$1" x="-1.25" y="0" dx="1.25" dy="1.1" layer="1"/>
+<smd name="P$2" x="1.25" y="0" dx="1.25" dy="1.1" layer="1"/>
 </package>
 </packages>
 <symbols>
@@ -158,6 +162,12 @@
 <pin name="1" x="-12.7" y="0" length="middle"/>
 <pin name="2" x="22.86" y="0" length="middle" rot="R180"/>
 <text x="0" y="2.54" size="1.6764" layer="95">SRU1063</text>
+</symbol>
+<symbol name="LED">
+<wire x1="-12.7" y1="5.08" x2="12.7" y2="5.08" width="0.254" layer="94"/>
+<wire x1="12.7" y1="5.08" x2="12.7" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-7.62" x2="-12.7" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="-7.62" x2="-12.7" y2="5.08" width="0.254" layer="94"/>
 </symbol>
 </symbols>
 <devicesets>
