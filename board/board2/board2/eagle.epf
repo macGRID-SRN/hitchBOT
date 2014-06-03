@@ -341,10 +341,11 @@ UsedLibrary="C:/Program Files (x86)/EAGLE-6.5.0/lbr/xilinx-xc9.lbr"
 UsedLibrary="C:/Program Files (x86)/EAGLE-6.5.0/lbr/xilinx-xcv.lbr"
 UsedLibrary="C:/Program Files (x86)/EAGLE-6.5.0/lbr/zetex.lbr"
 UsedLibrary="C:/Program Files (x86)/EAGLE-6.5.0/lbr/zilog.lbr"
+UsedLibrary="C:/Users/Dominik/workspace/hitchBOT/board/Library/AO21282CI.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="652 321 1251 720"
+Loc="-1268 321 -669 720"
 State=2
 Number=0
 
