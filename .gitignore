@@ -123,3 +123,4 @@ documentation/latex/MakeFile
 /app/.metadata
 /server/hitchbotAPI/hitchbotAPI/Properties/PublishProfiles/hitchbotAPI.pubxml
 /server/hitchbotAPI/PublishScripts
+/server/databaseBuilder/SecretTwitterAccounts.linq
