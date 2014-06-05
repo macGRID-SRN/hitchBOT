@@ -124,3 +124,5 @@ documentation/latex/MakeFile
 /server/hitchbotAPI/hitchbotAPI/Properties/PublishProfiles/hitchbotAPI.pubxml
 /server/hitchbotAPI/PublishScripts
 /server/databaseBuilder/SecretTwitterAccounts.linq
+app/GPSBasics/libs/armeabi/libcleverscriptapi.so
+app/GPSBasics/libs/cleverscriptapi.jar
