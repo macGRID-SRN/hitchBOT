@@ -108,5 +108,11 @@ namespace hitchbotAPI.Helpers
                 return new TwitterContext(GetAuthorization(db.TwitterAccounts.First(ta => ta.HitchBot.ID == HitchBotID), out UserID));
             }
         }
+
+        public static TwitterContext GetContext(int HitchBotID)
+        {
+            String temp;
+            return GetContext(HitchBotID, out temp);
+        }
     }
 }

@@ -6,13 +6,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Data.Entity;
 using LinqToTwitter;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
+
 namespace hitchbotAPI.Controllers
 {
+
     //[ApiExplorerSettings(IgnoreApi = true)]
     public class TwitterApiController : ApiController
     {
@@ -32,6 +33,49 @@ namespace hitchbotAPI.Controllers
 
             if (TweetID != 0) { return "Tweet sent successfully. ID: " + TweetID; }
             return "Something went wrong!";
+        }
+
+        [HttpGet]
+        public async Task<string> checkFollowers(int HitchBotID)
+        {
+            var twitterCtx = Helpers.TwitterHelper.GetContext(HitchBotID);
+
+            using (var db = new Models.Database())
+            {
+                string UserID = db.TwitterAccounts.First(ta => ta.HitchBot.ID == HitchBotID).UserID;
+                var friendship = await
+                (from friend in twitterCtx.Friendship
+                 where friend.Type == FriendshipType.FollowersList && friend.UserID == UserID
+                 select friend).SingleOrDefaultAsync();
+
+                foreach (LinqToTwitter.User myUser in friendship.Users)
+                {
+                    string tempUserID = myUser.UserIDResponse.ToString();
+                    if (!db.TwitterFriends.Any(tu => tu.UserID == tempUserID))
+                    {
+                        User x = await twitterCtx.CreateFriendshipAsync(myUser.ScreenNameResponse, true);
+                        db.TwitterFriends.Add(
+                            new Models.TwitterFriend()
+                            {
+                                UserID = myUser.UserIDResponse.ToString(),
+                                ScreenName = myUser.ScreenNameResponse,
+                                TimeAdded = DateTime.UtcNow,
+                                TimeFollowed = DateTime.UtcNow
+                            });
+
+                    }
+
+
+                }
+                db.SaveChanges();
+                return "Success";
+            }
+
+        }
+
+        private bool isIdIdentical(Models.TwitterFriend TwitterFriend, User user)
+        {
+            return TwitterFriend.UserID == user.UserID.ToString();
         }
     }
 }
