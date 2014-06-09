@@ -1,0 +1,5 @@
+var classhitchbot_a_p_i_1_1_areas_1_1_help_page_1_1_model_descriptions_1_1_complex_type_model_description =
+[
+    [ "ComplexTypeModelDescription", "classhitchbot_a_p_i_1_1_areas_1_1_help_page_1_1_model_descriptions_1_1_complex_type_model_description.html#a8561a92c6c594c63a2f1e5be5acfe1de", null ],
+    [ "Properties", "classhitchbot_a_p_i_1_1_areas_1_1_help_page_1_1_model_descriptions_1_1_complex_type_model_description.html#a23310d6713ba5c19ae115b9f45777b5a", null ]
+];
