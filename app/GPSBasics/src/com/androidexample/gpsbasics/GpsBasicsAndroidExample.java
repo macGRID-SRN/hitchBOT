@@ -57,10 +57,10 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
 				50000,   // 3 sec
 				40, this);
 		
-		getResponseFromCleverscript();
+		getResponseFromCleverscript("Hello World!");
 		/********* After registration onLocationChanged method called periodically after each 3 sec ***********/
 	}
-	public void getResponseFromCleverscript()
+	public void getResponseFromCleverscript(String message)
 	{
 		CleverscriptAPI cs = new CleverscriptAPI(this);
 		cs.setLocation("hello_world_test (2).db");
@@ -68,7 +68,7 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
 		int successful = cs.loadDatabase();
 		if (successful == 0 || successful == -7){
 		TextView text = (TextView) findViewById(R.id.textView1);
-		text.setText(cs.sendMessage("Hello World!"));
+		text.setText(cs.sendMessage(message));
 		}
 		else{
 			TextView text = (TextView) findViewById(R.id.textView1);
