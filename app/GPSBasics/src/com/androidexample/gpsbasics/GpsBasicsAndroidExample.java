@@ -13,6 +13,8 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.Context;
@@ -25,6 +27,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.cleverscript.android.*;
+
+
 public class GpsBasicsAndroidExample extends Activity implements LocationListener {
 
 	private LocationManager locationManager;
@@ -35,7 +40,8 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
 		setContentView(R.layout.activity_gps_basics_android_example);
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
-		
+
+		//	Log.i("CSANDROID", "From API: " + cs.sendMessage("Hello World!"));
 		/********** get Gps location service LocationManager object ***********/
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		
@@ -51,8 +57,25 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
 				50000,   // 3 sec
 				40, this);
 		
+		getResponseFromCleverscript();
 		/********* After registration onLocationChanged method called periodically after each 3 sec ***********/
 	}
+	public void getResponseFromCleverscript()
+	{
+		CleverscriptAPI cs = new CleverscriptAPI(this);
+		cs.setLocation("hello_world_test (2).db");
+		cs.setApiKey("vcm1lb089f187aeaa90c98394dc2988aeac34");
+		int successful = cs.loadDatabase();
+		if (successful == 0 || successful == -7){
+		TextView text = (TextView) findViewById(R.id.textView1);
+		text.setText(cs.sendMessage("Hello World!"));
+		}
+		else{
+			TextView text = (TextView) findViewById(R.id.textView1);
+			text.setText("Something Went Wrong!" + successful);
+		}	
+	}
+	
 	
 	/************* Called after each 3 sec **********/
 	@Override
@@ -60,14 +83,14 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
 		   
 		Date date = new Date();
 		HttpClient httpclient = new DefaultHttpClient();
-		HttpPost httppost = new HttpPost("http://hitchbotapi.azurewebsites.net/api/Location?HitchBot=5&Latitude=" + location.getLatitude() + "&Longitude=" +location.getLongitude() + "&TakenTime=" +new SimpleDateFormat("yyyyMMddHHmmss").format(date));
+		HttpPost httppost = new HttpPost("http://hitchbotapi.azurewebsites.net/api/Location?HitchBot=3&Latitude=" + location.getLatitude() + "&Longitude=" +location.getLongitude() + "&TakenTime=" +new SimpleDateFormat("yyyyMMddHHmmss").format(date));
 		
 		// Request parameters and other properties.
-		//List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-		//params.add(new BasicNameValuePair("HitchBotID", "3"));
-		//params.add(new BasicNameValuePair("Latitude", String.valueOf((int)location.getLatitude()*100000)));
-		//params.add(new BasicNameValuePair("Longitude", String.valueOf((int)location.getLongitude()*100000)));
-		//params.add(new BasicNameValuePair("TakenTime", new SimpleDateFormat("yyyyMMddHHmmss").format(date)));
+		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+		params.add(new BasicNameValuePair("HitchBotID", "3"));
+		params.add(new BasicNameValuePair("Latitude", String.valueOf((int)location.getLatitude()*100000)));
+		params.add(new BasicNameValuePair("Longitude", String.valueOf((int)location.getLongitude()*100000)));
+		params.add(new BasicNameValuePair("TakenTime", new SimpleDateFormat("yyyyMMddHHmmss").format(date)));
 		
 		Toast.makeText(getBaseContext(), new SimpleDateFormat("yyyyMMddHHmmss").format(date), Toast.LENGTH_LONG).show();
 		
@@ -84,14 +107,14 @@ public class GpsBasicsAndroidExample extends Activity implements LocationListene
 			e.printStackTrace();
 		}
 		String str = "Latitude: "+location.getLatitude()+" \nLongitude: "+location.getLongitude();
-		//Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
+		Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
 	}
 
-	/*@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	public String buildDateTime(Date date){
 		
 		return String.valueOf(date.getYear() + 1900) + String.valueOf(date.getMonth());
-	}*/
+	}
 	
 	@Override
 	public void onProviderDisabled(String provider) {
