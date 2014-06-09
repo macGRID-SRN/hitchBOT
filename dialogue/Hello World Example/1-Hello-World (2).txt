@@ -1,0 +1,23 @@
+Type	Label	Description	Text	If	Learn	Goto	Accuracy	Mode
+output start	out_start		Hello. So you want to know about Earth? Type HELLO WORLD for an index of questions I can answer.		mode=none			
+input	in_menu		hello world			out_menu	90	
+input	in_earth		earth / what is earth			out_earth	70	
+input	in_how_old		how old / how old is earth			out_how_old	70	
+input	in_species		species / what species are prevalent			out_species	70	
+input	in_achievement		achievement / what is the greatest achievement / what is the greatest achievement of this species			out_achievement	70	
+input	in_default		anything			out_default	0	
+input	in_start		start script / restart script			out_start	100	
+output	out_menu		Would you like to know ... What is EARTH? HOW OLD is Earth? What SPECIES are prevalent? What is the greatest ACHIEVEMENT of this species?					
+output	out_default		10.4% of Earth's surface is covered with permanent ice formation. Type HELLO WORLD for an index of questions I can answer.					random
+			"Homo sapiens evolved on Earth 200,000 years ago during a period of drastic climate change. Type HELLO WORLD for an index of questions I can answer."					
+			"Over 8,500 years ago Bos primigenius taurus, or cattle, evolved from a single early ancestor who stood over 2m tall, called Bos primigenius, or aurochs. Type HELLO WORLD for an index of questions I can answer."					
+output	out_earth		"Earth is the third planet from its sun, unique in its solar system for the presence of life."					in order
+			"Earth is a large green and blue oblate spheroid mass approximately 150 million kilometers from its sun, home to many carbon-based lifeforms."					
+output	out_how_old		"Earth is approximately 4.54 billion years old, as measured by its sentient inhabitants."					
+output	out_species		Would you like to know the species with the greatest BIOMASS or the greatest INFLUENCE?					
+input	in_species_biomass		biomass / greatest biomass / the species with the greatest biomass		mode=biomass	out_species_biomass	70	
+input	in_species_influence		influence / greatest influence / the species with the greatest influence		mode=influence	out_species_influence	70	
+output	out_species_biomass		"Bos primigenius taurus, or cattle, have the greatest biomass of any single species on Earth, at 650 million tonnes."					
+output	out_species_influence		"Homo sapiens, or humans, have the greatest influence on Earth of any species, due to proportionately astronomical intelligence."					
+output	out_achievement		The greatest achievement of Bos primigenius taurus is to provision Homo sapiens with food and labour to support the innovation of machines.	mode=biomass				
+			The greatest achievement of Homo sapiens is the invention of machines.	mode#biomass				

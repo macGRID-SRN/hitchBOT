@@ -1,0 +1,24 @@
+Type	Label	Description	Text	If	Learn	Goto	Accuracy	Mode
+output start	out_start		city name?			input_city		
+input	input_city		((city))((del))((temp))((del))((humid))((del))((pres))((del))((sunset))((del))((sunrise))((del))((wind))((del))((windD))			city_output		
+output	city_output		You live in $cityName_other$ $tempurature_other$					
+phrase	city		~		cityName			
+phrase	temp		~		tempurature			
+phrase	humid		~		humidity			
+phrase	pres		~		pressure			
+phrase	sunset		~		sunset			
+phrase	sunrise		~		sunrise			
+phrase	wind		~		windSpeed			
+phrase	windD		~		windDirection			
+phrase	del		|					
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
