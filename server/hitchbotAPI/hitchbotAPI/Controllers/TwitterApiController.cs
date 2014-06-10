@@ -52,7 +52,7 @@ namespace hitchbotAPI.Controllers
                 foreach (LinqToTwitter.User myUser in friendship.Users)
                 {
                     string tempUserID = myUser.UserIDResponse.ToString();
-                    if (!db.TwitterFriends.Any(tu => tu.UserID == tempUserID))
+                    if (!twitterFriends.Any(tu => tu.UserID == tempUserID))
                     {
                         User x = await twitterCtx.CreateFriendshipAsync(myUser.ScreenNameResponse, true);
                         db.TwitterFriends.Add(
