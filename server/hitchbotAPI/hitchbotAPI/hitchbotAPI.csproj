@@ -193,6 +193,10 @@
     <Compile Include="Migrations\201405281850185_CleverScriptAPI.Designer.cs">
       <DependentUpon>201405281850185_CleverScriptAPI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406101948073_CleverScriptToHitchBOT.cs" />
+    <Compile Include="Migrations\201406101948073_CleverScriptToHitchBOT.Designer.cs">
+      <DependentUpon>201406101948073_CleverScriptToHitchBOT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\Conversation.cs" />
@@ -287,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405281850185_CleverScriptAPI.resx">
       <DependentUpon>201405281850185_CleverScriptAPI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406101948073_CleverScriptToHitchBOT.resx">
+      <DependentUpon>201406101948073_CleverScriptToHitchBOT.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,6 +10,7 @@ namespace hitchbotAPI.Models
         public int ID { get; set; }
         public string APIkey { get; set; }
         public string Description { get; set; }
+        public hitchBOT HitchBOT { get; set; }
         public DateTime TimeAdded { get; set; }
     }
 }

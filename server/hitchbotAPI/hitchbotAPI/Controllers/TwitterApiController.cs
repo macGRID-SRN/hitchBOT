@@ -72,10 +72,5 @@ namespace hitchbotAPI.Controllers
             }
 
         }
-
-        private bool isIdIdentical(Models.TwitterFriend TwitterFriend, User user)
-        {
-            return TwitterFriend.UserID == user.UserID.ToString();
-        }
     }
 }
