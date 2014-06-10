@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201406101948073_CleverScriptToHitchBOT.Designer.cs">
       <DependentUpon>201406101948073_CleverScriptToHitchBOT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406102016141_TwitterFriendToAccount.cs" />
+    <Compile Include="Migrations\201406102016141_TwitterFriendToAccount.Designer.cs">
+      <DependentUpon>201406102016141_TwitterFriendToAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\Conversation.cs" />
@@ -294,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406101948073_CleverScriptToHitchBOT.resx">
       <DependentUpon>201406101948073_CleverScriptToHitchBOT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406102016141_TwitterFriendToAccount.resx">
+      <DependentUpon>201406102016141_TwitterFriendToAccount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

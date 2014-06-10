@@ -42,12 +42,13 @@ namespace hitchbotAPI.Controllers
 
             using (var db = new Models.Database())
             {
-                string UserID = db.TwitterAccounts.First(ta => ta.HitchBot.ID == HitchBotID).UserID;
+                var TwitterAccount = db.TwitterAccounts.First(ta => ta.HitchBot.ID == HitchBotID);
+                string UserID = TwitterAccount.UserID;
                 var friendship = await
                 (from friend in twitterCtx.Friendship
                  where friend.Type == FriendshipType.FollowersList && friend.UserID == UserID
                  select friend).SingleOrDefaultAsync();
-
+                var twitterFriends = db.TwitterFriends.Where(tf => tf.TwitterAccount.ID == TwitterAccount.ID);
                 foreach (LinqToTwitter.User myUser in friendship.Users)
                 {
                     string tempUserID = myUser.UserIDResponse.ToString();
@@ -59,6 +60,7 @@ namespace hitchbotAPI.Controllers
                             {
                                 UserID = myUser.UserIDResponse.ToString(),
                                 ScreenName = myUser.ScreenNameResponse,
+                                TwitterAccount = TwitterAccount,
                                 TimeAdded = DateTime.UtcNow,
                                 TimeFollowed = DateTime.UtcNow
                             });
