@@ -11,13 +11,15 @@ namespace hitchbotAPI.Helpers
     public static class CleverScriptHelper
     {
         public const string testURl = "http://testapi.cleverscript.com/csapi?";
+        public const string weatherKey = "Weather";
 
-        public static string GetWeatherTweet(Models.Database_Excluded.Weather Weather, int CleverScriptApiID)
+        public static string GetWeatherTweet(Models.Database_Excluded.Weather Weather, int HitchBotID)
         {
             string output = string.Empty;
             using (var db = new Models.Database())
             {
-                var CleverScriptKey = db.CleverScriptAPIkeys.First(cs => cs.ID == CleverScriptApiID);
+                var CleverScriptForHitchBOT = db.CleverScriptAPIkeys.Where(cs => cs.HitchBOT.ID == HitchBotID);
+                var CleverScriptKey = CleverScriptForHitchBOT.First(cs => cs.Description == weatherKey);
                 string lastCS = string.Empty;
                 foreach (string URLinput in Weather.GetIterator())
                 {

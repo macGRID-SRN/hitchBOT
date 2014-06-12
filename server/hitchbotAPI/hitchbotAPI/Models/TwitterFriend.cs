@@ -12,6 +12,7 @@ namespace hitchbotAPI.Models
         public int ID { get; set; }
         public string UserID { get; set; }
         public string ScreenName { get; set; }
+        public virtual TwitterAccount TwitterAccount { get; set; }
         public DateTime TimeAdded { get; set; }
         public DateTime? TimeFollowed { get; set; }
     }
