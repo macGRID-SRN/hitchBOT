@@ -7,27 +7,40 @@
     tools:context="com.example.hitchbot.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <EditText
-        android:id="@+id/editText2"
+       <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" />
+        android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:text="Talk To CleverScript" />
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/button1"
+            android:ems="10" />
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:layout_marginTop="95dp"
-        android:ems="10" >
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="911dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/editText2"/>
 
-        <requestFocus />
-    </EditText>
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="161dp"
+            android:onClick="captureHandler"
+            android:text="Button" />
 
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText2"
+            android:layout_alignParentTop="true"
+            android:ems="10" />
+
+    </RelativeLayout>
 </FrameLayout>
