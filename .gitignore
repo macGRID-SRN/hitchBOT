@@ -126,3 +126,5 @@ documentation/latex/MakeFile
 /server/databaseBuilder/SecretTwitterAccounts.linq
 app/GPSBasics/libs/armeabi/libcleverscriptapi.so
 app/GPSBasics/libs/cleverscriptapi.jar
+app/Android App/libs/armeabi/libcleverscriptapi.so
+app/Android App/libs/cleverscriptapi.jar
