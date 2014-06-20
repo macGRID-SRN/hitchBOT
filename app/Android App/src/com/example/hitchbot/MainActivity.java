@@ -94,10 +94,10 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		
         captions = new HashMap<String, Integer>();
         captions.put(KWS_SEARCH, R.string.kws_caption);
-        captions.put(MENU_SEARCH, R.string.menu_caption);
-        captions.put(DIGITS_SEARCH, R.string.digits_caption);
+       // captions.put(MENU_SEARCH, R.string.menu_caption);
+       // captions.put(DIGITS_SEARCH, R.string.digits_caption);
         captions.put(FORECAST_SEARCH, R.string.forecast_caption);
-        captions.put(HELLO_WORLD,R.string.hello_world);
+      //  captions.put(HELLO_WORLD,R.string.hello_world);
         // Prepare the data for UI
 
  
@@ -121,7 +121,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	                    ((TextView) findViewById(R.id.editText2))
 	                            .setText("Failed to init recognizer " + result);
 	                } else {
-	                    switchSearch(KWS_SEARCH);
+	                    switchSearch(FORECAST_SEARCH);
 	                }
 	            }
 	            
@@ -219,7 +219,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            @Override
 	            public void onDone(String utteranceId)
 	            {
-	            	switchSearch(MENU_SEARCH);
+	            	switchSearch(FORECAST_SEARCH);
 	            }
 
 	            @Override
@@ -244,7 +244,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -269,7 +268,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     File modelsDir = new File(assetsDir, "models");
     recognizer = defaultSetup()
             .setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-            .setDictionary(new File(modelsDir, "dict/cmu07a.dic"))
+            .setDictionary(new File(modelsDir, "dict/2654.dic"))
             .setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
             .getRecognizer();
     recognizer.addListener(this);
@@ -277,12 +276,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     // Create keyword-activation search.
    recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
     // Create grammar-based searches.
-    File menuGrammar = new File(modelsDir, "grammar/menu.gram");
-    recognizer.addGrammarSearch(MENU_SEARCH, menuGrammar);
-    File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
-    recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
+    //File menuGrammar = new File(modelsDir, "grammar/menu.gram");
+   // recognizer.addGrammarSearch(MENU_SEARCH, menuGrammar);
+   // File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
+    //recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
     // Create language model search.
-    File languageModel = new File(modelsDir, "lm/weather.dmp");
+    File languageModel = new File(modelsDir, "lm/2654.dmp");
     recognizer.addNgramSearch(FORECAST_SEARCH, languageModel);
 }
 
@@ -294,21 +293,21 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 	@Override
 	public void onEndOfSpeech() {
-        if (DIGITS_SEARCH.equals(recognizer.getSearchName()) ||
-                 FORECAST_SEARCH.equals(recognizer.getSearchName()) || HELLO_WORLD.equals(recognizer.getSearchName()) )
+        //if (DIGITS_SEARCH.equals(recognizer.getSearchName()) ||
+                 //FORECAST_SEARCH.equals(recognizer.getSearchName()) )
         	recognizer.stop();
-            switchSearch(MENU_SEARCH);  	
+            switchSearch(FORECAST_SEARCH);  	
 	}
 
 	@Override
 	public void onPartialResult(Hypothesis hypothesis) {
         String text = hypothesis.getHypstr();
         if (text.equals(KEYPHRASE))
-            switchSearch(MENU_SEARCH);
-        else if (text.equals(DIGITS_SEARCH))
-            switchSearch(DIGITS_SEARCH);
-        else if (text.equals(FORECAST_SEARCH))
             switchSearch(FORECAST_SEARCH);
+       // else if (text.equals(DIGITS_SEARCH))
+       //     switchSearch(DIGITS_SEARCH);
+       // else if (text.equals(FORECAST_SEARCH))
+       //     switchSearch(FORECAST_SEARCH);
         else{
             ((TextView) findViewById(R.id.editText2)).setText(text);
            // mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
