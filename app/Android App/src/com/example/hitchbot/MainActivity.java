@@ -4,49 +4,42 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Reader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+
 import com.cleverscript.android.CleverscriptAPI;
+
 import static android.widget.Toast.makeText;
 import edu.cmu.pocketsphinx.Assets;
 import edu.cmu.pocketsphinx.Hypothesis;
 import edu.cmu.pocketsphinx.SpeechRecognizer;
 import edu.cmu.pocketsphinx.RecognitionListener;
-import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Color;
 import android.hardware.Camera;
+import android.hardware.Camera.AutoFocusCallback;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
 import static edu.cmu.pocketsphinx.SpeechRecognizerSetup.defaultSetup;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
-import android.provider.MediaStore;
-import android.speech.tts.TextToSpeech.Engine;
 
 public class MainActivity extends ActionBarActivity implements RecognitionListener{
 
@@ -59,9 +52,10 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     private static final String DIGITS_SEARCH = "digits";
     private static final String MENU_SEARCH = "menu";
     private static final String KEYPHRASE = "oh mighty computer";
+    private static final String HELLO_WORLD = "Hello World";
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
-    
+    private static Context context;
     private Bitmap image = null;  
     private CameraPreview cameraPreview;
     private ImageView imageResult;
@@ -80,15 +74,13 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		editText = (EditText)findViewById(R.id.editText1);
 		
 		b = (Button)findViewById(R.id.button1);
-		
 		setUpCamera();
-		
 		mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener()
 				{
 			@Override
 		      public void onInit(int status) {
 		         if(status != TextToSpeech.ERROR){
-		             mTts.setLanguage(Locale.UK);
+		             mTts.setLanguage(Locale.CANADA);
 		             setTtsListener();
 		            }		
 				
@@ -105,6 +97,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
         captions.put(MENU_SEARCH, R.string.menu_caption);
         captions.put(DIGITS_SEARCH, R.string.digits_caption);
         captions.put(FORECAST_SEARCH, R.string.forecast_caption);
+        captions.put(HELLO_WORLD,R.string.hello_world);
         // Prepare the data for UI
 
  
@@ -133,7 +126,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            }
 	            
 		}.execute();
-		
 	}
 	
 	public void getResponseFromCleverscript(String message)
@@ -221,7 +213,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    }
 	}
 	
-
 	private void setTtsListener() {
 	        int listenerResult = mTts.setOnUtteranceProgressListener(new UtteranceProgressListener()
 	        {
@@ -266,7 +257,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		return super.onOptionsItemSelected(item);
 	}
 
-private void switchSearch(String searchName) {
+	private void switchSearch(String searchName) {
     recognizer.stop();
     recognizer.startListening(searchName);
     String caption = getResources().getString(captions.get(searchName));
@@ -274,7 +265,7 @@ private void switchSearch(String searchName) {
     ((TextView) findViewById(R.id.editText2)).setText(caption);
 }
 
-private void setupRecognizer(File assetsDir) {
+	private void setupRecognizer(File assetsDir) {
     File modelsDir = new File(assetsDir, "models");
     recognizer = defaultSetup()
             .setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
@@ -304,10 +295,9 @@ private void setupRecognizer(File assetsDir) {
 	@Override
 	public void onEndOfSpeech() {
         if (DIGITS_SEARCH.equals(recognizer.getSearchName()) ||
-                 FORECAST_SEARCH.equals(recognizer.getSearchName()))
+                 FORECAST_SEARCH.equals(recognizer.getSearchName()) || HELLO_WORLD.equals(recognizer.getSearchName()) )
         	recognizer.stop();
-            switchSearch(MENU_SEARCH);
-        	
+            switchSearch(MENU_SEARCH);  	
 	}
 
 	@Override
@@ -341,7 +331,7 @@ private void setupRecognizer(File assetsDir) {
 	
 	public void setUpCamera()
 	{
-		cameraPreview = new CameraPreview(getApplicationContext());
+		cameraPreview = new CameraPreview(this);
 		imageResult = new ImageView(getApplicationContext());
 		
 		imageResult.setBackgroundColor(Color.GRAY);
@@ -356,7 +346,7 @@ private void setupRecognizer(File assetsDir) {
 	{
 		if (takePicture)
 		{
-
+			
 		cameraPreview.capture(jpegHandler);	
 
 		}
@@ -367,6 +357,7 @@ private void setupRecognizer(File assetsDir) {
 			imageResult.setImageBitmap(null);
 			b.setText("Capture");
 			cameraPreview.camera.startPreview();
+			//cameraPreview.detectFaces(image);
 		}
 	}
 	
@@ -397,6 +388,8 @@ private void setupRecognizer(File assetsDir) {
 		}
 	};
 
+	
+	
 	 private static File getOutputMediaFile() {
 	        File mediaStorageDir = new File(
 	                Environment
@@ -418,6 +411,11 @@ private void setupRecognizer(File assetsDir) {
 	        return mediaFile;
 	    }
 	
+	 public static Context getAppContext() {
+	        return MainActivity.context;
+	    }
+	 
+
 	
 	
 	}
