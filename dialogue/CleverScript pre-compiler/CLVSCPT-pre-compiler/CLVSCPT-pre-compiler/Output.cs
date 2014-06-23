@@ -7,23 +7,19 @@ namespace CLVSCPT_pre_compiler
 {
     class Output : ConversationNode
     {
-        public List<CleverScriptLine> outputLines;
-
-        public List<Input> inputs = new List<Input>();
-
         public Output(List<string[]> text)
         {
-            outputLines = new List<CleverScriptLine>();
+            this.lines = new List<CleverScriptLine>();
 
             foreach (string[] myArray in text)
             {
-                outputLines.Add(new CleverScriptLine(myArray));
+                lines.Add(new CleverScriptLine(myArray));
             }
         }
 
         public Output(List<CleverScriptLine> text)
         {
-            this.outputLines = text;
+            this.lines = text;
         }
     }
 }

@@ -7,7 +7,10 @@ namespace CLVSCPT_pre_compiler
 {
     class ConversationNode
     {
-        List<ConversationNode> IN;
-        List<ConversationNode> OUT;
+        public List<ConversationNode> IN;
+        public List<ConversationNode> OUT;
+        public List<CleverScriptLine> lines;
+
+
     }
 }

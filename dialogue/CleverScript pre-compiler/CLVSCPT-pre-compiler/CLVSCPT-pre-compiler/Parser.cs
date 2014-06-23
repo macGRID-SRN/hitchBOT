@@ -22,6 +22,8 @@ namespace CLVSCPT_pre_compiler
             List<Input> inputs = new List<Input>();
             List<Output> outputs = new List<Output>();
 
+            List<ConversationNode> conversationNodes = new List<ConversationNode>();
+
             //probably could clean this up with reflection..
             do
             {
