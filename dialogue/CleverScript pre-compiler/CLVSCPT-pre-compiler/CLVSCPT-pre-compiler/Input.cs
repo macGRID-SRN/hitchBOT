@@ -5,13 +5,14 @@ using System.Text;
 
 namespace CLVSCPT_pre_compiler
 {
-    class Input : CleverScriptLine
+    class Input : ConversationNode
     {
-        List<Output> outputs;
+        public List<CleverScriptLine> inputLines;
+        public List<Output> outputs = new List<Output>();
 
-        public Input(string text)
+        public Input(List<CleverScriptLine> inputLines)
         {
-
+            this.inputLines = inputLines;
         }
     }
 }

@@ -5,13 +5,25 @@ using System.Text;
 
 namespace CLVSCPT_pre_compiler
 {
-    class Output : CleverScriptLine
+    class Output : ConversationNode
     {
-        List<Input> inputs;
+        public List<CleverScriptLine> outputLines;
 
-        public Output(string text)
+        public List<Input> inputs = new List<Input>();
+
+        public Output(List<string[]> text)
         {
+            outputLines = new List<CleverScriptLine>();
 
+            foreach (string[] myArray in text)
+            {
+                outputLines.Add(new CleverScriptLine(myArray));
+            }
+        }
+
+        public Output(List<CleverScriptLine> text)
+        {
+            this.outputLines = text;
         }
     }
 }

@@ -1,6 +1,7 @@
 Type	Label	Description	Text	If	Learn	Goto	Accuracy	Mode
 output start	out_start		Hello. So you want to know about Earth? Type HELLO WORLD for an index of questions I can answer.		mode=none			
 input	in_menu		hello world			out_menu	90	
+			asdasd			out_earth	34	
 input	in_earth		earth / what is earth			out_earth	70	
 input	in_how_old		how old / how old is earth			out_how_old	70	
 input	in_species		species / what species are prevalent			out_species	70	

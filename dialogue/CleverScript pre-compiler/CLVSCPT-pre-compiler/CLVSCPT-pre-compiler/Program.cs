@@ -9,6 +9,8 @@ namespace CLVSCPT_pre_compiler
     {
         static void Main(string[] args)
         {
+            Parser myParser = new Parser("hello.txt");
+            myParser.PreCompile();
         }
     }
 }

@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CleverScriptLine.cs" />
+    <Compile Include="Conversation.cs" />
+    <Compile Include="ConversationNode.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Output.cs" />
     <Compile Include="Parser.cs" />
