@@ -5,11 +5,11 @@ using System.Text;
 
 namespace CLVSCPT_pre_compiler
 {
-    class Parser
+    class Output : CleverScriptLine
     {
-        private string FileContents;
+        List<Input> inputs;
 
-        public Parser(string fileName)
+        public Output(string text)
         {
 
         }
