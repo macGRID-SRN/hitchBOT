@@ -12,3 +12,5 @@ models/dict/cmu07a.dic
 models/dict/2654.dic
 models/lm/2654.dmp
 models/lm/weather.dmp
+models/lm/6954.dmp
+models/dict/6954.dic

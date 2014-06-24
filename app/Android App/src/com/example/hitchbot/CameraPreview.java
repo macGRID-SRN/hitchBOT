@@ -103,13 +103,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 	            canvas.drawBitmap(cameraBitmap, 0, 0, ditherPaint);
 	            
 	            int facesFound = detector.findFaces(bitmap565, faces);
-	            PointF midPoint = new PointF();
-	            float eyeDistance = 0.0f;
-	            float confidence = 0.0f;
+	        //    PointF midPoint = new PointF();
+	        //    float eyeDistance = 0.0f;
+	        //    float confidence = 0.0f;
 	            
-	            Log.i("FaceDetector", "Number of faces found: " + facesFound);
+	       //     Log.i("FaceDetector", "Number of faces found: " + facesFound);
 	            
-	            if(facesFound > 0)
+	         /*   if(facesFound > 0)
 	            {
 	                    for(int index=0; index<facesFound; ++index){
 	                            faces[index].getMidPoint(midPoint);
@@ -126,7 +126,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 	                                                            (int)midPoint.x + eyeDistance, 
 	                                                            (int)midPoint.y + eyeDistance, drawPaint);
 	                    }
-	            }
+	            }*/
 	            return facesFound;
 	            
 

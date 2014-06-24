@@ -16,6 +16,21 @@ namespace CreatePocketSphinxLanguage
             this.path = path;
         }
 
+        public void getPhrases(string line)
+        {
+            string[] phrases;
+            string[] row = line.Split(',');
+            if (row.GetValue(0).Equals("phrase"))
+            {
+              phrases = row.GetValue(3).ToString().Split('/');
+              foreach(string phraseValue in phrases)
+            {
+                inputSentences.Add(phraseValue);
+            }
+            }
+        }
+        
+
         public void getInput(string line)
         {
             string[] inputs;
