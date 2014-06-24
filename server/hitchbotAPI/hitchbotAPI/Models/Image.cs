@@ -13,6 +13,8 @@ namespace hitchbotAPI.Models
         public string url { get; set; }
         public virtual Location location { get; set; }
         public DateTime TimeTaken { get; set; }
+        public DateTime TimeApproved { get; set; }
+        public DateTime TimeDenied { get; set; }
         public DateTime TimeAdded { get; set; }
     }
 }

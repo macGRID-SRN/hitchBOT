@@ -48,6 +48,7 @@ namespace hitchbotAPI.Controllers
                 (from friend in twitterCtx.Friendship
                  where friend.Type == FriendshipType.FollowersList && friend.UserID == UserID
                  select friend).SingleOrDefaultAsync();
+
                 var twitterFriends = db.TwitterFriends.Where(tf => tf.TwitterAccount.ID == TwitterAccount.ID);
                 foreach (LinqToTwitter.User myUser in friendship.Users)
                 {
@@ -64,15 +65,11 @@ namespace hitchbotAPI.Controllers
                                 TimeAdded = DateTime.UtcNow,
                                 TimeFollowed = DateTime.UtcNow
                             });
-
                     }
-
-
                 }
                 db.SaveChanges();
                 return "Success";
             }
-
         }
     }
 }

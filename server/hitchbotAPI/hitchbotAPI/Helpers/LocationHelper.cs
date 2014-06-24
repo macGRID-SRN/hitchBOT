@@ -50,15 +50,38 @@ namespace hitchbotAPI.Helpers
         }
 
         public const string gmapsString = "http://maps.googleapis.com/maps/api/staticmap?size=800x800&path=weight:5%7Ccolor:blue%7Cenc:";
+        private const int maxLocations = 200;
+
         public static string GetEncodedPolyLine(int HitchBotID)
         {
             using (var db = new Models.Database())
             {
                 var OrderedLocations = db.hitchBOTs.First(h => h.ID == HitchBotID).Locations.OrderBy(l => l.TakenTime).ToList();
 
-                return EncodeCoordsForGMAPS(OrderedLocations);
+                return EncodeCoordsForGMAPS(SlimLocations(OrderedLocations));
             }
         }
+
+        private static List<Models.Location> SlimLocations(List<Models.Location> inList)
+        {
+            int Interval = inList.Count / (LocationHelper.maxLocations - 2);
+
+            if (Interval < 2)
+            {
+                Interval = 2;
+            }
+            List<Models.Location> outList = new List<Models.Location>();
+
+            for (int i = 0; i < inList.Count; i += Interval)
+            {
+                outList.Add(inList[i]);
+            }
+
+            outList.Add(inList.Last());
+
+            return inList;
+        }
+
         //code taken and modified from http://stackoverflow.com/questions/3852268/c-sharp-implementation-of-googles-encoded-polyline-algorithm
         public static string EncodeCoordsForGMAPS(List<Models.Location> points)
         {
