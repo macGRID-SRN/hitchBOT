@@ -206,12 +206,17 @@
     <Compile Include="Migrations\201406241508560_ImageDeny.Designer.cs">
       <DependentUpon>201406241508560_ImageDeny.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406241616166_GoogleMapsStatic.cs" />
+    <Compile Include="Migrations\201406241616166_GoogleMapsStatic.Designer.cs">
+      <DependentUpon>201406241616166_GoogleMapsStatic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Database Excluded\Weather.cs" />
     <Compile Include="Models\Database.cs" />
+    <Compile Include="Models\GoogleMapsStatic.cs" />
     <Compile Include="Models\hitchBOT.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ListenEvent.cs" />
@@ -310,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406241508560_ImageDeny.resx">
       <DependentUpon>201406241508560_ImageDeny.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406241616166_GoogleMapsStatic.resx">
+      <DependentUpon>201406241616166_GoogleMapsStatic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

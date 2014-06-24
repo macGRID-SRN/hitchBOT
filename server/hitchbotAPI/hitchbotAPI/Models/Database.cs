@@ -30,6 +30,7 @@ namespace hitchbotAPI.Models
         public DbSet<TwitterFriend> TwitterFriends { get; set; }
         public DbSet<TwitterLocationTarget> TwitterLocations { get; set; }
         public DbSet<CleverScriptAPIkey> CleverScriptAPIkeys { get; set; }
+        public DbSet<GoogleMapsStatic> StaticMaps { get; set; }
 
     }
 }

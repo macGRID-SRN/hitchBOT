@@ -7,14 +7,17 @@ using Newtonsoft.Json;
 
 namespace hitchbotAPI.Models
 {
-    public class Image
+    public class GoogleMapsStatic
     {
         public int ID { get; set; }
-        public string url { get; set; }
-        public virtual Location Location { get; set; }
-        public DateTime TimeTaken { get; set; }
-        public DateTime TimeApproved { get; set; }
-        public DateTime TimeDenied { get; set; }
+        public hitchBOT HitchBot { get; set; }
+        public string URL { get; set; }
+        public DateTime TimeGenerated { get; set; }
         public DateTime TimeAdded { get; set; }
+
+        public GoogleMapsStatic()
+        {
+            this.TimeAdded = DateTime.UtcNow;
+        }
     }
 }

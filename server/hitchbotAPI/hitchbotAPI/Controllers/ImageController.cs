@@ -26,7 +26,7 @@ namespace hitchbotAPI.Controllers
 
                 var image = new Models.Image()
                 {
-                    location = location
+                    Location = location
                 };
             }
 
@@ -34,11 +34,11 @@ namespace hitchbotAPI.Controllers
         }
 
         [HttpPost]
-        public bool AcceptImage(int ImageID)
+        public bool AcceptImage(int ImageAcceptID)
         {
             using (var db = new Models.Database())
             {
-                var img = db.Images.First(i => i.ID == ImageID);
+                var img = db.Images.First(i => i.ID == ImageAcceptID);
                 img.TimeApproved = DateTime.UtcNow;
                 db.SaveChanges();
             }
@@ -46,11 +46,11 @@ namespace hitchbotAPI.Controllers
         }
 
         [HttpPost]
-        public bool AcceptImage(int ImageID)
+        public bool DenyImage(int ImageDenyID)
         {
             using (var db = new Models.Database())
             {
-                var img = db.Images.First(i => i.ID == ImageID);
+                var img = db.Images.First(i => i.ID == ImageDenyID);
                 img.TimeDenied = DateTime.UtcNow;
                 db.SaveChanges();
             }
