@@ -25,8 +25,8 @@ import android.util.Log;
 
 public class ImgurLogin {
 
-private static final String clientID = "a54dc7c9626adc0";
-private static final String clientSecret = "642c1a98b09c0726a223da9d70401cf163e635b4";
+private static final String clientID = "2d90150ad211086";
+private static final String clientSecret = "8b2966ce25695fe1796b1916b2a5c0aa10de098e";
 private static ImgurLogin INSTANCE;
 static final String SHARED_PREFERENCES_NAME = "imgur_example_auth";
 

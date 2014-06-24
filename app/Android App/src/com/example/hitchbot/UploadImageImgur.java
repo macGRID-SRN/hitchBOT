@@ -8,32 +8,52 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+import org.apache.http.HttpRequest;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
-public abstract class UploadImageImgur extends AsyncTask<Void, Void, String> {
+public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 
 		private static final String TAG = UploadImageImgur.class.getSimpleName();
-
+		private static final String clientID = "2d90150ad211086";
+		private static final String clientSecret = "8b2966ce25695fe1796b1916b2a5c0aa10de098e";
 		private static final String UPLOAD_URL = "https://api.imgur.com/3/image";
+		private Uri image; 
+		private Activity activity;
+	   
+		//Uploads image anonymously
 
-	    private Activity mActivity;
-		private Uri mImageUri;  // local Uri to upload
-
-		public UploadImageImgur(Uri imageUri, Activity activity) {
-			this.mImageUri = imageUri;
-	        this.mActivity = activity;
+		
+	public UploadImageImgur(Uri image, Activity activity)
+	{
+		this.image = image;
+		this.activity = activity;
+	}
+	
+		@Override
+		protected void onPostExecute(String url)
+		{
+			if (!url.equals("")){
+			Toast.makeText(activity, url, Toast.LENGTH_SHORT).show();
+			}
+			else
+			{
+				//push to queue (no connection)
+			}
 		}
 
 		@Override
 		protected String doInBackground(Void... params) {
 			InputStream imageIn;
 			try {
-				imageIn = mActivity.getContentResolver().openInputStream(mImageUri);
+				imageIn = activity.getContentResolver().openInputStream(image);
 			} catch (FileNotFoundException e) {
 				Log.e(TAG, "could not open InputStream", e);
 				return null;
@@ -44,10 +64,9 @@ public abstract class UploadImageImgur extends AsyncTask<Void, Void, String> {
 
 			try {
 	            conn = (HttpURLConnection) new URL(UPLOAD_URL).openConnection();
+	            conn.addRequestProperty("Authorization","Client-ID " + clientID);
+
 	            conn.setDoOutput(true);
-
-	            ImgurLogin.getInstance().addToHttpURLConnection(conn);
-
 	            OutputStream out = conn.getOutputStream();
 	            copy(imageIn, out);
 	            out.flush();
@@ -65,6 +84,7 @@ public abstract class UploadImageImgur extends AsyncTask<Void, Void, String> {
 	                while (scanner.hasNext()) {
 	                    sb.append(scanner.next());
 	                }
+	                scanner.close();
 	                Log.i(TAG, "error response: " + sb.toString());
 	                return null;
 	            }
@@ -83,18 +103,20 @@ public abstract class UploadImageImgur extends AsyncTask<Void, Void, String> {
 				} catch (Exception ignore) {}
 			}
 		}
-
-	    private static int copy(InputStream input, OutputStream output) throws IOException {
-	        byte[] buffer = new byte[8192];
-	        int count = 0;
-	        int n = 0;
-	        while (-1 != (n = input.read(buffer))) {
-	            output.write(buffer, 0, n);
-	            count += n;
-	        }
-	        return count;
-	    }
-
+		
+		
+	
+		   private static int copy(InputStream input, OutputStream output) throws IOException {
+		        byte[] buffer = new byte[8192];
+		        int count = 0;
+		        int n = 0;
+		        while (-1 != (n = input.read(buffer))) {
+		            output.write(buffer, 0, n);
+		            count += n;
+		        }
+		        return count;
+		    }
+		
 		protected String onInput(InputStream in) throws Exception {
 	        StringBuilder sb = new StringBuilder();
 	        Scanner scanner = new Scanner(in);
@@ -109,5 +131,6 @@ public abstract class UploadImageImgur extends AsyncTask<Void, Void, String> {
 			Log.i(TAG, "new imgur url: http://imgur.com/" + id + " (delete hash: " + deletehash + ")");
 			return id;
 		}
+	  
 
 }

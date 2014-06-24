@@ -9,8 +9,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
-import com.cleverscript.android.CleverscriptAPI;
-
 import static android.widget.Toast.makeText;
 import edu.cmu.pocketsphinx.Assets;
 import edu.cmu.pocketsphinx.Hypothesis;
@@ -24,8 +22,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.hardware.Camera;
-import android.hardware.Camera.AutoFocusCallback;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -48,11 +46,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	static final int REQUEST_TAKE_PHOTO = 1;
 	TextToSpeech mTts;
     private static final String KWS_SEARCH = "wakeup";
-    private static final String FORECAST_SEARCH = "forecast";
-    private static final String DIGITS_SEARCH = "digits";
-    private static final String MENU_SEARCH = "menu";
-    private static final String KEYPHRASE = "oh mighty computer";
-    private static final String HELLO_WORLD = "Hello World";
+   // private static final String HELLO_SEARCH = "hello world";
+    private static final String MAIN_SEARCH = "forecast";
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
     private static Context context;
@@ -61,6 +56,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     private ImageView imageResult;
     private FrameLayout frameNew;
     private boolean takePicture = false;
+	private CleverHelper cH;
+
     
 	//edit text and button are for debugging purposes, to be removed when hitchbot is ready for launch
 	Button b;
@@ -72,15 +69,19 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		setContentView(R.layout.activity_main);
 		
 		editText = (EditText)findViewById(R.id.editText1);
-		
+		cH = new CleverHelper("testers.db", "piuzd14d1da153d7e0982b169b8b87455d57d", this);
+		//cH = new CleverHelper("wertfsdfs.db", "lafon34b520180254a9650307f0873860f218", this);
 		b = (Button)findViewById(R.id.button1);
 		setUpCamera();
+		//HttpServerGet htpD = new HttpServerGet("api/hitchBOT?HitchBotID=5");
+        //Log.i("Getting Location",htpD.getData());
 		mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener()
 				{
 			@Override
 		      public void onInit(int status) {
 		         if(status != TextToSpeech.ERROR){
 		             mTts.setLanguage(Locale.CANADA);
+		             mTts.setPitch((float) 1);
 		             setTtsListener();
 		            }		
 				
@@ -94,10 +95,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		
         captions = new HashMap<String, Integer>();
         captions.put(KWS_SEARCH, R.string.kws_caption);
-        captions.put(MENU_SEARCH, R.string.menu_caption);
-        captions.put(DIGITS_SEARCH, R.string.digits_caption);
-        captions.put(FORECAST_SEARCH, R.string.forecast_caption);
-        captions.put(HELLO_WORLD,R.string.hello_world);
+        captions.put(MAIN_SEARCH, R.string.forecast_caption);
+      //  captions.put(HELLO_WORLD,R.string.hello_world);
         // Prepare the data for UI
 
  
@@ -121,7 +120,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	                    ((TextView) findViewById(R.id.editText2))
 	                            .setText("Failed to init recognizer " + result);
 	                } else {
-	                    switchSearch(KWS_SEARCH);
+	                    switchSearch(MAIN_SEARCH);
 	                }
 	            }
 	            
@@ -130,7 +129,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	public void getResponseFromCleverscript(String message)
 	{
-		CleverHelper cH = new CleverHelper("testers.db", "piuzd14d1da153d7e0982b169b8b87455d57d", this);
 		Speak(cH.cs.sendMessage(message));		
 
 	}
@@ -163,52 +161,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	@Override
 	public void onResume() {
 	    super.onResume();  
-
-	    if (mTts == null) {
-			mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
-				
-				@Override
-				public void onInit(int status) {
-					if (status != TextToSpeech.ERROR){
-						mTts.setLanguage(Locale.US);
-	}			
-				}
-			});
-			
-		      captions = new HashMap<String, Integer>();
-		        captions.put(KWS_SEARCH, R.string.kws_caption);
-		        captions.put(MENU_SEARCH, R.string.menu_caption);
-		        captions.put(DIGITS_SEARCH, R.string.digits_caption);
-		        captions.put(FORECAST_SEARCH, R.string.forecast_caption);
-				
-		        // Prepare the data for UI
-
-		 
-		        ((TextView) findViewById(R.id.editText2))
-		                .setText("Preparing the recognizer");
-				
-				 new AsyncTask<Void, Void, Exception>() {
-			            protected Exception doInBackground(Void... params) {
-			                try {
-			                    Assets assets = new Assets(MainActivity.this);
-			                    File assetDir = assets.syncAssets();
-			                    setupRecognizer(assetDir);
-			                } catch (IOException e) {
-			                    return e;
-			                }
-			                return null;
-			            }
-			            
-			            protected void onPostExecute(Exception result) {
-			                if (result != null) {
-			                    ((TextView) findViewById(R.id.editText2))
-			                            .setText("Failed to init recognizer " + result);
-			                } else {
-			                    switchSearch(MENU_SEARCH);
-			                }
-			            }
-			            
-				}.execute();
+	    {
 			
 	    }
 	}
@@ -219,7 +172,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            @Override
 	            public void onDone(String utteranceId)
 	            {
-	            	switchSearch(MENU_SEARCH);
+	            	switchSearch(MAIN_SEARCH);
 	            }
 
 	            @Override
@@ -230,7 +183,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            @Override
 	            public void onStart(String utteranceId)
 	            {
-	            	recognizer.stop();	            }
+	            	recognizer.stop();	
+	            	
+	            }
 	        });
 	        if (listenerResult != TextToSpeech.SUCCESS)
 	        {
@@ -244,7 +199,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -261,7 +215,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     recognizer.stop();
     recognizer.startListening(searchName);
     String caption = getResources().getString(captions.get(searchName));
-	//mTts.speak(caption, TextToSpeech.QUEUE_FLUSH, null);
     ((TextView) findViewById(R.id.editText2)).setText(caption);
 }
 
@@ -269,21 +222,18 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     File modelsDir = new File(assetsDir, "models");
     recognizer = defaultSetup()
             .setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-            .setDictionary(new File(modelsDir, "dict/cmu07a.dic"))
+            .setDictionary(new File(modelsDir, "dict/2654.dic"))
             .setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
             .getRecognizer();
     recognizer.addListener(this);
 
     // Create keyword-activation search.
-   recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
-    // Create grammar-based searches.
-    File menuGrammar = new File(modelsDir, "grammar/menu.gram");
-    recognizer.addGrammarSearch(MENU_SEARCH, menuGrammar);
-    File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
-    recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
+  // recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
+
+    //recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
     // Create language model search.
-    File languageModel = new File(modelsDir, "lm/weather.dmp");
-    recognizer.addNgramSearch(FORECAST_SEARCH, languageModel);
+    File languageModel = new File(modelsDir, "lm/2654.dmp");
+    recognizer.addNgramSearch(MAIN_SEARCH, languageModel);
 }
 
 	@Override
@@ -294,26 +244,17 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 	@Override
 	public void onEndOfSpeech() {
-        if (DIGITS_SEARCH.equals(recognizer.getSearchName()) ||
-                 FORECAST_SEARCH.equals(recognizer.getSearchName()) || HELLO_WORLD.equals(recognizer.getSearchName()) )
+		if (MAIN_SEARCH.equals(recognizer.getSearchName()))
         	recognizer.stop();
-            switchSearch(MENU_SEARCH);  	
+            switchSearch(MAIN_SEARCH);  	
 	}
 
 	@Override
 	public void onPartialResult(Hypothesis hypothesis) {
-        String text = hypothesis.getHypstr();
-        if (text.equals(KEYPHRASE))
-            switchSearch(MENU_SEARCH);
-        else if (text.equals(DIGITS_SEARCH))
-            switchSearch(DIGITS_SEARCH);
-        else if (text.equals(FORECAST_SEARCH))
-            switchSearch(FORECAST_SEARCH);
-        else{
+			String text = hypothesis.getHypstr();
+
             ((TextView) findViewById(R.id.editText2)).setText(text);
            // mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        }
-
 	}
 
 	@Override 
@@ -357,7 +298,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			imageResult.setImageBitmap(null);
 			b.setText("Capture");
 			cameraPreview.camera.startPreview();
-			//cameraPreview.detectFaces(image);
+			//String numFace = String.valueOf(cameraPreview.detectFaces(image));
+			//Toast.makeText(context, numFace, Toast.LENGTH_SHORT).show();
 		}
 	}
 	
@@ -371,6 +313,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			b.setText("Take Picture");
 			takePicture = false;
 			File pictureFile = getOutputMediaFile();
+			Uri imageUri = Uri.fromFile(pictureFile);
+			new UploadImageImgur(imageUri, getThis()).execute();
+			
 			FileOutputStream fos;
 			try {
 				fos = new FileOutputStream(pictureFile);
@@ -388,6 +333,10 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		}
 	};
 
+	private MainActivity getThis()
+	{
+		return this;
+	}
 	
 	
 	 private static File getOutputMediaFile() {
