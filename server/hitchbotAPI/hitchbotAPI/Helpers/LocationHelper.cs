@@ -58,7 +58,19 @@ namespace hitchbotAPI.Helpers
             {
                 var OrderedLocations = db.hitchBOTs.First(h => h.ID == HitchBotID).Locations.OrderBy(l => l.TakenTime).ToList();
 
-                return EncodeCoordsForGMAPS(SlimLocations(OrderedLocations));
+                string tempURL = EncodeCoordsForGMAPS(SlimLocations(OrderedLocations));
+                var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
+                var tempStaticLink = new Models.GoogleMapsStatic()
+                {
+                    HitchBot = hitchBOT,
+                    URL = tempURL,
+                    TimeGenerated = DateTime.UtcNow
+                };
+
+                db.StaticMaps.Add(tempStaticLink);
+                db.SaveChanges();
+
+                return tempURL;
             }
         }
 
