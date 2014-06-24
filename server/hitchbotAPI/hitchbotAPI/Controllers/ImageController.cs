@@ -33,12 +33,26 @@ namespace hitchbotAPI.Controllers
             return true;
         }
 
+        [HttpPost]
         public bool AcceptImage(int ImageID)
         {
             using (var db = new Models.Database())
             {
                 var img = db.Images.First(i => i.ID == ImageID);
+                img.TimeApproved = DateTime.UtcNow;
+                db.SaveChanges();
+            }
+            return true;
+        }
 
+        [HttpPost]
+        public bool AcceptImage(int ImageID)
+        {
+            using (var db = new Models.Database())
+            {
+                var img = db.Images.First(i => i.ID == ImageID);
+                img.TimeDenied = DateTime.UtcNow;
+                db.SaveChanges();
             }
             return true;
         }
