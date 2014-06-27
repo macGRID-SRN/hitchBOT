@@ -135,6 +135,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApproveImage.aspx.cs">
+      <DependentUpon>ApproveImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImage.aspx.designer.cs">
+      <DependentUpon>ApproveImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -230,6 +237,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApproveImage.aspx" />
     <Content Include="App_Data\LinqToTwitter.AspNet.dll" />
     <Content Include="App_Data\LinqToTwitterPcl.dll" />
     <Content Include="App_Data\XmlDocument.xml" />
