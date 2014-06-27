@@ -17,16 +17,18 @@ namespace hitchbotAPI.Controllers
     public class ImageController : ApiController
     {
         [HttpPost]
-        public bool AddImage(int locationID, string timeTaken, string URL)
+        public bool AddImage(int HitchBotID, int locationID, string timeTaken, string URL)
         {
             DateTime StartTimeReal = DateTime.ParseExact(timeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             using (var db = new Models.Database())
             {
+                var hitchBOT = db.hitchBOTs.First(l => l.ID == HitchBotID);
                 var location = db.Locations.First(l => l.ID == locationID);
 
                 var image = new Models.Image()
                 {
                     Location = location,
+                    HitchBOT = hitchBOT,
                     url = URL
                 };
 
@@ -38,15 +40,16 @@ namespace hitchbotAPI.Controllers
         }
 
         [HttpPost]
-        public bool AddImage(string timeTaken, string URL)
+        public bool AddImage(int HitchBotID, string timeTaken, string URL)
         {
             DateTime StartTimeReal = DateTime.ParseExact(timeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             using (var db = new Models.Database())
             {
-                //var location = db.Locations.First(l => l.ID == locationID);
+                var hitchBOT = db.hitchBOTs.First(l => l.ID == HitchBotID);
 
                 var image = new Models.Image()
                 {
+                    HitchBOT = hitchBOT,
                     url = URL
                 };
 
