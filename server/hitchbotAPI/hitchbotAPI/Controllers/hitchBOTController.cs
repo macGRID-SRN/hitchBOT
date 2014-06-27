@@ -28,7 +28,8 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                return db.hitchBOTs.First(h => h.ID == ID);
+                var hw = db.hitchBOTs.First(h => h.ID == ID);
+                return hw;
             }
         }
 

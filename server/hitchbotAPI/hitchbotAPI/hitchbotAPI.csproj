@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201406241616166_GoogleMapsStatic.Designer.cs">
       <DependentUpon>201406241616166_GoogleMapsStatic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406272121031_PasswordChage.cs" />
+    <Compile Include="Migrations\201406272121031_PasswordChage.Designer.cs">
+      <DependentUpon>201406272121031_PasswordChage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -268,6 +272,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\hitchbotAPI %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\hitchbotAPI.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -326,6 +331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406241616166_GoogleMapsStatic.resx">
       <DependentUpon>201406241616166_GoogleMapsStatic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406272121031_PasswordChage.resx">
+      <DependentUpon>201406272121031_PasswordChage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

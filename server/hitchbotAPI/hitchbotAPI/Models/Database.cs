@@ -16,6 +16,7 @@ namespace hitchbotAPI.Models
             : base("name=Database")
         {
             Configuration.AutoDetectChangesEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<SpeechEvent> SpeechEvents { get; set; }
