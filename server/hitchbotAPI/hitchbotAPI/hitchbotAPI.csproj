@@ -135,6 +135,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApproveImage.aspx.cs">
+      <DependentUpon>ApproveImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImage.aspx.designer.cs">
+      <DependentUpon>ApproveImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -169,6 +176,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ConversationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\TwitterApiController.cs" />
@@ -201,11 +209,17 @@
     <Compile Include="Migrations\201406102016141_TwitterFriendToAccount.Designer.cs">
       <DependentUpon>201406102016141_TwitterFriendToAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406280123187_ImageFix.cs" />
+    <Compile Include="Migrations\201406280123187_ImageFix.Designer.cs">
+      <DependentUpon>201406280123187_ImageFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
+    <Compile Include="Models\ContextPacket.cs" />
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Database Excluded\Weather.cs" />
     <Compile Include="Models\Database.cs" />
+    <Compile Include="Models\GoogleMapsStatic.cs" />
     <Compile Include="Models\hitchBOT.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ListenEvent.cs" />
@@ -219,6 +233,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApproveImage.aspx" />
     <Content Include="App_Data\LinqToTwitter.AspNet.dll" />
     <Content Include="App_Data\LinqToTwitterPcl.dll" />
     <Content Include="App_Data\XmlDocument.xml" />
@@ -249,6 +264,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\hitchbotAPI %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\hitchbotAPI.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -301,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406102016141_TwitterFriendToAccount.resx">
       <DependentUpon>201406102016141_TwitterFriendToAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406280123187_ImageFix.resx">
+      <DependentUpon>201406280123187_ImageFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

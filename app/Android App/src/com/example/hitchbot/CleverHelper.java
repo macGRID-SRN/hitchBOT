@@ -19,6 +19,24 @@ public class CleverHelper implements RecognitionListener {
 	    cs.loadDatabase();
 	}
 
+	public void loadVariables()
+	{
+		//example how to do it
+	//	cs.assignVariable("city_name", variableValue);
+	//	cs.assignVariable("city_population", variableValue);
+		
+	}
+	
+	public void getInformationForVariables()
+	{
+		//get temp, city, population, etc..
+	}
+	
+	public String getBotState()
+	{
+		return cs.retrieveBotState();
+	}
+	
 	@Override
 	public void onBeginningOfSpeech() {
 		// TODO Auto-generated method stub

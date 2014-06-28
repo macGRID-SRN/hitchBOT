@@ -16,6 +16,7 @@ namespace hitchbotAPI.Models
             : base("name=Database")
         {
             Configuration.AutoDetectChangesEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<SpeechEvent> SpeechEvents { get; set; }
@@ -30,6 +31,7 @@ namespace hitchbotAPI.Models
         public DbSet<TwitterFriend> TwitterFriends { get; set; }
         public DbSet<TwitterLocationTarget> TwitterLocations { get; set; }
         public DbSet<CleverScriptAPIkey> CleverScriptAPIkeys { get; set; }
+        public DbSet<GoogleMapsStatic> StaticMaps { get; set; }
 
     }
 }

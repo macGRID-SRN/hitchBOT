@@ -48,11 +48,12 @@ namespace hitchbotAPI.Controllers
                 (from friend in twitterCtx.Friendship
                  where friend.Type == FriendshipType.FollowersList && friend.UserID == UserID
                  select friend).SingleOrDefaultAsync();
+
                 var twitterFriends = db.TwitterFriends.Where(tf => tf.TwitterAccount.ID == TwitterAccount.ID);
                 foreach (LinqToTwitter.User myUser in friendship.Users)
                 {
                     string tempUserID = myUser.UserIDResponse.ToString();
-                    if (!db.TwitterFriends.Any(tu => tu.UserID == tempUserID))
+                    if (!twitterFriends.Any(tu => tu.UserID == tempUserID))
                     {
                         User x = await twitterCtx.CreateFriendshipAsync(myUser.ScreenNameResponse, true);
                         db.TwitterFriends.Add(
@@ -64,15 +65,11 @@ namespace hitchbotAPI.Controllers
                                 TimeAdded = DateTime.UtcNow,
                                 TimeFollowed = DateTime.UtcNow
                             });
-
                     }
-
-
                 }
                 db.SaveChanges();
                 return "Success";
             }
-
         }
     }
 }

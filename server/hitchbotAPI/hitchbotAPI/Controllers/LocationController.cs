@@ -19,9 +19,24 @@ namespace hitchbotAPI.Controllers
         [HttpGet]
         public HttpResponseMessage GetGoogleMapsRoute(int HitchBotID)
         {
-            var response = Request.CreateResponse(HttpStatusCode.Moved);
-            response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
-            return response;
+            using (var db = new Database())
+            {
+                var response = Request.CreateResponse(HttpStatusCode.Moved);
+                var mapsURL = db.StaticMaps.Where(sm => sm.HitchBot.ID == HitchBotID);
+                if (mapsURL.Count() > 0)
+                {
+                    var lastGenerated = mapsURL.OrderBy(l => l.TimeGenerated).Last();
+                    if (lastGenerated.TimeGenerated - DateTime.UtcNow > TimeSpan.FromHours(1))
+                    {
+                        response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
+                    }
+                    else
+                        response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + lastGenerated.URL);
+                }
+                else
+                    response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
+                return response;
+            }
         }
 
         /// <summary>
@@ -33,14 +48,14 @@ namespace hitchbotAPI.Controllers
         /// <param name="TakenTime">TakenTime</param>
         /// <returns>Success</returns>
         [HttpPost]
-        public bool UpdateHitchBotLocationMin(string HitchBot, string Latitude, string Longitude, string TakenTime)
+        public bool UpdateHitchBotLocationMin(string HitchBotID, string Latitude, string Longitude, string TakenTime)
         {
             DateTime StartTimeReal = DateTime.ParseExact(TakenTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             int newLocationID;
             int hitchBotID;
             using (var db = new Database())
             {
-                hitchBotID = int.Parse(HitchBot);
+                hitchBotID = int.Parse(HitchBotID);
                 double LatDouble = double.Parse(Latitude);
                 double LongDouble = double.Parse(Longitude);
                 var hitchBOT = db.hitchBOTs.First(h => h.ID == hitchBotID);

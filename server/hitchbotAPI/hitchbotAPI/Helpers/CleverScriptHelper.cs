@@ -36,5 +36,10 @@ namespace hitchbotAPI.Helpers
             }
             return HttpUtility.HtmlDecode(output).Replace("8b8", ":");
         }
+
+        public static string GetNewFollowTweet(int HitchBotID)
+        {
+            return String.Empty;
+        }
     }
 }
