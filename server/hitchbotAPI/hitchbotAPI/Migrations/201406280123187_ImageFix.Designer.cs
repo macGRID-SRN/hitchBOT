@@ -7,18 +7,18 @@ namespace hitchbotAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class RemoveImage : IMigrationMetadata
+    public sealed partial class ImageFix : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveImage));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ImageFix));
         
         string IMigrationMetadata.Id
         {
-            get { return "201406280120566_RemoveImage"; }
+            get { return "201406280123187_ImageFix"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

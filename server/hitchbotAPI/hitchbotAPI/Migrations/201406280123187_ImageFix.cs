@@ -3,18 +3,9 @@ namespace hitchbotAPI.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class RemoveImage : DbMigration
+    public partial class ImageFix : DbMigration
     {
         public override void Up()
-        {
-            DropForeignKey("dbo.Images", "HitchBOT_ID", "dbo.hitchBOTs");
-            DropForeignKey("dbo.Images", "Location_ID", "dbo.Locations");
-            DropIndex("dbo.Images", new[] { "HitchBOT_ID" });
-            DropIndex("dbo.Images", new[] { "Location_ID" });
-            DropTable("dbo.Images");
-        }
-        
-        public override void Down()
         {
             CreateTable(
                 "dbo.Images",
@@ -29,12 +20,21 @@ namespace hitchbotAPI.Migrations
                         HitchBOT_ID = c.Int(),
                         Location_ID = c.Int(),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.hitchBOTs", t => t.HitchBOT_ID)
+                .ForeignKey("dbo.Locations", t => t.Location_ID)
+                .Index(t => t.HitchBOT_ID)
+                .Index(t => t.Location_ID);
             
-            CreateIndex("dbo.Images", "Location_ID");
-            CreateIndex("dbo.Images", "HitchBOT_ID");
-            AddForeignKey("dbo.Images", "Location_ID", "dbo.Locations", "ID");
-            AddForeignKey("dbo.Images", "HitchBOT_ID", "dbo.hitchBOTs", "ID");
+        }
+        
+        public override void Down()
+        {
+            DropForeignKey("dbo.Images", "Location_ID", "dbo.Locations");
+            DropForeignKey("dbo.Images", "HitchBOT_ID", "dbo.hitchBOTs");
+            DropIndex("dbo.Images", new[] { "Location_ID" });
+            DropIndex("dbo.Images", new[] { "HitchBOT_ID" });
+            DropTable("dbo.Images");
         }
     }
 }

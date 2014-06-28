@@ -209,21 +209,9 @@
     <Compile Include="Migrations\201406102016141_TwitterFriendToAccount.Designer.cs">
       <DependentUpon>201406102016141_TwitterFriendToAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201406241508560_ImageDeny.cs" />
-    <Compile Include="Migrations\201406241508560_ImageDeny.Designer.cs">
-      <DependentUpon>201406241508560_ImageDeny.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406241616166_GoogleMapsStatic.cs" />
-    <Compile Include="Migrations\201406241616166_GoogleMapsStatic.Designer.cs">
-      <DependentUpon>201406241616166_GoogleMapsStatic.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406272121031_PasswordChage.cs" />
-    <Compile Include="Migrations\201406272121031_PasswordChage.Designer.cs">
-      <DependentUpon>201406272121031_PasswordChage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406280120566_RemoveImage.cs" />
-    <Compile Include="Migrations\201406280120566_RemoveImage.Designer.cs">
-      <DependentUpon>201406280120566_RemoveImage.cs</DependentUpon>
+    <Compile Include="Migrations\201406280123187_ImageFix.cs" />
+    <Compile Include="Migrations\201406280123187_ImageFix.Designer.cs">
+      <DependentUpon>201406280123187_ImageFix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
@@ -330,17 +318,8 @@
     <EmbeddedResource Include="Migrations\201406102016141_TwitterFriendToAccount.resx">
       <DependentUpon>201406102016141_TwitterFriendToAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406241508560_ImageDeny.resx">
-      <DependentUpon>201406241508560_ImageDeny.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406241616166_GoogleMapsStatic.resx">
-      <DependentUpon>201406241616166_GoogleMapsStatic.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406272121031_PasswordChage.resx">
-      <DependentUpon>201406272121031_PasswordChage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406280120566_RemoveImage.resx">
-      <DependentUpon>201406280120566_RemoveImage.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201406280123187_ImageFix.resx">
+      <DependentUpon>201406280123187_ImageFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
