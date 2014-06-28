@@ -19,7 +19,7 @@ namespace hitchbotAPI.Controllers
         [HttpPost]
         public bool AddImage(int HitchBotID, int locationID, string timeTaken, string URL)
         {
-            DateTime StartTimeReal = DateTime.ParseExact(timeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+            DateTime TimeTaken = DateTime.ParseExact(timeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             using (var db = new Models.Database())
             {
                 var hitchBOT = db.hitchBOTs.First(l => l.ID == HitchBotID);
@@ -29,7 +29,9 @@ namespace hitchbotAPI.Controllers
                 {
                     Location = location,
                     HitchBOT = hitchBOT,
-                    url = URL
+                    url = URL,
+                    TimeAdded = DateTime.UtcNow,
+                    TimeTaken = TimeTaken
                 };
 
                 db.Images.Add(image);
