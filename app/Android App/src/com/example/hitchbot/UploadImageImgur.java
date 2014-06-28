@@ -6,9 +6,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.http.HttpRequest;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -40,12 +46,34 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 		@Override
 		protected void onPostExecute(String url)
 		{
-			if (!url.equals("")){
-			Toast.makeText(activity, url, Toast.LENGTH_SHORT).show();
+			if (!url.equals(""))
+			{
+				
+				String url1 = "http://hitchbotapi.azurewebsites.net/api/Image";
+		        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+				List<NameValuePair> nVp = new ArrayList<NameValuePair>();
+				nVp.add(new BasicNameValuePair("HitchBotID","5"));
+				nVp.add(new BasicNameValuePair("timeTaken",timeStamp));
+				nVp.add(new BasicNameValuePair("URL",url));
+				
+				HttpServerPost  hSp = new HttpServerPost(url1, nVp);
+				
+				hSp.execute(hSp);				
+
 			}
 			else
 			{
-				//push to queue (no connection)
+				try
+				{
+					DatabaseQueue dQ = new DatabaseQueue(MainActivity.getAppContext());	
+					ErrorLog eL = new ErrorLog("Couldn't upload to Imgur",0);
+					dQ.addItemToQueue(eL);
+}
+				catch(Exception e)
+				{
+				//TODO queue it	
+				}
+				Toast.makeText(activity, url, Toast.LENGTH_SHORT).show();
 			}
 		}
 

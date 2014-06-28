@@ -57,6 +57,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     private FrameLayout frameNew;
     private boolean takePicture = false;
 	private CleverHelper cH;
+	private boolean _poweredOn = true;
 
     
 	//edit text and button are for debugging purposes, to be removed when hitchbot is ready for launch
@@ -69,7 +70,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		setContentView(R.layout.activity_main);
 		
 		editText = (EditText)findViewById(R.id.editText1);
-		cH = new CleverHelper("testers.db", "piuzd14d1da153d7e0982b169b8b87455d57d", this);
+		cH = new CleverHelper("CBCshoot2.db", "9wef38d5ba35402513ca76cb69005c6f52c0a", this);
+		//cH = new CleverHelper("testers.db", "piuzd14d1da153d7e0982b169b8b87455d57d", this);
 		//cH = new CleverHelper("wertfsdfs.db", "lafon34b520180254a9650307f0873860f218", this);
 		b = (Button)findViewById(R.id.button1);
 		setUpCamera();
@@ -125,6 +127,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            }
 	            
 		}.execute();
+		set_poweredOn(false);
 	}
 	
 	public void getResponseFromCleverscript(String message)
@@ -222,7 +225,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     File modelsDir = new File(assetsDir, "models");
     recognizer = defaultSetup()
             .setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-            .setDictionary(new File(modelsDir, "dict/2654.dic"))
+            .setDictionary(new File(modelsDir, "dict/5578.dic"))
             .setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
             .getRecognizer();
     recognizer.addListener(this);
@@ -232,7 +235,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
     //recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
     // Create language model search.
-    File languageModel = new File(modelsDir, "lm/2654.dmp");
+    File languageModel = new File(modelsDir, "lm/5578.dmp");
     recognizer.addNgramSearch(MAIN_SEARCH, languageModel);
 }
 
@@ -363,6 +366,14 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	 public static Context getAppContext() {
 	        return MainActivity.context;
 	    }
+
+	public boolean is_poweredOn() {
+		return _poweredOn;
+	}
+
+	public void set_poweredOn(boolean _poweredOn) {
+		this._poweredOn = _poweredOn;
+	}
 	 
 
 	

@@ -8,6 +8,7 @@ public class HttpPostDb {
 		// 0 = false, 1 = true
 		private int uploadToServerSuccessful;
 		private int _postID;
+		private String creationDate;
 		
 		public HttpPostDb(){}
 
@@ -18,12 +19,14 @@ public class HttpPostDb {
 			this.uploadToServerSuccessful = uploadToServerSuccessful;
 		}
 		
-		public HttpPostDb(String URI, int uploadToImgurSuccessful, int uploadToServerSuccessful, int _postID)
+		public HttpPostDb(String URI, int uploadToImgurSuccessful, 
+				int uploadToServerSuccessful, int _postID, String creationDate)
 		{
 			this.URI = URI;
 			this.uploadToImgurSuccessful = uploadToImgurSuccessful;
 			this.uploadToServerSuccessful = uploadToServerSuccessful;
 			this._postID = _postID;
+			this.creationDate = creationDate;
 		}
 		
 		public String getURI() {
@@ -57,6 +60,16 @@ public class HttpPostDb {
 		public void setPostID(int postID) {
 			_postID = postID;
 		}
+
+		public String getCreationDate() {
+			return creationDate;
+		}
+
+		public void setCreationDate(String creationDate) {
+			this.creationDate = creationDate;
+		}
+
+
 		
 		
 	

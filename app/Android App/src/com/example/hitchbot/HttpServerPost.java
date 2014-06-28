@@ -11,7 +11,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-public class HttpServerPost {
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class HttpServerPost extends AsyncTask<HttpServerPost, Void, String> {
 
 	String urlToPost;
 	List<NameValuePair> nameValuePair;
@@ -54,6 +57,39 @@ public class HttpServerPost {
 			
 		}
 		
+	}
+
+
+
+	@Override
+	protected String doInBackground(HttpServerPost... params) {	
+		for(int i = 0; i < params.length ; i ++){
+		HttpClient hC = new DefaultHttpClient();
+		HttpPost hP = new HttpPost(params[i].urlToPost);
+		if (params[i].postHeader != null)
+		{
+		hP.addHeader(params[i].postHeader[i],params[i].postHeader[1]);
+		}
+		
+		try
+		{
+			hP.setEntity(new UrlEncodedFormEntity(params[i].nameValuePair));
+			
+			HttpResponse hR = hC.execute(hP);
+			Log.i("WasUploadSuccessful", hR.getStatusLine().toString() );
+
+		}
+		catch(ClientProtocolException e)
+		{
+			
+		}
+		catch(IOException e)
+		{
+			
+		}
+	}
+		return null;
+
 	}
 
 	

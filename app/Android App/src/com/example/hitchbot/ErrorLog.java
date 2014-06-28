@@ -3,9 +3,10 @@ package com.example.hitchbot;
 public class ErrorLog {
 
 	private String ErrorMessage;
-	// 0 is not successfule, 1 is successful (sql lite doesn't take bool type)
+	// 0 is not successful, 1 is successful (sql lite doesn't take bool type)
 	private int successfulUpload;
 	private int iD;
+	private String creationDate;
 	
 	public ErrorLog(){}
 	
@@ -15,11 +16,12 @@ public class ErrorLog {
 		this.successfulUpload = successfulUpload;
 	}
 	
-	public ErrorLog(String ErrorMessage, int successfulUpload, int iD)
+	public ErrorLog(String ErrorMessage, int successfulUpload, int iD, String creationDate)
 	{
 		this.ErrorMessage = ErrorMessage;
 		this.successfulUpload = successfulUpload;
 		this.iD = iD;
+		this.creationDate = creationDate;
 	}
 
 	public String getErrorMessage() {
@@ -44,6 +46,14 @@ public class ErrorLog {
 
 	public void setiD(int iD) {
 		this.iD = iD;
+	}
+
+	public String getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(String creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	
