@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201406272121031_PasswordChage.Designer.cs">
       <DependentUpon>201406272121031_PasswordChage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406280120566_RemoveImage.cs" />
+    <Compile Include="Migrations\201406280120566_RemoveImage.Designer.cs">
+      <DependentUpon>201406280120566_RemoveImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -334,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406272121031_PasswordChage.resx">
       <DependentUpon>201406272121031_PasswordChage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406280120566_RemoveImage.resx">
+      <DependentUpon>201406280120566_RemoveImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
