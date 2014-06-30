@@ -23,5 +23,15 @@ namespace hitchbotAPI
                 }
             }
         }
+
+        protected void Approve_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Deny_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -32,7 +32,7 @@
                     <asp:TextBox ID="TextBox1" runat="server" Height="138px" Width="325px"></asp:TextBox>
                     <br />
                     <asp:Button ID="Approve" runat="server" OnClick="Approve_Click" Text="Approve and Tweet" Width="151px" style="height: 26px" />
-                    <asp:Button ID="Deny" runat="server" Text="Deny" Width="130px" />
+                    <asp:Button ID="Deny" runat="server" Text="Deny" Width="130px" OnClick="Deny_Click" />
                     <br />
                     Note: Images are not deleted. If you click deny they will not show up again in the interface nor be tweeted</td>
                 <td class="auto-style4">
