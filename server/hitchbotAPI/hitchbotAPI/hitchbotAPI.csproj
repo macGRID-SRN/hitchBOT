@@ -135,11 +135,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApproveImageLogin.aspx.cs">
+    <Compile Include="ApproveImagesPages\ApproveImageLogin.aspx.cs">
       <DependentUpon>ApproveImageLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ApproveImageLogin.aspx.designer.cs">
+    <Compile Include="ApproveImagesPages\ApproveImageLogin.aspx.designer.cs">
       <DependentUpon>ApproveImageLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -247,16 +247,16 @@
     <Compile Include="Unauthorized.aspx.designer.cs">
       <DependentUpon>Unauthorized.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ViewImage.aspx.cs">
+    <Compile Include="ApproveImagesPages\ViewImage.aspx.cs">
       <DependentUpon>ViewImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ViewImage.aspx.designer.cs">
+    <Compile Include="ApproveImagesPages\ViewImage.aspx.designer.cs">
       <DependentUpon>ViewImage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApproveImageLogin.aspx" />
+    <Content Include="ApproveImagesPages\ApproveImageLogin.aspx" />
     <Content Include="App_Data\LinqToTwitter.AspNet.dll" />
     <Content Include="App_Data\LinqToTwitterPcl.dll" />
     <Content Include="App_Data\XmlDocument.xml" />
@@ -296,7 +296,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Unauthorized.aspx" />
-    <Content Include="ViewImage.aspx" />
+    <Content Include="ApproveImagesPages\ViewImage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
