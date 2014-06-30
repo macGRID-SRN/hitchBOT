@@ -18,9 +18,13 @@ namespace hitchbotAPI
                 using (var db = new Models.Database())
                 {
                     int hitchBOTid = user.hitchBOT.ID;
-                    var img = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid);
+                    var img = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid).OrderBy(i => i.TimeTaken);
                     this.imagePreview.ImageUrl = "http://imgur.com/" + img.FirstOrDefault().url + ".jpg";
                 }
+            }
+            else
+            {
+                Response.Redirect("Unauthorized.aspx");
             }
         }
 
