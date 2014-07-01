@@ -686,6 +686,33 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ViewImage.datePicker">
+            <summary>
+            datePicker control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.time24hrBOX">
+            <summary>
+            time24hrBOX control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.selectedTimePreview">
+            <summary>
+            selectedTimePreview control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ViewImage.Approve">
             <summary>
             Approve control.
@@ -698,6 +725,15 @@
         <member name="F:hitchbotAPI.ViewImage.Deny">
             <summary>
             Deny control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.lblError">
+            <summary>
+            lblError control.
             </summary>
             <remarks>
             Auto-generated field.
