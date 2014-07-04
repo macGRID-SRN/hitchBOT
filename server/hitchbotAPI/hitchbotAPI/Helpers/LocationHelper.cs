@@ -56,7 +56,7 @@ namespace hitchbotAPI.Helpers
         {
             using (var db = new Models.Database())
             {
-                var OrderedLocations = db.hitchBOTs.First(h => h.ID == HitchBotID).Locations.OrderBy(l => l.TakenTime).ToList();
+                var OrderedLocations = db.hitchBOTs.Include(h => h.Locations).First(h => h.ID == HitchBotID).Locations.OrderBy(l => l.TakenTime).ToList();
 
                 string tempURL = EncodeCoordsForGMAPS(SlimLocations(OrderedLocations));
                 var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
@@ -64,7 +64,9 @@ namespace hitchbotAPI.Helpers
                 {
                     HitchBot = hitchBOT,
                     URL = tempURL,
-                    TimeGenerated = DateTime.UtcNow
+                    TimeGenerated = DateTime.UtcNow,
+                    TimeAdded = DateTime.UtcNow
+
                 };
 
                 db.StaticMaps.Add(tempStaticLink);

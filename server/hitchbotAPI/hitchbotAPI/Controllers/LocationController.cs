@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Data.Entity;
 using System.Globalization;
 using System.Web.Http;
 
@@ -19,14 +20,14 @@ namespace hitchbotAPI.Controllers
         [HttpGet]
         public HttpResponseMessage GetGoogleMapsRoute(int HitchBotID)
         {
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
                 var response = Request.CreateResponse(HttpStatusCode.Moved);
                 var mapsURL = db.StaticMaps.Where(sm => sm.HitchBot.ID == HitchBotID);
                 if (mapsURL.Count() > 0)
                 {
-                    var lastGenerated = mapsURL.OrderBy(l => l.TimeGenerated).Last();
-                    if (lastGenerated.TimeGenerated - DateTime.UtcNow > TimeSpan.FromHours(1))
+                    var lastGenerated = mapsURL.OrderByDescending(l => l.TimeGenerated).First();
+                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(1))
                     {
                         response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
                     }
@@ -53,7 +54,7 @@ namespace hitchbotAPI.Controllers
             DateTime StartTimeReal = DateTime.ParseExact(TakenTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             int newLocationID;
             int hitchBotID;
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
                 hitchBotID = int.Parse(HitchBotID);
                 double LatDouble = double.Parse(Latitude);
@@ -86,7 +87,7 @@ namespace hitchbotAPI.Controllers
         [HttpPost]
         public bool UpdateHitchBotLocation(int HitchBotID, double Latitude, double Longitude, double Altitude, float Accuracy, float Velocity, DateTime TakenTime)
         {
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
                 var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
                 var location = new Location();
@@ -111,7 +112,7 @@ namespace hitchbotAPI.Controllers
         [HttpGet]
         public Location GetLocationByID(int ID)
         {
-            return (new Database()).Locations.First(l => l.ID == ID);
+            return (new Models.Database()).Locations.First(l => l.ID == ID);
         }
     }
 }
