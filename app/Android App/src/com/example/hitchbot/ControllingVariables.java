@@ -10,6 +10,7 @@ public class ControllingVariables {
 	public String POST_CHANGE = "";
 	public String GET_CHANGE = "";
 	public boolean RESTART_APPLCIATION = false;
+	public int TIME_TO_GRAB_LOCATION = 90000;
 	
 	
 	//variables sent
