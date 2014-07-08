@@ -60,6 +60,7 @@
                     Note: Images are never deleted. If you click deny they will not show up again in the interface nor be tweeted.</td>
                 <td class="auto-style4">
                     <asp:Image ID="imagePreview" runat="server" Height="443px" Width="601px" ImageAlign="TextTop" />
+                    <asp:HyperLink ID="imgurLink" runat="server" ForeColor="#0099FF">imgur LINK</asp:HyperLink>
                 </td>
             </tr>
         </table>

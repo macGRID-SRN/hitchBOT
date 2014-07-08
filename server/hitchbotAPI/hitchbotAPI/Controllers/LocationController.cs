@@ -59,14 +59,22 @@ namespace hitchbotAPI.Controllers
                 hitchBotID = int.Parse(HitchBotID);
                 double LatDouble = double.Parse(Latitude);
                 double LongDouble = double.Parse(Longitude);
-                var hitchBOT = db.hitchBOTs.First(h => h.ID == hitchBotID);
-                var location = new Location();
-                location.Latitude = LatDouble;
-                location.Longitude = LongDouble;
-                location.TakenTime = StartTimeReal;
-                location.TimeAdded = DateTime.UtcNow;
+                var hitchBOT = db.hitchBOTs.Include(h => h.Locations).First(h => h.ID == hitchBotID);
+                var location = new Location()
+                {
+                    Latitude = LatDouble,
+                    Longitude = LongDouble,
+                    TakenTime = StartTimeReal,
+                    TimeAdded = DateTime.UtcNow
+                };
+                //location.Latitude = LatDouble;
+                //location.Longitude = LongDouble;
+                //location.TakenTime = StartTimeReal;
+                //location.TimeAdded = DateTime.UtcNow;
                 hitchBOT.Locations.Add(location);
                 db.SaveChanges();
+                var myVAR = db.Set<Models.Location>();
+                db.Entry<Models.Location>(location).GetDatabaseValues();
                 newLocationID = location.ID;
             }
 

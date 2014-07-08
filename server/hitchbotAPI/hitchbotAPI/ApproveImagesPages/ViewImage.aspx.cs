@@ -21,7 +21,10 @@ namespace hitchbotAPI
                     int hitchBOTid = user.hitchBOT.ID;
                     var img = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved == null || i.TimeDenied == null)).OrderBy(i => i.TimeTaken);
                     if (string.IsNullOrEmpty(this.imagePreview.ImageUrl))
+                    {
                         this.imagePreview.ImageUrl = "http://imgur.com/" + img.FirstOrDefault().url + ".jpg";
+                        this.imgurLink.NavigateUrl = "http://imgur.com/" + img.FirstOrDefault().url;
+                    }
                 }
             }
             else
