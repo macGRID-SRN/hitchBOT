@@ -6,7 +6,7 @@ import edu.cmu.pocketsphinx.Hypothesis;
 import edu.cmu.pocketsphinx.RecognitionListener;
 import android.widget.Toast;
 
-public class CleverHelper implements RecognitionListener {
+public class CleverHelper  {
 	
 	public CleverscriptAPI cs;
 	
@@ -37,28 +37,6 @@ public class CleverHelper implements RecognitionListener {
 		return cs.retrieveBotState();
 	}
 	
-	@Override
-	public void onBeginningOfSpeech() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onEndOfSpeech() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onPartialResult(Hypothesis arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onResult(Hypothesis arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

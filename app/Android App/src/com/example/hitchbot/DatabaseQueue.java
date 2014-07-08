@@ -33,10 +33,11 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
 	
 	private SQLiteDatabase database;
-	
+	private Context context;
 	
 	public DatabaseQueue(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.context = context;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -71,6 +72,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	{
 		List<HttpPostDb> databasePosts = new ArrayList<HttpPostDb>();
 		String queryString = "SELECT * FROM " + TABLE_HTTPPOSTQUEUE + " WHERE " + COLUMN_UPLOAD_TO_IMGUR+ " = 0";
+		
 		SQLiteDatabase db = this.getWritableDatabase();
 		Cursor cursor = db.rawQuery(queryString, null);
 		if(cursor.moveToFirst())
@@ -87,6 +89,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 				
 			}while(cursor.moveToNext());
 		}
+		cursor.close();
 		db.close();
 		return databasePosts;
 	}
@@ -110,6 +113,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 				
 			}while(cursor.moveToNext());
 		}
+		cursor.close();
 		db.close();
 		return databasePosts;
 	}
@@ -133,6 +137,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 				
 			}while(cursor.moveToNext());
 		}
+		cursor.close();
 		db.close();
 		return eL;
 	}
