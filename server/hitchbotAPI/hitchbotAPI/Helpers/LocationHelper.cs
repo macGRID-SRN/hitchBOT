@@ -50,6 +50,7 @@ namespace hitchbotAPI.Helpers
         }
 
         public const string gmapsString = "http://maps.googleapis.com/maps/api/staticmap?size=800x800&path=weight:5%7Ccolor:blue%7Cenc:";
+        public const string gmapsRegionString = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
         private const int maxLocations = 200;
 
         public static string GetEncodedPolyLine(int HitchBotID)
@@ -60,6 +61,8 @@ namespace hitchbotAPI.Helpers
 
                 string tempURL = EncodeCoordsForGMAPS(SlimLocations(OrderedLocations));
                 var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
+
+
                 var tempStaticLink = new Models.GoogleMapsStatic()
                 {
                     HitchBot = hitchBOT,
@@ -74,6 +77,11 @@ namespace hitchbotAPI.Helpers
 
                 return tempURL;
             }
+        }
+
+        private static string GetRegion(Models.Location location)
+        {
+            return string.Empty;
         }
 
         private static List<Models.Location> SlimLocations(List<Models.Location> inList)

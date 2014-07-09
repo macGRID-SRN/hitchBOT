@@ -7,13 +7,13 @@ namespace hitchbotAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class TwitterFriendToAccount : IMigrationMetadata
+    public sealed partial class AddMapHitCounterAndCity : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TwitterFriendToAccount));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddMapHitCounterAndCity));
         
         string IMigrationMetadata.Id
         {
-            get { return "201406102016141_TwitterFriendToAccount"; }
+            get { return "201407090041479_AddMapHitCounterAndCity"; }
         }
         
         string IMigrationMetadata.Source

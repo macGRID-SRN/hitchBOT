@@ -14,6 +14,8 @@ namespace hitchbotAPI.Models
         public string URL { get; set; }
         public DateTime TimeGenerated { get; set; }
         public DateTime TimeAdded { get; set; }
+        public int ViewCount { get; set; }
+        public string NearestCity { get; set; }
 
         public GoogleMapsStatic()
         {

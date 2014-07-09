@@ -624,6 +624,24 @@
             <param name="toEndID">The ID of the Project to end.</param>
             <returns>Success.</returns>
         </member>
+        <member name="F:hitchbotAPI.Directory.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.Directory.BulletedList1">
+            <summary>
+            BulletedList1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="T:hitchbotAPI.Controllers.hitchBOTController">
             <summary>
             For all things related to an instance of HitchBot.

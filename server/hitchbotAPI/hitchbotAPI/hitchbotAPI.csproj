@@ -196,37 +196,13 @@
     <Compile Include="Helpers\TimeHelper.cs" />
     <Compile Include="Helpers\TwitterHelper.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
-    <Compile Include="Migrations\201405171724063_Initial.cs" />
-    <Compile Include="Migrations\201405171724063_Initial.Designer.cs">
-      <DependentUpon>201405171724063_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201407082207392_Initial.cs" />
+    <Compile Include="Migrations\201407082207392_Initial.Designer.cs">
+      <DependentUpon>201407082207392_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201405202317113_Add Twitter Locations.cs" />
-    <Compile Include="Migrations\201405202317113_Add Twitter Locations.Designer.cs">
-      <DependentUpon>201405202317113_Add Twitter Locations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405281850185_CleverScriptAPI.cs" />
-    <Compile Include="Migrations\201405281850185_CleverScriptAPI.Designer.cs">
-      <DependentUpon>201405281850185_CleverScriptAPI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406101948073_CleverScriptToHitchBOT.cs" />
-    <Compile Include="Migrations\201406101948073_CleverScriptToHitchBOT.Designer.cs">
-      <DependentUpon>201406101948073_CleverScriptToHitchBOT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406102016141_TwitterFriendToAccount.cs" />
-    <Compile Include="Migrations\201406102016141_TwitterFriendToAccount.Designer.cs">
-      <DependentUpon>201406102016141_TwitterFriendToAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406280123187_ImageFix.cs" />
-    <Compile Include="Migrations\201406280123187_ImageFix.Designer.cs">
-      <DependentUpon>201406280123187_ImageFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406301826467_AddPassword.cs" />
-    <Compile Include="Migrations\201406301826467_AddPassword.Designer.cs">
-      <DependentUpon>201406301826467_AddPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406301941316_ImageToHitchBOT.cs" />
-    <Compile Include="Migrations\201406301941316_ImageToHitchBOT.Designer.cs">
-      <DependentUpon>201406301941316_ImageToHitchBOT.cs</DependentUpon>
+    <Compile Include="Migrations\201407090041479_AddMapHitCounterAndCity.cs" />
+    <Compile Include="Migrations\201407090041479_AddMapHitCounterAndCity.Designer.cs">
+      <DependentUpon>201407090041479_AddMapHitCounterAndCity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
@@ -336,29 +312,11 @@
     <Folder Include="Views\Location\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405171724063_Initial.resx">
-      <DependentUpon>201405171724063_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407082207392_Initial.resx">
+      <DependentUpon>201407082207392_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405202317113_Add Twitter Locations.resx">
-      <DependentUpon>201405202317113_Add Twitter Locations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405281850185_CleverScriptAPI.resx">
-      <DependentUpon>201405281850185_CleverScriptAPI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406101948073_CleverScriptToHitchBOT.resx">
-      <DependentUpon>201406101948073_CleverScriptToHitchBOT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406102016141_TwitterFriendToAccount.resx">
-      <DependentUpon>201406102016141_TwitterFriendToAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406280123187_ImageFix.resx">
-      <DependentUpon>201406280123187_ImageFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406301826467_AddPassword.resx">
-      <DependentUpon>201406301826467_AddPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406301941316_ImageToHitchBOT.resx">
-      <DependentUpon>201406301941316_ImageToHitchBOT.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407090041479_AddMapHitCounterAndCity.resx">
+      <DependentUpon>201407090041479_AddMapHitCounterAndCity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
