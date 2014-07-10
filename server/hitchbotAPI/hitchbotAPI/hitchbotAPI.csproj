@@ -200,9 +200,9 @@
     <Compile Include="Migrations\201407082207392_Initial.Designer.cs">
       <DependentUpon>201407082207392_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407090041479_AddMapHitCounterAndCity.cs" />
-    <Compile Include="Migrations\201407090041479_AddMapHitCounterAndCity.Designer.cs">
-      <DependentUpon>201407090041479_AddMapHitCounterAndCity.cs</DependentUpon>
+    <Compile Include="Migrations\201407102235176_AddHitsAndExceptions.cs" />
+    <Compile Include="Migrations\201407102235176_AddHitsAndExceptions.Designer.cs">
+      <DependentUpon>201407102235176_AddHitsAndExceptions.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
@@ -210,6 +210,7 @@
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\Database Excluded\Weather.cs" />
     <Compile Include="Models\Database.cs" />
+    <Compile Include="Models\ExceptionLog.cs" />
     <Compile Include="Models\GoogleMapsStatic.cs" />
     <Compile Include="Models\hitchBOT.cs" />
     <Compile Include="Models\Image.cs" />
@@ -315,8 +316,8 @@
     <EmbeddedResource Include="Migrations\201407082207392_Initial.resx">
       <DependentUpon>201407082207392_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407090041479_AddMapHitCounterAndCity.resx">
-      <DependentUpon>201407090041479_AddMapHitCounterAndCity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407102235176_AddHitsAndExceptions.resx">
+      <DependentUpon>201407102235176_AddHitsAndExceptions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -27,17 +27,28 @@ namespace hitchbotAPI.Controllers
                 if (mapsURL.Count() > 0)
                 {
                     var lastGenerated = mapsURL.OrderByDescending(l => l.TimeGenerated).First();
-                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(1))
+                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(0.000001))
                     {
-                        response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
+                        response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID)));
                     }
                     else
-                        response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + lastGenerated.URL);
+                        response.Headers.Location = new Uri(GetStaticMapURL(lastGenerated.URL));
                 }
                 else
-                    response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
+                    response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID)));
                 return response;
             }
+        }
+
+        private string GetStaticMapURL(string poly)
+        {
+            return Helpers.LocationHelper.gmapsString + poly + Helpers.LocationHelper.gAPIkey;
+        }
+
+        public string GetRegionText(int HitchBotID)
+        {
+
+            return string.Empty;
         }
 
         /// <summary>

@@ -7,13 +7,13 @@ namespace hitchbotAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class AddMapHitCounterAndCity : IMigrationMetadata
+    public sealed partial class AddHitsAndExceptions : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddMapHitCounterAndCity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddHitsAndExceptions));
         
         string IMigrationMetadata.Id
         {
-            get { return "201407090041479_AddMapHitCounterAndCity"; }
+            get { return "201407102235176_AddHitsAndExceptions"; }
         }
         
         string IMigrationMetadata.Source

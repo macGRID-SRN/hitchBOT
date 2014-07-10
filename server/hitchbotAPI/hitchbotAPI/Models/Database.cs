@@ -33,6 +33,7 @@ namespace hitchbotAPI.Models
         public DbSet<CleverScriptAPIkey> CleverScriptAPIkeys { get; set; }
         public DbSet<GoogleMapsStatic> StaticMaps { get; set; }
         public DbSet<Password> Passwords { get; set; }
+        public DbSet<ExceptionLog> Exceptions { get; set; }
 
     }
 }
