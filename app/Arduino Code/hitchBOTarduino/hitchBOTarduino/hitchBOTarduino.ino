@@ -25,6 +25,8 @@ void setup()
   matrix.fillScreen();
   delay(500);
   matrix.clearScreen(); 
+  makeEyes(0, true);
+  makeMouth(0);
 }
 
 unsigned char buf[16] = {0};
@@ -32,32 +34,34 @@ unsigned char len = 0;
 
 void loop()
 {
- while ( BLEMini_available() == 3 )
+ if ( BLEMini_available())
   {
     // read out command and data
     byte data0 = BLEMini_read();
     byte data1 = BLEMini_read();
     byte data2 = BLEMini_read();
-    
+    Serial.println("heyllo");
+
+    Serial.println(data0);
+
     if (data0 == 0x01)  // Command is to control digital out pin
     {
-    makeEyes(0, true);
+    retractMouth(0, 10);
+    delay(100);
     makeMouth(0);
-    chooseRandomGesture(0);   
-      }  
-    else
+    }  
+/*    if(data0 == 0x00)
     {
       matrix.clearScreen();
-    }
+    }*/
 
 }
-matrix.clearScreen();
-if(Serial.available())
+else
 {
-  matrix.fillScreen();
-  delay(500);
-  matrix.clearScreen();
+  chooseRandomGesture(0);   
 }
+
+
 }
 
 void makeEyes(int offSet, boolean fill)

@@ -54,7 +54,7 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 				
 				String url1 = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s&URL=%s";
 				String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US).format(new Date());
-				String hitchBOTid = "8";
+				String hitchBOTid = Config.HITCHBOT_ID;
 				String URL = url;
 				
 				HttpServerPost  hSp = new HttpServerPost(String.format(url1,hitchBOTid, timeStamp, URL), context);
@@ -147,7 +147,7 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 	        while (scanner.hasNext()) {
 	            sb.append(scanner.next());
 	        }
-
+	        scanner.close();
 	        JSONObject root = new JSONObject(sb.toString());
 	        String id = root.getJSONObject("data").getString("id");
 	        String deletehash = root.getJSONObject("data").getString("deletehash");
