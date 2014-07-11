@@ -19,7 +19,7 @@ namespace hitchbotAPI.Models
         [JsonIgnore]
         public float? Accuracy { get; set; }
         public float? Velocity { get; set; }
-
+        public virtual hitchBOT HitchBOT { get; set; }
         public DateTime TakenTime { get; set; }
         public DateTime TimeAdded { get; set; }
     }

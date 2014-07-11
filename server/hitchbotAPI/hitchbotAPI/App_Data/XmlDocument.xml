@@ -570,7 +570,7 @@
             <param name="TakenTime">TakenTime</param>
             <returns>Success</returns>
         </member>
-        <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocation(System.Int32,System.Double,System.Double,System.Double,System.Single,System.Single,System.DateTime)">
+        <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocation(System.Int32,System.Double,System.Double,System.Double,System.Single,System.Single,System.String)">
             <summary>
             Given the ID of a HitchBot, add it's location.
             </summary>

@@ -78,14 +78,11 @@ namespace hitchbotAPI.Controllers
                     TakenTime = StartTimeReal,
                     TimeAdded = DateTime.UtcNow
                 };
-                //location.Latitude = LatDouble;
-                //location.Longitude = LongDouble;
-                //location.TakenTime = StartTimeReal;
-                //location.TimeAdded = DateTime.UtcNow;
+
                 hitchBOT.Locations.Add(location);
                 db.SaveChanges();
-                var myVAR = db.Set<Models.Location>();
-                db.Entry<Models.Location>(location).GetDatabaseValues();
+                //var myVAR = db.Set<Models.Location>();
+                //db.Entry<Models.Location>(location).GetDatabaseValues();
                 newLocationID = location.ID;
             }
 
@@ -104,19 +101,23 @@ namespace hitchbotAPI.Controllers
         /// <param name="TakenTime">TakenTime</param>
         /// <returns>Success</returns>
         [HttpPost]
-        public bool UpdateHitchBotLocation(int HitchBotID, double Latitude, double Longitude, double Altitude, float Accuracy, float Velocity, DateTime TakenTime)
+        public bool UpdateHitchBotLocation(int HitchBotID, double Latitude, double Longitude, double Altitude, float Accuracy, float Velocity, string TakenTime)
         {
+            DateTime StartTimeReal = DateTime.ParseExact(TakenTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             using (var db = new Models.Database())
             {
-                var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
+                var hitchBOT = db.hitchBOTs.Include(l => l.Locations).First(h => h.ID == HitchBotID);
                 var location = new Location();
                 location.Latitude = Latitude;
                 location.Longitude = Longitude;
                 location.Altitude = Altitude;
                 location.Accuracy = Accuracy;
                 location.Velocity = Velocity;
-                location.TakenTime = TakenTime;
+                location.TakenTime = StartTimeReal;
                 location.TimeAdded = DateTime.UtcNow;
+                location.HitchBOT = hitchBOT;
+                db.Locations.Add(location);
+                db.SaveChanges();
                 hitchBOT.Locations.Add(location);
                 db.SaveChanges();
             }
