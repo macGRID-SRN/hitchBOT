@@ -108,10 +108,6 @@ public class BluetoothLeService extends Service{
 			final BluetoothGattCharacteristic characteristic) {
 		final Intent intent = new Intent(action);
 
-		// This is special handling for the Heart Rate Measurement profile. Data
-		// parsing is
-		// carried out as per profile specifications:
-		// http://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
 		if (UUID_BLE_SHIELD_RX.equals(characteristic.getUuid())) {
 			final byte[] rx = characteristic.getValue();
 			intent.putExtra(EXTRA_DATA, rx);

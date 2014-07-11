@@ -46,7 +46,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import static edu.cmu.pocketsphinx.SpeechRecognizerSetup.defaultSetup;
@@ -64,7 +63,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	static final int REQUEST_IMAGE_CAPTURE = 1;
 	static final int REQUEST_TAKE_PHOTO = 1;
 	TextToSpeech mTts;
-    private static final String KWS_SEARCH = "wakeup";
+    //private static final String KWS_SEARCH = "wakeup";
    // private static final String HELLO_SEARCH = "hello world";
     private String MAIN_SEARCH = "";
     private static final String FIRST_SEARCH = "first";
@@ -80,12 +79,18 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     private boolean takePicture = false;
 	private CleverHelper cH;
 	private boolean _poweredOn = true;
-	private BluetoothAdapter mBluetoothAdapter;
 	
-	private static final long SCAN_PERIOD = 10000;
-	private Handler mHandler2;
+	private static final long SCAN_PERIOD = 3000;
+//-------Handlers--------------------------------
+	private Handler bluetoothHandler;
+	private Handler cameraHandler;
 	private Handler locationHandler;
+	private Handler serverGetHandler;
+	private Handler serverPostHandler;
+//------------------------BLE--------------------------
+	
 	private BluetoothGattCharacteristic characteristicTx = null;
+	private BluetoothAdapter mBluetoothAdapter;
 	private BluetoothLeService mBluetoothLeService;
 	private BluetoothDevice mDevice = null;
 	private String mDeviceAddress;
@@ -96,12 +101,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	private byte[] data = new byte[3];
 	private static final int REQUEST_ENABLE_BT = 1;
 
-	//----------------
+	//---------------------------------------------------------
 	boolean firstOn;
 	boolean secondOne;
 	boolean thirdOn;
 	String currentSearch;
-	//----------------
+	//-------------------------------------------------------
     
 	//edit text and button are for debugging purposes, to be removed when hitchbot is ready for launch
 	Button b;
@@ -117,10 +122,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		editText = (EditText)findViewById(R.id.editText1);
 		//j0zo6727bb5bea8c76abe674e05a49bdc08e2
 		cH = new CleverHelper("finalCBC.db", "j0zo6727bb5bea8c76abe674e05a49bdc08e2", this);
-		//cH = new CleverHelper("theRealDeal.db", "8z9whb0759bf324287c8fac1f7a06673bd1ef", this);
 		final BluetoothManager mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
 		mBluetoothAdapter = mBluetoothManager.getAdapter();
-	
+		if(mBluetoothAdapter != null)
+		{
+			Log.i("bluetooth", "adapter isn't null");
+		}
 		if (!getPackageManager().hasSystemFeature(
 				PackageManager.FEATURE_BLUETOOTH_LE)) {
 			Toast.makeText(this, "Ble not supported", Toast.LENGTH_SHORT)
@@ -131,7 +138,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		Intent gattServiceIntent = new Intent(MainActivity.this,
 				BluetoothLeService.class);
 		bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
-		
 		locationHandler = new Handler();
 		locationHandler.postDelayed(new Runnable()
 		{
@@ -147,9 +153,22 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		//cH = new CleverHelper("testers.db", "piuzd14d1da153d7e0982b169b8b87455d57d", this);
 		//cH = new CleverHelper("wertfsdfs.db", "lafon34b520180254a9650307f0873860f218", this);
 		b = (Button)findViewById(R.id.button1);
+		
 		setUpCamera();
-		//HttpServerGet htpD = new HttpServerGet("api/hitchBOT?HitchBotID=5");
-        //Log.i("Getting Location",htpD.getData());
+		
+	    bluetoothHandler = new Handler();
+	    
+	    bluetoothHandler.postDelayed(new Runnable()
+	    {
+
+			@Override
+			public void run() {
+				connectToDevice();
+				bluetoothHandler.postDelayed(this, 10000);
+			}
+	    	
+	    }, 1000);
+
 		mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener()
 				{
 			@Override
@@ -162,11 +181,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				
 			}
 			});
-		/*b.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-			}
-		});*/
+
 		
         captions = new HashMap<String, Integer>();
         //captions.put(KWS_SEARCH, R.string.kws_caption);
@@ -246,6 +261,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
 	    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "SOME MESSAGE");
 	    if(mDevice != null){
+	    	Log.i("deviceNull", "device isn't null");
 	    isTalking();
 	    }
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
@@ -289,6 +305,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            {
 	            	if(mDevice != null){
 	            	stoppedTalking();
+	            	Log.i("deviceNull", data.toString() + " stopped talking");
 	            	}
 	            	switchSearch(MAIN_SEARCH);
 	            }
@@ -304,6 +321,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            	recognizer.stop();
 	            	if(mDevice != null){
 	            	isTalking();
+	            	Log.i("deviceNull", data.toString() + " is talking");
+
 	            	}
 	            	
 	            }
@@ -356,11 +375,11 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     File languageModel1 = new File(modelsDir, "lm/0211.dmp");
     File languageModel2 = new File(modelsDir, "lm/6392.dmp");
     File languageModel3 = new File(modelsDir, "lm/3665.dmp");
-//    File languageModel = new File(modelsDir, "lm/7788.dmp");
+  //  File languageModel = new File(modelsDir, "lm/7788.dmp");
     recognizer.addNgramSearch(FIRST_SEARCH, languageModel1);
     recognizer.addNgramSearch(THIRD_SEARCH, languageModel3);
     recognizer.addNgramSearch(SECOND_SEARCH, languageModel2);
-    //    recognizer.addNgramSearch(THIRD_SEARCH, languageModel3);
+   //     recognizer.addNgramSearch(THIRD_SEARCH, languageModel3);
 
 
 }
@@ -384,6 +403,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
             ((TextView) findViewById(R.id.editText2)).setText(text);
            // mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+            //TODO use this method to fix background noise problem
 	}
 
 	@Override 
@@ -480,7 +500,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            }
 	        }
 	        // Create a media file name
-	        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+	        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
 	                .format(new Date());
 	        File mediaFile;
 	        mediaFile = new File(mediaStorageDir.getPath() + File.separator
@@ -525,31 +545,43 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	 @Override
 	 public void onLeScan(final BluetoothDevice device, int rssi,
 	         byte[] scanRecord) {
-	     mHandler2.post(new Runnable() {
-	        @Override
-	        public void run() {
-	        	if (device != null) {
-					if (device.getName().contains("Shield")
-							|| device.getName().contains("Biscuit")) {
-						mDevice = device;
+			Log.i("bluetooth", device.getName());
+			Log.i("bluetooth", device.getAddress());
+			
+			if (device.getAddress() != null)
+			{
+				mDeviceAddress = device.getAddress();
+				mDevice = device;	
+			}
+			
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					if (device != null) {
+						Log.i("bluetooth", "device wasn't null");
+
+						if ( device.getName().contains("Biscuit")) {
+
+							mDeviceAddress = device.getAddress();
+							mDevice = device;
+						}
 					}
-	        	}
-	        }
-	    });
-	}
+				}
+			});
+		}
 	};
 
 	public void isTalking()
 	{
-		byte buf[] = new byte[] { (byte) 0x01, (byte) 0x00, (byte) 0x00 };
-		characteristicTx.setValue(buf);
+		data = new byte[] { (byte) 0x01, (byte) 0x00, (byte) 0x00 };
+		characteristicTx.setValue(data);
 		mBluetoothLeService.writeCharacteristic(characteristicTx);
 	}
 
 	public void stoppedTalking()
 	{
-		byte buf[] = new byte[] { (byte) 0x00, (byte) 0x00, (byte) 0x00 };
-		characteristicTx.setValue(buf);
+		data = new byte[] { (byte) 0x00, (byte) 0x00, (byte) 0x00 };
+		characteristicTx.setValue(data);
 		mBluetoothLeService.writeCharacteristic(characteristicTx);
 	}
 
@@ -589,6 +621,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	{
 		if (scanFlag == false) {
 			scanLeDevice();
+
 			Timer mTimer = new Timer();
 			mTimer.schedule(new TimerTask() {
 
@@ -599,29 +632,26 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 						mBluetoothLeService.connect(mDeviceAddress);
 						scanFlag = true;
 					} else {
-						runOnUiThread(new Runnable() {
-							public void run() {
-								Toast toast = Toast
-										.makeText(
-												MainActivity.this,
-												"Couldn't search Ble Shielded device!",
-												Toast.LENGTH_SHORT);
-								toast.setGravity(0, 0, Gravity.CENTER);
-								toast.show();
-							}
-						});
+					Log.i("bluetooth", "something went wrong");
 					}
 				}
 			}, SCAN_PERIOD);
 		}
-
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		//System.out.println(connState);
 		if (connState == false) {
+			Log.i("bluetooth", mDeviceAddress + "  foobar");
+			Log.i("bluetooth",mBluetoothLeService.toString());
 			mBluetoothLeService.connect(mDeviceAddress);
 		} else {
 			mBluetoothLeService.disconnect();
 			mBluetoothLeService.close();
 		}	
+		
 	}
 
 	public ServiceConnection getmServiceConnection() {
@@ -635,6 +665,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				IBinder service) {
 			mBluetoothLeService = ((BluetoothLeService.LocalBinder) service)
 					.getService();
+			Log.i("bluetooth", "foobar t");
 			if (!mBluetoothLeService.initialize()) {
 				Log.e("BluetoothScanningClass", "Unable to initialize Bluetooth");
 				finish();

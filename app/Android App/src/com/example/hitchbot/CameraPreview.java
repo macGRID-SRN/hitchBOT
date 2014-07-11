@@ -1,21 +1,17 @@
 package com.example.hitchbot;
 
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PointF;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.media.FaceDetector;
 import android.media.FaceDetector.Face;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.ImageView;
 
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback  {
 
