@@ -526,7 +526,7 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversation(System.Int32,System.String,System.Int32)">
+        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversation(System.Int32,System.String)">
             <summary>
             Starts a new Conversation thread for a HitchBot and already defined Location.
             </summary>

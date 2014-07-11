@@ -15,5 +15,6 @@ namespace hitchbotAPI.Models
         public virtual DateTime TimeOccured { get; set; }
         public virtual string Data { get; set; }
         public virtual string Action { get; set; }
+        public virtual hitchBOT HitchBOT { get; set; }
     }
 }
