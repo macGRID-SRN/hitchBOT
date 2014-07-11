@@ -8,6 +8,8 @@ namespace CLVSCPT_pre_compiler
     class Conversation
     {
         Output StartingOutput;
+        public List<Input> AlwaysListening = new List<Input>(); //IM ALWAYS WATCHING YOU MIKE WISOWSKY -Close enough
+        public List<ConversationNode> Nodes;
 
         public Conversation()
         {
