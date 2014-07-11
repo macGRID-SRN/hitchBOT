@@ -69,21 +69,5 @@ namespace CLVSCPT_pre_compiler
 
             return preCompiled;
         }
-
-        //public List<CleverScriptLine> GetRelatedLines(ref int startingPoint)
-        //{
-        //    List<CleverScriptLine> myLines = new List<CleverScriptLine>();
-        //    do
-        //    {
-        //        myLines.Add(new CleverScriptLine(FileContents[startingPoint].Split('\t')));
-
-        //        if (startingPoint++ >= FileContents.Length - 1)
-        //        {
-        //            break;
-        //        }
-        //    } while (string.IsNullOrWhiteSpace(FileContents[startingPoint].Split('\t')[0]));
-
-        //    return myLines;
-        //}
     }
 }
