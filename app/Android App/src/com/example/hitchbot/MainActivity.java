@@ -77,7 +77,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     private ImageView imageResult;
     private FrameLayout frameNew;
     private boolean takePicture = false;
+    
 	private CleverHelper cH;
+	private String cleverState;
 	private boolean _poweredOn = true;
 	
 	private static final long SCAN_PERIOD = 3000;
@@ -107,7 +109,10 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	boolean thirdOn;
 	String currentSearch;
 	//-------------------------------------------------------
-    
+    //-----Attempt at improving voice recognition in Car---------
+	private int wordCounter = 0;
+	
+	
 	//edit text and button are for debugging purposes, to be removed when hitchbot is ready for launch
 	Button b;
 	EditText editText;
@@ -168,6 +173,26 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			}
 	    	
 	    }, 1000);
+	    
+	    cameraHandler = new Handler();
+	    
+	    cameraHandler.postDelayed(new Runnable()
+	    {
+
+			@Override
+			public void run() {
+				b.performClick();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				b.performClick();
+				cameraHandler.postDelayed(this, 900000);
+			}
+	    	
+	    }, 2000);
 
 		mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener()
 				{
@@ -250,8 +275,34 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	public void getResponseFromCleverscript(String message, CleverHelper cH)
 	{
-		Speak(cH.cs.sendMessage(message));		
-
+		Log.i("CleverScript", cH.cs.retrieveBotState());
+		if(message.isEmpty())
+		{
+        	switchSearch(MAIN_SEARCH);
+		}
+		else
+		{
+		String response = cH.cs.sendMessage(message);
+		Log.i("CleverScript", cH.getAccuracy());
+	if(!cH.getAccuracy().isEmpty())
+	{
+		if(Integer.parseInt(cH.getAccuracy()) < Config.THRESHHOLD_ACCURACY)
+		{
+			cH.loadBotState(cleverState);
+        	switchSearch(MAIN_SEARCH);
+		}
+		else
+		{
+			cleverState = cH.getBotState();
+			Speak(response);	
+		}
+	}
+	else
+	{
+		Speak(response);	
+	
+	}
+		}
 	}
 	
 	public void Speak(String message)
@@ -262,7 +313,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "SOME MESSAGE");
 	    if(mDevice != null){
 	    	Log.i("deviceNull", "device isn't null");
-	    isTalking();
+	    	isTalking();
 	    }
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 	}
@@ -400,7 +451,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	@Override
 	public void onPartialResult(Hypothesis hypothesis) {
 			String text = hypothesis.getHypstr();
-
+			//Limit the amount of words it will listen for (to prevent convo
+			//from hanging
+			if (text.split("\\s+").length >= 15)
+			{
+	            getResponseFromCleverscript(text, cH);
+			}
             ((TextView) findViewById(R.id.editText2)).setText(text);
            // mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
             //TODO use this method to fix background noise problem

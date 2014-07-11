@@ -75,7 +75,7 @@ public void setupProvider()
 private void postFineLocation()
 {
 	String url1 = "http://hitchbotapi.azurewebsites.net/api/Location?HitchBotID=%s&Latitude=%s&Longitude=%s&Altitude=%s&Accuracy=%s&Velocity=%s&TakenTime=%s";
-	String hitchBOTid = "8";
+	String hitchBOTid = Config.HITCHBOT_ID;
 	String sLatitude = String.valueOf(latitude);
 	String sLongitude = String.valueOf(longitude);
 	String sAltitude = String.valueOf(altitude);
@@ -92,7 +92,7 @@ private void postFineLocation()
 private void postCourseLocation()
 {
 	String url1 = "http://hitchbotapi.azurewebsites.net/api/Location?HitchBotID=%s&Latitude=%s&Longitude=%s&TakenTime=%s";
-	String hitchBOTid = "8";
+	String hitchBOTid = Config.HITCHBOT_ID;
 	String sLatitude = String.valueOf(latitude);
 	String sLongitude = String.valueOf(longitude);
 	String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US).format(new Date());
