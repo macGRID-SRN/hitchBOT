@@ -109,8 +109,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	boolean thirdOn;
 	String currentSearch;
 	//-------------------------------------------------------
-    //-----Attempt at improving voice recognition in Car---------
-	private int wordCounter = 0;
 	
 	
 	//edit text and button are for debugging purposes, to be removed when hitchbot is ready for launch
@@ -181,6 +179,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 			@Override
 			public void run() {
+				if(!takePicture)
+				{
 				b.performClick();
 				try {
 					Thread.sleep(1000);
@@ -189,12 +189,26 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 					e.printStackTrace();
 				}
 				b.performClick();
+			}
 				cameraHandler.postDelayed(this, 900000);
+
 			}
 	    	
 	    }, 2000);
 
-		mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener()
+		serverPostHandler = new Handler();
+		
+		serverPostHandler.postDelayed(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				postStuff();				
+			}
+		}
+		, 1000);
+	    
+	    mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener()
 				{
 			@Override
 		      public void onInit(int status) {
@@ -782,5 +796,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		return intentFilter;
 	}
 	
+	private void postStuff()
+	{
+		PostGeneralUpdates pGu = new PostGeneralUpdates();
+		pGu.sendImgurUploads();
+		pGu.sendErrorLog();
+		pGu.sendImagePosts();
+	}
 	}
 
