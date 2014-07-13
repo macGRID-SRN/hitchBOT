@@ -1,5 +1,5 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +7,7 @@
     tools:context="com.example.hitchbot.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-       <RelativeLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -18,13 +18,6 @@
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@+id/button1"
             android:ems="10" />
-
-        <FrameLayout
-            android:id="@+id/frame"
-            android:layout_width="match_parent"
-            android:layout_height="911dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/editText2" />
 
         <Button
             android:id="@+id/button1"
@@ -42,5 +35,50 @@
             android:layout_alignParentTop="true"
             android:ems="10" />
 
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="911dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/button3" >
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/button2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/frame"
+            android:layout_marginRight="60dp"
+            android:layout_toLeftOf="@+id/button3"
+            android:text="1st" 
+            android:onClick="firstCleverScript"/>
+
+        <Button
+            android:id="@+id/button4"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editText2"
+            android:layout_marginRight="79dp"
+            android:layout_marginTop="22dp"
+            android:text="2nd"
+            android:onClick="secondCleverScript" />
+
+        <Button
+            android:id="@+id/button3"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button4"
+            android:layout_marginRight="99dp"
+            android:layout_toLeftOf="@+id/button4"
+            android:text="3rd" 
+            android:onClick="thirdCleverScript"/>
+
     </RelativeLayout>
+
 </FrameLayout>

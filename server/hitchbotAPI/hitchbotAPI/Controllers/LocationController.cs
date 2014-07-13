@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Data.Entity;
 using System.Globalization;
 using System.Web.Http;
 
@@ -19,24 +20,35 @@ namespace hitchbotAPI.Controllers
         [HttpGet]
         public HttpResponseMessage GetGoogleMapsRoute(int HitchBotID)
         {
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
                 var response = Request.CreateResponse(HttpStatusCode.Moved);
                 var mapsURL = db.StaticMaps.Where(sm => sm.HitchBot.ID == HitchBotID);
                 if (mapsURL.Count() > 0)
                 {
-                    var lastGenerated = mapsURL.OrderBy(l => l.TimeGenerated).Last();
-                    if (lastGenerated.TimeGenerated - DateTime.UtcNow > TimeSpan.FromHours(1))
+                    var lastGenerated = mapsURL.OrderByDescending(l => l.TimeGenerated).First();
+                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(0.000001))
                     {
-                        response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
+                        response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID)));
                     }
                     else
-                        response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + lastGenerated.URL);
+                        response.Headers.Location = new Uri(GetStaticMapURL(lastGenerated.URL));
                 }
                 else
-                    response.Headers.Location = new Uri(Helpers.LocationHelper.gmapsString + Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID));
+                    response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID)));
                 return response;
             }
+        }
+
+        private string GetStaticMapURL(string poly)
+        {
+            return Helpers.LocationHelper.gmapsString + poly + Helpers.LocationHelper.gAPIkey;
+        }
+
+        public string GetRegionText(int HitchBotID)
+        {
+
+            return string.Empty;
         }
 
         /// <summary>
@@ -53,19 +65,24 @@ namespace hitchbotAPI.Controllers
             DateTime StartTimeReal = DateTime.ParseExact(TakenTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             int newLocationID;
             int hitchBotID;
-            using (var db = new Database())
+            using (var db = new Models.Database())
             {
                 hitchBotID = int.Parse(HitchBotID);
                 double LatDouble = double.Parse(Latitude);
                 double LongDouble = double.Parse(Longitude);
-                var hitchBOT = db.hitchBOTs.First(h => h.ID == hitchBotID);
-                var location = new Location();
-                location.Latitude = LatDouble;
-                location.Longitude = LongDouble;
-                location.TakenTime = StartTimeReal;
-                location.TimeAdded = DateTime.UtcNow;
+                var hitchBOT = db.hitchBOTs.Include(h => h.Locations).First(h => h.ID == hitchBotID);
+                var location = new Location()
+                {
+                    Latitude = LatDouble,
+                    Longitude = LongDouble,
+                    TakenTime = StartTimeReal,
+                    TimeAdded = DateTime.UtcNow
+                };
+
                 hitchBOT.Locations.Add(location);
                 db.SaveChanges();
+                //var myVAR = db.Set<Models.Location>();
+                //db.Entry<Models.Location>(location).GetDatabaseValues();
                 newLocationID = location.ID;
             }
 
@@ -84,19 +101,23 @@ namespace hitchbotAPI.Controllers
         /// <param name="TakenTime">TakenTime</param>
         /// <returns>Success</returns>
         [HttpPost]
-        public bool UpdateHitchBotLocation(int HitchBotID, double Latitude, double Longitude, double Altitude, float Accuracy, float Velocity, DateTime TakenTime)
+        public bool UpdateHitchBotLocation(int HitchBotID, double Latitude, double Longitude, double Altitude, float Accuracy, float Velocity, string TakenTime)
         {
-            using (var db = new Database())
+            DateTime StartTimeReal = DateTime.ParseExact(TakenTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+            using (var db = new Models.Database())
             {
-                var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
+                var hitchBOT = db.hitchBOTs.Include(l => l.Locations).First(h => h.ID == HitchBotID);
                 var location = new Location();
                 location.Latitude = Latitude;
                 location.Longitude = Longitude;
                 location.Altitude = Altitude;
                 location.Accuracy = Accuracy;
                 location.Velocity = Velocity;
-                location.TakenTime = TakenTime;
+                location.TakenTime = StartTimeReal;
                 location.TimeAdded = DateTime.UtcNow;
+                location.HitchBOT = hitchBOT;
+                db.Locations.Add(location);
+                db.SaveChanges();
                 hitchBOT.Locations.Add(location);
                 db.SaveChanges();
             }
@@ -111,7 +132,7 @@ namespace hitchbotAPI.Controllers
         [HttpGet]
         public Location GetLocationByID(int ID)
         {
-            return (new Database()).Locations.First(l => l.ID == ID);
+            return (new Models.Database()).Locations.First(l => l.ID == ID);
         }
     }
 }

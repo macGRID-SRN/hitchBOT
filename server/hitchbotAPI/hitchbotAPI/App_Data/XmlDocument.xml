@@ -13,9 +13,27 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImage.TextBox1">
+        <member name="F:hitchbotAPI.ApproveImage.userName">
             <summary>
-            TextBox1 control.
+            userName control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImage.passWord">
+            <summary>
+            passWord control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImage.lblError">
+            <summary>
+            lblError control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -508,7 +526,7 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversation(System.Int32,System.String,System.Int32)">
+        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversation(System.Int32,System.String)">
             <summary>
             Starts a new Conversation thread for a HitchBot and already defined Location.
             </summary>
@@ -552,7 +570,7 @@
             <param name="TakenTime">TakenTime</param>
             <returns>Success</returns>
         </member>
-        <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocation(System.Int32,System.Double,System.Double,System.Double,System.Single,System.Single,System.DateTime)">
+        <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocation(System.Int32,System.Double,System.Double,System.Double,System.Single,System.Single,System.String)">
             <summary>
             Given the ID of a HitchBot, add it's location.
             </summary>
@@ -606,6 +624,24 @@
             <param name="toEndID">The ID of the Project to end.</param>
             <returns>Success.</returns>
         </member>
+        <member name="F:hitchbotAPI.Directory.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.Directory.BulletedList1">
+            <summary>
+            BulletedList1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="T:hitchbotAPI.Controllers.hitchBOTController">
             <summary>
             For all things related to an instance of HitchBot.
@@ -640,6 +676,105 @@
             </summary>
             <param name="HitchBotLocationsID">The ID of the HitchBot to get all the Locations for.</param>
             <returns>A list of all the Locations, sorted.</returns>
+        </member>
+        <member name="F:hitchbotAPI.Unauthorized.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.form2">
+            <summary>
+            form2 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.TextBox1">
+            <summary>
+            TextBox1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.datePicker">
+            <summary>
+            datePicker control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.time24hrBOX">
+            <summary>
+            time24hrBOX control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.selectedTimePreview">
+            <summary>
+            selectedTimePreview control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.Approve">
+            <summary>
+            Approve control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.Deny">
+            <summary>
+            Deny control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.lblError">
+            <summary>
+            lblError control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.imagePreview">
+            <summary>
+            imagePreview control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ViewImage.imgurLink">
+            <summary>
+            imgurLink control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
         </member>
     </members>
 </doc>

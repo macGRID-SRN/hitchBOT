@@ -5,11 +5,11 @@ using System.Text;
 
 namespace CLVSCPT_pre_compiler
 {
-    class Input : ConversationNode
+    class Input : CleverScriptLine
     {
-        public Input(List<CleverScriptLine> inputLines)
+        public Input(string[] text) : base(text)
         {
-           this.lines = inputLines;
+
         }
     }
 }

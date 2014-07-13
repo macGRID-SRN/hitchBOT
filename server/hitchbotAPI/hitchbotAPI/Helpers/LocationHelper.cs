@@ -49,22 +49,44 @@ namespace hitchbotAPI.Helpers
             }
         }
 
+        //yes you just found our API key.. wow .. congrats. Too bad it only works on hitchbot.me places.
+        public const string gAPIkey = "&key=AIzaSyCEJOxq4a_fUiutFzCukico7aUy--6wMCw";
+
         public const string gmapsString = "http://maps.googleapis.com/maps/api/staticmap?size=800x800&path=weight:5%7Ccolor:blue%7Cenc:";
+        public const string gmapsRegionString = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
+
         private const int maxLocations = 200;
 
         public static string GetEncodedPolyLine(int HitchBotID)
         {
             using (var db = new Models.Database())
             {
-                var OrderedLocations = db.hitchBOTs.First(h => h.ID == HitchBotID).Locations.OrderBy(l => l.TakenTime).ToList();
+                var OrderedLocations = db.hitchBOTs.Include(h => h.Locations).First(h => h.ID == HitchBotID).Locations.OrderBy(l => l.TakenTime).ToList();
+                string tempRegionString = string.Empty;
+
+                if (OrderedLocations.Count > 0)
+                {
+                    var mostRecent = OrderedLocations.Last();
+                    tempRegionString = GetRegion(mostRecent);
+                }
+                else
+                {
+                    tempRegionString = "Apparently my devs don't know where I am.. They should probably be fixing this and not doing $insert_awesome_activity_here$";
+                }
 
                 string tempURL = EncodeCoordsForGMAPS(SlimLocations(OrderedLocations));
                 var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
+
+
                 var tempStaticLink = new Models.GoogleMapsStatic()
                 {
                     HitchBot = hitchBOT,
                     URL = tempURL,
-                    TimeGenerated = DateTime.UtcNow
+                    NearestCity = tempRegionString,
+                    ViewCount = 1,
+                    TimeGenerated = DateTime.UtcNow,
+                    TimeAdded = DateTime.UtcNow
+
                 };
 
                 db.StaticMaps.Add(tempStaticLink);
@@ -72,6 +94,13 @@ namespace hitchbotAPI.Helpers
 
                 return tempURL;
             }
+        }
+
+        private static string GetRegion(Models.Location location)
+        {
+            dynamic json = Helpers.WebHelper.GetJSON(Helpers.WebHelper.GetRequest(gmapsRegionString + String.Join(",", new string[] { location.Latitude.ToString(), location.Longitude.ToString() })));
+            //dynamic tempAccessor = (string)json["results"][0]["formatted_address"];
+            return (string)json["results"][0]["formatted_address"];
         }
 
         private static List<Models.Location> SlimLocations(List<Models.Location> inList)

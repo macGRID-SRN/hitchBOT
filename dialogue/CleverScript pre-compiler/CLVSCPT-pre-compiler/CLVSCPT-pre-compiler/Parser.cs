@@ -18,50 +18,56 @@ namespace CLVSCPT_pre_compiler
         public Conversation PreCompile()
         {
             int count = 2;
-            Conversation preCompiled = new Conversation(new Output(new List<string[]> { FileContents[1].Split('\t') }));
-            List<Input> inputs = new List<Input>();
-            List<Output> outputs = new List<Output>();
+            Conversation preCompiled = new Conversation(new Output(FileContents[1].Split('\t')));
+
+            do
+            {
+                preCompiled.AlwaysListening.Add(new Input(FileContents[count].Split('\t')));
+                count++;
+            } while (FileContents[count + 1].Split('\t')[0] != "output");
 
             List<ConversationNode> conversationNodes = new List<ConversationNode>();
 
+            List<Input> inputs = null;
+            Output nodeOutput = null;
+
+            count++;
             //probably could clean this up with reflection..
+            string lastMatch = "output";
             do
             {
-                int startingLine = count;
-                string[] split = FileContents[count].Split('\t');
-                if (split[0] == "input")
-                {
-                    inputs.Add(new Input(GetRelatedLines(ref count)));
-                }
-                else if (split[0] == "output")
-                {
-                    outputs.Add(new Output(GetRelatedLines(ref count)));
-                }
-                else if (split[0] == "phrase")
-                {
+                string[] temp = FileContents[count].Split('\t');
 
+                switch (string.IsNullOrWhiteSpace(temp[0]) ? lastMatch : temp[0])
+                {
+                    case "output":
+                        if (nodeOutput != null)
+                        {
+                            conversationNodes.Add(new ConversationNode(nodeOutput, inputs));
+                        }
+
+                        nodeOutput = new Output(temp);
+                        inputs = new List<Input>();
+                        lastMatch = "output";
+                        break;
+
+                    case "input":
+                        inputs.Add(new Input(temp));
+                        lastMatch = "input";
+                        break;
+
+                    case "phrase":
+
+                        break;
                 }
+
+                count++;
             }
             while (count < FileContents.Length);
 
+            preCompiled.Nodes = conversationNodes;
 
             return preCompiled;
-        }
-
-        public List<CleverScriptLine> GetRelatedLines(ref int startingPoint)
-        {
-            List<CleverScriptLine> myLines = new List<CleverScriptLine>();
-            do
-            {
-                myLines.Add(new CleverScriptLine(FileContents[startingPoint].Split('\t')));
-
-                if (startingPoint++ >= FileContents.Length -1)
-                {
-                    break;
-                }
-            } while (string.IsNullOrWhiteSpace(FileContents[startingPoint].Split('\t')[0]));
-
-            return myLines;
         }
     }
 }

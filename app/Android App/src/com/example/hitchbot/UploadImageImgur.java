@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 import org.apache.http.HttpRequest;
@@ -33,46 +34,41 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 		private static final String UPLOAD_URL = "https://api.imgur.com/3/image";
 		private Uri image; 
 		private Activity activity;
+		private Context context;
 	   
 		//Uploads image anonymously
 
 		
-	public UploadImageImgur(Uri image, Activity activity)
+	public UploadImageImgur(Uri image, Activity activity, Context context)
 	{
 		this.image = image;
 		this.activity = activity;
+		this.context = context;
 	}
 	
 		@Override
 		protected void onPostExecute(String url)
 		{
-			if (!url.equals(""))
+			if (url != null)
 			{
 				
-				String url1 = "http://hitchbotapi.azurewebsites.net/api/Image";
-		        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-				List<NameValuePair> nVp = new ArrayList<NameValuePair>();
-				nVp.add(new BasicNameValuePair("HitchBotID","5"));
-				nVp.add(new BasicNameValuePair("timeTaken",timeStamp));
-				nVp.add(new BasicNameValuePair("URL",url));
+				String url1 = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s&URL=%s";
+				String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US).format(new Date());
+				String hitchBOTid = Config.HITCHBOT_ID;
+				String URL = url;
 				
-				HttpServerPost  hSp = new HttpServerPost(url1, nVp);
-				
-				hSp.execute(hSp);				
+				HttpServerPost  hSp = new HttpServerPost(String.format(url1,hitchBOTid, timeStamp, URL), context);
 
+				hSp.execute(hSp);				
 			}
 			else
 			{
-				try
-				{
-					DatabaseQueue dQ = new DatabaseQueue(MainActivity.getAppContext());	
-					ErrorLog eL = new ErrorLog("Couldn't upload to Imgur",0);
-					dQ.addItemToQueue(eL);
-}
-				catch(Exception e)
-				{
-				//TODO queue it	
-				}
+
+				DatabaseQueue dQ = new DatabaseQueue(context);	
+				
+				HttpPostDb hPd = new HttpPostDb(image.toString(),0, 2);
+				dQ.addItemToQueue(hPd);
+
 				Toast.makeText(activity, url, Toast.LENGTH_SHORT).show();
 			}
 		}
@@ -151,7 +147,7 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 	        while (scanner.hasNext()) {
 	            sb.append(scanner.next());
 	        }
-
+	        scanner.close();
 	        JSONObject root = new JSONObject(sb.toString());
 	        String id = root.getJSONObject("data").getString("id");
 	        String deletehash = root.getJSONObject("data").getString("deletehash");

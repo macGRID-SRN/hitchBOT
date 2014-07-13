@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CLVSCPT_pre_compiler
 {
-    struct CleverScriptLine
+    class CleverScriptLine
     {
         string label;
         string description;
@@ -31,16 +31,6 @@ namespace CLVSCPT_pre_compiler
             this.mode = text[8];
         }
 
-        //public void SetUp(string[] text)
-        //{
-        //    this.label = text[1];
-        //    this.description = text[2];
-        //    this.text = text[3];
-        //    this.ifs = text[4];
-        //    this.learn = text[5];
-        //    this.gotoLabel = text[6];
-        //    this.accuracy = int.Parse(text[7]);
-        //    this.mode = text[8];
-        //}
+
     }
 }
