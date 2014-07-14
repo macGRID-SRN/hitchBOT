@@ -1,22 +1,32 @@
 #include "HT1632.h"
 #include <ble_mini.h>
+#include "Servo.h"
 
 #define DIGITAL_OUT_PIN    0
 #define DIGITAL_IN_PIN     1
 #define DATA 2
 #define WR   3
-#define CS   4
-#define CS2  5
+#define CS   5
+#define CS2  4
+#define CS3  6
+#define CS4  7
+#define servoPin 9
 
 
+const int servoStop  = 90;
+const int servoFwd  = 45; 
+const int servoRev = 135;
+Servo myServo;
 //For two matrices
 //HT1632LEDMatrix matrix = HT1632LEDMatrix(DATA, WR, CS, CS2);
 //For one matrix
-HT1632LEDMatrix matrix = HT1632LEDMatrix(DATA, WR, CS);
+HT1632LEDMatrix matrix = HT1632LEDMatrix(DATA, WR, CS, CS2, CS3, CS4);
 
 
 void setup()
 { 
+  myServo.write(servoStop);
+  myServo.attach(servoPin);
   Serial.begin(9600);
   BLEMini_begin(57600); 
   pinMode(DIGITAL_OUT_PIN, OUTPUT);
@@ -24,6 +34,7 @@ void setup()
   matrix.begin(HT1632_COMMON_16NMOS);  
   matrix.fillScreen();
   delay(500);
+
   matrix.clearScreen(); 
   makeEyes(0, true);
   makeMouth(0);
@@ -46,14 +57,12 @@ void loop()
 
     if (data0 == 0x01)  // Command is to control digital out pin
     {
-    retractMouth(0, 10);
-    delay(100);
-    makeMouth(0);
-    }  
-/*    if(data0 == 0x00)
-    {
-      matrix.clearScreen();
-    }*/
+    moveMouth(0);
+    }
+    if(data0 == 0x00)
+  {
+  changeMouthBack(0);
+  }  
 
 }
 else
@@ -312,10 +321,68 @@ void chooseRandomGesture(int offSet)
     //makeOmouth(0, timeDelay);
     transitionToMouth(0, timeDelay);
   }
-  if(chooser > 3)
+  if(chooser == 4)
+  {
+    myServo.write(servoFwd);
+    myServo.write(servoStop);
+    myServo.write(servoRev);
+  }
+  if(chooser > 4)
   {
     delay(2000);
   }
+}
+
+void transitionToSquareMouth(int offSet)
+{
+  int xStart = 4 + offSet;
+  int yStart = 13;
+  matrix.clrPixel(xStart - 1, yStart - 1);
+  matrix.clrPixel(xStart + 1 + 15, yStart - 1);
+  matrix.writeScreen();
+  matrix.clrPixel(xStart - 2, yStart - 2);
+  matrix.clrPixel(xStart + 2 + 15, yStart - 2);
+  matrix.writeScreen();
+  int j = 0;
+  for(int i = 4 + offSet ; i < 8 + offSet + 1 ; i++)
+  {
+    //because i starts at 4
+    matrix.clrPixel(i, 13);
+    matrix.clrPixel(19 - j + offSet, 13);
+    matrix.writeScreen();
+    j +=1;
+  }
+  makeSquareMouth(0);
+}
+
+void changeMouthBack(int offSet)
+{
+    matrix.drawLine(3 ,11, 20, 11, 0);
+    matrix.clrPixel(19,12);
+    matrix.clrPixel(4,12);
+    matrix.clrPixel(3,13);
+    matrix.clrPixel(20,13);
+    matrix.writeScreen();
+    makeMouth(0);
+
+}
+
+void moveMouth(int offSet)
+{
+  transitionToSquareMouth(0);
+  matrix.drawLine(3 ,11, 20, 11, 1);
+  matrix.writeScreen();
+  delay(10);
+
+  matrix.drawLine(3,11, 20, 11, 0);
+  matrix.drawLine(3, 12, 20, 12, 1);
+  matrix.writeScreen();
+  delay(10);
+  
+  matrix.drawLine(4,12,19,12,0);
+  matrix.drawLine(3 ,11, 20, 11, 1);
+  delay(10);
+  
 }
 
 

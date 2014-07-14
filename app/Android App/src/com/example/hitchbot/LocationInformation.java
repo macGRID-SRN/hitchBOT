@@ -81,7 +81,7 @@ private void postFineLocation()
 	String sAltitude = String.valueOf(altitude);
 	String Accuracy = String.valueOf(accuracy);
 	String sSpeed = String.valueOf(speed);
-	String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US).format(new Date());
+	String timeStamp = Config.getUtcDate();
 	
 	HttpServerPost  hSp = new HttpServerPost(String.format(url1,hitchBOTid, sLatitude, sLongitude,
 			sAltitude, Accuracy, sSpeed, timeStamp), context);
@@ -95,7 +95,7 @@ private void postCourseLocation()
 	String hitchBOTid = Config.HITCHBOT_ID;
 	String sLatitude = String.valueOf(latitude);
 	String sLongitude = String.valueOf(longitude);
-	String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US).format(new Date());
+	String timeStamp = Config.getUtcDate();
 	
 	HttpServerPost  hSp = new HttpServerPost(String.format(url1,hitchBOTid, sLatitude, sLongitude,
 			 timeStamp), context);

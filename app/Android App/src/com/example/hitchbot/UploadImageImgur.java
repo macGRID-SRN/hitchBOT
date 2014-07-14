@@ -53,7 +53,7 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 			{
 				
 				String url1 = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s&URL=%s";
-				String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US).format(new Date());
+				String timeStamp = Config.getUtcDate();
 				String hitchBOTid = Config.HITCHBOT_ID;
 				String URL = url;
 				

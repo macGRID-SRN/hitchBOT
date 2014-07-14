@@ -89,6 +89,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	private Handler locationHandler;
 	private Handler serverGetHandler;
 	private Handler serverPostHandler;
+	private Handler batteryUploadHandler;
 //------------------------BLE--------------------------
 	
 	private BluetoothGattCharacteristic characteristicTx = null;
@@ -135,6 +136,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				PackageManager.FEATURE_BLUETOOTH_LE)) {
 			Toast.makeText(this, "Ble not supported", Toast.LENGTH_SHORT)
 					.show();
+			ErrorLog eL = new ErrorLog("BLE not supported (somehow turned off...)", 0);
+            DatabaseQueue dQ = new DatabaseQueue(Config.context);
+            dQ.addItemToQueue(eL);
 			finish();
 		}
 		
@@ -208,6 +212,20 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		}
 		, 1000);
 	    
+		batteryUploadHandler = new Handler();
+		
+		batteryUploadHandler.postDelayed(new Runnable()
+		{
+
+			@Override
+			public void run() 
+			{
+				BatteryInformation bI = new BatteryInformation();
+				bI.uploadBatteryInformation();
+				batteryUploadHandler.postDelayed(this,3600000);
+			}
+	
+		}, 5000);		
 	    mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener()
 				{
 			@Override
@@ -251,6 +269,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	                if (result != null) {
 	                    ((TextView) findViewById(R.id.editText2))
 	                            .setText("Failed to init recognizer " + result);
+	                    ErrorLog eL = new ErrorLog("Recognizer failed: " + result, 0);
+	                    DatabaseQueue dQ = new DatabaseQueue(Config.context);
+	                    dQ.addItemToQueue(eL);
 	                } else {
 	                	MAIN_SEARCH = THIRD_SEARCH;
 	                    switchSearch(MAIN_SEARCH);
@@ -289,6 +310,10 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	public void getResponseFromCleverscript(String message, CleverHelper cH)
 	{
+		/*Checks if empty input, if so don't send to cleverscript and restart recognizer.
+		 * Also, if below some threshhold accuracy the next cleverstate is not accessed
+		 * This is done to hopefully improve recognition in situations with a lot of
+		 * background noise (ex/ car) */
 		Log.i("CleverScript", cH.cs.retrieveBotState());
 		if(message.isEmpty())
 		{
@@ -378,6 +403,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            @Override
 	            public void onError(String utteranceId)
 	            {
+	            	ErrorLog eL = new ErrorLog("Tts error: " + utteranceId, 0);
+                    DatabaseQueue dQ = new DatabaseQueue(Config.context);
+                    dQ.addItemToQueue(eL);
 	            }
 
 	            @Override
