@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -38,7 +39,7 @@ public class PostGeneralUpdates {
 				String url1 = "http://hitchbotapi.azurewebsites.net/api/Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
 				String hitchBOT_ID = Config.HITCHBOT_ID;
 				String exception = errorLogQueue.get(i).getErrorMessage();
-				String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US).format(new Date());
+				String timeStamp = Config.getUtcDate();
 				HttpServerPost hSp = new HttpServerPost(String.format(url1,hitchBOT_ID, exception, timeStamp ), Config.context);
 				hSp.execute(hSp);
 				dQ.markAsUploadedToServer(errorLogQueue.get(i));
@@ -57,6 +58,8 @@ public class PostGeneralUpdates {
 			String url1 = imagePostQueue.get(i).getURI();						
 			HttpServerPost  hSp = new HttpServerPost(url1, Config.context);
 			hSp.execute(hSp);	
+			//they are marked as uploaded because if they upload unsuccessfully, they will be
+			//re-added in the queue from the server post class (probably a better way to do it)
 			dQ.markAsUploadedToServer(imagePostQueue.get(i));
 			}
 		}
@@ -72,13 +75,14 @@ public class PostGeneralUpdates {
 			{
 			Uri mUri = Uri.parse(imgurUploadQueue.get(i).getURI());
 			new UploadImageImgur(mUri, Config.context, Config.context).execute();
+			//they are marked as uploaded because if they upload unsuccessfully, they will be
+			//re-added in the queue from the server post class (probably a better way to do it)
 			dQ.markAsUploadedToImgur(imgurUploadQueue.get(i));
 			}
 		}
 	}
 	
-	//I realize just checking if there is a connection is not ideal (vs confirming with http response it
-	//was uploaded), so this is to be refactored later
+
 	public boolean isNetworkAvailable()
 	{
 		ConnectivityManager connectivityManager = (ConnectivityManager)Config.context.getSystemService(Context.CONNECTIVITY_SERVICE);
