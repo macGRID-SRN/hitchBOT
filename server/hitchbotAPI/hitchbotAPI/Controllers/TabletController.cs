@@ -27,7 +27,7 @@ namespace hitchbotAPI.Controllers
                     TimeTaken = TimeTaken,
                     BatteryTemp = BatteryTemp,
                     BatteryPercentage = BatteryPercent,
-                    BatteryVoltage = BatteryTemp,
+                    BatteryVoltage = BatteryVoltage,
                     IsCharging = isPluggedIn,
                     HitchBOT = hitchbot
 
