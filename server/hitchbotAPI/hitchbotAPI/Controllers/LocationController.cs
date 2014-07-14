@@ -81,12 +81,11 @@ namespace hitchbotAPI.Controllers
 
                 hitchBOT.Locations.Add(location);
                 db.SaveChanges();
-                //var myVAR = db.Set<Models.Location>();
-                //db.Entry<Models.Location>(location).GetDatabaseValues();
+
                 newLocationID = location.ID;
             }
 
-            Helpers.LocationHelper.CheckForTargetLocation(hitchBotID, newLocationID);
+            //Helpers.LocationHelper.CheckForTargetLocation(hitchBotID, newLocationID);
             return true;
         }
         /// <summary>
