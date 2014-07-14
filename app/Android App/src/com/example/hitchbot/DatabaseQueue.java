@@ -54,6 +54,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(HTTPPOST_TABLE_CREATE);
 		db.execSQL(ERRORLOG_TABLE_CREATE);
+		db.execSQL("DELETE * FROM " + TABLE_HTTPPOSTQUEUE);
 	}
 
 	@Override
@@ -143,7 +144,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	public void markAsUploadedToImgur(HttpPostDb httpPost)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
-		String where = " where " + COLUMN_POSTID + " = " + httpPost.getPostID();
+		String where = COLUMN_POSTID + " = " + httpPost.getPostID();
 		ContentValues con = new ContentValues();
 		con.put(COLUMN_UPLOAD_TO_IMGUR, 1);
 		db.update(TABLE_HTTPPOSTQUEUE, con, where, null);
@@ -153,7 +154,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	public void markAsUploadedToServer(HttpPostDb httpPost)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
-		String where = " where " + COLUMN_POSTID + " = " + httpPost.getPostID();
+		String where = COLUMN_POSTID + " = " + httpPost.getPostID();
 		ContentValues con = new ContentValues();
 		con.put(COLUMN_UPLOAD_TO_SERVER, 1);
 		db.update(TABLE_HTTPPOSTQUEUE, con, where, null);	
@@ -163,7 +164,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	public void markAsUploadedToServer(ErrorLog errorLog)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
-		String where = " where " + COLUMN_ERRORID + " = " + errorLog.getiD();
+		String where = COLUMN_ERRORID + " = " + errorLog.getiD();
 		ContentValues con = new ContentValues();
 		con.put(COLUMN_ERROR_UPLOAD_TO_SERVER, 1);
 		db.update(TABLE_ERRORLOG, con, where, null);	

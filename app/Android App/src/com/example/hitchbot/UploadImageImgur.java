@@ -66,7 +66,7 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 
 				DatabaseQueue dQ = new DatabaseQueue(context);	
 				
-				HttpPostDb hPd = new HttpPostDb(url,0, 2);
+				HttpPostDb hPd = new HttpPostDb(image.toString(),0, 2);
 				dQ.addItemToQueue(hPd);
 
 				Toast.makeText(activity, url, Toast.LENGTH_SHORT).show();
