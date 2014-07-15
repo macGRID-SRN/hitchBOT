@@ -14,8 +14,8 @@
 
 
 const int servoStop  = 90;
-const int servoFwd  = 45; 
-const int servoRev = 135;
+const int servoFwd  = 135; 
+const int servoRev = 0;
 Servo myServo;
 //For two matrices
 //HT1632LEDMatrix matrix = HT1632LEDMatrix(DATA, WR, CS, CS2);
@@ -38,6 +38,10 @@ void setup()
   matrix.clearScreen(); 
   makeEyes(0, true);
   makeMouth(0);
+  drawText("Hi I'm hitchBOT", 0);
+  drawText("Headed to Victoria", 8);
+
+  
 }
 
 unsigned char buf[16] = {0};
@@ -67,6 +71,7 @@ void loop()
 }
 else
 {
+
   chooseRandomGesture(0);   
 }
 
@@ -324,10 +329,18 @@ void chooseRandomGesture(int offSet)
   if(chooser == 4)
   {
     myServo.write(servoFwd);
-    myServo.write(servoStop);
     myServo.write(servoRev);
   }
-  if(chooser > 4)
+  if(chooser == 5)
+  {
+    myServo.write(servoStop);
+  }
+  if(chooser ==6)
+  {
+    myServo.write(servoRev);
+
+  }  
+  if(chooser > 6)
   {
     delay(2000);
   }
@@ -385,4 +398,12 @@ void moveMouth(int offSet)
   
 }
 
+void drawText(char words[], int offSet)
+{
+  matrix.setTextSize(1);
+  matrix.setTextColor(1);
+  matrix.setCursor(24 ,offSet);
+  matrix.print(words);
+  matrix.writeScreen();
+}
 
