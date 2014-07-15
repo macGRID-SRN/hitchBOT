@@ -27,7 +27,7 @@ namespace hitchbotAPI.Controllers
                 if (mapsURL.Count() > 0)
                 {
                     var lastGenerated = mapsURL.OrderByDescending(l => l.TimeGenerated).First();
-                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(0.000001))
+                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(1))
                     {
                         response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID)));
                     }
@@ -128,10 +128,10 @@ namespace hitchbotAPI.Controllers
         /// </summary>
         /// <param name="ID">ID of the Location requested.</param>
         /// <returns>The requested Location instance.</returns>
-        [HttpGet]
-        public Location GetLocationByID(int ID)
-        {
-            return (new Models.Database()).Locations.First(l => l.ID == ID);
-        }
+        //[HttpGet]
+        //public Location GetLocationByID(int ID)
+        //{
+        //    return (new Models.Database()).Locations.First(l => l.ID == ID);
+        //}
     }
 }

@@ -583,13 +583,6 @@
             <param name="TakenTime">TakenTime</param>
             <returns>Success</returns>
         </member>
-        <member name="M:hitchbotAPI.Controllers.LocationController.GetLocationByID(System.Int32)">
-            <summary>
-            Get a Location instance by it's ID.
-            </summary>
-            <param name="ID">ID of the Location requested.</param>
-            <returns>The requested Location instance.</returns>
-        </member>
         <member name="T:hitchbotAPI.Controllers.ProjectController">
             <summary>
             This is for all things related to HitchBot projects. A HitchBot Project is when one or more HitchBot's embark on a journey.
