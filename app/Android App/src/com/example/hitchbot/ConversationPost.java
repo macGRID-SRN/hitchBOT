@@ -1,11 +1,14 @@
 package com.example.hitchbot;
 
+import android.util.Log;
+
 public class ConversationPost {
 
 	String hitchbotHeard;
 	String hitchbotSaid;
-	String apiSaid = "http://hitchbotapi.azurewebsites.net/api/Conversation?convID=%s&SpeechSaid=%s&TimeTaken=%s";
-	String apiHeard = "http://hitchbotapi.azurewebsites.net/api/Conversation?convID=%s&SpeechHeard=%s&TimeTaken=%s";
+	String apiSaid = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechSaid=%s&TimeTaken=%s";
+	String apiHeard = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechHeard=%s&TimeTaken=%s";
+	String apiStart = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&StartTime=%s";
 	
 	public ConversationPost(String spokenPhrase, boolean hitchbotSpoke)
 	{
@@ -21,12 +24,29 @@ public class ConversationPost {
 		}
 	}
 	
-	public void storeSaid( )
+	public ConversationPost()
+	{
+		
+	}
+	
+	public void conversationStart()
 	{
 		String id = Config.HITCHBOT_ID;
-		String said = hitchbotSaid;
+		String time = Config.getUtcDate();
+		HttpPostDb hPd = new HttpPostDb(String.format(apiStart, id, time), 2,0);
+		DatabaseQueue dQ = new DatabaseQueue(Config.context);
+		dQ.addItemToQueue(hPd);
+	}
+	
+	public void storeSaid( )
+	{
+		
+		String id = Config.HITCHBOT_ID;
+		hitchbotSaid = hitchbotSaid.replaceAll(" ", "%20");
+    	Log.i("FileDeleted", hitchbotSaid);
+
 		String timeSaid = Config.getUtcDate();
-		HttpPostDb hPd = new HttpPostDb(String.format(apiSaid, id, said, timeSaid), 2, 0);
+		HttpPostDb hPd = new HttpPostDb(String.format(apiSaid, id, hitchbotSaid, timeSaid), 2, 0);
 		DatabaseQueue dQ = new DatabaseQueue(Config.context);
 		dQ.addItemToQueue(hPd);
 	}
@@ -34,9 +54,11 @@ public class ConversationPost {
 	public void storeHeard() 
 	{
 		String id = Config.HITCHBOT_ID;
-		String heard = hitchbotHeard;
+		hitchbotHeard = hitchbotHeard.replaceAll(" ", "%20");
+    	Log.i("FileDeleted", hitchbotHeard);
+
 		String timeHeard = Config.getUtcDate();
-		HttpPostDb hPd = new HttpPostDb(String.format(apiHeard, id, heard, timeHeard), 2, 0);
+		HttpPostDb hPd = new HttpPostDb(String.format(apiHeard, id, hitchbotHeard, timeHeard), 2, 0);
 		DatabaseQueue dQ = new DatabaseQueue(Config.context);
 		dQ.addItemToQueue(hPd);	
 		
