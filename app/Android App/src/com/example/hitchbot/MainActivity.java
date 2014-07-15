@@ -111,6 +111,10 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	String currentSearch;
 	//-------------------------------------------------------
 	
+	String whatHitchbotHeard;
+	String whatHitchbotSaid;
+	
+	//-------------------------------------------------------
 	
 	//edit text and button are for debugging purposes, to be removed when hitchbot is ready for launch
 	Button b;
@@ -280,6 +284,11 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            
 		}.execute();
 		set_poweredOn(false);
+		
+		AudioManager aM = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		aM.setStreamVolume(AudioManager.STREAM_MUSIC, aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+		aM.setSpeakerphoneOn(true);
 	}
 
 	

@@ -1,5 +1,6 @@
 package com.example.hitchbot;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 
 import org.apache.http.HttpRequest;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URIUtils;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
@@ -59,7 +61,10 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 				
 				HttpServerPost  hSp = new HttpServerPost(String.format(url1,hitchBOTid, timeStamp, URL), context);
 
-				hSp.execute(hSp);				
+				hSp.execute(hSp);
+				
+				boolean deleted = new File(image.getPath()).delete();
+				Log.i("FileDeleted",String.valueOf(deleted));
 			}
 			else
 			{
@@ -71,6 +76,7 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 
 				Toast.makeText(activity, url, Toast.LENGTH_SHORT).show();
 			}
+
 		}
 
 		@Override

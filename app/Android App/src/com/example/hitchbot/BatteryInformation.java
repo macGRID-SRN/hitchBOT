@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Handler;
+import android.util.Log;
 
 public class BatteryInformation {
 
@@ -43,13 +44,14 @@ public class BatteryInformation {
 	public static String getBatteryVoltage()
 	{
 		int voltage = batteryStatus.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1);
-		return String.valueOf(voltage);
+		Log.i("PostGeneralUpdates", String.valueOf(voltage));
+		return String.valueOf(voltage / 1000.0);
 	}
 
 	public static String getBatteryTemp()
 	{
 		int temp = batteryStatus.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1);
-		return String.valueOf(temp);
+		return String.valueOf( temp/ 10.0);
 	}
 	
 	public void uploadBatteryInformation()
