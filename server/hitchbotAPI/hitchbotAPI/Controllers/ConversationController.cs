@@ -20,7 +20,7 @@ namespace hitchbotAPI.Controllers
         /// <param name="LocationID">The ID of the Location where the Conversation started.</param>
         /// <returns>The ID of the Conversation being added.</returns>
         [HttpPost]
-        public int StartNewConversation(int HitchBotID, string StartTime)
+        public bool StartNewConversation(int HitchBotID, string StartTime)
         {
             DateTime StartTimeReal = DateTime.ParseExact(StartTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             using (var db = new Models.Database())
@@ -28,13 +28,15 @@ namespace hitchbotAPI.Controllers
                 var newConversation = new Models.Conversation();
                 newConversation.StartTime = StartTimeReal;
                 newConversation.TimeAdded = DateTime.UtcNow;
-                var hitchbot = db.hitchBOTs.Include(l => l.Locations).First(h => h.ID == HitchBotID);
+                var hitchbot = db.hitchBOTs.Include(l => l.Locations).Include(h => h.Conversations).First(h => h.ID == HitchBotID);
                 var location = hitchbot.Locations.OrderBy(l => l.TakenTime).First();
                 newConversation.StartLocation = location;
+                db.Conversations.Add(newConversation);
+                db.SaveChanges();
                 hitchbot.Conversations.Add(newConversation);
                 db.SaveChanges();
                 //untested, I am not sure if this will make bad stuff happen or not.
-                return newConversation.ID;
+                return true;
             }
         }
 
@@ -46,7 +48,7 @@ namespace hitchbotAPI.Controllers
         /// <param name="TimeTaken">When HitchBot said this.</param>
         /// <returns>The ID of the newly created SpeechEvent.</returns>
         [HttpPost]
-        public int AddSpeech(int HitchBotID, string SpeechSaid, string TimeTaken)
+        public bool AddSpeech(int HitchBotID, string SpeechSaid, string TimeTaken)
         {
             using (var db = new Models.Database())
             {
@@ -59,19 +61,19 @@ namespace hitchbotAPI.Controllers
                 db.SaveChanges();
                 hitchbot.Conversations.OrderBy(l => l.StartTime).Last().SpeechEvents.Add(speechEvent);
                 db.SaveChanges();
-                return speechEvent.ID;
+                return true;
             }
         }
 
         /// <summary>
         /// Add's a ListenEvent - Something a HitchBot hears.
         /// </summary>
-        /// <param name="convID">The ID of the Conversation being continued.</param>
+        /// <param name="HitchBotID">The ID of the HitchBOT to add conversation to.</param>
         /// <param name="SpeechHeard">The text which HitchBot heard.</param>
         /// <param name="TimeTaken">When HitchBot heard this.</param>
         /// <returns>The ID of the newly created ListenEvent.</returns>
         [HttpPost]
-        public int AddListen(int HitchBotID, string SpeechHeard, string TimeTaken)
+        public bool AddListen(int HitchBotID, string SpeechHeard, string TimeTaken)
         {
             using (var db = new Models.Database())
             {
@@ -84,7 +86,7 @@ namespace hitchbotAPI.Controllers
                 db.SaveChanges();
                 hitchbot.Conversations.OrderBy(l => l.StartTime).Last().ListenEvents.Add(listenEvent);
                 db.SaveChanges();
-                return listenEvent.ID;
+                return true;
             }
         }
     }

@@ -548,7 +548,7 @@
             <summary>
             Add's a ListenEvent - Something a HitchBot hears.
             </summary>
-            <param name="convID">The ID of the Conversation being continued.</param>
+            <param name="HitchBotID">The ID of the HitchBOT to add conversation to.</param>
             <param name="SpeechHeard">The text which HitchBot heard.</param>
             <param name="TimeTaken">When HitchBot heard this.</param>
             <returns>The ID of the newly created ListenEvent.</returns>
