@@ -45,7 +45,7 @@ namespace hitchbotAPI.Controllers
             return Helpers.LocationHelper.gmapsString + poly + Helpers.LocationHelper.gAPIkey;
         }
 
-        public string GetRegionText(int HitchBotID)
+        private string GetRegionText(int HitchBotID)
         {
 
             return string.Empty;

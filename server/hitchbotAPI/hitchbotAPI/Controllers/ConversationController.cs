@@ -32,7 +32,7 @@ namespace hitchbotAPI.Controllers
                 var location = hitchbot.Locations.OrderBy(l => l.TakenTime).First();
                 newConversation.StartLocation = location;
                 db.Conversations.Add(newConversation);
-                db.SaveChanges();
+                newConversation.HitchBOT = hitchbot;
                 hitchbot.Conversations.Add(newConversation);
                 db.SaveChanges();
                 //untested, I am not sure if this will make bad stuff happen or not.
@@ -43,7 +43,7 @@ namespace hitchbotAPI.Controllers
         /// <summary>
         /// Add's a SpeechEvent - Something a HitchBot says.
         /// </summary>
-        /// <param name="convID">The ID of the Conversation being continued.</param>
+        /// <param name="HitchBotID">The ID for the HitchBot to add conversation.</param>
         /// <param name="SpeechSaid">The text which HitchBot said.</param>
         /// <param name="TimeTaken">When HitchBot said this.</param>
         /// <returns>The ID of the newly created SpeechEvent.</returns>
@@ -55,8 +55,10 @@ namespace hitchbotAPI.Controllers
                 var speechEvent = new Models.SpeechEvent();
                 speechEvent.TimeAdded = DateTime.UtcNow;
                 speechEvent.SpeechSaid = SpeechSaid;
+
                 speechEvent.OccuredTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
                 var hitchbot = db.hitchBOTs.Include(h => h.Conversations).First(h => h.ID == HitchBotID);
+                speechEvent.Conversation = hitchbot.CurrentConversation;
                 db.SpeechEvents.Add(speechEvent);
                 db.SaveChanges();
                 hitchbot.Conversations.OrderBy(l => l.StartTime).Last().SpeechEvents.Add(speechEvent);
@@ -82,6 +84,7 @@ namespace hitchbotAPI.Controllers
                 listenEvent.HeardTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
                 listenEvent.SpeechHeard = SpeechHeard;
                 var hitchbot = db.hitchBOTs.Include(h => h.Conversations).First(h => h.ID == HitchBotID);
+                listenEvent.Conversation = hitchbot.CurrentConversation;
                 db.ListenEvents.Add(listenEvent);
                 db.SaveChanges();
                 hitchbot.Conversations.OrderBy(l => l.StartTime).Last().ListenEvents.Add(listenEvent);

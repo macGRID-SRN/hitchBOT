@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201407140320266_TabletStatus.Designer.cs">
       <DependentUpon>201407140320266_TabletStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407151845137_AddConversationLink.cs" />
+    <Compile Include="Migrations\201407151845137_AddConversationLink.Designer.cs">
+      <DependentUpon>201407151845137_AddConversationLink.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -328,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407140320266_TabletStatus.resx">
       <DependentUpon>201407140320266_TabletStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407151845137_AddConversationLink.resx">
+      <DependentUpon>201407151845137_AddConversationLink.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

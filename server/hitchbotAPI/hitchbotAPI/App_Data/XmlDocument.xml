@@ -539,7 +539,7 @@
             <summary>
             Add's a SpeechEvent - Something a HitchBot says.
             </summary>
-            <param name="convID">The ID of the Conversation being continued.</param>
+            <param name="HitchBotID">The ID for the HitchBot to add conversation.</param>
             <param name="SpeechSaid">The text which HitchBot said.</param>
             <param name="TimeTaken">When HitchBot said this.</param>
             <returns>The ID of the newly created SpeechEvent.</returns>
