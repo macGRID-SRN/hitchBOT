@@ -10,6 +10,7 @@ namespace CLVSCPT_pre_compiler
         Output StartingOutput;
         public List<Input> AlwaysListening = new List<Input>(); //IM ALWAYS WATCHING YOU MIKE WISOWSKY -Close enough
         public List<ConversationNode> Nodes;
+        public List<Phrase> Phrases;
 
         public Conversation()
         {

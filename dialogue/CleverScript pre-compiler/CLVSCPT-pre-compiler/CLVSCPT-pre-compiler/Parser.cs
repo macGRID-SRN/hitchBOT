@@ -30,6 +30,7 @@ namespace CLVSCPT_pre_compiler
 
             List<Input> inputs = null;
             Output nodeOutput = null;
+            List<Phrase> Phrases = new List<Phrase>();
 
             count++;
             //probably could clean this up with reflection..
@@ -57,7 +58,7 @@ namespace CLVSCPT_pre_compiler
                         break;
 
                     case "phrase":
-
+                        Phrases.Add(new Phrase(temp));
                         break;
                 }
 
@@ -66,8 +67,39 @@ namespace CLVSCPT_pre_compiler
             while (count < FileContents.Length);
 
             preCompiled.Nodes = conversationNodes;
-
+            CreateVocab("test");
             return preCompiled;
+        }
+
+        public void CreateLanguageModel(string fileName)
+        {
+            CreateVocab(fileName);
+            CreateIDNgram(fileName);
+        }
+
+        public void CreateIDNgram(string fileNameIn)
+        {
+            RunCommandLine(@"binary\text2idngram -vocab binary\sync" + fileNameIn + @".vocab -idngram binary\sync\" + fileNameIn + @".idngram < binary\" + fileNameIn + @".txt");
+        }
+
+        public void CreateVocab(string fileNameIn)
+        {
+            RunCommandLine(@"binary\text2wfreq < binary\" + fileNameIn + @".txt | binary\wfreq2vocab > binary\sync\" + fileNameIn + ".vocab");
+        }
+
+        public void RunCommandLine(string command)
+        {
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.UseShellExecute = false;
+            startInfo.FileName = "cmd.exe";
+            startInfo.Arguments = "/C " + command;
+            process.StartInfo = startInfo;
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
         }
     }
 }

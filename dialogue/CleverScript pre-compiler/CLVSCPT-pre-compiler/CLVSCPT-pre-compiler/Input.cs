@@ -7,7 +7,8 @@ namespace CLVSCPT_pre_compiler
 {
     class Input : CleverScriptLine
     {
-        public Input(string[] text) : base(text)
+        public Input(string[] text)
+            : base(text)
         {
 
         }

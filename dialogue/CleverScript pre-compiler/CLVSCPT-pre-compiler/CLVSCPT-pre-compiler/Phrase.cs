@@ -5,9 +5,10 @@ using System.Text;
 
 namespace CLVSCPT_pre_compiler
 {
-    class Output : CleverScriptLine
+    class Phrase : CleverScriptLine
     {
-        public Output(string[] text)
+
+        public Phrase(string[] text)
             : base(text)
         {
 
