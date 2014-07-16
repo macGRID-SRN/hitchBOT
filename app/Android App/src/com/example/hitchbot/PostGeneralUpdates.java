@@ -23,7 +23,7 @@ public class PostGeneralUpdates {
 	
 	public PostGeneralUpdates()
 	{
-		dQ = new DatabaseQueue(Config.context);
+		dQ = DatabaseQueue.getHelper(Config.context);
 		this.errorLogQueue = dQ.errorLogUploadQueue();
 		this.imgurUploadQueue = dQ.imgurUploadQueue();
 		this.imagePostQueue = dQ.serverImageLinkUploadQueue();

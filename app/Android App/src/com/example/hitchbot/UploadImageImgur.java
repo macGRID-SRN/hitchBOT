@@ -69,7 +69,7 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 			else
 			{
 
-				DatabaseQueue dQ = new DatabaseQueue(context);	
+				DatabaseQueue dQ = DatabaseQueue.getHelper(Config.context);	
 				
 				HttpPostDb hPd = new HttpPostDb(image.toString(),0, 2);
 				dQ.addItemToQueue(hPd);

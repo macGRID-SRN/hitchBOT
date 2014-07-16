@@ -9,9 +9,11 @@ public class ConversationPost {
 	String apiSaid = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechSaid=%s&TimeTaken=%s";
 	String apiHeard = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechHeard=%s&TimeTaken=%s";
 	String apiStart = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&StartTime=%s";
+	DatabaseQueue dQ;
 	
 	public ConversationPost(String spokenPhrase, boolean hitchbotSpoke)
 	{
+		dQ = DatabaseQueue.getHelper(Config.context);
 		if(hitchbotSpoke)
 		{
 			this.hitchbotSaid = spokenPhrase;
@@ -26,7 +28,7 @@ public class ConversationPost {
 	
 	public ConversationPost()
 	{
-		
+		dQ = DatabaseQueue.getHelper(Config.context);
 	}
 	
 	public void conversationStart()
@@ -34,7 +36,6 @@ public class ConversationPost {
 		String id = Config.HITCHBOT_ID;
 		String time = Config.getUtcDate();
 		HttpPostDb hPd = new HttpPostDb(String.format(apiStart, id, time), 2,0);
-		DatabaseQueue dQ = new DatabaseQueue(Config.context);
 		dQ.addItemToQueue(hPd);
 	}
 	
@@ -47,7 +48,6 @@ public class ConversationPost {
 
 		String timeSaid = Config.getUtcDate();
 		HttpPostDb hPd = new HttpPostDb(String.format(apiSaid, id, hitchbotSaid, timeSaid), 2, 0);
-		DatabaseQueue dQ = new DatabaseQueue(Config.context);
 		dQ.addItemToQueue(hPd);
 	}
 	
@@ -59,7 +59,6 @@ public class ConversationPost {
 
 		String timeHeard = Config.getUtcDate();
 		HttpPostDb hPd = new HttpPostDb(String.format(apiHeard, id, hitchbotHeard, timeHeard), 2, 0);
-		DatabaseQueue dQ = new DatabaseQueue(Config.context);
 		dQ.addItemToQueue(hPd);	
 		
 	}
