@@ -25,7 +25,7 @@ public class CleverVariables {
 	public CleverVariables()
 	{
 		this.weather_temperatureC = "";
-		this.weather_temperatureK = "";
+		this.weather_temperatureK = "1337";
 		this.current_city_name = "";
 		this.current_city_mayor_name = "";
 		this.current_city_population = "";

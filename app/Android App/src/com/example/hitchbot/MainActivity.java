@@ -114,6 +114,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	String whatHitchbotHeard;
 	String whatHitchbotSaid;
 	
+	ConversationPost said;
+	ConversationPost heard;
 	//-------------------------------------------------------
 	
 	//edit text and button are for debugging purposes, to be removed when hitchbot is ready for launch
@@ -149,6 +151,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		Intent gattServiceIntent = new Intent(MainActivity.this,
 				BluetoothLeService.class);
 		bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+		
 		locationHandler = new Handler();
 		locationHandler.postDelayed(new Runnable()
 		{
@@ -230,20 +233,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			}
 	
 		}, 5000);		
-	    mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener()
-				{
-			@Override
-		      public void onInit(int status) {
-		         if(status != TextToSpeech.ERROR){
-		             mTts.setLanguage(Locale.US);
-		             mTts.setPitch((float) 0.2);
-		             setTtsListener();
-		            }		
-				
-			}
-			});
 
-		
+
+		startTtsAndSpeechRec();
         captions = new HashMap<String, Integer>();
         //captions.put(KWS_SEARCH, R.string.kws_caption);
         captions.put(MAIN_SEARCH, R.string.forecast_caption);
@@ -256,6 +248,30 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
  
         ((TextView) findViewById(R.id.editText2))
                 .setText("Preparing the recognizer");
+		
+
+		set_poweredOn(false);
+		
+		AudioManager aM = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		aM.setStreamVolume(AudioManager.STREAM_MUSIC, aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+		aM.setSpeakerphoneOn(true);
+	}
+
+	public void startTtsAndSpeechRec()
+	{
+	    mTts = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener()
+				{
+			@Override
+		      public void onInit(int status) {
+		         if(status != TextToSpeech.ERROR){
+		             mTts.setLanguage(Locale.US);
+		             mTts.setPitch((float) 0.2);
+		             setTtsListener();
+		            }		
+				
+			}
+			});
 		
 		 new AsyncTask<Void, Void, Exception>() {
 	            protected Exception doInBackground(Void... params) {
@@ -283,14 +299,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            }
 	            
 		}.execute();
-		set_poweredOn(false);
-		
-		AudioManager aM = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-		aM.setStreamVolume(AudioManager.STREAM_MUSIC, aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-		aM.setSpeakerphoneOn(true);
 	}
-
 	
 	public void firstCleverScript(View view)
 	{
@@ -343,15 +352,22 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		{
 			cleverState = cH.getBotState();
 			Speak(response);	
+			whatHitchbotHeard = message;
 		}
 	}
 	else
 	{
-		Speak(response);	
+		(new ConversationPost()).conversationStart();
+		Speak(response);
+		whatHitchbotHeard = message;
+		
+
 	
 	}
 		}
 	}
+	
+	
 	
 	public void Speak(String message)
 	{
@@ -363,23 +379,26 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    	Log.i("deviceNull", "device isn't null");
 	    	isTalking();
 	    }
+	    whatHitchbotSaid = message;
+	    if(whatHitchbotHeard != null){
+	    	Log.i("FileDeleted", " heard wasn't null" + whatHitchbotHeard);
+
+	    heard = new ConversationPost(whatHitchbotHeard, false);
+	    }
+	    if(whatHitchbotSaid != null){
+	    	Log.i("FileDeleted", "said wasn't null");
+	    said = new ConversationPost(whatHitchbotSaid, true);
+	    }
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 	}
+	
 	
 	@Override
 	protected void onPause()
 	{
-	if (mTts != null)
-	{
-		mTts.stop();
-		mTts.shutdown();
-	}
-	if (recognizer != null)
-	{
-		recognizer.stop();
-		recognizer.cancel();
-	}
-	super.onPause();
+		this.finish();
+		System.exit(0);
+		super.onPause();
 	}
 	
 	@Override
@@ -391,9 +410,18 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 						BluetoothAdapter.ACTION_REQUEST_ENABLE);
 				startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 			}
-
+	    	startTtsAndSpeechRec();
+	    	//setUpCamera();
 			registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
 	    }
+	}
+	
+	@Override
+	public void onStop()
+	{
+		this.finish();
+		System.exit(0);
+		super.onStop();
 	}
 	
 	private void setTtsListener() {
