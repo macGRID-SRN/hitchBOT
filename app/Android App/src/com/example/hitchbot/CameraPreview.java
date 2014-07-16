@@ -65,7 +65,6 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 		public void onAutoFocus(boolean success, Camera camera) {
 			camera.autoFocus(null);
 			camera.takePicture(null, null, context.jpegHandler);
-			camera.release();
 		}
 		
 	};

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,13 +32,11 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "hitchBOT.db";
 	private static final int DATABASE_VERSION = 1;
 	
-	private SQLiteDatabase database;
-	private Context context;
+	private static final ReadWriteLock rwLock = new ReentrantReadWriteLock(true);
+	private static DatabaseQueue db;
 	
 	public DatabaseQueue(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		this.context = context;
-		// TODO Auto-generated constructor stub
 	}
 	
 	 private static final String HTTPPOST_TABLE_CREATE = "CREATE TABLE "
@@ -58,6 +58,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	
 	public void launchMissles()
 	{
+		//dangerous use only in extreme circumstances
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_HTTPPOSTQUEUE, null, null);
 		db.delete(TABLE_ERRORLOG, null, null);
@@ -101,101 +102,213 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	}
 	public List<HttpPostDb> serverImageLinkUploadQueue()
 	{
+		
 		List<HttpPostDb> databasePosts = new ArrayList<HttpPostDb>();
-		String queryString = "SELECT * FROM " + TABLE_HTTPPOSTQUEUE + " WHERE " + COLUMN_UPLOAD_TO_SERVER+ " = 0";
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(queryString, null);
-		if(cursor.moveToFirst())
+		SQLiteDatabase database = null;
+		try
 		{
-			do{
-				HttpPostDb htpD = new HttpPostDb();
-				htpD.setPostID(Integer.parseInt(cursor.getString(0)));
-				htpD.setURI(cursor.getString(1));
-				htpD.setUploadToImgurSuccessful(Integer.parseInt(cursor.getString(2)));
-				htpD.setUploadToServerSuccessful(Integer.parseInt(cursor.getString(3)));
-				htpD.setCreationDate(cursor.getString(4));
-				
-				databasePosts.add(htpD);
-				
-			}while(cursor.moveToNext());
+			beginReadLock();
+			String queryString = "SELECT * FROM " + TABLE_HTTPPOSTQUEUE + " WHERE " + COLUMN_UPLOAD_TO_SERVER+ " = 0";
+			SQLiteDatabase db = this.getReadableDatabase();
+			Cursor cursor = db.rawQuery(queryString, null);
+			if(cursor.moveToFirst())
+			{
+				do{
+					HttpPostDb htpD = new HttpPostDb();
+					htpD.setPostID(Integer.parseInt(cursor.getString(0)));
+					htpD.setURI(cursor.getString(1));
+					htpD.setUploadToImgurSuccessful(Integer.parseInt(cursor.getString(2)));
+					htpD.setUploadToServerSuccessful(Integer.parseInt(cursor.getString(3)));
+					htpD.setCreationDate(cursor.getString(4));
+					
+					databasePosts.add(htpD);
+					
+				}while(cursor.moveToNext());
+				cursor.close();
+
+			}
+		}catch (Exception e)
+		{
+			
 		}
-		cursor.close();
-		db.close();
+		finally{
+			if(database!= null)
+			{
+	               try
+	                {
+	           		database.close();
+	                }
+	                catch (Exception e) {}
+			}
+			endReadLock();
+		}
 		return databasePosts;
+		
 	}
 	
 	public List<ErrorLog> errorLogUploadQueue()
 	{
+
 		List<ErrorLog> eL = new ArrayList<ErrorLog>();
-		String queryString = "SELECT * FROM " + TABLE_ERRORLOG + " WHERE " + COLUMN_ERROR_UPLOAD_TO_SERVER + " = 0";
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor cursor = db.rawQuery(queryString, null);
-		if(cursor.moveToFirst())
+		SQLiteDatabase database = null;
+		try
 		{
-			do
+			beginReadLock();
+			String queryString = "SELECT * FROM " + TABLE_ERRORLOG + " WHERE " + COLUMN_ERROR_UPLOAD_TO_SERVER + " = 0";
+			database = this.getReadableDatabase();
+			Cursor cursor = database.rawQuery(queryString, null);
+			if(cursor.moveToFirst())
 			{
-				ErrorLog errorLog = new ErrorLog();
-				errorLog.setiD(Integer.parseInt(cursor.getString(0)));
-				errorLog.setErrorMessage(cursor.getString(1));
-				errorLog.setSuccessfulUpload(Integer.parseInt(cursor.getString(2)));
-				errorLog.setCreationDate(cursor.getString(3));
-				eL.add(errorLog);
-				
-			}while(cursor.moveToNext());
+				do
+				{
+					ErrorLog errorLog = new ErrorLog();
+					errorLog.setiD(Integer.parseInt(cursor.getString(0)));
+					errorLog.setErrorMessage(cursor.getString(1));
+					errorLog.setSuccessfulUpload(Integer.parseInt(cursor.getString(2)));
+					errorLog.setCreationDate(cursor.getString(3));
+					eL.add(errorLog);
+					
+				}while(cursor.moveToNext());
+				cursor.close();
+			}
+		}catch (Exception e)
+		{
+			
 		}
-		cursor.close();
-		db.close();
+		finally{
+			if(database!= null)
+			{
+	               try
+	                {
+	           		database.close();
+	                }
+	                catch (Exception e) {}
+			}
+			endReadLock();
+		}
 		return eL;
+
 	}
 	
 	public void markAsUploadedToImgur(HttpPostDb httpPost)
 	{
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_HTTPPOSTQUEUE, COLUMN_POSTID + " = " + httpPost.getPostID(), null);
-
 		//String where = COLUMN_POSTID + " = " + httpPost.getPostID();
 		//ContentValues con = new ContentValues();
 		//con.put(COLUMN_UPLOAD_TO_IMGUR, 1);
 		//db.update(TABLE_HTTPPOSTQUEUE, con, where, null);
-		db.close();
+		SQLiteDatabase database = null;
+
+		try
+		{
+			beginWriteLock();
+			database = this.getWritableDatabase();
+			database.delete(TABLE_HTTPPOSTQUEUE, COLUMN_POSTID + " = " + httpPost.getPostID(), null);
+		}catch (Exception e)
+		{
+			
+		}
+		finally{
+			if(database!= null)
+			{
+	               try
+	                {
+	                    database.close();
+	                }
+	                catch (Exception e) {}
+			}
+			endWriteLock();
+		}
 	}
 	
 	public void markAsUploadedToServer(HttpPostDb httpPost)
-	{
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_HTTPPOSTQUEUE, COLUMN_POSTID + " = " + httpPost.getPostID(), null);
+	{		
 
 	//	String where = COLUMN_POSTID + " = " + httpPost.getPostID();
 	//	ContentValues con = new ContentValues();
 	//	con.put(COLUMN_UPLOAD_TO_SERVER, 1);
-	//	db.update(TABLE_HTTPPOSTQUEUE, con, where, null);	
-		db.close();
+	//	db.update(TABLE_HTTPPOSTQUEUE, con, where, null);
+		SQLiteDatabase database = null;
+
+		try
+		{
+			beginWriteLock();
+			database = this.getWritableDatabase();
+			database.delete(TABLE_HTTPPOSTQUEUE, COLUMN_POSTID + " = " + httpPost.getPostID(), null);
+		}catch (Exception e)
+		{
+			
+		}
+		finally{
+			if(database!= null)
+			{
+	               try
+	                {
+	                    database.close();
+	                }
+	                catch (Exception e) {}
+			}
+			endWriteLock();
+		}
 	}
 	
 	public void markAsUploadedToServer(ErrorLog errorLog)
 	{
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_ERRORLOG, COLUMN_ERRORID + " = " + errorLog.getiD(), null);
-		//String where = COLUMN_ERRORID + " = " + errorLog.getiD();
-		//ContentValues con = new ContentValues();
-		//con.put(COLUMN_ERROR_UPLOAD_TO_SERVER, 1);
-		//db.update(TABLE_ERRORLOG, con, where, null);	
-		db.close();
+		SQLiteDatabase database = null;
+
+		
+		try
+		{
+			beginWriteLock();
+			database = this.getWritableDatabase();
+			database.delete(TABLE_ERRORLOG, COLUMN_ERRORID + " = " + errorLog.getiD(), null);
+		}catch (Exception e)
+		{
+			
+		}
+		finally{
+			if(database!= null)
+			{
+	               try
+	                {
+	                    database.close();
+	                }
+	                catch (Exception e) {}
+			}
+			endWriteLock();
+		}
 	}
 	
 	public void addItemToQueue(HttpPostDb httpPost)
 	{
-		database = this.getWritableDatabase();
-		ContentValues newRecord = new ContentValues();
-		
-		newRecord.put(COLUMN_URI, httpPost.getURI());
-		newRecord.put(COLUMN_UPLOAD_TO_SERVER, httpPost.getUploadToServerSuccessful());
-		newRecord.put(COLUMN_UPLOAD_TO_IMGUR, httpPost.getUploadToImgurSuccessful());
-		newRecord.put(COLUMN_DATE, getDateTime());
-		
-		database.insert(TABLE_HTTPPOSTQUEUE, null, newRecord);
-		//can't forget to close it
-		database.close();
+		SQLiteDatabase database = null;
+
+		try
+		{
+			beginWriteLock();
+			database = this.getWritableDatabase();
+			ContentValues newRecord = new ContentValues();
+			
+			newRecord.put(COLUMN_URI, httpPost.getURI());
+			newRecord.put(COLUMN_UPLOAD_TO_SERVER, httpPost.getUploadToServerSuccessful());
+			newRecord.put(COLUMN_UPLOAD_TO_IMGUR, httpPost.getUploadToImgurSuccessful());
+			newRecord.put(COLUMN_DATE, getDateTime());
+			
+			database.insert(TABLE_HTTPPOSTQUEUE, null, newRecord);
+		}catch (Exception e)
+		{
+			
+		}
+		finally{
+			if(database!= null)
+			{
+	               try
+	                {
+	                    database.close();
+	                }
+	                catch (Exception e) {}
+			}
+			endWriteLock();
+		}
 		
 	}
 	
@@ -208,6 +321,11 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	
 	public void addItemToQueue(ErrorLog errorLog)
 	{
+		SQLiteDatabase database = null;
+
+		try
+		{
+			beginWriteLock();
 		database = this.getWritableDatabase();
 		ContentValues newRecord = new ContentValues();
 		
@@ -216,7 +334,49 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 		newRecord.put(COLUMN_DATE, getDateTime());
 		
 		database.insert(TABLE_ERRORLOG, null, newRecord);
-		//can't forget to close it
-		database.close();
+		}catch (Exception e)
+		{
+			
+		}
+		finally{
+			if(database!= null)
+			{
+	               try
+	                {
+	                    database.close();
+	                }
+	                catch (Exception e) {}
+			}
+			endWriteLock();
+		}
 	}
+	
+    private static void beginReadLock()
+    {
+        rwLock.readLock().lock();
+    }
+
+    private static void endReadLock()
+    {
+        rwLock.readLock().unlock();
+    }
+
+    private static void beginWriteLock()
+    {
+        rwLock.writeLock().lock();
+    }
+
+    private static void endWriteLock()
+    {
+        rwLock.writeLock().unlock();
+    }
+    
+    public static synchronized DatabaseQueue getHelper(Context context)
+    {
+        if (db == null)
+            db = new DatabaseQueue(context);
+
+        return db;
+    }
+	
 }

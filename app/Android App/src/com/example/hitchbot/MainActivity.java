@@ -117,6 +117,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	ConversationPost said;
 	ConversationPost heard;
+	
+	private DatabaseQueue dQ;
 	//-------------------------------------------------------
 	
 	//edit text and button are for debugging purposes, to be removed when hitchbot is ready for launch
@@ -137,10 +139,11 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		
 		@Override
 		public void uncaughtException(Thread thread, Throwable ex) {
-			Config.context.finish();			
+			System.exit(2);
 		}
 	});
-						
+	
+	dQ = DatabaseQueue.getHelper(this);
 		
 		//j0zo6727bb5bea8c76abe674e05a49bdc08e2
 		cH = new CleverHelper("GeneralFix.db", "2gx39e88f33a1e09b93bf5a04c31b6605524a", this);
@@ -155,7 +158,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			Toast.makeText(this, "Ble not supported", Toast.LENGTH_SHORT)
 					.show();
 			ErrorLog eL = new ErrorLog("BLE not supported (somehow turned off...)", 0);
-            DatabaseQueue dQ = new DatabaseQueue(Config.context);
             dQ.addItemToQueue(eL);
 			finish();
 		}
@@ -302,7 +304,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	                    ((TextView) findViewById(R.id.editText2))
 	                            .setText("Failed to init recognizer " + result);
 	                    ErrorLog eL = new ErrorLog("Recognizer failed: " + result, 0);
-	                    DatabaseQueue dQ = new DatabaseQueue(Config.context);
 	                    dQ.addItemToQueue(eL);
 	                } else {
 	                	MAIN_SEARCH = THIRD_SEARCH;
@@ -408,12 +409,13 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	@Override
 	protected void onPause()
 	{
-		this.finish();
+		System.exit(2);
 		super.onPause();
 	}
 	
 	@Override
 	public void onResume() {
+		System.exit(2);
 	    super.onResume();  
 	    {
 
@@ -423,8 +425,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	@Override
 	public void onStop()
 	{
-		this.finish();
-		super.onStop();
+		System.exit(2);
 	}
 	
 	private void setTtsListener() {
@@ -444,7 +445,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            public void onError(String utteranceId)
 	            {
 	            	ErrorLog eL = new ErrorLog("Tts error: " + utteranceId, 0);
-                    DatabaseQueue dQ = new DatabaseQueue(Config.context);
                     dQ.addItemToQueue(eL);
 	            }
 
