@@ -54,7 +54,14 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(HTTPPOST_TABLE_CREATE);
 		db.execSQL(ERRORLOG_TABLE_CREATE);
-		db.execSQL("DELETE * FROM " + TABLE_HTTPPOSTQUEUE);
+	}
+	
+	public void launchMissles()
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.delete(TABLE_HTTPPOSTQUEUE, null, null);
+		db.delete(TABLE_ERRORLOG, null, null);
+		db.close();
 	}
 
 	@Override

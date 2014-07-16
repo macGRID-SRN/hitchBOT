@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.Thread.UncaughtExceptionHandler;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -77,7 +78,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     private ImageView imageResult;
     private FrameLayout frameNew;
     private boolean takePicture = false;
-    
+    private boolean ok = false;
 	private CleverHelper cH;
 	private String cleverState;
 	private boolean _poweredOn = true;
@@ -130,8 +131,19 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		
 		Config.context = this;
 		editText = (EditText)findViewById(R.id.editText1);
+		
+		
+	Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+		
+		@Override
+		public void uncaughtException(Thread thread, Throwable ex) {
+			Config.context.finish();			
+		}
+	});
+						
+		
 		//j0zo6727bb5bea8c76abe674e05a49bdc08e2
-		cH = new CleverHelper("finalCBC.db", "j0zo6727bb5bea8c76abe674e05a49bdc08e2", this);
+		cH = new CleverHelper("GeneralFix.db", "2gx39e88f33a1e09b93bf5a04c31b6605524a", this);
 		final BluetoothManager mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
 		mBluetoothAdapter = mBluetoothManager.getAdapter();
 		if(mBluetoothAdapter != null)
@@ -333,7 +345,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		 * This is done to hopefully improve recognition in situations with a lot of
 		 * background noise (ex/ car) */
 		Log.i("CleverScript", cH.cs.retrieveBotState());
-		if(message.isEmpty())
+		if(message.isEmpty() || !ok)
 		{
         	switchSearch(MAIN_SEARCH);
 		}
@@ -341,7 +353,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		{
 		String response = cH.cs.sendMessage(message);
 		Log.i("CleverScript", cH.getAccuracy());
-	if(!cH.getAccuracy().isEmpty())
+	if(!cH.getAccuracy().isEmpty() )
 	{
 		if(Integer.parseInt(cH.getAccuracy()) < Config.THRESHHOLD_ACCURACY)
 		{
@@ -387,7 +399,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    }
 	    if(whatHitchbotSaid != null){
 	    	Log.i("FileDeleted", "said wasn't null");
-	    said = new ConversationPost(whatHitchbotSaid, true);
+	//    said = new ConversationPost(whatHitchbotSaid, true);
 	    }
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 	}
@@ -397,7 +409,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	protected void onPause()
 	{
 		this.finish();
-		System.exit(0);
 		super.onPause();
 	}
 	
@@ -405,14 +416,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	public void onResume() {
 	    super.onResume();  
 	    {
-	    	if (!mBluetoothAdapter.isEnabled()) {
-				Intent enableBtIntent = new Intent(
-						BluetoothAdapter.ACTION_REQUEST_ENABLE);
-				startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-			}
-	    	startTtsAndSpeechRec();
-	    	//setUpCamera();
-			registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+
 	    }
 	}
 	
@@ -420,7 +424,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	public void onStop()
 	{
 		this.finish();
-		System.exit(0);
 		super.onStop();
 	}
 	
@@ -492,7 +495,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     File modelsDir = new File(assetsDir, "models");
     recognizer = defaultSetup()
             .setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-            .setDictionary(new File(modelsDir, "dict/0211.dic"))
+            .setDictionary(new File(modelsDir, "dict/7400.dic"))
             .setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
             .getRecognizer();
     recognizer.addListener(this);
@@ -504,7 +507,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     // Create language model search.
     File languageModel1 = new File(modelsDir, "lm/0211.dmp");
     File languageModel2 = new File(modelsDir, "lm/6392.dmp");
-    File languageModel3 = new File(modelsDir, "lm/3665.dmp");
+    File languageModel3 = new File(modelsDir, "lm/7400.dmp");
   //  File languageModel = new File(modelsDir, "lm/7788.dmp");
     recognizer.addNgramSearch(FIRST_SEARCH, languageModel1);
     recognizer.addNgramSearch(THIRD_SEARCH, languageModel3);
@@ -532,7 +535,11 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			String text = hypothesis.getHypstr();
 			//Limit the amount of words it will listen for (to prevent convo
 			//from hanging
-			if (text.split("\\s+").length >= 15)
+			if (text.split("\\s+").length >= 5 && !ok)
+			{
+	            getResponseFromCleverscript(text, cH);
+			}
+			if (text.split("\\s+").length >= 8 && ok)
 			{
 	            getResponseFromCleverscript(text, cH);
 			}
@@ -543,12 +550,19 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 	@Override 
 	public void onResult(Hypothesis hypothesis) {
+		
 
         ((TextView) findViewById(R.id.editText2)).setText("");
-        if (hypothesis != null) {
+        if (hypothesis != null ) {
             String text = hypothesis.getHypstr();
+    		if(text.contains("GOOD LUCK GOOD LUCK"))
+    		{
+    			ok = true;
+    		}
+    		
             makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
-            getResponseFromCleverscript(text, cH);		
+            getResponseFromCleverscript(text, cH);
+    	
 	}
 
 
