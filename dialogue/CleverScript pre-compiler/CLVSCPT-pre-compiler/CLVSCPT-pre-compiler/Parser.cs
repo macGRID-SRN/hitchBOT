@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace CLVSCPT_pre_compiler
 {
@@ -67,7 +68,7 @@ namespace CLVSCPT_pre_compiler
             while (count < FileContents.Length);
 
             preCompiled.Nodes = conversationNodes;
-            CreateVocab("test");
+            CreateLanguageModel("test");
             return preCompiled;
         }
 
@@ -75,11 +76,35 @@ namespace CLVSCPT_pre_compiler
         {
             CreateVocab(fileName);
             CreateIDNgram(fileName);
+            CreateARPA(fileName);
+            CreateDMP(fileName);
+            CreateHash(fileName);
+        }
+
+        public void CreateHash(string fileName)
+        {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(@"binary\sync\" + fileName + ".DMP"))
+                {
+                    File.WriteAllText(@"binary\sync\" + fileName + ".md5", BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower());
+                }
+            }
+        }
+
+        public void CreateDMP(string fileNameIn)
+        {
+            RunCommandLine(@"binary\sphinx_lm_convert -i binary\sync\" + fileNameIn + @".arpa -o binary\sync\" + fileNameIn + @".DMP");
         }
 
         public void CreateIDNgram(string fileNameIn)
         {
-            RunCommandLine(@"binary\text2idngram -vocab binary\sync" + fileNameIn + @".vocab -idngram binary\sync\" + fileNameIn + @".idngram < binary\" + fileNameIn + @".txt");
+            RunCommandLine(@"binary\text2idngram -vocab binary\sync\" + fileNameIn + @".vocab -idngram binary\sync\" + fileNameIn + @".idngram < binary\" + fileNameIn + @".txt");
+        }
+
+        public void CreateARPA(string fileNameIn)
+        {
+            RunCommandLine(@"binary\idngram2lm -vocab_type 0 -vocab binary\sync\" + fileNameIn + @".vocab -idngram binary\sync\" + fileNameIn + @".idngram -arpa binary\sync\" + fileNameIn + @".arpa");
         }
 
         public void CreateVocab(string fileNameIn)
