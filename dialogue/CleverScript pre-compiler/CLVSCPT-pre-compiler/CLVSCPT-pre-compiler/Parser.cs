@@ -93,6 +93,7 @@ namespace CLVSCPT_pre_compiler
 
 
             //CreateLanguageModel("test");
+            BuildCorpus(preCompiled);
             return preCompiled;
         }
 
@@ -112,19 +113,19 @@ namespace CLVSCPT_pre_compiler
         {
             foreach (Input myInput in conversation.AlwaysListeningSorted)
             {
-                Phrase2String(myInput.text, conversation.CorpusLines);
+                Phrase2String(myInput.text, conversation.CorpusLines, conversation);
             }
 
             foreach (ConversationNode node in conversation.Nodes)
             {
                 foreach (Input myInput in node.sortedInputs)
                 {
-                    Phrase2String(myInput.text, conversation.CorpusLines);
+                    Phrase2String(myInput.text, conversation.CorpusLines, conversation);
                 }
             }
         }
 
-        public void Phrase2String(string input, List<string> tempList)
+        public void Phrase2String(string input, List<string> tempList, Conversation conversation)
         {
             if (ContainsOptionalText(input))
             {
@@ -132,11 +133,15 @@ namespace CLVSCPT_pre_compiler
             }
             else if (ContainsAnyPhrase(input))
             {
-                //inject phrase and recurse
+                string phraseName = getPhrase(input);
 
+                foreach(Phrase myPhrase in conversation.PhraseLookup[phraseName]){
+
+                Phrase2String(putPhrase(input, phraseName, myPhrase.text), tempList, conversation);
+                }
                 if (ContainsOptionalPhrase(input))
                 {
-                    //remove phrase and recurse
+                    Phrase2String(putPhrase(input, phraseName, ""), tempList, conversation);
                 }
             }
             else
@@ -234,9 +239,9 @@ namespace CLVSCPT_pre_compiler
 
         public string getPhrase(string phr)
         {
-            string regexDoubleParen = @"\(\(([^]]*)\)\)";
+            string regexDoubleParen = @"\(\(([^]]*?)\)\)";
             List<string> phrases = Regex.Matches(phr, regexDoubleParen).Cast<Match>().Select(x => x.Groups[1].Value).ToList();
-            if(phrases[0].Contains("!") || phrases.Contains("?"))
+            if (phrases[0].Contains("!") || phrases.Contains("?"))
             {
                 phrases[0].Replace("!", "");
                 phrases[0].Replace("?", "");
@@ -244,24 +249,24 @@ namespace CLVSCPT_pre_compiler
             return phrases[0];
 
         }
-        public string putPhrase(string originalPhrase, string originalWord, string replacement)
+        public string putPhrase(string originalText, string phraseName, string replacement)
         {
             bool done = false;
-            string[] termList = originalPhrase.Split(' ');
+            string[] termList = originalText.Split(' ');
             StringBuilder sb = new StringBuilder();
-            foreach(string term in termList )
+            foreach (string term in termList)
             {
                 string testString = term.Replace("!", "");
                 testString = testString.Replace("?", "");
 
-                if(testString.Contains("((" + originalWord+"))") && !done )
+                if (testString.Contains("((" + phraseName + "))") && !done)
                 {
-                    sb.Append(testString.Replace("((" + originalWord+"))", replacement));
+                    sb.Append(testString.Replace("((" + phraseName + "))", replacement) + " ");
                     done = true;
                 }
                 else
                 {
-                    sb.Append(term);
+                    sb.Append(term + " ");
                 }
             }
             return sb.ToString();
