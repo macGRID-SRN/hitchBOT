@@ -129,7 +129,10 @@ namespace CLVSCPT_pre_compiler
         {
             if (ContainsOptionalText(input))
             {
-                //remove and replace - recurse
+                string optionalText = getPhraseSingle(input);
+                Phrase2String(putPhraseSingle(input, optionalText, optionalText), tempList, conversation);
+                Phrase2String(putPhraseSingle(input, optionalText, ""), tempList, conversation);
+
             }
             else if (ContainsAnyPhrase(input))
             {
@@ -275,7 +278,7 @@ namespace CLVSCPT_pre_compiler
 
         public string getPhraseSingle(string phr)
         {
-            string regexDoubleParen = @"\(([^]]*)\)";
+            string regexDoubleParen = @"\(([^]]*?)\)";
             List<string> phrases = Regex.Matches(phr, regexDoubleParen).Cast<Match>().Select(x => x.Groups[1].Value).ToList();
             if (phrases[0].Contains("!") || phrases.Contains("?"))
             {
