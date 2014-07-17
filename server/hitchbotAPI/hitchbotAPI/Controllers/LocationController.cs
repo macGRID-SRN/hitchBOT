@@ -40,6 +40,34 @@ namespace hitchbotAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Redirects to a static GMAPS image which is the total path of a HitchBot. Note: We can only build this map 25,000 times per day.
+        /// </summary>
+        /// <param name="HitchBotID">The HitchBot to get the route of.</param>
+        /// <returns>Redirects to the proper link.</returns>
+        //[HttpGet]
+        //public HttpResponseMessage GetGoogleMapsRouteNew(int HitchBotNewID)
+        //{
+        //    using (var db = new Models.Database())
+        //    {
+        //        var response = Request.CreateResponse(HttpStatusCode.Moved);
+        //        var mapsURL = db.StaticMaps.Where(sm => sm.HitchBot.ID == HitchBotNewID);
+        //        if (mapsURL.Count() > 0)
+        //        {
+        //            var lastGenerated = mapsURL.OrderByDescending(l => l.TimeGenerated).First();
+        //            if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(1))
+        //            {
+        //                response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotNewID)));
+        //            }
+        //            else
+        //                response.Headers.Location = new Uri(GetStaticMapURL(lastGenerated.URL));
+        //        }
+        //        else
+        //            response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotNewID)));
+        //        return response;
+        //    }
+        //}
+
         private string GetStaticMapURL(string poly)
         {
             return Helpers.LocationHelper.gmapsString + poly + Helpers.LocationHelper.gAPIkey;
