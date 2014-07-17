@@ -89,7 +89,7 @@ namespace CLVSCPT_pre_compiler
             preCompiled.SortInputs();
 
             preCompiled.Nodes = conversationNodes;
-
+            preCompiled.PhraseLookup = PhraseLookup;
 
 
             //CreateLanguageModel("test");
@@ -108,9 +108,20 @@ namespace CLVSCPT_pre_compiler
             return myPhrase;
         }
 
-        public void BuildCorpus()
+        public void BuildCorpus(Conversation conversation)
         {
+            foreach (Input myInput in conversation.AlwaysListeningSorted)
+            {
+                Phrase2String(myInput.text, conversation.CorpusLines);
+            }
 
+            foreach (ConversationNode node in conversation.Nodes)
+            {
+                foreach (Input myInput in node.sortedInputs)
+                {
+                    Phrase2String(myInput.text, conversation.CorpusLines);
+                }
+            }
         }
 
         public void Phrase2String(string input, List<string> tempList)
@@ -129,6 +140,7 @@ namespace CLVSCPT_pre_compiler
                 }
             }
             else
+                //add new corpus line
                 tempList.Add(input);
 
         }

@@ -11,7 +11,8 @@ namespace CLVSCPT_pre_compiler
         public List<Input> AlwaysListening = new List<Input>(); //IM ALWAYS WATCHING YOU MIKE WISOWSKY -Close enough
         public List<Input> AlwaysListeningSorted = new List<Input>();
         public List<ConversationNode> Nodes;
-        public List<Phrase> Phrases;
+        public Dictionary<string, List<Phrase>> PhraseLookup;
+        public List<string> CorpusLines = new List<string>();
 
         public Conversation()
         {
