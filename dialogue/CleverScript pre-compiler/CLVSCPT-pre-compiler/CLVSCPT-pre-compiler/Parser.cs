@@ -267,5 +267,41 @@ namespace CLVSCPT_pre_compiler
             return sb.ToString();
 
         }
+
+        public string getPhraseSingle(string phr)
+        {
+            string regexDoubleParen = @"\(([^]]*)\)";
+            List<string> phrases = Regex.Matches(phr, regexDoubleParen).Cast<Match>().Select(x => x.Groups[1].Value).ToList();
+            if (phrases[0].Contains("!") || phrases.Contains("?"))
+            {
+                phrases[0].Replace("!", "");
+                phrases[0].Replace("?", "");
+            }
+            return phrases[0];
+
+        }
+        public string putPhraseSingle(string originalPhrase, string originalWord, string replacement)
+        {
+            bool done = false;
+            string[] termList = originalPhrase.Split(' ');
+            StringBuilder sb = new StringBuilder();
+            foreach (string term in termList)
+            {
+                string testString = term.Replace("!", "");
+                testString = testString.Replace("?", "");
+
+                if (testString.Contains("(" + originalWord + ")") && !done)
+                {
+                    sb.Append(testString.Replace("(" + originalWord + ")", replacement));
+                    done = true;
+                }
+                else
+                {
+                    sb.Append(term);
+                }
+            }
+            return sb.ToString();
+
+        }
     }
 }
