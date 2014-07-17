@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace CLVSCPT_pre_compiler
 {
@@ -15,6 +16,8 @@ namespace CLVSCPT_pre_compiler
         {
             this.FileContents = File.ReadAllLines(fileName);
         }
+
+        public List<string> CorpusLines = new List<string>();
 
         public Conversation PreCompile()
         {
@@ -75,8 +78,43 @@ namespace CLVSCPT_pre_compiler
             preCompiled.SortInputs();
 
             preCompiled.Nodes = conversationNodes;
-            CreateLanguageModel("test");
+
+
+
+            //CreateLanguageModel("test");
             return preCompiled;
+        }
+
+        public void BuildCorpus()
+        {
+
+        }
+
+        public List<string> Phrase2String(string input, List<string> tempList)
+        {
+            if (ContainsPhrase(input))
+            {
+
+            }
+
+
+            return tempList;
+        }
+
+        public bool ContainsPhrase(string textInput)
+        {
+            Regex myRegex = new Regex(@"\(\((.+?)\)\)");
+
+
+            return myRegex.IsMatch(textInput);
+        }
+
+        public bool ContainsOptionalText(string textInput)
+        {
+            Regex myRegex = new Regex(@"\(\((.+?)\)\)");
+
+
+            return myRegex.IsMatch(textInput);
         }
 
         public void CreateLanguageModel(string fileName)
