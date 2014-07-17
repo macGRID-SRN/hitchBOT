@@ -11,7 +11,14 @@ namespace CLVSCPT_pre_compiler
         public Phrase(string[] text)
             : base(text)
         {
+            this.type = "phrase";
+        }
 
+        public Phrase(string[] text, string phraseText)
+            : base(text)
+        {
+            this.text = phraseText;
+            this.type = "phrase";
         }
     }
 }

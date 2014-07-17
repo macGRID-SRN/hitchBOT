@@ -34,11 +34,12 @@ namespace CLVSCPT_pre_compiler
             List<Input> masterInputs = new List<Input>();
             List<Input> inputs = null;
             Output nodeOutput = null;
-            Dictionary<string, Phrase> PhraseLookup = new Dictionary<string, Phrase>();
+            Dictionary<string, List<Phrase>> PhraseLookup = new Dictionary<string, List<Phrase>>();
 
             count++;
             //probably could clean this up with reflection..
             string lastMatch = "output";
+            string lastLabel = "";
             do
             {
                 string[] temp = FileContents[count].Split('\t');
@@ -62,7 +63,17 @@ namespace CLVSCPT_pre_compiler
                         break;
 
                     case "phrase":
-                        PhraseLookup.Add(temp[1], new Phrase(temp));
+                        lastMatch = "phrase";
+                        if (!PhraseLookup.ContainsKey(string.IsNullOrWhiteSpace(temp[1]) ? lastLabel : temp[1]))
+                        {
+                            PhraseLookup.Add(temp[1], ParsePhrases(temp));
+                        }
+                        else
+                        {
+                            temp[1] = lastLabel;
+                            PhraseLookup[lastLabel].AddRange(ParsePhrases(temp));
+                        }
+                        lastLabel = temp[1];
                         break;
                 }
 
@@ -83,6 +94,18 @@ namespace CLVSCPT_pre_compiler
 
             //CreateLanguageModel("test");
             return preCompiled;
+        }
+
+        public List<Phrase> ParsePhrases(string[] text)
+        {
+            List<Phrase> myPhrase = new List<Phrase>();
+
+            foreach (string temp in text[3].Split('/'))
+            {
+                myPhrase.Add(new Phrase(text, temp));
+            }
+
+            return myPhrase;
         }
 
         public void BuildCorpus()
