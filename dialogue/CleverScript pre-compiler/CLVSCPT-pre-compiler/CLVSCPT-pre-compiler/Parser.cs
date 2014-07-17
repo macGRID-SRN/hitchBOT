@@ -90,15 +90,32 @@ namespace CLVSCPT_pre_compiler
 
         }
 
-        public List<string> Phrase2String(string input, List<string> tempList)
+        public void Phrase2String(string input, List<string> tempList)
         {
-            if (ContainsPhrase(input))
+            if (ContainsOptionalText(input))
             {
-
+                //remove and replace - recurse
             }
+            else if (ContainsAnyPhrase(input))
+            {
+                //inject phrase and recurse
+
+                if (ContainsOptionalPhrase(input))
+                {
+                    //remove phrase and recurse
+                }
+            }
+            else
+                tempList.Add(input);
+
+        }
+
+        public bool ContainsAnyPhrase(string textInput)
+        {
+            Regex myRegex = new Regex(@"\(\((\!?\??)(.+?)\)\)");
 
 
-            return tempList;
+            return myRegex.IsMatch(textInput);
         }
 
         public bool ContainsPhrase(string textInput)
@@ -111,7 +128,15 @@ namespace CLVSCPT_pre_compiler
 
         public bool ContainsOptionalText(string textInput)
         {
-            Regex myRegex = new Regex(@"\(\((.+?)\)\)");
+            Regex myRegex = new Regex(@"\((\?.+?)\)");
+
+
+            return myRegex.IsMatch(textInput);
+        }
+
+        public bool ContainsOptionalPhrase(string textInput)
+        {
+            Regex myRegex = new Regex(@"\(\((\!?\?)(.+?)\)\)");
 
 
             return myRegex.IsMatch(textInput);
