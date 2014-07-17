@@ -10,7 +10,13 @@ namespace CLVSCPT_pre_compiler
         public Input(string[] text)
             : base(text)
         {
+            this.type = "input";
+        }
 
+        public Input SortCopy()
+        {
+            Input other = (Input)this.MemberwiseClone();
+            return other;
         }
     }
 }

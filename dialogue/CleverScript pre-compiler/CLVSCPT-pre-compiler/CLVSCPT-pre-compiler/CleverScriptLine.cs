@@ -7,17 +7,19 @@ namespace CLVSCPT_pre_compiler
 {
     class CleverScriptLine
     {
-        string label;
-        string description;
-        string text;
-        string gotoLabel;
-        string ifs;
-        string learn;
-        string mode;
-        int accuracy;
+        public string label;
+        public string description;
+        public string text;
+        public string gotoLabel;
+        public string ifs;
+        public string learn;
+        public string mode;
+        public string type;
+        public int accuracy;
 
         public CleverScriptLine(string[] text)
         {
+            this.type = text[0];
             this.label = text[1];
             this.description = text[2];
             this.text = text[3];
@@ -27,10 +29,20 @@ namespace CLVSCPT_pre_compiler
             if (!string.IsNullOrWhiteSpace(text[7]))
                 this.accuracy = int.Parse(text[7]);
             else
-                this.accuracy = 0;
+                this.accuracy = 75;
             this.mode = text[8];
         }
 
+        public override string ToString()
+        {
+            return base.ToString();
+        }
 
+        public string[] getBaseText()
+        {
+            return new string[]{
+                this.type, this.label,this.description,this.text,this.ifs,this.learn,this.gotoLabel,this.accuracy.ToString(),this.mode
+            };
+        }
     }
 }

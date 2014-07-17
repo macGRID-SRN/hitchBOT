@@ -28,10 +28,10 @@ namespace CLVSCPT_pre_compiler
             } while (FileContents[count + 1].Split('\t')[0] != "output");
 
             List<ConversationNode> conversationNodes = new List<ConversationNode>();
-
+            List<Input> masterInputs = new List<Input>();
             List<Input> inputs = null;
             Output nodeOutput = null;
-            List<Phrase> Phrases = new List<Phrase>();
+            Dictionary<string, Phrase> PhraseLookup = new Dictionary<string, Phrase>();
 
             count++;
             //probably could clean this up with reflection..
@@ -59,13 +59,20 @@ namespace CLVSCPT_pre_compiler
                         break;
 
                     case "phrase":
-                        Phrases.Add(new Phrase(temp));
+                        PhraseLookup.Add(temp[1], new Phrase(temp));
                         break;
                 }
 
                 count++;
             }
             while (count < FileContents.Length);
+
+            foreach (ConversationNode conNode in conversationNodes)
+            {
+                conNode.SortInputs();
+            }
+
+            preCompiled.SortInputs();
 
             preCompiled.Nodes = conversationNodes;
             CreateLanguageModel("test");

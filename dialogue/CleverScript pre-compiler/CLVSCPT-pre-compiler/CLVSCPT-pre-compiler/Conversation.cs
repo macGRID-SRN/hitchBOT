@@ -9,6 +9,7 @@ namespace CLVSCPT_pre_compiler
     {
         Output StartingOutput;
         public List<Input> AlwaysListening = new List<Input>(); //IM ALWAYS WATCHING YOU MIKE WISOWSKY -Close enough
+        public List<Input> AlwaysListeningSorted = new List<Input>();
         public List<ConversationNode> Nodes;
         public List<Phrase> Phrases;
 
@@ -26,6 +27,20 @@ namespace CLVSCPT_pre_compiler
         public Conversation(Output startingPoint)
         {
             this.StartingOutput = startingPoint;
+        }
+
+        public void SortInputs()
+        {
+            foreach (Input input in AlwaysListening)
+            {
+                string[] desc = input.text.Split('/');
+                foreach (string split in desc)
+                {
+                    string[] temp = input.getBaseText();
+                    temp[3] = split;
+                    AlwaysListeningSorted.Add(new Input(temp));
+                }
+            }
         }
     }
 }
