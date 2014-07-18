@@ -78,13 +78,13 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     private ImageView imageResult;
     private FrameLayout frameNew;
     private boolean takePicture = false;
-    private boolean ok = false;
 	private CleverHelper cH;
 	private String cleverState;
 	private boolean _poweredOn = true;
 	
 	private static final long SCAN_PERIOD = 3000;
 //-------Handlers--------------------------------
+	
 	private Handler bluetoothHandler;
 	private Handler cameraHandler;
 	private Handler locationHandler;
@@ -228,7 +228,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 			@Override
 			public void run() {
-				postStuff();				
+				postStuff();
+				serverPostHandler.postDelayed(this, 7200000);
 			}
 		}
 		, 1000);
@@ -346,7 +347,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		 * This is done to hopefully improve recognition in situations with a lot of
 		 * background noise (ex/ car) */
 		Log.i("CleverScript", cH.cs.retrieveBotState());
-		if(message.isEmpty() || !ok)
+		if(message.isEmpty())
 		{
         	switchSearch(MAIN_SEARCH);
 		}
@@ -535,11 +536,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			String text = hypothesis.getHypstr();
 			//Limit the amount of words it will listen for (to prevent convo
 			//from hanging
-			if (text.split("\\s+").length >= 5 && !ok)
-			{
-	            getResponseFromCleverscript(text, cH);
-			}
-			if (text.split("\\s+").length >= 8 && ok)
+
+			if (text.split("\\s+").length >= 8)
 			{
 	            getResponseFromCleverscript(text, cH);
 			}
@@ -555,13 +553,15 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
         ((TextView) findViewById(R.id.editText2)).setText("");
         if (hypothesis != null ) {
             String text = hypothesis.getHypstr();
-    		if(text.contains("GOOD LUCK GOOD LUCK"))
+    		if(text.contains("HITCHBOT SLEEP"))
     		{
-    			ok = true;
+    			sleepHitchBOT();
     		}
-    		
+    		else
+    		{
             makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
             getResponseFromCleverscript(text, cH);
+    		}
     	
 	}
 
@@ -881,6 +881,21 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		pGu.sendImgurUploads();
 		pGu.sendErrorLog();
 		pGu.sendImagePosts();
+	}
+	
+	private void sleepHitchBOT()
+	{
+		recognizer.stop();
+		Handler sleepHandler = new Handler();
+		sleepHandler.postDelayed(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				switchSearch(MAIN_SEARCH);				
+			}
+			
+		}, 1200000);
 	}
 	}
 

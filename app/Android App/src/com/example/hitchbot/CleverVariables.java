@@ -1,5 +1,8 @@
 package com.example.hitchbot;
 
+import java.util.HashMap;
+
+
 public class CleverVariables {
 	public String weather_temperatureC;
 	public String weather_temperatureK;
@@ -22,27 +25,38 @@ public class CleverVariables {
 	public String local_sunset_time;
 	public String local_humidity;
 	
+	
+	HashMap<String,Object> data =new HashMap<String,Object>();
+	
 	public CleverVariables()
 	{
-		this.weather_temperatureC = "";
-		this.weather_temperatureK = "1337";
-		this.current_city_name = "";
-		this.current_city_mayor_name = "";
-		this.current_city_population = "";
-		this.local_time = "";
-		this.local_time_intr = "";
-		this.local_date = "";
-		this.next_city_distance = "undetermined";
-		this.next_city_time_minutes = "undetermined";
-		this.next_city_time_hours = "undetermined";
-		this.starting_date = "";
-		this.starting_city = "";
-		this.last_three_cities = "";
-		this.last_opinion = "";
-		this.current_velocity = "undetermined";
-		this.maximum_velocty = "";
-		this.local_sunrise_time = "undetermined";
-		this.local_sunset_time = "undetermined";
-		this.local_humidity = "undetermined";
+		data.put("weather_temperatureC", "50");
+		data.put("weather_temperatureK", "1337");
+		data.put("current_city_name", "Victoria");
+		data.put("current_city_mayor_name", "Rob Ford");
+		data.put("current_city_population", "300000");
+		data.put("local_time", "6:00");
+		data.put("local_time_intr", "6:00");
+		data.put("local_date", "July 27th");
+		data.put("next_city_distance", "3");
+		data.put("next_city_time_minutes", "3");
+		data.put("next_city_time_hours", "3");
+		data.put("starting_date", "3");
+		data.put("starting_city", "Halifax");
+		data.put("last_three_cities", "Halifax");
+		data.put("last_opinion", "Canada is the best country in the world");
+		data.put("current_velocity", "0");
+		data.put("maximum_velocty", "15");
+		data.put("local_sunrise_time", "5:00");
+		data.put("local_sunset_time", "8:30");
+		data.put("local_humidity", "15");
+
+	}
+	
+	public void getVariablesFromServer()
+	{
+		String getUrl = "";
+		
+		
 	}
 }
