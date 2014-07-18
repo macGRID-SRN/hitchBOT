@@ -99,6 +99,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	private BluetoothDevice mDevice = null;
 	private String mDeviceAddress;
 
+	private boolean ok = true;
 	private boolean flag = true;
 	private boolean connState = false;
 	private boolean scanFlag = false;
@@ -139,6 +140,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		
 		@Override
 		public void uncaughtException(Thread thread, Throwable ex) {
+			ErrorLog eL = new ErrorLog(ex.toString(), 0);
+			dQ.addItemToQueue(eL);
 			System.exit(2);
 		}
 	});
@@ -365,15 +368,17 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		else
 		{
 			cleverState = cH.getBotState();
-			Speak(response);	
 			whatHitchbotHeard = message;
+
+			Speak(response);	
 		}
 	}
 	else
 	{
 		(new ConversationPost()).conversationStart();
-		Speak(response);
 		whatHitchbotHeard = message;
+
+		Speak(response);
 		
 
 	
@@ -394,14 +399,14 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    	isTalking();
 	    }
 	    whatHitchbotSaid = message;
-	    if(whatHitchbotHeard != null){
+	    if(whatHitchbotHeard != ""){
 	    	Log.i("FileDeleted", " heard wasn't null" + whatHitchbotHeard);
 
 	    heard = new ConversationPost(whatHitchbotHeard, false);
 	    }
-	    if(whatHitchbotSaid != null){
+	    if(whatHitchbotSaid != ""){
 	    	Log.i("FileDeleted", "said wasn't null");
-	//    said = new ConversationPost(whatHitchbotSaid, true);
+	    said = new ConversationPost(whatHitchbotSaid, true);
 	    }
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 	}
@@ -416,7 +421,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	@Override
 	public void onResume() {
-		System.exit(2);
 	    super.onResume();  
 	    {
 
@@ -536,12 +540,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			String text = hypothesis.getHypstr();
 			//Limit the amount of words it will listen for (to prevent convo
 			//from hanging
+            ((TextView) findViewById(R.id.editText2)).setText(text);
 
 			if (text.split("\\s+").length >= 8)
 			{
 	            getResponseFromCleverscript(text, cH);
 			}
-            ((TextView) findViewById(R.id.editText2)).setText(text);
            // mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
             //TODO use this method to fix background noise problem
 	}
@@ -885,14 +889,15 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	private void sleepHitchBOT()
 	{
-		recognizer.stop();
+		mTts.speak("I will now sleep for an hour, I am getting tired.", 
+				TextToSpeech.QUEUE_FLUSH, null);
 		Handler sleepHandler = new Handler();
 		sleepHandler.postDelayed(new Runnable()
 		{
 
 			@Override
 			public void run() {
-				switchSearch(MAIN_SEARCH);				
+				ok = false;
 			}
 			
 		}, 1200000);

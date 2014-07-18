@@ -16,11 +16,13 @@ void setup()
 
 void loop()
 {
-  myServo.write(90);
+  myServo.write(180);
  // delay(2000);
  // myServo.write(180);
   delay(2000);
-  myServo.write(0);
+    myServo.write(100);
+
+ // myServo.write(0);
   delay(2000);
 
   //myServo.write(45);
