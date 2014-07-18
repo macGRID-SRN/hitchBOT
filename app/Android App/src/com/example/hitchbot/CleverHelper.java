@@ -2,11 +2,6 @@ package com.example.hitchbot;
 
 import com.cleverscript.android.CleverscriptAPI;
 
-import edu.cmu.pocketsphinx.Hypothesis;
-import edu.cmu.pocketsphinx.RecognitionListener;
-import android.util.Log;
-import android.widget.Toast;
-
 public class CleverHelper  {
 	
 	public CleverscriptAPI cs;
