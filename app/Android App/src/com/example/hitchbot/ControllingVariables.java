@@ -1,12 +1,11 @@
 package com.example.hitchbot;
 
-public class ControllingVariables {
+public static class ControllingVariables {
 
 	
 	//variables received
-	public int TIME_TO_TAKE_PICTURE = 90000;
-	public int TIME_TO_ACCCESS_SERVER = 90000;
-	public int TIME_TO_SHUTUP = 90000;
+	
+
 	public String POST_CHANGE = "";
 	public String GET_CHANGE = "";
 	public boolean RESTART_APPLCIATION = false;

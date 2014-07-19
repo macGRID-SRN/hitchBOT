@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.Thread.UncaughtExceptionHandler;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -135,7 +134,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		Config.context = this;
 		editText = (EditText)findViewById(R.id.editText1);
 		
-		
+	//To ensure app crashes and will be rebooted automatically with autostart and stay
+		//Also logs the error that caused the crash
 	Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 		
 		@Override
@@ -177,7 +177,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			public void run() {
 				LocationInformation lI = new LocationInformation(Config.context);
 				lI.setupProvider();
-				locationHandler.postDelayed(this, 450000);
+				locationHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
 			}
 			
 		}, 6000);
@@ -195,7 +195,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			@Override
 			public void run() {
 				connectToDevice();
-				bluetoothHandler.postDelayed(this, 10000);
+				bluetoothHandler.postDelayed(this, Config.TEN_MINUTES);
 			}
 	    	
 	    }, 1000);
@@ -218,7 +218,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				}
 				b.performClick();
 			}
-				cameraHandler.postDelayed(this, 900000);
+				cameraHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
 
 			}
 	    	
@@ -232,7 +232,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			@Override
 			public void run() {
 				postStuff();
-				serverPostHandler.postDelayed(this, 7200000);
+				serverPostHandler.postDelayed(this, Config.THREE_HOURS);
 			}
 		}
 		, 1000);
@@ -247,7 +247,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			{
 				BatteryInformation bI = new BatteryInformation();
 				bI.uploadBatteryInformation();
-				batteryUploadHandler.postDelayed(this,3600000);
+				batteryUploadHandler.postDelayed(this,Config.HOUR);
 			}
 	
 		}, 5000);		
@@ -350,7 +350,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		 * This is done to hopefully improve recognition in situations with a lot of
 		 * background noise (ex/ car) */
 		Log.i("CleverScript", cH.cs.retrieveBotState());
-		if(message.isEmpty())
+		if(message.isEmpty() || !ok)
 		{
         	switchSearch(MAIN_SEARCH);
 		}
@@ -422,9 +422,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	@Override
 	public void onResume() {
 	    super.onResume();  
-	    {
-
-	    }
+	
 	}
 	
 	@Override
@@ -821,7 +819,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			Log.i("bluetooth", "foobar t");
 			if (!mBluetoothLeService.initialize()) {
 				Log.e("BluetoothScanningClass", "Unable to initialize Bluetooth");
-				finish();
+				//finish();
 			}
 		}
 
@@ -836,7 +834,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		// User chose not to enable Bluetooth.
 		if (requestCode == REQUEST_ENABLE_BT
 				&& resultCode == Activity.RESULT_CANCELED) {
-			finish();
+			//finish();
 			return;
 		}
 
@@ -900,7 +898,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				ok = false;
 			}
 			
-		}, 1200000);
+		}, Config.HOUR);
 	}
 	}
 
