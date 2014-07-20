@@ -146,6 +146,52 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 		
 	}
 	
+	public List<HttpPostDb> serverAudioUploadQueue()
+	{
+		
+		List<HttpPostDb> databasePosts = new ArrayList<HttpPostDb>();
+		SQLiteDatabase database = null;
+		try
+		{
+			beginReadLock();
+			String queryString = "SELECT * FROM " + TABLE_HTTPPOSTQUEUE + " WHERE " + COLUMN_UPLOAD_TO_SERVER+ " = 3";
+			SQLiteDatabase db = this.getReadableDatabase();
+			Cursor cursor = db.rawQuery(queryString, null);
+			if(cursor.moveToFirst())
+			{
+				do{
+					HttpPostDb htpD = new HttpPostDb();
+					htpD.setPostID(Integer.parseInt(cursor.getString(0)));
+					htpD.setURI(cursor.getString(1));
+					htpD.setUploadToImgurSuccessful(Integer.parseInt(cursor.getString(2)));
+					htpD.setUploadToServerSuccessful(Integer.parseInt(cursor.getString(3)));
+					htpD.setCreationDate(cursor.getString(4));
+					
+					databasePosts.add(htpD);
+					
+				}while(cursor.moveToNext());
+				cursor.close();
+
+			}
+		}catch (Exception e)
+		{
+			
+		}
+		finally{
+			if(database!= null)
+			{
+	               try
+	                {
+	           		database.close();
+	                }
+	                catch (Exception e) {}
+			}
+			endReadLock();
+		}
+		return databasePosts;
+		
+	}
+	
 	public List<ErrorLog> errorLogUploadQueue()
 	{
 

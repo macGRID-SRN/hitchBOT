@@ -5,7 +5,7 @@ public class HttpPostDb {
 		private String URI;
 		//0 = false, 1 = true, 2 = irrelevent
 		private int uploadToImgurSuccessful;
-		// 0 = false, 1 = true
+		// 0 = false, 1 = true 3 = audio upload queued
 		private int uploadToServerSuccessful;
 		private int _postID;
 		private String creationDate;

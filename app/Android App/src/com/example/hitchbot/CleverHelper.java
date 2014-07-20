@@ -1,5 +1,10 @@
 package com.example.hitchbot;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import android.util.Log;
+
 import com.cleverscript.android.CleverscriptAPI;
 
 public class CleverHelper  {
@@ -13,6 +18,7 @@ public class CleverHelper  {
 		cs.setApiKey(APIkey);
 		cs.setDebugLevel(4);
 	    cs.loadDatabase();
+	    loadVariables();
 	}
 
 	public void loadVariables()
@@ -38,14 +44,35 @@ public class CleverHelper  {
 		cs.assignVariable("local_sunrise_time", (String) cV.data.get("local_sunrise_time"));
 		cs.assignVariable("local_sunset_time", (String) cV.data.get("local_sunset_time"));
 		cs.assignVariable("local_humidity", (String) cV.data.get("local_humidity"));
-
+		cV.getVariablesFromServer();
 
 	}
 	
-	public void getInformationForVariables()
+	public void getInformationForVariables(String jsonString)
 	{
-		//get temp, city, population, etc..
-	}
+		if(jsonString != null)
+		{
+		try
+		{
+			JSONObject obj = new JSONObject(jsonString);
+			JSONArray jO = obj.getJSONArray("data");
+
+			for(int j = 0 ; j <= obj.length() ; j ++)
+			{
+				JSONObject jobj = jO.getJSONObject(j);
+				
+				cs.assignVariable((String) jobj.getString("key"), (String) jobj.getString("value"));
+				Log.i("HTTPGET", (String) jobj.getString("key" + " "));
+				Log.i("HTTPGET", (String) jobj.getString("value" + " "));
+
+			}
+		}
+		catch(Exception e)
+		{
+			//stuff
+		}
+		}
+}
 	
 	public String getBotState()
 	{

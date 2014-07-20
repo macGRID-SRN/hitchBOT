@@ -2,6 +2,8 @@ package com.example.hitchbot;
 
 import java.util.HashMap;
 
+import android.os.Handler;
+
 
 public class CleverVariables {
 	public String weather_temperatureC;
@@ -50,13 +52,12 @@ public class CleverVariables {
 		data.put("local_sunrise_time", "5:00");
 		data.put("local_sunset_time", "8:30");
 		data.put("local_humidity", "15");
-
 	}
 	
 	public void getVariablesFromServer()
 	{
-		String getUrl = "";
 		
+		new HttpServerGet().execute("http://hitchbotapi.azurewebsites.net/api/hitchBOT");
 		
 	}
 }

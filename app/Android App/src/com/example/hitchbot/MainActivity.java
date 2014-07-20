@@ -78,7 +78,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     private ImageView imageResult;
     private FrameLayout frameNew;
     private boolean takePicture = false;
-	private CleverHelper cH;
 	private String cleverState;
 	private boolean _poweredOn = true;
 	
@@ -151,9 +150,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	dQ = DatabaseQueue.getHelper(this);
 		
 		//j0zo6727bb5bea8c76abe674e05a49bdc08e2
-		cH = new CleverHelper("GeneralFix.db", "2gx39e88f33a1e09b93bf5a04c31b6605524a", this);
-		final BluetoothManager mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-		mBluetoothAdapter = mBluetoothManager.getAdapter();
+		Config.cH = new CleverHelper("GeneralFix.db", "2gx39e88f33a1e09b93bf5a04c31b6605524a", this);
+	/*	final BluetoothManager mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+	/*	mBluetoothAdapter = mBluetoothManager.getAdapter();
 		if(mBluetoothAdapter != null)
 		{
 			Log.i("bluetooth", "adapter isn't null");
@@ -165,11 +164,11 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			ErrorLog eL = new ErrorLog("BLE not supported (somehow turned off...)", 0);
             dQ.addItemToQueue(eL);
 			finish();
-		}
+		}*/
 		
-		Intent gattServiceIntent = new Intent(MainActivity.this,
+		/*Intent gattServiceIntent = new Intent(MainActivity.this,
 				BluetoothLeService.class);
-		bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+		bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);*/
 		
 		locationHandler = new Handler();
 		locationHandler.postDelayed(new Runnable()
@@ -189,18 +188,18 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		
 		setUpCamera();
 		
-	    bluetoothHandler = new Handler();
+	  //  bluetoothHandler = new Handler();
 	    
-	    bluetoothHandler.postDelayed(new Runnable()
-	    {
+	//    bluetoothHandler.postDelayed(new Runnable()
+	//    {
 
-			@Override
-			public void run() {
-				//connectToDevice();
-				bluetoothHandler.postDelayed(this, Config.TEN_MINUTES);
-			}
+	//		@Override
+	//		public void run() {
+			//	connectToDevice();
+		//		bluetoothHandler.postDelayed(this, Config.TEN_MINUTES);
+		//	}
 	    	
-	    }, 1000);
+	  //  }, 1000);
 	    
 	    cameraHandler = new Handler();
 	    
@@ -377,10 +376,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    HashMap<String, String> myHashAlarm = new HashMap<String, String>();
 		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
 	    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "SOME MESSAGE");
-	    if(mDevice != null){
-	    	Log.i("deviceNull", "device isn't null");
-	    	isTalking();
-	    }
+	   
 	    whatHitchbotSaid = message;
 	    if(whatHitchbotHeard != ""){
 	    	Log.i("FileDeleted", " heard wasn't null" + whatHitchbotHeard);
@@ -398,7 +394,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	@Override
 	protected void onPause()
 	{
-		//System.exit(2);
+		System.exit(2);
 		super.onPause();
 	}
 	
@@ -474,7 +470,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     recognizer.stop();
     recognizer.startListening(searchName);
     String caption = getResources().getString(captions.get(searchName));
-    ((TextView) findViewById(R.id.editText2)).setText(caption);
+    //((TextView) findViewById(R.id.editText2)).setText(caption);
 }
 
 	private void setupRecognizer(File assetsDir) {
@@ -525,7 +521,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 			if (text.split("\\s+").length >= 8)
 			{
-	            getResponseFromCleverscript(text, cH);
+	            getResponseFromCleverscript(text, Config.cH);
 			}
            // mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
             //TODO use this method to fix background noise problem
@@ -545,7 +541,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     		else
     		{
             makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
-            getResponseFromCleverscript(text, cH);
+            getResponseFromCleverscript(text, Config.cH);
     		}
     	
 	}
@@ -682,11 +678,11 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			Log.i("bluetooth", device.getName());
 			Log.i("bluetooth", device.getAddress());
 			
-			if (device != null)
+		/*	if (device != null)
 			{
 				mDeviceAddress = device.getAddress();
 				mDevice = device;	
-			}
+			}*/
 			
 			runOnUiThread(new Runnable() {
 				@Override
@@ -762,7 +758,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				@Override
 				public void run() {
 					if (mDevice != null) {
-						mDeviceAddress = mDevice.getAddress();
+					//	mDeviceAddress = mDevice.getAddress();
 						mBluetoothLeService.connect(mDeviceAddress);
 						scanFlag = true;
 					} else {
@@ -772,7 +768,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			}, SCAN_PERIOD);
 		}
 	//	try {
-		//	Thread.sleep(500);
+	//		Thread.sleep(1000);
 	//	} catch (InterruptedException e) {
 	//		e.printStackTrace();
 	//	}
@@ -866,6 +862,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		pGu.sendImgurUploads();
 		pGu.sendErrorLog();
 		pGu.sendImagePosts();
+		pGu.sendAudioRecordings();
 	}
 	
 	private void sleepHitchBOT()
@@ -895,12 +892,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			@Override
 			public void run() {
 				rlS.stopRecording();
-				//uploadAudioFile(rlS.mFileName);
+				uploadAudioFile(rlS.mFileName);
 				switchSearch(MAIN_SEARCH);
 				
 			}
 			
-		}, 60000);
+		}, 5000);
 		
 		
 	}
@@ -914,12 +911,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				try {
 				    FileInputStream fstrm = new FileInputStream(filePath);
 
-				    UploadAudio hfu = new UploadAudio("urlGOESHERE", "my file title","lifestory");
+				    UploadAudio hfu = new UploadAudio("http://hitchbotapi.azurewebsites.net/api/hitchBOT", "myfiletitle","lifestory", filePath);
 
 				    hfu.send_Now(fstrm);
 
 				  } catch (FileNotFoundException e) {
-				    ErrorLog eL = new ErrorLog("filenotfound", 0);
+				    ErrorLog eL = new ErrorLog("filenotfoundaudiologupload", 0);
 				    dQ.addItemToQueue(eL);
 				  }
 				}				

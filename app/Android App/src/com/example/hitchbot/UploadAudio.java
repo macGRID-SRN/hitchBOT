@@ -1,13 +1,14 @@
 package com.example.hitchbot;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 
 
 import android.util.Log;
@@ -18,14 +19,16 @@ public class UploadAudio implements Runnable {
         String responseString;
         String Title;
         String Description;
+        String filePath;
         byte[ ] dataToServer;
         FileInputStream fileInputStream = null;
 
-        UploadAudio(String urlString, String vTitle, String vDesc){
+        public UploadAudio(String urlString, String vTitle, String vDesc, String filePath){
                 try{
                         connectURL = new URL(urlString);
                         Title= vTitle;
                         Description = vDesc;
+                        this.filePath = filePath;
                 }catch(Exception ex){
                     Log.i("HttpFileUpload","URL Malformatted");
                 }
@@ -129,15 +132,33 @@ public class UploadAudio implements Runnable {
                  String s=b.toString();
                  Log.i("Response",s);
                  dos.close();
+                 if(!s.equals("File uploaded."))
+                 {
+                	 DatabaseQueue dQ = DatabaseQueue.getHelper(Config.context);
+                	 HttpPostDb htD = new HttpPostDb(filePath, 2, 3);
+                	 dQ.addItemToQueue(htD);
+                 }
+                 else
+                 {
+     				boolean deleted = new File(filePath).delete();
+     				Log.i("BluetoothScanningClass", String.valueOf(deleted));
+
+                 }
          }
          catch (MalformedURLException ex)
          {
                  Log.e(Tag, "URL error: " + ex.getMessage(), ex);
+                 DatabaseQueue dQ = DatabaseQueue.getHelper(Config.context);
+            	 HttpPostDb htD = new HttpPostDb(filePath, 2, 3);
+            	 dQ.addItemToQueue(htD);
          }
 
          catch (IOException ioe)
          {
                  Log.e(Tag, "IO error: " + ioe.getMessage(), ioe);
+                 DatabaseQueue dQ = DatabaseQueue.getHelper(Config.context);
+            	 HttpPostDb htD = new HttpPostDb(filePath, 2, 3);
+            	 dQ.addItemToQueue(htD);
          }		
 	}
 	

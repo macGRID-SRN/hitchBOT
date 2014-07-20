@@ -1,11 +1,6 @@
 package com.example.hitchbot;
 
-import java.net.URI;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -16,6 +11,7 @@ public class PostGeneralUpdates {
 
 	List<ErrorLog> errorLogQueue;
 	List<HttpPostDb> imagePostQueue;
+	List<HttpPostDb> audioFileQueue;
 	List<HttpPostDb> imgurUploadQueue;
 	DatabaseQueue dQ;
 	String TAG  = "PostGeneralUpdates";
@@ -26,6 +22,7 @@ public class PostGeneralUpdates {
 		this.errorLogQueue = dQ.errorLogUploadQueue();
 		this.imgurUploadQueue = dQ.imgurUploadQueue();
 		this.imagePostQueue = dQ.serverImageLinkUploadQueue();
+		this.audioFileQueue = dQ.serverAudioUploadQueue();
 	}
 	
 	public void sendErrorLog()
@@ -46,6 +43,19 @@ public class PostGeneralUpdates {
 	}
 	}
 	
+	public void sendAudioRecordings()
+	{
+		for (int i = 0; i < audioFileQueue.size(); i++)
+		{
+			if(isNetworkAvailable())
+			{
+			Config.context.uploadAudioFile(audioFileQueue.get(i).getURI());
+			dQ.markAsUploadedToServer(audioFileQueue.get(i));
+			}
+			
+		}
+	}
+	
 	public void sendImagePosts()
 	{
 		for(int i = 0 ;  i < imagePostQueue.size(); i++)
@@ -54,12 +64,17 @@ public class PostGeneralUpdates {
 
 			if(isNetworkAvailable())
 			{
-			String url1 = imagePostQueue.get(i).getURI();						
+				//I know this is a hack to queue audio files but there was not enough time to
+				//properly implement a queue for them
+			String url1 = imagePostQueue.get(i).getURI();	
+
 			HttpServerPost  hSp = new HttpServerPost(url1, Config.context);
 			hSp.execute(hSp);	
 			//they are marked as uploaded because if they upload unsuccessfully, they will be
 			//re-added in the queue from the server post class (probably a better way to do it)
+			
 			dQ.markAsUploadedToServer(imagePostQueue.get(i));
+
 			}
 		}
 		
