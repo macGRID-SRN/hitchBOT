@@ -73,7 +73,7 @@ else
 {
 
   chooseRandomGesture(0);
-flagHandAnimation();
+flagHandHeartAnimation();
 }
 
 
@@ -327,21 +327,20 @@ void chooseRandomGesture(int offSet)
     //makeOmouth(0, timeDelay);
     transitionToMouth(0, timeDelay);
   }
-  if(chooser == 4)
+  if(chooser > 0)
   {
-    myServo.write(servoFwd);
-    delay(1000);
-  }
-  if(chooser == 5)
-  {
-    myServo.write(servoRev);
-       delay(1000);
+     myServo.write(0);
+    delay(2000);
+        myServo.write(160);
+     delay(2000);
+     myServo.write(0);
+     delay(1000);
 
   }
 
-  if(chooser >= 6)
+  if(chooser > 4)
   {
-   delay(1000);
+  // delay(1000);
   }
 }
 
@@ -1927,29 +1926,33 @@ matrix.drawPixel(15 + offSet, 14, onOff);
  matrix.writeScreen();
 }
 
-void flagHandAnimation()
+void flagHandHeartAnimation()
 {
+  flagTwo(24*2, 0);
   hitchOne(24*3, 1);
-  heartOne(24, 1);
-  handOne(24*2, 1);
+  heartOne(24*2, 1);
+  handOne(24, 1);
  // flagOne(24*2, 1);
   delay(150);
-  handOne(24*2, 0);
+  handOne(24, 0);
   hitchOne(24*3, 0);
-  heartOne(24, 0);
+  heartOne(24*2, 0);
  // flagOne(24*2, 0);
-  handTwo(24*2, 1);
-  heartTwo(24, 1);
+  handTwo(24, 1);
+  heartTwo(24*2, 1);
 //  flagTwo(24*2, 1);
   hitchTwo(24*3, 1);
   delay(150);
-  handTwo(24*2, 0);
+  handTwo(24, 0);
   hitchTwo(24*3, 0);
-  heartTwo(24, 0);
+  heartTwo(24*2, 0);
  // flagTwo(24*2, 0);
-   handOne(24*2, 1);
+   handOne(24, 1);
   hitchOne(24*3, 1);
-  heartOne(24, 1);
- // flagOne(24*2, 1);
+ // heartOne(24*2, 1);
+  flagOne(24*2, 1);
+  delay(150);
+  flagOne(24*2, 0);
+  flagTwo(24*2, 1);
 }
 

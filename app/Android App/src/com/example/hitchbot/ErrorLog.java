@@ -12,7 +12,7 @@ public class ErrorLog {
 	
 	public ErrorLog(String ErrorMessage, int successfulUpload)
 	{
-		this.ErrorMessage = ErrorMessage;
+		this.ErrorMessage = ErrorMessage.replaceAll("\\s+", "%20");
 		this.successfulUpload = successfulUpload;
 	}
 	

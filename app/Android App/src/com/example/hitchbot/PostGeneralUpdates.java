@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -38,7 +37,7 @@ public class PostGeneralUpdates {
 			{
 				String url1 = "http://hitchbotapi.azurewebsites.net/api/Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
 				String hitchBOT_ID = Config.HITCHBOT_ID;
-				String exception = errorLogQueue.get(i).getErrorMessage();
+				String exception = Uri.encode(errorLogQueue.get(i).getErrorMessage());
 				String timeStamp = Config.getUtcDate();
 				HttpServerPost hSp = new HttpServerPost(String.format(url1,hitchBOT_ID, exception, timeStamp ), Config.context);
 				hSp.execute(hSp);

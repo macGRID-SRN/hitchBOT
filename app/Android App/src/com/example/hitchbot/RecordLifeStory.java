@@ -1,6 +1,12 @@
 package com.example.hitchbot;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import android.media.MediaRecorder;
 import android.os.Environment;
@@ -11,7 +17,7 @@ public class RecordLifeStory {
 
 	 private MediaRecorder mRecorder = null;
 	 private static final String TAG = "AudioRecordTest";
-	 private static String mFileName = null;
+	 public String mFileName = null;
 	 private Handler recorderHandler;
 
 
@@ -22,7 +28,7 @@ public class RecordLifeStory {
 	        recorderHandler = new Handler();
 	    }
 	   
-    private void startRecording() {
+    public void startRecording() {
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -38,7 +44,7 @@ public class RecordLifeStory {
         mRecorder.start();
     }
 	
-    private void stopRecording() {
+    public void stopRecording() {
         mRecorder.stop();
         mRecorder.release();
         mRecorder = null;
@@ -46,22 +52,19 @@ public class RecordLifeStory {
     
     public void recordThirty()
     {
-    	recorderHandler.post(new Runnable()
-    	{
+		startRecording();
 
+    	recorderHandler.postDelayed(new Runnable()
+    	{
 			@Override
 			public void run() {
-				startRecording();
-				try {
-					Thread.sleep(30000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				stopRecording();
 
 			}
     		
-    	});
+    	}, 1000*30);
     }
+    
+
+
 }

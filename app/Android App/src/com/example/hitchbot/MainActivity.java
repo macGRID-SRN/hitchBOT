@@ -1,6 +1,7 @@
 package com.example.hitchbot;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -81,9 +82,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	private String cleverState;
 	private boolean _poweredOn = true;
 	
-	private static final long SCAN_PERIOD = 3000;
+	private static final long SCAN_PERIOD = 5000;
 //-------Handlers--------------------------------
-	
+	private Handler audioUploadHandler;
 	private Handler bluetoothHandler;
 	private Handler cameraHandler;
 	private Handler locationHandler;
@@ -140,7 +141,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		
 		@Override
 		public void uncaughtException(Thread thread, Throwable ex) {
-			ErrorLog eL = new ErrorLog(ex.toString(), 0);
+			
+			ErrorLog eL = new ErrorLog(ex.getMessage(), 0);
 			dQ.addItemToQueue(eL);
 			System.exit(2);
 		}
@@ -194,7 +196,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 			@Override
 			public void run() {
-				connectToDevice();
+				//connectToDevice();
 				bluetoothHandler.postDelayed(this, Config.TEN_MINUTES);
 			}
 	    	
@@ -269,7 +271,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		
 
 		set_poweredOn(false);
-		
 		AudioManager aM = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		aM.setStreamVolume(AudioManager.STREAM_MUSIC, aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
@@ -284,7 +285,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		      public void onInit(int status) {
 		         if(status != TextToSpeech.ERROR){
 		             mTts.setLanguage(Locale.US);
-		             mTts.setPitch((float) 0.2);
+		             mTts.setPitch((float) 1.0);
 		             setTtsListener();
 		            }		
 				
@@ -320,26 +321,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	public void firstCleverScript(View view)
 	{
-		cH = new CleverHelper("n1.db", "x6hxmeb0af35111958406307a9aebeab7f248", this);
-		MAIN_SEARCH = FIRST_SEARCH;
-		recognizer.stop();
-		switchSearch(MAIN_SEARCH);
-	}
-	
-	public void secondCleverScript(View view)
-	{
-		cH = new CleverHelper("n2.db", "n8d7b0124b7a58ed6b41fbfb36996a86ef412", this);
-		MAIN_SEARCH = SECOND_SEARCH;
-		recognizer.stop();
-		switchSearch(MAIN_SEARCH);
-	}
-	
-	public void thirdCleverScript(View view)
-	{
-		cH = new CleverHelper("n3.db", "v6fow13c4988771daafae73f391a5f6273cfa", this);
-		MAIN_SEARCH = THIRD_SEARCH;
-		recognizer.stop();
-		switchSearch(MAIN_SEARCH);
+		recordLifeStory();
+
 	}
 	
 	
@@ -415,7 +398,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	@Override
 	protected void onPause()
 	{
-		System.exit(2);
+		//System.exit(2);
 		super.onPause();
 	}
 	
@@ -699,7 +682,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			Log.i("bluetooth", device.getName());
 			Log.i("bluetooth", device.getAddress());
 			
-			if (device.getAddress() != null)
+			if (device != null)
 			{
 				mDeviceAddress = device.getAddress();
 				mDevice = device;	
@@ -788,11 +771,11 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				}
 			}, SCAN_PERIOD);
 		}
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+	//	try {
+		//	Thread.sleep(500);
+	//	} catch (InterruptedException e) {
+	//		e.printStackTrace();
+	//	}
 		//System.out.println(connState);
 		if (connState == false) {
 			Log.i("bluetooth", mDeviceAddress + "  foobar");
@@ -819,7 +802,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			Log.i("bluetooth", "foobar t");
 			if (!mBluetoothLeService.initialize()) {
 				Log.e("BluetoothScanningClass", "Unable to initialize Bluetooth");
-				//finish();
+				finish();
 			}
 		}
 
@@ -834,7 +817,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		// User chose not to enable Bluetooth.
 		if (requestCode == REQUEST_ENABLE_BT
 				&& resultCode == Activity.RESULT_CANCELED) {
-			//finish();
+			finish();
 			return;
 		}
 
@@ -900,5 +883,51 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			
 		}, Config.HOUR);
 	}
+	
+	private void recordLifeStory()
+	{
+		recognizer.stop();
+		final RecordLifeStory rlS = new RecordLifeStory();
+		rlS.startRecording();
+		(new Handler()).postDelayed(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				rlS.stopRecording();
+				//uploadAudioFile(rlS.mFileName);
+				switchSearch(MAIN_SEARCH);
+				
+			}
+			
+		}, 60000);
+		
+		
 	}
+	public void uploadAudioFile(final String filePath){
+		audioUploadHandler = new Handler();
+		audioUploadHandler.post(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				try {
+				    FileInputStream fstrm = new FileInputStream(filePath);
+
+				    UploadAudio hfu = new UploadAudio("urlGOESHERE", "my file title","lifestory");
+
+				    hfu.send_Now(fstrm);
+
+				  } catch (FileNotFoundException e) {
+				    ErrorLog eL = new ErrorLog("filenotfound", 0);
+				    dQ.addItemToQueue(eL);
+				  }
+				}				
+			
+			
+		});
+
+	
+	}
+}
 

@@ -329,9 +329,9 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 		database = this.getWritableDatabase();
 		ContentValues newRecord = new ContentValues();
 		
-		newRecord.put(COLUMN_URI, errorLog.getErrorMessage());
-		newRecord.put(COLUMN_UPLOAD_TO_SERVER, errorLog.getSuccessfulUpload());
-		newRecord.put(COLUMN_DATE, getDateTime());
+		newRecord.put(COLUMN_ERRORMESSAGE, errorLog.getErrorMessage().replaceAll(" ", "%20"));
+		newRecord.put(COLUMN_ERROR_UPLOAD_TO_SERVER, errorLog.getSuccessfulUpload());
+		newRecord.put(COLUMN_DATELOGGED, getDateTime());
 		
 		database.insert(TABLE_ERRORLOG, null, newRecord);
 		}catch (Exception e)
