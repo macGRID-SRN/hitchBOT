@@ -34,7 +34,6 @@ namespace hitchbotAPI.Controllers
                 newConversation.HitchBOT = hitchbot;
                 hitchbot.Conversations.Add(newConversation);
                 db.SaveChanges();
-                //untested, I am not sure if this will make bad stuff happen or not.
                 return true;
             }
         }
