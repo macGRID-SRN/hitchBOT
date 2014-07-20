@@ -64,16 +64,16 @@ namespace CLVSCPT_pre_compiler
 
                     case "phrase":
                         lastMatch = "phrase";
-                        if (!PhraseLookup.ContainsKey(string.IsNullOrWhiteSpace(temp[1]) ? lastLabel : temp[1]))
+                        if (!PhraseLookup.ContainsKey(string.IsNullOrWhiteSpace(temp[1]) ? lastLabel : temp[1].ToLower()))
                         {
-                            PhraseLookup.Add(temp[1], ParsePhrases(temp));
+                            PhraseLookup.Add(temp[1].ToLower(), ParsePhrases(temp));
                         }
                         else
                         {
                             temp[1] = lastLabel;
                             PhraseLookup[lastLabel].AddRange(ParsePhrases(temp));
                         }
-                        lastLabel = temp[1];
+                        lastLabel = temp[1].ToLower();
                         break;
                 }
 
@@ -125,26 +125,82 @@ namespace CLVSCPT_pre_compiler
             }
         }
 
+        public void AddToCorpus(string input, List<string> tempList)
+        {
+            if (ContainsOptionalText(input))
+            {
+                string optionalText = getPhraseSingle(input);
+
+
+            }
+            else if (ContainsAnyPhrase(input))
+            {
+                string phraseName = getPhrase(input).ToLower();
+
+
+                if (ContainsOptionalPhrase(input))
+                {
+
+                }
+            }
+            else
+                //add new corpus line
+                tempList.Add(input);
+        }
+
         public void Phrase2String(string input, List<string> tempList, Conversation conversation)
         {
             if (ContainsOptionalText(input))
             {
                 string optionalText = getPhraseSingle(input);
-                Phrase2String(putPhraseSingle(input, optionalText, optionalText), tempList, conversation);
+
                 Phrase2String(putPhraseSingle(input, optionalText, ""), tempList, conversation);
 
             }
             else if (ContainsAnyPhrase(input))
             {
-                string phraseName = getPhrase(input);
+                string phraseName = getPhrase(input).ToLower();
 
-                foreach(Phrase myPhrase in conversation.PhraseLookup[phraseName]){
+                Phrase2String(putPhrase(input, phraseName, ""), tempList, conversation);
 
-                Phrase2String(putPhrase(input, phraseName, myPhrase.text), tempList, conversation);
-                }
                 if (ContainsOptionalPhrase(input))
                 {
                     Phrase2String(putPhrase(input, phraseName, ""), tempList, conversation);
+                }
+            }
+            else
+                //add new corpus line
+                tempList.Add(input);
+
+        }
+
+
+        public void Phrase2String(string input, List<string> tempList, Conversation conversation, List<string> PhrasesInjected)
+        {
+            if (ContainsOptionalText(input))
+            {
+                string optionalText = getPhraseSingle(input);
+                Phrase2String(putPhraseSingle(input, optionalText, optionalText), tempList, conversation, PhrasesInjected);
+                Phrase2String(putPhraseSingle(input, optionalText, ""), tempList, conversation, PhrasesInjected);
+
+            }
+            else if (ContainsAnyPhrase(input))
+            {
+                string phraseName = getPhrase(input).ToLower();
+
+                if (!PhrasesInjected.Contains(phraseName))
+                {
+                    foreach (Phrase myPhrase in conversation.PhraseLookup[phraseName])
+                    {
+
+                        List<string> temp = PhrasesInjected.ToArray().ToList();
+                        temp.Add(phraseName);
+                        Phrase2String(putPhrase(input, phraseName, myPhrase.text), tempList, conversation, temp);
+                    }
+                }
+                if (ContainsOptionalPhrase(input))
+                {
+                    Phrase2String(putPhrase(input, phraseName, ""), tempList, conversation, PhrasesInjected);
                 }
             }
             else
@@ -244,12 +300,7 @@ namespace CLVSCPT_pre_compiler
         {
             string regexDoubleParen = @"\(\(([^]]*?)\)\)";
             List<string> phrases = Regex.Matches(phr, regexDoubleParen).Cast<Match>().Select(x => x.Groups[1].Value).ToList();
-            if (phrases[0].Contains("!") || phrases.Contains("?"))
-            {
-                phrases[0].Replace("!", "");
-                phrases[0].Replace("?", "");
-            }
-            return phrases[0];
+            return phrases[0].Replace("!", "").Replace("?", "");
 
         }
         public string putPhrase(string originalText, string phraseName, string replacement)
@@ -261,10 +312,10 @@ namespace CLVSCPT_pre_compiler
             {
                 string testString = term.Replace("!", "");
                 testString = testString.Replace("?", "");
-
-                if (testString.Contains("((" + phraseName + "))") && !done)
+                testString += " ";
+                if (testString.ToLower().Contains("((" + phraseName + "))") && !done)
                 {
-                    sb.Append(testString.Replace("((" + phraseName + "))", replacement) + " ");
+                    sb.Append(testString.ToLower().Replace("((" + phraseName + "))", replacement));
                     done = true;
                 }
                 else
@@ -273,19 +324,13 @@ namespace CLVSCPT_pre_compiler
                 }
             }
             return sb.ToString();
-
         }
 
         public string getPhraseSingle(string phr)
         {
             string regexDoubleParen = @"\(([^]]*?)\)";
             List<string> phrases = Regex.Matches(phr, regexDoubleParen).Cast<Match>().Select(x => x.Groups[1].Value).ToList();
-            if (phrases[0].Contains("!") || phrases.Contains("?"))
-            {
-                phrases[0].Replace("!", "");
-                phrases[0].Replace("?", "");
-            }
-            return phrases[0];
+            return phrases[0].Replace("!", "").Replace("?", "");
 
         }
         public string putPhraseSingle(string originalPhrase, string originalWord, string replacement)

@@ -266,7 +266,7 @@ phrase	dominik_kaukinen		dominik / dominik kaukinen				40
 phrase	jacky_duong		jacky / jacky duong / jacky au duong				40	
 phrase	kulturBOT		kulturBOT / culture bot				40	
 phrase	nscad		NSCAD Institute of Applied Creativity / nscad / nscad institute / institute of applied creativity / institute of creativity / nscad institute of creativity				40	
-phrase	gooddropoff		((a_any)) ((gooddropoff)) / ((spot)) to ((drop_off)) / ((good)) ((spot)) to ((drop_off)) / ((good)) ((spot)) to ((drop_off)) ~ / ((spot)) ((you'd)) ((rather)) ((I)) ((drop_off)) / ((can_I)) ((drop_off)) / do ((i)) ((gooddropoff)) / will ((i)) ((gooddropoff))				40	
+phrase	gooddropoff		((a_any)) ((gooddropoff)) / ((spot)) to ((drop_off)) / ((good)) ((spot)) to ((drop_off)) / ((good)) ((spot)) to ((drop_off)) ~ / ((spot)) ((you'd)) ((rather)) ((I)) ((drop_off)) / ((can_I)) ((drop_off)) / do ((I)) ((gooddropoff)) / will ((I)) ((gooddropoff))				40	
 phrase	gameofthrones		game of thrones / the game of thrones / a game of thrones / HBO's ((gameofthrones))				40	
 phrase	any_pet		any pets / pet / a pet / some pets / many pets				40	
 phrase	spot		place / spot / location / area / land / part				40	
@@ -274,7 +274,8 @@ phrase	drop_off		put you / leave you / drop you off / drop off / ((drop_off)) to
 phrase	shut_up		shut up / be quiet / shut down / be silent / silence / stop talking / turn off					
 phrase	shut_you_up		shut you up / make you quiet / make you silent / silence you / turn you off / shut you off / shut you down / shut up					
 phrase	power_button		off button / power switch / power button / off switch / way to turn you off / on button / on switch / way to turn you on and off / way to turn you off and on / way to shut you up / quiet button / get you to shut up / get you to turn off					
-phrase	hello		hi / hello / hiya / hey there / hi there / hello there / ((hello)) ((hello)) / well ((hello)) / why ((hello))				40	random, different
+phrase	hello		hi / hello / hiya / hey there / hi there / hello there / ((hello2)), ((hello2)) / well ((hello2)) / why ((hello2))				40	random, different
+phrase	hello2		hi / hello / hiya / hey there / hi there / hello there				40	random, different
 phrase	where_to		where / whereabouts / where to / to where				40	
 phrase	bot		robot / bot / thing / machine / automaton				40	
 phrase	hitchBOT		HitchBOT / hitch bot / hitchhiking ((bot)) / the ((hitchBOT)) / a ((hitchBOT)) / that ((hitchBOT))				40	
@@ -285,9 +286,10 @@ phrase	school		school / alma mater / college / university / your alma mater				4
 phrase	gender		gender / sex / boy / girl / man / woman 				40	
 phrase	movie		movie / movie / film / films				40	
 phrase	enjoy		like / enjoy / love				40	
+phrase	enjoying		liking / enjoying / loving					
 phrase	dislike		dislike / hate				40	
-output phrase	good		good / all right / acceptable / excellent / great / marvelous / positive / satisfactory / valuable / wonderful / superb / nice / pleasing / decent / fine				40	random, different
-phrase	good		good / all right / acceptable / excellent / great / marvelous / positive / satisfactory / satisfying / valuable / worth it / wonderful / superb / nice / pleasing / rad / super / worthy / decent / fine / ((adv)) ((good)) / ((preferred))				40	random, different
+output phrase	good		good / all right / acceptable / excellent / great / marvelous / positive / satisfactory / valuable / wonderful / superb / nice / pleasing / decent / lovely / fine				40	random, different
+phrase	good		good / all right / acceptable / lovely / excellent / great / marvelous / positive / satisfactory / satisfying / valuable / worth it / wonderful / superb / nice / pleasing / rad / super / worthy / decent / fine / ((adv)) ((good)) / ((preferred))				40	random, different
 phrase	bad		awful / bad / shit / agonizing / agony / terrible / poor / poor / sad / unacceptable / ((adv)) ((bad))				40	random, different
 phrase	where's		where is / where's					
 phrase	preferred		preferred / rathered / a preference / that you'd ((rather))				40	
@@ -305,7 +307,7 @@ output phrase	thanks		Thanks / Thank you / Gracias / My thanks / Wonderful, ((th
 phrase	what_are_you		((what_are)) ((you))				40	
 phrase	what_are		what are / what				40	
 phrase	you		you / ya / cha				40	
-phrase	qo		so / may ((I)) ask / well / question / here's a question / and / ((i'm)) wondering / ((i'm)) curious / ((i'm)) ((adv)) curious / ((i'm)) ((adv)) wondering / just curious / just wondering / may ((I)) / hey / ((I)) have a question / ((qo)) ((hitchBOT)) / ((qo)) ((qo)) / ((you_know)) / uh / um / eh / like / ((hitchBOT)) / ((sorry)) / tell ((me))				20	
+phrase	qo		so / may ((I)) ask / well / question / here's a question / and / ((I'm)) wondering / ((I'm)) curious / ((I'm)) ((adv)) curious / ((I'm)) ((adv)) wondering / just curious / just wondering / may ((I)) / hey / ((I)) have a question / ((qo)) ((hitchBOT)) / ((qo)) ((qo)) / ((you_know)) / uh / um / eh / like / ((hitchBOT)) / ((sorry)) / tell ((me))				20	
 output phrase	qo		So / May I ask, / Question. / Here's a question. / I'm wondering. / I'm curious. / Just curious. / May I / Hey / So. / I have a question. / [BLANK] / [BLANK] / [BLANK] / [BLANK] / [BLANK]				40	random, different
 phrase	instructions1		Please sit me down inside your car and plug me in. 				40	
 phrase	instructions2		Always begin a sentence with 'Hitch Bot' or I won't be able to respond. Keep the radio quiet, and the window by me closed. Avoid noise while talking to me.				40	
@@ -362,8 +364,8 @@ phrase	human		like us / human / person / non-robot / meatbag / organic				40
 phrase	humans		us ((humans)) / like us ((humans)) / humans / people / folk / non-robots / meatbags / squishies / organics				40	
 phrase	you_are_nice		You aren't all bad / ((you're)) ((morally_good)) in my book / ((you're)) all right / ((you're)) ((morally_good)) / ((you_are_nice)), more or less				40	
 phrase	it's		it is / it's				40	
-phrase	tell_me_your		Tell me your / ((what's)) your / ((ask_about) your				40	
-phrase	ask_about		tell ((me)) about / ((could)) ((i)) ask about / ((i'm)) asking about / ((i'm)) curious about / ((i'm)) wondering about / ((five_w)) ((is_are)) / ((five_w))'s / ((five_w))'re / why / ((what's)) with / ((ask_about)) the  / ((ask_about)) a / ((ask_about)) that / ((ask_about)) those / ((ask_about)) these / (?do) you have ((a_any)) / ((five_w))'s your				40	
+phrase	tell_me_your		Tell me your / ((what's)) your / ((ask_about)) your				40	
+phrase	ask_about		tell ((me)) about / ((could)) ((I)) ask about / ((I'm)) asking about / ((I'm)) curious about / ((I'm)) wondering about / ((five_w)) ((is_are)) / ((five_w))'s / ((five_w))'re / why / ((what's)) with / ((ask_about)) the  / ((ask_about)) a / ((ask_about)) that / ((ask_about)) those / ((ask_about)) these / (?do) you have ((a_any)) / ((five_w))'s your				40	
 phrase	a_any		many / any / some / a / an					
 phrase	do_you_think		((do_you)) ((opinion_think)) / ((you)) ((opinion_think)) / are				40	
 phrase	why_don't_you		why don't you / why not / why do you not / why aren't you / could you not / what if you / couldn't you / ((shouldn't)) you / ((why_don't_you)) just				40	
@@ -381,4 +383,5 @@ phrase	random_thing		squirrel / squirrel / robot / robot lady / lady / beard / b
 phrase	about_to_be_distracted		about that / hmm / well... / so / see...				40	
 phrase	fail		((Sorry)), I don't know. / ((Ao)) ((about_to_be_distracted)) -- hey, that cloud looks like a ((random_thing)). / ((Ao)) ((about_to_be_distracted)) -- oh, look, a ((wildlife))! / ((Ao)) sorry, was just playing 'I Spy' with myself. I spy, with my little eye... ((i_spy)).				40	random, different
 phrase	do_did		do / did				40	
+phrase	so_far		so far / already / currently / for now					
 phrase	did_you_enjoy		((do_you)) ((enjoy)) it? / ((Enjoy)) it? / ((Was_it)) ((good))? / ((do_did))n't you ((enjoy)) it?				40	
