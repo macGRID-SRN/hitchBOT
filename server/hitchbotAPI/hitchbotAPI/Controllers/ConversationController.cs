@@ -17,7 +17,6 @@ namespace hitchbotAPI.Controllers
         /// </summary>
         /// <param name="HitchBotID">The ID of the HitchBot to add a new Conversation to.</param>
         /// <param name="StartTime">The time the Conversation started</param>
-        /// <param name="LocationID">The ID of the Location where the Conversation started.</param>
         /// <returns>The ID of the Conversation being added.</returns>
         [HttpPost]
         public bool StartNewConversation(int HitchBotID, string StartTime)

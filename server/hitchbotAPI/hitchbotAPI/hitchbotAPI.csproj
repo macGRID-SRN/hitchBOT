@@ -320,6 +320,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\uploads\" />
     <Folder Include="Views\Conversation\" />
     <Folder Include="Views\Location\" />
   </ItemGroup>

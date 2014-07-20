@@ -532,7 +532,6 @@
             </summary>
             <param name="HitchBotID">The ID of the HitchBot to add a new Conversation to.</param>
             <param name="StartTime">The time the Conversation started</param>
-            <param name="LocationID">The ID of the Location where the Conversation started.</param>
             <returns>The ID of the Conversation being added.</returns>
         </member>
         <member name="M:hitchbotAPI.Controllers.ConversationController.AddSpeech(System.Int32,System.String,System.String)">
@@ -562,10 +561,10 @@
         </member>
         <member name="M:hitchbotAPI.Controllers.LocationController.GetStaticMapURL(System.String)">
             <summary>
-            Redirects to a static GMAPS image which is the total path of a HitchBot. Note: We can only build this map 25,000 times per day.
+            Gets the static map API url (generate it)
             </summary>
-            <param name="HitchBotID">The HitchBot to get the route of.</param>
-            <returns>Redirects to the proper link.</returns>
+            <param name="poly">The poly thing generated from somewhere else.. don't really know where.</param>
+            <returns></returns>
         </member>
         <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocationMin(System.String,System.String,System.String,System.String)">
             <summary>

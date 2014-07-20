@@ -33,6 +33,19 @@ namespace hitchbotAPI.Controllers
             }
         }
 
+        [HttpGet]
+        public Models.ContextPacket GetInfo()
+        {
+            var contextPacket = new Models.ContextPacket(
+                new List<Models.KeyValuePair>() { 
+                new Models.KeyValuePair("wikipedia_output", "Wow this really works!"),
+                new Models.KeyValuePair("weather_status", "It's sunny out there.")
+                
+                });
+
+            return contextPacket;
+        }
+
         /// <summary>
         /// Call this method when adding a new HitchBot to an existing project.
         /// </summary>
@@ -86,5 +99,32 @@ namespace hitchbotAPI.Controllers
                 return db.hitchBOTs.First(h => h.ID == HitchBotLocationsID).Locations.OrderBy(l => l.TakenTime).ToList();
             }
         }
+
+        public Task<HttpResponseMessage> PostFile()
+        {
+            HttpRequestMessage request = this.Request;
+            if (!request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            string root = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/uploads");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            var task = request.Content.ReadAsMultipartAsync(provider).
+                ContinueWith<HttpResponseMessage>(o =>
+                {
+
+                    string file1 = provider.FileData.First().LocalFileName;
+                    // this is the file name on the server where the file was saved 
+
+                    return new HttpResponseMessage()
+                    {
+                        Content = new StringContent("File uploaded.")
+                    };
+                }
+            );
+            return task;
+        } 
     }
 }
