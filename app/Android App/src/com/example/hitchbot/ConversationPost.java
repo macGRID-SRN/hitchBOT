@@ -1,5 +1,6 @@
 package com.example.hitchbot;
 
+import android.net.Uri;
 import android.util.Log;
 
 public class ConversationPost {
@@ -43,7 +44,7 @@ public class ConversationPost {
 	{
 		
 		String id = Config.HITCHBOT_ID;
-		hitchbotSaid = hitchbotSaid.replaceAll(" ", "%20");
+		hitchbotSaid = Uri.encode(hitchbotSaid);
     	Log.i("FileDeleted", hitchbotSaid);
 
 		String timeSaid = Config.getUtcDate();
@@ -54,7 +55,7 @@ public class ConversationPost {
 	public void storeHeard() 
 	{
 		String id = Config.HITCHBOT_ID;
-		hitchbotHeard = hitchbotHeard.replaceAll(" ", "%20");
+		hitchbotHeard = Uri.encode(hitchbotHeard);
     	Log.i("FileDeleted", hitchbotHeard);
 
 		String timeHeard = Config.getUtcDate();
