@@ -24,23 +24,17 @@ HT1632LEDMatrix matrix = HT1632LEDMatrix(DATA, WR, CS, CS2, CS3, CS4);
 
 void setup()
 { 
-  myServo.write(servoFwd);
   myServo.attach(servoPin);
   Serial.begin(9600);
-  BLEMini_begin(57600); 
   pinMode(DIGITAL_OUT_PIN, OUTPUT);
   pinMode(DIGITAL_IN_PIN, INPUT);
   matrix.begin(HT1632_COMMON_16NMOS);  
-  matrix.fillScreen();
   delay(500);
 
   matrix.clearScreen(); 
   makeEyes(0, true);
   makeMouth(0);
- // drawText("Hi I'm hitchBOT", 0);
- // drawText("Headed to Victoria", 8);
- // canadaFlag(24*2);
- // canadaMap(24);
+  flagHandHeartAnimation();
   
 }
 
@@ -49,7 +43,7 @@ unsigned char len = 0;
 
 void loop()
 {
- if ( BLEMini_available())
+/* while ( BLEMini_available())
   {
     // read out command and data
     byte data0 = BLEMini_read();
@@ -68,13 +62,12 @@ void loop()
   changeMouthBack(0);
   }  
 
-}
-else
-{
+}*/
+
 
   chooseRandomGesture(0);
 flagHandHeartAnimation();
-}
+
 
 
 }
@@ -327,7 +320,7 @@ void chooseRandomGesture(int offSet)
     //makeOmouth(0, timeDelay);
     transitionToMouth(0, timeDelay);
   }
-  if(chooser > 0)
+  if(chooser == 4 )
   {
      myServo.write(0);
     delay(2000);
@@ -340,7 +333,7 @@ void chooseRandomGesture(int offSet)
 
   if(chooser > 4)
   {
-  // delay(1000);
+   delay(1000);
   }
 }
 

@@ -60,7 +60,6 @@ protected String doInBackground(String... uri) {
 protected void onPostExecute(String result) {
     super.onPostExecute(result);
 	Log.i("HTTPGET", result + " ");
-
     Config.cH.getInformationForVariables(result);
 											}
 

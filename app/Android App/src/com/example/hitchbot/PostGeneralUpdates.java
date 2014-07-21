@@ -1,6 +1,8 @@
 package com.example.hitchbot;
 
+import java.io.File;
 import java.util.List;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -47,8 +49,10 @@ public class PostGeneralUpdates {
 	{
 		for (int i = 0; i < audioFileQueue.size(); i++)
 		{
-			if(isNetworkAvailable())
+			File testFile = new File(audioFileQueue.get(i).getURI());
+			if(isNetworkAvailable() && testFile.exists())
 			{
+				
 			Config.context.uploadAudioFile(audioFileQueue.get(i).getURI());
 			dQ.markAsUploadedToServer(audioFileQueue.get(i));
 			}
