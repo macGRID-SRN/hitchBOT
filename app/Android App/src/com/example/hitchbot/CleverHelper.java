@@ -44,6 +44,9 @@ public class CleverHelper  {
 		cs.assignVariable("local_sunrise_time", (String) cV.data.get("local_sunrise_time"));
 		cs.assignVariable("local_sunset_time", (String) cV.data.get("local_sunset_time"));
 		cs.assignVariable("local_humidity", (String) cV.data.get("local_humidity"));
+		cs.assignVariable("audio_on", (String) cV.data.get("audio_on"));
+		cs.assignVariable("cleverdata_on", (String) cV.data.get("cleverdata_on"));
+		cs.assignVariable("wikipedia_output", "My server is down, blame my programmers.");
 		cV.getVariablesFromServer();
 
 	}
@@ -57,13 +60,13 @@ public class CleverHelper  {
 			JSONObject obj = new JSONObject(jsonString);
 			JSONArray jO = obj.getJSONArray("data");
 
-			for(int j = 0 ; j <= obj.length() ; j ++)
+			for(int j = 0 ; j < jO.length() ; j ++)
 			{
 				JSONObject jobj = jO.getJSONObject(j);
 				
 				cs.assignVariable((String) jobj.getString("key"), (String) jobj.getString("value"));
-				Log.i("HTTPGET", (String) jobj.getString("key" + " "));
-				Log.i("HTTPGET", (String) jobj.getString("value" + " "));
+				Log.i("HTTPGET", (String) jobj.getString("key") + " ");
+				Log.i("HTTPGET", (String) jobj.getString("value") + " ");
 
 			}
 		}
@@ -87,6 +90,26 @@ public class CleverHelper  {
 	public String getAccuracy()
 	{
 		return cs.retrieveVariable("accuracy");
+	}
+	
+	public String getAudio_on()
+	{
+		return cs.retrieveVariable("audio_on");
+	}
+	
+	public String getClever_data()
+	{
+		return cs.retrieveVariable("cleverdata_on");
+	}
+	
+	public void setClever_data()
+	{
+		cs.assignVariable("cleverdata_on", Config.MAIN_SEARCH);
+	}
+	
+	public void setAudio_on()
+	{
+		cs.assignVariable("audio_on", "false");
 	}
 	
 	

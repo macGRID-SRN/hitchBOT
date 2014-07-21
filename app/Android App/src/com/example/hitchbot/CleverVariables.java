@@ -52,12 +52,23 @@ public class CleverVariables {
 		data.put("local_sunrise_time", "5:00");
 		data.put("local_sunset_time", "8:30");
 		data.put("local_humidity", "15");
+		data.put("audio_on", "false");
+		data.put("cleverdata_on", Config.MAIN_SEARCH);
 	}
 	
 	public void getVariablesFromServer()
 	{
-		
-		new HttpServerGet().execute("http://hitchbotapi.azurewebsites.net/api/hitchBOT");
+		final Handler cleverHandler = new Handler();
+		cleverHandler.post(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				new HttpServerGet().execute("http://hitchbotapi.azurewebsites.net/api/hitchBOT");
+				cleverHandler.postDelayed(this, Config.THREE_HOURS);
+			}
+
+		});
 		
 	}
 }

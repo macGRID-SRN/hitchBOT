@@ -66,10 +66,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	TextToSpeech mTts;
     //private static final String KWS_SEARCH = "wakeup";
    // private static final String HELLO_SEARCH = "hello world";
-    private String MAIN_SEARCH = "";
-    private static final String FIRST_SEARCH = "first";
-    private static final String SECOND_SEARCH = "second";
-    private static final String THIRD_SEARCH = "third";
+    private String MAIN_SEARCH = Config.MAIN_SEARCH;
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
     private static Context context;
@@ -84,7 +81,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	private static final long SCAN_PERIOD = 5000;
 //-------Handlers--------------------------------
 	private Handler audioUploadHandler;
-	private Handler bluetoothHandler;
+	//private Handler bluetoothHandler;
 	private Handler cameraHandler;
 	private Handler locationHandler;
 	private Handler serverGetHandler;
@@ -149,10 +146,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	dQ = DatabaseQueue.getHelper(this);
 		
-		//j0zo6727bb5bea8c76abe674e05a49bdc08e2
-		Config.cH = new CleverHelper("GeneralFix.db", "2gx39e88f33a1e09b93bf5a04c31b6605524a", this);
-	/*	final BluetoothManager mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-	/*	mBluetoothAdapter = mBluetoothManager.getAdapter();
+		Config.cH = new CleverHelper("finalCan.db", "wugn0a2d047cce85a77b1a6be30622d3f3844", this);
+		/*final BluetoothManager mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+		mBluetoothAdapter = mBluetoothManager.getAdapter();
 		if(mBluetoothAdapter != null)
 		{
 			Log.i("bluetooth", "adapter isn't null");
@@ -182,24 +178,23 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			}
 			
 		}, 6000);
-		//cH = new CleverHelper("testers.db", "piuzd14d1da153d7e0982b169b8b87455d57d", this);
-		//cH = new CleverHelper("wertfsdfs.db", "lafon34b520180254a9650307f0873860f218", this);
+
 		b = (Button)findViewById(R.id.button1);
 		
 		setUpCamera();
 		
-	  //  bluetoothHandler = new Handler();
+	   /*bluetoothHandler = new Handler();
 	    
-	//    bluetoothHandler.postDelayed(new Runnable()
-	//    {
+	    bluetoothHandler.postDelayed(new Runnable()
+	    {
 
-	//		@Override
-	//		public void run() {
-			//	connectToDevice();
-		//		bluetoothHandler.postDelayed(this, Config.TEN_MINUTES);
-		//	}
+			@Override
+			//public void run() {
+				//connectToDevice();
+				bluetoothHandler.postDelayed(this, Config.TEN_MINUTES);
+			}
 	    	
-	  //  }, 1000);
+	    }, 1000);*/
 	    
 	    cameraHandler = new Handler();
 	    
@@ -257,10 +252,10 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		startTtsAndSpeechRec();
         captions = new HashMap<String, Integer>();
         //captions.put(KWS_SEARCH, R.string.kws_caption);
-        captions.put(MAIN_SEARCH, R.string.forecast_caption);
-        captions.put(FIRST_SEARCH, R.string.digits_caption);
-        captions.put(SECOND_SEARCH, R.string.hello_world);
-        captions.put(THIRD_SEARCH, R.string.kws_caption);
+        captions.put(Config.MAIN_SEARCH, R.string.forecast_caption);
+       // captions.put(FIRST_SEARCH, R.string.digits_caption);
+        captions.put(Config.SECOND_SEARCH, R.string.hello_world);
+      //  captions.put(THIRD_SEARCH, R.string.kws_caption);
       //  captions.put(HELLO_WORLD,R.string.hello_world);
         // Prepare the data for UI
 
@@ -310,7 +305,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	                    ErrorLog eL = new ErrorLog("Recognizer failed: " + result, 0);
 	                    dQ.addItemToQueue(eL);
 	                } else {
-	                	MAIN_SEARCH = THIRD_SEARCH;
 	                    switchSearch(MAIN_SEARCH);
 	                }
 	            }
@@ -331,7 +325,14 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		 * Also, if below some threshhold accuracy the next cleverstate is not accessed
 		 * This is done to hopefully improve recognition in situations with a lot of
 		 * background noise (ex/ car) */
-		Log.i("CleverScript", cH.cs.retrieveBotState());
+		String tAg = "Script";
+		Log.i(tAg, cH.cs.retrieveBotState());
+		Log.i(tAg, "testbar");
+		Log.i(tAg, cH.cs.retrieveVariable("audio_on"));
+		Log.i(tAg, cH.cs.retrieveVariable("accuracy"));
+		//Log.i(tAg, cH.getClever_data());
+		Log.i(tAg, message);
+
 		if(message.isEmpty() || !ok)
 		{
         	switchSearch(MAIN_SEARCH);
@@ -340,7 +341,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		{
 		String response = cH.cs.sendMessage(message);
 		Log.i("CleverScript", cH.getAccuracy());
-	if(!cH.getAccuracy().isEmpty() )
+	if(!cH.getAccuracy().isEmpty())
 	{
 		if(Integer.parseInt(cH.getAccuracy()) < Config.THRESHHOLD_ACCURACY)
 		{
@@ -351,19 +352,29 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		{
 			cleverState = cH.getBotState();
 			whatHitchbotHeard = message;
-
-			Speak(response);	
+			if(cH.getAudio_on().equals("true"))
+			{
+				recordLifeStory();
+			}
+			else
+			{
+				Speak(response);
+			}
 		}
 	}
 	else
 	{
 		(new ConversationPost()).conversationStart();
+		MAIN_SEARCH = Config.MAIN_SEARCH;
 		whatHitchbotHeard = message;
-
-		Speak(response);
-		
-
-	
+		if(cH.getAudio_on().equals("true"))
+		{
+			recordLifeStory();
+		}
+		else
+		{
+			Speak(response);
+		}	
 	}
 		}
 	}
@@ -387,7 +398,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    	Log.i("FileDeleted", "said wasn't null");
 	    said = new ConversationPost(whatHitchbotSaid, true);
 	    }
+	   
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
+	    
 	}
 	
 	
@@ -470,14 +483,14 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     recognizer.stop();
     recognizer.startListening(searchName);
     String caption = getResources().getString(captions.get(searchName));
-    //((TextView) findViewById(R.id.editText2)).setText(caption);
+    ((TextView) findViewById(R.id.editText2)).setText(caption);
 }
 
 	private void setupRecognizer(File assetsDir) {
     File modelsDir = new File(assetsDir, "models");
     recognizer = defaultSetup()
             .setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-            .setDictionary(new File(modelsDir, "dict/7400.dic"))
+            .setDictionary(new File(modelsDir, "dict/3575.dic"))
             .setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
             .getRecognizer();
     recognizer.addListener(this);
@@ -487,13 +500,13 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
     //recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
     // Create language model search.
-    File languageModel1 = new File(modelsDir, "lm/0211.dmp");
-    File languageModel2 = new File(modelsDir, "lm/6392.dmp");
-    File languageModel3 = new File(modelsDir, "lm/7400.dmp");
+    File languageModel1 = new File(modelsDir, "lm/3575.dmp");
+  //  File languageModel2 = new File(modelsDir, "lm/6392.dmp");
+   // File languageModel3 = new File(modelsDir, "lm/7400.dmp");
   //  File languageModel = new File(modelsDir, "lm/7788.dmp");
-    recognizer.addNgramSearch(FIRST_SEARCH, languageModel1);
-    recognizer.addNgramSearch(THIRD_SEARCH, languageModel3);
-    recognizer.addNgramSearch(SECOND_SEARCH, languageModel2);
+    recognizer.addNgramSearch(Config.MAIN_SEARCH, languageModel1);
+   // recognizer.addNgramSearch(THIRD_SEARCH, languageModel3);
+  //  recognizer.addNgramSearch(Config.SECOND_SEARCH, languageModel2);
    //     recognizer.addNgramSearch(THIRD_SEARCH, languageModel3);
 
 
@@ -534,7 +547,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
         ((TextView) findViewById(R.id.editText2)).setText("");
         if (hypothesis != null ) {
             String text = hypothesis.getHypstr();
-    		if(text.contains("HITCHBOT SLEEP"))
+    		if(text.contains("HITCHBOT SLEEP") || text.contains("HITCH BOT SLEEP"))
     		{
     			sleepHitchBOT();
     		}
@@ -869,13 +882,14 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	{
 		mTts.speak("I will now sleep for an hour, I am getting tired.", 
 				TextToSpeech.QUEUE_FLUSH, null);
+		recognizer.stop();
 		Handler sleepHandler = new Handler();
 		sleepHandler.postDelayed(new Runnable()
 		{
 
 			@Override
 			public void run() {
-				ok = false;
+				switchSearch(MAIN_SEARCH);
 			}
 			
 		}, Config.HOUR);
@@ -884,6 +898,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	private void recordLifeStory()
 	{
 		recognizer.stop();
+		mTts.speak("I will now record your life story for 60 seconds",
+				TextToSpeech.QUEUE_FLUSH, null);
 		final RecordLifeStory rlS = new RecordLifeStory();
 		rlS.startRecording();
 		(new Handler()).postDelayed(new Runnable()
@@ -893,11 +909,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			public void run() {
 				rlS.stopRecording();
 				uploadAudioFile(rlS.mFileName);
-				switchSearch(MAIN_SEARCH);
+				Config.cH.cs.assignVariable("audio_on", "false");
+				getResponseFromCleverscript("done", Config.cH);
 				
 			}
 			
-		}, 5000);
+		}, 60000);
 		
 		
 	}
