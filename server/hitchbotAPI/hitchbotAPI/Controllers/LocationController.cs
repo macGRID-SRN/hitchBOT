@@ -81,10 +81,12 @@ namespace hitchbotAPI.Controllers
                     Latitude = LatDouble,
                     Longitude = LongDouble,
                     TakenTime = StartTimeReal,
-                    TimeAdded = DateTime.UtcNow
+                    TimeAdded = DateTime.UtcNow,
+                    HitchBOT = hitchBOT
                 };
 
                 hitchBOT.Locations.Add(location);
+                db.Locations.Add(location);
                 db.SaveChanges();
 
                 newLocationID = location.ID;
