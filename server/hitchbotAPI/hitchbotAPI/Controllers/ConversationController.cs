@@ -32,6 +32,7 @@ namespace hitchbotAPI.Controllers
                 newConversation.StartLocation = location;
                 db.Conversations.Add(newConversation);
                 newConversation.HitchBOT = hitchbot;
+                db.SaveChanges();
                 hitchbot.Conversations.Add(newConversation);
                 db.SaveChanges();
                 return true;
@@ -82,6 +83,7 @@ namespace hitchbotAPI.Controllers
                 listenEvent.HeardTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
                 listenEvent.SpeechHeard = SpeechHeard;
                 var hitchbot = db.hitchBOTs.Include(h => h.Conversations).First(h => h.ID == HitchBotID);
+
                 listenEvent.Conversation = hitchbot.CurrentConversation;
                 db.ListenEvents.Add(listenEvent);
                 db.SaveChanges();

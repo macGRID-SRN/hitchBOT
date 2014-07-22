@@ -85,9 +85,10 @@ namespace hitchbotAPI.Controllers
                     HitchBOT = hitchBOT
                 };
 
-                hitchBOT.Locations.Add(location);
                 db.Locations.Add(location);
                 db.SaveChanges();
+                //hitchBOT.Locations.Add(location);
+                //db.SaveChanges();
 
                 newLocationID = location.ID;
             }
