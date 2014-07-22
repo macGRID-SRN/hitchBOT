@@ -1,9 +1,6 @@
 #include "HT1632.h"
-#include <ble_mini.h>
 #include "Servo.h"
 
-#define DIGITAL_OUT_PIN    0
-#define DIGITAL_IN_PIN     1
 #define DATA 2
 #define WR   3
 #define CS   5
@@ -25,9 +22,9 @@ HT1632LEDMatrix matrix = HT1632LEDMatrix(DATA, WR, CS, CS2, CS3, CS4);
 void setup()
 { 
   myServo.attach(servoPin);
+  myServo.write(0);
   Serial.begin(9600);
-  pinMode(DIGITAL_OUT_PIN, OUTPUT);
-  pinMode(DIGITAL_IN_PIN, INPUT);
+
   matrix.begin(HT1632_COMMON_16NMOS);  
   delay(500);
 
@@ -303,7 +300,7 @@ int getRandomNumber()
 void chooseRandomGesture(int offSet)
 {
   int timeDelay = random(20, 35);
-  int chooser = random(0, 11);
+  int chooser = random(0, 16);
   if (chooser == 0)
   {
     makeWink(offSet, timeDelay);

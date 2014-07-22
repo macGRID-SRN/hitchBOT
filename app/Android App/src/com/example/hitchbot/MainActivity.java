@@ -87,6 +87,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	private Handler serverGetHandler;
 	private Handler serverPostHandler;
 	private Handler batteryUploadHandler;
+	private Handler speechHandler = new Handler();
 //------------------------BLE--------------------------
 	
 	private BluetoothGattCharacteristic characteristicTx = null;
@@ -95,6 +96,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	private BluetoothDevice mDevice = null;
 	private String mDeviceAddress;
 
+	private boolean recognizerOn = true;
+	private boolean notSleeping = true;
 	private boolean ok = true;
 	private boolean flag = true;
 	private boolean connState = false;
@@ -108,7 +111,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	boolean thirdOn;
 	String currentSearch;
 	//-------------------------------------------------------
-	
+	private String bestGuess = "";
 	String whatHitchbotHeard;
 	String whatHitchbotSaid;
 	
@@ -333,7 +336,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		//Log.i(tAg, cH.getClever_data());
 		Log.i(tAg, message);
 
-		if(message.isEmpty() || !ok)
+		if(message.isEmpty())
 		{
         	switchSearch(MAIN_SEARCH);
 		}
@@ -429,10 +432,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            @Override
 	            public void onDone(String utteranceId)
 	            {
-	            	if(mDevice != null){
-	            	stoppedTalking();
-	            	Log.i("deviceNull", data.toString() + " stopped talking");
-	            	}
+	    
 	            	switchSearch(MAIN_SEARCH);
 	            }
 
@@ -447,11 +447,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            public void onStart(String utteranceId)
 	            {
 	            	recognizer.stop();
-	            	if(mDevice != null){
-	            	isTalking();
-	            	Log.i("deviceNull", data.toString() + " is talking");
-
-	            	}
+	        
 	            	
 	            }
 	        });
@@ -479,12 +475,51 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void switchSearch(String searchName) {
+	private void switchSearch(final String searchName) {
+
+    
+    //Listen for n seconds then stop the recognizer
+	    
     recognizer.stop();
     recognizer.startListening(searchName);
-    String caption = getResources().getString(captions.get(searchName));
-    ((TextView) findViewById(R.id.editText2)).setText(caption);
+    
+    speechHandler.postDelayed(new Runnable()
+    {
+
+		@Override
+		public void run() {
+			
+		    timerMethod();
+		}
+    	
+    }, Config.randInt());
+   // String caption = getResources().getString(captions.get(searchName));
+  //  ((TextView) findViewById(R.id.editText2)).setText(caption);
 }
+	
+	private void timerMethod()
+	{
+		this.runOnUiThread(timedSpeech);
+	}
+	
+	private Runnable timedSpeech = new Runnable()
+	{
+
+		@Override
+		public void run() {
+			recognizer.stop();
+			if(notSleeping && recognizerOn)
+			{
+			getResponseFromCleverscript(bestGuess, Config.cH);
+			}
+			else
+			{
+				switchSearch(MAIN_SEARCH);
+			}
+			
+		}
+		
+	};
 
 	private void setupRecognizer(File assetsDir) {
     File modelsDir = new File(assetsDir, "models");
@@ -500,14 +535,12 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
     //recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
     // Create language model search.
+    
     File languageModel1 = new File(modelsDir, "lm/3575.dmp");
-  //  File languageModel2 = new File(modelsDir, "lm/6392.dmp");
-   // File languageModel3 = new File(modelsDir, "lm/7400.dmp");
-  //  File languageModel = new File(modelsDir, "lm/7788.dmp");
+
+   
     recognizer.addNgramSearch(Config.MAIN_SEARCH, languageModel1);
-   // recognizer.addNgramSearch(THIRD_SEARCH, languageModel3);
-  //  recognizer.addNgramSearch(Config.SECOND_SEARCH, languageModel2);
-   //     recognizer.addNgramSearch(THIRD_SEARCH, languageModel3);
+
 
 
 }
@@ -520,9 +553,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 	@Override
 	public void onEndOfSpeech() {
-		if (MAIN_SEARCH.equals(recognizer.getSearchName()))
+		/*if (MAIN_SEARCH.equals(recognizer.getSearchName()))
         	recognizer.stop();
-            switchSearch(MAIN_SEARCH);  	
+            switchSearch(MAIN_SEARCH); */ 	
 	}
 
 	@Override
@@ -530,12 +563,18 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			String text = hypothesis.getHypstr();
 			//Limit the amount of words it will listen for (to prevent convo
 			//from hanging
+			bestGuess = text;
             ((TextView) findViewById(R.id.editText2)).setText(text);
 
-			if (text.split("\\s+").length >= 8)
+			if((text.contains("HITCHBOT SLEEP") || text.contains("HITCH BOT SLEEP")) && notSleeping)
+    		{
+    			sleepHitchBOT();
+    		}
+
+			/*if (text.split("\\s+").length >= 8)
 			{
-	            getResponseFromCleverscript(text, Config.cH);
-			}
+	           // getResponseFromCleverscript(text, Config.cH);
+			}*/
            // mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
             //TODO use this method to fix background noise problem
 	}
@@ -547,14 +586,15 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
         ((TextView) findViewById(R.id.editText2)).setText("");
         if (hypothesis != null ) {
             String text = hypothesis.getHypstr();
-    		if(text.contains("HITCHBOT SLEEP") || text.contains("HITCH BOT SLEEP"))
+            bestGuess = text;
+    		if(text.contains("HITCHBOT SLEEP") || text.contains("HITCH BOT SLEEP") && notSleeping)
     		{
     			sleepHitchBOT();
     		}
     		else
     		{
             makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
-            getResponseFromCleverscript(text, Config.cH);
+            //getResponseFromCleverscript(text, Config.cH);
     		}
     	
 	}
@@ -880,6 +920,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	private void sleepHitchBOT()
 	{
+		notSleeping = false;
 		mTts.speak("I will now sleep for an hour, I am getting tired.", 
 				TextToSpeech.QUEUE_FLUSH, null);
 		recognizer.stop();
@@ -889,7 +930,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 			@Override
 			public void run() {
-				switchSearch(MAIN_SEARCH);
+				notSleeping = true;
+				recognizerOn = true;
 			}
 			
 		}, Config.HOUR);
@@ -910,7 +952,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				rlS.stopRecording();
 				uploadAudioFile(rlS.mFileName);
 				Config.cH.cs.assignVariable("audio_on", "false");
-				getResponseFromCleverscript("done", Config.cH);
+				//TODO fix
+				bestGuess = "done";
+				timerMethod();
 				
 			}
 			

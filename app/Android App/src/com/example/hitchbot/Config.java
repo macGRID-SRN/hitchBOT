@@ -2,6 +2,7 @@ package com.example.hitchbot;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.TimeZone;
 
 import android.content.Intent;
@@ -12,7 +13,7 @@ public final class Config {
 	
 public static MainActivity context = null;
 public static int THRESHHOLD_ACCURACY = 20;
-public static String HITCHBOT_ID = "1";
+public static String HITCHBOT_ID = "3";
 public static int HOUR = 1000*60*60;
 public static int FIFTEEN_MINUTES = 1000*60*15;
 public static int HALF_HOUR = 1000*60*30;
@@ -29,6 +30,17 @@ public static String getUtcDate()
 	final TimeZone utc = TimeZone.getTimeZone("UTC");
 	sdf.setTimeZone(utc);
 	return sdf.format(date);
+}
+
+public static int randInt() {
+
+
+    Random rand = new Random();
+
+  
+    int randomNum = rand.nextInt((6 - 3) + 1) + 3;
+
+    return randomNum * 1000;
 }
 	
 
