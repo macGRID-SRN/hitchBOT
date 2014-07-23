@@ -24,16 +24,16 @@ namespace hitchbotAPI.Controllers
             DateTime StartTimeReal = DateTime.ParseExact(StartTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
             using (var db = new Models.Database())
             {
-                var newConversation = new Models.Conversation();
-                newConversation.StartTime = StartTimeReal;
-                newConversation.TimeAdded = DateTime.UtcNow;
                 var hitchbot = db.hitchBOTs.Include(l => l.Locations).Include(h => h.Conversations).First(h => h.ID == HitchBotID);
                 var location = hitchbot.Locations.OrderBy(l => l.TakenTime).First();
-                newConversation.StartLocation = location;
+                var newConversation = new Models.Conversation() {
+                    StartTime = StartTimeReal,
+                    TimeAdded = DateTime.UtcNow,
+                    StartLocation = location,
+                    HitchBOT = hitchbot
+                };
+
                 db.Conversations.Add(newConversation);
-                newConversation.HitchBOT = hitchbot;
-                db.SaveChanges();
-                hitchbot.Conversations.Add(newConversation);
                 db.SaveChanges();
                 return true;
             }
