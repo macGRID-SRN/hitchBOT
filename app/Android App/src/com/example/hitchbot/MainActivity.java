@@ -210,7 +210,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				{
 				b.performClick();
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(1500);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -346,13 +346,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		Log.i("CleverScript", cH.getAccuracy());
 	if(!cH.getAccuracy().isEmpty())
 	{
-		if(Integer.parseInt(cH.getAccuracy()) < Config.THRESHHOLD_ACCURACY)
-		{
-			cH.loadBotState(cleverState);
-        	switchSearch(MAIN_SEARCH);
-		}
-		else
-		{
+
 			cleverState = cH.getBotState();
 			whatHitchbotHeard = message;
 			if(cH.getAudio_on().equals("true"))
@@ -363,7 +357,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			{
 				Speak(response);
 			}
-		}
 	}
 	else
 	{
@@ -386,7 +379,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	public void Speak(String message)
 	{
-		recognizer.stop();
+		bestGuess = "";
 	    HashMap<String, String> myHashAlarm = new HashMap<String, String>();
 		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
 	    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "SOME MESSAGE");
@@ -403,6 +396,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    }
 	   
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
+		
 	    
 	}
 	
@@ -446,13 +440,13 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            @Override
 	            public void onStart(String utteranceId)
 	            {
-	            	recognizer.stop();
 	        
 	            	
 	            }
 	        });
 	        if (listenerResult != TextToSpeech.SUCCESS)
 	        {
+	        	
 	        }
 	    }
 	
@@ -482,7 +476,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    
     recognizer.stop();
     recognizer.startListening(searchName);
-    
+    recognizerOn = true;
     speechHandler.postDelayed(new Runnable()
     {
 
@@ -492,7 +486,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		    timerMethod();
 		}
     	
-    }, Config.randInt());
+    }, 12000);
    // String caption = getResources().getString(captions.get(searchName));
   //  ((TextView) findViewById(R.id.editText2)).setText(caption);
 }
@@ -507,14 +501,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 		@Override
 		public void run() {
+			if(recognizerOn)
+			{
 			recognizer.stop();
-			if(notSleeping && recognizerOn)
-			{
-			getResponseFromCleverscript(bestGuess, Config.cH);
-			}
-			else
-			{
-				switchSearch(MAIN_SEARCH);
 			}
 			
 		}
@@ -553,9 +542,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 	@Override
 	public void onEndOfSpeech() {
-		/*if (MAIN_SEARCH.equals(recognizer.getSearchName()))
-        	recognizer.stop();
-            switchSearch(MAIN_SEARCH); */ 	
+		recognizerOn = false;
+		recognizer.stop(); 	
 	}
 
 	@Override
@@ -593,8 +581,15 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     		}
     		else
     		{
-            makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
-            //getResponseFromCleverscript(text, Config.cH);
+    			if(notSleeping)
+    			{
+    					getResponseFromCleverscript(bestGuess, Config.cH);
+    		            makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+    			}
+    			else
+    			{
+    				switchSearch(MAIN_SEARCH);
+    			}
     		}
     	
 	}
@@ -952,7 +947,6 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 				rlS.stopRecording();
 				uploadAudioFile(rlS.mFileName);
 				Config.cH.cs.assignVariable("audio_on", "false");
-				//TODO fix
 				bestGuess = "done";
 				timerMethod();
 				
