@@ -1,11 +1,11 @@
 package com.example.hitchbot;
 
-import com.cleverscript.android.CleverscriptAPI;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import edu.cmu.pocketsphinx.Hypothesis;
-import edu.cmu.pocketsphinx.RecognitionListener;
 import android.util.Log;
-import android.widget.Toast;
+
+import com.cleverscript.android.CleverscriptAPI;
 
 public class CleverHelper  {
 	
@@ -18,39 +18,64 @@ public class CleverHelper  {
 		cs.setApiKey(APIkey);
 		cs.setDebugLevel(4);
 	    cs.loadDatabase();
+	    loadVariables();
 	}
 
 	public void loadVariables()
 	{
 		CleverVariables cV = new CleverVariables();
-		cs.assignVariable("weather_temperatureC", cV.weather_temperatureC);
-		cs.assignVariable("weather_temperatureK", cV.weather_temperatureK);
-		cs.assignVariable("current_city_name", cV.current_city_name);
-		cs.assignVariable("current_city_mayor_name", cV.current_city_mayor_name);
-		cs.assignVariable("current_city_population", cV.current_city_population);
-		cs.assignVariable("local_time", cV.local_time);
-		cs.assignVariable("local_time_intr", cV.local_time_intr);
-		cs.assignVariable("local_date", cV.local_date);
-		cs.assignVariable("next_city_distance", cV.next_city_distance);
-		cs.assignVariable("next_city_time_minutes", cV.next_city_time_minutes);
-		cs.assignVariable("next_city_time_hours", cV.next_city_time_hours);
-		cs.assignVariable("starting_date", cV.starting_date);
-		cs.assignVariable("starting_city", cV.starting_city);
-		cs.assignVariable("last_three_cities", cV.last_three_cities);
-		cs.assignVariable("last_opinion", cV.last_opinion);
-		cs.assignVariable("current_velocity", cV.current_velocity);
-		cs.assignVariable("maximum_velocty", cV.maximum_velocty);
-		cs.assignVariable("local_sunrise_time", cV.local_sunrise_time);
-		cs.assignVariable("local_sunset_time", cV.local_sunset_time);
-		cs.assignVariable("local_humidity", cV.local_humidity);
-
+		cs.assignVariable("weather_temperatureC", (String) cV.data.get("weather_temperatureC"));
+		cs.assignVariable("weather_temperatureK", (String) cV.data.get("weather_temperatureK"));
+		cs.assignVariable("current_city_name", (String) cV.data.get("current_city_name"));
+		cs.assignVariable("current_city_mayor_name", (String) cV.data.get("current_city_mayor_name"));
+		cs.assignVariable("current_city_population",(String) cV.data.get("current_city_population"));
+		cs.assignVariable("local_time", (String) cV.data.get("local_time"));
+		cs.assignVariable("local_time_intr", (String) cV.data.get("local_time_intr"));
+		cs.assignVariable("local_date", (String) cV.data.get("local_date"));
+		cs.assignVariable("next_city_distance", (String) cV.data.get("next_city_distance"));
+		cs.assignVariable("next_city_time_minutes", (String) cV.data.get("next_city_time_minutes"));
+		cs.assignVariable("next_city_time_hours", (String) cV.data.get("next_city_time_hours"));
+		cs.assignVariable("starting_date", (String) cV.data.get("starting_date"));
+		cs.assignVariable("starting_city", (String) cV.data.get("starting_city"));
+		cs.assignVariable("last_three_cities", (String) cV.data.get("last_three_cities"));
+		cs.assignVariable("last_opinion", (String) cV.data.get("last_opinion"));
+		cs.assignVariable("current_velocity", (String) cV.data.get("current_velocity"));
+		cs.assignVariable("maximum_velocty", (String) cV.data.get("maximum_velocty"));
+		cs.assignVariable("local_sunrise_time", (String) cV.data.get("local_sunrise_time"));
+		cs.assignVariable("local_sunset_time", (String) cV.data.get("local_sunset_time"));
+		cs.assignVariable("local_humidity", (String) cV.data.get("local_humidity"));
+		cs.assignVariable("audio_on", (String) cV.data.get("audio_on"));
+		cs.assignVariable("cleverdata_on", (String) cV.data.get("cleverdata_on"));
+		cs.assignVariable("wikipedia_output", "My server is down, blame my programmers.");
+		cV.getVariablesFromServer();
 
 	}
 	
-	public void getInformationForVariables()
+	public void getInformationForVariables(String jsonString)
 	{
-		//get temp, city, population, etc..
-	}
+		if(jsonString != null)
+		{
+		try
+		{
+			JSONObject obj = new JSONObject(jsonString);
+			JSONArray jO = obj.getJSONArray("data");
+
+			for(int j = 0 ; j < jO.length() ; j ++)
+			{
+				JSONObject jobj = jO.getJSONObject(j);
+				
+				cs.assignVariable((String) jobj.getString("key"), (String) jobj.getString("value"));
+				Log.i("HTTPGET", (String) jobj.getString("key") + " ");
+				Log.i("HTTPGET", (String) jobj.getString("value") + " ");
+
+			}
+		}
+		catch(Exception e)
+		{
+			//stuff
+		}
+		}
+}
 	
 	public String getBotState()
 	{
@@ -65,6 +90,26 @@ public class CleverHelper  {
 	public String getAccuracy()
 	{
 		return cs.retrieveVariable("accuracy");
+	}
+	
+	public String getAudio_on()
+	{
+		return cs.retrieveVariable("audio_on");
+	}
+	
+	public String getClever_data()
+	{
+		return cs.retrieveVariable("cleverdata_on");
+	}
+	
+	public void setClever_data()
+	{
+		cs.assignVariable("cleverdata_on", Config.MAIN_SEARCH);
+	}
+	
+	public void setAudio_on()
+	{
+		cs.assignVariable("audio_on", "false");
 	}
 	
 	

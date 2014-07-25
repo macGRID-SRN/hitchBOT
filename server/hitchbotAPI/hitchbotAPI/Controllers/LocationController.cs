@@ -27,7 +27,7 @@ namespace hitchbotAPI.Controllers
                 if (mapsURL.Count() > 0)
                 {
                     var lastGenerated = mapsURL.OrderByDescending(l => l.TimeGenerated).First();
-                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(0.000001))
+                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(1))
                     {
                         response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID)));
                     }
@@ -40,12 +40,17 @@ namespace hitchbotAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets the static map API url (generate it)
+        /// </summary>
+        /// <param name="poly">The poly thing generated from somewhere else.. don't really know where.</param>
+        /// <returns></returns>
         private string GetStaticMapURL(string poly)
         {
             return Helpers.LocationHelper.gmapsString + poly + Helpers.LocationHelper.gAPIkey;
         }
 
-        public string GetRegionText(int HitchBotID)
+        private string GetRegionText(int HitchBotID)
         {
 
             return string.Empty;
@@ -76,17 +81,19 @@ namespace hitchbotAPI.Controllers
                     Latitude = LatDouble,
                     Longitude = LongDouble,
                     TakenTime = StartTimeReal,
-                    TimeAdded = DateTime.UtcNow
+                    TimeAdded = DateTime.UtcNow,
+                    HitchBOT = hitchBOT
                 };
 
-                hitchBOT.Locations.Add(location);
+                db.Locations.Add(location);
                 db.SaveChanges();
-                //var myVAR = db.Set<Models.Location>();
-                //db.Entry<Models.Location>(location).GetDatabaseValues();
+                //hitchBOT.Locations.Add(location);
+                //db.SaveChanges();
+
                 newLocationID = location.ID;
             }
 
-            Helpers.LocationHelper.CheckForTargetLocation(hitchBotID, newLocationID);
+            //Helpers.LocationHelper.CheckForTargetLocation(hitchBotID, newLocationID);
             return true;
         }
         /// <summary>
@@ -122,17 +129,6 @@ namespace hitchbotAPI.Controllers
                 db.SaveChanges();
             }
             return true;
-        }
-
-        /// <summary>
-        /// Get a Location instance by it's ID.
-        /// </summary>
-        /// <param name="ID">ID of the Location requested.</param>
-        /// <returns>The requested Location instance.</returns>
-        [HttpGet]
-        public Location GetLocationByID(int ID)
-        {
-            return (new Models.Database()).Locations.First(l => l.ID == ID);
         }
     }
 }

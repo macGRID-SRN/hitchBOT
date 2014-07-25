@@ -41,7 +41,7 @@
             android:layout_height="911dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/button3" >
+            android:layout_below="@+id/button1" >
 
         </FrameLayout>
 
@@ -50,34 +50,12 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/frame"
-            android:layout_marginRight="60dp"
-            android:layout_toLeftOf="@+id/button3"
-            android:text="1st" 
-            android:onClick="firstCleverScript"/>
-
-        <Button
-            android:id="@+id/button4"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:layout_below="@+id/editText2"
-            android:layout_marginRight="79dp"
-            android:layout_marginTop="22dp"
-            android:text="2nd"
-            android:onClick="secondCleverScript" />
-
-        <Button
-            android:id="@+id/button3"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/button4"
-            android:layout_marginRight="99dp"
-            android:layout_toLeftOf="@+id/button4"
-            android:text="3rd" 
-            android:onClick="thirdCleverScript"/>
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="27dp"
+            android:onClick="firstCleverScript"
+            android:text="1st" />
 
     </RelativeLayout>
 

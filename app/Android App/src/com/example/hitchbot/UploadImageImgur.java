@@ -1,5 +1,6 @@
 package com.example.hitchbot;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 
 import org.apache.http.HttpRequest;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URIUtils;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
@@ -53,24 +55,28 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 			{
 				
 				String url1 = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s&URL=%s";
-				String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.US).format(new Date());
+				String timeStamp = Config.getUtcDate();
 				String hitchBOTid = Config.HITCHBOT_ID;
 				String URL = url;
 				
 				HttpServerPost  hSp = new HttpServerPost(String.format(url1,hitchBOTid, timeStamp, URL), context);
 
-				hSp.execute(hSp);				
+				hSp.execute(hSp);
+				
+				boolean deleted = new File(image.getPath()).delete();
+				Log.i("FileDeleted",String.valueOf(deleted));
 			}
 			else
 			{
 
-				DatabaseQueue dQ = new DatabaseQueue(context);	
+				DatabaseQueue dQ = DatabaseQueue.getHelper(Config.context);	
 				
 				HttpPostDb hPd = new HttpPostDb(image.toString(),0, 2);
 				dQ.addItemToQueue(hPd);
 
 				Toast.makeText(activity, url, Toast.LENGTH_SHORT).show();
 			}
+
 		}
 
 		@Override

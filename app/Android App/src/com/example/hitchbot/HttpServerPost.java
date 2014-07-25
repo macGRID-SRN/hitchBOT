@@ -23,12 +23,14 @@ public class HttpServerPost extends AsyncTask<HttpServerPost, Void, String> {
 	List<NameValuePair> nameValuePair;
 	String[] postHeader;
 	Context context;
+	DatabaseQueue dQ;
 	
 	public HttpServerPost(String URLtoPost, List<NameValuePair> dataToSend, String[] postHeader)
 	{
 		this.urlToPost =URLtoPost;
 		this.nameValuePair = dataToSend;
 		this.postHeader = postHeader;
+		this.dQ = DatabaseQueue.getHelper(Config.context);
 	}
 	
 	public HttpServerPost(String URLtoPost, List<NameValuePair> dataToSend)
@@ -36,6 +38,8 @@ public class HttpServerPost extends AsyncTask<HttpServerPost, Void, String> {
 		this.urlToPost = URLtoPost;
 		this.nameValuePair = dataToSend;
 		this.postHeader = null;
+		this.dQ = DatabaseQueue.getHelper(Config.context);
+
 	}
 	
 	//Had to make this constructor because Android doesn't play nice with windows azure api formatting
@@ -45,6 +49,8 @@ public class HttpServerPost extends AsyncTask<HttpServerPost, Void, String> {
 		this.nameValuePair = null;
 		this.postHeader = null;
 		this.context = context;
+		this.dQ = DatabaseQueue.getHelper(Config.context);
+
 	}
 		
 	
@@ -104,7 +110,6 @@ public class HttpServerPost extends AsyncTask<HttpServerPost, Void, String> {
 			Log.i("WasUploadSuccessful", responseCheck );
 			if(!responseCheck.equals("true"))
 			{
-				DatabaseQueue dQ = new DatabaseQueue(context);
 				dQ.addItemToQueue(new HttpPostDb(urlToPost, 1, 0));
 			}
 
@@ -112,7 +117,6 @@ public class HttpServerPost extends AsyncTask<HttpServerPost, Void, String> {
 		catch(ClientProtocolException e)
 		{
 			Log.i("WasUploadSuccessful", e.toString() );
-			DatabaseQueue dQ = new DatabaseQueue(context);
 			dQ.addItemToQueue(new HttpPostDb(urlToPost, 1, 0));
 			
 
@@ -120,7 +124,6 @@ public class HttpServerPost extends AsyncTask<HttpServerPost, Void, String> {
 		catch(IOException e)
 		{
 			Log.i("WasUploadSuccessful", e.toString() );
-			DatabaseQueue dQ = new DatabaseQueue(context);
 			dQ.addItemToQueue(new HttpPostDb(urlToPost, 1, 0));
 			
 

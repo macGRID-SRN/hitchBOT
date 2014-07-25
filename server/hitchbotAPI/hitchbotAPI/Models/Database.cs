@@ -34,6 +34,7 @@ namespace hitchbotAPI.Models
         public DbSet<GoogleMapsStatic> StaticMaps { get; set; }
         public DbSet<Password> Passwords { get; set; }
         public DbSet<ExceptionLog> Exceptions { get; set; }
+        public DbSet<TabletStatus> TabletStatusI { get; set; }
 
     }
 }

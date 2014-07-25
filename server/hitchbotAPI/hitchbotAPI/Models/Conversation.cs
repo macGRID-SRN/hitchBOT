@@ -13,6 +13,7 @@ namespace hitchbotAPI.Models
         public Location StartLocation { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime? EndTime { get; set; }
+        public virtual hitchBOT HitchBOT { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public bool Complete
         {

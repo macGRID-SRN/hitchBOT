@@ -9,5 +9,23 @@ namespace hitchbotAPI.Models
 {
     public class ContextPacket
     {
+        public List<KeyValuePair> data;
+
+        public ContextPacket(List<KeyValuePair> myValue)
+        {
+            this.data = myValue;
+        }
+    }
+
+    public class KeyValuePair
+    {
+        public string key { get; set; }
+        public string value { get; set; }
+
+        public KeyValuePair(string key, string value)
+        {
+            this.key = key;
+            this.value = value;
+        }
     }
 }

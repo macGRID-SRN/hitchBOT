@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\TabletController.cs" />
     <Compile Include="Controllers\TwitterApiController.cs" />
     <Compile Include="Directory.aspx.cs">
       <DependentUpon>Directory.aspx</DependentUpon>
@@ -205,6 +206,14 @@
     <Compile Include="Migrations\201407102235176_AddHitsAndExceptions.Designer.cs">
       <DependentUpon>201407102235176_AddHitsAndExceptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407140320266_TabletStatus.cs" />
+    <Compile Include="Migrations\201407140320266_TabletStatus.Designer.cs">
+      <DependentUpon>201407140320266_TabletStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407151845137_AddConversationLink.cs" />
+    <Compile Include="Migrations\201407151845137_AddConversationLink.Designer.cs">
+      <DependentUpon>201407151845137_AddConversationLink.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -220,6 +229,7 @@
     <Compile Include="Models\Password.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\SpeechEvent.cs" />
+    <Compile Include="Models\TabletStatus.cs" />
     <Compile Include="Models\TwitterAccount.cs" />
     <Compile Include="Models\TwitterFriend.cs" />
     <Compile Include="Models\TwitterLocationTarget.cs" />
@@ -310,6 +320,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\uploads\" />
     <Folder Include="Views\Conversation\" />
     <Folder Include="Views\Location\" />
   </ItemGroup>
@@ -319,6 +330,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407102235176_AddHitsAndExceptions.resx">
       <DependentUpon>201407102235176_AddHitsAndExceptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407140320266_TabletStatus.resx">
+      <DependentUpon>201407140320266_TabletStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407151845137_AddConversationLink.resx">
+      <DependentUpon>201407151845137_AddConversationLink.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

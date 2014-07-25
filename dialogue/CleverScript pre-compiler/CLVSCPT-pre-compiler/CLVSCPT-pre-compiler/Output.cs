@@ -7,9 +7,10 @@ namespace CLVSCPT_pre_compiler
 {
     class Output : CleverScriptLine
     {
-        public Output(string[] text) : base(text)
+        public Output(string[] text)
+            : base(text)
         {
-            
+
         }
     }
 }
