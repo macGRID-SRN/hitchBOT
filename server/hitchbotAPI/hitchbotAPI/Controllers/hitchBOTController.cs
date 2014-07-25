@@ -39,7 +39,11 @@ namespace hitchbotAPI.Controllers
             var contextPacket = new Models.ContextPacket(
                 new List<Models.KeyValuePair>() { 
                 new Models.KeyValuePair("wikipedia_output", "Wow this really works!"),
-                new Models.KeyValuePair("weather_status", "It's sunny out there.")
+                new Models.KeyValuePair("weather_status", "It's sunny out there."),
+                new Models.KeyValuePair("current_city_name", "Halifax"),
+                new Models.KeyValuePair("last_opinion", "It went Ok."),
+                new Models.KeyValuePair("last_three_cities", "Montreal, Hamilton and Nova Scotia, even though that isn't a city."),
+                new Models.KeyValuePair("current_province", "novascotia")
                 
                 });
 
