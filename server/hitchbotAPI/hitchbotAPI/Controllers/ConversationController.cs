@@ -25,7 +25,7 @@ namespace hitchbotAPI.Controllers
             using (var db = new Models.Database())
             {
                 var hitchbot = db.hitchBOTs.Include(l => l.Locations).Include(h => h.Conversations).First(h => h.ID == HitchBotID);
-                if (hitchbot.Conversations.Last().TimeAdded - DateTime.UtcNow > TimeSpan.FromHours(3))
+                if (DateTime.UtcNow - hitchbot.Conversations.Last().TimeAdded > TimeSpan.FromHours(3))
                 {
                     var location = hitchbot.Locations.OrderBy(l => l.TakenTime).First();
                     var newConversation = new Models.Conversation()
