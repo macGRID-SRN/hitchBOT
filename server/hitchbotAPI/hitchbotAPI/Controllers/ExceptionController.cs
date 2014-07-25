@@ -24,7 +24,8 @@ namespace hitchbotAPI.Controllers
                 {
                     Message = Message.Replace("%20", " "),
                     TimeOccured = RealTimeOccured,
-                    HitchBOT = hitchBOT
+                    HitchBOT = hitchBOT,
+                    TimeAdded = DateTime.UtcNow
                 };
 
                 db.Exceptions.Add(exception);
