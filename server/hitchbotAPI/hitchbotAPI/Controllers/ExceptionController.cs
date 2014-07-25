@@ -22,7 +22,7 @@ namespace hitchbotAPI.Controllers
 
                 var exception = new Models.ExceptionLog()
                 {
-                    Message = Message,
+                    Message = Message.Replace("%20", " "),
                     TimeOccured = RealTimeOccured,
                     HitchBOT = hitchBOT
                 };
