@@ -99,23 +99,23 @@ namespace hitchbotAPI.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<bool> ToggleConversationTweet(int HitchBotID)
-        {
-            using (var db = new Models.Database())
-            {
-                var hitchy = db.hitchBOTs.Include(l => l.Conversations).First(h => h.ID == HitchBotID);
+        //[HttpGet]
+        //public async Task<bool> ToggleConversationTweet(int HitchBotID)
+        //{
+        //    using (var db = new Models.Database())
+        //    {
+        //        var hitchy = db.hitchBOTs.Include(l => l.Conversations).First(h => h.ID == HitchBotID);
 
-                var conversations = db.SpeechEvents.Include(l => l.Conversation).Where(l => l.Conversation.ID == hitchy.CurrentConversation.ID).ToList();
+        //        var conversations = db.SpeechEvents.Include(l => l.Conversation).Where(l => l.Conversation.ID == hitchy.CurrentConversation.ID).ToList();
 
-                if (conversations != null)
-                {
-                    Random randy = new Random();
-                    var selectedSpeechEvent = conversations[randy.Next(conversations.Count)];
-                    await Helpers.TwitterHelper.PostTweetWithLocation(HitchBotID, 1, selectedSpeechEvent.SpeechSaid); //location ID for now because reasons
-                }
-            }
-            return true;
-        }
+        //        if (conversations != null)
+        //        {
+        //            Random randy = new Random();
+        //            var selectedSpeechEvent = conversations[randy.Next(conversations.Count)];
+        //            await Helpers.TwitterHelper.PostTweetWithLocation(HitchBotID, 1, selectedSpeechEvent.SpeechSaid); //location ID for now because reasons
+        //        }
+        //    }
+        //    return true;
+        //}
     }
 }

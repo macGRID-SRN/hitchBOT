@@ -56,6 +56,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Extensions">
@@ -141,6 +142,13 @@
     </Compile>
     <Compile Include="ApproveImagesPages\ApproveImageLogin.aspx.designer.cs">
       <DependentUpon>ApproveImageLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveImagesPages\ViewImages.aspx.cs">
+      <DependentUpon>ViewImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\ViewImages.aspx.designer.cs">
+      <DependentUpon>ViewImages.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -252,6 +260,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApproveImagesPages\ApproveImageLogin.aspx" />
+    <Content Include="ApproveImagesPages\ViewImages.aspx" />
     <Content Include="App_Data\LinqToTwitter.AspNet.dll" />
     <Content Include="App_Data\LinqToTwitterPcl.dll" />
     <Content Include="App_Data\XmlDocument.xml" />

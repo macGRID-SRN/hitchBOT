@@ -32,7 +32,7 @@ namespace hitchbotAPI
                     if (user.Hash == Models.PasswordHandler.GetHash(passWord.Text))
                     {
                         Session["New"] = user;
-                        Response.Redirect("ViewImage.aspx");
+                        Response.Redirect("ViewImages.aspx");
                     }
                     else
                     {
