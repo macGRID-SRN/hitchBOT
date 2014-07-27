@@ -26,23 +26,47 @@ namespace hitchbotAPI.ApproveImagesPages
                     for (int i = 0; i < imgs.Count; i++)
                     {
                         var img = imgs[i];
+                        Table innerTable = new Table();
+                        TableRow upperRow = new TableRow();
+                        TableRow imageRow = new TableRow();
+
+                        TableCell upper = new TableCell();
 
                         Image newImage = new Image();
                         newImage.ImageUrl = "http://imgur.com/" + img.url + ".jpg";
                         newImage.Width = 700;
+                        newImage.ImageAlign = ImageAlign.Right;
                         newImage.Style.Add("transform", "rotate(90deg)");
+                        newImage.Style.Add("margin-top", "25px");
+                        TableCell imageCell = new TableCell();
+                        imageCell.Controls.Add(newImage);
+                        imageRow.Cells.Add(imageCell);
 
-                        TableCell tc1 = new TableCell();
 
                         Button myButton1 = new Button();
                         myButton1.CommandArgument = img.ID.ToString();
                         myButton1.Text = "Remove";
                         myButton1.Click += this.Button_Remove_Image;
-                        tc1.Controls.Add(myButton1);
+                        //myButton1.Style.Add("margin-top", "-150px");
+                        //myButton1.Style.Add("position", "relative");
+                        upper.Controls.Add(myButton1);
 
-                        tc1.Controls.Add(newImage);
+                        Label myLabel = new Label();
+                        myLabel.Text = "   Time Taken: " + img.TimeTaken.ToString() + " (UTC)";
+                        //myLabel.Style.Add("margin-top", "-150px");
+                        upper.Controls.Add(myLabel);
+
+                        upperRow.Controls.Add(upper);
+                        upperRow.Height = 105;
+                        upperRow.VerticalAlign = VerticalAlign.Top;
+                        innerTable.Rows.Add(upperRow);
+                        innerTable.Rows.Add(imageRow);
+
+                        TableCell tc1 = new TableCell();
+                        tc1.Controls.Add(innerTable);
+                        tc1.VerticalAlign = VerticalAlign.Top;
                         tc1.Height = newImage.Width;
-                        tc1.Height = Unit.Parse((newImage.Width.Value + 25).ToString(), System.Globalization.CultureInfo.CurrentCulture);
+                        tc1.Height = Unit.Parse((newImage.Width.Value + 60).ToString(), System.Globalization.CultureInfo.CurrentCulture);
                         tc1.BorderStyle = BorderStyle.Solid;
                         tr.Cells.Add(tc1);
 
