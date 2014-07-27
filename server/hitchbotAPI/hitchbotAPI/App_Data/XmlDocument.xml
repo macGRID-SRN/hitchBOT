@@ -4,6 +4,15 @@
         <name>hitchbotAPI</name>
     </assembly>
     <members>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocation.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImage.form1">
             <summary>
             form1 control.
@@ -52,6 +61,15 @@
         <member name="F:hitchbotAPI.ApproveImagesPages.ViewImages.form1">
             <summary>
             form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.ViewImages.Label1">
+            <summary>
+            Label1 control.
             </summary>
             <remarks>
             Auto-generated field.

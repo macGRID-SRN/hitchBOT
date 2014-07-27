@@ -136,6 +136,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApproveImagesPages\AddTargetLocation.aspx.cs">
+      <DependentUpon>AddTargetLocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\AddTargetLocation.aspx.designer.cs">
+      <DependentUpon>AddTargetLocation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\ApproveImageLogin.aspx.cs">
       <DependentUpon>ApproveImageLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -259,6 +266,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApproveImagesPages\AddTargetLocation.aspx" />
     <Content Include="ApproveImagesPages\ApproveImageLogin.aspx" />
     <Content Include="ApproveImagesPages\ViewImages.aspx" />
     <Content Include="App_Data\LinqToTwitter.AspNet.dll" />

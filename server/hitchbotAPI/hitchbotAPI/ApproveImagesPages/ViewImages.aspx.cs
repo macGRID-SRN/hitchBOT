@@ -73,6 +73,10 @@ namespace hitchbotAPI.ApproveImagesPages
                             tr = new TableRow();
                         }
                     }
+                    if (tr.Cells.Count == 1)
+                    {
+                        tableViewImage.Rows.Add(tr);
+                    }
                 }
             }
             else
