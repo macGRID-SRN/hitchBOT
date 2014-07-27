@@ -47,13 +47,10 @@ namespace hitchbotAPI.ApproveImagesPages
                         myButton1.CommandArgument = img.ID.ToString();
                         myButton1.Text = "Remove";
                         myButton1.Click += this.Button_Remove_Image;
-                        //myButton1.Style.Add("margin-top", "-150px");
-                        //myButton1.Style.Add("position", "relative");
                         upper.Controls.Add(myButton1);
 
                         Label myLabel = new Label();
                         myLabel.Text = "   Time Taken: " + img.TimeTaken.ToString() + " (UTC)";
-                        //myLabel.Style.Add("margin-top", "-150px");
                         upper.Controls.Add(myLabel);
 
                         upperRow.Controls.Add(upper);
