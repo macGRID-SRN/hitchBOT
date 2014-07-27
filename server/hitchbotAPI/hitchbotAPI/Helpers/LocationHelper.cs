@@ -61,7 +61,7 @@ namespace hitchbotAPI.Helpers
         {
             using (var db = new Models.Database())
             {
-                var OrderedLocations = db.hitchBOTs.Include(h => h.Locations).First(h => h.ID == HitchBotID).Locations.OrderBy(l => l.TakenTime).ToList();
+                var OrderedLocations = db.hitchBOTs.Include(h => h.Locations).First(h => h.ID == HitchBotID).Locations.Where(l => l.TakenTime > new DateTime(2014, 07, 26)).OrderBy(l => l.TakenTime).ToList();
                 string tempRegionString = string.Empty;
 
                 if (OrderedLocations.Count > 0)

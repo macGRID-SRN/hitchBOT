@@ -581,7 +581,7 @@
             <summary>
             Gets the static map API url (generate it)
             </summary>
-            <param name="poly">The poly thing generated from somewhere else.. don't really know where.</param>
+            <param name="poly">The poly thing generated from somewhere else.. don't really know where. What was I thinking when I wrote this description? Who knows.</param>
             <returns></returns>
         </member>
         <member name="M:hitchbotAPI.Controllers.LocationController.UpdateHitchBotLocationMin(System.String,System.String,System.String,System.String)">
