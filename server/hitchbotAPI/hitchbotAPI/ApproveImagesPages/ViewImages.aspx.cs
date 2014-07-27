@@ -20,37 +20,37 @@ namespace hitchbotAPI.ApproveImagesPages
                 using (var db = new Models.Database())
                 {
                     int hitchBOTid = user.hitchBOT.ID;
-                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved == null || i.TimeDenied == null) && DbFunctions.DiffDays(i.TimeTaken, DateTime.UtcNow) <= 1).OrderBy(i => i.TimeTaken).ToList();
-                    for (int i = 0; i <= imgs.Count; i += 2)
+                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved == null && i.TimeDenied == null) && DbFunctions.DiffDays(i.TimeTaken, DateTime.UtcNow) <= 1).OrderBy(i => i.TimeTaken).ToList();
+
+                    TableRow tr = new TableRow();
+                    for (int i = 0; i < imgs.Count; i++)
                     {
-                        var img1 = imgs[i];
-                        var img2 = i < imgs.Count -1 ? imgs[i + 1] : null;
+                        var img = imgs[i];
 
                         Image newImage = new Image();
-                        newImage.ImageUrl = "http://imgur.com/" + img1.url + ".jpg";
+                        newImage.ImageUrl = "http://imgur.com/" + img.url + ".jpg";
                         newImage.Width = 700;
                         newImage.Style.Add("transform", "rotate(90deg)");
 
-                        TableRow tr = new TableRow();
                         TableCell tc1 = new TableCell();
 
+                        Button myButton1 = new Button();
+                        myButton1.CommandArgument = img.ID.ToString();
+                        myButton1.Text = "Remove";
+                        myButton1.Click += this.Button_Remove_Image;
+                        tc1.Controls.Add(myButton1);
 
                         tc1.Controls.Add(newImage);
                         tc1.Height = newImage.Width;
+                        tc1.Height = Unit.Parse((newImage.Width.Value + 25).ToString(), System.Globalization.CultureInfo.CurrentCulture);
+                        tc1.BorderStyle = BorderStyle.Solid;
                         tr.Cells.Add(tc1);
 
-                        if (img2 != null)
+                        if (tr.Cells.Count >= 2)
                         {
-                            TableCell tc2 = new TableCell();
-                            Image newImage2 = new Image();
-                            newImage2.ImageUrl = "http://imgur.com/" + img2.url + ".jpg";
-                            newImage2.Width = 700;
-                            newImage2.Style.Add("transform", "rotate(90deg)");
-                            tc2.Controls.Add(newImage2);
-                            tc2.Height = newImage2.Height;
-                            tr.Cells.Add(tc2);
+                            tableViewImage.Rows.Add(tr);
+                            tr = new TableRow();
                         }
-                        tableViewImage.Rows.Add(tr);
                     }
                 }
             }
@@ -58,6 +58,26 @@ namespace hitchbotAPI.ApproveImagesPages
             {
                 Response.Redirect("Unauthorized.aspx");
             }
+        }
+
+        private void Button_Remove_Image(object sender, System.EventArgs e)
+        {
+            Button b = (Button)sender;
+            using (var db = new Models.Database())
+            {
+                int ID = int.Parse(b.CommandArgument);
+                var img = db.Images.First(i => i.ID == ID);
+
+                img.TimeDenied = DateTime.UtcNow;
+
+                db.Images.Attach(img);
+
+                db.ChangeTracker.DetectChanges();
+
+                db.SaveChanges();
+            }
+
+            Response.Redirect("ViewImages.aspx", true);
         }
     }
 }
