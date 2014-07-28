@@ -150,6 +150,27 @@
     <Compile Include="ApproveImagesPages\ApproveImageLogin.aspx.designer.cs">
       <DependentUpon>ApproveImageLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\HealthStatus.aspx.cs">
+      <DependentUpon>HealthStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\HealthStatus.aspx.designer.cs">
+      <DependentUpon>HealthStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveImagesPages\LandingPage.aspx.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\LandingPage.aspx.designer.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveImagesPages\SavedImages.aspx.cs">
+      <DependentUpon>SavedImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\SavedImages.aspx.designer.cs">
+      <DependentUpon>SavedImages.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\ViewImages.aspx.cs">
       <DependentUpon>ViewImages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -268,6 +289,9 @@
   <ItemGroup>
     <Content Include="ApproveImagesPages\AddTargetLocation.aspx" />
     <Content Include="ApproveImagesPages\ApproveImageLogin.aspx" />
+    <Content Include="ApproveImagesPages\HealthStatus.aspx" />
+    <Content Include="ApproveImagesPages\LandingPage.aspx" />
+    <Content Include="ApproveImagesPages\SavedImages.aspx" />
     <Content Include="ApproveImagesPages\ViewImages.aspx" />
     <Content Include="App_Data\LinqToTwitter.AspNet.dll" />
     <Content Include="App_Data\LinqToTwitterPcl.dll" />

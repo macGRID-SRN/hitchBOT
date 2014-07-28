@@ -10,7 +10,7 @@ using System.Globalization;
 
 namespace hitchbotAPI.ApproveImagesPages
 {
-    public partial class ViewImages : System.Web.UI.Page
+    public partial class SavedImages : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,10 +20,11 @@ namespace hitchbotAPI.ApproveImagesPages
                 using (var db = new Models.Database())
                 {
                     int hitchBOTid = user.hitchBOT.ID;
-                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved == null && i.TimeDenied == null) && DbFunctions.DiffDays(i.TimeTaken, DateTime.UtcNow) <= 1).OrderBy(i => i.TimeTaken).ToList();
+                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved != null && i.TimeDenied == null)).OrderBy(i => i.TimeTaken).ToList();
 
                     if (imgs.Count == 0)
-                        Label1.Text = "No recent images! Uh oh!";
+                        Label1.Text = "There are no saved images!";
+
                     TableRow tr = new TableRow();
                     for (int i = 0; i < imgs.Count; i++)
                     {
@@ -44,21 +45,8 @@ namespace hitchbotAPI.ApproveImagesPages
                         imageCell.Controls.Add(newImage);
                         imageRow.Cells.Add(imageCell);
 
-
-                        Button myButton2 = new Button();
-                        myButton2.CommandArgument = img.ID.ToString();
-                        myButton2.Text = "Save";
-                        myButton2.Click += this.Button_Save_Image;
-                        upper.Controls.Add(myButton2);
-                        Button myButton1 = new Button();
-                        myButton1.CommandArgument = img.ID.ToString();
-                        myButton1.Text = "Remove";
-                        myButton1.Click += this.Button_Remove_Image;
-                        upper.Controls.Add(myButton1);
-
-
                         Label myLabel = new Label();
-                        myLabel.Text = "   Time Taken: " + img.TimeTaken.ToString() + " (UTC)";
+                        myLabel.Text = "Time Taken: " + img.TimeTaken.ToString() + " (UTC)" + "  Time Saved: " + img.TimeApproved.ToString() + " (UTC)";
                         upper.Controls.Add(myLabel);
 
                         upperRow.Controls.Add(upper);
@@ -93,44 +81,44 @@ namespace hitchbotAPI.ApproveImagesPages
             }
         }
 
-        private void Button_Remove_Image(object sender, System.EventArgs e)
-        {
-            Button b = (Button)sender;
-            using (var db = new Models.Database())
-            {
-                int ID = int.Parse(b.CommandArgument);
-                var img = db.Images.First(i => i.ID == ID);
+        //private void Button_Remove_Image(object sender, System.EventArgs e)
+        //{
+        //    Button b = (Button)sender;
+        //    using (var db = new Models.Database())
+        //    {
+        //        int ID = int.Parse(b.CommandArgument);
+        //        var img = db.Images.First(i => i.ID == ID);
 
-                img.TimeDenied = DateTime.UtcNow;
+        //        img.TimeDenied = DateTime.UtcNow;
 
-                db.Images.Attach(img);
+        //        db.Images.Attach(img);
 
-                db.ChangeTracker.DetectChanges();
+        //        db.ChangeTracker.DetectChanges();
 
-                db.SaveChanges();
-            }
+        //        db.SaveChanges();
+        //    }
 
-            Response.Redirect("ViewImages.aspx", true);
-        }
+        //    Response.Redirect("ViewImages.aspx", true);
+        //}
 
-        private void Button_Save_Image(object sender, System.EventArgs e)
-        {
-            Button b = (Button)sender;
-            using (var db = new Models.Database())
-            {
-                int ID = int.Parse(b.CommandArgument);
-                var img = db.Images.First(i => i.ID == ID);
+        //private void Button_Save_Image(object sender, System.EventArgs e)
+        //{
+        //    Button b = (Button)sender;
+        //    using (var db = new Models.Database())
+        //    {
+        //        int ID = int.Parse(b.CommandArgument);
+        //        var img = db.Images.First(i => i.ID == ID);
 
-                img.TimeApproved = DateTime.UtcNow;
+        //        img.TimeApproved = DateTime.UtcNow;
 
-                db.Images.Attach(img);
+        //        db.Images.Attach(img);
 
-                db.ChangeTracker.DetectChanges();
+        //        db.ChangeTracker.DetectChanges();
 
-                db.SaveChanges();
-            }
+        //        db.SaveChanges();
+        //    }
 
-            Response.Redirect("ViewImages.aspx", true);
-        }
+        //    Response.Redirect("ViewImages.aspx", true);
+        //}
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewImages.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.ViewImages" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SavedImages.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.SavedImages" %>
 
 <!DOCTYPE html>
 

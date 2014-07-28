@@ -10,7 +10,7 @@
 namespace hitchbotAPI.ApproveImagesPages {
     
     
-    public partial class ViewImages {
+    public partial class HealthStatus {
         
         /// <summary>
         /// form1 control.
@@ -40,12 +40,39 @@ namespace hitchbotAPI.ApproveImagesPages {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// tableViewImage control.
+        /// lblLastCheckin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tableViewImage;
+        protected global::System.Web.UI.WebControls.Label lblLastCheckin;
+        
+        /// <summary>
+        /// lblBatteryStat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBatteryStat;
+        
+        /// <summary>
+        /// lblBatteryTemp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBatteryTemp;
+        
+        /// <summary>
+        /// lblIsPluggedIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIsPluggedIn;
     }
 }

@@ -43,7 +43,7 @@ namespace hitchbotAPI.Controllers
                 new Models.KeyValuePair("current_city_name", "Halifax"),
                 new Models.KeyValuePair("last_opinion", "It went Ok."),
                 new Models.KeyValuePair("last_three_cities", "Montreal, Hamilton and Nova Scotia, even though that isn't a city."),
-                new Models.KeyValuePair("current_province", "newbrunswick")
+                new Models.KeyValuePair("current_province", "quebec")
                 
                 });
 

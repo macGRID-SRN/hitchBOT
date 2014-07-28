@@ -10,7 +10,7 @@
 namespace hitchbotAPI.ApproveImagesPages {
     
     
-    public partial class ViewImages {
+    public partial class SavedImages {
         
         /// <summary>
         /// form1 control.
