@@ -150,6 +150,13 @@
     <Compile Include="ApproveImagesPages\ApproveImageLogin.aspx.designer.cs">
       <DependentUpon>ApproveImageLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\ConversationTweets.aspx.cs">
+      <DependentUpon>ConversationTweets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\ConversationTweets.aspx.designer.cs">
+      <DependentUpon>ConversationTweets.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\HealthStatus.aspx.cs">
       <DependentUpon>HealthStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,6 +191,13 @@
     </Compile>
     <Compile Include="ApproveImagesPages\ViewImages.aspx.designer.cs">
       <DependentUpon>ViewImages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveImagesPages\ViewMap.aspx.cs">
+      <DependentUpon>ViewMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\ViewMap.aspx.designer.cs">
+      <DependentUpon>ViewMap.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -296,11 +310,13 @@
   <ItemGroup>
     <Content Include="ApproveImagesPages\AddTargetLocation.aspx" />
     <Content Include="ApproveImagesPages\ApproveImageLogin.aspx" />
+    <Content Include="ApproveImagesPages\ConversationTweets.aspx" />
     <Content Include="ApproveImagesPages\HealthStatus.aspx" />
     <Content Include="ApproveImagesPages\LandingPage.aspx" />
     <Content Include="ApproveImagesPages\LocationPortal.aspx" />
     <Content Include="ApproveImagesPages\SavedImages.aspx" />
     <Content Include="ApproveImagesPages\ViewImages.aspx" />
+    <Content Include="ApproveImagesPages\ViewMap.aspx" />
     <Content Include="App_Data\LinqToTwitter.AspNet.dll" />
     <Content Include="App_Data\LinqToTwitterPcl.dll" />
     <Content Include="App_Data\XmlDocument.xml" />

@@ -64,6 +64,43 @@ namespace hitchbotAPI.Helpers
             return 0;
         }
 
+        public static async Task<int> PostTweetText(int HitchBotID, string TweetText)
+        {
+            using (var db = new Models.Database())
+            {
+
+                try
+                {
+                    string UserID;
+                    var twitterContext = GetContext(HitchBotID, out UserID);
+                    Status response = await twitterContext.TweetAsync(TweetText);
+                    
+                    db.SaveChanges();
+                    return AddTweetToDatabase(UserID, response);
+                }
+                //catch (TwitterQueryException e)
+                //{
+                //    return e.ToString();
+                //}
+                //catch (InvalidOperationException e)
+                //{
+                //    return e.ToString();
+                //}
+                //catch (System.Data.SqlClient.SqlException e)
+                //{
+                //    return e.ToString();
+                //}
+                //catch (System.NotSupportedException e)
+                //{
+                //    return e.ToString();
+                //}
+                catch (Exception e)
+                {
+                }
+            }
+            return 0;
+        }
+
         public static int AddTweetToDatabase(string UserID, Status newStatus)
         {
             using (var db = new Models.Database())

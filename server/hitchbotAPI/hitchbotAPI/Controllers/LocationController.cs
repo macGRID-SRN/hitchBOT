@@ -47,7 +47,12 @@ namespace hitchbotAPI.Controllers
         /// <returns></returns>
         private string GetStaticMapURL(string poly)
         {
-            return Helpers.LocationHelper.gmapsString + poly + Helpers.LocationHelper.gAPIkey;
+            return Helpers.LocationHelper.gmapsString + poly + AddMarker() + Helpers.LocationHelper.gAPIkey;
+        }
+
+        private string AddMarker()
+        {
+            return "&markers=size:mid%7Ccolor:red%7Clabel:H%7C48.01743936,-66.37443042";
         }
 
         private string GetRegionText(int HitchBotID)

@@ -16,11 +16,15 @@
         <br />
         <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="SavedImages.aspx">Saved Images</asp:HyperLink>
         <br />
+        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="ConversationTweets.aspx">Send Conversation Tweets</asp:HyperLink>
+    
+        <br />
         <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="HealthStatus.aspx">hitchBOT Health Status</asp:HyperLink>
         <br />
         <br />
         <hr />
         What&#39;s New?<asp:BulletedList ID="BulletedList1" runat="server">
+            <asp:ListItem>Tweet things hitchbot has said</asp:ListItem>
             <asp:ListItem>Back link on each page.</asp:ListItem>
             <asp:ListItem>You can now save images from the gallery!</asp:ListItem>
             <asp:ListItem Value="See live battery info and other stats directly from hitchBOT!">See live battery info and other stats directly from hitchBOT</asp:ListItem>
@@ -30,9 +34,6 @@
         <br />
         Location Portal<br />
         Removed Images<br />
-        <asp:HyperLink ID="HyperLink3" runat="server">Conversation Tweets</asp:HyperLink>
-    
-        <br />
         Target Location Tweeting</div>
     </form>
 </body>
