@@ -164,6 +164,13 @@
     <Compile Include="ApproveImagesPages\LandingPage.aspx.designer.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\LocationPortal.aspx.cs">
+      <DependentUpon>LocationPortal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\LocationPortal.aspx.designer.cs">
+      <DependentUpon>LocationPortal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\SavedImages.aspx.cs">
       <DependentUpon>SavedImages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -291,6 +298,7 @@
     <Content Include="ApproveImagesPages\ApproveImageLogin.aspx" />
     <Content Include="ApproveImagesPages\HealthStatus.aspx" />
     <Content Include="ApproveImagesPages\LandingPage.aspx" />
+    <Content Include="ApproveImagesPages\LocationPortal.aspx" />
     <Content Include="ApproveImagesPages\SavedImages.aspx" />
     <Content Include="ApproveImagesPages\ViewImages.aspx" />
     <Content Include="App_Data\LinqToTwitter.AspNet.dll" />
