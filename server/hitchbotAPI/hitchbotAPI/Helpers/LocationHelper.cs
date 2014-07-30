@@ -54,6 +54,7 @@ namespace hitchbotAPI.Helpers
 
         public const string gmapsString = "http://maps.googleapis.com/maps/api/staticmap?size=800x800&path=weight:5%7Ccolor:blue%7Cenc:";
         public const string gmapsRegionString = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
+        public const string gmapsMarkerString = "&markers=size:mid%7Ccolor:red%7Clabel:H%7C"; 
 
         private const int maxLocations = 200;
 
@@ -63,18 +64,18 @@ namespace hitchbotAPI.Helpers
             {
                 var OrderedLocations = db.hitchBOTs.Include(h => h.Locations).First(h => h.ID == HitchBotID).Locations.Where(l => l.TakenTime > new DateTime(2014, 07, 27, 13, 30, 0)).OrderBy(l => l.TakenTime).ToList();
                 string tempRegionString = string.Empty;
-
+                string tempURL = EncodeCoordsForGMAPS(SlimLocations(OrderedLocations));
                 if (OrderedLocations.Count > 0)
                 {
                     var mostRecent = OrderedLocations.Last();
                     tempRegionString = GetRegion(mostRecent);
+                    tempURL += gmapsMarkerString + Math.Round(mostRecent.Latitude, 3) + "," + Math.Round(mostRecent.Longitude, 3);
                 }
                 else
                 {
                     tempRegionString = "Apparently my devs don't know where I am.. They should probably be fixing this and not doing $insert_awesome_activity_here$";
                 }
 
-                string tempURL = EncodeCoordsForGMAPS(SlimLocations(OrderedLocations));
                 var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
 
 
@@ -118,6 +119,7 @@ namespace hitchbotAPI.Helpers
                 outList.Add(inList[i]);
             }
 
+            //always add the last value - map always updated then plus other things rely on it!
             outList.Add(inList.Last());
 
             return inList;
