@@ -23,6 +23,7 @@ namespace hitchbotAPI.Controllers
             using (var db = new Models.Database())
             {
                 var response = Request.CreateResponse(HttpStatusCode.Moved);
+
                 var mapsURL = db.StaticMaps.Where(sm => sm.HitchBot.ID == HitchBotID);
                 if (mapsURL.Count() > 0)
                 {
@@ -36,6 +37,7 @@ namespace hitchbotAPI.Controllers
                 }
                 else
                     response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID)));
+
                 return response;
             }
         }
@@ -47,7 +49,7 @@ namespace hitchbotAPI.Controllers
         /// <returns></returns>
         private string GetStaticMapURL(string poly)
         {
-            return Helpers.LocationHelper.gmapsString + poly  + Helpers.LocationHelper.gAPIkey;
+            return Helpers.LocationHelper.gmapsString + poly + Helpers.LocationHelper.gAPIkey;
         }
 
         private string GetRegionText(int HitchBotID)

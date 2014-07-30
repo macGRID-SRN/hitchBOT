@@ -54,7 +54,7 @@ namespace hitchbotAPI.Helpers
 
         public const string gmapsString = "http://maps.googleapis.com/maps/api/staticmap?size=800x800&path=weight:5%7Ccolor:blue%7Cenc:";
         public const string gmapsRegionString = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
-        public const string gmapsMarkerString = "&markers=size:mid%7Ccolor:red%7Clabel:H%7C"; 
+        public const string gmapsMarkerString = "&markers=size:mid|color:red|label:H|"; 
 
         private const int maxLocations = 200;
 
@@ -68,7 +68,7 @@ namespace hitchbotAPI.Helpers
                 if (OrderedLocations.Count > 0)
                 {
                     var mostRecent = OrderedLocations.Last();
-                    tempRegionString = GetRegion(mostRecent);
+                    //tempRegionString = GetRegion(mostRecent);
                     tempURL += gmapsMarkerString + Math.Round(mostRecent.Latitude, 3) + "," + Math.Round(mostRecent.Longitude, 3);
                 }
                 else
@@ -77,7 +77,6 @@ namespace hitchbotAPI.Helpers
                 }
 
                 var hitchBOT = db.hitchBOTs.First(h => h.ID == HitchBotID);
-
 
                 var tempStaticLink = new Models.GoogleMapsStatic()
                 {
