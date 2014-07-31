@@ -68,7 +68,7 @@ namespace hitchbotAPI.Helpers
                 if (OrderedLocations.Count > 0)
                 {
                     var mostRecent = OrderedLocations.Last();
-                    //tempRegionString = GetRegion(mostRecent);
+                    tempRegionString = GetRegion(mostRecent);
                     tempURL += gmapsMarkerString + Math.Round(mostRecent.Latitude, 3) + "," + Math.Round(mostRecent.Longitude, 3);
                 }
                 else
