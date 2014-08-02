@@ -1,18 +1,11 @@
 package com.example.hitchbot;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.util.Log;
 
 public class LocationInformation{
@@ -61,11 +54,15 @@ public void setupProvider()
 			longitude = location.getLongitude();
 			haveLocation = true;
 			postCourseLocation();
-			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
+			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListenerGPS);
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListenerNETWORK);
+
 		}
 		else
 		{
-			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
+			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListenerGPS);
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListenerNETWORK);
+
 		}
 	}
 }
@@ -104,7 +101,7 @@ private void postCourseLocation()
 }
 
 
-LocationListener locationListener = new LocationListener()
+LocationListener locationListenerGPS = new LocationListener()
 {
 
 	@Override
@@ -116,8 +113,47 @@ LocationListener locationListener = new LocationListener()
 		accuracy = location.getAccuracy();
 		haveLocation = true;
 		isFine = true;
-		locationManager.removeUpdates(locationListener);
+		locationManager.removeUpdates(locationListenerGPS);
+		locationManager.removeUpdates(locationListenerNETWORK);
 		postFineLocation();
+
+	}
+	
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+};
+
+LocationListener locationListenerNETWORK = new LocationListener()
+{
+
+	@Override
+	public void onLocationChanged(Location location) {
+
+		latitude = location.getLatitude();
+		longitude = location.getLongitude();
+
+		haveLocation = true;
+		isFine = false;
+		locationManager.removeUpdates(locationListenerNETWORK);
+		locationManager.removeUpdates(locationListenerGPS);
+		postCourseLocation();
 
 	}
 	

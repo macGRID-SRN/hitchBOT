@@ -337,7 +337,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 			newRecord.put(COLUMN_URI, httpPost.getURI());
 			newRecord.put(COLUMN_UPLOAD_TO_SERVER, httpPost.getUploadToServerSuccessful());
 			newRecord.put(COLUMN_UPLOAD_TO_IMGUR, httpPost.getUploadToImgurSuccessful());
-			newRecord.put(COLUMN_DATE, getDateTime());
+			newRecord.put(COLUMN_DATE, Config.getUtcDate());
 			
 			database.insert(TABLE_HTTPPOSTQUEUE, null, newRecord);
 		}catch (Exception e)
@@ -377,7 +377,7 @@ public class DatabaseQueue extends SQLiteOpenHelper {
 		
 		newRecord.put(COLUMN_ERRORMESSAGE, errorLog.getErrorMessage().replaceAll(" ", "%20"));
 		newRecord.put(COLUMN_ERROR_UPLOAD_TO_SERVER, errorLog.getSuccessfulUpload());
-		newRecord.put(COLUMN_DATELOGGED, getDateTime());
+		newRecord.put(COLUMN_DATELOGGED, Config.getUtcDate());
 		
 		database.insert(TABLE_ERRORLOG, null, newRecord);
 		}catch (Exception e)

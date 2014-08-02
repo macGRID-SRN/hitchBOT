@@ -45,6 +45,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 		Camera.Parameters params = camera.getParameters();
 		//params.setPreviewSize(width, height);
 		camera.setDisplayOrientation(90);
+		params.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_DAYLIGHT);
 		camera.setParameters(params);
 		camera.startPreview();
 
@@ -63,8 +64,8 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
 		@Override
 		public void onAutoFocus(boolean success, Camera camera) {
-			camera.autoFocus(null);
 			camera.takePicture(null, null, context.jpegHandler);
+
 		}
 		
 	};
@@ -74,6 +75,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 	public void capture(Camera.PictureCallback jpegHandler)
 	{		
 		camera.autoFocus(_autoCallback);
+
 	}
 
 
