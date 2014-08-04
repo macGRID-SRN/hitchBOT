@@ -54,9 +54,9 @@ namespace hitchbotAPI.Helpers
 
         public const string gmapsString = "http://maps.googleapis.com/maps/api/staticmap?size=800x800&path=weight:5%7Ccolor:blue%7Cenc:";
         public const string gmapsRegionString = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
-        public const string gmapsMarkerString = "&markers=size:mid|color:red|label:H|"; 
+        public const string gmapsMarkerString = "&markers=icon:http://goo.gl/uwnJCB|size:mid|color:red|label:H|"; 
 
-        private const int maxLocations = 200;
+        private const int maxLocations = 500;
 
         public static string GetEncodedPolyLine(int HitchBotID)
         {
@@ -121,7 +121,7 @@ namespace hitchbotAPI.Helpers
             //always add the last value - map always updated then plus other things rely on it!
             outList.Add(inList.Last());
 
-            return inList;
+            return outList;
         }
 
         //code taken and modified from http://stackoverflow.com/questions/3852268/c-sharp-implementation-of-googles-encoded-polyline-algorithm
