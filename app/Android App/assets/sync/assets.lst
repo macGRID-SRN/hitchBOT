@@ -8,5 +8,7 @@ models/hmm/en-us-semi/noisedict
 models/hmm/en-us-semi/sendump
 models/hmm/en-us-semi/transition_matrices
 models/hmm/en-us-semi/variances
-models/lm/3575.dmp
-models/dict/3575.dic
+models/lm/0945.dmp
+models/dict/0945.dic
+models/lm/3829.dmp
+models/dict/3829.dic

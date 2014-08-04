@@ -12,7 +12,7 @@ public final class Config {
 	
 public static MainActivity context = null;
 public static int THRESHHOLD_ACCURACY = 20;
-public static String HITCHBOT_ID = "1";
+public static String HITCHBOT_ID = "3";
 public static int HOUR = 1000*60*60;
 public static int FIFTEEN_MINUTES = 1000*60*15;
 public static int HALF_HOUR = 1000*60*30;

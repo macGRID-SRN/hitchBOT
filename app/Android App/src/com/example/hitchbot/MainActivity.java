@@ -140,13 +140,14 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			
 			ErrorLog eL = new ErrorLog(ex.getMessage(), 0);
 			dQ.addItemToQueue(eL);
+			recognizer.cancel();
+			cameraPreview.camera.release();
 			System.exit(2);
 		}
 	});
 	
 	dQ = DatabaseQueue.getHelper(this);
-		
-		Config.cH = new CleverHelper("finalCan.db", "wugn0a2d047cce85a77b1a6be30622d3f3844", this);
+		Config.cH = new CleverHelper("finalFinalCan.db", "e5f8vac6354c12086c404362878d5d27e5c4e", this);
 		/*final BluetoothManager mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
 		mBluetoothAdapter = mBluetoothManager.getAdapter();
 		if(mBluetoothAdapter != null)
@@ -233,6 +234,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		}
 		, 1000);
 	    
+
+		
 		batteryUploadHandler = new Handler();
 		
 		batteryUploadHandler.postDelayed(new Runnable()
@@ -330,6 +333,10 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 		Log.i(tAg, "testbar");
 		Log.i(tAg, cH.cs.retrieveVariable("audio_on"));
 		Log.i(tAg, cH.cs.retrieveVariable("accuracy"));
+		Log.i(tAg, cH.cs.retrieveVariable("wikipedia_output")  + "wikipedia");
+		Log.i(tAg, cH.cs.retrieveVariable("last_three_cities") + "cities");
+
+
 		//Log.i(tAg, cH.getClever_data());
 		Log.i(tAg, message);
 
@@ -358,7 +365,8 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			}
 			else
 			{
-				Speak(response);
+				(new ConversationPost()).conversationStart();
+				Speak(response);				
 			}
 		}
 	}
@@ -383,7 +391,11 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	
 	public void Speak(String message)
 	{
-		recognizer.stop();
+
+		//recognizer.stop();
+		//boolean containsBadWord = wordFilter(message);
+		
+		
 	    HashMap<String, String> myHashAlarm = new HashMap<String, String>();
 		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
 	    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "SOME MESSAGE");
@@ -398,15 +410,39 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	    	Log.i("FileDeleted", "said wasn't null");
 	    said = new ConversationPost(whatHitchbotSaid, true);
 	    }
-	   
+
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
+
+
 	    
 	}
 	
 	
+	//Don't want hitchBOT talking about these things
+	public boolean wordFilter(String message)
+	{
+		message = message.toLowerCase(Locale.CANADA);
+		String[] bannedWords = new String[] {
+				"god",
+				"jesus",
+				"church",
+				"christian",
+				"idiot"
+		};
+		for(String bannedWord : bannedWords)
+		{
+			if(message.contains(bannedWord))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	protected void onPause()
 	{
+		cameraPreview.camera.release();
 		System.exit(2);
 		super.onPause();
 	}
@@ -441,12 +477,13 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 	            {
 	            	ErrorLog eL = new ErrorLog("Tts error: " + utteranceId, 0);
                     dQ.addItemToQueue(eL);
+                    System.exit(2);
 	            }
 
 	            @Override
 	            public void onStart(String utteranceId)
 	            {
-	            	recognizer.stop();
+	            	//recognizer.stop();
 	            	if(mDevice != null){
 	            	isTalking();
 	            	Log.i("deviceNull", data.toString() + " is talking");
@@ -483,14 +520,14 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
     recognizer.stop();
     recognizer.startListening(searchName);
     String caption = getResources().getString(captions.get(searchName));
-    ((TextView) findViewById(R.id.editText2)).setText(caption);
+    //((TextView) findViewById(R.id.editText2)).setText(caption);
 }
 
 	private void setupRecognizer(File assetsDir) {
     File modelsDir = new File(assetsDir, "models");
     recognizer = defaultSetup()
             .setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-            .setDictionary(new File(modelsDir, "dict/3575.dic"))
+            .setDictionary(new File(modelsDir, "dict/3829.dic"))
             .setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
             .getRecognizer();
     recognizer.addListener(this);
@@ -500,7 +537,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
     //recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
     // Create language model search.
-    File languageModel1 = new File(modelsDir, "lm/3575.dmp");
+    File languageModel1 = new File(modelsDir, "lm/3829.dmp");
   //  File languageModel2 = new File(modelsDir, "lm/6392.dmp");
    // File languageModel3 = new File(modelsDir, "lm/7400.dmp");
   //  File languageModel = new File(modelsDir, "lm/7788.dmp");
@@ -520,9 +557,9 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 	@Override
 	public void onEndOfSpeech() {
-		if (MAIN_SEARCH.equals(recognizer.getSearchName()))
-        	recognizer.stop();
-            switchSearch(MAIN_SEARCH);  	
+		//if (MAIN_SEARCH.equals(recognizer.getSearchName()))
+       recognizer.stop();
+            //switchSearch(MAIN_SEARCH);  	
 	}
 
 	@Override
@@ -534,8 +571,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 
 			if (text.split("\\s+").length >= 8)
 			{
-	            getResponseFromCleverscript(text, Config.cH);
-			}
+				recognizer.stop();			}
            // mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
             //TODO use this method to fix background noise problem
 	}
@@ -606,7 +642,7 @@ public class MainActivity extends ActionBarActivity implements RecognitionListen
 			takePicture = false;
 			File pictureFile = getOutputMediaFile();
 			Uri imageUri = Uri.fromFile(pictureFile);
-			new UploadImageImgur(imageUri, getThis(), getThis()).execute();
+			new UploadImageImgur(imageUri, getThis(), getThis(), Config.getUtcDate() ).execute();
 			
 			FileOutputStream fos;
 			try {
