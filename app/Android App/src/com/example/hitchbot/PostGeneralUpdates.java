@@ -92,7 +92,7 @@ public class PostGeneralUpdates {
 			if(isNetworkAvailable())
 			{
 			Uri mUri = Uri.parse(imgurUploadQueue.get(i).getURI());
-			new UploadImageImgur(mUri, Config.context, Config.context).execute();
+			new UploadImageImgur(mUri, Config.context, Config.context, imgurUploadQueue.get(i).getCreationDate()).execute();
 			//they are marked as uploaded because if they upload unsuccessfully, they will be
 			//re-added in the queue from the server post class (probably a better way to do it)
 			dQ.markAsUploadedToImgur(imgurUploadQueue.get(i));

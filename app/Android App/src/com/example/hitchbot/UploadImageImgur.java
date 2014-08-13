@@ -37,15 +37,17 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 		private Uri image; 
 		private Activity activity;
 		private Context context;
+		private String timeStamp;
 	   
 		//Uploads image anonymously
 
 		
-	public UploadImageImgur(Uri image, Activity activity, Context context)
+	public UploadImageImgur(Uri image, Activity activity, Context context, String timeStamp)
 	{
 		this.image = image;
 		this.activity = activity;
 		this.context = context;
+		this.timeStamp = timeStamp;
 	}
 	
 		@Override
@@ -55,7 +57,6 @@ public class UploadImageImgur extends AsyncTask<Void, Void, String> {
 			{
 				
 				String url1 = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s&URL=%s";
-				String timeStamp = Config.getUtcDate();
 				String hitchBOTid = Config.HITCHBOT_ID;
 				String URL = url;
 				

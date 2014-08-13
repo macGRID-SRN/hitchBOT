@@ -23,11 +23,12 @@ namespace hitchbotAPI.Controllers
             using (var db = new Models.Database())
             {
                 var response = Request.CreateResponse(HttpStatusCode.Moved);
+
                 var mapsURL = db.StaticMaps.Where(sm => sm.HitchBot.ID == HitchBotID);
                 if (mapsURL.Count() > 0)
                 {
                     var lastGenerated = mapsURL.OrderByDescending(l => l.TimeGenerated).First();
-                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(1))
+                    if (DateTime.UtcNow - lastGenerated.TimeGenerated > TimeSpan.FromHours(0.5))
                     {
                         response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID)));
                     }
@@ -36,6 +37,7 @@ namespace hitchbotAPI.Controllers
                 }
                 else
                     response.Headers.Location = new Uri(GetStaticMapURL(Helpers.LocationHelper.GetEncodedPolyLine(HitchBotID)));
+
                 return response;
             }
         }
@@ -43,7 +45,7 @@ namespace hitchbotAPI.Controllers
         /// <summary>
         /// Gets the static map API url (generate it)
         /// </summary>
-        /// <param name="poly">The poly thing generated from somewhere else.. don't really know where.</param>
+        /// <param name="poly">The poly thing generated from somewhere else.. don't really know where. What was I thinking when I wrote this description? Who knows.</param>
         /// <returns></returns>
         private string GetStaticMapURL(string poly)
         {

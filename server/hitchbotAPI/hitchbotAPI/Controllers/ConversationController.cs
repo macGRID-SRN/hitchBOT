@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Globalization;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace hitchbotAPI.Controllers
 {
@@ -25,7 +26,7 @@ namespace hitchbotAPI.Controllers
             using (var db = new Models.Database())
             {
                 var hitchbot = db.hitchBOTs.Include(l => l.Locations).Include(h => h.Conversations).First(h => h.ID == HitchBotID);
-                if (hitchbot.Conversations.Last().TimeAdded - DateTime.UtcNow > TimeSpan.FromHours(3))
+                if (DateTime.UtcNow - hitchbot.Conversations.Last().TimeAdded > TimeSpan.FromHours(3))
                 {
                     var location = hitchbot.Locations.OrderBy(l => l.TakenTime).First();
                     var newConversation = new Models.Conversation()
@@ -96,5 +97,25 @@ namespace hitchbotAPI.Controllers
                 return true;
             }
         }
+
+
+        //[HttpGet]
+        //public async Task<bool> ToggleConversationTweet(int HitchBotID)
+        //{
+        //    using (var db = new Models.Database())
+        //    {
+        //        var hitchy = db.hitchBOTs.Include(l => l.Conversations).First(h => h.ID == HitchBotID);
+
+        //        var conversations = db.SpeechEvents.Include(l => l.Conversation).Where(l => l.Conversation.ID == hitchy.CurrentConversation.ID).ToList();
+
+        //        if (conversations != null)
+        //        {
+        //            Random randy = new Random();
+        //            var selectedSpeechEvent = conversations[randy.Next(conversations.Count)];
+        //            await Helpers.TwitterHelper.PostTweetWithLocation(HitchBotID, 1, selectedSpeechEvent.SpeechSaid); //location ID for now because reasons
+        //        }
+        //    }
+        //    return true;
+        //}
     }
 }
