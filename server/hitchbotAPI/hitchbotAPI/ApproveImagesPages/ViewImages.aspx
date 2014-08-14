@@ -12,8 +12,9 @@
     
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="LandingPage.aspx">Back</asp:HyperLink>
         <br />
+        Time Taken is now correct!<br />
     
-        <asp:Label ID="Label1" runat="server" Text="Notice: It has come to my attention that the &quot;Time Taken&quot; is incorrect. This is actually the time the server received the image."></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Notice: It has come to my attention that the &quot;Time Taken&quot; is incorrect. This is actually the time the server received the image." Font-Strikeout="True"></asp:Label>
     
         <asp:Table ID="tableViewImage" runat="server">
         </asp:Table>
