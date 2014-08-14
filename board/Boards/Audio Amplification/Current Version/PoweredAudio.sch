@@ -10902,6 +10902,98 @@ type 0309, grid 2.5 mm</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="supply2">
+<description>&lt;b&gt;Supply Symbols&lt;/b&gt;&lt;p&gt;
+GND, VCC, 0V, +5V, -5V, etc.&lt;p&gt;
+Please keep in mind, that these devices are necessary for the
+automatic wiring of the supply signals.&lt;p&gt;
+The pin name defined in the symbol is identical to the net which is to be wired automatically.&lt;p&gt;
+In this library the device names are the same as the pin names of the symbols, therefore the correct signal names appear next to the supply symbols in the schematic.&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+</packages>
+<symbols>
+<symbol name="GND">
+<wire x1="-1.27" y1="0" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="0" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="-1.27" x2="-1.27" y2="0" width="0.254" layer="94"/>
+<text x="-1.905" y="-3.175" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="GND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="GND" prefix="SUPPLY">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="GND" symbol="GND" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="CUI SJ1-325XN">
+<packages>
+<package name="SJ1-352XN">
+<hole x="0" y="0" drill="1.7"/>
+<hole x="7" y="0" drill="1.7"/>
+<smd name="SLEEVE" x="-1.1" y="-3.7" dx="2.2" dy="2.8" layer="1"/>
+<smd name="RING" x="0.9" y="3.7" dx="2.2" dy="2.8" layer="1"/>
+<smd name="TIP" x="8.3" y="-3.7" dx="2.8" dy="2.8" layer="1"/>
+<smd name="NULL" x="12.2" y="0.75" dx="2.8" dy="2.8" layer="1"/>
+<wire x1="-3.5" y1="5.3" x2="14" y2="5.3" width="0.127" layer="21"/>
+<wire x1="14" y1="5.3" x2="14" y2="-5.5" width="0.127" layer="21"/>
+<wire x1="14" y1="-5.5" x2="-3.5" y2="-5.5" width="0.127" layer="21"/>
+<wire x1="-3.5" y1="-5.5" x2="-3.5" y2="-2.5" width="0.127" layer="21"/>
+<text x="3.5" y="3.5" size="1.27" layer="25">CUI SJ-352</text>
+<wire x1="-3.5" y1="-2.5" x2="-3.5" y2="2.5" width="0.127" layer="21"/>
+<wire x1="-3.5" y1="2.5" x2="-3.5" y2="5.3" width="0.127" layer="21"/>
+<wire x1="-3.5" y1="2.5" x2="-6" y2="2.5" width="0.127" layer="21"/>
+<wire x1="-6" y1="2.5" x2="-6" y2="-2.5" width="0.127" layer="21"/>
+<wire x1="-6" y1="-2.5" x2="-3.5" y2="-2.5" width="0.127" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="SJ1-352X">
+<pin name="SLEEVE" x="-7.62" y="7.62" visible="pin" length="middle" rot="R270"/>
+<pin name="TIP" x="0" y="7.62" visible="pin" length="middle" rot="R270"/>
+<pin name="RING" x="7.62" y="7.62" visible="pin" length="middle" rot="R270"/>
+<wire x1="-12.7" y1="5.08" x2="12.7" y2="5.08" width="0.254" layer="94"/>
+<wire x1="12.7" y1="5.08" x2="12.7" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-5.08" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-5.08" x2="-12.7" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="-5.08" x2="-12.7" y2="5.08" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-10.16" x2="7.62" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="7.62" y1="-10.16" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="SJ-352X">
+<gates>
+<gate name="G$1" symbol="SJ1-352X" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SJ1-352XN">
+<connects>
+<connect gate="G$1" pin="RING" pad="RING"/>
+<connect gate="G$1" pin="SLEEVE" pad="SLEEVE"/>
+<connect gate="G$1" pin="TIP" pad="TIP"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -10917,6 +11009,8 @@ type 0309, grid 2.5 mm</description>
 <part name="C2" library="resistor" deviceset="CPOL-US" device="E2.5-7" value="220UF"/>
 <part name="C3" library="resistor" deviceset="C-EU" device="025-025X050"/>
 <part name="R1" library="resistor" deviceset="R-US_" device="0204/5"/>
+<part name="SUPPLY1" library="supply2" deviceset="GND" device=""/>
+<part name="U$1" library="CUI SJ1-325XN" deviceset="SJ-352X" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10928,28 +11022,19 @@ type 0309, grid 2.5 mm</description>
 <instance part="C2" gate="G$1" x="66.04" y="35.56"/>
 <instance part="C3" gate="G$1" x="55.88" y="53.34"/>
 <instance part="R1" gate="G$1" x="48.26" y="50.8" rot="R90"/>
+<instance part="SUPPLY1" gate="GND" x="25.4" y="40.64" rot="R270"/>
+<instance part="U$1" gate="G$1" x="10.16" y="66.04" rot="R270"/>
 </instances>
 <busses>
 </busses>
 <nets>
-<net name="N$1" class="0">
-<segment>
-<pinref part="IC1" gate="G$1" pin="+IN"/>
-<wire x1="40.64" y1="40.64" x2="33.02" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="40.64" x2="33.02" y2="30.48" width="0.1524" layer="91"/>
-<pinref part="IC1" gate="G$1" pin="GND"/>
-<wire x1="33.02" y1="30.48" x2="45.72" y2="30.48" width="0.1524" layer="91"/>
-<pinref part="C1" gate="G$1" pin="-"/>
-<wire x1="33.02" y1="50.8" x2="33.02" y2="40.64" width="0.1524" layer="91"/>
-<junction x="33.02" y="40.64"/>
-</segment>
-</net>
 <net name="N$2" class="0">
 <segment>
 <pinref part="C1" gate="G$1" pin="+"/>
 <pinref part="IC1" gate="G$1" pin="VS"/>
 <wire x1="40.64" y1="50.8" x2="45.72" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="45.72" y1="50.8" x2="45.72" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="50.8" x2="45.72" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -10979,6 +11064,24 @@ type 0309, grid 2.5 mm</description>
 <pinref part="R1" gate="G$1" pin="1"/>
 <pinref part="IC1" gate="G$1" pin="GAIN@1"/>
 <wire x1="48.26" y1="45.72" x2="50.8" y2="43.18" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="GND" class="0">
+<segment>
+<pinref part="IC1" gate="G$1" pin="+IN"/>
+<wire x1="40.64" y1="40.64" x2="33.02" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="40.64" x2="33.02" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="G$1" pin="GND"/>
+<wire x1="33.02" y1="30.48" x2="45.72" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="C1" gate="G$1" pin="-"/>
+<wire x1="33.02" y1="50.8" x2="33.02" y2="40.64" width="0.1524" layer="91"/>
+<junction x="33.02" y="40.64"/>
+<pinref part="SUPPLY1" gate="GND" pin="GND"/>
+<wire x1="27.94" y1="40.64" x2="30.48" y2="40.64" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="SLEEVE"/>
+<wire x1="30.48" y1="40.64" x2="33.02" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="73.66" x2="30.48" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="73.66" x2="30.48" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
