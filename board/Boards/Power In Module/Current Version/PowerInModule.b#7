@@ -1397,22 +1397,25 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="TP1" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="-21.59" y="24.13">
-<attribute name="TP_SIGNAL_NAME" value="" x="0" y="0" size="1.778" layer="27" display="off"/>
+<element name="TP1" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="5.08" y="24.13">
+<attribute name="TP_SIGNAL_NAME" value="" x="26.67" y="0" size="1.778" layer="27" display="off"/>
 </element>
-<element name="U$1" library="Diodes" package="DO-214AB" value="DO-214AB" x="-19.05" y="33.02"/>
-<element name="C1" library="resistor" package="E2,5-6" value="" x="-30.48" y="31.75"/>
-<element name="TP2" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="-21.59" y="5.08">
-<attribute name="TP_SIGNAL_NAME" value="" x="0" y="0" size="1.778" layer="27" display="off"/>
+<element name="U$1" library="Diodes" package="DO-214AB" value="DO-214AB" x="7.62" y="15.24" rot="R180"/>
+<element name="C1" library="resistor" package="E2,5-6" value="" x="16.51" y="15.24" rot="R90"/>
+<element name="TP2" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="11.43" y="6.35" rot="R90">
+<attribute name="TP_SIGNAL_NAME" value="" x="16.51" y="27.94" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="TP3" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="-21.59" y="15.24">
-<attribute name="TP_SIGNAL_NAME" value="" x="0" y="0" size="1.778" layer="27" display="off"/>
+<element name="TP3" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="5.08" y="6.35" rot="R90">
+<attribute name="TP_SIGNAL_NAME" value="" x="20.32" y="27.94" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="TP4" library="testpad" package="P1-20" value="TPPAD1-20" x="-30.48" y="-3.81">
-<attribute name="TP_SIGNAL_NAME" value="" x="-30.48" y="-3.81" size="1.778" layer="27" display="off"/>
+<element name="TP4" library="testpad" package="P1-20" value="TPPAD1-20" x="17.78" y="7.62">
+<attribute name="TP_SIGNAL_NAME" value="" x="17.78" y="7.62" size="1.778" layer="27" display="off"/>
 </element>
-<element name="TP5" library="testpad" package="P1-20" value="TPPAD1-20" x="-30.48" y="-10.16">
-<attribute name="TP_SIGNAL_NAME" value="" x="-30.48" y="-10.16" size="1.778" layer="27" display="off"/>
+<element name="TP5" library="testpad" package="P1-20" value="TPPAD1-20" x="17.78" y="3.81">
+<attribute name="TP_SIGNAL_NAME" value="" x="17.78" y="3.81" size="1.778" layer="27" display="off"/>
+</element>
+<element name="TP6" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="3.81" y="-5.08">
+<attribute name="TP_SIGNAL_NAME" value="" x="3.81" y="-5.08" size="1.778" layer="27" display="off"/>
 </element>
 </elements>
 <signals>
@@ -1422,26 +1425,30 @@ design rules under a new name.</description>
 <contactref element="TP2" pad="TP-1"/>
 <contactref element="TP3" pad="TP-1"/>
 <contactref element="TP5" pad="TP"/>
-<wire x1="-23.495" y1="5.08" x2="-30.48" y2="-10.16" width="0" layer="19" extent="1-1"/>
-<wire x1="-23.495" y1="15.24" x2="-23.495" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.685" y1="24.13" x2="-23.495" y2="15.24" width="0" layer="19" extent="1-1"/>
-<wire x1="-29.21" y1="31.75" x2="-19.685" y2="24.13" width="0" layer="19" extent="1-1"/>
+<contactref element="TP6" pad="TP-2"/>
+<wire x1="6.985" y1="24.13" x2="16.51" y2="16.51" width="0" layer="19" extent="1-1"/>
+<wire x1="17.78" y1="3.81" x2="16.51" y2="16.51" width="0" layer="19" extent="1-1"/>
+<wire x1="11.43" y1="4.445" x2="17.78" y2="3.81" width="0" layer="19" extent="1-1"/>
+<wire x1="5.08" y1="4.445" x2="11.43" y2="4.445" width="0" layer="19" extent="1-1"/>
+<wire x1="5.715" y1="-5.08" x2="5.08" y2="4.445" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
 <contactref element="U$1" pad="IN"/>
 <contactref element="TP1" pad="TP-1"/>
 <contactref element="C1" pad="+"/>
-<wire x1="-23.495" y1="24.13" x2="-22.352" y2="33.02" width="0" layer="19" extent="1-1"/>
-<wire x1="-31.75" y1="31.75" x2="-22.352" y2="33.02" width="0" layer="19" extent="1-1"/>
+<contactref element="TP6" pad="TP-1"/>
+<wire x1="10.922" y1="15.24" x2="16.51" y2="13.97" width="0" layer="19" extent="1-1"/>
+<wire x1="3.175" y1="24.13" x2="10.922" y2="15.24" width="0" layer="19" extent="1-1"/>
+<wire x1="1.905" y1="-5.08" x2="10.922" y2="15.24" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$3">
 <contactref element="TP2" pad="TP-2"/>
 <contactref element="U$1" pad="OUT"/>
 <contactref element="TP3" pad="TP-2"/>
 <contactref element="TP4" pad="TP"/>
-<wire x1="-19.685" y1="5.08" x2="-30.48" y2="-3.81" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.685" y1="15.24" x2="-19.685" y2="5.08" width="0" layer="19" extent="1-1"/>
-<wire x1="-15.748" y1="33.02" x2="-19.685" y2="15.24" width="0" layer="19" extent="1-1"/>
+<wire x1="11.43" y1="8.255" x2="17.78" y2="7.62" width="0" layer="19" extent="1-1"/>
+<wire x1="5.08" y1="8.255" x2="11.43" y2="8.255" width="0" layer="19" extent="1-1"/>
+<wire x1="4.318" y1="15.24" x2="5.08" y2="8.255" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

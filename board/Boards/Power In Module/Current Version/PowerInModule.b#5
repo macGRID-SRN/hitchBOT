@@ -74,6 +74,16 @@
 <wire x1="22.84" y1="0" x2="22.84" y2="30.15" width="0" layer="20"/>
 <wire x1="22.84" y1="30.15" x2="0" y2="30.15" width="0" layer="20"/>
 <wire x1="0" y1="30.15" x2="0" y2="0" width="0" layer="20"/>
+<text x="1.27" y="26.67" size="1.778" layer="21">+</text>
+<text x="12.7" y="26.67" size="1.778" layer="21">+</text>
+<text x="1.27" y="8.89" size="1.778" layer="21">+</text>
+<text x="8.89" y="8.89" size="1.778" layer="21">+</text>
+<text x="16.51" y="8.89" size="1.778" layer="21">+</text>
+<text x="5.08" y="26.67" size="1.778" layer="21">-</text>
+<text x="16.51" y="26.67" size="1.778" layer="21">-</text>
+<text x="16.51" y="5.08" size="1.778" layer="21">-</text>
+<text x="8.89" y="5.08" size="1.778" layer="21">-</text>
+<text x="1.27" y="5.08" size="1.778" layer="21">-</text>
 </plain>
 <libraries>
 <library name="testpad">
@@ -1399,35 +1409,28 @@ design rules under a new name.</description>
 <elements>
 <element name="TP1" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="5.08" y="24.13" smashed="yes">
 <attribute name="TP_SIGNAL_NAME" value="" x="2.54" y="17.78" size="1" layer="37"/>
-<attribute name="NAME" x="2.54" y="26.924" size="1.27" layer="25" ratio="10"/>
-<attribute name="VALUE" x="2.54" y="19.939" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="U$1" library="Diodes" package="DO-214AB" value="DO-214AB" x="7.62" y="15.24" rot="R180"/>
-<element name="C1" library="resistor" package="E2,5-6" value="" x="17.78" y="15.24" rot="R270"/>
+<element name="C1" library="resistor" package="E2,5-6" value="" x="17.78" y="15.24" smashed="yes" rot="R270">
+<attribute name="NAME" x="19.177" y="18.034" size="1.27" layer="25" ratio="10"/>
+<attribute name="VALUE" x="15.113" y="12.573" size="1.27" layer="27" ratio="10" rot="R270"/>
+</element>
 <element name="TP2" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="12.7" y="6.35" smashed="yes" rot="R90">
 <attribute name="TP_SIGNAL_NAME" value="" x="19.05" y="3.81" size="1" layer="37" rot="R90"/>
-<attribute name="NAME" x="9.906" y="3.81" size="1.27" layer="25" ratio="10" rot="R90"/>
-<attribute name="VALUE" x="16.891" y="3.81" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="TP3" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="5.08" y="6.35" smashed="yes" rot="R90">
 <attribute name="TP_SIGNAL_NAME" value="" x="11.43" y="3.81" size="1" layer="37" rot="R90"/>
-<attribute name="NAME" x="2.286" y="3.81" size="1.27" layer="25" ratio="10" rot="R90"/>
-<attribute name="VALUE" x="9.271" y="3.81" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="TP4" library="testpad" package="P1-20" value="TPPAD1-20" x="19.05" y="7.62" smashed="yes">
 <attribute name="TP_SIGNAL_NAME" value="" x="17.78" y="4.445" size="1" layer="37"/>
-<attribute name="NAME" x="17.526" y="9.398" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="19.05" y="7.62" size="0.0254" layer="27"/>
 </element>
 <element name="TP5" library="testpad" package="P1-20" value="TPPAD1-20" x="19.05" y="3.81" smashed="yes">
 <attribute name="TP_SIGNAL_NAME" value="" x="17.78" y="0.635" size="1" layer="37"/>
-<attribute name="NAME" x="17.526" y="5.588" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="19.05" y="3.81" size="0.0254" layer="27"/>
 </element>
 <element name="TP6" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="16.51" y="24.13" smashed="yes">
 <attribute name="TP_SIGNAL_NAME" value="" x="13.97" y="17.78" size="1" layer="37"/>
-<attribute name="NAME" x="13.97" y="26.924" size="1.27" layer="25" ratio="10"/>
-<attribute name="VALUE" x="13.97" y="19.939" size="1.27" layer="27" ratio="10"/>
 </element>
 </elements>
 <signals>
