@@ -16262,52 +16262,6 @@ naming: grid - package width</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="Molex">
-<packages>
-<package name="2X2MOLEX">
-<pad name="POWERL" x="-2.1" y="2.1" drill="1.8"/>
-<pad name="POWERR" x="2.1" y="2.1" drill="1.8"/>
-<pad name="GNDR" x="2.1" y="-2.1" drill="1.8"/>
-<pad name="GNDL" x="-2.1" y="-2.1" drill="1.8"/>
-<hole x="0" y="-10.05" drill="3"/>
-<wire x1="-6" y1="-16" x2="6" y2="-16" width="0.127" layer="21"/>
-<wire x1="6" y1="-16" x2="6" y2="-6" width="0.127" layer="21"/>
-<wire x1="6" y1="-6" x2="6" y2="4" width="0.127" layer="21"/>
-<wire x1="6" y1="4" x2="-6" y2="4" width="0.127" layer="21"/>
-<wire x1="-6" y1="4" x2="-6" y2="-6" width="0.127" layer="21"/>
-<wire x1="-6" y1="-6" x2="-6" y2="-16" width="0.127" layer="21"/>
-<wire x1="-6" y1="-6" x2="6" y2="-6" width="0.127" layer="21"/>
-</package>
-</packages>
-<symbols>
-<symbol name="2X2MOLEX">
-<wire x1="-7.62" y1="10.16" x2="7.62" y2="10.16" width="0.254" layer="94"/>
-<wire x1="7.62" y1="10.16" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="10.16" width="0.254" layer="94"/>
-<pin name="GND" x="2.54" y="12.7" length="middle" rot="R270"/>
-<pin name="POWER" x="-2.54" y="12.7" length="middle" rot="R270"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="2X2-MOLEX">
-<gates>
-<gate name="G$1" symbol="2X2MOLEX" x="0" y="-2.54"/>
-</gates>
-<devices>
-<device name="" package="2X2MOLEX">
-<connects>
-<connect gate="G$1" pin="GND" pad="GNDL GNDR"/>
-<connect gate="G$1" pin="POWER" pad="POWERL POWERR"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 </libraries>
 <attributes>
 </attributes>
@@ -16329,8 +16283,6 @@ naming: grid - package width</description>
 <part name="C4" library="resistor" deviceset="C-US" device="C1206" value="10pF"/>
 <part name="SUPPLY2" library="supply2" deviceset="GND" device=""/>
 <part name="C5" library="capacitor-wima" deviceset="C" device="2.5/2" value="0.01uF"/>
-<part name="U$2" library="Molex" deviceset="2X2-MOLEX" device=""/>
-<part name="SUPPLY3" library="supply2" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -16348,8 +16300,6 @@ naming: grid - package width</description>
 <instance part="C4" gate="G$1" x="81.28" y="22.86"/>
 <instance part="SUPPLY2" gate="GND" x="81.28" y="12.7"/>
 <instance part="C5" gate="G$1" x="35.56" y="25.4"/>
-<instance part="U$2" gate="G$1" x="48.26" y="86.36" rot="R180"/>
-<instance part="SUPPLY3" gate="GND" x="38.1" y="71.12" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -16362,9 +16312,6 @@ naming: grid - package width</description>
 <wire x1="45.72" y1="50.8" x2="45.72" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="45.72" y1="50.8" x2="45.72" y2="68.58" width="0.1524" layer="91"/>
 <junction x="45.72" y="50.8"/>
-<pinref part="U$2" gate="G$1" pin="POWER"/>
-<wire x1="45.72" y1="68.58" x2="50.8" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="68.58" x2="50.8" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -16420,12 +16367,6 @@ naming: grid - package width</description>
 <pinref part="SUPPLY2" gate="GND" pin="GND"/>
 <pinref part="C4" gate="G$1" pin="2"/>
 <wire x1="81.28" y1="15.24" x2="81.28" y2="17.78" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="SUPPLY3" gate="GND" pin="GND"/>
-<pinref part="U$2" gate="G$1" pin="GND"/>
-<wire x1="40.64" y1="71.12" x2="45.72" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="45.72" y1="71.12" x2="45.72" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">

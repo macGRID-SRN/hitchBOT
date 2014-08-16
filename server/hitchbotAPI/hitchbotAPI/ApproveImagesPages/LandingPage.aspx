@@ -26,6 +26,8 @@
         <br />
         <hr />
         What&#39;s New?<asp:BulletedList ID="BulletedList1" runat="server">
+            <asp:ListItem>Changed sorting in Saved images: Most recently saved is now first</asp:ListItem>
+            <asp:ListItem>Fixed Time Taken Issue on pictures. The Time Taken is now accurate.</asp:ListItem>
             <asp:ListItem>Location portal good to go. You can now force updates to the map by the click of a button</asp:ListItem>
             <asp:ListItem>Tweet things hitchbot has said</asp:ListItem>
             <asp:ListItem>Back link on each page.</asp:ListItem>

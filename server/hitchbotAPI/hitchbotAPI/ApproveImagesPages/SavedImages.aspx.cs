@@ -20,7 +20,7 @@ namespace hitchbotAPI.ApproveImagesPages
                 using (var db = new Models.Database())
                 {
                     int hitchBOTid = user.hitchBOT.ID;
-                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved != null && i.TimeDenied == null)).OrderBy(i => i.TimeTaken).ToList();
+                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved != null && i.TimeDenied == null)).OrderByDescending(i => i.TimeTaken).ToList();
 
                     if (imgs.Count == 0)
                         Label1.Text = "There are no saved images!";
