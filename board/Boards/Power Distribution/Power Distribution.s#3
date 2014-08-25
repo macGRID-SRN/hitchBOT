@@ -200,47 +200,29 @@ Cream on SMD OFF.&lt;br&gt;
 new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
 <packages>
-<package name="P5-25-13">
+<package name="P2-38-17">
 <description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
-<circle x="0" y="0" radius="0.762" width="0.1524" layer="51"/>
-<circle x="2.54" y="0" radius="0.762" width="0.1524" layer="51"/>
-<circle x="5.08" y="0" radius="0.762" width="0.1524" layer="51"/>
-<circle x="-2.54" y="0" radius="0.762" width="0.1524" layer="51"/>
-<circle x="-5.08" y="0" radius="0.762" width="0.1524" layer="51"/>
-<pad name="TP-1" x="-5.08" y="0" drill="1.3208" diameter="1.905" shape="long" rot="R90"/>
-<pad name="TP-2" x="-2.54" y="0" drill="1.3208" diameter="1.905" shape="long" rot="R90"/>
-<pad name="TP-3" x="0" y="0" drill="1.3208" diameter="1.905" shape="long" rot="R90"/>
-<pad name="TP-4" x="2.54" y="0" drill="1.3208" diameter="1.905" shape="long" rot="R90"/>
-<pad name="TP-5" x="5.08" y="0" drill="1.3208" diameter="1.905" shape="long" rot="R90"/>
-<text x="-5.969" y="2.159" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="0" y="2.159" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
-<text x="-5.715" y="-3.81" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
-<rectangle x1="-0.3302" y1="-0.3302" x2="0.3302" y2="0.3302" layer="51"/>
-<rectangle x1="2.2098" y1="-0.3302" x2="2.8702" y2="0.3302" layer="51"/>
-<rectangle x1="4.7498" y1="-0.3302" x2="5.4102" y2="0.3302" layer="51"/>
-<rectangle x1="-2.8702" y1="-0.3302" x2="-2.2098" y2="0.3302" layer="51"/>
-<rectangle x1="-5.4102" y1="-0.3302" x2="-4.7498" y2="0.3302" layer="51"/>
+<circle x="-1.905" y="0" radius="0.8128" width="0.1524" layer="51"/>
+<circle x="1.905" y="0" radius="0.8128" width="0.1524" layer="51"/>
+<pad name="TP-1" x="-1.905" y="0" drill="1.7018" diameter="2.1208" shape="long" rot="R90"/>
+<pad name="TP-2" x="1.905" y="0" drill="1.7018" diameter="2.1208" shape="long" rot="R90"/>
+<text x="-2.54" y="2.54" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.54" y="-3.81" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<text x="-2.54" y="-5.715" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
+<rectangle x1="-2.2352" y1="-0.3302" x2="-1.5748" y2="0.3302" layer="51"/>
+<rectangle x1="1.5748" y1="-0.3302" x2="2.2352" y2="0.3302" layer="51"/>
 </package>
-<package name="P5-25-17">
+<package name="P2-38-20">
 <description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
-<circle x="0" y="0" radius="0.8128" width="0.1524" layer="51"/>
-<circle x="-5.08" y="0" radius="0.8128" width="0.1524" layer="51"/>
-<circle x="-2.54" y="0" radius="0.8128" width="0.1524" layer="51"/>
-<circle x="2.54" y="0" radius="0.8128" width="0.1524" layer="51"/>
-<circle x="5.08" y="0" radius="0.8128" width="0.1524" layer="51"/>
-<pad name="TP-1" x="-5.08" y="0" drill="1.7018" diameter="1.9304" shape="long" rot="R90"/>
-<pad name="TP-2" x="-2.54" y="0" drill="1.7018" diameter="1.9304" shape="long" rot="R90"/>
-<pad name="TP-3" x="0" y="0" drill="1.7018" diameter="1.9304" shape="long" rot="R90"/>
-<pad name="TP-4" x="2.54" y="0" drill="1.7018" diameter="1.9304" shape="long" rot="R90"/>
-<pad name="TP-5" x="5.08" y="0" drill="1.7018" diameter="1.9304" shape="long" rot="R90"/>
-<text x="-6.096" y="2.54" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="0" y="2.54" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
-<text x="-5.715" y="-3.81" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
-<rectangle x1="-0.3302" y1="-0.3302" x2="0.3302" y2="0.3302" layer="51"/>
-<rectangle x1="-5.4102" y1="-0.3302" x2="-4.7498" y2="0.3302" layer="51"/>
-<rectangle x1="-2.8702" y1="-0.3302" x2="-2.2098" y2="0.3302" layer="51"/>
-<rectangle x1="2.2098" y1="-0.3302" x2="2.8702" y2="0.3302" layer="51"/>
-<rectangle x1="4.7498" y1="-0.3302" x2="5.4102" y2="0.3302" layer="51"/>
+<circle x="-1.905" y="0" radius="1.016" width="0.1524" layer="51"/>
+<circle x="1.905" y="0" radius="1.016" width="0.1524" layer="51"/>
+<pad name="TP-1" x="-1.905" y="0" drill="2.0066" diameter="2.54" shape="long" rot="R90"/>
+<pad name="TP-2" x="1.905" y="0" drill="2.0066" diameter="2.54" shape="long" rot="R90"/>
+<text x="-2.54" y="2.794" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.54" y="-4.191" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<text x="-2.54" y="-6.35" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
+<rectangle x1="-2.2352" y1="-0.3302" x2="-1.5748" y2="0.3302" layer="51"/>
+<rectangle x1="1.5748" y1="-0.3302" x2="2.2352" y2="0.3302" layer="51"/>
 </package>
 </packages>
 <symbols>
@@ -255,23 +237,17 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="TP5" prefix="TP">
+<deviceset name="TP2" prefix="TP">
 <description>&lt;b&gt;Test pad&lt;/b&gt;</description>
 <gates>
-<gate name="A" symbol="TP" x="-10.16" y="0" addlevel="always"/>
-<gate name="B" symbol="TP" x="-5.08" y="0" addlevel="always"/>
-<gate name="C" symbol="TP" x="0" y="0" addlevel="always"/>
-<gate name="D" symbol="TP" x="5.08" y="0" addlevel="always"/>
-<gate name="E" symbol="TP" x="10.16" y="0" addlevel="always"/>
+<gate name="A" symbol="TP" x="0" y="0" addlevel="always"/>
+<gate name="B" symbol="TP" x="7.62" y="0" addlevel="always"/>
 </gates>
 <devices>
-<device name="P5-25-13" package="P5-25-13">
+<device name="P2-38-17" package="P2-38-17">
 <connects>
 <connect gate="A" pin="TP" pad="TP-1"/>
 <connect gate="B" pin="TP" pad="TP-2"/>
-<connect gate="C" pin="TP" pad="TP-3"/>
-<connect gate="D" pin="TP" pad="TP-4"/>
-<connect gate="E" pin="TP" pad="TP-5"/>
 </connects>
 <technologies>
 <technology name="">
@@ -279,13 +255,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </technology>
 </technologies>
 </device>
-<device name="P5-25-17" package="P5-25-17">
+<device name="P2-38-20" package="P2-38-20">
 <connects>
 <connect gate="A" pin="TP" pad="TP-1"/>
 <connect gate="B" pin="TP" pad="TP-2"/>
-<connect gate="C" pin="TP" pad="TP-3"/>
-<connect gate="D" pin="TP" pad="TP-4"/>
-<connect gate="E" pin="TP" pad="TP-5"/>
 </connects>
 <technologies>
 <technology name="">
@@ -318,10 +291,17 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="U$8" library="Diodes" deviceset="DO-214AB" device=""/>
 <part name="U$9" library="Diodes" deviceset="DO-214AB" device=""/>
 <part name="U$10" library="Diodes" deviceset="DO-214AB" device=""/>
-<part name="TP1" library="testpad" deviceset="TP5" device="P5-25-17"/>
-<part name="TP2" library="testpad" deviceset="TP5" device="P5-25-17"/>
-<part name="TP3" library="testpad" deviceset="TP5" device="P5-25-17"/>
-<part name="TP4" library="testpad" deviceset="TP5" device="P5-25-17"/>
+<part name="TP1" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP2" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP3" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP4" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP5" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP6" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP7" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP8" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP9" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP10" library="testpad" deviceset="TP2" device="P2-38-17"/>
+<part name="TP11" library="testpad" deviceset="TP2" device="P2-38-17"/>
 </parts>
 <sheets>
 <sheet>
@@ -339,26 +319,28 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U$8" gate="G$1" x="35.56" y="60.96" rot="R270"/>
 <instance part="U$9" gate="G$1" x="35.56" y="38.1" rot="R270"/>
 <instance part="U$10" gate="G$1" x="35.56" y="15.24" rot="R270"/>
-<instance part="TP1" gate="A" x="71.12" y="104.14"/>
-<instance part="TP1" gate="B" x="76.2" y="104.14"/>
-<instance part="TP1" gate="C" x="81.28" y="104.14"/>
-<instance part="TP1" gate="D" x="86.36" y="104.14"/>
-<instance part="TP1" gate="E" x="91.44" y="104.14"/>
-<instance part="TP2" gate="A" x="71.12" y="91.44"/>
-<instance part="TP2" gate="B" x="76.2" y="91.44"/>
-<instance part="TP2" gate="C" x="81.28" y="91.44"/>
-<instance part="TP2" gate="D" x="86.36" y="91.44"/>
-<instance part="TP2" gate="E" x="91.44" y="91.44"/>
-<instance part="TP3" gate="A" x="35.56" y="0"/>
-<instance part="TP3" gate="B" x="40.64" y="0"/>
-<instance part="TP3" gate="C" x="45.72" y="0"/>
-<instance part="TP3" gate="D" x="50.8" y="0"/>
-<instance part="TP3" gate="E" x="55.88" y="0"/>
-<instance part="TP4" gate="A" x="35.56" y="-10.16"/>
-<instance part="TP4" gate="B" x="40.64" y="-10.16"/>
-<instance part="TP4" gate="C" x="45.72" y="-10.16"/>
-<instance part="TP4" gate="D" x="50.8" y="-10.16"/>
-<instance part="TP4" gate="E" x="55.88" y="-10.16"/>
+<instance part="TP1" gate="A" x="76.2" y="106.68"/>
+<instance part="TP1" gate="B" x="83.82" y="106.68"/>
+<instance part="TP2" gate="A" x="76.2" y="91.44"/>
+<instance part="TP2" gate="B" x="83.82" y="91.44"/>
+<instance part="TP3" gate="A" x="76.2" y="83.82"/>
+<instance part="TP3" gate="B" x="83.82" y="83.82"/>
+<instance part="TP4" gate="A" x="76.2" y="101.6"/>
+<instance part="TP4" gate="B" x="83.82" y="101.6"/>
+<instance part="TP5" gate="A" x="76.2" y="73.66"/>
+<instance part="TP5" gate="B" x="83.82" y="73.66"/>
+<instance part="TP6" gate="A" x="76.2" y="66.04"/>
+<instance part="TP6" gate="B" x="83.82" y="66.04"/>
+<instance part="TP7" gate="A" x="76.2" y="50.8"/>
+<instance part="TP7" gate="B" x="83.82" y="50.8"/>
+<instance part="TP8" gate="A" x="76.2" y="43.18"/>
+<instance part="TP8" gate="B" x="83.82" y="43.18"/>
+<instance part="TP9" gate="A" x="76.2" y="30.48"/>
+<instance part="TP9" gate="B" x="83.82" y="30.48"/>
+<instance part="TP10" gate="A" x="76.2" y="22.86"/>
+<instance part="TP10" gate="B" x="83.82" y="22.86"/>
+<instance part="TP11" gate="A" x="50.8" y="116.84"/>
+<instance part="TP11" gate="B" x="58.42" y="116.84"/>
 </instances>
 <busses>
 </busses>
@@ -386,29 +368,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <junction x="25.4" y="55.88"/>
 <junction x="25.4" y="33.02"/>
 <junction x="25.4" y="10.16"/>
-<wire x1="25.4" y1="5.08" x2="30.48" y2="5.08" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="5.08" x2="30.48" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="TP3" gate="A" pin="TP"/>
-<wire x1="30.48" y1="-2.54" x2="35.56" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="TP3" gate="B" pin="TP"/>
-<wire x1="35.56" y1="-2.54" x2="40.64" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="TP3" gate="C" pin="TP"/>
-<wire x1="40.64" y1="-2.54" x2="45.72" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="TP3" gate="D" pin="TP"/>
-<wire x1="45.72" y1="-2.54" x2="50.8" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="TP3" gate="E" pin="TP"/>
-<wire x1="50.8" y1="-2.54" x2="55.88" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="-2.54" x2="30.48" y2="-12.7" width="0.1524" layer="91"/>
-<pinref part="TP4" gate="A" pin="TP"/>
-<wire x1="30.48" y1="-12.7" x2="35.56" y2="-12.7" width="0.1524" layer="91"/>
-<pinref part="TP4" gate="B" pin="TP"/>
-<wire x1="35.56" y1="-12.7" x2="40.64" y2="-12.7" width="0.1524" layer="91"/>
-<pinref part="TP4" gate="C" pin="TP"/>
-<wire x1="40.64" y1="-12.7" x2="45.72" y2="-12.7" width="0.1524" layer="91"/>
-<pinref part="TP4" gate="D" pin="TP"/>
-<wire x1="45.72" y1="-12.7" x2="50.8" y2="-12.7" width="0.1524" layer="91"/>
-<pinref part="TP4" gate="E" pin="TP"/>
-<wire x1="50.8" y1="-12.7" x2="55.88" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -463,27 +422,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="45.72" y1="60.96" x2="55.88" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="U$7" gate="G$1" pin="OUT"/>
 <wire x1="45.72" y1="81.28" x2="55.88" y2="81.28" width="0.1524" layer="91"/>
-<pinref part="TP1" gate="A" pin="TP"/>
 <wire x1="55.88" y1="101.6" x2="71.12" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="TP1" gate="B" pin="TP"/>
-<wire x1="71.12" y1="101.6" x2="76.2" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="TP1" gate="C" pin="TP"/>
-<wire x1="76.2" y1="101.6" x2="81.28" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="TP1" gate="D" pin="TP"/>
-<wire x1="81.28" y1="101.6" x2="86.36" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="TP1" gate="E" pin="TP"/>
-<wire x1="86.36" y1="101.6" x2="91.44" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="TP2" gate="A" pin="TP"/>
 <wire x1="55.88" y1="86.36" x2="71.12" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="71.12" y1="86.36" x2="71.12" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="TP2" gate="B" pin="TP"/>
-<wire x1="71.12" y1="88.9" x2="76.2" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="TP2" gate="C" pin="TP"/>
-<wire x1="76.2" y1="88.9" x2="81.28" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="TP2" gate="D" pin="TP"/>
-<wire x1="81.28" y1="88.9" x2="86.36" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="TP2" gate="E" pin="TP"/>
-<wire x1="86.36" y1="88.9" x2="91.44" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
