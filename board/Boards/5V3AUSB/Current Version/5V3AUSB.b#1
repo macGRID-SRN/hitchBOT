@@ -1654,21 +1654,31 @@ Please make sure your boards conform to these design rules.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="C1" library="resistor" package="E2,5-6" value="220uF" x="36.83" y="3.81" rot="R90"/>
+<element name="C1" library="resistor" package="E2,5-6" value="220uF" x="36.83" y="3.81" smashed="yes" rot="R90">
+<attribute name="NAME" x="36.703" y="8.636" size="1.27" layer="25" ratio="10" rot="R180"/>
+<attribute name="VALUE" x="44.323" y="2.667" size="1.27" layer="27" ratio="10" rot="R180"/>
+</element>
 <element name="C2" library="resistor" package="E2,5-6" value="470uF" x="26.67" y="29.21"/>
-<element name="D1" library="diode" package="CB429-17" value="15KEXX" x="29.21" y="36.83" rot="R180"/>
-<element name="L1" library="inductors" package="SUKW3-27" value="22uH" x="40.64" y="20.32" rot="R270"/>
-<element name="TO265-5" library="on-semiconductor" package="TO263_5" value="CAT4101" x="29.21" y="13.97">
+<element name="D1" library="diode" package="CB429-17" value="15KEXX" x="29.21" y="36.83" smashed="yes" rot="R180">
+<attribute name="NAME" x="34.29" y="33.909" size="1.27" layer="25" ratio="10" rot="R180"/>
+</element>
+<element name="L1" library="inductors" package="SUKW3-27" value="22uH" x="40.64" y="20.32" smashed="yes" rot="R270">
+<attribute name="NAME" x="42.1894" y="14.224" size="1.27" layer="25" ratio="10" rot="R270"/>
+<attribute name="VALUE" x="39.9288" y="28.067" size="1.27" layer="27" ratio="10" rot="R270"/>
+</element>
+<element name="TO265-5" library="on-semiconductor" package="TO263_5" value="CAT4101" x="29.21" y="13.97" smashed="yes">
 <attribute name="OC_NEWARK" value="08R5264" x="48.26" y="3.81" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="CAT4101TV-T75" x="48.26" y="3.81" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="" x="48.26" y="3.81" size="1.778" layer="27" display="off"/>
 <attribute name="OC_FARNELL" value="1718452" x="48.26" y="3.81" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="26.924" y="10.16" size="1.27" layer="27"/>
 </element>
-<element name="X1" library="con-berg" package="PN87520" value="" x="3.81" y="8.89" rot="R270">
+<element name="X1" library="con-berg" package="PN87520" value="" x="3.81" y="8.89" smashed="yes" rot="R270">
 <attribute name="OC_NEWARK" value="unknown" x="3.81" y="8.89" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="" x="3.81" y="8.89" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="" x="3.81" y="8.89" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="OC_FARNELL" value="unknown" x="3.81" y="8.89" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="-6.35" y="-0.254" size="1.27" layer="27"/>
 </element>
 <element name="R2" library="eagle-ltspice" package="0204/7" value="" x="15.24" y="15.24">
 <attribute name="SPICEMODEL" value="NONE" x="15.24" y="15.24" size="1.778" layer="27" display="off"/>
@@ -1685,11 +1695,11 @@ Please make sure your boards conform to these design rules.</description>
 <element name="LED1" library="led" package="CHIPLED_1206" value="" x="17.78" y="2.54" rot="R90"/>
 <element name="R1" library="resistor" package="R1206" value="250" x="11.43" y="2.54"/>
 <element name="U$1" library="Molex" package="2X2MOLEX" value="2X2-MOLEX" x="15.24" y="24.13" rot="R270"/>
-<element name="TP1" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="5.08" y="35.56" rot="R180">
-<attribute name="TP_SIGNAL_NAME" value="" x="5.08" y="35.56" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="TP1" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="5.08" y="35.56" smashed="yes" rot="R180">
+<attribute name="TP_SIGNAL_NAME" value="" x="7.62" y="41.91" size="1" layer="37" rot="R180"/>
 </element>
-<element name="TP2" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="12.7" y="35.56">
-<attribute name="TP_SIGNAL_NAME" value="" x="12.7" y="35.56" size="1.778" layer="27" display="off"/>
+<element name="TP2" library="testpad" package="P2-38-20" value="TP2P2-38-20" x="12.7" y="35.56" smashed="yes">
+<attribute name="TP_SIGNAL_NAME" value="" x="10.16" y="29.21" size="1" layer="37"/>
 </element>
 </elements>
 <signals>
