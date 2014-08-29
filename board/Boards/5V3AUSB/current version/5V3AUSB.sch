@@ -11086,6 +11086,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="TO265-5" gate="G$1" pin="EN/PWM"/>
 <wire x1="48.26" y1="101.6" x2="60.96" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="101.6" x2="60.96" y2="104.14" width="0.1524" layer="91"/>
+<junction x="38.1" y="116.84"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -11111,6 +11112,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="137.16" y1="93.98" x2="134.62" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="152.4" y1="93.98" x2="152.4" y2="88.9" width="0.1524" layer="91"/>
+<junction x="119.38" y="96.52"/>
+<junction x="134.62" y="96.52"/>
 </segment>
 <segment>
 <pinref part="SUPPLY3" gate="GND" pin="GND"/>
@@ -11131,6 +11134,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="68.58" y1="86.36" x2="71.12" y2="86.36" width="0.1524" layer="91"/>
 <pinref part="TO265-5" gate="G$1" pin="GND"/>
 <wire x1="68.58" y1="104.14" x2="68.58" y2="93.98" width="0.1524" layer="91"/>
+<junction x="68.58" y="93.98"/>
+<junction x="68.58" y="86.36"/>
 </segment>
 <segment>
 <pinref part="U$1" gate="G$1" pin="GND"/>
@@ -11150,6 +11155,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="111.76" y1="127" x2="114.3" y2="127" width="0.1524" layer="91"/>
 <wire x1="114.3" y1="127" x2="114.3" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="114.3" y1="124.46" x2="116.84" y2="124.46" width="0.1524" layer="91"/>
+<junction x="116.84" y="124.46"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -11162,6 +11168,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="83.82" y1="104.14" x2="88.9" y2="104.14" width="0.1524" layer="91"/>
 <pinref part="TO265-5" gate="G$1" pin="VIN"/>
 <wire x1="58.42" y1="99.06" x2="58.42" y2="104.14" width="0.1524" layer="91"/>
+<junction x="88.9" y="104.14"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -11187,6 +11194,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="TO265-5" gate="G$1" pin="RSET"/>
 <wire x1="78.74" y1="101.6" x2="66.04" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="101.6" x2="66.04" y2="104.14" width="0.1524" layer="91"/>
+<junction x="119.38" y="104.14"/>
+<junction x="134.62" y="104.14"/>
 </segment>
 </net>
 <net name="N$6" class="0">
@@ -11199,6 +11208,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="R3" gate="G$1" pin="1"/>
 <wire x1="132.08" y1="99.06" x2="132.08" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="132.08" y1="91.44" x2="124.46" y2="83.82" width="0.1524" layer="91"/>
+<junction x="132.08" y="91.44"/>
 </segment>
 </net>
 <net name="N$7" class="0">
@@ -11211,6 +11221,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="124.46" y1="109.22" x2="127" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="127" y1="109.22" x2="134.62" y2="101.6" width="0.1524" layer="91"/>
+<junction x="134.62" y="101.6"/>
 </segment>
 </net>
 <net name="N$5" class="0">
