@@ -1816,7 +1816,7 @@ Please make sure your boards conform to these design rules.</description>
 <via x="20.32" y="5.08" extent="1-16" drill="0.6"/>
 <via x="31.75" y="2.54" extent="1-16" drill="0.6"/>
 <wire x1="31.75" y1="2.54" x2="30.91" y2="2.54" width="2.1844" layer="1"/>
-<wire x1="30.91" y1="2.54" x2="30.91" y2="5.97" width="2.1844" layer="1"/>
+<wire x1="30.91" y1="2.54" x2="30.91" y2="5.97" width="1.9304" layer="1"/>
 </signal>
 <signal name="N$6">
 <contactref element="R4" pad="2"/>
@@ -1855,6 +1855,27 @@ Please make sure your boards conform to these design rules.</description>
 <via x="30.48" y="1.905" extent="1-16" drill="0.6"/>
 </signal>
 </signals>
+<errors>
+<approved hash="19,1,30e92b16b0192b1c"/>
+<approved hash="19,1,10ecfd1d4597d198"/>
+<approved hash="19,1,32f26504db0d9405"/>
+<approved hash="19,1,6a08ef6dbe396672"/>
+<approved hash="19,1,8803202d0bc89e78"/>
+<approved hash="19,1,a5b7de4d1e3635af"/>
+<approved hash="19,1,bf866178631bbde5"/>
+<approved hash="19,1,218ab2609c4cb416"/>
+<approved hash="19,1,1c9c5fd6a3afe6a1"/>
+<approved hash="19,16,bf866178631bbde5"/>
+<approved hash="19,16,b5466bb86c5bb2a5"/>
+<approved hash="19,16,3d1af4b91e02193d"/>
+<approved hash="19,16,71fec33d4eea65df"/>
+<approved hash="19,16,26672b554e98cca7"/>
+<approved hash="5,16,69465be65f507ba6"/>
+<approved hash="5,16,7caf598a5a2768f0"/>
+<approved hash="19,16,ba4527d7d9b6e470"/>
+<approved hash="19,16,b00e28984119f40d"/>
+<approved hash="19,16,cfd4cb036473bd82"/>
+</errors>
 </board>
 </drawing>
 </eagle>

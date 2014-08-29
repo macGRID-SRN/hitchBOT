@@ -75,6 +75,13 @@
 <wire x1="45.7" y1="0" x2="45.7" y2="41.58" width="0" layer="20"/>
 <wire x1="45.7" y1="41.58" x2="0" y2="41.58" width="0" layer="20"/>
 <wire x1="0" y1="41.58" x2="0" y2="0" width="0" layer="20"/>
+<text x="7.62" y="38.1" size="1.778" layer="21">+</text>
+<text x="11.43" y="38.1" size="1.778" layer="21">+</text>
+<text x="3.81" y="38.1" size="1.778" layer="21">-</text>
+<text x="15.24" y="38.1" size="1.778" layer="21">-</text>
+<text x="43.18" y="33.655" size="1.27" layer="22" rot="MR270">5V 3A USB Supply v1.0
+C.G &amp; D.K
+hitchBOT - August 2014</text>
 </plain>
 <libraries>
 <library name="resistor">
@@ -1878,4 +1885,10 @@ Please make sure your boards conform to these design rules.</description>
 </errors>
 </board>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>

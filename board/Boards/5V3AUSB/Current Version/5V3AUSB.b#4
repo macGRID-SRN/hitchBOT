@@ -1772,8 +1772,7 @@ Please make sure your boards conform to these design rules.</description>
 <via x="34.29" y="9.525" extent="1-16" drill="0.6"/>
 <via x="35.56" y="9.525" extent="1-16" drill="0.6"/>
 <via x="36.83" y="8.89" extent="1-16" drill="0.6"/>
-<wire x1="36.195" y1="8.89" x2="36.83" y2="8.89" width="0" layer="19" extent="1-1"/>
-<wire x1="35.56" y1="9.525" x2="36.195" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="36.83" y1="8.89" x2="36.195" y2="8.89" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="D1" pad="C"/>

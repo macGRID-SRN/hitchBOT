@@ -1727,7 +1727,7 @@ Please make sure your boards conform to these design rules.</description>
 </polygon>
 <contactref element="TO265-5" pad="1"/>
 </signal>
-<signal name="ASDAD">
+<signal name="GND">
 <contactref element="C2" pad="-"/>
 <contactref element="C1" pad="-"/>
 <contactref element="D1" pad="A"/>
