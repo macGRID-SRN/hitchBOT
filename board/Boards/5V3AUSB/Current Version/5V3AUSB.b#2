@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.025" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -77,11 +77,11 @@
 <wire x1="0" y1="51.74" x2="0" y2="0" width="0" layer="20"/>
 <text x="28.575" y="3.175" size="1.6764" layer="21">+</text>
 <text x="30.48" y="11.43" size="1.6764" layer="21">+</text>
-<text x="15.24" y="43.434" size="1.6764" layer="21">+</text>
-<text x="8.255" y="43.434" size="1.6764" layer="21">+</text>
-<text x="1.27" y="43.434" size="1.6764" layer="21">+</text>
+<text x="15.24" y="43.18" size="1.6764" layer="21">+</text>
+<text x="8.255" y="43.18" size="1.6764" layer="21">+</text>
+<text x="1.27" y="43.18" size="1.6764" layer="21">+</text>
 <text x="1.27" y="47.625" size="1.6764" layer="21">-</text>
-<text x="8.509" y="47.625" size="1.6764" layer="21">-</text>
+<text x="8.255" y="47.625" size="1.6764" layer="21">-</text>
 <text x="15.24" y="47.625" size="1.6764" layer="21">-</text>
 <text x="34.29" y="11.43" size="1.6764" layer="21">-</text>
 <text x="25.4" y="3.175" size="1.6764" layer="21">-</text>
