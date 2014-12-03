@@ -1,0 +1,118 @@
+Language model created by QuickLM on Sun Mar  9 21:49:44 EDT 2014
+Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
+
+The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
+
+The code that was used to produce this language model is available in Open Source.
+Please visit http://www.speech.cs.cmu.edu/tools/ for more information
+
+The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
+This model based on a corpus of 8 sentences and 25 words
+
+\data\
+ngram 1=25
+ngram 2=36
+ngram 3=34
+
+\1-grams:
+-1.1139 </s> -0.3010
+-1.1139 <s> -0.2663
+-1.4150 ARE -0.2796
+-2.0170 DO -0.2840
+-2.0170 EXIST? -0.2663
+-2.0170 FAR -0.2840
+-2.0170 GOING? -0.2663
+-2.0170 HERE? -0.2663
+-2.0170 HOW -0.2968
+-1.5399 IS -0.2840
+-2.0170 IT? -0.2663
+-2.0170 JOURNEY? -0.2663
+-2.0170 LIFE? -0.2663
+-2.0170 MEANING -0.2968
+-2.0170 NAME? -0.2663
+-2.0170 OF -0.2968
+-2.0170 ON -0.2926
+-2.0170 THE -0.2968
+-2.0170 TIME -0.2883
+-1.5399 WHAT -0.2840
+-1.7160 WHERE -0.2840
+-1.7160 WHY -0.2796
+-1.4150 YOU -0.2840
+-2.0170 YOU? -0.2663
+-1.7160 YOUR -0.2926
+
+\2-grams:
+-1.2041 <s> HOW 0.0000
+-0.7270 <s> WHAT 0.0000
+-0.9031 <s> WHERE 0.0000
+-0.9031 <s> WHY 0.0000
+-0.4260 ARE YOU -0.0969
+-0.9031 ARE YOU? 0.0000
+-0.3010 DO YOU -0.2430
+-0.3010 EXIST? </s> -0.3010
+-0.3010 FAR ARE -0.0969
+-0.3010 GOING? </s> -0.3010
+-0.3010 HERE? </s> -0.3010
+-0.3010 HOW FAR 0.0000
+-0.7782 IS IT? 0.0000
+-0.7782 IS THE 0.0000
+-0.7782 IS YOUR -0.1761
+-0.3010 IT? </s> -0.3010
+-0.3010 JOURNEY? </s> -0.3010
+-0.3010 LIFE? </s> -0.3010
+-0.3010 MEANING OF 0.0000
+-0.3010 NAME? </s> -0.3010
+-0.3010 OF LIFE? 0.0000
+-0.3010 ON YOUR -0.1761
+-0.3010 THE MEANING 0.0000
+-0.3010 TIME IS -0.2218
+-0.4771 WHAT IS -0.1249
+-0.7782 WHAT TIME 0.0000
+-0.3010 WHERE ARE 0.0000
+-0.6021 WHY ARE -0.0969
+-0.6021 WHY DO 0.0000
+-0.9031 YOU EXIST? 0.0000
+-0.9031 YOU GOING? 0.0000
+-0.9031 YOU HERE? 0.0000
+-0.9031 YOU ON 0.0000
+-0.3010 YOU? </s> -0.3010
+-0.6021 YOUR JOURNEY? 0.0000
+-0.6021 YOUR NAME? 0.0000
+
+\3-grams:
+-0.3010 <s> HOW FAR
+-0.4771 <s> WHAT IS
+-0.7782 <s> WHAT TIME
+-0.3010 <s> WHERE ARE
+-0.6021 <s> WHY ARE
+-0.6021 <s> WHY DO
+-0.7782 ARE YOU GOING?
+-0.7782 ARE YOU HERE?
+-0.7782 ARE YOU ON
+-0.3010 ARE YOU? </s>
+-0.3010 DO YOU EXIST?
+-0.3010 FAR ARE YOU
+-0.3010 HOW FAR ARE
+-0.3010 IS IT? </s>
+-0.3010 IS THE MEANING
+-0.3010 IS YOUR NAME?
+-0.3010 MEANING OF LIFE?
+-0.3010 OF LIFE? </s>
+-0.3010 ON YOUR JOURNEY?
+-0.3010 THE MEANING OF
+-0.3010 TIME IS IT?
+-0.6021 WHAT IS THE
+-0.6021 WHAT IS YOUR
+-0.3010 WHAT TIME IS
+-0.6021 WHERE ARE YOU
+-0.6021 WHERE ARE YOU?
+-0.3010 WHY ARE YOU
+-0.3010 WHY DO YOU
+-0.3010 YOU EXIST? </s>
+-0.3010 YOU GOING? </s>
+-0.3010 YOU HERE? </s>
+-0.3010 YOU ON YOUR
+-0.3010 YOUR JOURNEY? </s>
+-0.3010 YOUR NAME? </s>
+
+\end\
