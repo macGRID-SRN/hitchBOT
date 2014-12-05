@@ -1,0 +1,3 @@
+[submodule "arduino/led face/Adafruit-LED-Matrix-CodeGen"]
+	path = arduino/led face/Adafruit-LED-Matrix-CodeGen
+	url = https://github.com/macGRID-SRN/Adafruit-LED-Matrix-CodeGen.git
