@@ -16,7 +16,7 @@
         <br />
         <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="SavedImages.aspx">Saved Images</asp:HyperLink>
         <br />
-        <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="SavedImages.aspx">LED Panel Designer</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="LedPanelDesigner.aspx">LED Panel Designer</asp:HyperLink>
         <br />
         <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="LocationPortal.aspx">Location Portal</asp:HyperLink>
         <br />
