@@ -185,6 +185,13 @@
     <Compile Include="ApproveImagesPages\LandingPage.aspx.designer.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\LedPanelDesigner.aspx.cs">
+      <DependentUpon>LedPanelDesigner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\LedPanelDesigner.aspx.designer.cs">
+      <DependentUpon>LedPanelDesigner.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\LocationPortal.aspx.cs">
       <DependentUpon>LocationPortal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -285,6 +292,10 @@
     <Compile Include="Migrations\201407151845137_AddConversationLink.Designer.cs">
       <DependentUpon>201407151845137_AddConversationLink.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201412060356250_AddLedFacePanels.cs" />
+    <Compile Include="Migrations\201412060356250_AddLedFacePanels.Designer.cs">
+      <DependentUpon>201412060356250_AddLedFacePanels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -295,6 +306,7 @@
     <Compile Include="Models\GoogleMapsStatic.cs" />
     <Compile Include="Models\hitchBOT.cs" />
     <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\LedPanel.cs" />
     <Compile Include="Models\ListenEvent.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Password.cs" />
@@ -327,6 +339,7 @@
     <Content Include="ApproveImagesPages\ConversationTweets.aspx" />
     <Content Include="ApproveImagesPages\HealthStatus.aspx" />
     <Content Include="ApproveImagesPages\LandingPage.aspx" />
+    <Content Include="ApproveImagesPages\LedPanelDesigner.aspx" />
     <Content Include="ApproveImagesPages\LocationPortal.aspx" />
     <Content Include="ApproveImagesPages\SavedImages.aspx" />
     <Content Include="ApproveImagesPages\ViewImages.aspx" />
@@ -415,6 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407151845137_AddConversationLink.resx">
       <DependentUpon>201407151845137_AddConversationLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412060356250_AddLedFacePanels.resx">
+      <DependentUpon>201412060356250_AddLedFacePanels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -175,6 +175,15 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.HyperLink6">
+            <summary>
+            HyperLink6 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.HyperLink5">
             <summary>
             HyperLink5 control.
@@ -205,6 +214,24 @@
         <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.BulletedList1">
             <summary>
             BulletedList1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.HyperLink1">
+            <summary>
+            HyperLink1 control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -1026,6 +1053,24 @@
             </summary>
             <param name="HitchBotLocationsID">The ID of the HitchBot to get all the Locations for.</param>
             <returns>A list of all the Locations, sorted.</returns>
+        </member>
+        <member name="T:hitchbotAPI.Models.Face">
+            <summary>
+            represents a whole face for a hitchbot, a collection of any number of panels.
+            </summary>
+        </member>
+        <member name="P:hitchbotAPI.Models.Face.Panels">
+            not virtual because we don't want lazy loading for panels.
+        </member>
+        <member name="T:hitchbotAPI.Models.LedPanel">
+            <summary>
+            represents the each Panel, which has 24 bits wide x 16 bits tall.
+            </summary>
+        </member>
+        <member name="T:hitchbotAPI.Models.Row">
+            <summary>
+            represents the row, 24 bits long
+            </summary>
         </member>
         <member name="F:hitchbotAPI.Unauthorized.form1">
             <summary>

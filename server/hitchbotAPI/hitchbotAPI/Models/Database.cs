@@ -35,6 +35,8 @@ namespace hitchbotAPI.Models
         public DbSet<Password> Passwords { get; set; }
         public DbSet<ExceptionLog> Exceptions { get; set; }
         public DbSet<TabletStatus> TabletStatusI { get; set; }
+        public DbSet<Face> Faces { get; set; }
+        public DbSet<LedPanel> LedPanels { get; set; }
 
     }
 }

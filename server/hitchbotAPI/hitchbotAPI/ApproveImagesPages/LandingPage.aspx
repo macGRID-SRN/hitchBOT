@@ -16,6 +16,8 @@
         <br />
         <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="SavedImages.aspx">Saved Images</asp:HyperLink>
         <br />
+        <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="SavedImages.aspx">LED Panel Designer</asp:HyperLink>
+        <br />
         <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="LocationPortal.aspx">Location Portal</asp:HyperLink>
         <br />
         <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="ConversationTweets.aspx">Send Conversation Tweets</asp:HyperLink>
@@ -26,6 +28,7 @@
         <br />
         <hr />
         What&#39;s New?<asp:BulletedList ID="BulletedList1" runat="server">
+            <asp:ListItem>Added LED Panel Designer - still under development</asp:ListItem>
             <asp:ListItem>Changed sorting in Saved images: Most recently saved is now first</asp:ListItem>
             <asp:ListItem>Fixed Time Taken Issue on pictures. The Time Taken is now accurate.</asp:ListItem>
             <asp:ListItem>Location portal good to go. You can now force updates to the map by the click of a button</asp:ListItem>
