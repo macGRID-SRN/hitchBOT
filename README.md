@@ -5,7 +5,7 @@ hitchBOT is a collaborative art project by researchers with backgrounds in commu
 
 **Shopping List**
 
-- [] Wire (multi-colours)
-- [] Double-Headers
-- [] Lexan
+- [ ] Wire (multi-colours)
+- [ ] Double-Headers
+- [ ] Lexan
 
