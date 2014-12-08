@@ -16,9 +16,13 @@ namespace hitchbotAPI.Helpers
         double threshhold;
         Color[][] colorMatrix;
         List<byte> byteArrayOfRows;
+        string name;
+        string description;
 
-        public PanelHelper(Bitmap bM)
+        public PanelHelper(Bitmap bM, string name, string description)
         {
+            this.name = name;
+            this.description = description;
             getMatrixFromBitmap(bM);
         }
 
@@ -106,6 +110,20 @@ namespace hitchbotAPI.Helpers
             };
 
             return face;
+        }
+
+
+        //This method must be refactored if multiple panels are to be added to a face!!!!
+        private List<Models.LedPanel> getPanels()
+        {
+            List<Models.LedPanel> ledPanels = new List<Models.LedPanel>();
+            Models.LedPanel ledPanel = new Models.LedPanel
+            {
+                Rows = getRows(),
+                TimeAdded = DateTime.UtcNow
+            };
+            ledPanels.Add(ledPanel);
+            return ledPanels;
         }
 
         private List<Models.Row> getRows()
