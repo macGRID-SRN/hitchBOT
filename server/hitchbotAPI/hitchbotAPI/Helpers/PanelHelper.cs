@@ -15,6 +15,7 @@ namespace hitchbotAPI.Helpers
 
         double threshhold;
         Color[][] colorMatrix;
+        List<byte> byteArrayOfRows;
 
         public PanelHelper(Bitmap bM)
         {
@@ -53,15 +54,14 @@ namespace hitchbotAPI.Helpers
             threshhold = (minRed + maxRed) / 2.0;
 
             this.colorMatrix = colorMatrix;
-            makeBoolArray(imageRedMap);
+           this.byteArrayOfRows = makeByteArray(imageRedMap);
         }
 
-        private void makeBoolArray(int[,] imageRedMap)
+        private List<byte> makeByteArray(int[,] imageRedMap)
         {
             List<byte> byteList = new List<byte>();
             List<bool> tempList;
             BitArray bit;
-            bool[,] boolArray = new bool[16, 24];
             for (int row = 0; row < imageRedMap.GetLength(0); row++)
             {
                 tempList = new List<bool>();
@@ -79,6 +79,8 @@ namespace hitchbotAPI.Helpers
                 bit = new BitArray(tempList.ToArray());
                 byteList.Add(convertToByte(bit));
             }
+
+            return byteList;
         }
 
         private byte convertToByte(BitArray bits)
