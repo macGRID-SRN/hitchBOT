@@ -7,7 +7,7 @@ namespace hitchbotAPI.Controllers
 {
     public class LedPanelController
     {
-        public bool addFace(Models.Face face)
+        public static bool addFace(Models.Face face)
         {
             using (var db = new Models.Database())
             {
@@ -22,7 +22,7 @@ namespace hitchbotAPI.Controllers
             return true;
         }
 
-        public bool addPanel(Models.LedPanel panel)
+        public static bool addPanel(Models.LedPanel panel)
         {
             using (var db = new Models.Database())
             {
@@ -30,6 +30,23 @@ namespace hitchbotAPI.Controllers
                 db.SaveChanges();
             }
             return true;
+        }
+
+        public static Models.Face getLastFace(Models.Password user)
+        {
+            List<Models.Face> face = new List<Models.Face>();
+            using (var db = new Models.Database())
+            {
+                var query = from f in db.Faces
+                            where /*f.Active == false &&*/ f.UserAccount == user
+                            orderby f.TimeAdded
+                            select f;
+                foreach(var item in query)
+                {
+                    face.Add(item);
+                }
+            }
+            return face[0];
         }
     }
 }

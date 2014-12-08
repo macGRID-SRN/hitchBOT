@@ -173,6 +173,7 @@
     </Compile>
     <Compile Include="ApproveImagesPages\DynamicMap.aspx.cs">
       <DependentUpon>DynamicMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ApproveImagesPages\DynamicMap.aspx.designer.cs">
       <DependentUpon>DynamicMap.aspx</DependentUpon>
@@ -371,6 +372,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\ledoff.png" />
+    <Content Include="Images\ledon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
