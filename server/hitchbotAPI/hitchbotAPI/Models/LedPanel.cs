@@ -14,10 +14,11 @@ namespace hitchbotAPI.Models
     /// </summary>
     public class Face
     {
-
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public bool Approved { get; set; }
 
         ///not virtual because we don't want lazy loading for panels.
         public ICollection<LedPanel> Panels { get; set; }
@@ -33,7 +34,7 @@ namespace hitchbotAPI.Models
     public class LedPanel
     {
         public int ID { get; set; }
-        
+
         //should be 16 rows foreach LedPanel
         public ICollection<Row> Rows { get; set; }
 
