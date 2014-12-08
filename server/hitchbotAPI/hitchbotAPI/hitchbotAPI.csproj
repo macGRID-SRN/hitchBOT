@@ -171,6 +171,12 @@
     <Compile Include="ApproveImagesPages\ConversationTweets.aspx.designer.cs">
       <DependentUpon>ConversationTweets.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\DynamicMap.aspx.cs">
+      <DependentUpon>DynamicMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveImagesPages\DynamicMap.aspx.designer.cs">
+      <DependentUpon>DynamicMap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\HealthStatus.aspx.cs">
       <DependentUpon>HealthStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -337,6 +343,7 @@
     <Content Include="ApproveImagesPages\AddTargetLocation.aspx" />
     <Content Include="ApproveImagesPages\ApproveImageLogin.aspx" />
     <Content Include="ApproveImagesPages\ConversationTweets.aspx" />
+    <Content Include="ApproveImagesPages\DynamicMap.aspx" />
     <Content Include="ApproveImagesPages\HealthStatus.aspx" />
     <Content Include="ApproveImagesPages\LandingPage.aspx" />
     <Content Include="ApproveImagesPages\LedPanelDesigner.aspx" />

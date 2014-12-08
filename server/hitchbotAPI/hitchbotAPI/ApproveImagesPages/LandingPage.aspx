@@ -40,6 +40,7 @@
         </asp:BulletedList>
         (Still in Development)<br />
         <br />
+        <asp:HyperLink ID="DynamicMapsTestButton" runat="server" NavigateUrl="DynamicMap.aspx">Dynamic Map Test</asp:HyperLink>
         Removed Images<br />
         Target Location Tweeting</div>
     </form>
