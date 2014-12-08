@@ -18,11 +18,13 @@ namespace hitchbotAPI.Helpers
         List<byte> byteArrayOfRows;
         string name;
         string description;
+        Models.Password user;
 
-        public PanelHelper(Bitmap bM, string name, string description)
+        public PanelHelper(Bitmap bM, string name, string description, Models.Password user)
         {
             this.name = name;
             this.description = description;
+            this.user = user;
             getMatrixFromBitmap(bM);
         }
 
@@ -106,7 +108,11 @@ namespace hitchbotAPI.Helpers
         {
             Models.Face face = new Models.Face
             {
-
+                Name = this.name,
+                Description = this.description,
+                Panels = getPanels(),
+                UserAccount = this.user,
+                TimeAdded = DateTime.UtcNow
             };
 
             return face;

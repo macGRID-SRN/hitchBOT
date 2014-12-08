@@ -247,6 +247,15 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.lblWarning">
+            <summary>
+            lblWarning control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.fileUploadImage">
             <summary>
             fileUploadImage control.
@@ -256,9 +265,45 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.btnPreview">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.Label1">
             <summary>
-            btnPreview control.
+            Label1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.txtImageName">
+            <summary>
+            txtImageName control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.Label2">
+            <summary>
+            Label2 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.txtImageDescription">
+            <summary>
+            txtImageDescription control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelDesigner.btnSubmit">
+            <summary>
+            btnSubmit control.
             </summary>
             <remarks>
             Auto-generated field.

@@ -198,6 +198,13 @@
     <Compile Include="ApproveImagesPages\LedPanelDesigner.aspx.designer.cs">
       <DependentUpon>LedPanelDesigner.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\LedPanelPreview.aspx.cs">
+      <DependentUpon>LedPanelPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\LedPanelPreview.aspx.designer.cs">
+      <DependentUpon>LedPanelPreview.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\LocationPortal.aspx.cs">
       <DependentUpon>LocationPortal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -349,6 +356,7 @@
     <Content Include="ApproveImagesPages\HealthStatus.aspx" />
     <Content Include="ApproveImagesPages\LandingPage.aspx" />
     <Content Include="ApproveImagesPages\LedPanelDesigner.aspx" />
+    <Content Include="ApproveImagesPages\LedPanelPreview.aspx" />
     <Content Include="ApproveImagesPages\LocationPortal.aspx" />
     <Content Include="ApproveImagesPages\SavedImages.aspx" />
     <Content Include="ApproveImagesPages\ViewImages.aspx" />
