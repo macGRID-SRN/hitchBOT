@@ -262,6 +262,7 @@
     <Compile Include="Controllers\ConversationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\LedPanelController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\TabletController.cs" />
@@ -279,6 +280,7 @@
     <Compile Include="Controllers\hitchBOTController.cs" />
     <Compile Include="Helpers\CleverScriptHelper.cs" />
     <Compile Include="Helpers\LocationHelper.cs" />
+    <Compile Include="Helpers\PanelHelper.cs" />
     <Compile Include="Helpers\TimeHelper.cs" />
     <Compile Include="Helpers\TwitterHelper.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
