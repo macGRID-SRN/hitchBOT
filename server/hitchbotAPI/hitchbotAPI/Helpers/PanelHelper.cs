@@ -54,17 +54,16 @@ namespace hitchbotAPI.Helpers
             threshhold = (minRed + maxRed) / 2.0;
 
             this.colorMatrix = colorMatrix;
-           this.byteArrayOfRows = makeByteArray(imageRedMap);
+            this.byteArrayOfRows = makeByteArray(imageRedMap);
         }
 
         private List<byte> makeByteArray(int[,] imageRedMap)
         {
             List<byte> byteList = new List<byte>();
-            List<bool> tempList;
+            List<bool> tempList = new List<bool>();
             BitArray bit;
             for (int row = 0; row < imageRedMap.GetLength(0); row++)
             {
-                tempList = new List<bool>();
                 for (int col = 0; col < imageRedMap.GetLength(1); col++)
                 {
                     if (imageRedMap[row, col] < threshhold)
@@ -75,9 +74,14 @@ namespace hitchbotAPI.Helpers
                     {
                         tempList.Add(true);
                     }
+                    if (row % 8 == 0)
+                    {
+                        bit = new BitArray(tempList.ToArray());
+                        byteList.Add(convertToByte(bit));
+                        tempList = new List<bool>();
+                    }
                 }
-                bit = new BitArray(tempList.ToArray());
-                byteList.Add(convertToByte(bit));
+
             }
 
             return byteList;
@@ -94,7 +98,30 @@ namespace hitchbotAPI.Helpers
             return bytes[0];
         }
 
+        public Models.Face getFace()
+        {
+            Models.Face face = new Models.Face
+            {
 
+            };
+
+            return face;
+        }
+
+        private List<Models.Row> getRows()
+        {
+            List<Models.Row> rows = new List<Models.Row>();
+            for (int i = 0; i < byteArrayOfRows.Count - 2; i++)
+            {
+                rows.Add(new Models.Row
+                {
+                    ColSet0 = byteArrayOfRows[i],
+                    ColSet1 = byteArrayOfRows[i + 1],
+                    ColSet2 = byteArrayOfRows[i + 2]
+                });
+            }
+            return rows;
+        }
 
     }
 }
