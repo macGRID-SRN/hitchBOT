@@ -33,8 +33,8 @@
         <div style="height: 50px"></div>
         <div  style="text-align: center">
 
-            <asp:Label ID="Label2" runat="server" Text="Description:"></asp:Label>
-            <asp:TextBox ID="txtImageDescription" runat="server" Height="125px" Style="vertical-align: middle;"></asp:TextBox>
+            <asp:Label ID="Label2" runat="server" Text="Description:" ></asp:Label>
+            <asp:TextBox ID="txtImageDescription" runat="server" Height="125px" Style="vertical-align: top;"></asp:TextBox>
 
         </div>
         <div style="height: 50px"></div>

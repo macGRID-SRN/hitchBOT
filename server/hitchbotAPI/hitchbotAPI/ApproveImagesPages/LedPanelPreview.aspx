@@ -11,7 +11,7 @@
         <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="LedPanelDesigner.aspx">Back</asp:HyperLink>
     <div style="text-align:center">
     
-        <asp:Table ID="Table1" runat="server">
+        <asp:Table ID="Table1" runat="server" style="text-align:center">
         </asp:Table>
     
     </div>
