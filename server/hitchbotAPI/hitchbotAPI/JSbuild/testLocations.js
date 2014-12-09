@@ -373,7 +373,7 @@ var flightPlanCoordinates = [
                     flightPath.setMap(map);
                 }function AddStartMarker(map){
 
-                var pinColor = '00E676';
+                var pinColor = '65ba4a';
                 var pinImage = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + pinColor,
                     new google.maps.Size(21, 34),
                     new google.maps.Point(0,0),
@@ -390,7 +390,7 @@ var flightPlanCoordinates = [
             icon: pinImage,
             shadow: pinShadow}); return marker;}function AddEndMarker(map){
 
-                var pinColor = 'B71C1C';
+                var pinColor = 'ff796c';
                 var pinImage = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + pinColor,
                     new google.maps.Size(21, 34),
                     new google.maps.Point(0,0),
@@ -413,4 +413,28 @@ var flightPlanCoordinates = [
                 position: new google.maps.LatLng(43.7,-79.4),
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: pinImage}); }
+            icon: pinImage}); }function AddInfoWindow(map){ 
+                    var myLatLong = new google.maps.LatLng(45.7667,-82.2);
+                    var contentString = '<div id="content">'+
+                  '<div id="siteNotice">'+
+                  '</div>'+
+                  '<h1 id="firstHeading" class="firstHeading">Manitoulin Island</h1>'+
+                  '<div id="bodyContent">'+
+                  '<p>Canada’s most famous hitchhiking robot spent part of its holiday weekend taking part in a Pow Wow with the Wikwemikong First Nation on Manitoulin Island, picking up an honourary name in the process.'+
+                  '<p>Attribution: National Post, <a href="http://news.nationalpost.com/2014/08/04/hitchbot-update-canadas-hitchhiking-robot-picks-up-an-honourary-name-on-manitoulin-island/">'+
+                  'See the article here.</p>'+
+                  '</div>'+
+                  '</div>';
+
+              var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+              });
+
+              var marker = new google.maps.Marker({
+                  position: myLatLong,
+                  map: map,
+                  title: 'hitchBOT on Manitoulin Island'
+              });
+              google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+              }); return infowindow;}

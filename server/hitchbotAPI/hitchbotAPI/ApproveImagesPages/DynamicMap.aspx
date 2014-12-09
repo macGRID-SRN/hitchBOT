@@ -26,6 +26,7 @@
         AddStartMarker(map);
         AddEndMarker(map);
         AddHbMarker(map);
+        AddInfoWindow(map);
       }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
