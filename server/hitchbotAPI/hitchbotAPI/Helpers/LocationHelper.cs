@@ -43,6 +43,8 @@ namespace hitchbotAPI.Helpers
                 }";
 
                 builder += GenStartMarker(locations.First());
+                builder += GenEndMarker(locations.Last());
+                builder += GenHbMarker(new Models.Location { Latitude = 43.7000, Longitude = -79.4000 });
 
                 Debug.WriteLine(Helpers.PathHelper.GetJsBuildPath());
 
@@ -52,17 +54,19 @@ namespace hitchbotAPI.Helpers
 
         private static string GenStartMarker(Models.Location myLocation)
         {
-            string returnString = @"function AddStartMarker(map){
+            return GenColouredMarker(myLocation, "00E676", "AddStartMarker");
+        }
 
-                var pinColor = '26A69A';
-                var pinImage = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + pinColor,
-                    new google.maps.Size(21, 34),
-                    new google.maps.Point(0,0),
-                    new google.maps.Point(10, 34));
-                var pinShadow = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_shadow',
-                    new google.maps.Size(40, 37),
-                    new google.maps.Point(0, 0),
-                    new google.maps.Point(12, 35));
+        private static string GenEndMarker(Models.Location myLocation)
+        {
+            return GenColouredMarker(myLocation, "B71C1C", "AddEndMarker");
+        }
+
+        private static string GenHbMarker(Models.Location myLocation)
+        {
+            string returnString = @"function AddHbMarker(map){
+
+                var pinImage = new google.maps.MarkerImage('" + hBIcon + @"');
 
                 var startMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(";
@@ -72,13 +76,44 @@ namespace hitchbotAPI.Helpers
             returnString += @"
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: pinImage,
-            shadow: pinShadow";
+            icon: pinImage";
 
             returnString += "}); }";
 
             return returnString;
         }
+
+        private static string GenColouredMarker(Models.Location myLocation, string colour, string markerFunctionName)
+        {
+            string returnString = "function " + markerFunctionName + @"(map){
+
+                var pinColor = '" + colour + @"';
+                var pinImage = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + pinColor,
+                    new google.maps.Size(21, 34),
+                    new google.maps.Point(0,0),
+                    new google.maps.Point(10, 34));
+                var pinShadow = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_shadow',
+                    new google.maps.Size(40, 37),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(12, 35));
+
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(";
+
+            returnString += myLocation.Latitude + "," + myLocation.Longitude + "),";
+
+            returnString += @"
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: pinImage,
+            shadow: pinShadow";
+
+            returnString += "}); return marker;}";
+
+            return returnString;
+        }
+
+        public const string hBIcon = "http://goo.gl/uwnJCB";
 
         public static async void CheckForTargetLocation(int HitchBotID, int LocationID)
         {

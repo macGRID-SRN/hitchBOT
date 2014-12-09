@@ -373,7 +373,7 @@ var flightPlanCoordinates = [
                     flightPath.setMap(map);
                 }function AddStartMarker(map){
 
-                var pinColor = '26A69A';
+                var pinColor = '00E676';
                 var pinImage = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + pinColor,
                     new google.maps.Size(21, 34),
                     new google.maps.Point(0,0),
@@ -383,9 +383,34 @@ var flightPlanCoordinates = [
                     new google.maps.Point(0, 0),
                     new google.maps.Point(12, 35));
 
-                var startMarker = new google.maps.Marker({
-                position: new google.maps.LatLng(44.64639727,-63.58323981),
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(44.64639727,-63.58323981),
             map: map,
             animation: google.maps.Animation.DROP,
             icon: pinImage,
-            shadow: pinShadow}); }
+            shadow: pinShadow}); return marker;}function AddEndMarker(map){
+
+                var pinColor = 'B71C1C';
+                var pinImage = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + pinColor,
+                    new google.maps.Size(21, 34),
+                    new google.maps.Point(0,0),
+                    new google.maps.Point(10, 34));
+                var pinShadow = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_shadow',
+                    new google.maps.Size(40, 37),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(12, 35));
+
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(49.2829731,-123.0483733),
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: pinImage,
+            shadow: pinShadow}); return marker;}function AddHbMarker(map){
+
+                var pinImage = new google.maps.MarkerImage('http://goo.gl/uwnJCB');
+
+                var startMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(43.7,-79.4),
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: pinImage}); }
