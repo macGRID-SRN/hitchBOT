@@ -9,7 +9,7 @@ namespace hitchbotAPI.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             //this is probably really dangerous, it should not be used unless you know what you are doing.
             AutomaticMigrationDataLossAllowed = true;
         }
