@@ -19,13 +19,24 @@ namespace hitchbotAPI.Helpers
         string name;
         string description;
         Models.Password user;
+        bool approved;
 
         public PanelHelper(Bitmap bM, string name, string description, Models.Password user)
         {
             this.name = name;
             this.description = description;
             this.user = user;
+            this.approved = false;
             getMatrixFromBitmap(bM);
+        }
+
+        public PanelHelper(List<byte> byteArray, string name, string description, Models.Password user)
+        {
+            this.byteArrayOfRows = byteArray;
+            this.name = name;
+            this.description = description;
+            this.user = user;
+            this.approved = true;
         }
 
         private void getMatrixFromBitmap(Bitmap bM)
@@ -60,10 +71,10 @@ namespace hitchbotAPI.Helpers
             threshhold = (minRed + maxRed) / 2.0;
 
             this.colorMatrix = colorMatrix;
-            this.byteArrayOfRows = makeByteArray(imageRedMap);
+            this.byteArrayOfRows = makeByteArray(imageRedMap, this.threshhold);
         }
 
-        private List<byte> makeByteArray(int[,] imageRedMap)
+        private static List<byte> makeByteArray(int[,] imageRedMap, double threshhold)
         {
             List<byte> byteList = new List<byte>();
             List<bool> tempList = new List<bool>();
@@ -117,11 +128,11 @@ namespace hitchbotAPI.Helpers
         {
             Models.Face face = new Models.Face
             {
-                Name = this.name,
-                Description = this.description,
+                Name = name,
+                Description = description,
                 Panels = getPanels(),
-                Approved = false,
-                UserAccount = this.user,
+                Approved = this.approved,
+                UserAccount = user,
                 TimeAdded = DateTime.UtcNow
             };
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 namespace hitchbotAPI.Controllers
 {
@@ -12,7 +13,7 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                foreach(var panel in face.Panels)
+                foreach (var panel in face.Panels)
                 {
                     addPanel(panel);
                     db.LedPanels.Attach(panel);
@@ -42,7 +43,7 @@ namespace hitchbotAPI.Controllers
                             where f.Approved == false && f.UserAccount.ID == user.ID
                             orderby f.TimeAdded
                             select f;
-                foreach(var item in query)
+                foreach (var item in query)
                 {
                     face.Add(item);
                 }
@@ -52,7 +53,9 @@ namespace hitchbotAPI.Controllers
 
         public static void updateFace(Models.Face face, bool approved)
         {
+
             updatePanel(face.Panels.ToList()[0]);
+            /*
             using(var db = new Models.Database())
             {
                 var original = db.Faces.Find(face.ID);
@@ -67,6 +70,23 @@ namespace hitchbotAPI.Controllers
                     original.UserAccount = face.UserAccount;
                     db.SaveChanges();
                 }
+            }*/
+            using (var db = new Models.Database())
+            {
+                db.Faces.AddOrUpdate(
+                      p => p.ID,
+                      new Models.Face
+                      {
+                          ID = face.ID,
+                          Name = face.Name,
+                          Description = face.Description,
+                          Panels = face.Panels,
+                          TimeAdded = face.TimeAdded,
+                          Approved = approved,
+                          UserAccount = face.UserAccount
+                      }
+                    );
+                db.SaveChanges();
             }
         }
 
@@ -74,14 +94,16 @@ namespace hitchbotAPI.Controllers
         {
             using (var db = new Models.Database())
             {
-                var original = db.LedPanels.Find(panel.ID);
-
-                if (original != null)
-                {
-                    original.Rows = panel.Rows;
-                    original.TimeAdded = panel.TimeAdded;
-                    db.SaveChanges();
-                }
+                db.LedPanels.AddOrUpdate(
+                      p => p.ID,
+                      new Models.LedPanel
+                      {
+                          ID = panel.ID,
+                          Rows = panel.Rows,
+                          TimeAdded = panel.TimeAdded,
+                      }
+                    );
+                db.SaveChanges();
             }
         }
     }

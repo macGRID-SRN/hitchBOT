@@ -52,6 +52,38 @@ namespace hitchbotAPI.ApproveImagesPages
             }
         }
 
+        private void loopThroughLEDs()
+        {
+            List<bool> tempList = new List<bool>();
+            List<byte> byteList = new List<byte>();
+
+            foreach(TableRow row in Table1.Rows)
+            {
+                foreach(TableCell cell in row.Cells)
+                {
+                    ImageButton[] iBArray = new ImageButton[1];
+                    cell.Controls.CopyTo(iBArray,0);
+                    int rowIndex = int.Parse(((ImageButton)iBArray.GetValue(0)).CommandArgument.Split(',')[0]);
+                    int columnIndex = int.Parse(((ImageButton)iBArray.GetValue(0)).CommandArgument.Split(',')[1]);
+                    if (((ImageButton)iBArray.GetValue(0)).ImageUrl.Equals(imgTagOff))
+                    {
+                        tempList.Add(false);
+                    }
+                    else
+                    {
+                        tempList.Add(true);
+                    }
+                    if(tempList.Count == 8)
+                    {
+                        byteList.Add(Helpers.PanelHelper.convertToByte(tempList.ToArray()));
+                        tempList = new List<bool>();
+                    }
+                }
+            }
+            Helpers.PanelHelper pHelper = new Helpers.PanelHelper(byteList, face.Name, face.Description, face.UserAccount);
+            Controllers.LedPanelController.addFace(pHelper.getFace());
+        }
+
         private List<Models.Row> fixRow(int row, int col, bool valueToChangeTo)
         {
             List<Models.Row> rows = face.Panels.ToList<Models.LedPanel>()[0].Rows.ToList<Models.Row>();
@@ -121,7 +153,6 @@ namespace hitchbotAPI.ApproveImagesPages
                     iButton1.Width = 20;
                     iButton1.CommandArgument = i.ToString() + "," + j.ToString();
                     iButton1.Click += RowClick1;
-                    iButton1.Attributes.Add("onclick", "return false");
 
                     TableCell tCell1 = new TableCell();
                     tCell1.Controls.Add(iButton1);
@@ -133,7 +164,7 @@ namespace hitchbotAPI.ApproveImagesPages
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Controllers.LedPanelController.updateFace(face, true);
+            loopThroughLEDs();
             Response.Redirect("LedPanelDesigner.aspx");
         }
     }
