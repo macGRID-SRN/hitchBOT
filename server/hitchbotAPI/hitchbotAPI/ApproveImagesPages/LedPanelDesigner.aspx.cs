@@ -37,7 +37,7 @@ namespace hitchbotAPI.ApproveImagesPages
 
                 if (allowedExtenstions.Contains(ext))
                 {
-                    Bitmap bitmap = new Bitmap(fileUploadImage.FileName);
+                    Bitmap bitmap = new Bitmap(fileUploadImage.PostedFile.InputStream);
                     Helpers.PanelHelper panelHelper = new Helpers.PanelHelper(bitmap, txtImageName.Text, txtImageDescription.Text, (Models.Password)Session["New"]);
                     Controllers.LedPanelController.addFace(panelHelper.getFace());
                     Response.Redirect("LedPanelPreview.aspx");

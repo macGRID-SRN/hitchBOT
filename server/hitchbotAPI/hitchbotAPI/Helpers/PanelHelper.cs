@@ -72,6 +72,7 @@ namespace hitchbotAPI.Helpers
             {
                 for (int col = 0; col < imageRedMap.GetLength(1); col++)
                 {
+
                     if (imageRedMap[row, col] < threshhold)
                     {
                         tempList.Add(false);
@@ -80,7 +81,7 @@ namespace hitchbotAPI.Helpers
                     {
                         tempList.Add(true);
                     }
-                    if (row % 8 == 0)
+                    if (col % 8 == 7)
                     {
                         bit = new BitArray(tempList.ToArray());
                         byteList.Add(convertToByte(bit));
