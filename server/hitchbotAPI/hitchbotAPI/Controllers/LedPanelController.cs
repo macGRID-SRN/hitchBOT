@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace hitchbotAPI.Controllers
 {
@@ -51,14 +52,36 @@ namespace hitchbotAPI.Controllers
 
         public static void updateFace(Models.Face face, bool approved)
         {
+            updatePanel(face.Panels.ToList()[0]);
             using(var db = new Models.Database())
             {
-                var query = (from f in db.Faces
-                             where f.ID == face.ID
-                             select f).FirstOrDefault();
-                query.Panels = face.Panels;
-                query.Approved = approved;
-                db.SaveChanges();
+                var original = db.Faces.Find(face.ID);
+
+                if (original != null)
+                {
+                    original.Name = face.Name;
+                    original.Description = face.Description;
+                    original.Panels = face.Panels;
+                    original.TimeAdded = face.TimeAdded;
+                    original.Approved = approved;
+                    original.UserAccount = face.UserAccount;
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static void updatePanel(Models.LedPanel panel)
+        {
+            using (var db = new Models.Database())
+            {
+                var original = db.LedPanels.Find(panel.ID);
+
+                if (original != null)
+                {
+                    original.Rows = panel.Rows;
+                    original.TimeAdded = panel.TimeAdded;
+                    db.SaveChanges();
+                }
             }
         }
     }

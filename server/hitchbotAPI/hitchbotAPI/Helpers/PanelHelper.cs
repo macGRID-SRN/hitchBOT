@@ -67,7 +67,6 @@ namespace hitchbotAPI.Helpers
         {
             List<byte> byteList = new List<byte>();
             List<bool> tempList = new List<bool>();
-            BitArray bit;
             for (int row = 0; row < imageRedMap.GetLength(0); row++)
             {
                 for (int col = 0; col < imageRedMap.GetLength(1); col++)
@@ -81,28 +80,37 @@ namespace hitchbotAPI.Helpers
                     {
                         tempList.Add(true);
                     }
-                    if (col % 8 == 7)
+                    if (tempList.Count == 8)
                     {
-                        bit = new BitArray(tempList.ToArray());
-                        byteList.Add(convertToByte(bit));
+                        byteList.Add(convertToByte(tempList.ToArray()));
                         tempList = new List<bool>();
                     }
                 }
+                
 
             }
 
             return byteList;
         }
 
-        public static byte convertToByte(BitArray bits)
+        public static IEnumerable<bool> GetBits(byte b)
         {
-            if (bits.Count != 8)
+            for (int i = 0; i < 8; i++)
             {
-                throw new ArgumentException("bits");
+                yield return (b & 0x80) != 0;
+                b *= 2;
             }
-            byte[] bytes = new byte[1];
-            bits.CopyTo(bytes, 0);
-            return bytes[0];
+        }
+
+        public static byte convertToByte(bool[] arr)
+        {
+            byte val = 0;
+            foreach (bool b in arr)
+            {
+                val <<= 1;
+                if (b) val |= 1;
+            }
+            return val;
         }
 
         public Models.Face getFace()
@@ -137,7 +145,7 @@ namespace hitchbotAPI.Helpers
         private List<Models.Row> getRows()
         {
             List<Models.Row> rows = new List<Models.Row>();
-            for (int i = 0; i < byteArrayOfRows.Count - 2; i++)
+            for (int i = 0; i < byteArrayOfRows.Count - 2; i = i + 3)
             {
                 rows.Add(new Models.Row
                 {

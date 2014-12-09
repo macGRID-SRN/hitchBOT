@@ -18,7 +18,7 @@
         <div style="height:50px"></div>
         <div style="text-align:center">
 
-            <asp:Button ID="Button1" runat="server" Text="Submit" />
+            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
 
         </div>
     </form>
