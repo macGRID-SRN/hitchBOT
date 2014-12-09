@@ -12,16 +12,7 @@ namespace hitchbotAPI.ApproveImagesPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string builtJavaScriptPoints = string.Empty;
-            using (var db = new Models.Database())
-            {
-                var locations = db.hitchBOTs.Include(l => l.Locations).SingleOrDefault(l => l.ID == 3).Locations;
-
-                locations = Helpers.LocationHelper.SlimLocations(locations);
-
-
-            }
-            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "aKey", "alert('this worked');");
+            
         }
     }
 }
