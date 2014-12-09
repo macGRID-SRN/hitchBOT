@@ -312,6 +312,10 @@
     <Compile Include="Migrations\201412060356250_AddLedFacePanels.Designer.cs">
       <DependentUpon>201412060356250_AddLedFacePanels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201412090321362_ApproveFace.cs" />
+    <Compile Include="Migrations\201412090321362_ApproveFace.Designer.cs">
+      <DependentUpon>201412090321362_ApproveFace.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -451,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201412060356250_AddLedFacePanels.resx">
       <DependentUpon>201412060356250_AddLedFacePanels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412090321362_ApproveFace.resx">
+      <DependentUpon>201412090321362_ApproveFace.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

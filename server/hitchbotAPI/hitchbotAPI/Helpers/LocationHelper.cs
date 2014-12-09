@@ -110,7 +110,7 @@ namespace hitchbotAPI.Helpers
             return (string)json["results"][0]["formatted_address"];
         }
 
-        private static List<Models.Location> SlimLocations(List<Models.Location> inList)
+        public static List<Models.Location> SlimLocations(List<Models.Location> inList)
         {
             int Interval = inList.Count / (LocationHelper.maxLocations - 2);
 

@@ -25,5 +25,6 @@
 </head>
 <body>
     <div id="map-canvas"></div>
+    <form id="form1" runat="server"></form>
 </body>
 </html>
