@@ -33,7 +33,7 @@ namespace hitchbotAPI.ApproveImagesPages
             {
                 string ext = System.IO.Path.GetExtension(fileUploadImage.FileName);
 
-                string[] allowedExtenstions = new string[] { ".png", ".jpg", ".jpeg" };
+                string[] allowedExtenstions = new string[] { ".png", ".jpg", ".jpeg", ".PNG" };
 
                 if (allowedExtenstions.Contains(ext))
                 {
