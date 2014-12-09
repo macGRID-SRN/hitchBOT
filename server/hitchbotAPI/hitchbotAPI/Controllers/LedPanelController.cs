@@ -37,8 +37,8 @@ namespace hitchbotAPI.Controllers
             List<Models.Face> face = new List<Models.Face>();
             using (var db = new Models.Database())
             {
-                var query = from f in db.Faces
-                            where f.Approved == false && f.UserAccount == user
+                var query = from f in db.Faces.Include("UserAccount").Include("Panels.Rows")
+                            where f.Approved == false && f.UserAccount.ID == user.ID
                             orderby f.TimeAdded
                             select f;
                 foreach(var item in query)

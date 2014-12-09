@@ -108,7 +108,7 @@ namespace hitchbotAPI.ApproveImagesPages
                             bits = new BitArray(rows[j].ColSet2);
                             break;
                     }
-                    if (bits[i - (i / 8) * 8])
+                    if (bits.Get(i - (i / 8) * 8))
                     {
                         iButton1.ImageUrl = imgTagOn;
 

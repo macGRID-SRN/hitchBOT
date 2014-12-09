@@ -437,7 +437,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
-    <Folder Include="Views\Conversation\" />
+    <Folder Include="Views\Home\Conversation\" />
     <Folder Include="Views\Location\" />
   </ItemGroup>
   <ItemGroup>
