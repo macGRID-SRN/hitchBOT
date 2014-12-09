@@ -34,20 +34,15 @@ namespace hitchbotAPI.ApproveImagesPages
 
         protected void RowClick1(object sender, EventArgs e)
         {
-            //The below code is to be implemented in the future to allow users to modify the panels.
             ImageButton b = sender as ImageButton;
-            int rowIndex = int.Parse(b.CommandArgument.Split(',')[0]);
-            int columnIndex = int.Parse(b.CommandArgument.Split(',')[1]);
             if (b.ImageUrl.Equals(imgTagOff))
             {
-                face.Panels.ToList<Models.LedPanel>()[0].Rows = fixRow(columnIndex, rowIndex, true);
-                Controllers.LedPanelController.updateFace(face, false);
+
                 b.ImageUrl = imgTagOn;
             }
             else
             {
-                face.Panels.ToList<Models.LedPanel>()[0].Rows = fixRow(columnIndex, rowIndex, false);
-                Controllers.LedPanelController.updateFace(face, false);
+
                 b.ImageUrl = imgTagOff;
             }
         }
@@ -81,36 +76,21 @@ namespace hitchbotAPI.ApproveImagesPages
                 }
             }
             Helpers.PanelHelper pHelper = new Helpers.PanelHelper(byteList, face.Name, face.Description, face.UserAccount);
-            Controllers.LedPanelController.addFace(pHelper.getFace());
-        }
+            Models.Face tempFace = pHelper.getFace();
 
-        private List<Models.Row> fixRow(int row, int col, bool valueToChangeTo)
-        {
-            List<Models.Row> rows = face.Panels.ToList<Models.LedPanel>()[0].Rows.ToList<Models.Row>();
-            bool[] bits;
-
-            //Integer division done by purpose!
-            switch (row / 8)
+            //I'm making this object here because otherwise a duplicate is added to the db due to the ID from the other face
+            Models.Face faceToInsert = new Models.Face
             {
-                case 0:
-                    bits = Helpers.PanelHelper.GetBits(rows[col].ColSet0).ToArray();
-                    bits[row - (row / 8) * 8] = valueToChangeTo;
-                    rows[col].ColSet0 = Helpers.PanelHelper.convertToByte(bits);
-                    break;
-                case 1:
-                    bits = Helpers.PanelHelper.GetBits(rows[col].ColSet1).ToArray();
-                    bits[row - (row / 8) * 8] = valueToChangeTo;
-                    rows[col].ColSet1 = Helpers.PanelHelper.convertToByte(bits);
-                    break;
-                case 2:
-                    bits = Helpers.PanelHelper.GetBits(rows[col].ColSet2).ToArray();
-                    bits[row - (row / 8) * 8] = valueToChangeTo;
-                    rows[col].ColSet2 = Helpers.PanelHelper.convertToByte(bits);
-                    break;
-            }
-
-            return rows;
+                Name = face.Name,
+                Description = tempFace.Description,
+                TimeAdded = tempFace.TimeAdded,
+                Approved = tempFace.Approved,
+                Panels = tempFace.Panels,
+                UserAccount = tempFace.UserAccount
+            };
+            Controllers.LedPanelController.addFace(faceToInsert);
         }
+
 
         private void makePanel()
         {

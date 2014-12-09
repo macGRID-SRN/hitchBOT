@@ -18,6 +18,7 @@ namespace hitchbotAPI.Controllers
                     addPanel(panel);
                     db.LedPanels.Attach(panel);
                 }
+                db.Passwords.Attach(face.UserAccount);
                 db.Faces.Add(face);
                 db.SaveChanges();
             }
@@ -51,61 +52,6 @@ namespace hitchbotAPI.Controllers
             return face[0];
         }
 
-        public static void updateFace(Models.Face face, bool approved)
-        {
-
-            updatePanel(face.Panels.ToList()[0]);
-            /*
-            using(var db = new Models.Database())
-            {
-                var original = db.Faces.Find(face.ID);
-
-                if (original != null)
-                {
-                    original.Name = face.Name;
-                    original.Description = face.Description;
-                    original.Panels = face.Panels;
-                    original.TimeAdded = face.TimeAdded;
-                    original.Approved = approved;
-                    original.UserAccount = face.UserAccount;
-                    db.SaveChanges();
-                }
-            }*/
-            using (var db = new Models.Database())
-            {
-                db.Faces.AddOrUpdate(
-                      p => p.ID,
-                      new Models.Face
-                      {
-                          ID = face.ID,
-                          Name = face.Name,
-                          Description = face.Description,
-                          Panels = face.Panels,
-                          TimeAdded = face.TimeAdded,
-                          Approved = approved,
-                          UserAccount = face.UserAccount
-                      }
-                    );
-                db.SaveChanges();
-            }
-        }
-
-        public static void updatePanel(Models.LedPanel panel)
-        {
-            using (var db = new Models.Database())
-            {
-                db.LedPanels.AddOrUpdate(
-                      p => p.ID,
-                      new Models.LedPanel
-                      {
-                          ID = panel.ID,
-                          Rows = panel.Rows,
-                          TimeAdded = panel.TimeAdded,
-                      }
-                    );
-                db.SaveChanges();
-            }
-        }
     }
 
 
