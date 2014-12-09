@@ -93,7 +93,7 @@ namespace hitchbotAPI.Helpers
             return byteList;
         }
 
-        private byte convertToByte(BitArray bits)
+        public static byte convertToByte(BitArray bits)
         {
             if (bits.Count != 8)
             {
@@ -111,6 +111,7 @@ namespace hitchbotAPI.Helpers
                 Name = this.name,
                 Description = this.description,
                 Panels = getPanels(),
+                Approved = false,
                 UserAccount = this.user,
                 TimeAdded = DateTime.UtcNow
             };

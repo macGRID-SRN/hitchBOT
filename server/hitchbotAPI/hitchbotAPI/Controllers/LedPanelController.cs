@@ -38,7 +38,7 @@ namespace hitchbotAPI.Controllers
             using (var db = new Models.Database())
             {
                 var query = from f in db.Faces
-                            where /*f.Active == false &&*/ f.UserAccount == user
+                            where f.Approved == false && f.UserAccount == user
                             orderby f.TimeAdded
                             select f;
                 foreach(var item in query)
@@ -48,5 +48,20 @@ namespace hitchbotAPI.Controllers
             }
             return face[0];
         }
+
+        public static void updateFace(Models.Face face, bool approved)
+        {
+            using(var db = new Models.Database())
+            {
+                var query = (from f in db.Faces
+                             where f.ID == face.ID
+                             select f).FirstOrDefault();
+                query.Panels = face.Panels;
+                query.Approved = approved;
+                db.SaveChanges();
+            }
+        }
     }
+
+
 }
