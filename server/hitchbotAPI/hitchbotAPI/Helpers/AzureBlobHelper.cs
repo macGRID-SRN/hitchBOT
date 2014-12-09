@@ -11,20 +11,26 @@ namespace hitchbotAPI.Helpers
 {
     public static class AzureBlobHelper
     {
-        public static string UploadImageAndGetPublicUrl(string localRootFileDirectory, string fileName)
+        public const string JS_LOCATION_FILE_NAME = "testLocations.js";
+        private const string JS_CONTAINER_NAME = "hbjs";
+
+        public static string UploadLocationJsAndGetPublicUrl(string localRootFileDirectory, string fileName)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-            CloudBlobContainer imgContainer = blobClient.GetContainerReference("img");
+            CloudBlobContainer imgContainer = blobClient.GetContainerReference(JS_CONTAINER_NAME);
 
-            CloudBlockBlob newBlob = imgContainer.GetBlockBlobReference(DateTime.UtcNow.ToString() + " - " + fileName);
+            CloudBlockBlob newBlob = imgContainer.GetBlockBlobReference(JS_LOCATION_FILE_NAME);
+
+            newBlob.DeleteIfExists();
 
             using (var fileString = System.IO.File.OpenRead(localRootFileDirectory + fileName))
             {
                 newBlob.UploadFromStream(fileString);
-                newBlob.Properties.ContentType = "image/webp";
+                newBlob.Properties.ContentType = "text/javascript";
+                newBlob.Properties.CacheControl = "public, max-age=0";
                 newBlob.SetProperties();
             }
 

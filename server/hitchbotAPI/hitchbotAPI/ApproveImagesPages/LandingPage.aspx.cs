@@ -24,5 +24,12 @@ namespace hitchbotAPI.ApproveImagesPages
                 Response.Redirect("Unauthorized.aspx");
             }
         }
+
+        protected void TextJsButton_Click(object sender, EventArgs e)
+        {
+            Helpers.LocationHelper.BuildLocationJS(3);
+            string TargetLocation = Helpers.PathHelper.GetJsBuildPath();
+            Helpers.AzureBlobHelper.UploadLocationJsAndGetPublicUrl(TargetLocation, Helpers.AzureBlobHelper.JS_LOCATION_FILE_NAME);
+        }
     }
 }

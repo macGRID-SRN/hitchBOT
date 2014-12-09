@@ -6,12 +6,48 @@ using System.Text;
 using System.Device.Location;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.IO;
 using LinqToTwitter;
+using System.Diagnostics;
 
 namespace hitchbotAPI.Helpers
 {
     public static class LocationHelper
     {
+        public static void BuildLocationJS(int HitchBotID)
+        {
+            using (var db = new Models.Database())
+            {
+                var locations = db.hitchBOTs.Include(l => l.Locations).SingleOrDefault(l => l.ID == HitchBotID).Locations.Where(l => l.TakenTime > new DateTime(2014, 07, 27, 13, 30, 0)).OrderBy(l => l.TakenTime).ToList();
+
+                var slimmedLocations = LocationHelper.SlimLocations(locations);
+                string builder = "var flightPlanCoordinates = [ ";
+
+                foreach (Models.Location myLocation in slimmedLocations)
+                {
+                    builder += "\n new google.maps.LatLng(" + myLocation.Latitude + "," + myLocation.Longitude + "),";
+                }
+
+                builder += @" ]; 
+
+                var flightPath = new google.maps.Polyline({
+                    path: flightPlanCoordinates,
+                    geodesic: true,
+                    strokeColor: '#E57373', //taken from material design by google
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                });
+
+                function AddPolyFill(map){
+                    flightPath.setMap(map);
+                }";
+
+                Debug.WriteLine(Helpers.PathHelper.GetJsBuildPath());
+
+                System.IO.File.WriteAllText(Helpers.PathHelper.GetJsBuildPath() + Helpers.AzureBlobHelper.JS_LOCATION_FILE_NAME, builder);
+            }
+        }
+
         public static async void CheckForTargetLocation(int HitchBotID, int LocationID)
         {
             using (var db = new Models.Database())
@@ -54,7 +90,7 @@ namespace hitchbotAPI.Helpers
 
         public const string gmapsString = "http://maps.googleapis.com/maps/api/staticmap?size=800x800&path=weight:4%7Ccolor:blue%7Cenc:";
         public const string gmapsRegionString = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
-        public const string gmapsMarkerString = "&markers=icon:http://goo.gl/uwnJCB|size:mid|color:red|label:H|"; 
+        public const string gmapsMarkerString = "&markers=icon:http://goo.gl/uwnJCB|size:mid|color:red|label:H|";
 
         private const int maxLocations = 350;
 
