@@ -49,7 +49,7 @@ namespace hitchbotAPI.Controllers
                     face.Add(item);
                 }
             }
-            return face[0];
+            return face[face.Count - 1];
         }
 
     }
