@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.util.TimeZone"/>
+<fullyQualifiedTypeName name="android.net.ConnectivityManager"/>
+<fullyQualifiedTypeName name="android.net.NetworkInfo"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.os.AsyncTask"/>
+<fullyQualifiedTypeName name="org.apache.http.client.ClientProtocolException"/>
+<fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
+<fullyQualifiedTypeName name="org.apache.http.client.methods.HttpPost"/>
+<fullyQualifiedTypeName name="org.apache.http.impl.client.DefaultHttpClient"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.apache.http.NameValuePair"/>
+<fullyQualifiedTypeName name="org.apache.http.client.entity.UrlEncodedFormEntity"/>
+<fullyQualifiedTypeName name="org.apache.http.protocol.HTTP"/>
+<fullyQualifiedTypeName name="org.apache.http.util.EntityUtils"/>
+<fullyQualifiedTypeName name="org.apache.http.HttpResponse"/>
+<fullyQualifiedTypeName name="android.os.BatteryManager"/>
+<fullyQualifiedTypeName name="android.content.IntentFilter"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="android.media.MediaRecorder"/>
+<fullyQualifiedTypeName name="android.os.Handler"/>
+<fullyQualifiedTypeName name="android.os.Environment"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+</qualifiedTypeNameHistroy>
