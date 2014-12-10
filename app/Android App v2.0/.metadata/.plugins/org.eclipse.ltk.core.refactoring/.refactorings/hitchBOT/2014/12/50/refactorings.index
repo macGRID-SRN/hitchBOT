@@ -1,0 +1,7 @@
+1418198649233	Encapsulate field 'uri'
+1418198807221	Encapsulate field 'header'
+1418199142324	Encapsulate field 'body'
+1418200493082	Encapsulate field 'batteryPercent'
+1418200528164	Encapsulate field 'isCharging'
+1418200566293	Encapsulate field 'voltage'
+1418200571348	Encapsulate field 'temp'
