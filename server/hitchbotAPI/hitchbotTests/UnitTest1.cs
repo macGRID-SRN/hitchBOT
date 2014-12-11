@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using hitchbotAPI;
+using System.Diagnostics;
 
 namespace hitchbotTests
 {
@@ -19,11 +20,12 @@ namespace hitchbotTests
             try
             {
                 var db = new hitchbotAPI.Models.Database();
-                Assert.Inconclusive("The Database is mostly probably working.");
+                Debug.WriteLine("The Database is mostly probably working.");
+                return;
             }
-            catch
+            catch (Exception e)
             {
-                Assert.Fail("Something went wrong when accessing the DB, either the connection string is wrong, the model has changed or it is currently unavailable.");
+                Assert.Fail("Something went wrong when accessing the DB, either the connection string is wrong, the model has changed or it is currently unavailable. " + e.StackTrace);
             }
         }
     }

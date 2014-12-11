@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configura
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hitchbotTests", "hitchbotTests\hitchbotTests.csproj", "{7B24A873-81E5-4DB1-AFE6-60BE01944719}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hitchbotAPI.Tests", "hitchbotAPI.Tests\hitchbotAPI.Tests.csproj", "{B437A0BA-B4B2-4284-8229-91B869C2A694}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{7B24A873-81E5-4DB1-AFE6-60BE01944719}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B24A873-81E5-4DB1-AFE6-60BE01944719}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B24A873-81E5-4DB1-AFE6-60BE01944719}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B437A0BA-B4B2-4284-8229-91B869C2A694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B437A0BA-B4B2-4284-8229-91B869C2A694}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B437A0BA-B4B2-4284-8229-91B869C2A694}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B437A0BA-B4B2-4284-8229-91B869C2A694}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
