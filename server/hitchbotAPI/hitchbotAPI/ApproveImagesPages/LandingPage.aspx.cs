@@ -17,6 +17,10 @@ namespace hitchbotAPI.ApproveImagesPages
                 using (var db = new Models.Database())
                 {
                     int hitchBOTid = user.hitchBOT.ID;
+                    if (user.Projects.FirstOrDefault() != null)
+                        this.DynamicMapsTestButton.NavigateUrl = "DynamicMap.aspx?prj=" + user.Projects.First().ID;
+                    else
+                        this.DynamicMapsTestButton.NavigateUrl = "DynamicMap.aspx?prj=1";
                 }
             }
             else

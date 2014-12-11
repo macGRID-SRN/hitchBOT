@@ -85,6 +85,15 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.DynamicMap.jsDataLocation">
+            <summary>
+            jsDataLocation control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.DynamicMap.form1">
             <summary>
             form1 control.
@@ -1166,6 +1175,12 @@
             <summary>
             So apparently trying to test the db from another project is a terrible idea.. so here is the test.
             </summary>
+        </member>
+        <member name="M:hitchbotAPI.Helpers.TestHelper.TestDatabaseAvailable">
+            <summary>
+            THIS TEST DOES NOT WORK YET.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:hitchbotAPI.Models.Face">
             <summary>

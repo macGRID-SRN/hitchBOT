@@ -11,7 +11,7 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
     </script>
-    <script src="http://hitchbotimg.blob.core.windows.net/hbjs/testLocations.js"></script>
+    <asp:Literal runat="server" id="jsDataLocation" EnableViewState="false" />
     <script type="text/javascript">
       function initialize() {
         var mapOptions = {
