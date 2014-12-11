@@ -308,6 +308,7 @@
     <Compile Include="Helpers\LocationHelper.cs" />
     <Compile Include="Helpers\PanelHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Helpers\TimeHelper.cs" />
     <Compile Include="Helpers\TwitterHelper.cs" />
     <Compile Include="Helpers\WebHelper.cs" />

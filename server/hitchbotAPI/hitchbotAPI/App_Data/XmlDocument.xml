@@ -1162,6 +1162,11 @@
             <param name="HitchBotLocationsID">The ID of the HitchBot to get all the Locations for.</param>
             <returns>A list of all the Locations, sorted.</returns>
         </member>
+        <member name="T:hitchbotAPI.Helpers.TestHelper">
+            <summary>
+            So apparently trying to test the db from another project is a terrible idea.. so here is the test.
+            </summary>
+        </member>
         <member name="T:hitchbotAPI.Models.Face">
             <summary>
             represents a whole face for a hitchbot, a collection of any number of panels.
