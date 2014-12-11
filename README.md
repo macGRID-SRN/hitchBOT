@@ -11,9 +11,10 @@ Electronics
 - [ ] Wire (multi-colours)
 - [ ] Double-Headers
 - [ ] Servo Motor
-- [ ] Spare Arduino's
+- [X] Spare Arduino's
 - [ ] 12V Cig Adapter - 15A At least.
-- [ ] 10A Coiled Wire.
+- [ ] 10A Coiled Wire for use in car.
+- [X] Backup battery control system with batteries
 
 Building Materials
 ---
