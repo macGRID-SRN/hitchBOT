@@ -9,7 +9,7 @@ namespace hitchbotAPI.ApproveImagesPages
 {
     public partial class LandingPage : System.Web.UI.Page
     {
-        const int DEFAULT_PROJECT_ID = 1;
+        const int DEFAULT_PROJECT_ID = 0;
         int projectID = DEFAULT_PROJECT_ID;
 
         const int DEFAILT_HITCHBOT_ID = 1;
@@ -39,7 +39,7 @@ namespace hitchbotAPI.ApproveImagesPages
 
         protected void TextJsButton_Click(object sender, EventArgs e)
         {
-            var builder = new Helpers.Location.GoogleMapsBuilder(this.hitchbotID);
+            var builder = new Helpers.Location.GoogleMapsBuilder(this.hitchbotID, this.projectID);
             builder.BuildJsAndUpload();
         }
     }

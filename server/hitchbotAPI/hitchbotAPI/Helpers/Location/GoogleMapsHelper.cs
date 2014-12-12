@@ -68,11 +68,6 @@ namespace hitchbotAPI.Helpers.Location
                       google.maps.event.addDomListener(window, 'load', initialize);";
         }
 
-        public static void WriteJavaScriptFileLocal(string fileContents, int hitchBotID)
-        {
-
-        }
-
         private static string GenInfoWindow(Models.Location myLocation)
         {
             string returnString = @"function AddInfoWindow(map){ 

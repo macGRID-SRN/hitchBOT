@@ -8,7 +8,7 @@ using System.Data.Entity;
 namespace hitchbotAPI.Helpers.Location
 {
     /// <summary>
-    /// This class is used to build the JS for the Dynamic Map on the HB website. Why doesn't this class take in the actual items and access the db instead? It could be called in any context.
+    /// This class is used to build the JS for the Dynamic Map on the HB website. Why doesn't this class take in the actual items and instead access the db? It could be called from any context.
     /// </summary>
     public class GoogleMapsBuilder
     {
@@ -22,6 +22,10 @@ namespace hitchbotAPI.Helpers.Location
         Models.Project Project;
         Models.Password Account;
         Models.Location CenterLocation;
+        Models.Location DefaulLocation = new Models.Location { Latitude = 0, Longitude = 0, TakenTime = DateTime.UtcNow };
+
+        //what gets counted here? only the markers which are start/stop or others. NOT info windows.
+        int NumberOfMarkers = 0;
 
         string FunctionCalls = string.Empty;
         string Builder = string.Empty;
@@ -33,7 +37,7 @@ namespace hitchbotAPI.Helpers.Location
                 this.HitchBOT = db.hitchBOTs.Include(l => l.Locations).First(l => l.ID == hitchbotID);
 
                 //if no projectID is given, will default to null
-                this.Project = db.Projects.FirstOrDefault(l => l.ID == projectID);
+                this.Project = db.Projects.Include(l => l.StartLocation).Include(l => l.EndLocation).FirstOrDefault(l => l.ID == projectID);
 
                 //same deal as projectID, although the account does kind of come with a default hitchBOT.
                 this.Account = db.Passwords.FirstOrDefault(l => l.ID == userID);
@@ -43,9 +47,10 @@ namespace hitchbotAPI.Helpers.Location
         public void BuildJS()
         {
             this.Builder += BuildPolyPath(0);
-            if (this.Project == null)
-            {
 
+            if (this.Project != null)
+            {
+                this.Builder += BuildStartLocation();
             }
 
             this.Builder += BuildGoogleMapsInit();
@@ -58,6 +63,48 @@ namespace hitchbotAPI.Helpers.Location
         {
             BuildJS();
             Helpers.AzureBlobHelper.UploadJStoAzure(HitchBOT.ID);
+        }
+
+        private string BuildStartLocation()
+        {
+            const string startLocationFunctionName = "AddStartMarker";
+            const string startLocationMarkerColour = "65ba4a";
+
+            var location = this.Project.StartLocation ?? this.DefaulLocation;
+
+            return this.BuildColouredMarker(location, startLocationMarkerColour, startLocationFunctionName);
+        }
+
+        private string BuildColouredMarker(Models.Location myLocation, string colour, string markerFunctionName)
+        {
+            string returnString = "function " + markerFunctionName + this.NumberOfMarkers + @"(map){
+
+                var pinColor = '" + colour + @"';
+                var pinImage = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + pinColor,
+                    new google.maps.Size(21, 34),
+                    new google.maps.Point(0,0),
+                    new google.maps.Point(10, 34));
+                var pinShadow = new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_shadow',
+                    new google.maps.Size(40, 37),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(12, 35));
+
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(";
+
+            returnString += myLocation.Latitude + "," + myLocation.Longitude + "),";
+
+            returnString += @"
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: pinImage,
+            shadow: pinShadow";
+
+            returnString += "}); return marker;}";
+
+            this.AddFunctionCall(markerFunctionName, this.NumberOfMarkers++);
+
+            return returnString;
         }
 
         private string BuildGoogleMapsInit()

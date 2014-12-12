@@ -1173,7 +1173,7 @@
         </member>
         <member name="T:hitchbotAPI.Helpers.Location.GoogleMapsBuilder">
             <summary>
-            This class is used to build the JS for the Dynamic Map on the HB website. Why doesn't this class take in the actual items and access the db instead? It could be called in any context.
+            This class is used to build the JS for the Dynamic Map on the HB website. Why doesn't this class take in the actual items and instead access the db? It could be called from any context.
             </summary>
         </member>
         <member name="M:hitchbotAPI.Helpers.Location.GoogleMapsBuilder.BuildPolyPath(System.Int32)">
