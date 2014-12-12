@@ -51,6 +51,11 @@ namespace hitchbotAPI.Helpers.Location
             if (this.Project != null)
             {
                 this.Builder += BuildStartLocation();
+                this.Builder += BuildEndLocation();
+            }
+            else
+            {
+                this.Builder += BuildStartLocation(HitchBOT.Locations.FirstOrDefault());
             }
 
             this.Builder += BuildGoogleMapsInit();
@@ -65,12 +70,22 @@ namespace hitchbotAPI.Helpers.Location
             Helpers.AzureBlobHelper.UploadJStoAzure(HitchBOT.ID);
         }
 
-        private string BuildStartLocation()
+        private string BuildStartLocation(Models.Location myLocation = null)
         {
             const string startLocationFunctionName = "AddStartMarker";
             const string startLocationMarkerColour = "65ba4a";
 
-            var location = this.Project.StartLocation ?? this.DefaulLocation;
+            var location = myLocation ?? this.Project.StartLocation ?? this.DefaulLocation;
+
+            return this.BuildColouredMarker(location, startLocationMarkerColour, startLocationFunctionName);
+        }
+
+        private string BuildEndLocation(Models.Location myLocation = null)
+        {
+            const string startLocationFunctionName = "AddEndMarker";
+            const string startLocationMarkerColour = "ff796c";
+
+            var location = myLocation ?? this.Project.EndLocation ?? this.DefaulLocation;
 
             return this.BuildColouredMarker(location, startLocationMarkerColour, startLocationFunctionName);
         }
