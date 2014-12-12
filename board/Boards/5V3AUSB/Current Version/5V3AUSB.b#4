@@ -1688,7 +1688,7 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="NAME" x="23.7744" y="23.749" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="23.4188" y="30.607" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="TO265-5" library="on-semiconductor" package="TO263_5" value="CAT4101" x="10.16" y="38.1" rot="R90">
+<element name="TO265-5" library="on-semiconductor" package="TO263_5" value="CAT4101" x="10.16" y="38.1" smashed="yes" rot="R90">
 <attribute name="OC_NEWARK" value="08R5264" x="20.32" y="69.85" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="CAT4101TV-T75" x="20.32" y="69.85" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="" x="20.32" y="69.85" size="1.778" layer="27" rot="R90" display="off"/>
@@ -1788,7 +1788,7 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="D1" pad="C"/>
 <contactref element="L1" pad="1"/>
 <contactref element="TO265-5" pad="2"/>
-<wire x1="18.16" y1="36.4" x2="24.13" y2="36.4" width="2.1844" layer="1"/>
+<wire x1="18.16" y1="36.4" x2="24.13" y2="36.4" width="2.159" layer="1"/>
 <wire x1="24.13" y1="36.4" x2="24.13" y2="36.83" width="2.1844" layer="1"/>
 <wire x1="24.13" y1="36.83" x2="31.75" y2="36.83" width="2.1844" layer="1"/>
 <wire x1="31.75" y1="36.83" x2="31.75" y2="33.02" width="2.1844" layer="1"/>
