@@ -10934,6 +10934,82 @@ Source: www.kingbright.com</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="testpad">
+<description>&lt;b&gt;Test Pins/Pads&lt;/b&gt;&lt;p&gt;
+Cream on SMD OFF.&lt;br&gt;
+new: Attribute TP_SIGNAL_NAME&lt;br&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="P2-38-17">
+<description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
+<circle x="-1.905" y="0" radius="0.8128" width="0.1524" layer="51"/>
+<circle x="1.905" y="0" radius="0.8128" width="0.1524" layer="51"/>
+<pad name="TP-1" x="-1.905" y="0" drill="1.7018" diameter="2.1208" shape="long" rot="R90"/>
+<pad name="TP-2" x="1.905" y="0" drill="1.7018" diameter="2.1208" shape="long" rot="R90"/>
+<text x="-2.54" y="2.54" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.54" y="-3.81" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<text x="-2.54" y="-5.715" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
+<rectangle x1="-2.2352" y1="-0.3302" x2="-1.5748" y2="0.3302" layer="51"/>
+<rectangle x1="1.5748" y1="-0.3302" x2="2.2352" y2="0.3302" layer="51"/>
+</package>
+<package name="P2-38-20">
+<description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
+<circle x="-1.905" y="0" radius="1.016" width="0.1524" layer="51"/>
+<circle x="1.905" y="0" radius="1.016" width="0.1524" layer="51"/>
+<pad name="TP-1" x="-1.905" y="0" drill="2.0066" diameter="2.54" shape="long" rot="R90"/>
+<pad name="TP-2" x="1.905" y="0" drill="2.0066" diameter="2.54" shape="long" rot="R90"/>
+<text x="-2.54" y="2.794" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.54" y="-4.191" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<text x="-2.54" y="-6.35" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
+<rectangle x1="-2.2352" y1="-0.3302" x2="-1.5748" y2="0.3302" layer="51"/>
+<rectangle x1="1.5748" y1="-0.3302" x2="2.2352" y2="0.3302" layer="51"/>
+</package>
+</packages>
+<symbols>
+<symbol name="TP">
+<wire x1="-0.762" y1="-0.762" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="0.762" y2="-0.762" width="0.254" layer="94"/>
+<wire x1="0.762" y1="-0.762" x2="0" y2="-1.524" width="0.254" layer="94"/>
+<wire x1="0" y1="-1.524" x2="-0.762" y2="-0.762" width="0.254" layer="94"/>
+<text x="-1.27" y="1.27" size="1.778" layer="95">&gt;NAME</text>
+<text x="1.27" y="-1.27" size="1.778" layer="97">&gt;TP_SIGNAL_NAME</text>
+<pin name="TP" x="0" y="-2.54" visible="off" length="short" direction="in" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="TP2" prefix="TP">
+<description>&lt;b&gt;Test pad&lt;/b&gt;</description>
+<gates>
+<gate name="A" symbol="TP" x="0" y="0" addlevel="always"/>
+<gate name="B" symbol="TP" x="7.62" y="0" addlevel="always"/>
+</gates>
+<devices>
+<device name="P2-38-17" package="P2-38-17">
+<connects>
+<connect gate="A" pin="TP" pad="TP-1"/>
+<connect gate="B" pin="TP" pad="TP-2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="TP_SIGNAL_NAME" value="" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="P2-38-20" package="P2-38-20">
+<connects>
+<connect gate="A" pin="TP" pad="TP-1"/>
+<connect gate="B" pin="TP" pad="TP-2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="TP_SIGNAL_NAME" value="" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -10961,6 +11037,9 @@ Source: www.kingbright.com</description>
 <part name="R1" library="resistor" deviceset="R-EU_" device="R1206" value="250"/>
 <part name="U$1" library="Molex" deviceset="2X2-MOLEX" device=""/>
 <part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
+<part name="TP1" library="testpad" deviceset="TP2" device="P2-38-20"/>
+<part name="TP2" library="testpad" deviceset="TP2" device="P2-38-20"/>
+<part name="SUPPLY6" library="supply2" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10985,6 +11064,11 @@ Source: www.kingbright.com</description>
 <instance part="R1" gate="G$1" x="152.4" y="99.06" rot="R90"/>
 <instance part="U$1" gate="G$1" x="25.4" y="99.06"/>
 <instance part="SUPPLY5" gate="GND" x="33.02" y="111.76" rot="R90"/>
+<instance part="TP1" gate="A" x="86.36" y="127"/>
+<instance part="TP1" gate="B" x="93.98" y="127"/>
+<instance part="TP2" gate="A" x="101.6" y="127"/>
+<instance part="TP2" gate="B" x="109.22" y="127"/>
+<instance part="SUPPLY6" gate="GND" x="116.84" y="121.92"/>
 </instances>
 <busses>
 </busses>
@@ -11054,6 +11138,20 @@ Source: www.kingbright.com</description>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
 <wire x1="27.94" y1="111.76" x2="30.48" y2="111.76" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="TP1" gate="B" pin="TP"/>
+<wire x1="93.98" y1="124.46" x2="96.52" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="124.46" x2="96.52" y2="129.54" width="0.1524" layer="91"/>
+<pinref part="SUPPLY6" gate="GND" pin="GND"/>
+<wire x1="96.52" y1="129.54" x2="116.84" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="129.54" x2="116.84" y2="124.46" width="0.1524" layer="91"/>
+<pinref part="TP2" gate="B" pin="TP"/>
+<wire x1="109.22" y1="124.46" x2="111.76" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="124.46" x2="111.76" y2="127" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="127" x2="114.3" y2="127" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="127" x2="114.3" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="124.46" x2="116.84" y2="124.46" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="N$2" class="0">
 <segment>
@@ -11086,6 +11184,10 @@ Source: www.kingbright.com</description>
 <pinref part="LED1" gate="G$1" pin="A"/>
 <wire x1="137.16" y1="124.46" x2="129.54" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="129.54" y1="124.46" x2="134.62" y2="104.14" width="0.1524" layer="91"/>
+<pinref part="TP1" gate="A" pin="TP"/>
+<wire x1="86.36" y1="124.46" x2="119.38" y2="104.14" width="0.1524" layer="91"/>
+<pinref part="TP2" gate="A" pin="TP"/>
+<wire x1="101.6" y1="124.46" x2="119.38" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$6" class="0">

@@ -11205,8 +11205,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <net name="N$7" class="0">
 <segment>
 <pinref part="R3" gate="G$1" pin="2"/>
-<wire x1="124.46" y1="93.98" x2="124.46" y2="96.52" width="0.1524" layer="91"/>
-<wire x1="124.46" y1="96.52" x2="129.54" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="93.98" x2="127" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="127" y1="93.98" x2="129.54" y2="101.6" width="0.1524" layer="91"/>
 <pinref part="X1" gate="G$1" pin="2"/>
 <wire x1="129.54" y1="101.6" x2="134.62" y2="101.6" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="1"/>
