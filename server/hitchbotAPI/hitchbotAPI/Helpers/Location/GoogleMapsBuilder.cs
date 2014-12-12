@@ -21,8 +21,8 @@ namespace hitchbotAPI.Helpers.Location
         Models.hitchBOT HitchBOT;
         Models.Project Project;
         Models.Password Account;
-        Models.Location CenterLocation;
-        Models.Location DefaulLocation = new Models.Location { Latitude = 0, Longitude = 0, TakenTime = DateTime.UtcNow };
+        static Models.Location DefaultLocation = new Models.Location { Latitude = 0, Longitude = 0, TakenTime = DateTime.UtcNow };
+        Models.Location CenterLocation = DefaultLocation;
 
         //what gets counted here? only the markers which are start/stop or others. NOT info windows.
         int NumberOfMarkers = 0;
@@ -39,11 +39,25 @@ namespace hitchbotAPI.Helpers.Location
                 //if no projectID is given, will default to null
                 this.Project = db.Projects.Include(l => l.StartLocation).Include(l => l.EndLocation).FirstOrDefault(l => l.ID == projectID);
 
+                //if there was a project found, center the map around its start and end points.
+                if (this.Project != null)
+                {
+                    if (this.Project.StartLocation != null && this.Project.EndLocation != null)
+                        this.CenterLocation = new Models.Location
+                        {
+                            Latitude = (this.Project.StartLocation.Latitude + this.Project.EndLocation.Latitude) / 2,
+                            Longitude = (this.Project.StartLocation.Longitude + this.Project.EndLocation.Longitude) / 2
+                        };
+                }
+
                 //same deal as projectID, although the account does kind of come with a default hitchBOT.
                 this.Account = db.Passwords.FirstOrDefault(l => l.ID == userID);
             }
         }
 
+        /// <summary>
+        /// This is the function which builds and saves the js code locally. It builds it based on how it was initialized, whether it was linked to a project and other factors.
+        /// </summary>
         public void BuildJS()
         {
             this.Builder += BuildPolyPath(0);
@@ -55,6 +69,7 @@ namespace hitchbotAPI.Helpers.Location
             }
             else
             {
+                //haven't tested this part of the code, may lead to unknown outcomes!
                 this.Builder += BuildStartLocation(HitchBOT.Locations.FirstOrDefault());
             }
 
@@ -75,7 +90,7 @@ namespace hitchbotAPI.Helpers.Location
             const string startLocationFunctionName = "AddStartMarker";
             const string startLocationMarkerColour = "65ba4a";
 
-            var location = myLocation ?? this.Project.StartLocation ?? this.DefaulLocation;
+            var location = myLocation ?? this.Project.StartLocation ?? DefaultLocation;
 
             return this.BuildColouredMarker(location, startLocationMarkerColour, startLocationFunctionName);
         }
@@ -85,7 +100,7 @@ namespace hitchbotAPI.Helpers.Location
             const string startLocationFunctionName = "AddEndMarker";
             const string startLocationMarkerColour = "ff796c";
 
-            var location = myLocation ?? this.Project.EndLocation ?? this.DefaulLocation;
+            var location = myLocation ?? this.Project.EndLocation ?? DefaultLocation;
 
             return this.BuildColouredMarker(location, startLocationMarkerColour, startLocationFunctionName);
         }
@@ -126,8 +141,8 @@ namespace hitchbotAPI.Helpers.Location
         {
             return @"function initialize() {
                         var mapOptions = {
-                          center: { lat: 48.3822, lng: -89.2461},
-                          zoom: 4
+                          center: { lat: " + this.CenterLocation.Latitude + @", lng: " + this.CenterLocation.Longitude + @"},
+                          zoom: " + DefaultMapZoomLevel + @"
                         };
                         var map = new google.maps.Map(document.getElementById('map-canvas'),
                             mapOptions);
