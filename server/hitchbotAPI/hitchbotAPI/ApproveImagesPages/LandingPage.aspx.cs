@@ -28,7 +28,7 @@ namespace hitchbotAPI.ApproveImagesPages
                     if (user.Projects.FirstOrDefault() != null)
                         this.projectID = user.Projects.First().ID;
 
-                    this.DynamicMapsTestButton.NavigateUrl = "DynamicMap.aspx?prj=" + this.projectID;
+                    this.DynamicMapsTestButton.NavigateUrl = "DynamicMap.aspx?hbID=" + this.hitchbotID;
                 }
             }
             else
@@ -39,9 +39,8 @@ namespace hitchbotAPI.ApproveImagesPages
 
         protected void TextJsButton_Click(object sender, EventArgs e)
         {
-            Helpers.Location.GoogleMapsHelper.BuildLocationJS(hitchbotID);
-            string TargetLocation = Helpers.PathHelper.GetJsBuildPath();
-            Helpers.AzureBlobHelper.UploadLocationJsAndGetPublicUrl(TargetLocation, Helpers.AzureBlobHelper.JS_LOCATION_FILE_NAME);
+            var builder = new Helpers.Location.GoogleMapsBuilder(this.hitchbotID);
+            builder.BuildJsAndUpload();
         }
     }
 }

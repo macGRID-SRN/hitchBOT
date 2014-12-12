@@ -1171,6 +1171,18 @@
             <param name="HitchBotLocationsID">The ID of the HitchBot to get all the Locations for.</param>
             <returns>A list of all the Locations, sorted.</returns>
         </member>
+        <member name="T:hitchbotAPI.Helpers.Location.GoogleMapsBuilder">
+            <summary>
+            This class is used to build the JS for the Dynamic Map on the HB website. Why doesn't this class take in the actual items and access the db instead? It could be called in any context.
+            </summary>
+        </member>
+        <member name="M:hitchbotAPI.Helpers.Location.GoogleMapsBuilder.BuildPolyPath(System.Int32)">
+            <summary>
+            Builds the function for a path on a google map. It loads the data from the hitchBOT entity and builds it from its locations.
+            </summary>
+            <param name="PolyPathNumber">If there were to be more than one hitchBOTS, you can number these functions.</param>
+            <returns></returns>
+        </member>
         <member name="T:hitchbotAPI.Helpers.TestHelper">
             <summary>
             So apparently trying to test the db from another project is a terrible idea.. so here is the test.

@@ -305,6 +305,7 @@
     <Compile Include="Controllers\hitchBOTController.cs" />
     <Compile Include="Helpers\AzureBlobHelper.cs" />
     <Compile Include="Helpers\CleverScriptHelper.cs" />
+    <Compile Include="Helpers\Location\GoogleMapsBuilder.cs" />
     <Compile Include="Helpers\Location\GoogleMapsHelper.cs" />
     <Compile Include="Helpers\Location\LocationHelper.cs" />
     <Compile Include="Helpers\PanelHelper.cs" />

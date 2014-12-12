@@ -11,14 +11,15 @@ namespace hitchbotAPI.ApproveImagesPages
     public partial class DynamicMap : System.Web.UI.Page
     {
         int projectID;
+        int hitchbotID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (int.TryParse(Request.QueryString["prj"], out this.projectID))
+            if (int.TryParse(Request.QueryString["hbID"], out this.projectID))
             {
-                this.projectID = int.Parse(Request.QueryString["prj"]);
+                this.hitchbotID = int.Parse(Request.QueryString["hbID"]);
 
-                this.jsDataLocation.Text = @"<script type=""text/javascript"" src=""http://hitchbotimg.blob.core.windows.net/hbjs/testLocations.js""></script>";
+                this.jsDataLocation.Text = @"<script type=""text/javascript"" src=""http://hitchbotimg.blob.core.windows.net/hbjs/testLocations" + hitchbotID + @".js""></script>";
             }
             else
             {
