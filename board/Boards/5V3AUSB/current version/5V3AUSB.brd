@@ -1809,9 +1809,9 @@ Please make sure your boards conform to these design rules.</description>
 <vertex x="39.37" y="-0.254"/>
 <vertex x="0" y="0"/>
 </polygon>
-<via x="20.32" y="40.64" extent="1-16" drill="0.6"/>
-<wire x1="18.16" y1="39.8" x2="20.32" y2="40.64" width="0.6096" layer="1"/>
-<wire x1="20.32" y1="40.64" x2="23.65" y2="40.64" width="0.6096" layer="1"/>
+<via x="21.59" y="40.64" extent="1-16" drill="0.6"/>
+<wire x1="18.16" y1="39.8" x2="21.59" y2="40.64" width="0.6096" layer="1"/>
+<wire x1="21.59" y1="40.64" x2="23.65" y2="40.64" width="0.6096" layer="1"/>
 <contactref element="TP3" pad="TP-1"/>
 <contactref element="TP4" pad="TP-1"/>
 <contactref element="TP5" pad="TP"/>
