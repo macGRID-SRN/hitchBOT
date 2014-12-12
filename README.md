@@ -16,7 +16,8 @@ Electronics
 - [ ] 10A Coiled Wire for use in car
 - [X] Backup battery control system with batteries.
 - [ ] 2x2 ATX male ends with cable and crimps.
-- [ ] Another set of 5V 3A boards with board placement issues fixed.
+- [X] Another set of 5V 3A boards with board placement issues fixed.
+- [ ] Components for set of 5v 3A boards.
 
 Building Materials
 ---
