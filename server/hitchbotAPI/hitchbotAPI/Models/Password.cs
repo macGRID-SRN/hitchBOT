@@ -20,7 +20,9 @@ namespace hitchbotAPI.Models
         public string Hash { get; set; }
         public virtual hitchBOT hitchBOT { get; set; }
 
-        public virtual ICollection<Face> Faces { get; set; } 
+        public virtual ICollection<Face> Faces { get; set; }
+
+        public virtual ICollection<Project> Projects { get; set; }
     }
 
     public static class PasswordHandler

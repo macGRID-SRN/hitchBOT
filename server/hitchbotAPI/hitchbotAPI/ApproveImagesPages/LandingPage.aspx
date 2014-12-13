@@ -42,7 +42,7 @@
         <asp:Button ID="TextJsButton" runat="server" OnClick="TextJsButton_Click" Text="Test JS Build" />
         <br />
         <br />
-        <asp:HyperLink ID="DynamicMapsTestButton" runat="server" NavigateUrl="DynamicMap.aspx">Dynamic Map Test</asp:HyperLink>
+        <asp:HyperLink ID="DynamicMapsTestButton" runat="server">Dynamic Map Test</asp:HyperLink>
         Removed Images<br />
         Target Location Tweeting</div>
     </form>

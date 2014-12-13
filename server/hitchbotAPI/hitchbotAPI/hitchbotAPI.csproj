@@ -299,22 +299,18 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\TabletController.cs" />
     <Compile Include="Controllers\TwitterApiController.cs" />
-    <Compile Include="Directory.aspx.cs">
-      <DependentUpon>Directory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Directory.aspx.designer.cs">
-      <DependentUpon>Directory.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Controllers\hitchBOTController.cs" />
     <Compile Include="Helpers\AzureBlobHelper.cs" />
     <Compile Include="Helpers\CleverScriptHelper.cs" />
-    <Compile Include="Helpers\LocationHelper.cs" />
+    <Compile Include="Helpers\Location\GoogleMapsBuilder.cs" />
+    <Compile Include="Helpers\Location\GoogleMapsHelper.cs" />
+    <Compile Include="Helpers\Location\LocationHelper.cs" />
     <Compile Include="Helpers\PanelHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Helpers\TimeHelper.cs" />
     <Compile Include="Helpers\TwitterHelper.cs" />
     <Compile Include="Helpers\WebHelper.cs" />
@@ -341,6 +337,10 @@
     <Compile Include="Migrations\201412090321362_ApproveFace.cs" />
     <Compile Include="Migrations\201412090321362_ApproveFace.Designer.cs">
       <DependentUpon>201412090321362_ApproveFace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412110201056_AddProjectToPassword.cs" />
+    <Compile Include="Migrations\201412110201056_AddProjectToPassword.Designer.cs">
+      <DependentUpon>201412110201056_AddProjectToPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
@@ -398,7 +398,6 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Directory.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -489,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201412090321362_ApproveFace.resx">
       <DependentUpon>201412090321362_ApproveFace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412110201056_AddProjectToPassword.resx">
+      <DependentUpon>201412110201056_AddProjectToPassword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

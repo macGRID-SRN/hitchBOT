@@ -21,7 +21,7 @@ namespace hitchbotAPI
             using (var db = new Models.Database())
             {
                 string userName = this.userName.Text;
-                var user = db.Passwords.Include(p => p.hitchBOT).FirstOrDefault(p => p.Username == userName);
+                var user = db.Passwords.Include(p => p.hitchBOT).Include(p => p.Projects).FirstOrDefault(p => p.Username == userName);
 
                 if (user == null)
                 {

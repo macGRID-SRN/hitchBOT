@@ -10891,16 +10891,16 @@ Source: www.kingbright.com</description>
 <library name="Molex">
 <packages>
 <package name="2X2MOLEX">
-<pad name="POWERL" x="-2.1" y="2.1" drill="1.8"/>
-<pad name="POWERR" x="2.1" y="2.1" drill="1.8"/>
+<pad name="POWERL" x="-2.1" y="3.37" drill="1.8"/>
+<pad name="POWERR" x="2.1" y="3.37" drill="1.8"/>
 <pad name="GNDR" x="2.1" y="-2.1" drill="1.8"/>
 <pad name="GNDL" x="-2.1" y="-2.1" drill="1.8"/>
 <hole x="0" y="-10.05" drill="3"/>
 <wire x1="-6" y1="-16" x2="6" y2="-16" width="0.127" layer="21"/>
 <wire x1="6" y1="-16" x2="6" y2="-6" width="0.127" layer="21"/>
-<wire x1="6" y1="-6" x2="6" y2="4" width="0.127" layer="21"/>
-<wire x1="6" y1="4" x2="-6" y2="4" width="0.127" layer="21"/>
-<wire x1="-6" y1="4" x2="-6" y2="-6" width="0.127" layer="21"/>
+<wire x1="6" y1="-6" x2="6" y2="5.905" width="0.127" layer="21"/>
+<wire x1="6" y1="5.905" x2="-6" y2="5.905" width="0.127" layer="21"/>
+<wire x1="-6" y1="5.905" x2="-6" y2="-6" width="0.127" layer="21"/>
 <wire x1="-6" y1="-6" x2="-6" y2="-16" width="0.127" layer="21"/>
 <wire x1="-6" y1="-6" x2="6" y2="-6" width="0.127" layer="21"/>
 </package>

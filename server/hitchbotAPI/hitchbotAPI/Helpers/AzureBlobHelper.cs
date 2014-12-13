@@ -11,10 +11,11 @@ namespace hitchbotAPI.Helpers
 {
     public static class AzureBlobHelper
     {
-        public const string JS_LOCATION_FILE_NAME = "testLocations.js";
+        public const string JS_LOCATION_FILE_NAME = "testLocations";
+        public const string JS_FILE_EXTENSION = ".js";
         private const string JS_CONTAINER_NAME = "hbjs";
 
-        public static string UploadLocationJsAndGetPublicUrl(string localRootFileDirectory, string fileName)
+        public static string UploadLocationJsAndGetPublicUrl(string localRootFileDirectory, string fileName, int ID)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
@@ -22,7 +23,7 @@ namespace hitchbotAPI.Helpers
 
             CloudBlobContainer imgContainer = blobClient.GetContainerReference(JS_CONTAINER_NAME);
 
-            CloudBlockBlob newBlob = imgContainer.GetBlockBlobReference(JS_LOCATION_FILE_NAME);
+            CloudBlockBlob newBlob = imgContainer.GetBlockBlobReference(JS_LOCATION_FILE_NAME + ID + JS_FILE_EXTENSION);
 
             newBlob.DeleteIfExists();
 
@@ -35,6 +36,13 @@ namespace hitchbotAPI.Helpers
             }
 
             return newBlob.Uri.ToString();
+        }
+
+        public static void UploadJStoAzure(int hitchbotID)
+        {
+            string TargetLocation = Helpers.PathHelper.GetJsBuildPath();
+            //this is a mess!
+            Helpers.AzureBlobHelper.UploadLocationJsAndGetPublicUrl(TargetLocation, Helpers.AzureBlobHelper.JS_LOCATION_FILE_NAME + hitchbotID + Helpers.AzureBlobHelper.JS_FILE_EXTENSION, hitchbotID);
         }
     }
 }

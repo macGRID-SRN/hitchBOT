@@ -85,6 +85,15 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.DynamicMap.jsDataLocation">
+            <summary>
+            jsDataLocation control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.DynamicMap.form1">
             <summary>
             form1 control.
@@ -1127,24 +1136,6 @@
             <param name="toEndID">The ID of the Project to end.</param>
             <returns>Success.</returns>
         </member>
-        <member name="F:hitchbotAPI.Directory.form1">
-            <summary>
-            form1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.Directory.BulletedList1">
-            <summary>
-            BulletedList1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
         <member name="T:hitchbotAPI.Controllers.hitchBOTController">
             <summary>
             For all things related to an instance of HitchBot.
@@ -1179,6 +1170,34 @@
             </summary>
             <param name="HitchBotLocationsID">The ID of the HitchBot to get all the Locations for.</param>
             <returns>A list of all the Locations, sorted.</returns>
+        </member>
+        <member name="T:hitchbotAPI.Helpers.Location.GoogleMapsBuilder">
+            <summary>
+            This class is used to build the JS for the Dynamic Map on the HB website. Why doesn't this class take in the actual items and instead access the db? It could be called from any context.
+            </summary>
+        </member>
+        <member name="M:hitchbotAPI.Helpers.Location.GoogleMapsBuilder.BuildJS">
+            <summary>
+            This is the function which builds and saves the js code locally. It builds it based on how it was initialized, whether it was linked to a project and other factors.
+            </summary>
+        </member>
+        <member name="M:hitchbotAPI.Helpers.Location.GoogleMapsBuilder.BuildPolyPath(System.Int32)">
+            <summary>
+            Builds the function for a path on a google map. It loads the data from the hitchBOT entity and builds it from its locations.
+            </summary>
+            <param name="PolyPathNumber">If there were to be more than one hitchBOTS, you can number these functions.</param>
+            <returns></returns>
+        </member>
+        <member name="T:hitchbotAPI.Helpers.TestHelper">
+            <summary>
+            So apparently trying to test the db from another project is a terrible idea.. so here is the test.
+            </summary>
+        </member>
+        <member name="M:hitchbotAPI.Helpers.TestHelper.TestDatabaseAvailable">
+            <summary>
+            THIS TEST DOES NOT WORK YET.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:hitchbotAPI.Models.Face">
             <summary>
