@@ -26,6 +26,7 @@ Building Materials
 - [ ] Plastic Inner Tubing
 - [ ] Copper Tubing - check current supply first.
 - [ ] Plumbers Putty
+- [ ] Adjustable Locking Hinge (x2)
 
 Aesthetics
 ---
