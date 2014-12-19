@@ -19,6 +19,7 @@ Electronics
 - [X] Another set of 5V 3A boards with board placement issues fixed.
 - [X] Components for set of 5v 3A boards.
 - [ ] Components for original 5V 1.2A boards.
+- [ ] USB Speaker used in kulturBOT
 
 Building Materials
 ---
