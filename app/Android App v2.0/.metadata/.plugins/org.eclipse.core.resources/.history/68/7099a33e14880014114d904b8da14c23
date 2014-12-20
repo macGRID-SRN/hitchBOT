@@ -1,8 +1,6 @@
 package com.example.hitchbot.Models;
 
-import java.util.List;
-
-import org.apache.http.NameValuePair;
+import java.util.Date;
 
 import com.example.hitchbot.Config;
 
@@ -13,8 +11,6 @@ public class HttpPostDb {
 	//0 is no, 1 is yes
 	private int uploadToServer;
 	private String dateCreated;
-	private List<NameValuePair> body;
-	private List<NameValuePair> header;
 	
 	public HttpPostDb(int ID, String uri, int uploadToServer, String dateCreated)
 	{
@@ -61,22 +57,6 @@ public class HttpPostDb {
 
 	public void setUri(String uri) {
 		this.uri = uri;
-	}
-
-	public List<NameValuePair> getHeader() {
-		return header;
-	}
-
-	public void setHeader(List<NameValuePair> header) {
-		this.header = header;
-	}
-
-	public List<NameValuePair> getBody() {
-		return body;
-	}
-
-	public void setBody(List<NameValuePair> body) {
-		this.body = body;
 	}
 
 }

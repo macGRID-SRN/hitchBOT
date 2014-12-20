@@ -10,12 +10,11 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import com.example.hitchbot.Models.*;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class DataCommunication extends AsyncTask<HttpPostDb, Void, Boolean> {
+public class DataCommunication extends AsyncTask<Data, Void, Boolean> {
 	
 	private String TAG = "DataComunnication";
 
@@ -25,7 +24,7 @@ public class DataCommunication extends AsyncTask<HttpPostDb, Void, Boolean> {
 	}
 	
 	@Override
-	protected Boolean doInBackground(HttpPostDb... params) {
+	protected Boolean doInBackground(Data... params) {
 		for(int i = 0; i < params.length ; i ++){
 			HttpClient hC = new DefaultHttpClient();
 			HttpPost hP = new HttpPost(params[i].getUri());

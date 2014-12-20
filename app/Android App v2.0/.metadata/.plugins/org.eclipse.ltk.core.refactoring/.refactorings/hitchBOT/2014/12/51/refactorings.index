@@ -2,3 +2,6 @@
 1418924270724	Encapsulate field 'ID'
 1418924276307	Encapsulate field 'dateCreated'
 1418924414094	Encapsulate field 'uri'
+1419112859070	Delete element
+1419113541536	Encapsulate field 'header'
+1419113545346	Encapsulate field 'body'
