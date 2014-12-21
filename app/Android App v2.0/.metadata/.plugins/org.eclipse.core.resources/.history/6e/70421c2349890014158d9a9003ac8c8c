@@ -19,7 +19,6 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 	public static final String COLUMN_POSTID = "_id";
 	public static final String COLUMN_URI = "URI";
 	public static final String COLUMN_UPLOAD_TO_SERVER = "UploadToServer";
-	public static final String COLUMN_UPLOADTYPE = " UploadType";
 	public static final String COLUMN_DATE = "DateCreated";
 	
 	private static final String DATABASE_NAME = "hitchBOT.db";
@@ -35,11 +34,8 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 	
 	 private static final String HTTPPOST_TABLE_CREATE = "CREATE TABLE "
 		      + TABLE_HTTPPOSTQUEUE + "(" + COLUMN_POSTID
-		      + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
-		      + COLUMN_URI + " INTEGER," 
-		      + COLUMN_UPLOAD_TO_SERVER+ " INTEGER," 
-		      + COLUMN_UPLOAD_TO_SERVER+ " INTEGER,"
-		      +COLUMN_DATE +" TEXT"+");";
+		      + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_URI
+		      + " INTEGER," + COLUMN_UPLOAD_TO_SERVER+ " INTEGER," +COLUMN_DATE +" TEXT"+");";
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
@@ -72,8 +68,7 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 					htpD.setID(Integer.parseInt(cursor.getString(0)));
 					htpD.setUri(cursor.getString(1));
 					htpD.setUploadToServer(Integer.parseInt(cursor.getString(2)));
-					htpD.setUploadType((Integer.parseInt(cursor.getString(3)));
-					htpD.setDateCreated(cursor.getString(4));
+					htpD.setDateCreated(cursor.getString(3));
 					
 					databasePosts.add(htpD);
 					

@@ -15,24 +15,20 @@ public class HttpPostDb {
 	private String dateCreated;
 	private List<NameValuePair> body;
 	private List<NameValuePair> header;
-	// 0 image, 1 location, 2 spokenphrase, 3 heardphrase
-	private int uploadType;
 	
-	public HttpPostDb(int ID, String uri, int uploadToServer, String dateCreated, int uT)
+	public HttpPostDb(int ID, String uri, int uploadToServer, String dateCreated)
 	{
 		this.ID = ID;
 		this.uploadToServer = uploadToServer;
 		this.setUri(uri);
 		this.dateCreated = dateCreated;
-		this.setUploadType(uT);
 	}
 	
-	public HttpPostDb(String uri, int uploadToServer, int uT)
+	public HttpPostDb(String uri, int uploadToServer)
 	{
 		this.uploadToServer = uploadToServer;
 		this.setUri(uri);
 		this.dateCreated = Config.getUtcDate();
-		this.setUploadType(uT);
 	}
 	
 	public HttpPostDb()
@@ -81,14 +77,6 @@ public class HttpPostDb {
 
 	public void setBody(List<NameValuePair> body) {
 		this.body = body;
-	}
-
-	public int getUploadType() {
-		return uploadType;
-	}
-
-	public void setUploadType(int uploadType) {
-		this.uploadType = uploadType;
 	}
 
 }
