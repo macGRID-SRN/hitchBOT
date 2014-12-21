@@ -27,24 +27,6 @@ public class HitchActivity extends ActionBarActivity {
         Config.dQ = DatabaseQueue.getHelper(this);
         tP = new TakePicture();
         
-        dataCollectionHandler = new Handler();
-        dataCollectionHandler.postDelayed(new Runnable()
-        {
-
-			@Override
-			public void run() {
-				//get environment and tablet info
-				TabletInformation tI = new TabletInformation();
-				tI.queueBatteryUpdates();
-				
-				//queue location info
-				LocationUpdates lu = new LocationUpdates(Config.context);
-				lu.setupProvider();
-				
-			}
-        	
-        }, Config.FIFTEEN_MINUTES);
-        
         internetHandler = new Handler();
         internetHandler.postDelayed(new Runnable()
         {
@@ -67,7 +49,8 @@ public class HitchActivity extends ActionBarActivity {
 			@Override
 			public void run() {
 				takePicture();
-				pictureHandler.postDelayed(this, Config.FIFTEEN_MINUTES);			
+				pictureHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
+				
 			}
         	
         }, Config.FIFTEEN_MINUTES);
