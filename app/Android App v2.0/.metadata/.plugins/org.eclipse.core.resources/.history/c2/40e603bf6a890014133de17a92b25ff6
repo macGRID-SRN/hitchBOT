@@ -55,13 +55,9 @@ public class TakePicture {
 			frameNew.bringChildToFront(cameraPreview);
 			imageResult.setImageBitmap(null);
 			cameraPreview.camera.startPreview();
-			try {
-				Thread.sleep(1000);
-				captureHandler();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			// String numFace =
+			// String.valueOf(cameraPreview.detectFaces(image));
+			// Toast.makeText(context, numFace, Toast.LENGTH_SHORT).show();
 		}
 	}
 

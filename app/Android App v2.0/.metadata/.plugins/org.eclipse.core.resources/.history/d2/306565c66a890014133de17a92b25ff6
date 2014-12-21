@@ -51,33 +51,35 @@ public class DataCommunication extends AsyncTask<HttpPostDb, Void, Boolean> {
 				String responseCheck = EntityUtils.toString(hR.getEntity());
 				Log.i(TAG, responseCheck );
 				
-				if(responseCheck.equals("true"))
+				if(!responseCheck.equals("true"))
 				{
-					Config.dQ.markAsUploadedToServer(params[i]);
+					//TODO add to queue
 				}
 
 			}
 			catch(ClientProtocolException e)
 			{
+				//TODO add to queue
 				Log.i(TAG, e.toString() );
 			}
 			catch(IOException e)
 			{
+				//TODO add to queue
 				Log.i(TAG, e.toString() );
 			}
 		}
-		return true;
+			return false;
 	}
 	
 	@Override
 	protected void onPostExecute(Boolean result) {
 		if(result)
 		{
-			//Config.dQ.markAsUploadedToServer(httpPost);
+			//ok
 		}
 		else
 		{
-			//do nothing (stays in queue)
+			//add back to queue
 		}
 	}
 

@@ -1,7 +1,5 @@
 package com.example.hitchbot;
 
-import com.example.hitchbot.Models.HttpPostDb;
-
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
@@ -76,13 +74,5 @@ public class TabletInformation {
 		return temp;
 	}
 
-	public void queueBatteryUpdates()
-	{
-		String timeTaken = Config.getUtcDate();	
-		String uri = String.format(Config.batteryPOST,Config.HITCHBOT_ID, timeTaken,
-				isCharging, voltage, batteryPercent, temp);
-		HttpPostDb postDb = new HttpPostDb(uri, 0, 4);
-		Config.dQ.addItemToQueue(postDb);
-	}
 
 }

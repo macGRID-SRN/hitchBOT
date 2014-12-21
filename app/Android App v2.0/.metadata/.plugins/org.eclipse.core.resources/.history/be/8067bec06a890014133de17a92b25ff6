@@ -21,13 +21,9 @@ public final class Config {
 	public static DatabaseQueue dQ;
 	
 	public static String imagePOST;
-	public static String batteryPOST = "http://hitchbotapi.azurewebsites.net/api/Tablet?HitchBotID=%s&timeTaken=%s&isPluggedIn=%s&BatteryVoltage=%s&BatteryPercent=%s&BatteryTemp=%s";
-	public static String locationPOST_FINE = "http://hitchbotapi.azurewebsites.net/api/Location?HitchBotID=%s&Latitude=%s&Longitude=%s&Altitude=%s&Accuracy=%s&Velocity=%s&TakenTime=%s";
-	public static String locationPOST_COURSE = "http://hitchbotapi.azurewebsites.net/api/Location?HitchBotID=%s&Latitude=%s&Longitude=%s&TakenTime=%s";
-	public static String audioPOST = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
-	public static String spokePOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechSaid=%s&TimeTaken=%s";
-	public static String heardPOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechHeard=%s&TimeTaken=%s";
-	public static String startPOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&StartTime=%s";
+	public static String locationPOST;
+	public static String heardPOST;
+	public static String spokenPOST;
 	
 	public static String getUtcDate()
 	{

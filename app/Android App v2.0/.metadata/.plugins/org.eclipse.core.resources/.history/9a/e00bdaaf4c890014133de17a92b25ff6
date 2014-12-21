@@ -54,7 +54,7 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 
 	}
 	
-	public List<HttpPostDb> serverUploadQueue()
+	public List<HttpPostDb> serverAudioUploadQueue()
 	{
 		
 		List<HttpPostDb> databasePosts = new ArrayList<HttpPostDb>();

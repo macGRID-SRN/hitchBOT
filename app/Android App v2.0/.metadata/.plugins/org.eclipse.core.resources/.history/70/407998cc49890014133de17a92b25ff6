@@ -54,7 +54,7 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 
 	}
 	
-	public List<HttpPostDb> serverUploadQueue()
+	public List<HttpPostDb> serverAudioUploadQueue()
 	{
 		
 		List<HttpPostDb> databasePosts = new ArrayList<HttpPostDb>();
@@ -72,7 +72,7 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 					htpD.setID(Integer.parseInt(cursor.getString(0)));
 					htpD.setUri(cursor.getString(1));
 					htpD.setUploadToServer(Integer.parseInt(cursor.getString(2)));
-					htpD.setUploadType((Integer.parseInt(cursor.getString(3))));
+					htpD.setUploadType((Integer.parseInt(cursor.getString(3)));
 					htpD.setDateCreated(cursor.getString(4));
 					
 					databasePosts.add(htpD);
@@ -113,7 +113,7 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 			newRecord.put(COLUMN_URI, httpPost.getUri());
 			newRecord.put(COLUMN_UPLOAD_TO_SERVER, httpPost.getUploadToServer());
 			newRecord.put(COLUMN_DATE, httpPost.getDateCreated());
-			newRecord.put(COLUMN_UPLOADTYPE, httpPost.getUploadType());
+			
 			database.insert(TABLE_HTTPPOSTQUEUE, null, newRecord);
 		}catch (Exception e)
 		{

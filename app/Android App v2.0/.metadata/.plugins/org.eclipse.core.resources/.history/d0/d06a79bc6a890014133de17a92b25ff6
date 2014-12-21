@@ -16,7 +16,7 @@ public class HitchActivity extends ActionBarActivity {
 
 	public TakePicture tP;
 	private Handler pictureHandler;
-	private Handler dataCollectionHandler;
+	private Handler gpsHandler;
 	private Handler internetHandler;
 	
     @Override
@@ -26,7 +26,6 @@ public class HitchActivity extends ActionBarActivity {
         Config.context = this;
         Config.dQ = DatabaseQueue.getHelper(this);
         tP = new TakePicture();
-        
         internetHandler = new Handler();
         internetHandler.postDelayed(new Runnable()
         {
@@ -37,26 +36,11 @@ public class HitchActivity extends ActionBarActivity {
         		{
         			List<HttpPostDb> queue = Config.dQ.serverUploadQueue();
         			new DataCommunication().execute((HttpPostDb[])queue.toArray());
-        			internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
         		}
         	}
         }, Config.FIFTEEN_MINUTES);
-        
-        pictureHandler = new Handler();
-        pictureHandler.postDelayed(new Runnable()
-        {
-
-			@Override
-			public void run() {
-				takePicture();
-				pictureHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
-				
-			}
-        	
-        }, Config.FIFTEEN_MINUTES);
     }
 
-    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
