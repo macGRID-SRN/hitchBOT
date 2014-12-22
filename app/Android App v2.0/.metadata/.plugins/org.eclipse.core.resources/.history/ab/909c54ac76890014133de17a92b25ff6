@@ -1,0 +1,69 @@
+package com.example.hitchbot.Speech;
+
+import java.io.File;
+import java.io.IOException;
+
+import android.os.AsyncTask;
+import edu.cmu.pocketsphinx.Assets;
+import edu.cmu.pocketsphinx.Hypothesis;
+import edu.cmu.pocketsphinx.RecognitionListener;
+
+public class SpeechIn implements RecognitionListener {
+
+	public SpeechIn()
+	{
+		initRecognizer();
+	}
+	
+	private void initRecognizer()
+	{
+        new AsyncTask<Void, Void, Exception>() {
+            @Override
+            protected Exception doInBackground(Void... params) {
+                try {
+                    Assets assets = new Assets(PocketSphinxActivity.this);
+                    File assetDir = assets.syncAssets();
+                    setupRecognizer(assetDir);
+                } catch (IOException e) {
+                    return e;
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Exception result) {
+                if (result != null) {
+                    ((TextView) findViewById(R.id.caption_text))
+                            .setText("Failed to init recognizer " + result);
+                } else {
+                    switchSearch(KWS_SEARCH);
+                }
+            }
+        }.execute();
+	}
+	
+	@Override
+	public void onBeginningOfSpeech() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEndOfSpeech() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onPartialResult(Hypothesis arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onResult(Hypothesis arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

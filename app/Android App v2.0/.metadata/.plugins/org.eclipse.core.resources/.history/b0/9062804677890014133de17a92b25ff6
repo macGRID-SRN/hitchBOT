@@ -5,27 +5,24 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import com.example.hitchbot.Config;
-import com.example.hitchbot.HitchActivity;
-import com.example.hitchbot.R;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.TextView;
-import android.widget.Toast;
 import edu.cmu.pocketsphinx.Assets;
 import edu.cmu.pocketsphinx.Hypothesis;
 import edu.cmu.pocketsphinx.RecognitionListener;
 import edu.cmu.pocketsphinx.SpeechRecognizer;
-import static edu.cmu.pocketsphinx.SpeechRecognizerSetup.defaultSetup;
-
 
 public class SpeechIn implements RecognitionListener {
 
 	private static final String KWS_SEARCH = "wakeup";
+    private static final String FORECAST_SEARCH = "forecast";
+    private static final String DIGITS_SEARCH = "digits";
+    private static final String MENU_SEARCH = "menu";
+    private static final String KEYPHRASE = "oh mighty computer";
 
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
-    private boolean isListening = false;
 	
 	public SpeechIn()
 	{
@@ -37,8 +34,12 @@ public class SpeechIn implements RecognitionListener {
 		
 		// Prepare the data for UI
         captions = new HashMap<String, Integer>();
-        captions.put(KWS_SEARCH, 0);
-       ((TextView) ((HitchActivity) Config.context).findViewById(R.id.textViewCaption))
+        captions.put(KWS_SEARCH, R.string.kws_caption);
+        captions.put(MENU_SEARCH, R.string.menu_caption);
+        captions.put(DIGITS_SEARCH, R.string.digits_caption);
+        captions.put(FORECAST_SEARCH, R.string.forecast_caption);
+        setContentView(R.layout.main);
+        ((TextView) findViewById(R.id.caption_text))
                 .setText("Preparing the recognizer");
 		
         new AsyncTask<Void, Void, Exception>() {
@@ -57,7 +58,7 @@ public class SpeechIn implements RecognitionListener {
             @Override
             protected void onPostExecute(Exception result) {
                 if (result != null) {
-                    ((TextView) ((HitchActivity)Config.context).findViewById(R.id.textViewCaption))
+                    ((TextView) findViewById(R.id.caption_text))
                             .setText("Failed to init recognizer " + result);
                 } else {
                     switchSearch(KWS_SEARCH);
@@ -68,7 +69,7 @@ public class SpeechIn implements RecognitionListener {
 	
 	   private void setupRecognizer(File assetsDir) {
 	        File modelsDir = new File(assetsDir, "models");
-	        recognizer = defaultSetup()
+	        recognizer = Config.context.defaultSetup()
 	                .setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
 	                .setDictionary(new File(modelsDir, "dict/cmu07a.dic"))
 	                .setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
@@ -76,22 +77,22 @@ public class SpeechIn implements RecognitionListener {
 	        recognizer.addListener(this);
 
 	        // Create keyword-activation search.
-	      //  recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
+	        recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
 	        // Create grammar-based searches.
-	       // File menuGrammar = new File(modelsDir, "grammar/menu.gram");
-	       // recognizer.addGrammarSearch(MENU_SEARCH, menuGrammar);
-	       // File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
-	       // recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
+	        File menuGrammar = new File(modelsDir, "grammar/menu.gram");
+	        recognizer.addGrammarSearch(MENU_SEARCH, menuGrammar);
+	        File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
+	        recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 	        // Create language model search.
-	       // File languageModel = new File(modelsDir, "lm/weather.dmp");
-	       // recognizer.addNgramSearch(FORECAST_SEARCH, languageModel);
+	        File languageModel = new File(modelsDir, "lm/weather.dmp");
+	        recognizer.addNgramSearch(FORECAST_SEARCH, languageModel);
 	    }
 	   
 	   private void switchSearch(String searchName) {
 	        recognizer.stop();
-	        isListening = true;
 	        recognizer.startListening(searchName);
-	       // String caption = Config.context.getResources().getString(captions.get(searchName));
+	        String caption = Config.context.getResources().getString(captions.get(searchName));
+	        ((TextView) findViewById(R.id.caption_text)).setText(caption);
 	    }
 	
 	@Override
@@ -113,18 +114,9 @@ public class SpeechIn implements RecognitionListener {
 	}
 
 	@Override
-	public void onResult(Hypothesis hypothesis) {
-		((TextView) ((HitchActivity)Config.context).findViewById(R.id.textViewCaption)).setText("");
-        if (hypothesis != null) {
-            String text = hypothesis.getHypstr();
-            Toast.makeText(Config.context.getApplicationContext(), text, Toast.LENGTH_SHORT).show();
-        }
-        isListening = false;
+	public void onResult(Hypothesis arg0) {
+		// TODO Auto-generated method stub
 		
-	}
-
-	public boolean isListening() {
-		return isListening;
 	}
 
 }
