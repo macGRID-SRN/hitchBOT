@@ -25,7 +25,9 @@ namespace hitchbotAPI
 
                 if (user == null)
                 {
-                    lblError.Text = "Username not found!";
+                    //lblError.Text = "Username not found!";
+                    this.errorAlert.Attributes.Remove("hidden");
+                    this.errorAlert.InnerText = "Username not found!";
                 }
                 else
                 {
@@ -36,7 +38,9 @@ namespace hitchbotAPI
                     }
                     else
                     {
-                        lblError.Text = "Incorrect PW";
+                        //lblError.Text = "Incorrect PW";
+                        this.errorAlert.Attributes.Remove("hidden");
+                        this.errorAlert.InnerText = "Incorrect PW";
                     }
                 }
             }

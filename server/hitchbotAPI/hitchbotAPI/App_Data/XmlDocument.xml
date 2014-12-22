@@ -40,6 +40,15 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImage.SubmitPassword">
+            <summary>
+            SubmitPassword control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImage.lblError">
             <summary>
             lblError control.
@@ -49,9 +58,9 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImage.SubmitPassword">
+        <member name="F:hitchbotAPI.ApproveImage.errorAlert">
             <summary>
-            SubmitPassword control.
+            errorAlert control.
             </summary>
             <remarks>
             Auto-generated field.
