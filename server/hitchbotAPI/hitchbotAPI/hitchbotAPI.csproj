@@ -466,7 +466,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\uploads\" />
+    <Folder Include="App_Data\uploads\img\" />
     <Folder Include="Views\Home\Conversation\" />
     <Folder Include="Views\Location\" />
   </ItemGroup>
