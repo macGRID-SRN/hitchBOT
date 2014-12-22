@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import com.example.hitchbot.Config;
-import com.example.hitchbot.Models.HttpPostDb;
 
-import android.media.AudioManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 
@@ -32,13 +30,19 @@ public class SpeechOut {
 	@SuppressWarnings("deprecation")
 	public void Speak(String message)
 	{
+
+		//recognizer.stop();
+		//boolean containsBadWord = wordFilter(message);
+		
 		
 	    HashMap<String, String> myHashAlarm = new HashMap<String, String>();
 		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
 	    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "SOME MESSAGE");
 
-		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm); 
-		queueHeard(message);
+		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
+
+
+	    
 	}
 	
 	private void setTtsListener() {
@@ -67,14 +71,4 @@ public class SpeechOut {
         {
         }
     }
-	
-	private void queueHeard(String heard)
-	{
-		String uri = String.format(Config.heardPOST, 
-				Config.HITCHBOT_ID, 
-				heard,
-				Config.getUtcDate());
-		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
-		Config.dQ.addItemToQueue(httpPost);
-	}
 }
