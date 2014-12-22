@@ -26,7 +26,6 @@ public class SpeechIn implements RecognitionListener {
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
     private boolean isListening = false;
-    private long startTime;
 	
 	public SpeechIn()
 	{
@@ -67,10 +66,6 @@ public class SpeechIn implements RecognitionListener {
         }.execute();
 	}
 	
-	public void getResult()
-	{
-		recognizer.stop();
-	}
 	   private void setupRecognizer(File assetsDir) {
 	        File modelsDir = new File(assetsDir, "models");
 	        recognizer = defaultSetup()
@@ -95,7 +90,6 @@ public class SpeechIn implements RecognitionListener {
 	   private void switchSearch(String searchName) {
 	        recognizer.stop();
 	        isListening = true;
-	        startTime = System.currentTimeMillis() / 1000;
 	        recognizer.startListening(searchName);
 	       // String caption = Config.context.getResources().getString(captions.get(searchName));
 	    }
@@ -108,7 +102,7 @@ public class SpeechIn implements RecognitionListener {
 
 	@Override
 	public void onEndOfSpeech() {
-		getResult();
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -127,18 +121,6 @@ public class SpeechIn implements RecognitionListener {
         }
         isListening = false;
 		
-	}
-	
-	public long getRunningTime()
-	{
-		if(isListening)
-		{
-			return (System.currentTimeMillis() / 1000) - startTime;
-		}
-		else
-		{
-			return -1;
-		}
 	}
 
 	public boolean isListening() {

@@ -1,0 +1,23 @@
+package com.example.hitchbot.Speech;
+
+import android.os.Handler;
+
+public class CleverVariables {
+	/* this class retrieves variables from server and injects them into CS */
+	public CleverVariables() {
+
+	}
+
+	public void getVariablesFromServer() {
+		final Handler cleverHandler = new Handler();
+		cleverHandler.post(new Runnable()
+		{
+
+			@Override
+			public void run() {
+			}
+
+		});
+	}
+
+}

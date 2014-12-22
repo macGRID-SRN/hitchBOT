@@ -11,7 +11,6 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 
 public class SpeechOut {
-	
 	private TextToSpeech mTts;
 
 	public SpeechOut()

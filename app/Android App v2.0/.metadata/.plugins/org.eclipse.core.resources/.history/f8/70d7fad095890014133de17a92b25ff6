@@ -84,8 +84,7 @@ public class HitchActivity extends ActionBarActivity {
         		if(Config.networkAvailable())
         		{
         			List<HttpPostDb> queue = Config.dQ.serverUploadQueue();
-        			new DataUpload().execute((HttpPostDb[])queue.toArray());
-        			new DataDownload().execute(Config.cleverGET);
+        			new DataCommunication().execute((HttpPostDb[])queue.toArray());
         			internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
         		}
         	}
