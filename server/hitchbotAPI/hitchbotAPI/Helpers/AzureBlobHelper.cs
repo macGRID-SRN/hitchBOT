@@ -40,7 +40,7 @@ namespace hitchbotAPI.Helpers
             return newBlob.Uri.ToString();
         }
 
-        private const TimeSpan JS_REBUILD_INTERVAL = new TimeSpan(1, 0, 0);
+        private static TimeSpan JS_REBUILD_INTERVAL = new TimeSpan(1, 0, 0);
 
         /// <summary>
         /// Determines if the javascript file containing the map data should be rebuilt based on the time passed since it was last built.
