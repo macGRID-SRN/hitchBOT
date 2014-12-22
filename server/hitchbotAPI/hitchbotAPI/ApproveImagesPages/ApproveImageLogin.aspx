@@ -62,12 +62,11 @@
 <body>
     <div class="container">
         <form id="form1" class="form-signin" runat="server">
-            <h2 class="form-signin-heading">Approve Images &amp; Tweets</h2>
+            <h2 class="form-signin-heading">hitchBOT Portal Login</h2>
 
             <asp:TextBox ID="userName" runat="server" TextMode="SingleLine" class="form-control username" placeholder="Username"></asp:TextBox>
 
             <asp:TextBox ID="passWord" runat="server" TextMode="Password" class="form-control password" placeholder="Password"></asp:TextBox>
-
 
             <asp:Button ID="SubmitPassword" runat="server" OnClick="Button1_Click" Text="Login" class="btn btn-lg btn-primary btn-block" />
 
