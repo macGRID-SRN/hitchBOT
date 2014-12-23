@@ -3,3 +3,7 @@
 1419223727828	Rename type 'DataCommunication'
 1419224269134	Delete element
 1419296958426	Encapsulate field 'isSpeaking'
+1419300616211	Move compilation unit
+1419300621509	Move compilation unit
+1419300883802	Rename type 'DataUpload'
+1419300893490	Rename type 'DataDownload'

@@ -2,7 +2,7 @@ package com.example.hitchbot;
 
 import java.util.List;
 
-import com.example.hitchbot.Data.DataPOST;
+import com.example.hitchbot.Data.DataDownload;
 import com.example.hitchbot.Data.DataGET;
 import com.example.hitchbot.Models.HttpPostDb;
 
@@ -88,7 +88,7 @@ public class HitchActivity extends ActionBarActivity {
         			List<HttpPostDb> queue = Config.dQ.serverUploadQueue();
         			HttpPostDb[] dbArray = new HttpPostDb[queue.size()];
         			new DataGET().execute(queue.toArray(dbArray));
-        			new DataPOST().execute(Config.cleverGET);
+        			new DataDownload().execute(Config.cleverGET);
         			internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
         		}
         	}
