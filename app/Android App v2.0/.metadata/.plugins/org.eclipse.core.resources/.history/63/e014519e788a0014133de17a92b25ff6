@@ -27,10 +27,6 @@ public class FileUploadDb {
 		this.fileType = uploadType;
 	}
 
-	public FileUploadDb() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public String getUri() {
 		return uri;
 	}

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import com.example.hitchbot.Models.FileUploadDb;
 import com.example.hitchbot.Models.HttpPostDb;
 
 import android.content.ContentValues;
@@ -72,54 +71,7 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 
 	}
 	
-	
-	public List<FileUploadDb> serverFileUploadQueue()
-	{
-		
-		List<FileUploadDb> databasePosts = new ArrayList<FileUploadDb>();
-		SQLiteDatabase database = null;
-		try
-		{
-			beginReadLock();
-			String queryString = "SELECT * FROM " + TABLE_FILEUPLOAD + " WHERE " + COLUMN_UPLOADED_TO_SERVER+ " = 0";
-			SQLiteDatabase db = this.getReadableDatabase();
-			Cursor cursor = db.rawQuery(queryString, null);
-			if(cursor.moveToFirst())
-			{
-				do{
-					FileUploadDb htpD = new FileUploadDb();
-					htpD.setID(Integer.parseInt(cursor.getString(0)));
-					htpD.setUri(cursor.getString(1));
-					htpD.setUploadToServer(Integer.parseInt(cursor.getString(2)));
-					htpD.setFileType((Integer.parseInt(cursor.getString(3))));
-					htpD.setDateCreated(cursor.getString(4));
-					
-					databasePosts.add(htpD);
-					
-				}while(cursor.moveToNext());
-				cursor.close();
-
-			}
-		}catch (Exception e)
-		{
-			
-		}
-		finally{
-			if(database!= null)
-			{
-	               try
-	                {
-	           		database.close();
-	                }
-	                catch (Exception e) {}
-			}
-			endReadLock();
-		}
-		return databasePosts;
-		
-	}
-	
-	public List<HttpPostDb> serverPostUploadQueue()
+	public List<HttpPostDb> serverUploadQueue()
 	{
 		
 		List<HttpPostDb> databasePosts = new ArrayList<HttpPostDb>();
@@ -127,7 +79,7 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 		try
 		{
 			beginReadLock();
-			String queryString = "SELECT * FROM " + TABLE_HTTPPOSTQUEUE + " WHERE " + COLUMN_UPLOAD_TO_SERVER+ " = 0";
+			String queryString = "SELECT * FROM " + TABLE_HTTPPOSTQUEUE + " WHERE " + COLUMN_UPLOAD_TO_SERVER+ " = 3";
 			SQLiteDatabase db = this.getReadableDatabase();
 			Cursor cursor = db.rawQuery(queryString, null);
 			if(cursor.moveToFirst())
@@ -198,38 +150,6 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 		
 	}
 	
-	public void addItemToQueue(FileUploadDb fileUpload)
-	{
-		SQLiteDatabase database = null;
-
-		try
-		{
-			beginWriteLock();
-			database = this.getWritableDatabase();
-			ContentValues newRecord = new ContentValues();
-			
-			newRecord.put(COLUMN_FILEURI, fileUpload.getUri());
-			newRecord.put(COLUMN_UPLOADED_TO_SERVER, fileUpload.getUploadToServer());
-			newRecord.put(COLUMN_DATECREATED, fileUpload.getDateCreated());
-			newRecord.put(COLUMN_FILETYPE, fileUpload.getFileType());
-			database.insert(TABLE_FILEUPLOAD, null, newRecord);
-		}catch (Exception e)
-		{
-			
-		}
-		finally{
-			if(database!= null)
-			{
-	               try
-	                {
-	                    database.close();
-	                }
-	                catch (Exception e) {}
-			}
-			endWriteLock();
-		}
-		
-	}
 	
 	public void markAsUploadedToServer(HttpPostDb httpPost)
 	{		
@@ -240,32 +160,6 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 			beginWriteLock();
 			database = this.getWritableDatabase();
 			database.delete(TABLE_HTTPPOSTQUEUE, COLUMN_POSTID + " = " + httpPost.getID(), null);
-		}catch (Exception e)
-		{
-			
-		}
-		finally{
-			if(database!= null)
-			{
-	               try
-	                {
-	                    database.close();
-	                }
-	                catch (Exception e) {}
-			}
-			endWriteLock();
-		}
-	}
-	
-	public void markAsUploadedToServer(FileUploadDb fileUpload)
-	{		
-		SQLiteDatabase database = null;
-
-		try
-		{
-			beginWriteLock();
-			database = this.getWritableDatabase();
-			database.delete(TABLE_FILEUPLOAD, COLUMN_FILEID + " = " + fileUpload.getID(), null);
 		}catch (Exception e)
 		{
 			
