@@ -10,7 +10,7 @@ import android.net.NetworkInfo;
 
 public final class Config {
 
-	public static HitchActivity context = null;
+	public static Context context = null;
 	public static String HITCHBOT_ID = "6";
 	public static int HOUR = 1000 * 60 * 60;
 	public static int FIFTEEN_MINUTES = 1000 * 60 * 15;
@@ -24,12 +24,12 @@ public final class Config {
 	public static String cleverAPIKey = "";
 	public static String cleverDB = "";
 	
-	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image";
+	public static String imagePOST;
 	public static String cleverGET = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
-	public static String audioPOST = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
 	public static String batteryPOST = "http://hitchbotapi.azurewebsites.net/api/Tablet?HitchBotID=%s&timeTaken=%s&isPluggedIn=%s&BatteryVoltage=%s&BatteryPercent=%s&BatteryTemp=%s";
 	public static String locationPOST_FINE = "http://hitchbotapi.azurewebsites.net/api/Location?HitchBotID=%s&Latitude=%s&Longitude=%s&Altitude=%s&Accuracy=%s&Velocity=%s&TakenTime=%s";
 	public static String locationPOST_COURSE = "http://hitchbotapi.azurewebsites.net/api/Location?HitchBotID=%s&Latitude=%s&Longitude=%s&TakenTime=%s";
+	public static String audioPOST = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
 	public static String spokePOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechSaid=%s&TimeTaken=%s";
 	public static String heardPOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechHeard=%s&TimeTaken=%s";
 	public static String startPOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&StartTime=%s";

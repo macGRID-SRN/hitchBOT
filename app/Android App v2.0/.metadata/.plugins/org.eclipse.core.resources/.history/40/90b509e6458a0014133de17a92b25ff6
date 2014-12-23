@@ -70,7 +70,7 @@ public class SpeechIn implements RecognitionListener {
 							.findViewById(R.id.textViewCaption))
 							.setText("Failed to init recognizer " + result);
 				} else {
-					switchSearch(Config.searchName);
+					switchSearch(KWS_SEARCH);
 				}
 			}
 		}.execute();

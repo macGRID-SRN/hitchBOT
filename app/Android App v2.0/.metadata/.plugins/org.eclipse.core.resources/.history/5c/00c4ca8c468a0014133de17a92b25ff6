@@ -73,7 +73,7 @@ public class HitchActivity extends ActionBarActivity {
 				
 			}
         	
-        }, Config.THIRTY_SECONDS);
+        }, Config.FIFTEEN_MINUTES);
         
         internetHandler = new Handler();
         internetHandler.postDelayed(new Runnable()
@@ -84,13 +84,12 @@ public class HitchActivity extends ActionBarActivity {
         		if(Config.networkAvailable())
         		{
         			List<HttpPostDb> queue = Config.dQ.serverUploadQueue();
-        			HttpPostDb[] dbArray = new HttpPostDb[queue.size()];
-        			new DataUpload().execute(queue.toArray(dbArray));
+        			new DataUpload().execute((HttpPostDb[])queue.toArray());
         			new DataDownload().execute(Config.cleverGET);
         			internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
         		}
         	}
-        }, Config.THIRTY_SECONDS);
+        }, Config.FIFTEEN_MINUTES);
         
         pictureHandler = new Handler();
         pictureHandler.postDelayed(new Runnable()
@@ -102,7 +101,7 @@ public class HitchActivity extends ActionBarActivity {
 				pictureHandler.postDelayed(this, Config.FIFTEEN_MINUTES);			
 			}
         	
-        }, Config.THIRTY_SECONDS);
+        }, Config.FIFTEEN_MINUTES);
     }
     
 }

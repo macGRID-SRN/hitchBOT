@@ -21,6 +21,7 @@ import static edu.cmu.pocketsphinx.SpeechRecognizerSetup.defaultSetup;
 
 public class SpeechIn implements RecognitionListener {
 
+	private static final String KWS_SEARCH = "wakeup";
 
 	private SpeechRecognizer recognizer;
 	private HashMap<String, Integer> captions;
@@ -45,7 +46,7 @@ public class SpeechIn implements RecognitionListener {
 
 		// Prepare the data for UI
 		captions = new HashMap<String, Integer>();
-		captions.put(Config.searchName, 0);
+		captions.put(KWS_SEARCH, 0);
 		((TextView) ((HitchActivity) Config.context)
 				.findViewById(R.id.textViewCaption))
 				.setText("Preparing the recognizer");
@@ -70,7 +71,7 @@ public class SpeechIn implements RecognitionListener {
 							.findViewById(R.id.textViewCaption))
 							.setText("Failed to init recognizer " + result);
 				} else {
-					switchSearch(Config.searchName);
+					switchSearch(KWS_SEARCH);
 				}
 			}
 		}.execute();

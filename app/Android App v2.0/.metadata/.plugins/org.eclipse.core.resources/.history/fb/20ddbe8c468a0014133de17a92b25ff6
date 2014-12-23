@@ -1,7 +1,5 @@
 package com.example.hitchbot.Speech;
 
-import com.example.hitchbot.Config;
-
 public class SpeechController {
 	/*
 	 * The purpose of this class is to: 
@@ -13,27 +11,8 @@ public class SpeechController {
 	private SpeechOut speechOut;
 
 	public SpeechController() {
-		CleverScriptHelper csh = new CleverScriptHelper(Config.cleverDB, Config.cleverAPIKey);
 		speechIn = new SpeechIn();
 		speechOut = new SpeechOut();
-		speechIn.setSpeechOut(speechOut);
-		speechIn.setCleverScript(csh);
-		speechOut.setSpeechIn(speechIn);
-	}
-
-	public void beginSpeechCycle()
-	{
-		speechIn.switchSearch(Config.searchName);
-	}
-	
-	public void askToRecordAudio()
-	{
-		
-	}
-	
-	public void pauseSpeechCycle()
-	{
-		
 	}
 
 }

@@ -34,7 +34,7 @@ public class TakePicture {
 	private void setUpCamera() {
 		cameraPreview = new CameraPreview((HitchActivity) Config.context, this);
 		imageResult = new ImageView(
-				Config.context.getApplicationContext());
+				(HitchActivity) Config.context.getApplicationContext());
 
 		imageResult.setBackgroundColor(Color.GRAY);
 		frameNew = (FrameLayout) ((HitchActivity) Config.context)
