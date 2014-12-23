@@ -1,5 +1,7 @@
 package com.example.hitchbot.Models;
 
+import android.util.Log;
+
 import com.example.hitchbot.Config;
 
 public class FileUploadDb {
@@ -9,6 +11,7 @@ public class FileUploadDb {
 	private int fileType;
 	private int uploadToServer;
 	private String dateCreated;
+	private static String TAG = "FileUploadDb";
 
 	public FileUploadDb(int ID, String uri, 
 			int uploadToServer, String dateCreated, int uploadType)
@@ -28,7 +31,7 @@ public class FileUploadDb {
 	}
 
 	public FileUploadDb() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public String getUri() {
@@ -36,6 +39,7 @@ public class FileUploadDb {
 	}
 
 	public void setUri(String uri) {
+		Log.i(TAG, uri + " THAT IS THE URI");
 		this.uri = uri;
 	}
 

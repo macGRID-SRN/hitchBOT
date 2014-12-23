@@ -13,6 +13,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseQueue extends SQLiteOpenHelper{
 	
@@ -36,6 +37,9 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 	//because writing to sqlite across threads sucks
 	private static final ReadWriteLock rwLock = new ReentrantReadWriteLock(true);
 	private static DatabaseQueue db;
+	
+	
+	private static String TAG = "Database";
 	
 	public DatabaseQueue(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -87,14 +91,15 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 			if(cursor.moveToFirst())
 			{
 				do{
-					FileUploadDb htpD = new FileUploadDb();
-					htpD.setID(Integer.parseInt(cursor.getString(0)));
-					htpD.setUri(cursor.getString(1));
-					htpD.setUploadToServer(Integer.parseInt(cursor.getString(2)));
-					htpD.setFileType((Integer.parseInt(cursor.getString(3))));
-					htpD.setDateCreated(cursor.getString(4));
+					FileUploadDb fileUpload = new FileUploadDb();
+					fileUpload.setID(Integer.parseInt(cursor.getString(0)));
+					fileUpload.setUri(cursor.getString(1));
+					Log.i(TAG, cursor.getString(1));
+					fileUpload.setUploadToServer(Integer.parseInt(cursor.getString(2)));
+					fileUpload.setFileType((Integer.parseInt(cursor.getString(3))));
+					fileUpload.setDateCreated(cursor.getString(4));
 					
-					databasePosts.add(htpD);
+					databasePosts.add(fileUpload);
 					
 				}while(cursor.moveToNext());
 				cursor.close();
@@ -317,6 +322,8 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 		//dangerous use only in extreme circumstances
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_HTTPPOSTQUEUE, null, null);
+		db.delete(TABLE_FILEUPLOAD, null, null);
+
 		db.close();
 	}
 	

@@ -12,3 +12,6 @@
 1419320340500	Encapsulate field 'fileType'
 1419320348332	Encapsulate field 'uploadToServer'
 1419320916881	Encapsulate field 'ID'
+1419321235731	Rename type 'DataPOST'
+1419321246106	Rename type 'DataGET'
+1419321254117	Rename type 'DataPOST1'

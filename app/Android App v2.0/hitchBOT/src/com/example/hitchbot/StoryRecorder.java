@@ -2,6 +2,8 @@ package com.example.hitchbot;
 
 import java.io.IOException;
 
+import com.example.hitchbot.Models.FileUploadDb;
+
 import android.media.MediaRecorder;
 import android.os.Environment;
 import android.os.Handler;
@@ -52,7 +54,8 @@ public class StoryRecorder {
 			@Override
 			public void run() {
 				stopRecording();
-				//TODO queue up filename
+				FileUploadDb insert = new FileUploadDb(mFileName, 0 , 0);
+				Config.dQ.addItemToQueue(insert);
 			}
    		
    	}, Config.THIRTY_SECONDS);

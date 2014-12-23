@@ -18,6 +18,7 @@ public final class Config {
 	public static int TEN_MINUTES = 1000 * 60 * 30;
 	public static int THREE_HOURS = 1000 * 60 * 60 * 3;
 	public static int THIRTY_SECONDS = 1000 * 30;
+	public static int ONE_MINUTE = 1000 * 60;
 	public static DatabaseQueue dQ;
 
 	public static String searchName = "searchName";

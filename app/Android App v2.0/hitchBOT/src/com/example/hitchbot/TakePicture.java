@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.example.hitchbot.Models.FileUploadDb;
 import com.example.hitchbot.Models.HttpPostDb;
 
 import android.graphics.Bitmap;
@@ -75,8 +76,9 @@ public class TakePicture {
 			takePicture = false;
 			File pictureFile = getOutputMediaFile();
 			Uri imageUri = Uri.fromFile(pictureFile);
-			HttpPostDb insert = new HttpPostDb();
-			// TODO QUEUE up uri
+			Log.i(TAG, imageUri.toString());
+			FileUploadDb insert = new FileUploadDb(pictureFile.getAbsolutePath(), 0,1);
+			Config.dQ.addItemToQueue(insert);
 			FileOutputStream fos;
 			try {
 				fos = new FileOutputStream(pictureFile);

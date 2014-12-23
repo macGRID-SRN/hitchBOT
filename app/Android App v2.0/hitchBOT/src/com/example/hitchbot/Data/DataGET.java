@@ -1,86 +1,63 @@
 package com.example.hitchbot.Data;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-
-import com.example.hitchbot.Config;
-import com.example.hitchbot.Models.*;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class DataGET extends AsyncTask<HttpPostDb, Void, Boolean> {
-	
-	private String TAG = "DataComunnication";
+public class DataGET extends AsyncTask<String, Void, String>{
 
+	private static String TAG = "DataDownload";
+	
 	public DataGET()
 	{
 		
 	}
 	
 	@Override
-	protected Boolean doInBackground(HttpPostDb... params) {
-		for(int i = 0; i < params.length ; i ++){
-			HttpClient hC = new DefaultHttpClient();
-			HttpPost hP = new HttpPost(params[i].getUri());
-			Log.i(TAG, params[i].getUri() );
+	protected String doInBackground(String... uri) {
+		HttpClient httpclient = new DefaultHttpClient();
+	    HttpResponse response;
+	    String responseString = null;
+	    try {
+	        response = httpclient.execute(new HttpGet(uri[0]));
+	        StatusLine statusLine = response.getStatusLine();
+	        if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+	            ByteArrayOutputStream out = new ByteArrayOutputStream();
+	            response.getEntity().writeTo(out);
+	            out.close();
+	            responseString = out.toString();
+	            return responseString;
 
-			if (params[i].getHeader() != null)
-			{
-				for(int j = 0; j < params[i].getHeader().size(); j ++)
-				{
-			hP.addHeader(params[i].getHeader().get(j).getName(),params[i].getHeader().get(j).getValue());
-			Log.i(TAG, "header isn't null" );
-				}
-			}
-			
-			try
-			{
-				if(params[i].getBody() != null)
-				{
-				hP.setEntity(new UrlEncodedFormEntity(params[i].getBody(), HTTP.UTF_8));
-				}
-				
-				HttpResponse hR = hC.execute(hP);
-				String responseCheck = EntityUtils.toString(hR.getEntity());
-				Log.i(TAG, responseCheck );
-				
-				if(responseCheck.equals("true"))
-				{
-					Config.dQ.markAsUploadedToServer(params[i]);
-				}
+	        } else{
+	            //Closes the connection.
+	            response.getEntity().getContent().close();
+	        }
+	    } catch (IOException e) {
+	        return null;
+	    }
+	   
+		return responseString;
+	}
 
-			}
-			catch(ClientProtocolException e)
-			{
-				Log.i(TAG, e.toString() );
-			}
-			catch(IOException e)
-			{
-				Log.i(TAG, e.toString() );
-			}
-		}
-		return true;
+	@Override
+	protected void onPostExecute(String result) {
+	    super.onPostExecute(result);
+	    if(result != null)
+	    {
+		Log.i(TAG, result + " ");
+	    //TODO do somethign with json result
+	    }							
+
 	}
 	
-	@Override
-	protected void onPostExecute(Boolean result) {
-		if(result)
-		{
-			//Config.dQ.markAsUploadedToServer(httpPost);
-		}
-		else
-		{
-			//do nothing (stays in queue)
-		}
-	}
-
 }
+
