@@ -22,31 +22,17 @@ public class FileUpload implements Runnable {
 	private String Description;
 	private String filePath;
 	private static String TAG = "FileUpload";
-	private String fileExtension;
 
 	byte[] dataToServer;
 	FileInputStream fileInputStream = null;
 
-	//fileType =1 corresponds to image, fileType = 0 corresponds to audio
 	public FileUpload(String urlString, String vTitle, String vDesc,
-			String filePath, int fileType) {
+			String filePath) {
 		try {
 			connectURL = new URL(urlString);
 			Title = vTitle;
 			Description = vDesc;
 			this.filePath = filePath;
-			switch(fileType)
-			{
-			case 0:
-				fileExtension = ".mp4";
-				break;
-			case 1:
-				fileExtension = ".jpg";
-				break;
-				default:
-					fileExtension = ".mp4";
-					break;
-			}
 		} catch (Exception ex) {
 			Log.i(TAG, "URL Malformatted");
 		}
@@ -65,7 +51,7 @@ public class FileUpload implements Runnable {
 
 	@Override
 	public void run() {
-		String iFileName = Config.getUtcDate() + fileExtension;
+		String iFileName = Config.getUtcDate() + ".mp4";
 		String lineEnd = "\r\n";
 		String twoHyphens = "--";
 		String boundary = "*****";

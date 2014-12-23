@@ -7,3 +7,7 @@
 1419300621509	Move compilation unit
 1419300883802	Rename type 'DataUpload'
 1419300893490	Rename type 'DataDownload'
+1419320252854	Encapsulate field 'uri'
+1419320261662	Encapsulate field 'dateCreated'
+1419320340500	Encapsulate field 'fileType'
+1419320348332	Encapsulate field 'uploadToServer'

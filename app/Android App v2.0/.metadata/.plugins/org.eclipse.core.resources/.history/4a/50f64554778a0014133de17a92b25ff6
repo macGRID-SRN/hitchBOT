@@ -22,15 +22,8 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 	public static final String COLUMN_UPLOADTYPE = " UploadType";
 	public static final String COLUMN_DATE = "DateCreated";
 	
-	public static final String TABLE_FILEUPLOAD = "FileUpload";
-	public static final String COLUMN_FILEID = "_id";
-	public static final String COLUMN_FILEURI = "URI";
-	public static final String COLUMN_UPLOADED_TO_SERVER = "UploadToServer";
-	public static final String COLUMN_FILETYPE = " UploadType";
-	public static final String COLUMN_DATECREATED = "DateCreated";
-	
 	private static final String DATABASE_NAME = "hitchBOT.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 1;
 	
 	//because writing to sqlite across threads sucks
 	private static final ReadWriteLock rwLock = new ReentrantReadWriteLock(true);
@@ -43,30 +36,20 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 	 private static final String HTTPPOST_TABLE_CREATE = "CREATE TABLE "
 		      + TABLE_HTTPPOSTQUEUE + "(" + COLUMN_POSTID
 		      + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
-		      + COLUMN_URI + " TEXT," 
-		      + COLUMN_UPLOAD_TO_SERVER + " INTEGER," 
-		      + COLUMN_UPLOADTYPE + " INTEGER,"
+		      + COLUMN_URI + " INTEGER," 
+		      + COLUMN_UPLOAD_TO_SERVER+ " INTEGER," 
+		      + COLUMN_UPLOAD_TO_SERVER+ " INTEGER,"
 		      +COLUMN_DATE +" TEXT"+");";
 
-	 private static final String FILEUPLOAD_TABLE_CREATE = "CREATE TABLE "
-		      + TABLE_FILEUPLOAD + "(" + COLUMN_FILEID
-		      + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
-		      + COLUMN_FILEURI + " TEXT," 
-		      + COLUMN_UPLOADED_TO_SERVER+ " INTEGER," 
-		      + COLUMN_FILETYPE+ " INTEGER,"
-		      +COLUMN_DATECREATED +" TEXT"+");";
-	 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(HTTPPOST_TABLE_CREATE);
-		db.execSQL(FILEUPLOAD_TABLE_CREATE);
 		
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("DROP TABLE IF EXISTS " + TABLE_HTTPPOSTQUEUE);	
-		db.execSQL("DROP TABLE IF EXISTS " + TABLE_FILEUPLOAD);		
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_HTTPPOSTQUEUE);		
         onCreate(db);		
 
 	}
