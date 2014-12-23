@@ -40,6 +40,15 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImage.SubmitPassword">
+            <summary>
+            SubmitPassword control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImage.lblError">
             <summary>
             lblError control.
@@ -49,9 +58,9 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImage.SubmitPassword">
+        <member name="F:hitchbotAPI.ApproveImage.errorAlert">
             <summary>
-            SubmitPassword control.
+            errorAlert control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -1065,6 +1074,12 @@
             <param name="TimeTaken">When HitchBot heard this.</param>
             <returns>The ID of the newly created ListenEvent.</returns>
         </member>
+        <member name="M:hitchbotAPI.Controllers.ImageController.PostImage">
+            <summary>
+            Accepts an Image from the tablet.
+            </summary>
+            <returns>Success</returns>
+        </member>
         <member name="M:hitchbotAPI.Controllers.LocationController.GetGoogleMapsRoute(System.Int32)">
             <summary>
             Redirects to a static GMAPS image which is the total path of a HitchBot. Note: We can only build this map 25,000 times per day.
@@ -1170,6 +1185,14 @@
             </summary>
             <param name="HitchBotLocationsID">The ID of the HitchBot to get all the Locations for.</param>
             <returns>A list of all the Locations, sorted.</returns>
+        </member>
+        <member name="M:hitchbotAPI.Helpers.AzureBlobHelper.ShouldJsBeRebuilt(System.String,System.Int32)">
+            <summary>
+            Determines if the javascript file containing the map data should be rebuilt based on the time passed since it was last built.
+            </summary>
+            <param name="fileName">the filename of the javascript file that may need to be rebuilt.</param>
+            <param name="ID">The ID if the javascript file (also the hitcbotID) to determine if it needs to be rebuilt</param>
+            <returns></returns>
         </member>
         <member name="T:hitchbotAPI.Helpers.Location.GoogleMapsBuilder">
             <summary>

@@ -64,6 +64,38 @@ namespace hitchbotAPI.Controllers
             return true;
         }
 
+        /// <summary>
+        /// Accepts an Image from the tablet.
+        /// </summary>
+        /// <returns>Success</returns>
+        public Task<HttpResponseMessage> PostImage()
+        {
+            HttpRequestMessage request = this.Request;
+            if (!request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            string root = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/uploads/img");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            var task = request.Content.ReadAsMultipartAsync(provider).
+                ContinueWith<HttpResponseMessage>(o =>
+                {
+
+                    string file1 = provider.FileData.First().LocalFileName;
+                    // this is the file name on the server where the file was saved this should be passed on to upload it to azure
+
+                    return new HttpResponseMessage()
+                    {
+                        Content = new StringContent("File uploaded.")
+                    };
+                }
+            );
+            //TODO: Actually upload the image to azure blob (very easy code, the question is how to thread it).
+            return task;
+        } 
+
         [HttpPost]
         public bool AcceptImage(int ImageAcceptID)
         {
