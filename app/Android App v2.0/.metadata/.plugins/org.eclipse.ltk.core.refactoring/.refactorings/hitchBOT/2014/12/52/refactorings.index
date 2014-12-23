@@ -2,3 +2,4 @@
 1419211513537	Encapsulate field 'isListening'
 1419223727828	Rename type 'DataCommunication'
 1419224269134	Delete element
+1419296958426	Encapsulate field 'isSpeaking'

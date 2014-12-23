@@ -29,11 +29,6 @@ public class CleverScriptHelper {
 		//TODO Load default variables
 	}
 	
-	public String getResponseFromCleverScript(String message)
-	{
-		return cs.sendMessage(message);
-	}
-	
 	public void getInformationForVariables(String jsonString)
 	{
 		if(jsonString != null)
