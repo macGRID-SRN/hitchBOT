@@ -12,7 +12,7 @@ import android.speech.tts.UtteranceProgressListener;
 
 public class SpeechOut {
 
-	public TextToSpeech mTts;
+	private TextToSpeech mTts;
 	private boolean isSpeaking;
 	private SpeechIn speechIn;
 

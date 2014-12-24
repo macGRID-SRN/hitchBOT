@@ -45,7 +45,7 @@ public class StoryRecorder {
        mRecorder = null;
    }
    
-   public void recordSixty()
+   public void recordThirty()
    {
 		startRecording();
 
@@ -56,11 +56,9 @@ public class StoryRecorder {
 				stopRecording();
 				FileUploadDb insert = new FileUploadDb(mFileName, 0 , 0);
 				Config.dQ.addItemToQueue(insert);
-				Config.cH.cs.assignVariable("audio_on", "false");
-				Config.cH.sendCleverScriptResponse("done");
 			}
    		
-   	}, Config.ONE_MINUTE);
+   	}, Config.THIRTY_SECONDS);
    	
    }
    

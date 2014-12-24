@@ -57,6 +57,7 @@ public class StoryRecorder {
 				FileUploadDb insert = new FileUploadDb(mFileName, 0 , 0);
 				Config.dQ.addItemToQueue(insert);
 				Config.cH.cs.assignVariable("audio_on", "false");
+				//TODO send output to tts.
 				Config.cH.sendCleverScriptResponse("done");
 			}
    		

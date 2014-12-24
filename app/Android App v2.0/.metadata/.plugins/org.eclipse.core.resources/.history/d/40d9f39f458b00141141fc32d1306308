@@ -80,10 +80,6 @@ public class SpeechIn implements RecognitionListener {
 		recognizer.stop();
 	}
 
-	public void pauseRecognizer()
-	{
-		recognizer.cancel();
-	}
 	private void setupRecognizer(File assetsDir) {
 		File modelsDir = new File(assetsDir, "models");
 		recognizer = defaultSetup()
