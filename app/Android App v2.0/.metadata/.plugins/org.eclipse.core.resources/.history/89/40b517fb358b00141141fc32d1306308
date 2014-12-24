@@ -12,7 +12,6 @@ public class CleverScriptHelper {
 
 	public CleverscriptAPI cs;
 	private static String TAG = "CleverScriptHelper";
-	private SpeechOut speechOut;
 	
 	public CleverScriptHelper(String db, String APIkey)
 	{
@@ -24,20 +23,10 @@ public class CleverScriptHelper {
 	    loadVariables();
 	}
 
-	public void setSpeechOut(SpeechOut speechOut)
-	{
-		this.speechOut = speechOut;
-	}
-	
 	public void loadVariables()
 	{
 
 		//TODO Load default variables
-	}
-	
-	public void sendCleverScriptResponse(String message)
-	{
-		speechOut.Speak(cs.sendMessage(message));
 	}
 	
 	public String getResponseFromCleverScript(String message)
