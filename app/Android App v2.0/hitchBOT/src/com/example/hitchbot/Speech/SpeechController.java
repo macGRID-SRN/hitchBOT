@@ -1,5 +1,8 @@
 package com.example.hitchbot.Speech;
 
+import java.util.Locale;
+
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 
 import com.example.hitchbot.Config;
@@ -13,16 +16,21 @@ public class SpeechController {
 	 */
 	private SpeechIn speechIn;
 	private SpeechOut speechOut;
+	private CleverScriptHelper csh;
 
+	private Handler storyHandler;
+	
 	public SpeechController() {
-		CleverScriptHelper csh = new CleverScriptHelper(Config.cleverDB,
-				Config.cleverAPIKey);
+		csh = new CleverScriptHelper(Config.cleverDB, Config.cleverAPIKey);
 		speechIn = new SpeechIn();
 		speechOut = new SpeechOut();
 		csh.setSpeechOut(speechOut);
 		speechIn.setSpeechOut(speechOut);
 		speechIn.setCleverScript(csh);
 		speechOut.setSpeechIn(speechIn);
+		storyHandler = new Handler();
+		beginSpeechCycle();
+		setupHandlers();
 	}
 
 	public void beginSpeechCycle() {
@@ -31,14 +39,39 @@ public class SpeechController {
 
 	@SuppressWarnings("deprecation")
 	public void askToRecordAudio() {
-		speechOut.mTts.speak("I will now record your life story for 60 seconds",
-				TextToSpeech.QUEUE_FLUSH, null);
-		
-		final StoryRecorder rlS = new StoryRecorder();
-		rlS.recordSixty();
-		
+		csh.sendCleverScriptResponse("tell me a story please please");
+		String response = csh.getRecentInput();
+		response = response.toLowerCase(Locale.CANADA);
+		if (!response.contains("no")) {
+			speechOut.mTts.speak(
+					"I will now record your life story for 60 seconds",
+					TextToSpeech.QUEUE_FLUSH, null);
+
+			final StoryRecorder rlS = new StoryRecorder();
+			rlS.recordSixty();
+		}
+		else
+		{
+			csh.sendCleverScriptResponse("hello world");
+		}
+
 	}
 
+	private void setupHandlers()
+	{
+		storyHandler.postDelayed(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				pauseSpeechCycle();
+				askToRecordAudio();
+				storyHandler.postDelayed(this, Config.FORTYFIVE_MINUTES);
+			}
+			
+		}, Config.ONE_MINUTE);
+	}
+	
 	public void pauseSpeechCycle() {
 		while (speechOut.isSpeaking()) {
 

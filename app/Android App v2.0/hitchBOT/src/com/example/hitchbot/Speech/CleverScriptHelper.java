@@ -45,6 +45,11 @@ public class CleverScriptHelper {
 		return cs.sendMessage(message);
 	}
 	
+	public String getRecentInput()
+	{
+		return cs.retrieveVariable("input");
+	}
+	
 	public void getInformationForVariables(String jsonString)
 	{
 		if(jsonString != null)

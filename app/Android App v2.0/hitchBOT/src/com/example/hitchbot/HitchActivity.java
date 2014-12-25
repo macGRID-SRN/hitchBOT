@@ -9,6 +9,7 @@ import com.example.hitchbot.Data.DataPOST;
 import com.example.hitchbot.Data.FileUpload;
 import com.example.hitchbot.Models.FileUploadDb;
 import com.example.hitchbot.Models.HttpPostDb;
+import com.example.hitchbot.Speech.SpeechController;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 public class HitchActivity extends ActionBarActivity {
 
 	public TakePicture tP;
+	private SpeechController speechController;
 	private Handler pictureHandler;
 	private Handler dataCollectionHandler;
 	private Handler internetHandler;
@@ -35,6 +37,7 @@ public class HitchActivity extends ActionBarActivity {
 		Config.dQ = DatabaseQueue.getHelper(this);
 		Config.dQ.launchMissles();
 		tP = new TakePicture();
+		speechController = new SpeechController();
 		setupHandlers();
 
 	}

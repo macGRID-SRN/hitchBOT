@@ -21,12 +21,13 @@ public final class Config {
 	public static int THREE_HOURS = 1000 * 60 * 60 * 3;
 	public static int THIRTY_SECONDS = 1000 * 30;
 	public static int ONE_MINUTE = 1000 * 60;
+	public static int FORTYFIVE_MINUTES = 1000 * 60 * 45;
 	public static DatabaseQueue dQ;
 	public static CleverScriptHelper cH = null;
 
 	public static String searchName = "searchName";
-	public static String cleverAPIKey = "";
-	public static String cleverDB = "";
+	public static String cleverAPIKey = "qd31e174e42eae67c071e5d617b5bc66c0642";
+	public static String cleverDB = "hbtestG1.db";
 	
 	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image";
 	public static String cleverGET = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
