@@ -29,6 +29,7 @@ public class SpeechController {
 		speechIn.setCleverScript(csh);
 		speechOut.setSpeechIn(speechIn);
 		storyHandler = new Handler();
+		beginSpeechCycle();
 		setupHandlers();
 	}
 

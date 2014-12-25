@@ -22,7 +22,7 @@ public class SpeechOut {
 					@Override
 					public void onInit(int status) {
 						if (status != TextToSpeech.ERROR) {
-							mTts.setLanguage(Locale.CANADA);
+							mTts.setLanguage(Locale.GERMAN);
 							mTts.setPitch((float) 1.0);
 							setTtsListener();
 						}

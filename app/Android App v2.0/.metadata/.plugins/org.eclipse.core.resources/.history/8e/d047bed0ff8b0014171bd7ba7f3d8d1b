@@ -88,7 +88,7 @@ public class SpeechIn implements RecognitionListener {
 		File modelsDir = new File(assetsDir, "models");
 		recognizer = defaultSetup()
 				.setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-				.setDictionary(new File(modelsDir, "dict/9624.dic"))
+				.setDictionary(new File(modelsDir, "dict/cmu07a.dic"))
 				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
 				.getRecognizer();
 		recognizer.addListener(this);
@@ -101,8 +101,8 @@ public class SpeechIn implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		 File languageModel = new File(modelsDir, "lm/9624.dmp");
-		 recognizer.addNgramSearch(Config.searchName, languageModel);
+		// File languageModel = new File(modelsDir, "lm/weather.dmp");
+		// recognizer.addNgramSearch(FORECAST_SEARCH, languageModel);
 	}
 
 	public void switchSearch(String searchName) {
