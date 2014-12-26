@@ -1,0 +1,15 @@
+This is a CleverScript pre-compiler module for hitchBOT.
+The purpose of this module is to translate a tab-separated file that is ready
+for input to CleverScript, and parse that file into a language model.
+The language model output by this module consists of all of the possible
+input combinations as defined by the tab-separated input file.
+
+To run:
+raco make make-language-model.rkt
+racket make-language-model.rkt input-file output-file
+
+where input-file is some input file-name and output-file is some output file-name.
+
+E.g.,
+
+racket make-language-model.rkt hello.txt test-output
