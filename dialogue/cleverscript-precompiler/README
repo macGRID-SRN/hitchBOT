@@ -4,6 +4,8 @@ for input to CleverScript, and parse that file into a language model.
 The language model output by this module consists of all of the possible
 input combinations as defined by the tab-separated input file.
 
+Racket can be downloaded from racket-lang.org.
+
 To run:
 raco make make-language-model.rkt
 racket make-language-model.rkt input-file output-file
