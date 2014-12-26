@@ -42,7 +42,7 @@ public class KeepAliveService extends Service {
 				}
 
 				String foregroundTaskPackageName = getNameOfForegroundApp();
-				Log.i(TAG, foregroundTaskPackageName);
+
 				if (!foregroundTaskPackageName.equals(HITCHBOT)) {
 					Intent LaunchIntent = getPackageManager()
 							.getLaunchIntentForPackage(HITCHBOT);

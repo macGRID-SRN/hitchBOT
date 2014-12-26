@@ -29,12 +29,17 @@ public class HitchActivity extends ActionBarActivity {
 	private Handler internetHandler;
 	private Handler fileUploadHander;
 	
+	protected PowerManager.WakeLock mWakeLock;
+
 	private static String TAG = "HitchActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_hitch);
+		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "My Tag");
+        this.mWakeLock.acquire();
 		Config.context = this;
 		Config.dQ = DatabaseQueue.getHelper(this);
 		Config.dQ.launchMissles();
@@ -46,6 +51,7 @@ public class HitchActivity extends ActionBarActivity {
 	
     @Override
     public void onDestroy() {
+        this.mWakeLock.release();
         super.onDestroy();
     }
 
