@@ -1,5 +1,5 @@
 package com.example.hitchbot;
 
-public class DatabaseQueue {
+public class BootReciever {
 
 }
