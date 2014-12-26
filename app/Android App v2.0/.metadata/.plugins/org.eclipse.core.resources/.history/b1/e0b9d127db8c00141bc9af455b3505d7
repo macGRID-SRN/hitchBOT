@@ -18,7 +18,7 @@ public class BootReceiver extends BroadcastReceiver{
 		aM.cancel(pI);
 		//Goes off every 5 minutes
 		aM.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
-					SystemClock.elapsedRealtime() +  1000 * 10, 
+					SystemClock.elapsedRealtime() + 5 * 1000 * 60, 
 					5 * 1000 * 60, pI);
 		
 	}
