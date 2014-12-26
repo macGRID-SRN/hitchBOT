@@ -8,12 +8,12 @@ the goal of the app is to act as the "brain of hitchBOT" relaying information up
 Upstream Data
 ---
 
-- [ ] Location
-- [ ] Images (with permission)
-- [ ] Everything hB says
-- [ ] Everything hB thinks it hears
-- [ ] Verbal stories (with permission)
-- [ ] Battery and environment info
+- [x] Location
+- [x] Images (with permission)
+- [x] Everything hB says
+- [x] Everything hB thinks it hears
+- [x] Verbal stories (with permission)
+- [x] Battery and environment info
 - [ ] Exception Logging
 
 Downstream Data
@@ -25,8 +25,9 @@ Downstream Data
 Other Requirements
 ---
 
-- [ ] Queue for updates to send when a connection becomes available
-- [ ] Voice recognition to make speech system
-- [ ] Always On. Ability to stay on for as long as the tablet has power, without freezing.
+- [x] Queue for updates to send when a connection becomes available
+- [x] Voice recognition to make speech system
+- [x] Always On. Ability to stay on for as long as the tablet has power, without freezing.
 
-** note a separate application might be made as an over looker to ensure this app is functioning correctly and is on.
+<s>** note a separate application might be made as an over looker to ensure this app is functioning correctly and is on.<\s>
+A separate app (custom made) was used to modularize the always on feature, and for other technical reasons.
