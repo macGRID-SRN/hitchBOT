@@ -1,44 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LocationPortal.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.LocationPortal" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ApproveImagesPages/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="LocationPortal.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.LocationPortal" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
     <style type="text/css">
-        .auto-style1 {
-            font-size: large;
-        }
+
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <h3>
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="LandingPage.aspx">Back</asp:HyperLink>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Most Recent Location</h2>
+            
             <br />
-            Most recent (exact) location. Force Map updates.</h3>
-    <div>
-    
-        <asp:Label ID="lblLocation" runat="server" CssClass="auto-style1" Text="Current Location: "></asp:Label>
-        <br class="auto-style1" />
-        <asp:Label ID="lblGmapsOutput" runat="server" CssClass="auto-style1" Text="Region: "></asp:Label>
-        <br class="auto-style1" />
-        <asp:Label ID="lblVelocity" runat="server" CssClass="auto-style1" Text="Velocity: "></asp:Label>
-        <br class="auto-style1" />
-        <asp:Label ID="lblTime" runat="server" CssClass="auto-style1" Text="Time Taken: "></asp:Label>
-        <br />
-        <br />
-        <asp:Button ID="Button1" runat="server" Text="Force Map Generation" />
-        <br />
-        <asp:Label ID="Label1" runat="server" Text="(override auto generation)"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="lblGen" runat="server" style="font-size: large" Text="Time Generated: "></asp:Label>
-        <br />
-        <br />
-        <asp:Image ID="Image1" runat="server" ImageUrl="http://hitchbotapi.azurewebsites.net/api/Location?HitchBotID=3" />
-    
+            <iframe seamless="seamless" height=600 width=850 src="DynamicMap.aspx?hbID=3" frameBorder="0"></iframe>
+        </div>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="endScripts" runat="server">
+</asp:Content>

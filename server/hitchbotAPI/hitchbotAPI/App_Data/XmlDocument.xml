@@ -391,7 +391,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.form1">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.form1">
             <summary>
             form1 control.
             </summary>
@@ -400,7 +400,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.HyperLink1">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.HyperLink1">
             <summary>
             HyperLink1 control.
             </summary>
@@ -409,7 +409,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.lblLocation">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.lblLocation">
             <summary>
             lblLocation control.
             </summary>
@@ -418,7 +418,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.lblGmapsOutput">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.lblGmapsOutput">
             <summary>
             lblGmapsOutput control.
             </summary>
@@ -427,7 +427,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.lblVelocity">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.lblVelocity">
             <summary>
             lblVelocity control.
             </summary>
@@ -436,7 +436,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.lblTime">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.lblTime">
             <summary>
             lblTime control.
             </summary>
@@ -445,7 +445,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.Button1">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.Button1">
             <summary>
             Button1 control.
             </summary>
@@ -454,7 +454,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.Label1">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.Label1">
             <summary>
             Label1 control.
             </summary>
@@ -463,7 +463,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.lblGen">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.lblGen">
             <summary>
             lblGen control.
             </summary>
@@ -472,7 +472,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.Image1">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortalOld.Image1">
             <summary>
             Image1 control.
             </summary>
