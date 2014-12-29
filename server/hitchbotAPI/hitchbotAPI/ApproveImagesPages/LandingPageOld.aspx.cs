@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace hitchbotAPI.ApproveImagesPages
 {
-    public partial class LandingPage : System.Web.UI.Page
+    public partial class LandingPageOld : System.Web.UI.Page
     {
         const int DEFAULT_PROJECT_ID = 0;
         int projectID = DEFAULT_PROJECT_ID;
@@ -28,13 +28,19 @@ namespace hitchbotAPI.ApproveImagesPages
                     if (user.Projects.FirstOrDefault() != null)
                         this.projectID = user.Projects.First().ID;
 
-                    //this.DynamicMapsTestButton.NavigateUrl = "DynamicMap.aspx?hbID=" + this.hitchbotID;
+                    this.DynamicMapsTestButton.NavigateUrl = "DynamicMap.aspx?hbID=" + this.hitchbotID;
                 }
             }
             else
             {
                 Response.Redirect("Unauthorized.aspx");
             }
+        }
+
+        protected void TextJsButton_Click(object sender, EventArgs e)
+        {
+            var builder = new Helpers.Location.GoogleMapsBuilder(this.hitchbotID, this.projectID);
+            builder.BuildJsAndUpload();
         }
     }
 }

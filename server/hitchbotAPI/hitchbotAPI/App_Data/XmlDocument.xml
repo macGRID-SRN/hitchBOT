@@ -112,36 +112,18 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.HealthStatus.form1">
-            <summary>
-            form1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.HealthStatus.HyperLink1">
-            <summary>
-            HyperLink1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.HealthStatus.Label1">
-            <summary>
-            Label1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.HealthStatus.lblLastCheckin">
             <summary>
             lblLastCheckin control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.HealthStatus.lblActualLastCheckin">
+            <summary>
+            lblActualLastCheckin control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -157,9 +139,27 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.HealthStatus.lblBatteryStatActual">
+            <summary>
+            lblBatteryStatActual control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.HealthStatus.lblBatteryTemp">
             <summary>
             lblBatteryTemp control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.HealthStatus.lblBatteryTempActual">
+            <summary>
+            lblBatteryTempActual control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -175,7 +175,16 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.form1">
+        <member name="F:hitchbotAPI.ApproveImagesPages.HealthStatus.lblIsPluggedInActual">
+            <summary>
+            lblIsPluggedInActual control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.form1">
             <summary>
             form1 control.
             </summary>
@@ -184,7 +193,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.HyperLink1">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.HyperLink1">
             <summary>
             HyperLink1 control.
             </summary>
@@ -193,7 +202,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.HyperLink2">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.HyperLink2">
             <summary>
             HyperLink2 control.
             </summary>
@@ -202,7 +211,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.HyperLink6">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.HyperLink6">
             <summary>
             HyperLink6 control.
             </summary>
@@ -211,7 +220,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.HyperLink5">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.HyperLink5">
             <summary>
             HyperLink5 control.
             </summary>
@@ -220,7 +229,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.HyperLink3">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.HyperLink3">
             <summary>
             HyperLink3 control.
             </summary>
@@ -229,7 +238,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.HyperLink4">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.HyperLink4">
             <summary>
             HyperLink4 control.
             </summary>
@@ -238,7 +247,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.BulletedList1">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.BulletedList1">
             <summary>
             BulletedList1 control.
             </summary>
@@ -247,7 +256,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.TextJsButton">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.TextJsButton">
             <summary>
             TextJsButton control.
             </summary>
@@ -256,7 +265,7 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPage.DynamicMapsTestButton">
+        <member name="F:hitchbotAPI.ApproveImagesPages.LandingPageOld.DynamicMapsTestButton">
             <summary>
             DynamicMapsTestButton control.
             </summary>
@@ -1315,6 +1324,15 @@
         <member name="F:hitchbotAPI.Unauthorized.form1">
             <summary>
             form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.Unauthorized.HyperLink1">
+            <summary>
+            HyperLink1 control.
             </summary>
             <remarks>
             Auto-generated field.

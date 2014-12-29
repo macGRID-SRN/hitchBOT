@@ -1,37 +1,41 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HealthStatus.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.HealthStatus" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ApproveImagesPages/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="HealthStatus.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.HealthStatus" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
+    <div class="container">
+        <div class="jumbotron">
+            <h2>hitchBOT Health Status</h2>
+            <p>&nbsp;</p>
+            <dl class="dl-horizontal">
+                <dt>
+                    <asp:Label ID="lblLastCheckin" runat="server" Text="Last Check-In Time: "></asp:Label>
+                </dt>
+                <dd>
+                    <asp:Label ID="lblActualLastCheckin" runat="server"></asp:Label>
+                </dd>
+                <dt>
+                    <asp:Label ID="lblBatteryStat" runat="server" Text="Battery Percentage: "></asp:Label>
+                </dt>
+                <dd>
+                    <asp:Label ID="lblBatteryStatActual" runat="server"></asp:Label>
+                </dd>
+                <dt>
+                    <asp:Label ID="lblBatteryTemp" runat="server" Text="Battery Temperature: "></asp:Label>
+                </dt>
+                <dd>
+                    <asp:Label ID="lblBatteryTempActual" runat="server"></asp:Label>
+                </dd>
+                <dt>
+                    <asp:Label ID="lblIsPluggedIn" runat="server" Text="Charging: "></asp:Label>
+                </dt>
+                <dd>
+                    <asp:Label ID="lblIsPluggedInActual" runat="server"></asp:Label>
+                </dd>
+            </dl>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-        <p>
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="LandingPage.aspx">Back</asp:HyperLink>
-        </p>
-        <h2>
-            <asp:Label ID="Label1" runat="server" Text="hitchBOT Health Status"></asp:Label>
-        </h2>
-        <p>
-            &nbsp;</p>
-        <h3>
-            <asp:Label ID="lblLastCheckin" runat="server" Text="Last Check-In Time: "></asp:Label>
-        </h3>
-        <h3>
-            <asp:Label ID="lblBatteryStat" runat="server" Text="Battery Percentage: "></asp:Label>
-        </h3>
-        <h3>
-            <asp:Label ID="lblBatteryTemp" runat="server" Text="Battery Temperature: "></asp:Label>
-        </h3>
-        <h3>
-            <asp:Label ID="lblIsPluggedIn" runat="server" Text="Plugged In: "></asp:Label>
-        </h3>
-    
+        </div>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="endScripts" runat="server">
+</asp:Content>
