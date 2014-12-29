@@ -1,0 +1,23 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="hitchbotAPI.ApproveImagesPages.Shared.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="StyleContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="header">
+        <asp:ContentPlaceHolder ID="headerContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div id="main">
+        <asp:ContentPlaceHolder ID="mainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+
+    <asp:ContentPlaceHolder ID="endScripts" runat="server"></asp:ContentPlaceHolder>
+</body>
+</html>

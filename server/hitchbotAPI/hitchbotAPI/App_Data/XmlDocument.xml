@@ -508,6 +508,78 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Shared.Main.StyleContent">
+            <summary>
+            StyleContent control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Shared.Main.headerContent">
+            <summary>
+            headerContent control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Shared.Main.mainContent">
+            <summary>
+            mainContent control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Shared.Main.endScripts">
+            <summary>
+            endScripts control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Shared.PageWithHeader.ButtonLogOut">
+            <summary>
+            ButtonLogOut control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Shared.PageWithHeader.StyleContent">
+            <summary>
+            StyleContent control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Shared.PageWithHeader.mainContent">
+            <summary>
+            mainContent control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Shared.PageWithHeader.endScripts">
+            <summary>
+            endScripts control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.ViewImages.form1">
             <summary>
             form1 control.

@@ -239,12 +239,33 @@
     <Compile Include="ApproveImagesPages\LocationPortal.aspx.designer.cs">
       <DependentUpon>LocationPortal.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\NewLandingPage.aspx.cs">
+      <DependentUpon>NewLandingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\NewLandingPage.aspx.designer.cs">
+      <DependentUpon>NewLandingPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\SavedImages.aspx.cs">
       <DependentUpon>SavedImages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ApproveImagesPages\SavedImages.aspx.designer.cs">
       <DependentUpon>SavedImages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveImagesPages\Shared\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\Shared\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveImagesPages\Shared\PageWithHeader.master.cs">
+      <DependentUpon>PageWithHeader.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\Shared\PageWithHeader.master.designer.cs">
+      <DependentUpon>PageWithHeader.master</DependentUpon>
     </Compile>
     <Compile Include="ApproveImagesPages\ViewImages.aspx.cs">
       <DependentUpon>ViewImages.aspx</DependentUpon>
@@ -391,6 +412,7 @@
     <Content Include="ApproveImagesPages\LedPanelDesigner.aspx" />
     <Content Include="ApproveImagesPages\LedPanelPreview.aspx" />
     <Content Include="ApproveImagesPages\LocationPortal.aspx" />
+    <Content Include="ApproveImagesPages\NewLandingPage.aspx" />
     <Content Include="ApproveImagesPages\SavedImages.aspx" />
     <Content Include="ApproveImagesPages\ViewImages.aspx" />
     <Content Include="ApproveImagesPages\ViewMap.aspx" />
@@ -437,6 +459,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="ApproveImagesPages\Shared\Main.Master" />
+    <Content Include="ApproveImagesPages\Shared\PageWithHeader.master" />
     <None Include="Properties\PublishProfiles\hitchbotAPI %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\hitchbotAPI.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js">

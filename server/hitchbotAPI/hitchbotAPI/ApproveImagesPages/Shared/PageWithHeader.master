@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/ApproveImagesPages/Shared/Main.Master" AutoEventWireup="true" CodeBehind="PageWithHeader.master.cs" Inherits="hitchbotAPI.ApproveImagesPages.Shared.PageWithHeader" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="headerContent" runat="server">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Home</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Map <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Tweets</a></li>
+                    <li><a href="HealthStatus.aspx">Tablet Status</a></li>
+                    <%--        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>--%>
+                </ul>
+                <%--<form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    
+                </form>--%>
+                <form class="navbar-form navbar-right" runat="server">
+                    <asp:Button ID="ButtonLogOut" runat="server" Text="Log Out" OnClick="ButtonLogOut_Click" class="btn btn-default"/>
+                </form>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="StyleContent" runat="server">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="StyleContent" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
+    <asp:ContentPlaceHolder ID="mainContent" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="endScripts" runat="server">
+    <%-- This is scripts which are needed at the bottom of the page. --%>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="endScripts" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
