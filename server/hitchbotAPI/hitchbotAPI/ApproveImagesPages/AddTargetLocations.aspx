@@ -16,10 +16,13 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
     </script>
     <script type="text/javascript">
-
+        var markerCircle;
+        var marker;
+        var map;
         //updates the displayed coords to work with 
         function UpdateCoordsOnPage(latlng) {
 
+            markerCircle.setCenter(latlng);
             $(".latValue").text(latlng.lat());
             $(".lngValue").text(latlng.lng());
         }
@@ -32,10 +35,10 @@
                 zoom: 5
             };
 
-            var map = new google.maps.Map(document.getElementById('map-canvas'),
+            map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
 
-            var marker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
                 draggable: true,
@@ -46,11 +49,23 @@
                 UpdateCoordsOnPage(marker.getPosition());
             });
 
+            var circleOptions = {
+                strokeColor: '#0000FF',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#0000FF',
+                fillOpacity: 0.35,
+                map: map,
+                center: myLatlng,
+                radius: 15000
+            };
+
+            markerCircle = new google.maps.Circle(circleOptions);
+
             UpdateCoordsOnPage(marker.getPosition());
         }
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <div class="container">
@@ -77,6 +92,22 @@
             </dl>
 
             <form>
+                <%-- This code was borrowed from http://www.bootply.com/katie/9CvIygzob8 --%>
+                <div class="form-group">
+                    <label for="inputRadius">Select A Radius</label>
+                    <div class="btn-group" id="inputRadius">
+                        <a class="btn btn-default dropdown-toggle btn-select2" data-toggle="dropdown" href="#">5 km<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">10 km</a></li>
+                            <li><a href="#">15 km</a></li>
+                            <li><a href="#">25 km</a></li>
+                            <li><a href="#">50 km</a></li>
+                            <li><a href="#">75 km</a></li>
+                            <li><a href="#">100 km</a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="inputName">Location Name</label>
                     <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Location">
@@ -99,4 +130,15 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="endScripts" runat="server">
+    <script>
+        $(".dropdown-menu li a").click(function () {
+            var selText = $(this).text();
+            $(this).parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+        });
+
+        $("#btnSearch").click(function () {
+            alert($('.btn-select').text() + ", " + $('.btn-select2').text());
+        });
+
+    </script>
 </asp:Content>
