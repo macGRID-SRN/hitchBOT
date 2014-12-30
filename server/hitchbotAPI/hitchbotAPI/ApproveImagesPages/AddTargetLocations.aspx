@@ -16,6 +16,8 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
     </script>
     <script type="text/javascript">
+
+        //updates the displayed coords to work with 
         function UpdateCoordsOnPage(latlng) {
 
             $(".latValue").text(latlng.lat());
@@ -24,7 +26,7 @@
 
         function initialize() {
             var myLatlng = new google.maps.LatLng(50.983027, 10.445880);
-            
+
             var mapOptions = {
                 center: myLatlng,
                 zoom: 5
@@ -43,6 +45,8 @@
             google.maps.event.addListener(marker, 'drag', function () {
                 UpdateCoordsOnPage(marker.getPosition());
             });
+
+            UpdateCoordsOnPage(marker.getPosition());
         }
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
@@ -71,6 +75,26 @@
                     <asp:Label ID="lblLongValue" runat="server" class="lngValue"></asp:Label>
                 </dd>
             </dl>
+
+            <form>
+                <div class="form-group">
+                    <label for="inputName">Location Name</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Location">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Wikipedia Entry 1</label>
+                    <input type="text" class="form-control" id="inputWiki1" placeholder="Wikipedia Entry 1">
+                </div>
+                <div class="form-group">
+                    <label for="inputWiki2">Wikipedia Entry 2</label>
+                    <input type="text" class="form-control" id="inputWiki2" placeholder="Wikipedia Entry 2">
+                </div>
+                <div class="form-group">
+                    <label for="inputWiki3">Wikipedia Entry 3</label>
+                    <input type="text" class="form-control" id="inputWiki3" placeholder="Wikipedia Entry 3">
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
         </div>
     </div>
 </asp:Content>
