@@ -7,6 +7,7 @@ import com.example.hitchbot.Config;
 import com.example.hitchbot.Models.HttpPostDb;
 
 import android.media.AudioManager;
+import android.net.Uri;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 
@@ -77,7 +78,7 @@ public class SpeechOut {
 	}
 
 	private void queueSpoke(String spoke) {
-		String uri = String.format(Config.spokePOST, Config.HITCHBOT_ID, spoke,
+		String uri = String.format(Config.spokePOST, Config.HITCHBOT_ID, Uri.encode(spoke),
 				Config.getUtcDate());
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 		Config.dQ.addItemToQueue(httpPost);

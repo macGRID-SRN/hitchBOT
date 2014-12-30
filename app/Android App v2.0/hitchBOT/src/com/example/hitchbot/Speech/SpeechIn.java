@@ -10,7 +10,10 @@ import com.example.hitchbot.R;
 import com.example.hitchbot.Models.HttpPostDb;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.speech.RecognizerIntent;
 import android.widget.TextView;
 import android.widget.Toast;
 import edu.cmu.pocketsphinx.Assets;
@@ -21,16 +24,21 @@ import static edu.cmu.pocketsphinx.SpeechRecognizerSetup.defaultSetup;
 
 public class SpeechIn implements RecognitionListener {
 
-
 	private SpeechRecognizer recognizer;
 	private HashMap<String, Integer> captions;
 	private boolean isListening = false;
 	private long startTime;
 	private SpeechOut speechOut;
 	private CleverScriptHelper csh;
+	private static final int REQUEST_CODE = 1234;
 
 	public SpeechIn() {
 		initRecognizer();
+	}
+	
+	public void setIsListening(boolean isListening)
+	{
+		this.isListening = isListening;
 	}
 
 	public void setSpeechOut(SpeechOut speechOut) {
@@ -80,10 +88,10 @@ public class SpeechIn implements RecognitionListener {
 		recognizer.stop();
 	}
 
-	public void pauseRecognizer()
-	{
+	public void pauseRecognizer() {
 		recognizer.cancel();
 	}
+
 	private void setupRecognizer(File assetsDir) {
 		File modelsDir = new File(assetsDir, "models");
 		recognizer = defaultSetup()
@@ -101,17 +109,24 @@ public class SpeechIn implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		 File languageModel = new File(modelsDir, "lm/9624.dmp");
-		 recognizer.addNgramSearch(Config.searchName, languageModel);
+		File languageModel = new File(modelsDir, "lm/9624.dmp");
+		recognizer.addNgramSearch(Config.searchName, languageModel);
 	}
 
 	public void switchSearch(String searchName) {
-		recognizer.stop();
-		isListening = true;
-		startTime = System.currentTimeMillis() / 1000;
-		recognizer.startListening(searchName);
-		// String caption =
-		// Config.context.getResources().getString(captions.get(searchName));
+		if (Config.networkAvailable()) {
+			isListening = true;
+			Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+	           intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+	           RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+	           Config.context.startActivityForResult(intent, REQUEST_CODE);
+		} else {
+			isListening = true;
+			startTime = System.currentTimeMillis() / 1000;
+			recognizer.startListening(searchName);
+			// String caption =
+			// Config.context.getResources().getString(captions.get(searchName));
+		}
 	}
 
 	@Override
@@ -128,23 +143,31 @@ public class SpeechIn implements RecognitionListener {
 
 	@Override
 	public void onPartialResult(Hypothesis arg0) {
-		// TODO Auto-generated method stub
-
+		getRunningTime();
 	}
 
 	@Override
 	public void onResult(Hypothesis hypothesis) {
 		((TextView) ((HitchActivity) Config.context)
 				.findViewById(R.id.textViewCaption)).setText("");
-		isListening = false;
 		if (hypothesis != null) {
 			String text = hypothesis.getHypstr();
 			Toast.makeText(Config.context.getApplicationContext(), text,
 					Toast.LENGTH_SHORT).show();
-			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID, text, Config.getUtcDate());
+			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
+					Uri.encode(text), Config.getUtcDate());
 			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 			Config.dQ.addItemToQueue(httpPost);
+			isListening = false;
 			speechOut.Speak(csh.getResponseFromCleverScript(text));
+		} else {
+			isListening = false;
+			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
+					Uri.encode("I didn't get that!"), Config.getUtcDate());
+			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
+			Config.dQ.addItemToQueue(httpPost);
+			speechOut.Speak(csh.getResponseFromCleverScript("I didn't quite catch that!"));
+
 		}
 
 	}

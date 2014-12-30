@@ -2,6 +2,7 @@ package com.example.hitchbot;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.hitchbot.Data.DataGET;
@@ -11,8 +12,12 @@ import com.example.hitchbot.Models.FileUploadDb;
 import com.example.hitchbot.Models.HttpPostDb;
 import com.example.hitchbot.Speech.SpeechController;
 
+import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
@@ -28,7 +33,10 @@ public class HitchActivity extends ActionBarActivity {
 	private Handler dataCollectionHandler;
 	private Handler internetHandler;
 	private Handler fileUploadHander;
-	
+	private static final int REQUEST_CODE = 1234;
+	Dialog match_text_dialog;
+	ArrayList<String> matches_text;
+
 	private static String TAG = "HitchActivity";
 
 	@Override
@@ -43,11 +51,11 @@ public class HitchActivity extends ActionBarActivity {
 		setupHandlers();
 
 	}
-	
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,6 +74,30 @@ public class HitchActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+			match_text_dialog = new Dialog(HitchActivity.this);
+			matches_text = data
+					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+			String message = matches_text.get(0);
+			Log.i(TAG, message);
+			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
+					Uri.encode(message), Config.getUtcDate());
+			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
+			Config.dQ.addItemToQueue(httpPost);
+			speechController.getSpeechIn().setIsListening(false);
+			Config.cH.sendCleverScriptResponse(message);
+		} else {
+			speechController.getSpeechIn().setIsListening(false);
+			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
+					Uri.encode("I didn't get that!"), Config.getUtcDate());
+			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
+			Config.dQ.addItemToQueue(httpPost);
+			Config.cH.sendCleverScriptResponse("I didn't get that!");
+		}
 	}
 
 	public void takePicture() {
@@ -126,19 +158,18 @@ public class HitchActivity extends ActionBarActivity {
 	}
 
 	public void uploadFile(final FileUploadDb[] fileUpload) {
-			fileUploadHander = new Handler();
-			fileUploadHander.post(new Runnable() {
+		fileUploadHander = new Handler();
+		fileUploadHander.post(new Runnable() {
 
-				@Override
-				public void run() {
-					try {
-						for (int i = 0 ; i < fileUpload.length ; i++) {
-							if(fileUpload[i] == null)
-							{
-								Log.i(TAG, "ITS NULL");
-							}
-						FileInputStream fstrm = new FileInputStream(fileUpload[i]
-								.getUri());
+			@Override
+			public void run() {
+				try {
+					for (int i = 0; i < fileUpload.length; i++) {
+						if (fileUpload[i] == null) {
+							Log.i(TAG, "ITS NULL");
+						}
+						FileInputStream fstrm = new FileInputStream(
+								fileUpload[i].getUri());
 						String uploadUrl;
 						switch (fileUpload[i].getFileType()) {
 						case 0:
@@ -152,17 +183,19 @@ public class HitchActivity extends ActionBarActivity {
 							break;
 						}
 						FileUpload hfu = new FileUpload(uploadUrl,
-								"myfiletitle", "lifestoryORimage", fileUpload[i]
-										.getUri(), fileUpload[i].getFileType());
+								"myfiletitle", "lifestoryORimage",
+								fileUpload[i].getUri(), fileUpload[i]
+										.getFileType());
 
 						hfu.send_Now(fstrm);
 
-					}} catch (FileNotFoundException e) {
-						// TODO exception handling
 					}
+				} catch (FileNotFoundException e) {
+					// TODO exception handling
 				}
+			}
 
-			});
-		
+		});
+
 	}
 }
