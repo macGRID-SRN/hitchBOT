@@ -4,9 +4,36 @@
         <name>hitchbotAPI</name>
     </assembly>
     <members>
-        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocation.form1">
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.lblLat">
             <summary>
-            form1 control.
+            lblLat control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.lblLatValue">
+            <summary>
+            lblLatValue control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.lblLong">
+            <summary>
+            lblLong control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.lblLongValue">
+            <summary>
+            lblLongValue control.
             </summary>
             <remarks>
             Auto-generated field.
