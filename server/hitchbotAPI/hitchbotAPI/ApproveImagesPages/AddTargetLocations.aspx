@@ -39,6 +39,11 @@
         .geo-checkbox {
             padding-top: 22px;
         }
+
+        .wiki-lines-detect {
+            color: #737373;
+        }
+
     </style>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
@@ -196,8 +201,8 @@
                     <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Wikipedia Entry" runat="server">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Wikipedia Entries (One Per Line)</label>
-                    <textarea class="form-control" id="inputWiki1" placeholder="Wikipedia Entries" rows="5" runat="server"></textarea>
+                    <label for="exampleInputPassword1">Wikipedia Entries (One Per Line) <span class="wiki-lines-detect"></span></label>
+                    <textarea class="form-control wiki-entries" id="inputWiki1" placeholder="Wikipedia Entries" rows="5" runat="server"></textarea>
                 </div>
                 <div class="form-group">
                     <asp:Button ID="buttonSubmit" runat="server" Text="Submit" class="btn btn-success" OnClick="buttonSubmit_Click" />
@@ -256,6 +261,22 @@
                 $('.select-button-radius').prop('disabled', true);
                 marker.setDraggable(false);
             }
+        });
+
+        $(".wiki-entries").bind("change paste keyup", function () {
+            var text = $(this).val();
+            var numLines = text.split("\n").length;
+            var outputText = "";
+            if (text.length == 0) {
+                outputText = "No ";
+            }
+            else {
+                outputText = numLines.toString() + " ";
+            }
+
+            outputText += " line(s) are detected.";
+
+            $(".wiki-lines-detect").text(outputText);
         });
 
     </script>
