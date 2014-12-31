@@ -25,11 +25,15 @@
         }
 
         .radius-select {
-            max-width: 100px;
+            /*width: 100px;*/
         }
 
         .fake-link {
             cursor: pointer;
+        }
+
+        .geo-input {
+            /*max-width: 75px;*/
         }
     </style>
     <script type="text/javascript"
@@ -44,8 +48,8 @@
         function UpdateCoordsOnPage(latlng) {
 
             markerCircle.setCenter(latlng);
-            $(".latValue").text(latlng.lat());
-            $(".lngValue").text(latlng.lng());
+            $(".latValue").val(latlng.lat());
+            $(".lngValue").val(latlng.lng());
         }
 
         function initialize() {
@@ -96,8 +100,7 @@
                 <div id="map-canvas">
                 </div>
             </div>
-            <p>&nbsp;</p>
-            <dl class="dl-horizontal">
+            <%--<dl class="dl-horizontal">
                 <dt>
                     <asp:Label ID="lblLat" runat="server" Text="Latitude: "></asp:Label>
                 </dt>
@@ -110,42 +113,74 @@
                 <dd>
                     <asp:Label ID="lblLongValue" runat="server" class="lngValue"></asp:Label>
                 </dd>
-            </dl>
-
+            </dl>--%>
+            <br />
             <form class="wiki-form" runat="server">
                 <%-- This code was borrowed from http://www.bootply.com/katie/9CvIygzob8 --%>
-                <div class="form-group">
-                    <label for="inputRadius">Select a Radius</label>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputRadius">Select a Radius</label>
 
-                    <div class="input-group radius-select">
-                        <input id="inputRadiusValue" type="text" class="form-control inputRadiusValue" aria-label="..." size="6" maxlength="3" runat="server">
-                        <div class="input-group-btn" id="inputRadius">
-                            <a class="btn btn-default dropdown-toggle btn-select2 fake-link" data-toggle="dropdown">Select<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="fake-link">5 km</a></li>
-                                <li><a class="fake-link">10 km</a></li>
-                                <li><a class="fake-link">15 km</a></li>
-                                <li><a class="fake-link">25 km</a></li>
-                                <li><a class="fake-link">50 km</a></li>
-                                <li><a class="fake-link">75 km</a></li>
-                                <li><a class="fake-link">100 km</a></li>
-                                <li><a class="fake-link">125 km</a></li>
-                                <li><a class="fake-link">150 km</a></li>
-                                <li><a class="fake-link">175 km</a></li>
-                                <li><a class="fake-link">200 km</a></li>
-                            </ul>
+                            <div class="input-group radius-select">
+                                <input id="inputRadiusValue" type="text" class="form-control inputRadiusValue" aria-label="..." runat="server">
+                                <div class="input-group-btn" id="inputRadius">
+                                    <a class="btn btn-default dropdown-toggle btn-select2 fake-link" data-toggle="dropdown">Select<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="fake-link">5 km</a></li>
+                                        <li><a class="fake-link">10 km</a></li>
+                                        <li><a class="fake-link">15 km</a></li>
+                                        <li><a class="fake-link">25 km</a></li>
+                                        <li><a class="fake-link">50 km</a></li>
+                                        <li><a class="fake-link">75 km</a></li>
+                                        <li><a class="fake-link">100 km</a></li>
+                                        <li><a class="fake-link">125 km</a></li>
+                                        <li><a class="fake-link">150 km</a></li>
+                                        <li><a class="fake-link">175 km</a></li>
+                                        <li><a class="fake-link">200 km</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <p class="help-block help-block2">
-                        <strong>Note: </strong>Due to the roundness of the earth and map projections,
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputLat">Latitude</label>
+                            <input type="number" class="form-control latValue geo-input" id="inputLat" placeholder="Latitude" runat="server">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="inputLong">Longitude</label>
+                            <input type="number" class="form-control lngValue geo-input" id="inputLong" placeholder="Longitude" runat="server">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="LocationCheckBox" type="checkbox" checked="checked" class="LocationCheckBox" runat="server">
+                                    Assign to Location
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <p class="help-block help-block2">
+                            <strong>Note: </strong>Due to the roundness of the earth and map projections,
                         <br />
-                        ensure the selected radius is larger than the intended area.
-                    </p>
+                            ensure the selected radius is larger than the intended area.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="inputName">Location Name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Location" runat="server">
+                    <label for="inputName">Name</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Wikipedia Entry" runat="server">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Wikipedia Entries (One Per Line)</label>

@@ -4,45 +4,27 @@
         <name>hitchbotAPI</name>
     </assembly>
     <members>
-        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.lblLat">
-            <summary>
-            lblLat control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.lblLatValue">
-            <summary>
-            lblLatValue control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.lblLong">
-            <summary>
-            lblLong control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.lblLongValue">
-            <summary>
-            lblLongValue control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.inputRadiusValue">
             <summary>
             inputRadiusValue control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.inputLat">
+            <summary>
+            inputLat control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.inputLong">
+            <summary>
+            inputLong control.
             </summary>
             <remarks>
             Auto-generated field.
