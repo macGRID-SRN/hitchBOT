@@ -27,6 +27,10 @@
         .radius-select {
             max-width: 100px;
         }
+
+        .fake-link {
+            cursor: pointer;
+        }
     </style>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
@@ -116,19 +120,19 @@
                     <div class="input-group radius-select">
                         <input id="inputRadiusValue" type="text" class="form-control inputRadiusValue" aria-label="..." size="6" maxlength="3" runat="server">
                         <div class="input-group-btn" id="inputRadius">
-                            <a class="btn btn-default dropdown-toggle btn-select2" data-toggle="dropdown" href="#">Select<span class="caret"></span></a>
+                            <a class="btn btn-default dropdown-toggle btn-select2 fake-link" data-toggle="dropdown">Select<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">5 km</a></li>
-                                <li><a href="#">10 km</a></li>
-                                <li><a href="#">15 km</a></li>
-                                <li><a href="#">25 km</a></li>
-                                <li><a href="#">50 km</a></li>
-                                <li><a href="#">75 km</a></li>
-                                <li><a href="#">100 km</a></li>
-                                <li><a href="#">125 km</a></li>
-                                <li><a href="#">150 km</a></li>
-                                <li><a href="#">175 km</a></li>
-                                <li><a href="#">200 km</a></li>
+                                <li><a class="fake-link">5 km</a></li>
+                                <li><a class="fake-link">10 km</a></li>
+                                <li><a class="fake-link">15 km</a></li>
+                                <li><a class="fake-link">25 km</a></li>
+                                <li><a class="fake-link">50 km</a></li>
+                                <li><a class="fake-link">75 km</a></li>
+                                <li><a class="fake-link">100 km</a></li>
+                                <li><a class="fake-link">125 km</a></li>
+                                <li><a class="fake-link">150 km</a></li>
+                                <li><a class="fake-link">175 km</a></li>
+                                <li><a class="fake-link">200 km</a></li>
                             </ul>
                         </div>
                     </div>
