@@ -40,6 +40,33 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.inputWiki1">
+            <summary>
+            inputWiki1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.buttonSubmit">
+            <summary>
+            buttonSubmit control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.circleRadiusValue">
+            <summary>
+            circleRadiusValue control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImage.form1">
             <summary>
             form1 control.
@@ -1156,9 +1183,9 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversationWithError(System.Int32,System.String,System.Boolean)">
+        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversation(System.Int32,System.String,System.Boolean)">
             <summary>
-            Starts a new Conversation thread for a HitchBot and the Last Location.
+            Starts a new Conversation thread for a HitchBot and the Last Location. If a location is not available, it just assigns it to none.
             </summary>
             <param name="HitchBotID">The ID of the HitchBot to add a new Conversation to.</param>
             <param name="StartTime">The time the Conversation started</param>
