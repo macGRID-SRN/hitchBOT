@@ -1156,9 +1156,9 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversation(System.Int32,System.String)">
+        <member name="M:hitchbotAPI.Controllers.ConversationController.StartNewConversationWithError(System.Int32,System.String,System.Boolean)">
             <summary>
-            Starts a new Conversation thread for a HitchBot and already defined Location.
+            Starts a new Conversation thread for a HitchBot and the Last Location.
             </summary>
             <param name="HitchBotID">The ID of the HitchBot to add a new Conversation to.</param>
             <param name="StartTime">The time the Conversation started</param>
