@@ -19,6 +19,14 @@
         .help-block2 {
             font-size: 14px;
         }
+
+        #inputRaduisValue, #inputRadius {
+            max-width: 50px;
+        }
+
+        .radius-select {
+            max-width: 100px;
+        }
     </style>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
@@ -109,21 +117,25 @@
                 <%-- This code was borrowed from http://www.bootply.com/katie/9CvIygzob8 --%>
                 <div class="form-group">
                     <label for="inputRadius">Select A Radius</label>
-                    <div class="btn-group" id="inputRadius">
-                        <a class="btn btn-default dropdown-toggle btn-select2" data-toggle="dropdown" href="#">Select<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">5 km</a></li>
-                            <li><a href="#">10 km</a></li>
-                            <li><a href="#">15 km</a></li>
-                            <li><a href="#">25 km</a></li>
-                            <li><a href="#">50 km</a></li>
-                            <li><a href="#">75 km</a></li>
-                            <li><a href="#">100 km</a></li>
-                            <li><a href="#">125 km</a></li>
-                            <li><a href="#">150 km</a></li>
-                            <li><a href="#">175 km</a></li>
-                            <li><a href="#">200 km</a></li>
-                        </ul>
+
+                    <div class="input-group radius-select">
+                        <input id="inputRadiusValue" type="text" class="form-control inputRadiusValue" aria-label="..." size="6" maxlength="3" runat="server">
+                        <div class="input-group-btn" id="inputRadius">
+                            <a class="btn btn-default dropdown-toggle btn-select2" data-toggle="dropdown" href="#">Select<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">5 km</a></li>
+                                <li><a href="#">10 km</a></li>
+                                <li><a href="#">15 km</a></li>
+                                <li><a href="#">25 km</a></li>
+                                <li><a href="#">50 km</a></li>
+                                <li><a href="#">75 km</a></li>
+                                <li><a href="#">100 km</a></li>
+                                <li><a href="#">125 km</a></li>
+                                <li><a href="#">150 km</a></li>
+                                <li><a href="#">175 km</a></li>
+                                <li><a href="#">200 km</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <p class="help-block help-block2">
                         <strong>Note: </strong>Due to the roundness of the earth and map projections,
@@ -145,7 +157,7 @@
                 </div>
 
                 <input type="hidden" id="circleRadiusValue" class="circleRadiusValue" runat="server" />
-            
+
             </form>
         </div>
     </div>
@@ -154,13 +166,21 @@
     <script>
         $(".dropdown-menu li a").click(function () {
             var selText = $(this).text();
-            $(this).parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+            $(this).parents('.input-group-btn').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
             markerCircleRadius = parseInt(selText.split(" ")[0]);
 
             markerCircle.setRadius(markerCircleRadius * 1000);
 
-            var hiddenRadiusVal = $('.circleRadiusValue');
-            hiddenRadiusVal.value = markerCircleRadius;
+            var hiddenRadiusVal = $('.inputRadiusValue');
+            hiddenRadiusVal.val(markerCircleRadius);
+        });
+
+        $(".inputRadiusValue").bind("change paste keyup", function () {
+
+            var value = parseInt($(this).val());
+            markerCircle.setRadius(value * 1000);
+
+            $('.input-group-btn').find('.dropdown-toggle').html(value.toString() + ' km<span class="caret"></span>');
         });
 
         $("#btnSearch").click(function () {

@@ -49,6 +49,15 @@ namespace hitchbotAPI.ApproveImagesPages {
         protected global::System.Web.UI.WebControls.Label lblLongValue;
         
         /// <summary>
+        /// inputRadiusValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inputRadiusValue;
+        
+        /// <summary>
         /// inputName control.
         /// </summary>
         /// <remarks>
