@@ -48,11 +48,6 @@ public class SpeechOut {
 		queueSpoke(message);
 	}
 
-	public void pauseTts()
-	{
-		mTts.stop();
-	}
-	
 	private void setTtsListener() {
 		int listenerResult = mTts
 				.setOnUtteranceProgressListener(new UtteranceProgressListener() {

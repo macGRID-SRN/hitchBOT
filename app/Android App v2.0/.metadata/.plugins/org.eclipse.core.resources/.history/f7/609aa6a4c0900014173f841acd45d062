@@ -56,14 +56,7 @@ public class SpeechController {
 	}
 	
 	public void beginSpeechCycle() {
-		Config.context.runOnUiThread(new Runnable()
-		{
-
-			@Override
-			public void run() {
-				speechIn.switchSearch(Config.searchName);									
-			}
-		});
+		speechIn.switchSearch(Config.searchName);
 	}
 
 	@SuppressWarnings("deprecation")
