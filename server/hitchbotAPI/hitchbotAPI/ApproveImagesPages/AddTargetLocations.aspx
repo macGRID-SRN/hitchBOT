@@ -125,24 +125,27 @@
                             <li><a href="#">200 km</a></li>
                         </ul>
                     </div>
-                    <p class="help-block help-block2"><strong>Note: </strong>Due to the roundness of the earth and map projections,
+                    <p class="help-block help-block2">
+                        <strong>Note: </strong>Due to the roundness of the earth and map projections,
                         <br />
-                        ensure the selected radius is larger than the intended area.</p>
+                        ensure the selected radius is larger than the intended area.
+                    </p>
                 </div>
 
                 <div class="form-group">
                     <label for="inputName">Location Name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Location">
+                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Location" runat="server">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Wikipedia Entries (One Per Line)</label>
                     <textarea class="form-control" id="inputWiki1" placeholder="Wikipedia Entries" rows="5" runat="server"></textarea>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success">Submit</button>
-                    <asp:Button ID="buttonSubmit" runat="server" Text="Submit" class="btn btn-success"/>
+                    <asp:Button ID="buttonSubmit" runat="server" Text="Submit" class="btn btn-success" OnClick="buttonSubmit_Click" />
                 </div>
-                <asp:HiddenField ID="circleRadiusValue" runat="server" />
+
+                <input type="hidden" id="circleRadiusValue" class="circleRadiusValue" runat="server" />
+            
             </form>
         </div>
     </div>
@@ -156,7 +159,7 @@
 
             markerCircle.setRadius(markerCircleRadius * 1000);
 
-            var hiddenRadiusVal = document.getElementById('circleRadiusValue');
+            var hiddenRadiusVal = $('.circleRadiusValue');
             hiddenRadiusVal.value = markerCircleRadius;
         });
 

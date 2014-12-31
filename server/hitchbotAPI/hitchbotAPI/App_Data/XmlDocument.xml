@@ -40,6 +40,15 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.inputName">
+            <summary>
+            inputName control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.inputWiki1">
             <summary>
             inputWiki1 control.
@@ -601,15 +610,6 @@
         <member name="F:hitchbotAPI.ApproveImagesPages.Shared.Main.endScripts">
             <summary>
             endScripts control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.Shared.PageWithHeader.ButtonLogOut">
-            <summary>
-            ButtonLogOut control.
             </summary>
             <remarks>
             Auto-generated field.
