@@ -22,6 +22,7 @@ public class SpeechController {
 	
 	public SpeechController() {
 		csh = new CleverScriptHelper(Config.cleverDB, Config.cleverAPIKey);
+		Config.cH = csh;
 		speechIn = new SpeechIn();
 		speechOut = new SpeechOut();
 		csh.setSpeechOut(speechOut);
@@ -32,6 +33,11 @@ public class SpeechController {
 		setupHandlers();
 	}
 
+	public SpeechIn getSpeechIn()
+	{
+		return this.speechIn;
+	}
+	
 	public void beginSpeechCycle() {
 		speechIn.switchSearch(Config.searchName);
 	}
