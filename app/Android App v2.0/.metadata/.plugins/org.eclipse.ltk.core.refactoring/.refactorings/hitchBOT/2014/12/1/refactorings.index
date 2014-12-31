@@ -1,0 +1,4 @@
+1419986798055	Encapsulate field 'gsr'
+1420010144032	Rename type 'GoogleSpeechRecognizer'
+1420010634289	Rename type 'PocketSphinxRecognizer'
+1420010645076	Rename type 'GoogleRecognizer'

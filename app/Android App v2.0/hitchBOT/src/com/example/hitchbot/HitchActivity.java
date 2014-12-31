@@ -24,6 +24,7 @@ import android.os.PowerManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class HitchActivity extends ActionBarActivity {
 
@@ -45,7 +46,6 @@ public class HitchActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_hitch);
 		Config.context = this;
 		Config.dQ = DatabaseQueue.getHelper(this);
-		Config.dQ.launchMissles();
 		tP = new TakePicture();
 		speechController = new SpeechController();
 		setupHandlers();
@@ -74,30 +74,6 @@ public class HitchActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-			match_text_dialog = new Dialog(HitchActivity.this);
-			matches_text = data
-					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-			String message = matches_text.get(0);
-			Log.i(TAG, message);
-			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
-					Uri.encode(message), Config.getUtcDate());
-			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
-			Config.dQ.addItemToQueue(httpPost);
-			speechController.getSpeechIn().setIsListening(false);
-			Config.cH.sendCleverScriptResponse(message);
-		} else {
-			speechController.getSpeechIn().setIsListening(false);
-			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
-					Uri.encode("I didn't get that!"), Config.getUtcDate());
-			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
-			Config.dQ.addItemToQueue(httpPost);
-			Config.cH.sendCleverScriptResponse("I didn't get that!");
-		}
 	}
 
 	public void takePicture() {
@@ -140,7 +116,7 @@ public class HitchActivity extends ActionBarActivity {
 					Log.i(TAG, String.valueOf(fileQueue.size()));
 					uploadFile(fileQueue.toArray(dbFileArray));
 					new DataGET().execute(Config.cleverGET);
-					internetHandler.postDelayed(this, Config.HALF_HOUR);
+					internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
 				}
 			}
 		}, Config.ONE_MINUTE);

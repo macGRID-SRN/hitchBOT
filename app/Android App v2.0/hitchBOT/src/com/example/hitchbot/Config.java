@@ -2,6 +2,7 @@ package com.example.hitchbot;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import com.example.hitchbot.Speech.CleverScriptHelper;
@@ -41,7 +42,7 @@ public final class Config {
 
 	public static String getUtcDate() {
 		final Date date = new Date();
-		final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss", Locale.GERMANY);
 		final TimeZone utc = TimeZone.getTimeZone("UTC");
 		sdf.setTimeZone(utc);
 		return sdf.format(date);

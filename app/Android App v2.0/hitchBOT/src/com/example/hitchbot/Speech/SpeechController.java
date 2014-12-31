@@ -2,8 +2,12 @@ package com.example.hitchbot.Speech;
 
 import java.util.Locale;
 
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 
 import com.example.hitchbot.Config;
 import com.example.hitchbot.StoryRecorder;
@@ -17,29 +21,49 @@ public class SpeechController {
 	private SpeechIn speechIn;
 	private SpeechOut speechOut;
 	private CleverScriptHelper csh;
-
+	private static final String TAG = "SpeechController";
 	private Handler storyHandler;
 	
 	public SpeechController() {
 		csh = new CleverScriptHelper(Config.cleverDB, Config.cleverAPIKey);
-		Config.cH = csh;
 		speechIn = new SpeechIn();
 		speechOut = new SpeechOut();
-		csh.setSpeechOut(speechOut);
-		speechIn.setSpeechOut(speechOut);
-		speechIn.setCleverScript(csh);
-		speechOut.setSpeechIn(speechIn);
+		setControllers();
 		storyHandler = new Handler();
 		setupHandlers();
 	}
-
+	private void setControllers()
+	{
+		speechOut.setSpeechController(this);
+		csh.setSpeechController(this);
+		speechIn.getOnline().setSpeechController(this);
+		speechIn.getOffline().setSpeechController(this);
+		Config.cH = csh;
+	}
 	public SpeechIn getSpeechIn()
 	{
 		return this.speechIn;
 	}
 	
+	public SpeechOut getSpeechOut()
+	{
+		return this.speechOut;
+	}
+	
+	public CleverScriptHelper getCleverScriptHelper()
+	{
+		return this.csh;
+	}
+	
 	public void beginSpeechCycle() {
-		speechIn.switchSearch(Config.searchName);
+		Config.context.runOnUiThread(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				speechIn.switchSearch(Config.searchName);									
+			}
+		});
 	}
 
 	@SuppressWarnings("deprecation")
@@ -78,14 +102,9 @@ public class SpeechController {
 	}
 	
 	public void pauseSpeechCycle() {
-		while (speechOut.isSpeaking()) {
-
-		}
-		if (speechIn.isListening()) {
-			speechIn.pauseRecognizer();
-		} else {
-			pauseSpeechCycle();
-		}
+		speechOut.pauseTts();
+		speechIn.pauseRecognizer();
 	}
+	
 
 }
