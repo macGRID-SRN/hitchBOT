@@ -35,6 +35,10 @@
         .geo-input {
             /*max-width: 75px;*/
         }
+
+        .geo-checkbox {
+            padding-top: 22px;
+        }
     </style>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
@@ -160,7 +164,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <div class="checkbox">
+                            <div class="checkbox geo-checkbox">
                                 <label>
                                     <input id="LocationCheckBox" type="checkbox" checked="checked" class="LocationCheckBox" runat="server">
                                     Assign to Location
@@ -231,6 +235,7 @@
                 $('.latValue').prop('disabled', false);
                 $('.lngValue').prop('disabled', false);
                 $('.select-button-radius').prop('disabled', false);
+                marker.setDraggable(true);
 
             }
             else {
@@ -238,6 +243,7 @@
                 $('.latValue').prop('disabled', true);
                 $('.lngValue').prop('disabled', true);
                 $('.select-button-radius').prop('disabled', true);
+                marker.setDraggable(false);
             }
         });
 
