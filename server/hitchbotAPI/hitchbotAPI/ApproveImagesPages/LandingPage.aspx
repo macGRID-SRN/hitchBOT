@@ -24,14 +24,14 @@
                     <h4 class="list-grou-item-heading">Geo-relevant Wikipedia Entries!
                     </h4>
                     <p class="list-group-item-text">
-                        Almost ready for use. You can use this tool to enter wikipedia articles and info that will be read by hitchBOT itself!
+                        Ready for use. You can use this tool to enter wikipedia sentences and info that will be read by hitchBOT itself!
                     </p>
                 </li>
                 <li class="list-group-item">
-                    <h4 class="list-grou-item-heading">Item 2
+                    <h4 class="list-grou-item-heading">Website Styling!
                     </h4>
                     <p class="list-group-item-text">
-                        V extra nice.
+                        V extra pretty.
                     </p>
                 </li>
             </ul>

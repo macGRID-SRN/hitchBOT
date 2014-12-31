@@ -121,20 +121,6 @@
                 <div id="map-canvas">
                 </div>
             </div>
-            <%--<dl class="dl-horizontal">
-                <dt>
-                    <asp:Label ID="lblLat" runat="server" Text="Latitude: "></asp:Label>
-                </dt>
-                <dd>
-                    <asp:Label ID="lblLatValue" runat="server" class="latValue"></asp:Label>
-                </dd>
-                <dt>
-                    <asp:Label ID="lblLong" runat="server" Text="Longitude: "></asp:Label>
-                </dt>
-                <dd>
-                    <asp:Label ID="lblLongValue" runat="server" class="lngValue"></asp:Label>
-                </dd>
-            </dl>--%>
             <br />
             <form class="wiki-form" runat="server">
 

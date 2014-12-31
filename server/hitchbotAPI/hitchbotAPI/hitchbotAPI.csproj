@@ -183,6 +183,13 @@
     <Compile Include="ApproveImagesPages\AddTargetLocations.aspx.designer.cs">
       <DependentUpon>AddTargetLocations.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\AddTargetSuccess.aspx.cs">
+      <DependentUpon>AddTargetSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\AddTargetSuccess.aspx.designer.cs">
+      <DependentUpon>AddTargetSuccess.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\ApproveImageLogin.aspx.cs">
       <DependentUpon>ApproveImageLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -423,6 +430,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApproveImagesPages\AddTargetLocations.aspx" />
+    <Content Include="ApproveImagesPages\AddTargetSuccess.aspx" />
     <Content Include="ApproveImagesPages\ApproveImageLogin.aspx" />
     <Content Include="ApproveImagesPages\ConversationTweets.aspx" />
     <Content Include="ApproveImagesPages\DynamicMap.aspx" />
