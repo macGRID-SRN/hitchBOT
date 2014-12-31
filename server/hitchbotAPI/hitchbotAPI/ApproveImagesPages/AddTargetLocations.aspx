@@ -125,7 +125,7 @@
                             <div class="input-group radius-select">
                                 <input id="inputRadiusValue" type="text" class="form-control inputRadiusValue" aria-label="..." runat="server">
                                 <div class="input-group-btn" id="inputRadius">
-                                    <a class="btn btn-default dropdown-toggle btn-select2 fake-link" data-toggle="dropdown">Select<span class="caret"></span></a>
+                                    <a class="btn btn-default dropdown-toggle btn-select2 fake-link select-button-radius" data-toggle="dropdown">Select<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a class="fake-link">5 km</a></li>
                                         <li><a class="fake-link">10 km</a></li>
@@ -198,6 +198,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="endScripts" runat="server">
     <script>
+        <%-- Updates the radius value when the dropdown is used --%>
         $(".dropdown-menu li a").click(function () {
             var selText = $(this).text();
             $(this).parents('.input-group-btn').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
@@ -209,6 +210,7 @@
             hiddenRadiusVal.val(markerCircleRadius);
         });
 
+        <%-- Updates the radius value as seen on the map when the value is changed in the input box --%>
         $(".inputRadiusValue").bind("change paste keyup", function () {
 
             var value = parseInt($(this).val());
@@ -219,6 +221,24 @@
 
         $("#btnSearch").click(function () {
             alert($('.btn-select').text() + ", " + $('.btn-select2').text());
+        });
+
+        $(".LocationCheckBox").change(function () {
+
+
+            if ($(this).prop('checked')) {
+                $('.inputRadiusValue').prop('disabled', false);
+                $('.latValue').prop('disabled', false);
+                $('.lngValue').prop('disabled', false);
+                $('.select-button-radius').prop('disabled', false);
+
+            }
+            else {
+                $('.inputRadiusValue').prop('disabled', true);
+                $('.latValue').prop('disabled', true);
+                $('.lngValue').prop('disabled', true);
+                $('.select-button-radius').prop('disabled', true);
+            }
         });
 
     </script>
