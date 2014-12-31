@@ -44,6 +44,9 @@
             color: #737373;
         }
 
+        .disabled-location {
+            background-color: #eee;
+        }
     </style>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
@@ -251,6 +254,7 @@
                 $('.latValue').prop('disabled', false);
                 $('.lngValue').prop('disabled', false);
                 $('.select-button-radius').prop('disabled', false);
+                $('.select-button-radius').removeClass('disabled-location');
                 marker.setDraggable(true);
 
             }
@@ -258,6 +262,7 @@
                 $('.inputRadiusValue').prop('disabled', true);
                 $('.latValue').prop('disabled', true);
                 $('.lngValue').prop('disabled', true);
+                $('.select-button-radius').addClass('disabled-location');
                 $('.select-button-radius').prop('disabled', true);
                 marker.setDraggable(false);
             }
