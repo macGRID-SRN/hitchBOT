@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;com.example.hitchbot.Speech.SpeechIn.gsr&apos; in &apos;com.example.hitchbot.Speech.SpeechIn&apos;&#x0D;&#x0A;- Original project: &apos;hitchBOT&apos;&#x0D;&#x0A;- Original element: &apos;com.example.hitchbot.Speech.SpeechIn.gsr&apos;&#x0D;&#x0A;- Getter method name: &apos;getGsr&apos;&#x0D;&#x0A;- Setter method name: &apos;setGsr&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;gsr&apos;" flags="589830" getter="getGsr" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;com.example.hitchbot.Speech{SpeechIn.java[SpeechIn^gsr" insertion="14" setter="setGsr" stamp="1419986798055" version="1.0" visibility="1"/>
+</session>

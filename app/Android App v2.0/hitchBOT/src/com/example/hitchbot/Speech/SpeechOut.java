@@ -15,7 +15,7 @@ public class SpeechOut {
 
 	public TextToSpeech mTts;
 	private boolean isSpeaking;
-	private SpeechIn speechIn;
+	private SpeechController speechController;
 
 	public SpeechOut() {
 		mTts = new TextToSpeech(Config.context,
@@ -30,18 +30,17 @@ public class SpeechOut {
 					}
 				});
 	}
-	
-	public void setSpeechIn(SpeechIn speechIn)
-	{
-		this.speechIn = speechIn;
+
+	public void setSpeechController(SpeechController speechController) {
+		this.speechController = speechController;
 	}
 
 	@SuppressWarnings("deprecation")
 	public void Speak(String message) {
 
 		HashMap<String, String> myHashAlarm = new HashMap<String, String>();
-		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
-				String.valueOf(AudioManager.STREAM_ALARM));
+		// myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
+		// String.valueOf(AudioManager.STREAM_ALARM));
 		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
 				"SOME MESSAGE");
 
@@ -55,9 +54,16 @@ public class SpeechOut {
 					@Override
 					public void onDone(String utteranceId) {
 						isSpeaking = false;
-						if(speechIn != null)
+						if(speechController.getSpeechIn() != null)
 						{
-							speechIn.switchSearch(Config.searchName);
+							Config.context.runOnUiThread(new Runnable()
+							{
+
+								@Override
+								public void run() {
+									speechController.getSpeechIn().switchSearch(Config.searchName);									
+								}
+							});
 						}
 						
 					}
@@ -78,8 +84,8 @@ public class SpeechOut {
 	}
 
 	private void queueSpoke(String spoke) {
-		String uri = String.format(Config.spokePOST, Config.HITCHBOT_ID, Uri.encode(spoke),
-				Config.getUtcDate());
+		String uri = String.format(Config.spokePOST, Config.HITCHBOT_ID,
+				Uri.encode(spoke), Config.getUtcDate());
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 		Config.dQ.addItemToQueue(httpPost);
 	}

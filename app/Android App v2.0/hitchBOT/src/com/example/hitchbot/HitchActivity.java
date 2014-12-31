@@ -76,31 +76,6 @@ public class HitchActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-			match_text_dialog = new Dialog(HitchActivity.this);
-			matches_text = data
-					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-			String message = matches_text.get(0);
-			Log.i(TAG, message);
-			Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
-					Uri.encode(message), Config.getUtcDate());
-			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
-			Config.dQ.addItemToQueue(httpPost);
-			speechController.getSpeechIn().setIsListening(false);
-			Config.cH.sendCleverScriptResponse(message);
-		} else {
-			speechController.getSpeechIn().setIsListening(false);
-			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
-					Uri.encode("I didn't get that!"), Config.getUtcDate());
-			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
-			Config.dQ.addItemToQueue(httpPost);
-			Config.cH.sendCleverScriptResponse("I didn't get that!");
-		}
-	}
-
 	public void takePicture() {
 		tP.captureHandler();
 	}

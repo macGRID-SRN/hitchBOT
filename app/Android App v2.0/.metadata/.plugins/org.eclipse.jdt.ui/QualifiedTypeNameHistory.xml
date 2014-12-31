@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="android.speech.tts.UtteranceProgressListener"/>
-<fullyQualifiedTypeName name="android.media.AudioManager"/>
-<fullyQualifiedTypeName name="edu.cmu.pocketsphinx.RecognitionListener"/>
 <fullyQualifiedTypeName name="edu.cmu.pocketsphinx.Assets"/>
 <fullyQualifiedTypeName name="edu.cmu.pocketsphinx.SpeechRecognizer"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.HitchActivity"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.R"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
-<fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
@@ -31,7 +26,6 @@
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.net.MalformedURLException"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Data.FileUpload"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
@@ -40,7 +34,6 @@
 <fullyQualifiedTypeName name="com.example.hitchbot.StoryRecorder"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Speech.CleverScriptHelper"/>
 <fullyQualifiedTypeName name="android.os.Handler"/>
-<fullyQualifiedTypeName name="java.util.Locale"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Speech.SpeechController"/>
 <fullyQualifiedTypeName name="android.app.ActivityManager.RunningTaskInfo"/>
 <fullyQualifiedTypeName name="java.util.Timer"/>
@@ -51,13 +44,20 @@
 <fullyQualifiedTypeName name="android.os.SystemClock"/>
 <fullyQualifiedTypeName name="android.app.ActivityManager"/>
 <fullyQualifiedTypeName name="android.content.pm.PackageInfo"/>
-<fullyQualifiedTypeName name="android.content.pm.PackageManager"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="android.os.PowerManager"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
-<fullyQualifiedTypeName name="android.content.Intent"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="android.app.Dialog"/>
-<fullyQualifiedTypeName name="android.speech.RecognizerIntent"/>
 <fullyQualifiedTypeName name="android.net.Uri"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="java.util.Locale"/>
+<fullyQualifiedTypeName name="android.content.pm.ActivityInfo"/>
+<fullyQualifiedTypeName name="android.content.pm.PackageManager"/>
+<fullyQualifiedTypeName name="android.content.pm.PackageManager.NameNotFoundException"/>
+<fullyQualifiedTypeName name="android.speech.RecognitionListener"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="android.speech.SpeechRecognizer"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
+<fullyQualifiedTypeName name="android.speech.RecognizerIntent"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
 </qualifiedTypeNameHistroy>

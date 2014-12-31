@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.util.Log;
 import android.widget.Toast;
 
 public class GoogleSpeechRecognizer implements RecognitionListener{
@@ -18,11 +19,14 @@ public class GoogleSpeechRecognizer implements RecognitionListener{
 	private SpeechRecognizer mSpeechRecognizer;
 	private Intent mSpeechRecognizerIntent; 
 	private SpeechController speechController;
+	private static final String TAG = "GoogleSpeechRecognizer";
+	private boolean stopRecognizer = false;
 	
 	public GoogleSpeechRecognizer()
 	{
 		mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(Config.context);
-	    mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+	    mSpeechRecognizer.setRecognitionListener(this); 
+		mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 	    mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
 	                                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 	    mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,
@@ -34,8 +38,16 @@ public class GoogleSpeechRecognizer implements RecognitionListener{
 		this.speechController = speechController;
 	}
 	
+	public void stopRecognizer()
+	{
+		stopRecognizer = true;
+		mSpeechRecognizer.stopListening();
+	}
+	
 	public void startListening()
 	{
+		stopRecognizer = false;
+		speechController.getSpeechIn().setIsListening(true);
 		mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 	}
 	
@@ -65,25 +77,31 @@ public class GoogleSpeechRecognizer implements RecognitionListener{
 
 	@Override
 	public void onEndOfSpeech() {
-		// TODO Auto-generated method stub
+		mSpeechRecognizer.stopListening();
 		
 	}
 
 	@Override
 	public void onError(int error) {
-		mSpeechRecognizer.startListening(mSpeechRecognizerIntent);		
+		if(stopRecognizer){
+		}
+		else
+		{
+			Config.cH.sendCleverScriptResponse("I didn't catch that.");
+		}
 	}
 
 	@Override
 	public void onResults(Bundle results) {
 		 ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 		 String message = matches.get(0);
-		 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+		 Log.i(TAG, message + " ");
 			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
 					Uri.encode(message), Config.getUtcDate());
 			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 			Config.dQ.addItemToQueue(httpPost);
 			speechController.getSpeechIn().setIsListening(false);
+			Toast.makeText(Config.context, message, Toast.LENGTH_SHORT).show();
 			Config.cH.sendCleverScriptResponse(message);
 	}
 

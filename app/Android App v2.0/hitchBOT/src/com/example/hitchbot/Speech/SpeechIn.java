@@ -28,25 +28,20 @@ public class SpeechIn implements RecognitionListener {
 	private HashMap<String, Integer> captions;
 	private boolean isListening = false;
 	private long startTime;
-	private SpeechOut speechOut;
-	private CleverScriptHelper csh;
-	private static final int REQUEST_CODE = 1234;
+	private SpeechController speechController;
 
 	public SpeechIn() {
 		initRecognizer();
 	}
 	
+	public void setSpeechController(SpeechController speechController)
+	{
+		this.speechController = speechController;
+	}
+	
 	public void setIsListening(boolean isListening)
 	{
 		this.isListening = isListening;
-	}
-
-	public void setSpeechOut(SpeechOut speechOut) {
-		this.speechOut = speechOut;
-	}
-
-	public void setCleverScript(CleverScriptHelper csh) {
-		this.csh = csh;
 	}
 
 	private void initRecognizer() {
@@ -115,17 +110,12 @@ public class SpeechIn implements RecognitionListener {
 
 	public void switchSearch(String searchName) {
 		if (Config.networkAvailable()) {
-			isListening = true;
-			Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-	           intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-	           RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-	           Config.context.startActivityForResult(intent, REQUEST_CODE);
+			startTime = System.currentTimeMillis() / 1000;
+			speechController.getGsr().startListening();
 		} else {
 			isListening = true;
 			startTime = System.currentTimeMillis() / 1000;
 			recognizer.startListening(searchName);
-			// String caption =
-			// Config.context.getResources().getString(captions.get(searchName));
 		}
 	}
 
@@ -159,14 +149,17 @@ public class SpeechIn implements RecognitionListener {
 			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 			Config.dQ.addItemToQueue(httpPost);
 			isListening = false;
-			speechOut.Speak(csh.getResponseFromCleverScript(text));
+			speechController.getSpeechOut().Speak(speechController.getCleverScriptHelper()
+					.getResponseFromCleverScript(text));
 		} else {
 			isListening = false;
 			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
 					Uri.encode("I didn't get that!"), Config.getUtcDate());
 			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 			Config.dQ.addItemToQueue(httpPost);
-			speechOut.Speak(csh.getResponseFromCleverScript("I didn't quite catch that!"));
+			speechController.getSpeechOut().
+			Speak(speechController.getCleverScriptHelper().
+			getResponseFromCleverScript("I didn't quite catch that!"));
 
 		}
 
@@ -188,5 +181,6 @@ public class SpeechIn implements RecognitionListener {
 	public boolean isListening() {
 		return isListening;
 	}
+
 
 }

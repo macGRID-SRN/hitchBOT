@@ -23,23 +23,43 @@ public class SpeechController {
 	private CleverScriptHelper csh;
 	private static final String TAG = "SpeechController";
 	private Handler storyHandler;
+	private GoogleSpeechRecognizer gsr;
 	
 	public SpeechController() {
 		csh = new CleverScriptHelper(Config.cleverDB, Config.cleverAPIKey);
-		Config.cH = csh;
+		gsr = new GoogleSpeechRecognizer();
 		speechIn = new SpeechIn();
 		speechOut = new SpeechOut();
-		csh.setSpeechOut(speechOut);
-		speechIn.setSpeechOut(speechOut);
-		speechIn.setCleverScript(csh);
-		speechOut.setSpeechIn(speechIn);
+		setControllers();
 		storyHandler = new Handler();
 		setupHandlers();
 	}
-
+	private void setControllers()
+	{
+		speechIn.setSpeechController(this);
+		speechOut.setSpeechController(this);
+		csh.setSpeechController(this);
+		gsr.setSpeechController(this);
+		Config.cH = csh;
+	}
 	public SpeechIn getSpeechIn()
 	{
 		return this.speechIn;
+	}
+	
+	public SpeechOut getSpeechOut()
+	{
+		return this.speechOut;
+	}
+	
+	public CleverScriptHelper getCleverScriptHelper()
+	{
+		return this.csh;
+	}
+	
+	public GoogleSpeechRecognizer getGsr()
+	{
+		return this.gsr;
 	}
 	
 	public void beginSpeechCycle() {
@@ -86,30 +106,12 @@ public class SpeechController {
 
 		}
 		if (speechIn.isListening()) {
-			cancelGoogleActivityIfRunning();
 			speechIn.pauseRecognizer();
+			gsr.stopRecognizer();
 		} else {
 			pauseSpeechCycle();
 		}
 	}
 	
-	private void cancelGoogleActivityIfRunning()
-	{
-		try {
-		    ActivityInfo[] list = Config.context.getPackageManager().getPackageInfo(Config.context.getPackageName(),
-		    		PackageManager.GET_ACTIVITIES).activities;
-
-		        for(int i = 0;i< list.length;i++)
-		        {
-		            Log.i(TAG, "List of running activities"+list[i].name);
-
-		        } 
-		    }
-
-		    catch (NameNotFoundException e1) {
-		        // TODO Auto-generated catch block
-		        e1.printStackTrace();
-		    }
-	}
 
 }
