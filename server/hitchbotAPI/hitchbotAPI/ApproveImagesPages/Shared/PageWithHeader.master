@@ -38,7 +38,7 @@
                 <%--<form class="navbar-form navbar-right" runat="server">
                     <asp:Button ID="ButtonLogOut" runat="server" Text="Log Out" OnClick="ButtonLogOut_Click" class="btn btn-default" />
                 </form>--%>
-                <form class="navbar-form navbar-right" >
+                <form class="navbar-form navbar-right" action="Logout.aspx">
                    <%-- <asp:Button ID="Button1" runat="server" Text="Log Out" OnClick="ButtonLogOut_Click" class="btn btn-default" />--%>
                     <button type="submit" class="btn btn-default">Log Out</button>
                 </form>

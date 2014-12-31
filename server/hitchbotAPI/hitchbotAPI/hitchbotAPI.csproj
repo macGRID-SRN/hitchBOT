@@ -253,6 +253,13 @@
     <Compile Include="ApproveImagesPages\LandingPage.aspx.designer.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\SavedImages.aspx.cs">
       <DependentUpon>SavedImages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -421,6 +428,7 @@
     <Content Include="ApproveImagesPages\LocationPortal.aspx" />
     <Content Include="ApproveImagesPages\LocationPortalOld.aspx" />
     <Content Include="ApproveImagesPages\LandingPage.aspx" />
+    <Content Include="ApproveImagesPages\Logout.aspx" />
     <Content Include="ApproveImagesPages\SavedImages.aspx" />
     <Content Include="ApproveImagesPages\ViewImages.aspx" />
     <Content Include="ApproveImagesPages\ViewMap.aspx" />
