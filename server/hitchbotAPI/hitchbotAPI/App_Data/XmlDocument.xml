@@ -4,6 +4,15 @@
         <name>hitchbotAPI</name>
     </assembly>
     <members>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.errorAlert">
+            <summary>
+            errorAlert control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.inputRadiusValue">
             <summary>
             inputRadiusValue control.
@@ -61,15 +70,6 @@
         <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.buttonSubmit">
             <summary>
             buttonSubmit control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.AddTargetLocations.circleRadiusValue">
-            <summary>
-            circleRadiusValue control.
             </summary>
             <remarks>
             Auto-generated field.

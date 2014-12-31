@@ -17,6 +17,8 @@ namespace hitchbotAPI.Models
         public virtual List<Location> Locations { get; set; }
         [JsonIgnore]
         public virtual List<Conversation> Conversations { get; set; }
+        [JsonIgnore]
+        public virtual List<WikipediaEntry> WikipediaEntries { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public Conversation CurrentConversation

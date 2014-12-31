@@ -13,6 +13,15 @@ namespace hitchbotAPI.ApproveImagesPages {
     public partial class AddTargetLocations {
         
         /// <summary>
+        /// errorAlert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorAlert;
+        
+        /// <summary>
         /// inputRadiusValue control.
         /// </summary>
         /// <remarks>
@@ -74,14 +83,5 @@ namespace hitchbotAPI.ApproveImagesPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button buttonSubmit;
-        
-        /// <summary>
-        /// circleRadiusValue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden circleRadiusValue;
     }
 }

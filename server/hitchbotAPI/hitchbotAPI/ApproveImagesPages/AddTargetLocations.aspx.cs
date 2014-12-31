@@ -19,6 +19,22 @@ namespace hitchbotAPI.ApproveImagesPages
             var wikiEntry = inputWiki1.InnerText;
             var radius = inputRadiusValue.Value;
             var name = inputName.Value;
+            var lat = inputLat.Value;
+            var lng = inputLong.Value;
+
+            var user = (Models.Password)Session["New"];
+
+            using (var db = new Models.Database())
+            {
+                var hitchbot = user.hitchBOT;
+            }
+        }
+
+        protected void setErrorMessage(string error)
+        {
+            this.errorAlert.Attributes.Remove("class");
+            this.errorAlert.Attributes.Add("class", "alert alert-danger");
+            this.errorAlert.InnerText = error;
         }
     }
 }

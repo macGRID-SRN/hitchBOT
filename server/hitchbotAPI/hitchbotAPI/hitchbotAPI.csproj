@@ -379,6 +379,10 @@
     <Compile Include="Migrations\201412110201056_AddProjectToPassword.Designer.cs">
       <DependentUpon>201412110201056_AddProjectToPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201412312108071_AddWikipediaEntries.cs" />
+    <Compile Include="Migrations\201412312108071_AddWikipediaEntries.Designer.cs">
+      <DependentUpon>201412312108071_AddWikipediaEntries.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -400,6 +404,7 @@
     <Compile Include="Models\TwitterFriend.cs" />
     <Compile Include="Models\TwitterLocationTarget.cs" />
     <Compile Include="Models\TwitterStatus.cs" />
+    <Compile Include="Models\WikipediaEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ApproveImagesPages\Unauthorized.aspx.cs">
       <DependentUpon>Unauthorized.aspx</DependentUpon>
@@ -562,6 +567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201412110201056_AddProjectToPassword.resx">
       <DependentUpon>201412110201056_AddProjectToPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412312108071_AddWikipediaEntries.resx">
+      <DependentUpon>201412312108071_AddWikipediaEntries.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

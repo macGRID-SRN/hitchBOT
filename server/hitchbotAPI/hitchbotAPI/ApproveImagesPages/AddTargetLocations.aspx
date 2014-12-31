@@ -137,6 +137,9 @@
             </dl>--%>
             <br />
             <form class="wiki-form" runat="server">
+
+                <div id="errorAlert" class="alert alert-danger hidden" role="alert" runat="server">Uh oh!</div>
+
                 <%-- This code was borrowed from http://www.bootply.com/katie/9CvIygzob8 --%>
                 <div class="row">
                     <div class="col-md-3">
@@ -169,13 +172,13 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="inputLat">Latitude</label>
-                            <input type="number" class="form-control latValue geo-input" id="inputLat" placeholder="Latitude" runat="server">
+                            <input type="number" step="any" class="form-control latValue geo-input" id="inputLat" placeholder="Latitude" runat="server">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="inputLong">Longitude</label>
-                            <input type="number" class="form-control lngValue geo-input" id="inputLong" placeholder="Longitude" runat="server">
+                            <input type="number" step="any" class="form-control lngValue geo-input" id="inputLong" placeholder="Longitude" runat="server">
                         </div>
                     </div>
 
@@ -211,7 +214,6 @@
                     <asp:Button ID="buttonSubmit" runat="server" Text="Submit" class="btn btn-success" OnClick="buttonSubmit_Click" />
                 </div>
 
-                <input type="hidden" id="circleRadiusValue" class="circleRadiusValue" runat="server" />
 
             </form>
         </div>
