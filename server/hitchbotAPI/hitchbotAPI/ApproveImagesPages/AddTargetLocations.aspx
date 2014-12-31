@@ -56,6 +56,15 @@
             $(".lngValue").val(latlng.lng());
         }
 
+        function UpdateCoordsOnMap() {
+
+            var lat = parseFloat($(".latValue").val());
+            var lng = parseFloat($(".lngValue").val());
+            var latlng = new google.maps.LatLng(lat, lng);
+            markerCircle.setCenter(latlng);
+            marker.setPosition(latlng);
+        }
+
         function initialize() {
             var myLatlng = new google.maps.LatLng(50.983027, 10.445880);
 
@@ -227,8 +236,10 @@
             alert($('.btn-select').text() + ", " + $('.btn-select2').text());
         });
 
-        $(".LocationCheckBox").change(function () {
+        $(".latValue").bind("change paste keyup", UpdateCoordsOnMap);
+        $(".lngValue").bind("change paste keyup", UpdateCoordsOnMap);
 
+        $(".LocationCheckBox").change(function () {
 
             if ($(this).prop('checked')) {
                 $('.inputRadiusValue').prop('disabled', false);
