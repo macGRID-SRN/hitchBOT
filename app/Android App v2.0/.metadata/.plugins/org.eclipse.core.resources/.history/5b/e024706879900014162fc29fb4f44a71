@@ -84,7 +84,7 @@ public class HitchActivity extends ActionBarActivity {
 					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 			String message = matches_text.get(0);
 			Log.i(TAG, message);
-			Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, message, Toast.LENGTH_SHORT);
 			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
 					Uri.encode(message), Config.getUtcDate());
 			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
@@ -141,7 +141,7 @@ public class HitchActivity extends ActionBarActivity {
 					Log.i(TAG, String.valueOf(fileQueue.size()));
 					uploadFile(fileQueue.toArray(dbFileArray));
 					new DataGET().execute(Config.cleverGET);
-					internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
+					internetHandler.postDelayed(this, Config.HALF_HOUR);
 				}
 			}
 		}, Config.ONE_MINUTE);

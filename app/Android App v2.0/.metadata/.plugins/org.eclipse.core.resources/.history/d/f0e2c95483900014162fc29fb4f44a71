@@ -141,7 +141,7 @@ public class HitchActivity extends ActionBarActivity {
 					Log.i(TAG, String.valueOf(fileQueue.size()));
 					uploadFile(fileQueue.toArray(dbFileArray));
 					new DataGET().execute(Config.cleverGET);
-					internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
+					internetHandler.postDelayed(this, Config.HALF_HOUR);
 				}
 			}
 		}, Config.ONE_MINUTE);
