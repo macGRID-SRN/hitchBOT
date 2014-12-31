@@ -13,5 +13,12 @@ namespace hitchbotAPI.ApproveImagesPages
         {
 
         }
+
+        protected void buttonSubmit_Click(object sender, EventArgs e)
+        {
+            var wikiEntry = inputWiki1.InnerText;
+            var radius = inputRadiusValue.Value;
+            var name = inputName.Value;
+        }
     }
 }

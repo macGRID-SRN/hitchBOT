@@ -11,12 +11,29 @@
         .map-wrapper {
             height: 500px;
         }
+
+        .wiki-form {
+            font-size: 16px;
+        }
+
+        .help-block2 {
+            font-size: 14px;
+        }
+
+        #inputRaduisValue, #inputRadius {
+            max-width: 50px;
+        }
+
+        .radius-select {
+            max-width: 100px;
+        }
     </style>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
     </script>
     <script type="text/javascript">
         var markerCircle;
+        var markerCircleRadius;
         var marker;
         var map;
         //updates the displayed coords to work with 
@@ -91,40 +108,51 @@
                 </dd>
             </dl>
 
-            <form>
+            <form class="wiki-form" runat="server">
                 <%-- This code was borrowed from http://www.bootply.com/katie/9CvIygzob8 --%>
                 <div class="form-group">
-                    <label for="inputRadius">Select A Radius</label>
-                    <div class="btn-group" id="inputRadius">
-                        <a class="btn btn-default dropdown-toggle btn-select2" data-toggle="dropdown" href="#">5 km<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">10 km</a></li>
-                            <li><a href="#">15 km</a></li>
-                            <li><a href="#">25 km</a></li>
-                            <li><a href="#">50 km</a></li>
-                            <li><a href="#">75 km</a></li>
-                            <li><a href="#">100 km</a></li>
-                        </ul>
+                    <label for="inputRadius">Select a Radius</label>
+
+                    <div class="input-group radius-select">
+                        <input id="inputRadiusValue" type="text" class="form-control inputRadiusValue" aria-label="..." size="6" maxlength="3" runat="server">
+                        <div class="input-group-btn" id="inputRadius">
+                            <a class="btn btn-default dropdown-toggle btn-select2" data-toggle="dropdown" href="#">Select<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">5 km</a></li>
+                                <li><a href="#">10 km</a></li>
+                                <li><a href="#">15 km</a></li>
+                                <li><a href="#">25 km</a></li>
+                                <li><a href="#">50 km</a></li>
+                                <li><a href="#">75 km</a></li>
+                                <li><a href="#">100 km</a></li>
+                                <li><a href="#">125 km</a></li>
+                                <li><a href="#">150 km</a></li>
+                                <li><a href="#">175 km</a></li>
+                                <li><a href="#">200 km</a></li>
+                            </ul>
+                        </div>
                     </div>
+                    <p class="help-block help-block2">
+                        <strong>Note: </strong>Due to the roundness of the earth and map projections,
+                        <br />
+                        ensure the selected radius is larger than the intended area.
+                    </p>
                 </div>
 
                 <div class="form-group">
                     <label for="inputName">Location Name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Location">
+                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Location" runat="server">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Wikipedia Entry 1</label>
-                    <input type="text" class="form-control" id="inputWiki1" placeholder="Wikipedia Entry 1">
+                    <label for="exampleInputPassword1">Wikipedia Entries (One Per Line)</label>
+                    <textarea class="form-control" id="inputWiki1" placeholder="Wikipedia Entries" rows="5" runat="server"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="inputWiki2">Wikipedia Entry 2</label>
-                    <input type="text" class="form-control" id="inputWiki2" placeholder="Wikipedia Entry 2">
+                    <asp:Button ID="buttonSubmit" runat="server" Text="Submit" class="btn btn-success" OnClick="buttonSubmit_Click" />
                 </div>
-                <div class="form-group">
-                    <label for="inputWiki3">Wikipedia Entry 3</label>
-                    <input type="text" class="form-control" id="inputWiki3" placeholder="Wikipedia Entry 3">
-                </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+
+                <input type="hidden" id="circleRadiusValue" class="circleRadiusValue" runat="server" />
+
             </form>
         </div>
     </div>
@@ -133,7 +161,21 @@
     <script>
         $(".dropdown-menu li a").click(function () {
             var selText = $(this).text();
-            $(this).parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+            $(this).parents('.input-group-btn').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+            markerCircleRadius = parseInt(selText.split(" ")[0]);
+
+            markerCircle.setRadius(markerCircleRadius * 1000);
+
+            var hiddenRadiusVal = $('.inputRadiusValue');
+            hiddenRadiusVal.val(markerCircleRadius);
+        });
+
+        $(".inputRadiusValue").bind("change paste keyup", function () {
+
+            var value = parseInt($(this).val());
+            markerCircle.setRadius(value * 1000);
+
+            $('.input-group-btn').find('.dropdown-toggle').html(value.toString() + ' km<span class="caret"></span>');
         });
 
         $("#btnSearch").click(function () {

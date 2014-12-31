@@ -19,28 +19,79 @@ namespace hitchbotAPI.Controllers
         /// <param name="HitchBotID">The ID of the HitchBot to add a new Conversation to.</param>
         /// <param name="StartTime">The time the Conversation started</param>
         /// <returns>The ID of the Conversation being added.</returns>
-        [HttpPost]
-        public bool StartNewConversation(int HitchBotID, string StartTime)
-        {
-            DateTime StartTimeReal = DateTime.ParseExact(StartTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-            using (var db = new Models.Database())
-            {
-                var hitchbot = db.hitchBOTs.Include(l => l.Locations).Include(h => h.Conversations).First(h => h.ID == HitchBotID);
-                if (DateTime.UtcNow - hitchbot.Conversations.Last().TimeAdded > TimeSpan.FromHours(3))
-                {
-                    var location = hitchbot.Locations.OrderBy(l => l.TakenTime).First();
-                    var newConversation = new Models.Conversation()
-                    {
-                        StartTime = StartTimeReal,
-                        TimeAdded = DateTime.UtcNow,
-                        StartLocation = location,
-                        HitchBOT = hitchbot
-                    };
+        //[HttpPost]
+        //public bool StartNewConversation(int HitchBotID, string StartTime)
+        //{
+        //    DateTime StartTimeReal = DateTime.ParseExact(StartTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+        //    using (var db = new Models.Database())
+        //    {
+        //        var hitchbot = db.hitchBOTs.Include(l => l.Locations).Include(h => h.Conversations).FirstOrDefault(h => h.ID == HitchBotID);
+        //        //if (hitchbot == null)
+        //        //throw new HttpResponseException("HitchBOT not found!", HttpStatusCode.NotFound);
+        //        if (DateTime.UtcNow - hitchbot.Conversations.Last().TimeAdded > TimeSpan.FromHours(3))
+        //        {
+        //            var location = hitchbot.Locations.OrderBy(l => l.TakenTime).First();
+        //            var newConversation = new Models.Conversation()
+        //            {
+        //                StartTime = StartTimeReal,
+        //                TimeAdded = DateTime.UtcNow,
+        //                StartLocation = location,
+        //                HitchBOT = hitchbot
+        //            };
 
-                    db.Conversations.Add(newConversation);
-                    db.SaveChanges();
+        //            db.Conversations.Add(newConversation);
+        //            db.SaveChanges();
+        //        }
+        //        return true;
+        //    }
+        //}
+
+        /// <summary>
+        /// Starts a new Conversation thread for a HitchBot and the Last Location. If a location is not available, it just assigns it to none.
+        /// </summary>
+        /// <param name="HitchBotID">The ID of the HitchBot to add a new Conversation to.</param>
+        /// <param name="StartTime">The time the Conversation started</param>
+        /// <returns>The ID of the Conversation being added.</returns>
+        [HttpPost]
+        public HttpResponseMessage StartNewConversation(int HitchBotID, string StartTime, bool adsaa = true)
+        {
+            try
+            {
+                DateTime StartTimeReal = DateTime.ParseExact(StartTime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+
+                using (var db = new Models.Database())
+                {
+                    var hitchbot = db.hitchBOTs.Include(l => l.Locations).Include(h => h.Conversations).FirstOrDefault(h => h.ID == HitchBotID);
+                    if (hitchbot == null)
+                    {
+                        string message = string.Format("HitchBOT with id = {0} not found", HitchBotID);
+                        HttpError error = new HttpError(message);
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, error);
+                    }
+
+                    if (DateTime.UtcNow - (hitchbot.Conversations.LastOrDefault() ?? (new Models.Conversation { StartTime = DateTime.UtcNow.Subtract(new TimeSpan(5)) })).StartTime > TimeSpan.FromHours(3))
+                    {
+                        var location = hitchbot.Locations.OrderBy(l => l.TakenTime).FirstOrDefault();
+                        var newConversation = new Models.Conversation()
+                        {
+                            StartTime = StartTimeReal,
+                            TimeAdded = DateTime.UtcNow,
+                            StartLocation = location,
+                            HitchBOT = hitchbot
+                        };
+
+                        db.Conversations.Add(newConversation);
+                        db.SaveChanges();
+                    }
+
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
                 }
-                return true;
+            }
+            catch (FormatException)
+            {
+                string message = string.Format("{0} is not a valid DateTime. Please use format yyyyMMddHHmmss", StartTime);
+                HttpError error = new HttpError(message);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
         }
 
