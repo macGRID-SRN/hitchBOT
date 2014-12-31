@@ -44,11 +44,6 @@
             $(".lngValue").text(latlng.lng());
         }
 
-        function setRadiusListener() {
-
-
-        }
-
         function initialize() {
             var myLatlng = new google.maps.LatLng(50.983027, 10.445880);
 
@@ -116,7 +111,7 @@
             <form class="wiki-form" runat="server">
                 <%-- This code was borrowed from http://www.bootply.com/katie/9CvIygzob8 --%>
                 <div class="form-group">
-                    <label for="inputRadius">Select A Radius</label>
+                    <label for="inputRadius">Select a Radius</label>
 
                     <div class="input-group radius-select">
                         <input id="inputRadiusValue" type="text" class="form-control inputRadiusValue" aria-label="..." size="6" maxlength="3" runat="server">
