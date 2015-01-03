@@ -1,14 +1,7 @@
 package com.example.hitchbot.Speech;
 
-import java.util.Locale;
-
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
-
 import com.example.hitchbot.Config;
 import com.example.hitchbot.StoryRecorder;
 
@@ -68,22 +61,11 @@ public class SpeechController {
 
 	@SuppressWarnings("deprecation")
 	public void askToRecordAudio() {
-		csh.sendCleverScriptResponse("tell me a story please please");
-		String response = csh.getRecentInput();
-		response = response.toLowerCase(Locale.CANADA);
-		if (!response.contains("no")) {
-			speechOut.mTts.speak(
-					"I will now record your life story for 60 seconds",
-					TextToSpeech.QUEUE_FLUSH, null);
-
+		speechOut.mTts.speak(
+				"May I record a story from you for 60 seconds?",
+				TextToSpeech.QUEUE_FLUSH, null);
 			final StoryRecorder rlS = new StoryRecorder();
 			rlS.recordSixty();
-		}
-		else
-		{
-			csh.sendCleverScriptResponse("hello world");
-		}
-
 	}
 
 	private void setupHandlers()
@@ -102,8 +84,20 @@ public class SpeechController {
 	}
 	
 	public void pauseSpeechCycle() {
-		speechOut.pauseTts();
-		speechIn.pauseRecognizer();
+		Config.context.runOnUiThread(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				if(speechOut.isSpeaking()){
+				speechOut.pauseTts();
+				}
+				if(speechIn.getIsListening()){
+				speechIn.pauseRecognizer();	
+				}
+			}
+		});
+		
 	}
 	
 

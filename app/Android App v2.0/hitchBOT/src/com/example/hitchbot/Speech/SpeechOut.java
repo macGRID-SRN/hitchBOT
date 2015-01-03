@@ -10,20 +10,23 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.util.Log;
 
 public class SpeechOut {
 
 	public TextToSpeech mTts;
-	private boolean isSpeaking;
 	private SpeechController speechController;
+	private boolean isStopping;
+	private static final String TAG = "SpeechOut";
 
 	public SpeechOut() {
+		isStopping = false;
 		mTts = new TextToSpeech(Config.context,
 				new TextToSpeech.OnInitListener() {
 					@Override
 					public void onInit(int status) {
 						if (status != TextToSpeech.ERROR) {
-							mTts.setLanguage(Locale.CANADA);
+							mTts.setLanguage(Locale.GERMAN);
 							mTts.setPitch((float) 1.0);
 							setTtsListener();
 						}
@@ -43,34 +46,39 @@ public class SpeechOut {
 		// String.valueOf(AudioManager.STREAM_ALARM));
 		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
 				"SOME MESSAGE");
-
-		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 		queueSpoke(message);
+		isStopping = false;
+		Log.i(TAG, message);
+		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 	}
 
-	public void pauseTts()
-	{
+	public void pauseTts() {
+		isStopping = true;
 		mTts.stop();
 	}
-	
+
 	private void setTtsListener() {
 		int listenerResult = mTts
 				.setOnUtteranceProgressListener(new UtteranceProgressListener() {
 					@Override
-					public void onDone(String utteranceId) {
-						isSpeaking = false;
-						if(speechController.getSpeechIn() != null)
-						{
-							Config.context.runOnUiThread(new Runnable()
-							{
-
+					public void onDone(String utteranceId) {						
+						if (speechController.getSpeechIn() != null && isStopping == false) {
+							Config.context.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
-									speechController.getSpeechIn().switchSearch(Config.searchName);									
+									if (!isStopping) {
+										speechController
+												.getSpeechIn()
+												.switchSearch(Config.searchName);
+									}
 								}
 							});
 						}
-						
+						else
+						{
+							isStopping = false;
+						}
+
 					}
 
 					@Override
@@ -80,7 +88,6 @@ public class SpeechOut {
 
 					@Override
 					public void onStart(String utteranceId) {
-						isSpeaking = true;
 					}
 
 				});
@@ -96,7 +103,12 @@ public class SpeechOut {
 	}
 
 	public boolean isSpeaking() {
-		return isSpeaking;
+		return mTts.isSpeaking();
+	}
+	
+	public void setIsStopping(boolean stop)
+	{
+		this.isStopping = stop;
 	}
 
 }

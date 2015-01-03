@@ -154,7 +154,7 @@ public class FileUpload implements Runnable {
 			String s = b.toString();
 			Log.i(TAG, s);
 			dos.close();
-			if (s.equals("File uploaded.")) {
+			if (s.equals("true")) {
 				boolean deleted = new File(filePath).delete();
 				Log.i(TAG, String.valueOf(deleted));
 			}

@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class OfflineRecognizer implements RecognitionListener {
 	private HashMap<String, Integer> captions;
 	private long startTime;
 	private SpeechController speechController;
+	private Handler freezeHandler;
 	
 	public OfflineRecognizer() {
 		initRecognizer();
@@ -98,6 +100,18 @@ public class OfflineRecognizer implements RecognitionListener {
 	public void startListening(String searchName)
 	{
 		speechController.getSpeechIn().setIsListening(true);
+		startTime = System.currentTimeMillis() / 1000;
+		freezeHandler = new Handler();
+		freezeHandler.postDelayed(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				getResult();
+				
+			}
+			
+		}, 10 * 1000);
 		recognizer.startListening(searchName);
 	}
 	

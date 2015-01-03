@@ -55,8 +55,8 @@ public class TakePicture {
 			takePicture = true;
 			frameNew.bringChildToFront(cameraPreview);
 			imageResult.setImageBitmap(null);
-			cameraPreview.camera.startPreview();
 			try {
+				cameraPreview.camera.startPreview();
 				Thread.sleep(1000);
 				captureHandler();
 			} catch (InterruptedException e) {

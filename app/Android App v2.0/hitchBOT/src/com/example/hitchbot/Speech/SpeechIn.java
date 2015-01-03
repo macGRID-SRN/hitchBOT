@@ -1,26 +1,6 @@
 package com.example.hitchbot.Speech;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-
 import com.example.hitchbot.Config;
-import com.example.hitchbot.HitchActivity;
-import com.example.hitchbot.R;
-import com.example.hitchbot.Models.HttpPostDb;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.speech.RecognizerIntent;
-import android.widget.TextView;
-import android.widget.Toast;
-import edu.cmu.pocketsphinx.Assets;
-import edu.cmu.pocketsphinx.Hypothesis;
-import edu.cmu.pocketsphinx.RecognitionListener;
-import edu.cmu.pocketsphinx.SpeechRecognizer;
-import static edu.cmu.pocketsphinx.SpeechRecognizerSetup.defaultSetup;
 
 public class SpeechIn {
 

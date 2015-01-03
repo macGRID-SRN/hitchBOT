@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.cleverscript.android.CleverscriptAPI;
+import com.cleverscript.android.*;
 import com.example.hitchbot.Config;
 
 public class CleverScriptHelper {

@@ -34,7 +34,6 @@ public class HitchActivity extends ActionBarActivity {
 	private Handler dataCollectionHandler;
 	private Handler internetHandler;
 	private Handler fileUploadHander;
-	private static final int REQUEST_CODE = 1234;
 	Dialog match_text_dialog;
 	ArrayList<String> matches_text;
 
@@ -49,7 +48,6 @@ public class HitchActivity extends ActionBarActivity {
 		tP = new TakePicture();
 		speechController = new SpeechController();
 		setupHandlers();
-
 	}
 
 	@Override

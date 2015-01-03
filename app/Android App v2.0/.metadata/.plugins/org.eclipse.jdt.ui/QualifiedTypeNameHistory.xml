@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="edu.cmu.pocketsphinx.Assets"/>
-<fullyQualifiedTypeName name="edu.cmu.pocketsphinx.SpeechRecognizer"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.HitchActivity"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.R"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
 <fullyQualifiedTypeName name="com.cleverscript.android.CleverscriptAPI"/>
@@ -33,7 +30,6 @@
 <fullyQualifiedTypeName name="android.speech.tts.TextToSpeech"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.StoryRecorder"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Speech.CleverScriptHelper"/>
-<fullyQualifiedTypeName name="android.os.Handler"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Speech.SpeechController"/>
 <fullyQualifiedTypeName name="android.app.ActivityManager.RunningTaskInfo"/>
 <fullyQualifiedTypeName name="java.util.Timer"/>
@@ -59,5 +55,9 @@
 <fullyQualifiedTypeName name="android.content.Intent"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 <fullyQualifiedTypeName name="android.speech.RecognizerIntent"/>
+<fullyQualifiedTypeName name="edu.cmu.pocketsphinx.RecognitionListener"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="android.os.Handler"/>
+<fullyQualifiedTypeName name="android.os.Looper"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
 </qualifiedTypeNameHistroy>
