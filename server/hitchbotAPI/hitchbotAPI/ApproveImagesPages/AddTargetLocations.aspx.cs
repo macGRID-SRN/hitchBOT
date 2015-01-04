@@ -87,6 +87,7 @@ namespace hitchbotAPI.ApproveImagesPages
                     {
                         TargetLocation = location,
                         WikipediaText = wikiEntry,
+                        EntryName = name,
                         RadiusKM = radiusActual,
                         HitchBot = hitchbot,
                         TimeAdded = DateTime.UtcNow

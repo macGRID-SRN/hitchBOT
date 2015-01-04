@@ -14,6 +14,7 @@ namespace hitchbotAPI.Models
 
         //it is likely that there will be more than one entry here.
         public string WikipediaText { get; set; }
+        public string EntryName { get; set; }
         public double? RadiusKM { get; set; }
 
         public DateTime TimeAdded { get; set; }

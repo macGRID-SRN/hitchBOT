@@ -390,6 +390,10 @@
     <Compile Include="Migrations\201412312108071_AddWikipediaEntries.Designer.cs">
       <DependentUpon>201412312108071_AddWikipediaEntries.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501040435453_AddNameToWikipediaEntry.cs" />
+    <Compile Include="Migrations\201501040435453_AddNameToWikipediaEntry.Designer.cs">
+      <DependentUpon>201501040435453_AddNameToWikipediaEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -578,6 +582,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201412312108071_AddWikipediaEntries.resx">
       <DependentUpon>201412312108071_AddWikipediaEntries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501040435453_AddNameToWikipediaEntry.resx">
+      <DependentUpon>201501040435453_AddNameToWikipediaEntry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
