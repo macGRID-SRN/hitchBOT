@@ -1,0 +1,1221 @@
+#############################################################################
+## Copyright (c) 1996, Carnegie Mellon University, Cambridge University,
+## Ronald Rosenfeld and Philip Clarkson
+## Version 3, Copyright (c) 2006, Carnegie Mellon University 
+## Contributors includes Wen Xu, Ananlada Chotimongkol, 
+## David Huggins-Daines, Arthur Chan and Alan Black 
+#############################################################################
+=============================================================================
+===============  This file was produced by the CMU-Cambridge  ===============
+===============     Statistical Language Modeling Toolkit     ===============
+=============================================================================
+This is a 3-gram language model, based on a vocabulary of 268 words,
+  which begins "1,75", "1,86", "100"...
+This is a CLOSED-vocabulary model
+  (OOVs eliminated from training data and are forbidden in test data)
+Good-Turing discounting was applied.
+1-gram frequency of frequency : 216 
+2-gram frequency of frequency : 396 23 5 2 2 0 0 
+3-gram frequency of frequency : 454 9 1 0 0 0 0 
+1-gram discounting ratios : 0.99 
+2-gram discounting ratios : 0.10 0.31 0.52 
+3-gram discounting ratios : 0.03 0.16 
+This file is in the ARPA-standard format introduced by Doug Paul.
+
+p(wd3|wd1,wd2)= if(trigram exists)           p_3(wd1,wd2,wd3)
+                else if(bigram w1,w2 exists) bo_wt_2(w1,w2)*p(wd3|wd2)
+                else                         p(wd3|w2)
+
+p(wd2|wd1)= if(bigram exists) p_2(wd1,wd2)
+            else              bo_wt_1(wd1)*p_1(wd2)
+
+All probs and back-off weights (bo_wt) are given in log10 form.
+
+Data formats:
+
+Beginning of data mark: \data\
+ngram 1=nr            # number of 1-grams
+ngram 2=nr            # number of 2-grams
+ngram 3=nr            # number of 3-grams
+
+\1-grams:
+p_1     wd_1 bo_wt_1
+\2-grams:
+p_2     wd_1 wd_2 bo_wt_2
+\3-grams:
+p_3     wd_1 wd_2 wd_3 
+
+end of data mark: \end\
+
+\data\
+ngram 1=268
+ngram 2=428
+ngram 3=464
+
+\1-grams:
+-2.6807 1,75	-0.0402
+-2.6807 1,86	-0.0402
+-2.3757 100	-0.0429
+-2.6807 111	-0.0402
+-2.6807 1510	-0.0439
+-2.6807 1558	-0.0429
+-2.6807 1678	-0.0429
+-2.6807 1700	-0.0439
+-2.6807 1887	-0.0439
+-2.6807 1911	-0.0439
+-2.6807 1963	-0.0439
+-2.6807 1964.	-0.0222
+-2.6807 1996	-0.0439
+-2.6807 200	-0.0439
+-2.6807 2500	-0.0439
+-2.6807 280	-0.0439
+-2.6807 5	-0.0402
+-2.0746 60	-0.0960
+-2.6807 70.000	-0.0439
+-2.6807 9,5	-0.0402
+-2.6807 Ab	-0.0439
+-2.1996 Alster	-0.0884
+-2.6807 Aufführungen	-0.0280
+-2.6807 Aufgrund	-0.0439
+-2.6807 Außenalster.	-0.0411
+-2.6807 Besucher.	-0.0222
+-2.6807 Bezirke.	-0.0383
+-2.6807 Bille	-0.0308
+-2.3757 Binnenalster	-0.0270
+-2.6807 Brücken	-0.0429
+-2.6807 Bundesliga,	-0.0383
+-2.6807 Bundesrepublik	-0.0429
+-2.6807 Börse	-0.0355
+-2.6807 Containerhäfen	-0.0439
+-2.1996 Das	-0.1076
+-2.6807 Den	-0.0439
+-1.8316 Der	-0.3988
+-2.6807 Deutschland	-0.0308
+-2.3757 Deutschland.	-0.0193
+-2.1996 Deutschlands	-0.0280
+-2.6807 Deutschlands.	-0.0222
+-2.0746 Die	-0.0848
+-2.6807 Einflüsse	-0.0308
+-2.6807 Einwohnern	-0.0318
+-2.6807 Einwohnerstand	-0.0411
+-2.3757 Elbe	-0.1486
+-2.6807 Elbinsel	-0.0439
+-2.6807 Elbtunnel	-0.0318
+-2.3757 Europa.	-0.0203
+-2.6807 Europäischen	-0.0439
+-2.6807 Fischmarkt	-0.0439
+-2.6807 Freihafen	-0.0411
+-2.6807 Fußball-Bundesliga.	-0.0383
+-2.6807 Fähren.	-0.0383
+-2.6807 Galerien.	-0.0439
+-2.6807 Gründungsmitglied	-0.0203
+-2.6807 Gänsemarkt	-0.0280
+-2.6807 Gästen	-0.0308
+-2.1996 Hafen	-0.1029
+-2.6807 Hafengebiet	-0.0439
+-1.2965 Hamburg	-0.1163
+-2.6807 Hamburg.	-0.0222
+-1.5975 Hamburger	-0.1025
+-2.6807 Hamburgern	-0.0439
+-2.6807 Hamburgs	-0.0439
+-2.6807 Hamburgs.	0.0000
+-2.6807 Herzstück	-0.0203
+-2.6807 Hinterland.	-0.0439
+-2.1996 Im	-0.0318
+-2.6807 In	-0.0222
+-2.6807 Innenstadt.	-0.0411
+-2.6807 Internationalen	-0.0439
+-2.6807 Internorga	-0.0439
+-2.6807 Jahr	-0.0439
+-2.6807 Jahre	-0.0439
+-2.6807 Jungfernstieg	-0.0308
+-2.6807 Kilometer	-0.0439
+-2.6807 Klima	-0.0280
+-2.6807 Klimazone.	-0.0439
+-2.6807 Kongressorten	-0.0429
+-2.6807 Lagerhauskomplex.	-0.0383
+-2.6807 Land	-0.0203
+-2.6807 Landungsbrücken	-0.0411
+-2.6807 Literatur	-0.0308
+-2.6807 London.	-0.0429
+-2.6807 Meer.	-0.0420
+-2.6807 Meile	-0.0439
+-2.6807 Messen	-0.0439
+-2.6807 Michel.	-0.0222
+-1.9777 Millionen	-0.0402
+-2.3757 Mit	-0.0392
+-2.6807 Mundartpflege	-0.0280
+-2.6807 Museen	-0.0308
+-2.6807 Museen,	-0.0439
+-2.6807 Musicalstandort	-0.0439
+-2.6807 Musikclubs,	-0.0411
+-2.6807 Musikverlage	-0.0308
+-2.6807 Mündungen	-0.0203
+-2.6807 Naherholungsgebiet.	-0.0411
+-2.6807 New	-0.0439
+-2.6807 Niederelbe	-0.0429
+-2.6807 Nordsee	-0.0439
+-2.6807 Ohnsorg-Theater,	-0.0383
+-2.6807 Oper	-0.0439
+-2.6807 Ort	-0.0203
+-2.6807 Pauli	-0.0439
+-2.6807 Platt	-0.0420
+-2.6807 Radwege.	-0.0411
+-2.6807 Reeperbahn	-0.0308
+-2.6807 Reichsstadt.	-0.0439
+-2.3757 SV	-0.0135
+-2.6807 Schanzenviertel	-0.0429
+-2.6807 Schiffslinien	-0.0308
+-2.6807 Seegerichtshofs.	-0.0429
+-2.3757 Seehafen	-0.0251
+-2.3757 Seit	-0.0429
+-2.6807 Sitz	-0.0439
+-2.6807 Sommer	-0.0439
+-2.6807 Speicherstadt,	-0.0203
+-2.6807 Sprache	-0.0439
+-2.6807 St.	-0.0439
+-2.1996 Stadt	-0.0261
+-2.6807 Stadtgebiet	-0.0222
+-2.6807 Stadtrepublik.	-0.0222
+-2.6807 Stadtstaat	-0.0439
+-2.6807 Steinwerder.	-0.0420
+-2.6807 Straßen	-0.0203
+-2.6807 Städte	-0.0280
+-2.6807 Szeneviertel	0.0000
+-2.6807 Südlich	-0.0203
+-2.6807 Tagesbesuchern,	-0.0383
+-2.3757 Theater,	-0.0365
+-2.6807 Tonträger-Unternehmen.	-0.0222
+-2.6807 Tor	-0.0439
+-2.6807 Tourismusziele	-0.0280
+-2.6807 Tradition	-0.0355
+-2.6807 Union.	-0.0222
+-2.6807 Unterelbe,	-0.0318
+-2.6807 Wahrzeichen	-0.0308
+-2.3757 Welt	-0.0299
+-2.6807 Winter	-0.0439
+-2.6807 Woche	-0.0439
+-2.6807 York	-0.0308
+-2.6807 Zeitungskolumnen	-0.0439
+-2.6807 Zentrum	-0.0203
+-2.6807 abgestiegen	-0.0439
+-2.6807 achtgrößte	-0.0420
+-1.6767 als	-0.0425
+-2.6807 am	-0.0439
+-2.6807 an	-0.0420
+-2.6807 anbietet.	-0.0420
+-2.6807 attraktivsten	-0.0439
+-2.6807 auch	-0.0420
+-2.6807 auf	-0.0203
+-2.6807 bedeutende	-0.0439
+-2.6807 bekannte	-0.0439
+-2.6807 bekannteste	-0.0439
+-2.6807 berüchtigt.	-0.0429
+-2.6807 berühmte	-0.0337
+-2.6807 berühmtesten	-0.0439
+-2.6807 besonders	-0.0402
+-2.6807 bis	-0.0439
+-2.6807 bislang	-0.0439
+-2.6807 brückenreichsten	-0.0439
+-2.6807 bürgerliche	-0.0439
+-1.8316 das	-0.0384
+-2.6807 dem	-0.0439
+-2.1996 den	-0.0420
+-1.2617 der	-0.0197
+-2.6807 des	-0.0439
+-2.6807 deutsche	-0.0439
+-1.5306 die	-0.0165
+-2.6807 direkt	-0.0411
+-2.6807 drittgrößte	-0.0439
+-2.6807 ein	-0.0439
+-2.0746 eine	-0.2091
+-2.6807 eines	-0.0203
+-2.6807 einzige	-0.0439
+-2.6807 endgültig	-0.0355
+-2.6807 erreichte	-0.0222
+-2.6807 erste	-0.0439
+-2.6807 ersten	-0.0420
+-2.3757 eröffnet.	-0.0411
+-2.0746 etwa	-0.0374
+-2.6807 finden	-0.0439
+-2.6807 führenden	-0.0439
+-2.6807 für	-0.0439
+-2.6807 galt	-0.0222
+-2.6807 gegründete	-0.0337
+-2.6807 gehört	-0.0429
+-2.6807 genannt.	-0.0383
+-2.6807 gepflegt.	-0.0383
+-2.6807 gesprochen	-0.0439
+-2.6807 gezählt.	-0.0420
+-2.3757 gilt	-0.0125
+-2.6807 gliedert	-0.0429
+-2.6807 größere	-0.0439
+-2.3757 größte	-0.1607
+-2.6807 größten	-0.0439
+-2.6807 hanseboot	-0.0439
+-2.3757 hat	-0.1561
+-2.6807 heute	-0.0439
+-2.6807 historische	-0.0439
+-2.6807 hundertjährige	-0.0439
+-2.6807 höchsten	-0.0439
+-1.9777 im	-0.0402
+-1.4214 in	-0.2422
+-2.6807 international	-0.0439
+-1.5006 ist	-0.1458
+-2.6807 ist.	-0.0222
+-2.6807 jede	-0.0439
+-2.6807 jährlich	-0.0308
+-2.6807 kleine	-0.0429
+-2.6807 km	-0.0439
+-2.6807 kühler	-0.0355
+-2.6807 lange	-0.0439
+-2.0746 liegt	-0.0066
+-2.6807 lockt	-0.0439
+-2.6807 maritimer	-0.0439
+-2.3757 mehr	-0.1533
+-2.6807 milder	-0.0308
+-2.0746 mit	-0.0174
+-2.6807 mündet.	-0.0439
+-2.6807 nach	-0.0439
+-2.6807 nie	-0.0439
+-2.6807 niederdeutscher	-0.0439
+-2.6807 noch	-0.0439
+-2.6807 nordwestlich	-0.0280
+-2.6807 oder	-0.0318
+-2.6807 offenen	-0.0439
+-2.6807 regelmäßig	-0.0439
+-2.6807 rund	-0.0439
+-2.6807 sechs	-0.0439
+-2.6807 seit	-0.0439
+-2.3757 sich	-0.1458
+-2.6807 sieben	-0.0439
+-2.6807 sowie	-0.0280
+-2.6807 spielt	-0.0203
+-2.6807 statt.	-0.0222
+-2.6807 sündige	-0.0439
+-2.6807 teilt	-0.0429
+-1.5006 und	0.0126
+-2.6807 unterquert	-0.0280
+-2.3757 verbindet	-0.0086
+-2.3757 verfügt	-0.1561
+-2.6807 verkehren	-0.0439
+-2.6807 verstanden	-0.0308
+-2.6807 viele	-0.0337
+-2.6807 vielen	-0.0439
+-2.6807 von	-0.0439
+-2.6807 warmgemäßigten	-0.0439
+-2.6807 weiter	-0.0439
+-2.6807 weltgrößte	-0.0439
+-2.3757 weltweit	-0.0429
+-2.6807 weltweit.	-0.0383
+-2.6807 wie	-0.0318
+-2.1996 wird	-0.0411
+-2.3757 wurde	-0.1495
+-2.6807 zentrales	-0.0439
+-2.3757 zu	-0.1598
+-2.6807 zur	-0.0429
+-2.6807 zusammenhängende	-0.0439
+-2.6807 zwanzig	-0.0439
+-2.3757 zweitgrößte	-0.0251
+-2.6807 Übernachtungen	-0.0439
+-2.6807 östlichen	-0.0439
+-1.8316 über	-0.0604
+-2.6807 ﻿Hamburg	-0.0308
+
+\2-grams:
+-1.0090 1,75 Millionen -0.0061
+-1.0090 1,86 Millionen -0.0061
+-1.3101 100 Musikclubs, 0.0301
+-1.3101 100 km 0.0301
+-1.0090 111 Millionen -0.0061
+-1.0090 1510 galt 0.0301
+-1.0090 1558 wurde 0.1478
+-1.0090 1678 wurde 0.1478
+-1.0090 1700 Kilometer 0.0301
+-1.0090 1887 gegründete 0.0301
+-1.0090 1911 unterquert 0.0301
+-1.0090 1963 spielt 0.0301
+-1.0090 1964. Hamburg -0.0032
+-1.0090 1996 Sitz 0.0301
+-1.0090 200 Tonträger-Unternehmen. 0.0301
+-1.0090 2500 Brücken 0.0301
+-1.0090 280 Musikverlage 0.0301
+-1.0090 5 Millionen -0.0061
+-1.6111 60 Museen 0.0301
+-1.6111 60 Museen, 0.0301
+-0.8066 60 Theater, 0.0301
+-1.0090 70.000 Besucher. 0.0301
+-1.0090 9,5 Millionen -0.0061
+-1.0090 Ab 1510 0.0301
+-0.6817 Alster in 0.1826
+-1.4862 Alster ist -0.0118
+-1.0090 Aufführungen in -0.0123
+-1.0090 Aufgrund maritimer 0.0301
+-1.0090 Außenalster. Die -0.0039
+-1.0090 Besucher. Hamburg 0.0868
+-1.0090 Bezirke. Der 0.3533
+-1.0090 Bille und 0.0038
+-1.3101 Binnenalster liegt -0.0039
+-1.3101 Binnenalster und -0.0118
+-1.0090 Brücken gilt 0.0071
+-1.0090 Bundesliga, das -0.0086
+-1.0090 Bundesrepublik Deutschland. 0.0071
+-1.0090 Börse als 0.0133
+-1.0090 Containerhäfen weltweit. 0.0301
+-0.6817 Das Hamburger -0.0075
+-1.4862 Das Schanzenviertel 0.0301
+-1.0090 Den bislang 0.0301
+-0.2430 Der Hamburger -0.5290
+-1.8541 Der Jungfernstieg 0.0301
+-1.8541 Der bekannteste 0.0301
+-1.8541 Der berühmte 0.0301
+-1.0090 Deutschland und 0.0038
+-1.3101 Deutschland. Das 0.0867
+-1.3101 Deutschland. Hamburg 0.0868
+-1.4862 Deutschlands Tor 0.0301
+-1.4862 Deutschlands eröffnet. 0.0071
+-1.4862 Deutschlands und -0.0118
+-1.0090 Deutschlands. Hamburg 0.0868
+-0.8066 Die Alster 0.1049
+-1.6111 Die Hamburger -0.0111
+-1.6111 Die Niederelbe 0.0301
+-1.0090 Einflüsse ist 0.0334
+-1.0090 Einwohnern die -0.0116
+-1.0090 Einwohnerstand mit -0.0039
+-0.5056 Elbe und -0.0090
+-1.0090 Elbinsel Steinwerder. 0.0301
+-1.0090 Elbtunnel die -0.0116
+-1.3101 Europa. Hamburg -0.0129
+-1.3101 Europa. Seit 0.0071
+-1.0090 Europäischen Union. 0.0301
+-1.0090 Fischmarkt lockt 0.0301
+-1.0090 Freihafen liegt -0.0039
+-1.0090 Fußball-Bundesliga. Der 0.3533
+-1.0090 Fähren. Der 0.3533
+-1.0090 Galerien. In 0.0301
+-1.0090 Gründungsmitglied der -0.0131
+-1.0090 Gänsemarkt in 0.1266
+-1.0090 Gästen und -0.0118
+-0.6817 Hafen ist 0.0584
+-1.4862 Hafen wird -0.0003
+-1.0090 Hafengebiet sechs 0.0301
+-2.3893 Hamburg als 0.0133
+-2.3893 Hamburg der -0.0131
+-2.3893 Hamburg direkt 0.0301
+-2.3893 Hamburg eines 0.0301
+-2.3893 Hamburg endgültig 0.0301
+-2.3893 Hamburg eröffnet. 0.0071
+-2.3893 Hamburg finden 0.0301
+-2.3893 Hamburg gliedert 0.0301
+-1.5848 Hamburg hat 0.0862
+-1.5848 Hamburg im 0.0027
+-0.6812 Hamburg ist 0.2007
+-1.5848 Hamburg liegt 0.0071
+-2.3893 Hamburg teilt 0.0301
+-1.5848 Hamburg verfügt 0.0862
+-2.3893 Hamburg verkehren 0.0301
+-2.3893 Hamburg wird -0.0003
+-1.0090 Hamburg. Hamburg -0.0032
+-2.0882 Hamburger Börse 0.0301
+-2.0882 Hamburger Fischmarkt 0.0301
+-2.0882 Hamburger Freihafen 0.0301
+-0.8830 Hamburger Hafen 0.0649
+-2.0882 Hamburger Platt 0.0301
+-2.0882 Hamburger Reeperbahn 0.0301
+-1.2837 Hamburger SV 0.0301
+-2.0882 Hamburger Wahrzeichen 0.0301
+-2.0882 Hamburger das -0.0086
+-1.0090 Hamburgern verstanden 0.0301
+-1.0090 Hamburgs zentrales 0.0301
+-1.0090 Herzstück der -0.0131
+-1.0090 Hinterland. Ab 0.0301
+-1.4862 Im Hamburger -0.0111
+-1.4862 Im Jahr 0.0301
+-1.4862 Im Stadtgebiet 0.0301
+-1.0090 In Hamburg -0.0129
+-1.0090 Innenstadt. Die 0.0590
+-1.0090 Internationalen Seegerichtshofs. 0.0301
+-1.0090 Internorga statt. 0.0301
+-1.0090 Jahr 1678 0.0301
+-1.0090 Jahre 1964. 0.0301
+-1.0090 Jungfernstieg ist -0.0118
+-1.0090 Kilometer Radwege. 0.0301
+-1.0090 Klima in 0.1266
+-1.0090 Klimazone. Aufgrund 0.0301
+-1.0090 Kongressorten weltweit 0.0071
+-1.0090 Lagerhauskomplex. Der -0.0086
+-1.0090 Land der -0.0131
+-1.0090 Landungsbrücken mit -0.0039
+-1.0090 Literatur und -0.0118
+-1.0090 London. Mit 0.0071
+-1.0090 Meer. Im -0.0003
+-1.0090 Meile berüchtigt. 0.0301
+-1.0090 Messen wie 0.0301
+-1.0090 Michel. Hamburg -0.0032
+-1.7080 Millionen Einwohnern 0.0301
+-1.7080 Millionen Gästen 0.0301
+-1.7080 Millionen Tagesbesuchern, 0.0301
+-1.7080 Millionen erreichte 0.0301
+-1.7080 Millionen Übernachtungen 0.0301
+-1.3101 Mit etwa -0.0039
+-1.3101 Mit mehr 0.1478
+-1.0090 Mundartpflege in 0.1266
+-1.0090 Museen und -0.0118
+-1.0090 Museen, rund 0.0301
+-1.0090 Musicalstandort nach 0.0301
+-1.0090 Musikclubs, etwa -0.0039
+-1.0090 Musikverlage und -0.0118
+-1.0090 Mündungen der -0.0131
+-1.0090 Naherholungsgebiet. Die 0.0590
+-1.0090 New York 0.0301
+-1.0090 Niederelbe verbindet 0.0071
+-1.0090 Nordsee mündet. 0.0301
+-1.0090 Ohnsorg-Theater, das -0.0086
+-1.0090 Oper am 0.0301
+-1.0090 Ort der -0.0131
+-1.0090 Pauli Elbtunnel 0.0301
+-1.0090 Platt wird -0.0003
+-1.0090 Radwege. Die -0.0039
+-1.0090 Reeperbahn ist -0.0118
+-1.0090 Reichsstadt. 1558 0.0301
+-1.3101 SV in 0.0250
+-1.3101 SV ist 0.0334
+-1.0090 Schanzenviertel gilt 0.0071
+-1.0090 Schiffslinien und -0.0118
+-1.0090 Seegerichtshofs. Mit 0.0071
+-1.3101 Seehafen Deutschlands -0.0003
+-1.3101 Seehafen in -0.0123
+-1.3101 Seit 1911 0.0301
+-1.3101 Seit 1963 0.0301
+-1.0090 Sitz des 0.0301
+-1.0090 Sommer kühler 0.0301
+-1.0090 Speicherstadt, der -0.0131
+-1.0090 Sprache anbietet. 0.0301
+-1.0090 St. Pauli 0.0301
+-1.4862 Stadt Deutschlands. 0.0301
+-1.4862 Stadt Hamburg. 0.0301
+-1.4862 Stadt in 0.0250
+-1.0090 Stadtgebiet Hamburg -0.0129
+-1.0090 Stadtrepublik. Hamburg -0.0032
+-1.0090 Stadtstaat ein 0.0301
+-1.0090 Steinwerder. Das -0.0003
+-1.0090 Straßen der -0.0131
+-1.0090 Städte in 0.0006
+-1.0090 Südlich der -0.0131
+-1.0090 Tagesbesuchern, über -0.0086
+-1.3101 Theater, mehr 0.1478
+-1.3101 Theater, über -0.0086
+-1.0090 Tonträger-Unternehmen. Hamburg 0.0868
+-1.0090 Tor zur 0.0301
+-1.0090 Tourismusziele in -0.0123
+-1.0090 Tradition als -0.0104
+-1.0090 Union. Hamburg -0.0129
+-1.0090 Unterelbe, die -0.0116
+-1.0090 Wahrzeichen ist 0.1200
+-1.3101 Welt genannt. 0.0301
+-1.3101 Welt und -0.0118
+-1.0090 Winter milder 0.0301
+-1.0090 Woche 70.000 0.0301
+-1.0090 York und -0.0118
+-1.0090 Zeitungskolumnen gepflegt. 0.0301
+-1.0090 Zentrum der -0.0131
+-1.0090 abgestiegen ist. 0.0301
+-1.0090 achtgrößte Stadt -0.0003
+-2.0090 als 111 0.0301
+-2.0090 als 60 -0.0039
+-2.0090 als Reichsstadt. 0.0301
+-2.0090 als Stadtstaat 0.0301
+-2.0090 als bürgerliche 0.0301
+-2.0090 als das -0.0139
+-1.2045 als eine 0.1404
+-2.0090 als im -0.0061
+-2.0090 als sündige 0.0301
+-1.0090 am Gänsemarkt 0.0301
+-1.0090 an den -0.0003
+-1.0090 anbietet. Im -0.0003
+-1.0090 attraktivsten Tourismusziele 0.0301
+-1.0090 auch Deutschlands -0.0003
+-1.0090 auf der -0.0131
+-1.0090 bedeutende Messen 0.0301
+-1.0090 bekannte Galerien. 0.0301
+-1.0090 bekannteste Ort 0.0301
+-1.0090 berüchtigt. Seit 0.0071
+-1.0090 berühmte Hamburger -0.0111
+-1.0090 berühmtesten Straßen 0.0301
+-1.0090 besonders im -0.0061
+-1.0090 bis heute 0.0301
+-1.0090 bislang höchsten 0.0301
+-1.0090 brückenreichsten Städte 0.0301
+-1.0090 bürgerliche Stadtrepublik. 0.0301
+-1.8541 das Aufführungen 0.0301
+-1.8541 das Herzstück 0.0301
+-1.8541 das Klima 0.0301
+-1.8541 das Ohnsorg-Theater, 0.0301
+-1.8541 das bis 0.0301
+-1.8541 das einzige 0.0301
+-1.8541 das historische 0.0301
+-1.0090 dem offenen 0.0301
+-1.4862 den Mündungen 0.0301
+-1.4862 den führenden 0.0301
+-1.4862 den zwanzig 0.0301
+-2.4240 der 1887 0.0301
+-2.4240 der Alster 0.0867
+-2.4240 der Bille 0.0301
+-2.4240 der Binnenalster 0.0071
+-2.4240 der Bundesliga, 0.0301
+-2.4240 der Bundesrepublik 0.0301
+-2.4240 der Elbe 0.1478
+-2.4240 der Elbinsel 0.0301
+-2.4240 der Europäischen 0.0301
+-2.4240 der Fußball-Bundesliga. 0.0301
+-2.4240 der Innenstadt. 0.0301
+-2.4240 der Michel. 0.0301
+-2.4240 der Mundartpflege 0.0301
+-2.4240 der St. 0.0301
+-2.4240 der Stadt -0.0003
+-2.4240 der Welt 0.0071
+-2.4240 der attraktivsten 0.0301
+-2.4240 der berühmtesten 0.0301
+-2.4240 der brückenreichsten 0.0301
+-2.4240 der ersten 0.0301
+-1.6195 der größte 0.0862
+-2.4240 der warmgemäßigten 0.0301
+-2.4240 der weltgrößte 0.0301
+-2.4240 der weltweit 0.0071
+-2.4240 der zweitgrößte 0.0071
+-1.0090 des Internationalen 0.0301
+-1.0090 deutsche Oper 0.0301
+-2.1552 die Elbe 0.1478
+-2.1552 die Hamburger -0.0111
+-2.1552 die Internorga 0.0301
+-2.1552 die Landungsbrücken 0.0301
+-2.1552 die Nordsee 0.0301
+-2.1552 die Unterelbe, 0.0301
+-2.1552 die achtgrößte 0.0301
+-2.1552 die erste 0.0301
+-2.1552 die etwa -0.0039
+-2.1552 die größere 0.0301
+-2.1552 die hanseboot 0.0301
+-2.1552 die hundertjährige 0.0301
+-2.1552 die kleine 0.0301
+-2.1552 die zweitgrößte 0.0071
+-1.0090 direkt mit -0.0039
+-1.0090 drittgrößte Musicalstandort 0.0301
+-1.0090 ein Land 0.0301
+-0.4058 eine der -0.0098
+-1.6111 eine lange 0.0301
+-1.0090 eines der -0.0131
+-1.0090 einzige Gründungsmitglied 0.0301
+-1.0090 endgültig als -0.0104
+-1.0090 erreichte Hamburg -0.0032
+-1.0090 erste deutsche 0.0301
+-1.0090 ersten Deutschlands -0.0003
+-1.3101 eröffnet. Den 0.0301
+-1.3101 eröffnet. Im -0.0003
+-1.6111 etwa 100 0.0071
+-1.6111 etwa 1700 0.0301
+-1.6111 etwa 2500 0.0301
+-1.6111 etwa 60 -0.0039
+-1.0090 finden regelmäßig 0.0301
+-1.0090 führenden Kongressorten 0.0301
+-1.0090 für viele 0.0301
+-1.0090 galt Hamburg -0.0129
+-1.0090 gegründete Hamburger 0.0085
+-1.0090 gehört zu 0.1478
+-1.0090 genannt. Der 0.3533
+-1.0090 gepflegt. Der -0.0086
+-1.0090 gesprochen sowie 0.0301
+-1.0090 gezählt. Das 0.0867
+-1.3101 gilt Hamburg -0.0129
+-1.3101 gilt als -0.0104
+-1.0090 gliedert sich 0.1478
+-1.0090 größere Außenalster. 0.0301
+-0.5056 größte Seehafen 0.0301
+-1.0090 größten Containerhäfen 0.0301
+-1.0090 hanseboot oder 0.0301
+-0.5056 hat über -0.0357
+-1.0090 heute nie 0.0301
+-1.0090 historische Zentrum 0.0301
+-1.0090 hundertjährige Speicherstadt, 0.0301
+-1.0090 höchsten Einwohnerstand 0.0301
+-1.7080 im Hafengebiet 0.0301
+-1.7080 im Jahre 0.0301
+-1.7080 im Sommer 0.0301
+-1.7080 im Winter 0.0301
+-1.7080 im östlichen 0.0301
+-2.2643 in Deutschland 0.0301
+-2.2643 in Deutschland. 0.0071
+-1.4598 in Europa. 0.0301
+-0.5563 in Hamburg 0.1083
+-2.2643 in Literatur 0.0301
+-1.0591 in der -0.0098
+-1.0591 in die -0.0055
+-2.2643 in niederdeutscher 0.0301
+-2.2643 in sieben 0.0301
+-1.0090 international bekannte 0.0301
+-2.1851 ist Hamburg -0.0129
+-2.1851 ist Hamburgs 0.0301
+-2.1851 ist als -0.0104
+-0.9799 ist das 0.0039
+-0.5740 ist der -0.0305
+-2.1851 ist die -0.0116
+-2.1851 ist eine 0.2020
+-2.1851 ist für 0.0301
+-2.1851 ist mit -0.0039
+-2.1851 ist seit 0.0301
+-1.0090 ist. Hamburg -0.0032
+-1.0090 jede Woche 0.0301
+-1.0090 jährlich ist -0.0118
+-1.0090 kleine Binnenalster 0.0071
+-1.0090 km weiter 0.0301
+-1.0090 kühler als -0.0104
+-1.0090 lange Tradition 0.0301
+-1.6111 liegt an 0.0301
+-1.6111 liegt das -0.0086
+-1.6111 liegt die -0.0116
+-1.6111 liegt in 0.0250
+-1.0090 lockt jede 0.0301
+-1.0090 maritimer Einflüsse 0.0301
+-0.5056 mehr als -0.0061
+-1.0090 milder und -0.0118
+-1.6111 mit 1,75 0.0301
+-1.6111 mit 1,86 0.0301
+-1.6111 mit dem 0.0301
+-1.6111 mit der -0.0131
+-1.0090 mündet. Südlich 0.0301
+-1.0090 nach New 0.0301
+-1.0090 nie abgestiegen 0.0301
+-1.0090 niederdeutscher Sprache 0.0301
+-1.0090 noch von 0.0301
+-1.0090 nordwestlich in 0.0250
+-1.0090 oder die -0.0116
+-1.0090 offenen Meer. 0.0301
+-1.0090 regelmäßig bedeutende 0.0301
+-1.0090 rund 280 0.0301
+-1.0090 sechs Schiffslinien 0.0301
+-1.0090 seit 1996 0.0301
+-0.5056 sich in 0.0276
+-1.0090 sieben Bezirke. 0.0301
+-1.0090 sowie in -0.0123
+-1.0090 spielt der -0.0131
+-1.0090 statt. Hamburg -0.0032
+-1.0090 sündige Meile 0.0301
+-1.0090 teilt sich 0.1478
+-2.1851 und 200 0.0301
+-2.1851 und Fähren. 0.0301
+-2.1851 und London. 0.0301
+-2.1851 und Zeitungskolumnen 0.0301
+-2.1851 und als -0.0104
+-2.1851 und besonders 0.0301
+-1.3806 und der -0.0114
+-2.1851 und die -0.0116
+-2.1851 und gehört 0.0301
+-2.1851 und gesprochen 0.0301
+-2.1851 und im -0.0061
+-2.1851 und international 0.0301
+-2.1851 und verbindet 0.0071
+-2.1851 und über -0.0086
+-1.0090 unterquert in 0.1266
+-1.3101 verbindet Hamburg -0.0129
+-1.3101 verbindet die -0.0116
+-0.5056 verfügt über -0.0024
+-1.0090 verkehren auf 0.0301
+-1.0090 verstanden und -0.0118
+-1.0090 viele Hamburger -0.0111
+-1.0090 vielen Hamburgern 0.0301
+-1.0090 von vielen 0.0301
+-1.0090 warmgemäßigten Klimazone. 0.0301
+-1.0090 weiter nordwestlich 0.0301
+-1.0090 weltgrößte zusammenhängende 0.0301
+-1.3101 weltweit drittgrößte 0.0301
+-1.3101 weltweit gezählt. 0.0301
+-1.0090 weltweit. Der -0.0086
+-1.0090 wie die -0.0116
+-1.4862 wird auch 0.0301
+-1.4862 wird noch 0.0301
+-1.4862 wird zu 0.1478
+-0.5056 wurde die -0.0086
+-1.0090 zentrales Naherholungsgebiet. 0.0301
+-0.5056 zu den 0.0146
+-1.0090 zur Welt 0.0071
+-1.0090 zusammenhängende Lagerhauskomplex. 0.0301
+-1.0090 zwanzig größten 0.0301
+-1.3101 zweitgrößte Stadt -0.0003
+-1.3101 zweitgrößte in 0.0006
+-1.0090 Übernachtungen jährlich 0.0301
+-1.0090 östlichen Hinterland. 0.0301
+-1.8541 über 100 0.0071
+-1.8541 über 5 0.0301
+-1.0496 über 60 -0.0026
+-1.8541 über 9,5 0.0301
+-1.8541 über eine -0.0039
+-1.8541 über etwa -0.0039
+-1.0090 ﻿Hamburg ist -0.0118
+
+\3-grams:
+-1.4781 1,75 Millionen Einwohnern 
+-1.4781 1,86 Millionen erreichte 
+-1.4781 100 Musikclubs, etwa 
+-1.4781 100 km weiter 
+-1.4781 111 Millionen Tagesbesuchern, 
+-1.4781 1510 galt Hamburg 
+-1.4781 1558 wurde die 
+-1.4781 1678 wurde die 
+-1.4781 1700 Kilometer Radwege. 
+-1.4781 1887 gegründete Hamburger 
+-1.4781 1911 unterquert in 
+-1.4781 1963 spielt der 
+-1.4781 1964. Hamburg verfügt 
+-1.4781 1996 Sitz des 
+-1.4781 200 Tonträger-Unternehmen. Hamburg 
+-1.4781 2500 Brücken gilt 
+-1.4781 280 Musikverlage und 
+-1.4781 5 Millionen Gästen 
+-1.4781 60 Museen und 
+-1.4781 60 Museen, rund 
+-1.7791 60 Theater, mehr 
+-1.7791 60 Theater, über 
+-1.4781 70.000 Besucher. Hamburg 
+-1.4781 9,5 Millionen Übernachtungen 
+-1.4781 Ab 1510 galt 
+-1.7791 Alster in Hamburg 
+-1.7791 Alster in die 
+-1.4781 Alster ist Hamburgs 
+-1.4781 Aufführungen in niederdeutscher 
+-1.4781 Aufgrund maritimer Einflüsse 
+-1.4781 Außenalster. Die Hamburger 
+-1.4781 Besucher. Hamburg ist 
+-1.4781 Bezirke. Der Hamburger 
+-1.4781 Bille und der 
+-1.4781 Binnenalster liegt das 
+-1.4781 Binnenalster und die 
+-1.4781 Brücken gilt Hamburg 
+-1.4781 Bundesliga, das bis 
+-1.4781 Bundesrepublik Deutschland. Hamburg 
+-1.4781 Börse als eine 
+-1.4781 Containerhäfen weltweit. Der 
+-1.7791 Das Hamburger Platt 
+-1.7791 Das Hamburger Wahrzeichen 
+-1.4781 Das Schanzenviertel gilt 
+-1.4781 Den bislang höchsten 
+-0.1249 Der Hamburger Hafen 
+-2.0801 Der Hamburger SV 
+-1.4781 Der Jungfernstieg ist 
+-1.4781 Der bekannteste Ort 
+-1.4781 Der berühmte Hamburger 
+-1.4781 Deutschland und der 
+-1.4781 Deutschland. Das Hamburger 
+-1.4781 Deutschland. Hamburg ist 
+-1.4781 Deutschlands Tor zur 
+-1.4781 Deutschlands eröffnet. Im 
+-1.4781 Deutschlands und gehört 
+-1.4781 Deutschlands. Hamburg ist 
+-1.7791 Die Alster in 
+-1.7791 Die Alster ist 
+-1.4781 Die Hamburger Reeperbahn 
+-1.4781 Die Niederelbe verbindet 
+-1.4781 Einflüsse ist das 
+-1.4781 Einwohnern die zweitgrößte 
+-1.4781 Einwohnerstand mit 1,86 
+-1.7791 Elbe und besonders 
+-1.7791 Elbe und verbindet 
+-1.4781 Elbinsel Steinwerder. Das 
+-1.4781 Elbtunnel die Elbe 
+-1.4781 Europa. Hamburg wird 
+-1.4781 Europa. Seit 1963 
+-1.4781 Europäischen Union. Hamburg 
+-1.4781 Fischmarkt lockt jede 
+-1.4781 Freihafen liegt die 
+-1.4781 Fußball-Bundesliga. Der Hamburger 
+-1.4781 Fähren. Der Hamburger 
+-1.4781 Galerien. In Hamburg 
+-1.4781 Gründungsmitglied der Bundesliga, 
+-1.4781 Gänsemarkt in Hamburg 
+-1.4781 Gästen und über 
+-0.7928 Hafen ist der 
+-1.4781 Hafen wird auch 
+-1.4781 Hafengebiet sechs Schiffslinien 
+-1.4781 Hamburg als eine 
+-1.4781 Hamburg der St. 
+-1.4781 Hamburg direkt mit 
+-1.4781 Hamburg eines der 
+-1.4781 Hamburg endgültig als 
+-1.4781 Hamburg eröffnet. Den 
+-1.4781 Hamburg finden regelmäßig 
+-1.4781 Hamburg gliedert sich 
+-0.7928 Hamburg hat über 
+-1.7791 Hamburg im Jahre 
+-1.7791 Hamburg im Winter 
+-2.1771 Hamburg ist das 
+-2.1771 Hamburg ist der 
+-2.1771 Hamburg ist die 
+-2.1771 Hamburg ist mit 
+-2.1771 Hamburg ist seit 
+-1.7791 Hamburg liegt an 
+-1.7791 Hamburg liegt in 
+-1.4781 Hamburg teilt sich 
+-0.7928 Hamburg verfügt über 
+-1.4781 Hamburg verkehren auf 
+-1.4781 Hamburg wird zu 
+-1.4781 Hamburg. Hamburg liegt 
+-1.4781 Hamburger Börse als 
+-1.4781 Hamburger Fischmarkt lockt 
+-1.4781 Hamburger Freihafen liegt 
+-0.9689 Hamburger Hafen ist 
+-1.9552 Hamburger Hafen wird 
+-1.4781 Hamburger Platt wird 
+-1.4781 Hamburger Reeperbahn ist 
+-1.7791 Hamburger SV in 
+-1.7791 Hamburger SV ist 
+-1.4781 Hamburger Wahrzeichen ist 
+-1.4781 Hamburger das Herzstück 
+-1.4781 Hamburgern verstanden und 
+-1.4781 Hamburgs zentrales Naherholungsgebiet. 
+-1.4781 Herzstück der Innenstadt. 
+-1.4781 Hinterland. Ab 1510 
+-1.4781 Im Hamburger Freihafen 
+-1.4781 Im Jahr 1678 
+-1.4781 Im Stadtgebiet Hamburg 
+-1.4781 In Hamburg finden 
+-1.4781 Innenstadt. Die Alster 
+-1.4781 Internationalen Seegerichtshofs. Mit 
+-1.4781 Internorga statt. Hamburg 
+-1.4781 Jahr 1678 wurde 
+-1.4781 Jahre 1964. Hamburg 
+-1.4781 Jungfernstieg ist für 
+-1.4781 Kilometer Radwege. Die 
+-1.4781 Klima in Hamburg 
+-1.4781 Klimazone. Aufgrund maritimer 
+-1.4781 Kongressorten weltweit gezählt. 
+-1.4781 Lagerhauskomplex. Der Jungfernstieg 
+-1.4781 Land der Bundesrepublik 
+-1.4781 Landungsbrücken mit der 
+-1.4781 Literatur und Zeitungskolumnen 
+-1.4781 London. Mit etwa 
+-1.4781 Meer. Im Stadtgebiet 
+-1.4781 Meile berüchtigt. Seit 
+-1.4781 Messen wie die 
+-1.4781 Michel. Hamburg hat 
+-1.4781 Millionen Einwohnern die 
+-1.4781 Millionen Gästen und 
+-1.4781 Millionen Tagesbesuchern, über 
+-1.4781 Millionen erreichte Hamburg 
+-1.4781 Millionen Übernachtungen jährlich 
+-1.4781 Mit etwa 2500 
+-1.4781 Mit mehr als 
+-1.4781 Mundartpflege in Hamburg 
+-1.4781 Museen und international 
+-1.4781 Museen, rund 280 
+-1.4781 Musicalstandort nach New 
+-1.4781 Musikclubs, etwa 60 
+-1.4781 Musikverlage und 200 
+-1.4781 Mündungen der Bille 
+-1.4781 Naherholungsgebiet. Die Alster 
+-1.4781 New York und 
+-1.4781 Niederelbe verbindet Hamburg 
+-1.4781 Nordsee mündet. Südlich 
+-1.4781 Ohnsorg-Theater, das Aufführungen 
+-1.4781 Oper am Gänsemarkt 
+-1.4781 Ort der Mundartpflege 
+-1.4781 Pauli Elbtunnel die 
+-1.4781 Platt wird noch 
+-1.4781 Radwege. Die Niederelbe 
+-1.4781 Reeperbahn ist eine 
+-1.4781 Reichsstadt. 1558 wurde 
+-1.4781 SV in der 
+-1.4781 SV ist das 
+-1.4781 Schanzenviertel gilt als 
+-1.4781 Schiffslinien und Fähren. 
+-1.4781 Seegerichtshofs. Mit mehr 
+-1.4781 Seehafen Deutschlands und 
+-1.4781 Seehafen in Deutschland 
+-1.4781 Seit 1911 unterquert 
+-1.4781 Seit 1963 spielt 
+-1.4781 Sitz des Internationalen 
+-1.4781 Sommer kühler als 
+-1.4781 Speicherstadt, der weltgrößte 
+-1.4781 Sprache anbietet. Im 
+-1.4781 St. Pauli Elbtunnel 
+-1.4781 Stadt Deutschlands. Hamburg 
+-1.4781 Stadt Hamburg. Hamburg 
+-1.4781 Stadt in der 
+-1.4781 Stadtgebiet Hamburg verkehren 
+-1.4781 Stadtrepublik. Hamburg hat 
+-1.4781 Stadtstaat ein Land 
+-1.4781 Steinwerder. Das Schanzenviertel 
+-1.4781 Straßen der Welt 
+-1.4781 Städte in Europa. 
+-1.4781 Südlich der Binnenalster 
+-1.4781 Tagesbesuchern, über 5 
+-1.4781 Theater, mehr als 
+-1.4781 Theater, über 100 
+-1.4781 Tonträger-Unternehmen. Hamburg ist 
+-1.4781 Tor zur Welt 
+-1.4781 Tourismusziele in Deutschland. 
+-1.4781 Tradition als bürgerliche 
+-1.4781 Union. Hamburg gliedert 
+-1.4781 Unterelbe, die etwa 
+-1.4781 Wahrzeichen ist der 
+-1.4781 Welt genannt. Der 
+-1.4781 Welt und als 
+-1.4781 Winter milder und 
+-1.4781 Woche 70.000 Besucher. 
+-1.4781 York und London. 
+-1.4781 Zeitungskolumnen gepflegt. Der 
+-1.4781 Zentrum der Stadt 
+-1.4781 abgestiegen ist. Hamburg 
+-1.4781 achtgrößte Stadt in 
+-1.4781 als 111 Millionen 
+-1.4781 als 60 Museen 
+-1.4781 als Reichsstadt. 1558 
+-1.4781 als Stadtstaat ein 
+-1.4781 als bürgerliche Stadtrepublik. 
+-1.4781 als das Szeneviertel 
+-0.7928 als eine der 
+-1.4781 als im östlichen 
+-1.4781 als sündige Meile 
+-1.4781 am Gänsemarkt in 
+-1.4781 an den Mündungen 
+-1.4781 anbietet. Im Hamburger 
+-1.4781 attraktivsten Tourismusziele in 
+-1.4781 auch Deutschlands Tor 
+-1.4781 auf der Elbe 
+-1.4781 bedeutende Messen wie 
+-1.4781 bekannte Galerien. In 
+-1.4781 bekannteste Ort der 
+-1.4781 berüchtigt. Seit 1911 
+-1.4781 berühmte Hamburger Fischmarkt 
+-1.4781 berühmtesten Straßen der 
+-1.4781 besonders im Hafengebiet 
+-1.4781 bis heute nie 
+-1.4781 bislang höchsten Einwohnerstand 
+-1.4781 brückenreichsten Städte in 
+-1.4781 bürgerliche Stadtrepublik. Hamburg 
+-1.4781 das Aufführungen in 
+-1.4781 das Herzstück der 
+-1.4781 das Klima in 
+-1.4781 das Ohnsorg-Theater, das 
+-1.4781 das bis heute 
+-1.4781 das einzige Gründungsmitglied 
+-1.4781 das historische Zentrum 
+-1.4781 dem offenen Meer. 
+-1.4781 den Mündungen der 
+-1.4781 den führenden Kongressorten 
+-1.4781 den zwanzig größten 
+-1.4781 der 1887 gegründete 
+-1.4781 der Alster in 
+-1.4781 der Bille und 
+-1.4781 der Binnenalster liegt 
+-1.4781 der Bundesliga, das 
+-1.4781 der Bundesrepublik Deutschland. 
+-1.4781 der Elbe und 
+-1.4781 der Elbinsel Steinwerder. 
+-1.4781 der Europäischen Union. 
+-1.4781 der Fußball-Bundesliga. Der 
+-1.4781 der Innenstadt. Die 
+-1.4781 der Michel. Hamburg 
+-1.4781 der Mundartpflege in 
+-1.4781 der St. Pauli 
+-1.4781 der Stadt Hamburg. 
+-1.4781 der Welt und 
+-1.4781 der attraktivsten Tourismusziele 
+-1.4781 der berühmtesten Straßen 
+-1.4781 der brückenreichsten Städte 
+-1.4781 der ersten Deutschlands 
+-0.7928 der größte Seehafen 
+-1.4781 der warmgemäßigten Klimazone. 
+-1.4781 der weltgrößte zusammenhängende 
+-1.4781 der weltweit drittgrößte 
+-1.4781 der zweitgrößte in 
+-1.4781 des Internationalen Seegerichtshofs. 
+-1.4781 deutsche Oper am 
+-1.4781 die Elbe und 
+-1.4781 die Hamburger Börse 
+-1.4781 die Internorga statt. 
+-1.4781 die Landungsbrücken mit 
+-1.4781 die Nordsee mündet. 
+-1.4781 die Unterelbe, die 
+-1.4781 die achtgrößte Stadt 
+-1.4781 die erste deutsche 
+-1.4781 die etwa 100 
+-1.4781 die größere Außenalster. 
+-1.4781 die hanseboot oder 
+-1.4781 die hundertjährige Speicherstadt, 
+-1.4781 die kleine Binnenalster 
+-1.4781 die zweitgrößte Stadt 
+-1.4781 direkt mit dem 
+-1.4781 drittgrößte Musicalstandort nach 
+-1.4781 ein Land der 
+-1.9552 eine der berühmtesten 
+-1.9552 eine der brückenreichsten 
+-1.9552 eine der ersten 
+-1.4781 eine lange Tradition 
+-1.4781 eines der attraktivsten 
+-1.4781 einzige Gründungsmitglied der 
+-1.4781 endgültig als Reichsstadt. 
+-1.4781 erreichte Hamburg im 
+-1.4781 erste deutsche Oper 
+-1.4781 ersten Deutschlands eröffnet. 
+-1.4781 eröffnet. Den bislang 
+-1.4781 eröffnet. Im Jahr 
+-1.4781 etwa 100 km 
+-1.4781 etwa 1700 Kilometer 
+-1.4781 etwa 2500 Brücken 
+-1.4781 etwa 60 Museen, 
+-1.4781 finden regelmäßig bedeutende 
+-1.4781 führenden Kongressorten weltweit 
+-1.4781 für viele Hamburger 
+-1.4781 galt Hamburg endgültig 
+-1.4781 gegründete Hamburger SV 
+-1.4781 gehört zu den 
+-1.4781 genannt. Der Hamburger 
+-1.4781 gepflegt. Der bekannteste 
+-1.4781 gesprochen sowie in 
+-1.4781 gezählt. Das Hamburger 
+-1.4781 gilt Hamburg als 
+-1.4781 gilt als das 
+-1.4781 gliedert sich in 
+-1.4781 größere Außenalster. Die 
+-1.7791 größte Seehafen Deutschlands 
+-1.7791 größte Seehafen in 
+-1.4781 größten Containerhäfen weltweit. 
+-1.4781 hanseboot oder die 
+-0.7928 hat über 60 
+-1.4781 heute nie abgestiegen 
+-1.4781 historische Zentrum der 
+-1.4781 hundertjährige Speicherstadt, der 
+-1.4781 höchsten Einwohnerstand mit 
+-1.4781 im Hafengebiet sechs 
+-1.4781 im Jahre 1964. 
+-1.4781 im Sommer kühler 
+-1.4781 im Winter milder 
+-1.4781 im östlichen Hinterland. 
+-1.4781 in Deutschland und 
+-1.4781 in Deutschland. Das 
+-1.7791 in Europa. Hamburg 
+-1.7791 in Europa. Seit 
+-2.1771 in Hamburg der 
+-2.1771 in Hamburg eröffnet. 
+-2.1771 in Hamburg im 
+-2.1771 in Hamburg ist 
+-2.1771 in Hamburg teilt 
+-1.4781 in Literatur und 
+-1.9552 in der Europäischen 
+-1.9552 in der Fußball-Bundesliga. 
+-1.9552 in der warmgemäßigten 
+-1.9552 in die Nordsee 
+-1.9552 in die Unterelbe, 
+-1.9552 in die kleine 
+-1.4781 in niederdeutscher Sprache 
+-1.4781 in sieben Bezirke. 
+-1.4781 international bekannte Galerien. 
+-1.4781 ist Hamburg eines 
+-1.4781 ist Hamburgs zentrales 
+-1.4781 ist als Stadtstaat 
+-1.9552 ist das Klima 
+-1.9552 ist das Ohnsorg-Theater, 
+-1.9552 ist das einzige 
+-2.0801 ist der Michel. 
+-1.0939 ist der größte 
+-2.0801 ist der weltweit 
+-1.4781 ist die achtgrößte 
+-1.4781 ist eine der 
+-1.4781 ist für viele 
+-1.4781 ist mit 1,75 
+-1.4781 ist seit 1996 
+-1.4781 ist. Hamburg verfügt 
+-1.4781 jede Woche 70.000 
+-1.4781 jährlich ist Hamburg 
+-1.4781 kleine Binnenalster und 
+-1.4781 km weiter nordwestlich 
+-1.4781 kühler als im 
+-1.4781 lange Tradition als 
+-1.4781 liegt an den 
+-1.4781 liegt das historische 
+-1.4781 liegt die hundertjährige 
+-1.4781 liegt in der 
+-1.4781 lockt jede Woche 
+-1.4781 maritimer Einflüsse ist 
+-1.7791 mehr als 111 
+-1.7791 mehr als 60 
+-1.4781 milder und im 
+-1.4781 mit 1,75 Millionen 
+-1.4781 mit 1,86 Millionen 
+-1.4781 mit dem offenen 
+-1.4781 mit der Elbinsel 
+-1.4781 mündet. Südlich der 
+-1.4781 nach New York 
+-1.4781 nie abgestiegen ist. 
+-1.4781 niederdeutscher Sprache anbietet. 
+-1.4781 noch von vielen 
+-1.4781 nordwestlich in die 
+-1.4781 oder die Internorga 
+-1.4781 offenen Meer. Im 
+-1.4781 regelmäßig bedeutende Messen 
+-1.4781 rund 280 Musikverlage 
+-1.4781 sechs Schiffslinien und 
+-1.4781 seit 1996 Sitz 
+-1.7791 sich in die 
+-1.7791 sich in sieben 
+-1.4781 sieben Bezirke. Der 
+-1.4781 sowie in Literatur 
+-1.4781 spielt der 1887 
+-1.4781 statt. Hamburg liegt 
+-1.4781 sündige Meile berüchtigt. 
+-1.4781 teilt sich in 
+-1.4781 und 200 Tonträger-Unternehmen. 
+-1.4781 und Fähren. Der 
+-1.4781 und London. Mit 
+-1.4781 und Zeitungskolumnen gepflegt. 
+-1.4781 und als sündige 
+-1.4781 und besonders im 
+-1.7791 und der Alster 
+-1.7791 und der zweitgrößte 
+-1.4781 und die größere 
+-1.4781 und gehört zu 
+-1.4781 und gesprochen sowie 
+-1.4781 und im Sommer 
+-1.4781 und international bekannte 
+-1.4781 und verbindet die 
+-1.4781 und über 9,5 
+-1.4781 unterquert in Hamburg 
+-1.4781 verbindet Hamburg direkt 
+-1.4781 verbindet die Landungsbrücken 
+-1.7791 verfügt über eine 
+-1.7791 verfügt über etwa 
+-1.4781 verkehren auf der 
+-1.4781 verstanden und gesprochen 
+-1.4781 viele Hamburger das 
+-1.4781 vielen Hamburgern verstanden 
+-1.4781 von vielen Hamburgern 
+-1.4781 warmgemäßigten Klimazone. Aufgrund 
+-1.4781 weiter nordwestlich in 
+-1.4781 weltgrößte zusammenhängende Lagerhauskomplex. 
+-1.4781 weltweit drittgrößte Musicalstandort 
+-1.4781 weltweit gezählt. Das 
+-1.4781 weltweit. Der berühmte 
+-1.4781 wie die hanseboot 
+-1.4781 wird auch Deutschlands 
+-1.4781 wird noch von 
+-1.4781 wird zu den 
+-1.7791 wurde die Hamburger 
+-1.7791 wurde die erste 
+-1.4781 zentrales Naherholungsgebiet. Die 
+-1.7791 zu den führenden 
+-1.7791 zu den zwanzig 
+-1.4781 zur Welt genannt. 
+-1.4781 zusammenhängende Lagerhauskomplex. Der 
+-1.4781 zwanzig größten Containerhäfen 
+-1.4781 zweitgrößte Stadt Deutschlands. 
+-1.4781 zweitgrößte in Europa. 
+-1.4781 Übernachtungen jährlich ist 
+-1.4781 östlichen Hinterland. Ab 
+-1.4781 über 100 Musikclubs, 
+-1.4781 über 5 Millionen 
+-0.7928 über 60 Theater, 
+-1.4781 über 9,5 Millionen 
+-1.4781 über eine lange 
+-1.4781 über etwa 1700 
+-1.4781 ﻿Hamburg ist als 
+
+\end\

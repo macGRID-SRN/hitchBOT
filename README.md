@@ -8,7 +8,7 @@ hitchBOT is a collaborative art project by researchers with backgrounds in commu
 Electronics
 ---
 
-- [ ] Wire (multi-colours)
+- [X] Wire (multi-colours)
 - [ ] Double-Headers
 - [ ] Servo Motor
 - [X] Spare Arduino's
@@ -18,23 +18,23 @@ Electronics
 - [X] 2x2 ATX male ends with cable and crimps.
 - [X] Another set of 5V 3A boards with board placement issues fixed.
 - [X] Components for set of 5v 3A boards.
-- [ ] Components for original 5V 1.2A boards.
-- [ ] USB Speaker used in kulturBOT
+- [ ] Components for original 5V 1.2A boards. - probably not needed.
+- [X] USB Speaker used in kulturBOT
 
 Building Materials
 ---
 
-- [ ] Lexan
-- [ ] Plastic Inner Tubing
+- [X] Lexan
+- [X] Plastic Inner Tubing - ended up going with CPVC
 - [ ] Copper Tubing - check current supply first.
-- [ ] Plumbers Putty
-- [ ] Adjustable Locking Hinge (x2)
+- [X] Plumbers Putty
+- [ ] Adjustable Locking Hinge (x2) - ordered
 
 Aesthetics
 ---
 
-- [ ] Pool Noodles
-- [ ] Rubber Boots
+- [ ] Pool Noodles - need to get asap
+- [ ] Rubber Boots - ordered
 - [ ] Garbage Can Lid
-- [ ] Stickers?
+- [ ] Stickers? Twitter?
 - [ ] Engraved Aluminum Plate?
