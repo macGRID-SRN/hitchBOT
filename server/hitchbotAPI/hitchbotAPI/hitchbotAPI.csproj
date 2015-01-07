@@ -288,6 +288,13 @@
     <Compile Include="ApproveImagesPages\Shared\PageWithHeader.master.designer.cs">
       <DependentUpon>PageWithHeader.master</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\TargetLocationPreview.aspx.cs">
+      <DependentUpon>TargetLocationPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\TargetLocationPreview.aspx.designer.cs">
+      <DependentUpon>TargetLocationPreview.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\ViewImages.aspx.cs">
       <DependentUpon>ViewImages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -447,6 +454,7 @@
     <Content Include="ApproveImagesPages\LandingPage.aspx" />
     <Content Include="ApproveImagesPages\Logout.aspx" />
     <Content Include="ApproveImagesPages\SavedImages.aspx" />
+    <Content Include="ApproveImagesPages\TargetLocationPreview.aspx" />
     <Content Include="ApproveImagesPages\ViewImages.aspx" />
     <Content Include="ApproveImagesPages\ViewMap.aspx" />
     <Content Include="App_Data\LinqToTwitter.AspNet.dll" />
