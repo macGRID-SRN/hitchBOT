@@ -120,12 +120,14 @@ namespace hitchbotAPI.Helpers
 
         public static string getArduinoArrayForFace()
         {
-            string arduinoArray = "int[] {0} = {{1}}";
+            string arduinoArray = "int[] {0} = {{ {1} }}";
             StringBuilder sb = new StringBuilder();
             List<Models.Face> faces = Controllers.LedPanelController.getAllFaces();
             List<string> arrayValues = new List<string>();
-            foreach(var face in faces){ 
-            sb.AppendLine(string.Format(arduinoArray, face.Name, getArrayValue(face)));
+            foreach (var face in faces)
+            {
+                string test = getArrayValue(face);
+                sb.AppendLine(string.Format(arduinoArray, face.Name, getArrayValue(face)));
             }
             return sb.ToString();
         }
@@ -135,17 +137,17 @@ namespace hitchbotAPI.Helpers
             List<Models.LedPanel> panels = face.Panels.ToList<Models.LedPanel>();
             StringBuilder sb = new StringBuilder();
 
-            foreach(var panel in panels)
+            foreach (var panel in panels)
             {
                 List<Models.Row> rows = panel.Rows.ToList<Models.Row>();
-                foreach(var row in rows)
+                foreach (var row in rows)
                 {
                     List<bool> row1 = GetBits(row.ColSet0).ToList<bool>();
                     List<bool> row2 = row1.Concat(GetBits(row.ColSet1).ToList<bool>()).ToList<bool>();
                     List<bool> row3 = row2.Concat(GetBits(row.ColSet2).ToList<bool>()).ToList<bool>();
-                    foreach(var entry in row3)
+                    foreach (var entry in row3)
                     {
-                        if(entry)
+                        if (entry)
                         {
                             sb.Append("1,");
                         }
@@ -156,7 +158,7 @@ namespace hitchbotAPI.Helpers
                     }
                 }
             }
-            return sb.ToString().Remove(0, sb.Length - 2);
+            return sb.ToString().Substring(0, sb.Length - 3);
         }
 
         public static byte convertToByte(bool[] arr)
