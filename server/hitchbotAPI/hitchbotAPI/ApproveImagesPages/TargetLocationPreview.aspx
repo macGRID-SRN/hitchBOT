@@ -19,31 +19,11 @@
 
     </asp:Literal>
     <script type="text/javascript">
-        var markerCircle;
-        var markerCircleRadius;
-        var marker;
+
         var map;
-        //updates the displayed coords to work with 
-        function UpdateCoordsOnPage(latlng) {
-
-            markerCircle.setCenter(latlng);
-            $(".latValue").val(latlng.lat());
-            $(".lngValue").val(latlng.lng());
-        }
-
-        function UpdateCoordsOnMap() {
-
-            var lat = parseFloat($(".latValue").val());
-            var lng = parseFloat($(".lngValue").val());
-            var latlng = new google.maps.LatLng(lat, lng);
-            markerCircle.setCenter(latlng);
-            marker.setPosition(latlng);
-        }
 
         function initialize() {
             var myLatlng = new google.maps.LatLng(50.983027, 10.445880);
-
-            var coords = [];
 
             var mapOptions = {
                 center: myLatlng,
@@ -53,17 +33,41 @@
             map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
 
-            marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                draggable: true,
-                title: "Drag me!"
-            });
+            for (i = 0; i < coords.length; i++) {
+                var tempMarker = new google.maps.Marker({
+                    position: coords[i].coord,
+                    map: map,
+                    draggable: false,
+                    title: "Drag me!"
+                });
+
+                var circleOptions = {
+                    strokeColor: '#0000FF',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#0000FF',
+                    fillOpacity: 0.35,
+                    map: map,
+                    center: coords[i].coord,
+                    radius: coords[i].radius * 1000
+                };
+
+                var TempCircle = new google.maps.Circle(circleOptions);
+            }
         }
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Wikipedia Entries</h2>
+            <div class="map-wrapper">
+                <div id="map-canvas">
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="endScripts" runat="server">
 </asp:Content>

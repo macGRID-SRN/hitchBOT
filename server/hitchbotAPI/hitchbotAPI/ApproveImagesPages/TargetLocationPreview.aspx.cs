@@ -30,7 +30,7 @@ namespace hitchbotAPI.ApproveImagesPages
                 var user = (Models.Password)Session["New"];
                 var hitchbot = db.hitchBOTs.Include(l => l.WikipediaEntries.Select(i => i.TargetLocation)).First(l => l.ID == user.hitchBOT.ID);
 
-                var locations = hitchbot.WikipediaEntries.Where(l => l.TargetLocation != null).Select(l => l.TargetLocation).ToList();
+                var locations = hitchbot.WikipediaEntries.Where(l => l.TargetLocation != null).ToList();
 
                 StringBuilder buildOutput = new StringBuilder();
 
@@ -38,7 +38,7 @@ namespace hitchbotAPI.ApproveImagesPages
 
                 buildOutput.Append(@"var coords = [");
 
-                buildOutput.Append(string.Join(",\n", locations.Select(coord => string.Format("new google.maps.LatLng({0},{1})", coord.Latitude, coord.Longitude)).ToList()));
+                buildOutput.Append(string.Join(",\n", locations.Select(coord => string.Format("{{ coord : new google.maps.LatLng({0},{1}), radius : {2} }}", coord.TargetLocation.Latitude, coord.TargetLocation.Longitude, coord.RadiusKM)).ToList()));
 
                 buildOutput.Append(@"];");
 
