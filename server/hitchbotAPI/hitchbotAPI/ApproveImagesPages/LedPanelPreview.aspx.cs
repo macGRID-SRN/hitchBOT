@@ -47,6 +47,31 @@ namespace hitchbotAPI.ApproveImagesPages
             }
         }
 
+        private void invertLEDs()
+        {
+            List<bool> tempList = new List<bool>();
+            List<byte> byteList = new List<byte>();
+
+            foreach (TableRow row in Table1.Rows)
+            {
+                foreach (TableCell cell in row.Cells)
+                {
+                    ImageButton[] iBArray = new ImageButton[1];
+                    cell.Controls.CopyTo(iBArray, 0);
+                    int rowIndex = int.Parse(((ImageButton)iBArray.GetValue(0)).CommandArgument.Split(',')[0]);
+                    int columnIndex = int.Parse(((ImageButton)iBArray.GetValue(0)).CommandArgument.Split(',')[1]);
+                    if (((ImageButton)iBArray.GetValue(0)).ImageUrl.Equals(imgTagOff))
+                    {
+                        ((ImageButton)iBArray.GetValue(0)).ImageUrl = imgTagOn;
+                    }
+                    else
+                    {
+                        ((ImageButton)iBArray.GetValue(0)).ImageUrl = imgTagOff;
+                    }
+                }
+            }
+        }
+
         private void loopThroughLEDs()
         {
             List<bool> tempList = new List<bool>();
@@ -123,7 +148,6 @@ namespace hitchbotAPI.ApproveImagesPages
                     if ((bool)bits.GetValue(j - (j / 8) * 8))
                     {
                         iButton1.ImageUrl = imgTagOn;
-
                     }
                     else
                     {
@@ -146,6 +170,11 @@ namespace hitchbotAPI.ApproveImagesPages
         {
             loopThroughLEDs();
             Response.Redirect("LedPanelDesigner.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            invertLEDs();
         }
     }
 }
