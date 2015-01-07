@@ -10,6 +10,7 @@
     <form id="form1" runat="server">
         <h3  style="text-align: center">
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="LandingPage.aspx">Back</asp:HyperLink>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="download" />
             <br />
             Design New Face LED Panels for hitchBOT</h3>
         <div style="height: 100px" ><p style="text-align: center">Upload an Image (png, or jpg only)

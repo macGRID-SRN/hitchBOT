@@ -27,7 +27,7 @@ public final class Config {
 	public static CleverScriptHelper cH = null;
 
 	public static String searchName = "searchName";
-	public static String cleverAPIKey = "dummtjpdv48275a9d0c23c67c01d3e52bfd04fca3";
+	public static String cleverAPIKey = "tjpdv0bb97cbc32fd80f4ac1abf5333e2454e";
 	public static String cleverDB = "hbgermanTEST.db";
 	
 	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image";

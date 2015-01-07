@@ -7,6 +7,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Net.Http;
+using System.Web.Http;
+using System.Globalization;
+using System.Data.Entity;
 
 namespace hitchbotAPI.Helpers
 {
@@ -97,7 +102,7 @@ namespace hitchbotAPI.Helpers
                         tempList = new List<bool>();
                     }
                 }
-                
+
 
             }
 
@@ -111,6 +116,47 @@ namespace hitchbotAPI.Helpers
                 yield return (b & 0x80) != 0;
                 b *= 2;
             }
+        }
+
+        public static string getArduinoArrayForFace()
+        {
+            string arduinoArray = "int[] {0} = {{1}}";
+            StringBuilder sb = new StringBuilder();
+            List<Models.Face> faces = Controllers.LedPanelController.getAllFaces();
+            List<string> arrayValues = new List<string>();
+            foreach(var face in faces){ 
+            sb.AppendLine(string.Format(arduinoArray, face.Name, getArrayValue(face)));
+            }
+            return sb.ToString();
+        }
+        // int[] array = {0,1,1,1,1,1,1,1,.. etc..};
+        public static string getArrayValue(Models.Face face)
+        {
+            List<Models.LedPanel> panels = face.Panels.ToList<Models.LedPanel>();
+            StringBuilder sb = new StringBuilder();
+
+            foreach(var panel in panels)
+            {
+                List<Models.Row> rows = panel.Rows.ToList<Models.Row>();
+                foreach(var row in rows)
+                {
+                    List<bool> row1 = GetBits(row.ColSet0).ToList<bool>();
+                    List<bool> row2 = row1.Concat(GetBits(row.ColSet1).ToList<bool>()).ToList<bool>();
+                    List<bool> row3 = row2.Concat(GetBits(row.ColSet2).ToList<bool>()).ToList<bool>();
+                    foreach(var entry in row3)
+                    {
+                        if(entry)
+                        {
+                            sb.Append("1,");
+                        }
+                        else
+                        {
+                            sb.Append("0,");
+                        }
+                    }
+                }
+            }
+            return sb.ToString().Remove(0, sb.Length - 2);
         }
 
         public static byte convertToByte(bool[] arr)
