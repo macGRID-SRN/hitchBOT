@@ -52,6 +52,23 @@ namespace hitchbotAPI.Controllers
             return face[face.Count - 1];
         }
 
+        public static List<Models.Face> getAllFaces()
+        {
+            List<Models.Face> face = new List<Models.Face>();
+            using (var db = new Models.Database())
+            {
+                var query = from f in db.Faces.Include("UserAccount").Include("Panels.Rows")
+                            where f.Approved == true
+                            orderby f.TimeAdded
+                            select f;
+                foreach (var item in query)
+                {
+                    face.Add(item);
+                }
+            }
+            return face;
+        }
+
     }
 
 

@@ -16,7 +16,7 @@ public class SpeechController {
 	private CleverScriptHelper csh;
 	private static final String TAG = "SpeechController";
 	private Handler storyHandler;
-	
+
 	public SpeechController() {
 		csh = new CleverScriptHelper(Config.cleverDB, Config.cleverAPIKey);
 		speechIn = new SpeechIn();
@@ -25,53 +25,57 @@ public class SpeechController {
 		storyHandler = new Handler();
 		setupHandlers();
 	}
-	private void setControllers()
-	{
+
+	private void setControllers() {
 		speechOut.setSpeechController(this);
 		csh.setSpeechController(this);
 		speechIn.getOnline().setSpeechController(this);
 		speechIn.getOffline().setSpeechController(this);
 		Config.cH = csh;
 	}
-	public SpeechIn getSpeechIn()
-	{
+
+	public SpeechIn getSpeechIn() {
 		return this.speechIn;
 	}
-	
-	public SpeechOut getSpeechOut()
-	{
+
+	public SpeechOut getSpeechOut() {
 		return this.speechOut;
 	}
-	
-	public CleverScriptHelper getCleverScriptHelper()
-	{
+
+	public CleverScriptHelper getCleverScriptHelper() {
 		return this.csh;
 	}
-	
+
 	public void beginSpeechCycle() {
-		Config.context.runOnUiThread(new Runnable()
-		{
+		Config.context.runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
-				speechIn.switchSearch(Config.searchName);									
+				speechIn.switchSearch(Config.searchName);
 			}
 		});
 	}
 
 	@SuppressWarnings("deprecation")
 	public void askToRecordAudio() {
-		speechOut.mTts.speak(
-				"May I record a story from you for 60 seconds?",
+		speechOut.mTts.speak("May I record a story from you for 60 seconds?",
 				TextToSpeech.QUEUE_FLUSH, null);
-			final StoryRecorder rlS = new StoryRecorder();
+		final StoryRecorder rlS = new StoryRecorder();
+		try {
+			Thread.sleep(1000);
 			rlS.recordSixty();
+
+		} catch (IllegalStateException e) {
+			// TODO
+
+		} catch (InterruptedException e) {
+			// TODO e.printStackTrace();
+		}
+
 	}
 
-	private void setupHandlers()
-	{
-		storyHandler.postDelayed(new Runnable()
-		{
+	private void setupHandlers() {
+		storyHandler.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
@@ -79,26 +83,24 @@ public class SpeechController {
 				askToRecordAudio();
 				storyHandler.postDelayed(this, Config.FORTYFIVE_MINUTES);
 			}
-			
+
 		}, Config.ONE_MINUTE);
 	}
-	
+
 	public void pauseSpeechCycle() {
-		Config.context.runOnUiThread(new Runnable()
-		{
+		Config.context.runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
-				if(speechOut.isSpeaking()){
-				speechOut.pauseTts();
+				if (speechOut.isSpeaking()) {
+					speechOut.pauseTts();
 				}
-				if(speechIn.getIsListening()){
-				speechIn.pauseRecognizer();	
+				if (speechIn.getIsListening()) {
+					speechIn.pauseRecognizer();
 				}
 			}
 		});
-		
+
 	}
-	
 
 }

@@ -5,25 +5,36 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using System.IO;
 
 namespace hitchbotAPI.ApproveImagesPages
 {
     public partial class LedPanelDesigner : System.Web.UI.Page
     {
+        bool generated;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //verifies that there is someone logged in, kicks them out otherwise.
-            if (Session["New"] != null)
-            {
-                //gets the current user for whatever use is needed.
-                var user = (Models.Password)Session["New"];
+            Button1.Visible = false;
 
-                //this is how you would get the panels already saved.. watch out for lazy loading. 
-                //user.Faces;
+            if (!bool.TryParse(Request.QueryString["generated"], out this.generated))
+            {
+                //verifies that there is someone logged in, kicks them out otherwise.
+                if (Session["New"] != null)
+                {
+                    //gets the current user for whatever use is needed.
+                    var user = (Models.Password)Session["New"];
+
+                    //this is how you would get the panels already saved.. watch out for lazy loading. 
+                    //user.Faces;
+                }
+                else
+                {
+                    Response.Redirect("Unauthorized.aspx");
+                }
             }
             else
             {
-                Response.Redirect("Unauthorized.aspx");
+                Button1.Visible = true;
             }
         }
 
@@ -58,6 +69,20 @@ namespace hitchbotAPI.ApproveImagesPages
         private bool nullCheckOK()
         {
             return fileUploadImage.HasFile && txtImageName.Text != "";
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            MemoryStream ms = new MemoryStream();
+            TextWriter tw = new StreamWriter(ms);
+            tw.WriteLine(Helpers.PanelHelper.getArduinoArrayForFace());
+            tw.Flush();
+            var bytes = ms.GetBuffer();
+            Response.ClearContent();
+            Response.AddHeader("Content-Disposition", "attachment; filename=test.txt");
+            Response.AddHeader("Content-Length", bytes.Length.ToString());
+            Response.ContentType = "text/plain";
+            Response.BinaryWrite(bytes);
         }
     }
 }

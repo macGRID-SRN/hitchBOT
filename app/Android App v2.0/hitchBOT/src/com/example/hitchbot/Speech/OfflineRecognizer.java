@@ -9,6 +9,7 @@ import java.util.HashMap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class OfflineRecognizer implements RecognitionListener {
 	private long startTime;
 	private SpeechController speechController;
 	private Handler freezeHandler;
+	private static final String TAG = "OfflineRecognizer";
 	
 	public OfflineRecognizer() {
 		initRecognizer();
@@ -65,9 +67,7 @@ public class OfflineRecognizer implements RecognitionListener {
 			@Override
 			protected void onPostExecute(Exception result) {
 				if (result != null) {
-					((TextView) ((HitchActivity) Config.context)
-							.findViewById(R.id.textViewCaption))
-							.setText("Failed to init recognizer " + result);
+					Log.i(TAG, "Failed to init recognizer " + result);
 				} else {
 					speechController.getSpeechIn()
 					.switchSearch(Config.searchName);
@@ -79,8 +79,8 @@ public class OfflineRecognizer implements RecognitionListener {
 	private void setupRecognizer(File assetsDir) {
 		File modelsDir = new File(assetsDir, "models");
 		recognizer = defaultSetup()
-				.setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-				.setDictionary(new File(modelsDir, "dict/9624.dic"))
+				.setAcousticModel(new File(modelsDir, "hmm/de-ge"))
+				.setDictionary(new File(modelsDir, "dict/voxforge_de_sphinx.dic"))
 				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
 				.getRecognizer();
 		recognizer.addListener(this);
@@ -93,7 +93,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/9624.dmp");
+		File languageModel = new File(modelsDir, "lm/corpus.lm.DMP");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
 	}
 	
