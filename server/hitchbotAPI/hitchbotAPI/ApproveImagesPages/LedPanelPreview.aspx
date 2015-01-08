@@ -20,6 +20,8 @@
 
             <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
 
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Invert Colours" />
+
         </div>
     </form>
 </body>
