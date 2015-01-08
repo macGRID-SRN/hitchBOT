@@ -401,6 +401,10 @@
     <Compile Include="Migrations\201501040435453_AddNameToWikipediaEntry.Designer.cs">
       <DependentUpon>201501040435453_AddNameToWikipediaEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501081905313_AddMapMarkers.cs" />
+    <Compile Include="Migrations\201501081905313_AddMapMarkers.Designer.cs">
+      <DependentUpon>201501081905313_AddMapMarkers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -414,6 +418,7 @@
     <Compile Include="Models\LedPanel.cs" />
     <Compile Include="Models\ListenEvent.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\MapMarker.cs" />
     <Compile Include="Models\Password.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\SpeechEvent.cs" />
@@ -593,6 +598,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501040435453_AddNameToWikipediaEntry.resx">
       <DependentUpon>201501040435453_AddNameToWikipediaEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501081905313_AddMapMarkers.resx">
+      <DependentUpon>201501081905313_AddMapMarkers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

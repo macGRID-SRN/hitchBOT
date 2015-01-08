@@ -38,6 +38,7 @@ namespace hitchbotAPI.Models
         public DbSet<Face> Faces { get; set; }
         public DbSet<LedPanel> LedPanels { get; set; }
         public DbSet<WikipediaEntry> WikipediaEntries { get; set; }
+        public DbSet<MapMarker> MapMarkers { get; set; }
 
     }
 }

@@ -16,7 +16,11 @@ namespace hitchbotAPI.Models
         public string Name { get; set; }
         public DateTime StartTime { get; set; }
         public virtual Location StartLocation { get; set; }
-        public DateTime? EndTime { get; set ;}
+
+        [JsonIgnore]
+        public virtual List<MapMarker> MapMarkers { get; set; }
+
+        public DateTime? EndTime { get; set; }
         public virtual Location EndLocation { get; set; }
         public string Description { get; set; }
         public DateTime TimeAdded { get; set; }
