@@ -19,8 +19,15 @@
                 <ul class="nav navbar-nav">
                     <li><a href="LocationPortal.aspx">Map</a></li>
                     <%--<li class="active"><a href="#">Map <span class="sr-only">(current)</span></a></li>--%>
-                    <li><a href="AddTargetLocations.aspx">Wikipedia Content</a></li>
-                    <li><a href="TargetLocationPreview.aspx">Wikipedia Preview</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Wikipedia<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="AddTargetLocations.aspx">Add New Content</a></li>
+                            <li><a href="TargetLocationPreview.aspx">View Entered Content</a></li>
+                        </ul>
+                    </li>
+<%--                    <li><a href="AddTargetLocations.aspx">Wikipedia Content</a></li>
+                    <li><a href="TargetLocationPreview.aspx">Wikipedia Preview</a></li>--%>
                     <li><a href="HealthStatus.aspx">Health Status</a></li>
                     <li><a href="LedPanelDesigner.aspx">LED Panel Designer</a></li>
                     <%--        <li class="dropdown">
@@ -40,7 +47,7 @@
                     <asp:Button ID="ButtonLogOut" runat="server" Text="Log Out" OnClick="ButtonLogOut_Click" class="btn btn-default" />
                 </form>--%>
                 <form class="navbar-form navbar-right" action="Logout.aspx">
-                   <%-- <asp:Button ID="Button1" runat="server" Text="Log Out" OnClick="ButtonLogOut_Click" class="btn btn-default" />--%>
+                    <%-- <asp:Button ID="Button1" runat="server" Text="Log Out" OnClick="ButtonLogOut_Click" class="btn btn-default" />--%>
                     <button type="submit" class="btn btn-default">Log Out</button>
                 </form>
             </div>
