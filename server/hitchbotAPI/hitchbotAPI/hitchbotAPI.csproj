@@ -218,13 +218,6 @@
     <Compile Include="ApproveImagesPages\HealthStatus.aspx.designer.cs">
       <DependentUpon>HealthStatus.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ApproveImagesPages\LandingPageOld.aspx.cs">
-      <DependentUpon>LandingPageOld.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ApproveImagesPages\LandingPageOld.aspx.designer.cs">
-      <DependentUpon>LandingPageOld.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ApproveImagesPages\LedPanelDesigner.aspx.cs">
       <DependentUpon>LedPanelDesigner.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -245,13 +238,6 @@
     </Compile>
     <Compile Include="ApproveImagesPages\LocationPortal.aspx.designer.cs">
       <DependentUpon>LocationPortal.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ApproveImagesPages\LocationPortalOld.aspx.cs">
-      <DependentUpon>LocationPortalOld.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ApproveImagesPages\LocationPortalOld.aspx.designer.cs">
-      <DependentUpon>LocationPortalOld.aspx</DependentUpon>
     </Compile>
     <Compile Include="ApproveImagesPages\LandingPage.aspx.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
@@ -451,11 +437,9 @@
     <Content Include="ApproveImagesPages\ConversationTweets.aspx" />
     <Content Include="ApproveImagesPages\DynamicMap.aspx" />
     <Content Include="ApproveImagesPages\HealthStatus.aspx" />
-    <Content Include="ApproveImagesPages\LandingPageOld.aspx" />
     <Content Include="ApproveImagesPages\LedPanelDesigner.aspx" />
     <Content Include="ApproveImagesPages\LedPanelPreview.aspx" />
     <Content Include="ApproveImagesPages\LocationPortal.aspx" />
-    <Content Include="ApproveImagesPages\LocationPortalOld.aspx" />
     <Content Include="ApproveImagesPages\LandingPage.aspx" />
     <Content Include="ApproveImagesPages\Logout.aspx" />
     <Content Include="ApproveImagesPages\SavedImages.aspx" />
