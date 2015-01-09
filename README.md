@@ -33,8 +33,8 @@ Building Materials
 Aesthetics
 ---
 
-- [ ] Pool Noodles - need to get asap
-- [ ] Rubber Boots - ordered
-- [ ] Garbage Can Lid
+- [X] Pool Noodles - need to get asap
+- [X] Rubber Boots - ordered
+- [X] Garbage Can Lid
 - [ ] Stickers? Twitter?
 - [ ] Engraved Aluminum Plate?
