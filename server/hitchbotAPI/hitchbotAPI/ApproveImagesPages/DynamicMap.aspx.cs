@@ -20,6 +20,15 @@ namespace hitchbotAPI.ApproveImagesPages
                 this.hitchbotID = int.Parse(Request.QueryString["hbID"]);
 
                 this.jsDataLocation.Text = @"<script type=""text/javascript"" src=""http://hitchbotimg.blob.core.windows.net/hbjs/testLocations" + hitchbotID + @".js""></script>";
+
+                var langOptions = string.Empty;
+
+                if (!string.IsNullOrEmpty(Request.QueryString["lang"]))
+                {
+                    langOptions = "&language=" + Request.QueryString["lang"] + "&";
+                }
+
+                this.gmapsString.Text = string.Format(@"<script type=""text/javascript"" src=""https://maps.googleapis.com/maps/api/js?{0}key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA""></script>", langOptions);
             }
             else
             {

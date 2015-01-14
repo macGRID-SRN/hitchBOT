@@ -8,9 +8,7 @@
     <style type="text/css">
       html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
     </style>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA">
-    </script>
+    <asp:Literal runat="server" ID="gmapsString" EnableViewState ="false" />
     <asp:Literal runat="server" id="jsDataLocation" EnableViewState="false" />
 </head>
 <body>
