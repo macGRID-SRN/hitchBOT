@@ -15,14 +15,20 @@ To charge this "beast" using the 1.0 A 5V charger we have, using the above stats
 
 ---
 
-I just want to throw an idea out there: if we are able to tell if the battery is charging with the arduino, we could turn off some of the panels to reduce the charge time OR prolong battery life by only have some on when plugged in and charged.
+I just want to throw an idea out there: if we are able to tell if the battery is charging with the arduino, we could turn off some of the panels to reduce the charge time OR prolong battery life by only having some on when not plugged in and charged.
 
 ---
 
-I haven't done the calculation with the speaker yet (much harder to measure) but I imagine it being less power hungry.
+I haven't done the calculation with the speaker yet (much harder to measure) but I imagine it being less power hungry. Also it was rated less important than the face by DHS.
+
+---
+
+Putting chargers in parallel with some fancy wiring on the batteries and output? Theoretically this might work, but as we know this is also theoretically possible for diodes. However in reality it is actually a terrible idea and doesn't work (one diode does all the work and the others end up acting like heat-sinks). I suspect this would be the case for these chargers as well.
 
 **Important Assumptions**:
 
  - This is a conservative estimate, almost worst case. In fact I know for sure the battery will last longer and charge faster than stated above. So basically, this isn't an *Apple iPhone Battery life listing, if you know what I mean*
 
  - The battery charger is a "dumb" charger, ie it doesn't have a timeout and will continually charge the battery until it is full.
+
+*Written By:* Colin Gagich
