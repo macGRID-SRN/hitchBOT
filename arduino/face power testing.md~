@@ -11,8 +11,7 @@ With the 5000 mAh single cell battery we currently have in our possession, I est
 To charge this "beast" using the 1.0 A 5V charger we have, using the above stats, I estimate it to take about **15 hours to charge with the face on**
 
 
-*Note:* ~~we also have a 1.5 A 5V charger which I have yet to test and verify it works as advertised. BUT if it does work, that gives us a much better charge time: **5.78 hours to charge with the face on**~~ 
-This other charger is actually rated for 500mA, less than what I thought. We are stuck with using the 1.0 A charger. I ordered another set of these for backup.
+*Note:* we also have a 1.5 A 5V charger which I have yet to test and verify it works as advertised. BUT if it does work, that gives us a much better charge time: **5.78 hours to charge with the face on**
 
 ---
 
@@ -31,7 +30,5 @@ Putting chargers in parallel with some fancy wiring on the batteries and output?
  - This is a conservative estimate, almost worst case. In fact I know for sure the battery will last longer and charge faster than stated above. So basically, this isn't an *Apple iPhone Battery life listing, if you know what I mean*
 
  - The battery charger is a "dumb" charger, ie it doesn't have a timeout and will continually charge the battery until it is full.
-
- - The battery charger may have issues supplying more than 500mA when the battery votlage drops below 3.5V, I will have to test this.
 
 *Written By:* Colin Gagich
