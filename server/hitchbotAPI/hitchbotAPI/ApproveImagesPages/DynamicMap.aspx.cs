@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
+using System.Globalization;
 
 namespace hitchbotAPI.ApproveImagesPages
 {
@@ -25,8 +26,12 @@ namespace hitchbotAPI.ApproveImagesPages
 
                 if (!string.IsNullOrEmpty(Request.QueryString["lang"]))
                 {
+                    Page.UICulture = Request.QueryString["lang"];
+                    Culture = Request.QueryString["lang"];
+                    HtmlMasterTag.Attributes["lang"] = Request.QueryString["lang"];
                     langOptions = "&language=" + Request.QueryString["lang"] + "&";
                 }
+
 
                 this.gmapsString.Text = string.Format(@"<script type=""text/javascript"" src=""https://maps.googleapis.com/maps/api/js?{0}key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA""></script>", langOptions);
             }

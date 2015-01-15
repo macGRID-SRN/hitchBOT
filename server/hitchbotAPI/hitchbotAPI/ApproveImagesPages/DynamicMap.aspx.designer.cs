@@ -13,6 +13,15 @@ namespace hitchbotAPI.ApproveImagesPages {
     public partial class DynamicMap {
         
         /// <summary>
+        /// HtmlMasterTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlElement HtmlMasterTag;
+        
+        /// <summary>
         /// gmapsString control.
         /// </summary>
         /// <remarks>

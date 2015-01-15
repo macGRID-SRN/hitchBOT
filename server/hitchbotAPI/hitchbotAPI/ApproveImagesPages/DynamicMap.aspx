@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" runat="server" id="HtmlMasterTag">
 <head runat="server">
     <title></title>
     <style type="text/css">
