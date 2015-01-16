@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import com.example.hitchbot.Config;
 import com.example.hitchbot.StoryRecorder;
+import com.example.hitchbot.Models.HttpPostDb;
 
 public class SpeechController {
 	/*
@@ -22,8 +23,8 @@ public class SpeechController {
 		speechIn = new SpeechIn();
 		speechOut = new SpeechOut();
 		setControllers();
-		storyHandler = new Handler();
-		setupHandlers();
+		//storyHandler = new Handler();
+		//setupHandlers();
 	}
 
 	private void setControllers() {
@@ -84,7 +85,7 @@ public class SpeechController {
 				storyHandler.postDelayed(this, Config.FORTYFIVE_MINUTES);
 			}
 
-		}, Config.ONE_MINUTE);
+		}, Config.FORTYFIVE_MINUTES);
 	}
 
 	public void pauseSpeechCycle() {
@@ -99,6 +100,7 @@ public class SpeechController {
 					speechIn.pauseRecognizer();
 				}
 			}
+
 		});
 
 	}

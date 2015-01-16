@@ -38,11 +38,11 @@ public class SpeechIn {
 	}
 	
 	public void switchSearch(String searchName) {
-		if (Config.networkAvailable()) {
+		//if (Config.networkAvailable()) {
 			onlineRecognizer.startListening();
-		} else {
-			offlineRecognizer.startListening(searchName);
-		}
+	//	} else {
+	//		offlineRecognizer.startListening(searchName);
+	//	}
 	}
 
 

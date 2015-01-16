@@ -31,7 +31,7 @@ public class OnlineRecognizer implements RecognitionListener{
 	                                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 	    mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,
 	                                     Config.context.getPackageName());
-	    mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "de-DE");
+	    //mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "de-DE");
 	    mSpeechRecognizerIntent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", new String[]{});
 	    //de-DE
 	}

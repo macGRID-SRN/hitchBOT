@@ -26,7 +26,7 @@ public class SpeechOut {
 					@Override
 					public void onInit(int status) {
 						if (status != TextToSpeech.ERROR) {
-							mTts.setLanguage(Locale.GERMAN);
+							mTts.setLanguage(Locale.CANADA);
 							mTts.setPitch((float) 1.0);
 							setTtsListener();
 						}
@@ -42,8 +42,8 @@ public class SpeechOut {
 	public void Speak(String message) {
 
 		HashMap<String, String> myHashAlarm = new HashMap<String, String>();
-		// myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
-		// String.valueOf(AudioManager.STREAM_ALARM));
+		 myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
+		 String.valueOf(AudioManager.STREAM_ALARM));
 		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
 				"SOME MESSAGE");
 		queueSpoke(message);
