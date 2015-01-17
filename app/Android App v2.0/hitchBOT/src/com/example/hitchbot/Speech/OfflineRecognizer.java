@@ -34,7 +34,7 @@ public class OfflineRecognizer implements RecognitionListener {
 	private static final String TAG = "OfflineRecognizer";
 
 	public OfflineRecognizer() {
-		initRecognizer();
+		//initRecognizer();
 	}
 
 	public void setSpeechController(SpeechController speechController) {

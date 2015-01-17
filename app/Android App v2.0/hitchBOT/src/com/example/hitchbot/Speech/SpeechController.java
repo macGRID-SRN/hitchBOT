@@ -33,6 +33,8 @@ public class SpeechController {
 		speechIn.getOnline().setSpeechController(this);
 		speechIn.getOffline().setSpeechController(this);
 		Config.cH = csh;
+		getSpeechIn().switchSearch(
+				Config.searchName);
 	}
 
 	public SpeechIn getSpeechIn() {

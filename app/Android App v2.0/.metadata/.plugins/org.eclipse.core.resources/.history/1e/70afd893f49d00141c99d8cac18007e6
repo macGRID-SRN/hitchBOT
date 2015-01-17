@@ -23,8 +23,8 @@ public class SpeechController {
 		speechIn = new SpeechIn();
 		speechOut = new SpeechOut();
 		setControllers();
-		storyHandler = new Handler();
-		setupHandlers();
+		//storyHandler = new Handler();
+		//setupHandlers();
 	}
 
 	private void setControllers() {
