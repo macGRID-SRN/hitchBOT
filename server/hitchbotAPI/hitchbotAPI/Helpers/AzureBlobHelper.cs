@@ -6,6 +6,9 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System.Configuration;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace hitchbotAPI.Helpers
 {
@@ -14,6 +17,7 @@ namespace hitchbotAPI.Helpers
         public const string JS_LOCATION_FILE_NAME = "testLocations";
         public const string JS_FILE_EXTENSION = ".js";
         private const string JS_CONTAINER_NAME = "hbjs";
+        private static Random randy = new Random();
 
         public static string UploadLocationJsAndGetPublicUrl(string localRootFileDirectory, string fileName, int ID)
         {
@@ -72,6 +76,49 @@ namespace hitchbotAPI.Helpers
             string TargetLocation = Helpers.PathHelper.GetJsBuildPath();
             //this is a mess!
             Helpers.AzureBlobHelper.UploadLocationJsAndGetPublicUrl(TargetLocation, Helpers.AzureBlobHelper.JS_LOCATION_FILE_NAME + hitchbotID + Helpers.AzureBlobHelper.JS_FILE_EXTENSION, hitchbotID);
+        }
+
+        public static async Task<string> UploadImageAndGetPublicUrl(string localRootFileDirectory, string fileName)
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+            CloudBlobContainer imgContainer = blobClient.GetContainerReference("imgfromhb");
+
+            CloudBlockBlob newBlob = imgContainer.GetBlockBlobReference(randy.Next() + " - " + fileName);
+
+            using (var fileString = System.IO.File.OpenRead(localRootFileDirectory + fileName))
+            {
+                newBlob.UploadFromStream(fileString);
+                newBlob.Properties.ContentType = "image/webp";
+                newBlob.SetProperties();
+            }
+
+            return newBlob.Uri.ToString();
+        }
+
+        public static async void UploadImageAndAddToDb(int hbID, DateTime TimeTaken, string localFileDirectory, string fileName)
+        {
+            Task<string> publicURL = UploadImageAndGetPublicUrl(localFileDirectory, fileName);
+
+            using (var db = new Models.Database())
+            {
+                var hb = db.hitchBOTs.Include(l => l.Locations).FirstOrDefault(l => l.ID == hbID);
+                var location = hb.Locations.OrderByDescending(l => l.TakenTime).FirstOrDefault();
+
+                var image = new Models.Image()
+                {
+                    HitchBOT = hb,
+                    Location = location,
+                    url = await publicURL,
+                    TimeAdded = DateTime.UtcNow,
+                    TimeTaken = TimeTaken
+                };
+
+                db.Images.Add(image);
+                db.SaveChanges();
+            }
         }
     }
 }

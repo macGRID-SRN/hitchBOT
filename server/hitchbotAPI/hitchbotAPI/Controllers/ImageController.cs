@@ -68,8 +68,10 @@ namespace hitchbotAPI.Controllers
         /// Accepts an Image from the tablet.
         /// </summary>
         /// <returns>Success</returns>
-        public Task<HttpResponseMessage> PostImage()
+        public Task<HttpResponseMessage> PostImage(int HitchBotID = 10, string timeTaken = "20150121000000")
         {
+            DateTime TimeTaken = DateTime.ParseExact(timeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+
             HttpRequestMessage request = this.Request;
             if (!request.Content.IsMimeMultipartContent())
             {
@@ -86,15 +88,18 @@ namespace hitchbotAPI.Controllers
                     string file1 = provider.FileData.First().LocalFileName;
                     // this is the file name on the server where the file was saved this should be passed on to upload it to azure
 
+                    Helpers.AzureBlobHelper.UploadImageAndAddToDb(HitchBotID, TimeTaken, root, file1);
+
                     return new HttpResponseMessage()
                     {
-                        Content = new StringContent("File uploaded.")
+                        Content = new StringContent("File uploaded."),
+                        StatusCode = HttpStatusCode.OK
                     };
                 }
             );
             //TODO: Actually upload the image to azure blob (very easy code, the question is how to thread it).
             return task;
-        } 
+        }
 
         [HttpPost]
         public bool AcceptImage(int ImageAcceptID)
