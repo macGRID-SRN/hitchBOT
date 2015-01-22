@@ -218,6 +218,27 @@
     <Compile Include="ApproveImagesPages\HealthStatus.aspx.designer.cs">
       <DependentUpon>HealthStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveImagesPages\ImageHelp.aspx.cs">
+      <DependentUpon>ImageHelp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\ImageHelp.aspx.designer.cs">
+      <DependentUpon>ImageHelp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveImagesPages\Images.aspx.cs">
+      <DependentUpon>Images.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\Images.aspx.designer.cs">
+      <DependentUpon>Images.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\LedPanelDesigner.aspx.cs">
       <DependentUpon>LedPanelDesigner.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -437,6 +458,9 @@
     <Content Include="ApproveImagesPages\ConversationTweets.aspx" />
     <Content Include="ApproveImagesPages\DynamicMap.aspx" />
     <Content Include="ApproveImagesPages\HealthStatus.aspx" />
+    <Content Include="ApproveImagesPages\Help.aspx" />
+    <Content Include="ApproveImagesPages\ImageHelp.aspx" />
+    <Content Include="ApproveImagesPages\Images.aspx" />
     <Content Include="ApproveImagesPages\LedPanelDesigner.aspx" />
     <Content Include="ApproveImagesPages\LedPanelPreview.aspx" />
     <Content Include="ApproveImagesPages\LocationPortal.aspx" />

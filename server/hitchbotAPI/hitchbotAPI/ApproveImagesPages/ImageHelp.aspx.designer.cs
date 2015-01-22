@@ -11,7 +11,7 @@ namespace hitchbotAPI.ApproveImagesPages
 {
 
 
-    public partial class SavedImages
+    public partial class ImageHelp
     {
     }
 }

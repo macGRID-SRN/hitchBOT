@@ -1,12 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ApproveImagesPages/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="SavedImages.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.SavedImages" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ApproveImagesPages/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="ImageHelp.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.ImageHelp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
     <div class="container">
         <div class="jumbotron">
-            <h1>And neither is this one.</h1>
+            <h1>What did you expect?!</h1>
             <p>
-                Come back soon :)
+                Seriously!
             </p>
         </div>
     </div>
