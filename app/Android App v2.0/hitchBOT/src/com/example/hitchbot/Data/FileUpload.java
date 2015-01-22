@@ -10,6 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.example.hitchbot.Config;
+import com.example.hitchbot.Models.FileUploadDb;
+
 import android.util.Log;
 
 public class FileUpload implements Runnable {
@@ -21,13 +23,18 @@ public class FileUpload implements Runnable {
 	private String filePath;
 	private static String TAG = "FileUpload";
 	private String fileExtension;
+	private FileUploadDb fileUpload;
 
 	byte[] dataToServer;
 	FileInputStream fileInputStream = null;
 
 	//fileType =1 corresponds to image, fileType = 0 corresponds to audio
-	public FileUpload(String urlString, String vTitle, String vDesc,
-			String filePath, int fileType) {
+	public FileUpload(String urlString, FileUploadDb fileUpload) {
+		String vTitle = "myfiletitle"; 
+		String vDesc = "lifestoryORimage";
+		String filePath = fileUpload.getUri();
+		this.fileUpload = fileUpload;
+		int fileType = fileUpload.getFileType();
 		try {
 			connectURL = new URL(urlString);
 			Title = vTitle;
@@ -154,8 +161,9 @@ public class FileUpload implements Runnable {
 			String s = b.toString();
 			Log.i(TAG, s);
 			dos.close();
-			if (s.equals("true")) {
+			if (s.contains("true")) {
 				boolean deleted = new File(filePath).delete();
+				Config.dQ.markAsUploadedToServer(fileUpload);
 				Log.i(TAG, String.valueOf(deleted));
 			}
 		} catch (MalformedURLException ex) {

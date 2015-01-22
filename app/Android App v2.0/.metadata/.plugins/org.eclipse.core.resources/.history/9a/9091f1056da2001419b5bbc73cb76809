@@ -30,7 +30,7 @@ public final class Config {
 	public static String cleverAPIKey = "kodve1c6132f24f7fad4ef0b471e8d4770baf";
 	public static String cleverDB = "hbgermaninterview.db";
 	
-	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s";
+	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image";
 	public static String cleverGET = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
 	public static String audioPOST = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
 	public static String batteryPOST = "http://hitchbotapi.azurewebsites.net/api/Tablet?HitchBotID=%s&timeTaken=%s&isPluggedIn=%s&BatteryVoltage=%s&BatteryPercent=%s&BatteryTemp=%s";

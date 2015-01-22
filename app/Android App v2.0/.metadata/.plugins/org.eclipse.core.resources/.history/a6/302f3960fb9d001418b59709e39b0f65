@@ -166,7 +166,7 @@ public class OfflineRecognizer implements RecognitionListener {
 
 			@Override
 			public void run() {
-				recognizer.stop();				
+				recognizer.stop()				
 			}
 		});
 	}

@@ -159,7 +159,9 @@ public class HitchActivity extends ActionBarActivity {
 							break;
 						}
 						FileUpload hfu = new FileUpload(uploadUrl,
-								fileUpload[i]);
+								"myfiletitle", "lifestoryORimage",
+								fileUpload[i].getUri(), fileUpload[i]
+										.getFileType());
 
 						hfu.send_Now(fstrm);
 
