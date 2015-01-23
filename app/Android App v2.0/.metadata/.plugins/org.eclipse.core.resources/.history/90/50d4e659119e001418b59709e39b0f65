@@ -101,12 +101,16 @@ public class OnlineRecognizer implements RecognitionListener{
 		}
 		else
 		{
+			am.setStreamVolume(AudioManager.STREAM_MUSIC,
+					am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 			Config.cH.sendCleverScriptResponse("I didn't catch that.");
 		}
 	}
 
 	@Override
 	public void onResults(Bundle results) {
+		am.setStreamVolume(AudioManager.STREAM_MUSIC,
+				am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		 ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 		 String message = matches.get(0);
 		 Log.i(TAG, message + " ");

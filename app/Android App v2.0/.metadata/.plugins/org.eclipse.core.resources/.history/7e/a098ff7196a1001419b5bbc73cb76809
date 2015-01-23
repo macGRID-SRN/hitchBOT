@@ -150,16 +150,16 @@ public class HitchActivity extends ActionBarActivity {
 							uploadUrl = Config.audioPOST;
 							break;
 						case 1:
-							uploadUrl = String.format(Config.imagePOST,
-									Config.HITCHBOT_ID,
-									fileUpload[i].getDateCreated());
+							uploadUrl = Config.imagePOST;
 							break;
 						default:
 							uploadUrl = Config.audioPOST;
 							break;
 						}
 						FileUpload hfu = new FileUpload(uploadUrl,
-								fileUpload[i]);
+								"myfiletitle", "lifestoryORimage",
+								fileUpload[i].getUri(), fileUpload[i]
+										.getFileType());
 
 						hfu.send_Now(fstrm);
 

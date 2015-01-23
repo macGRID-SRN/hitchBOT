@@ -1,0 +1,22 @@
+Type	Label	Description	Text	If	Learn	Goto	Accuracy	Mode
+input	in_menu		"Das Ziel deiner Erfinderin war es, herauszufinden, ob Roboter Menschen vertrauen können. Vertraust du Menschen nach deiner Reise?"			out_menu	40	
+input	in_earth		Meinst du Menschen vertrauen auch dir?			out_earth	40	
+input	in_audio		In Deutschland setzt du deine Reise nun fort. Worauf freust du dich? Was ist für dich typisch deutsch?			out_story	40	
+input	in_how_old		Was wird anders als in Kanada sein?			out_how_old	40	
+input	in_species		"Typisch Deutsch ist zum Beispiel Karneval, bei dem du in Köln dabei sein wirst. Hast du vor dich zu verkleiden?"			out_species	40	
+input	in_achievement		Außerdem wirst du den höchsten Berg Deutschlands erklimmen. Hast du gar keine Höhenangst?			out_achievement	40	
+input	in_thirdlast		Hast du noch weitere Hobbys?			out_thirdlast	40	
+input	in_secondlast		Und wohin möchtest du noch reisen?			out_secondlast	40	
+input	in_last		"Hast du dich nicht einsam gefühlt? Würdest du dir von deiner Erfinderin wünschen, dass sie dir eine Roboter Freundin baut?"			out_last	40	
+output	out_menu		" Ich habe so viele freundliche Menschen kennen gelernt auf meiner Reise. Ich denke, Menschen sind wirklich tolle und lustige Freunde für Roboter."					
+output	out_thirdlast		"Fußball, Backen, Reiten und natürlich Eishockey. Was sind deine Hobbies?"					
+output	out_secondlast		Ich möchte vielleicht einmal als trampender Roboter durch die Galaxie reisen. Aber bevor ich das mache möchte ich noch viele andere Erdenländer kennen lernen.					
+output	out_last		Ich habe auf meiner Reise in Kanada schon so viele Freundinnen bekommen. Und hoffentlich treffe ich viele neue deutsche Freundinnen. Wie viele Freundinnen hast du?					
+output	out_earth		 Das ist eine Frage die ein kleiner Roboter nicht beantworten kann. Menschen sind meine Freunde und ich bin ihr Freund. Menschen helfen mir und zeigen mir viele Orte und lustige Dinge.					
+			"Earth is a large green and blue oblate spheroid mass approximately 150 million kilometers from its sun, home to many carbon-based lifeforms."					
+output	out_how_old		"Frauke hat mir erzählt dass es in Deutschland auch die weißen Flocken, die vom Himmel fallen, gibt. Sie sagt auch, dass es nicht so kalt ist wie in Kanada. Aber ich kann keine Kälte fühlen, also weiß ich nicht, was das ist."					
+output	out_species		"Meine Familie und ich haben schon ein Kostüm für mich ausprobiert. Damit sehe ich sehr anders aus und alle lachen wenn sie mich sehen. Ich bin gespannt, ob ich neue Kostüme in Deutschland bekommen werde."					
+output	out_species_biomass		"Bos primigenius taurus, or cattle, have the greatest biomass of any single species on Earth, at 650 million tonnes."					
+output	out_species_influence		"Homo sapiens, or humans, have the greatest influence on Earth of any species, due to proportionately astronomical intelligence."					
+output	out_achievement		Angst? Was ist das? Bitte spezifizieren.					
+output	out_story		"Ich war noch nie in Deutschland. Meine Co-Erfinderin ist Deutsche. Meine logische Schlußfolgerung ist, dass alle Deutsche so sind wie meine Co-Erfinderin, Frauke. Oder?"					

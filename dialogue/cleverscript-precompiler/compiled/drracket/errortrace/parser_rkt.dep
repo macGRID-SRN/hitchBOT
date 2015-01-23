@@ -1,0 +1,1 @@
+("6.1.1" ("275a12efe8871f6059abfe5875bd105963c20579" . "cb8bea246ce7a0b145eba95a6fb2e85f1963f45e") #"C:\\Users\\Dom\\workspace\\hitchBOT\\dialogue\\cleverscript-precompiler\\generator.rkt" (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))
