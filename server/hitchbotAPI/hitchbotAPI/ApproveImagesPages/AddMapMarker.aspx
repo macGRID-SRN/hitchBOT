@@ -56,6 +56,7 @@
         var markerCircleRadius;
         var marker;
         var map;
+        var infoWindow;
         //updates the displayed coords to work with 
         function UpdateCoordsOnPage(latlng) {
 
@@ -108,6 +109,16 @@
 
             markerCircle = new google.maps.Circle(circleOptions);
 
+            var contentString = '<h1>Heading</h1><p>Content</p>'
+
+            infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.open(map, marker);
+            });
+
             UpdateCoordsOnPage(marker.getPosition());
         }
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -117,6 +128,7 @@
      <div class="container">
         <div class="jumbotron">
             <h2>Add Map Markers</h2>
+            <h4>This feature is not yet ready!</h4>
             <div class="map-wrapper">
                 <div id="map-canvas">
                 </div>
@@ -183,7 +195,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inputPopupContent">Popup Content<span class="wiki-lines-detect"></span></label>
-                    <textarea class="form-control wiki-entries" id="inputPopupContent" placeholder="Popup Content. (See live preview) HTML is allowed." rows="5" runat="server"></textarea>
+                    <textarea class="form-control wiki-entries pop-content-english" id="inputPopupContent" placeholder="Popup Content. (See live preview) HTML is allowed." rows="5" runat="server"></textarea>
                 </div>
                 <div class="form-group">
                     <asp:Button ID="buttonSubmit" runat="server" Text="Add To Map" class="btn btn-success"/>
