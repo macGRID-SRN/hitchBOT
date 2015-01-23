@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ApproveImagesPages/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="AddMapMarker.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.AddMapMarker" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
 
-<style type="text/css">
+    <style type="text/css">
         html, body, #map-canvas {
             height: 100%;
             margin: 0;
@@ -74,6 +75,13 @@
             marker.setPosition(latlng);
         }
 
+        function UpdateInfoWindowContent() {
+
+            var contentStringy = "<h3>" + $(".header-english").val() + "</h3>";
+            contentStringy += "<p>" + $(".content-english").val() + "</p>";
+            infoWindow.setContent(contentStringy);
+        }
+
         function initialize() {
             var myLatlng = new google.maps.LatLng(50.983027, 10.445880);
 
@@ -111,12 +119,12 @@
 
             var contentString = '<h1>Heading</h1><p>Content</p>'
 
-            infowindow = new google.maps.InfoWindow({
+            infoWindow = new google.maps.InfoWindow({
                 content: contentString
             });
 
             google.maps.event.addListener(marker, 'click', function () {
-                infowindow.open(map, marker);
+                infoWindow.open(map, marker);
             });
 
             UpdateCoordsOnPage(marker.getPosition());
@@ -125,7 +133,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-     <div class="container">
+    <div class="container">
         <div class="jumbotron">
             <h2>Add Map Markers</h2>
             <h4>This feature is not yet ready!</h4>
@@ -140,6 +148,14 @@
 
                 <%-- This code was borrowed from http://www.bootply.com/katie/9CvIygzob8 --%>
                 <div class="row">
+                    <div class="form-group">
+                        <label for="inputHeader">Header</label>
+                        <input type="text" class="form-control header-english" id="inputHeader" placeholder="Enter Header" runat="server">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPopupContent">Popup Content<span class="wiki-lines-detect"></span></label>
+                        <textarea class="form-control wiki-entries content-english" id="inputPopupContent" placeholder="Popup Content. (See live preview) HTML is allowed." rows="5" runat="server"></textarea>
+                    </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="inputRadius">Select a Radius</label>
@@ -190,15 +206,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputHeader">Header</label>
-                    <input type="text" class="form-control" id="inputHeader" placeholder="Enter Header" runat="server">
-                </div>
-                <div class="form-group">
-                    <label for="inputPopupContent">Popup Content<span class="wiki-lines-detect"></span></label>
-                    <textarea class="form-control wiki-entries pop-content-english" id="inputPopupContent" placeholder="Popup Content. (See live preview) HTML is allowed." rows="5" runat="server"></textarea>
-                </div>
-                <div class="form-group">
-                    <asp:Button ID="buttonSubmit" runat="server" Text="Add To Map" class="btn btn-success"/>
+                    <asp:Button ID="buttonSubmit" runat="server" Text="Add To Map" class="btn btn-success" />
                 </div>
 
 
@@ -257,21 +265,9 @@
         //    }
         //});
 
-        //$(".wiki-entries").bind("change paste keyup", function () {
-        //    var text = $(this).val();
-        //    var numLines = text.split("\n").length;
-        //    var outputText = "";
-        //    if (text.length == 0) {
-        //        outputText = "No ";
-        //    }
-        //    else {
-        //        outputText = numLines.toString() + " ";
-        //    }
-
-        //    outputText += " line(s) are detected.";
-
-        //    $(".wiki-lines-detect").text(outputText);
-        //});
+        $(".content-english, .header-english").bind("change paste keyup", function () {
+            UpdateInfoWindowContent();
+        });
 
     </script>
 </asp:Content>
