@@ -14,7 +14,7 @@ Upstream Data
 - [x] Everything hB thinks it hears
 - [x] Verbal stories (with permission)
 - [x] Battery and environment info
-- [ ] Exception Logging
+- [x] Exception Logging
 
 Downstream Data
 ---
