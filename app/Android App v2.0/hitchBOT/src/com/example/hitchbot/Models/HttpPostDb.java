@@ -16,6 +16,7 @@ public class HttpPostDb {
 	private List<NameValuePair> body;
 	private List<NameValuePair> header;
 	// 0 image, 1 location, 2 spokenphrase, 3 heardphrase, 4 battery, 5 image, 6 audio
+	//7 exception
 	private int uploadType;
 	
 	public HttpPostDb(int ID, String uri, int uploadToServer, String dateCreated, int uT)
