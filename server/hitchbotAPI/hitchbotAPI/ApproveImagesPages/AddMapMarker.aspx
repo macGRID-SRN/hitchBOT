@@ -75,10 +75,12 @@
             marker.setPosition(latlng);
         }
 
-        function UpdateInfoWindowContent() {
+        function UpdateInfoWindowContent(caller) {
 
-            var contentStringy = "<h3>" + $(".header-english").val() + "</h3>";
-            contentStringy += "<p>" + $(".content-english").val() + "</p>";
+            var lang = caller.hasClass('header-english') || caller.hasClass("content-english") ? "english" : "german";
+
+            var contentStringy = "<h3>" + $(".header-" + lang).val() + "</h3>";
+            contentStringy += "<p>" + $(".content-" + lang).val() + "</p>";
             infoWindow.setContent(contentStringy);
         }
 
@@ -117,15 +119,18 @@
 
             markerCircle = new google.maps.Circle(circleOptions);
 
-            var contentString = '<h1>Heading</h1><p>Content</p>'
+            var contentString = '<h3>Heading</h3><p>Content</p>';
 
             infoWindow = new google.maps.InfoWindow({
                 content: contentString
             });
 
+
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.open(map, marker);
             });
+
+            infoWindow.open(map, marker);
 
             UpdateCoordsOnPage(marker.getPosition());
         }
@@ -148,14 +153,40 @@
 
                 <%-- This code was borrowed from http://www.bootply.com/katie/9CvIygzob8 --%>
                 <div class="row">
-                    <div class="form-group">
-                        <label for="inputHeader">Header</label>
-                        <input type="text" class="form-control header-english" id="inputHeader" placeholder="Enter Header" runat="server">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="inputHeaderGerman">Header (German)</label>
+                                <input type="text" class="form-control header-german" id="inputHeaderGerman" placeholder="Enter Header" runat="server"></input>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="inputPopupContentGerman">Popup Content (German)<span class="wiki-lines-detect"></span></label>
+                                <textarea class="form-control wiki-entries content-german" id="inputPopupContentGerman" placeholder="Popup Content. (See live preview) HTML is allowed." rows="5" runat="server"></textarea>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputPopupContent">Popup Content<span class="wiki-lines-detect"></span></label>
-                        <textarea class="form-control wiki-entries content-english" id="inputPopupContent" placeholder="Popup Content. (See live preview) HTML is allowed." rows="5" runat="server"></textarea>
+
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="inputHeaderEnglish">Header (English)</label>
+                                <input type="text" class="form-control header-english" id="inputHeaderEnglish" placeholder="Enter Header" runat="server"></input>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="inputPopupContentEnglish">Popup Content (English)<span class="wiki-lines-detect"></span></label>
+                                <textarea class="form-control wiki-entries content-english" id="inputPopupContentEnglish" placeholder="Popup Content. (See live preview) HTML is allowed." rows="5" runat="server"></textarea>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="inputRadius">Select a Radius</label>
@@ -182,7 +213,6 @@
 
                         </div>
                     </div>
-
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="inputLat">Latitude</label>
@@ -265,8 +295,8 @@
         //    }
         //});
 
-        $(".content-english, .header-english").bind("change paste keyup", function () {
-            UpdateInfoWindowContent();
+        $(".content-english, .header-english, .content-german, .header-german").bind("change paste keyup", function () {
+            UpdateInfoWindowContent($(this));
         });
 
     </script>

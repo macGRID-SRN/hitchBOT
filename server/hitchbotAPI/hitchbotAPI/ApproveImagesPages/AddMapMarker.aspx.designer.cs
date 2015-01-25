@@ -22,22 +22,40 @@ namespace hitchbotAPI.ApproveImagesPages {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorAlert;
         
         /// <summary>
-        /// inputHeader control.
+        /// inputHeaderGerman control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText inputHeader;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inputHeaderGerman;
         
         /// <summary>
-        /// inputPopupContent control.
+        /// inputPopupContentGerman control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea inputPopupContent;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea inputPopupContentGerman;
+        
+        /// <summary>
+        /// inputHeaderEnglish control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inputHeaderEnglish;
+        
+        /// <summary>
+        /// inputPopupContentEnglish control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea inputPopupContentEnglish;
         
         /// <summary>
         /// inputRadiusValue control.
