@@ -21,7 +21,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Map<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="LocationPortal.aspx">View Live Map</a></li>
-                            <li><a href="TargetLocationPreview.aspx">Enter Map Markers</a></li>
+                            <li><a href="AddMapMarker.aspx">Enter Map Markers</a></li>
                         </ul>
                     </li>
 

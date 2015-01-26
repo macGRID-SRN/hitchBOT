@@ -183,6 +183,13 @@
     <Compile Include="ApproveImagesPages\AddMapMarker.aspx.designer.cs">
       <DependentUpon>AddMapMarker.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ApproveImagesPages\AddMapMarkerSuccess.aspx.cs">
+      <DependentUpon>AddMapMarkerSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApproveImagesPages\AddMapMarkerSuccess.aspx.designer.cs">
+      <DependentUpon>AddMapMarkerSuccess.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveImagesPages\AddTargetLocations.aspx.cs">
       <DependentUpon>AddTargetLocations.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -464,6 +471,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApproveImagesPages\AddMapMarker.aspx" />
+    <Content Include="ApproveImagesPages\AddMapMarkerSuccess.aspx" />
     <Content Include="ApproveImagesPages\AddTargetLocations.aspx" />
     <Content Include="ApproveImagesPages\AddTargetSuccess.aspx" />
     <Content Include="ApproveImagesPages\ApproveImageLogin.aspx" />
