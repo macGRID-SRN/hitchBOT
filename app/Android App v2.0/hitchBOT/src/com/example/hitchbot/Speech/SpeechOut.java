@@ -19,11 +19,8 @@ public class SpeechOut {
 	private SpeechController speechController;
 	private boolean isStopping;
 	private static final String TAG = "SpeechOut";
-	private AudioManager am;
 
 	public SpeechOut() {
-		   am = (AudioManager) Config.context
-					.getSystemService(Context.AUDIO_SERVICE);
 		isStopping = false;
 		mTts = new TextToSpeech(Config.context,
 				new TextToSpeech.OnInitListener() {
@@ -53,8 +50,6 @@ public class SpeechOut {
 		queueSpoke(message);
 		isStopping = false;
 		Log.i(TAG, message);
-		am.setStreamVolume(AudioManager.STREAM_MUSIC,
-				am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 4, 0);
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 	}
 
