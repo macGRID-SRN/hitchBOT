@@ -419,6 +419,10 @@
     <Compile Include="Migrations\201501081905313_AddMapMarkers.Designer.cs">
       <DependentUpon>201501081905313_AddMapMarkers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501261656275_UpdateMapMarker.cs" />
+    <Compile Include="Migrations\201501261656275_UpdateMapMarker.Designer.cs">
+      <DependentUpon>201501261656275_UpdateMapMarker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -617,6 +621,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501081905313_AddMapMarkers.resx">
       <DependentUpon>201501081905313_AddMapMarkers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501261656275_UpdateMapMarker.resx">
+      <DependentUpon>201501261656275_UpdateMapMarker.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
