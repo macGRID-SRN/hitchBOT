@@ -23,7 +23,6 @@ public class OnlineRecognizer implements RecognitionListener{
 	private SpeechController speechController;
 	private static final String TAG = "GoogleSpeechRecognizer";
 	private boolean stopRecognizer = false;
-	private AudioManager am;
 	
 	public OnlineRecognizer()
 	{
@@ -36,8 +35,6 @@ public class OnlineRecognizer implements RecognitionListener{
 	                                     Config.context.getPackageName());
 	    mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "de-DE");
 	    mSpeechRecognizerIntent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", new String[]{});
-	    am = (AudioManager) Config.context
-				.getSystemService(Context.AUDIO_SERVICE);
 	    //de-DE
 	}
 	
@@ -59,7 +56,6 @@ public class OnlineRecognizer implements RecognitionListener{
 	
 	public void startListening()
 	{
-		am.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
 		stopRecognizer = false;
 		speechController.getSpeechIn().setIsListening(true);
 		mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
