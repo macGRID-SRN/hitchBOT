@@ -13,6 +13,42 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddMapMarker.inputHeaderGerman">
+            <summary>
+            inputHeaderGerman control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddMapMarker.inputPopupContentGerman">
+            <summary>
+            inputPopupContentGerman control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddMapMarker.inputHeaderEnglish">
+            <summary>
+            inputHeaderEnglish control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.AddMapMarker.inputPopupContentEnglish">
+            <summary>
+            inputPopupContentEnglish control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
         <member name="F:hitchbotAPI.ApproveImagesPages.AddMapMarker.inputRadiusValue">
             <summary>
             inputRadiusValue control.
@@ -34,24 +70,6 @@
         <member name="F:hitchbotAPI.ApproveImagesPages.AddMapMarker.inputLong">
             <summary>
             inputLong control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.AddMapMarker.inputHeader">
-            <summary>
-            inputHeader control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.AddMapMarker.inputPopupContent">
-            <summary>
-            inputPopupContent control.
             </summary>
             <remarks>
             Auto-generated field.
