@@ -45,9 +45,9 @@ public class HitchActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_hitch);
 		Config.context = this;
 		Config.dQ = DatabaseQueue.getHelper(this);
-		tP = new TakePicture();
+		//tP = new TakePicture();
 		speechController = new SpeechController();
-		setupHandlers();
+		//setupHandlers();
 	}
 
 	@Override

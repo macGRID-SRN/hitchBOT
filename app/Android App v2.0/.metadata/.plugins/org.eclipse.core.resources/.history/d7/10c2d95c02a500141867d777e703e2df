@@ -47,7 +47,7 @@ public class HitchActivity extends ActionBarActivity {
 		Config.dQ = DatabaseQueue.getHelper(this);
 		tP = new TakePicture();
 		speechController = new SpeechController();
-		//setupHandlers();
+		setupHandlers();
 	}
 
 	@Override
