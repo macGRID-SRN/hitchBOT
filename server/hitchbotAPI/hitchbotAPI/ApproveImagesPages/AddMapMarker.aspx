@@ -148,7 +148,7 @@
             </div>
             <br />
             <form class="wiki-form" runat="server">
-
+                
                 <div id="errorAlert" class="alert alert-danger hidden" role="alert" runat="server">Uh oh!</div>
 
                 <%-- This code was borrowed from http://www.bootply.com/katie/9CvIygzob8 --%>
@@ -236,7 +236,7 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Button ID="buttonSubmit" runat="server" Text="Add To Map" class="btn btn-success" />
+                    <asp:Button ID="buttonSubmit" runat="server" Text="Add To Map" class="btn btn-success" OnClick="buttonSubmit_Click" />
                 </div>
 
 
