@@ -34,7 +34,7 @@ public class OfflineRecognizer implements RecognitionListener {
 	private static final String TAG = "OfflineRecognizer";
 
 	public OfflineRecognizer() {
-		initRecognizer();
+		//initRecognizer();
 	}
 
 	public void setSpeechController(SpeechController speechController) {
@@ -79,11 +79,12 @@ public class OfflineRecognizer implements RecognitionListener {
 	private void setupRecognizer(File assetsDir) {
 		File modelsDir = new File(assetsDir, "models");
 		recognizer = defaultSetup()
-				.setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-				.setDictionary(new File(modelsDir, "dict/3829.dic"))
+				.setAcousticModel(new File(modelsDir, "hmm/de-ge"))
+				.setDictionary(new File(modelsDir, "dict/ger.dic"))
 				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
 				.getRecognizer();
 		recognizer.addListener(this);
+
 		// Create keyword-activation search.
 		// recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
 		// Create grammar-based searches.
@@ -92,7 +93,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/3829.dmp");
+		File languageModel = new File(modelsDir, "lm/fc.lm.dmp");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
 	}
 

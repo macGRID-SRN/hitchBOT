@@ -34,7 +34,7 @@ public class OfflineRecognizer implements RecognitionListener {
 	private static final String TAG = "OfflineRecognizer";
 
 	public OfflineRecognizer() {
-		initRecognizer();
+		//initRecognizer();
 	}
 
 	public void setSpeechController(SpeechController speechController) {
@@ -92,7 +92,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/3829.dmp");
+		File languageModel = new File(modelsDir, "lm/0945.dmp");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
 	}
 

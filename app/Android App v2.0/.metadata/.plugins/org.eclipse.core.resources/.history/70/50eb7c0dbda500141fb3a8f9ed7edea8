@@ -13,7 +13,7 @@ public class SpeechIn {
 
 	public SpeechIn() {
 		onlineRecognizer = new OnlineRecognizer();
-		offlineRecognizer = new OfflineRecognizer()	;	
+		offlineRecognizer = new OfflineRecognizer()		
 	}
 
 	public void setIsListening(boolean isListening) {
