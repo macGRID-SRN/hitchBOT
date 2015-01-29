@@ -11,7 +11,19 @@ namespace hitchbotAPI.ApproveImagesPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["New"] != null)
+            {
+                var user = (Models.Password)Session["New"];
+                using (var db = new Models.Database())
+                {
+                    int hitchBOTid = user.hitchBOT.ID;
+                    
+                }
+            }
+            else
+            {
+                Response.Redirect("Unauthorized.aspx");
+            }
         }
     }
 }
