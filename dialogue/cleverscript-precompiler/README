@@ -4,6 +4,9 @@ for input to CleverScript, and parse that file into a language model.
 The language model output by this module consists of all of the possible
 input combinations as defined by the tab-separated input file.
 
+test-in-german and hello-german.txt are to test support of German special
+characters and to test the entire German input file, respectively.
+
 Racket can be downloaded from racket-lang.org.
 
 To run:

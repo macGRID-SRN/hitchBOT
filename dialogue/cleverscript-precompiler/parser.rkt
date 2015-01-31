@@ -89,6 +89,8 @@
 
 ;; Parses file "filename" and returns all phrases in hash-table phrase-ht.
 (define (make-phrase-ht filename)
+  ;; NOTE(brendan): remove line-numbers and do checking for phrase existence
+  ;; here.
   ;; Map the labels in a phrase hash-table to a phrase structure (string list).
   (define (translate-phrases ht)
     ;; Check if string and not all whitespace.
@@ -98,34 +100,54 @@
     ;; Check if list contains all white-space strings.
     (define (not-whitespace-list? lst) 
       (not (andmap visible-string? lst)))
-    (define (phrase->strings symb)
-      (map (λ (x) (filter string? x)) 
-           (filter not-whitespace-list? (hash-ref ht symb))))
-    (define (picky-phrase->strings maybe-str)
+    (define (phrase->strings symb parent-key)
+      ; NOTE(brendan): print error message if phrase doesn't exist and
+      ; return null
+      (define phrase-lst
+        (cond
+          [(hash-has-key? ht symb) (cdr (hash-ref ht symb))]
+          [else (begin
+                  (displayln 
+                    (string-append "Error, no such phrase: " 
+                                   (symbol->string symb)
+                                   " (line number: "
+                                   (number->string 
+                                     (car (hash-ref ht parent-key)))
+                                   ")"))
+                  null)]))
+        (map (λ (x) (filter string? x)) 
+             (filter not-whitespace-list? phrase-lst)))
+    (define (picky-phrase->strings maybe-str parent-key)
       (cond 
-        [(symbol? maybe-str) (phrase->strings maybe-str)]
+        [(symbol? maybe-str) (phrase->strings maybe-str parent-key)]
         [else maybe-str]))
+  ;; Cons a key with a phrase filtered to be a list of strings
+  (define (make-key-value key value)
+    (define (single-arg-picky-phrase->string lst)
+      (picky-phrase->strings lst key))
+    (cons key
+          (value->phrase
+            (map (λ (lst) (map single-arg-picky-phrase->string lst)) 
+                 (cdr value)))))
     (make-immutable-hash
-      (hash-map ht 
-                (λ (key value) 
-                   (cons key 
-                         (value->phrase
-                           (map (λ (lst) (map picky-phrase->strings lst)) 
-                                value)))))))
-  (define (make-raw-ht-iter ht in)
+      (hash-map ht make-key-value)))
+
+  ; NOTE(brendan): temporarily put line numbers as the first element of the
+  ; phrase-lst here, for error-checking during translate-phrases.
+  (define (make-raw-ht-iter ht in line-number)
     (begin
       (define next-line (read-line in))
       (cond
         [(eof-object? next-line) ht]
         [(starts-with? "phrase" next-line) 
          (define raw-phrase (get-raw-fragment next-line)) 
-         (make-raw-ht-iter 
-           (hash-set ht (car raw-phrase) (cdr raw-phrase)) 
-           in)]
-        [else (make-raw-ht-iter ht in)])))
+         (make-raw-ht-iter
+           (hash-set ht (car raw-phrase) (cons line-number (cdr raw-phrase))) 
+           in (+ line-number 1))]
+        [else (make-raw-ht-iter ht in (+ line-number 1))])))
   (begin
     (define in (open-input-file filename))
-    (define phrase-ht (make-raw-ht-iter #hash() in))
+    (define phrase-ht (make-raw-ht-iter #hash() in 1))
     (close-input-port in)
     (translate-phrases phrase-ht)))
 
@@ -133,26 +155,46 @@
 (define (make-sentence-lst filename)
   (define phrase-ht (make-phrase-ht filename))
   ;; Map any symbols in a list to its phrase in the phrase hash-table.
-  (define (translate-phrases lst)
+  (define (translate-phrases lst line-number)
     (define (picky-symb->phrase maybe-symbol)
       (cond 
-        [(symbol? maybe-symbol) (hash-ref phrase-ht maybe-symbol)]
+        [(symbol? maybe-symbol) 
+         ; TODO(brendan): stick this in a function
+         ; NOTE(brendan): returns sentence corresponding to phrase, or null
+         ; if symbol is not in phrase-ht
+         (cond 
+           [(hash-has-key? phrase-ht maybe-symbol) 
+            (hash-ref phrase-ht maybe-symbol)]
+           [else 
+             (begin 
+               (displayln (string-append 
+                            "Error, no such phrase: "
+                            (symbol->string maybe-symbol)
+                            " (line number: "
+                            (number->string line-number)
+                            ")"))
+               (phrase null))])]
         [else maybe-symbol]))
     (map picky-symb->phrase lst))
-  (define (make-lst-iter lst in)
+  ; TOOD(brendan): move line-number to sentence struct?
+  (define (make-lst-iter lst in line-number)
     (define next-line (read-line in))
     (cond
       [(eof-object? next-line) lst]
       [(starts-with? "input" next-line)
        (define raw-sentence 
          (cdr (get-raw-fragment next-line)))
-       (define new-lst (append 
-                         (map sentence (map translate-phrases raw-sentence)) 
-                         lst)) 
-       (make-lst-iter new-lst in)]
-      [else (make-lst-iter lst in)]))
-    (begin
-      (define in (open-input-file filename))
-      (define sentence-lst (make-lst-iter empty in))
-      (close-input-port in)
-      sentence-lst))
+       (define new-lst 
+         (append 
+           (map sentence 
+                ; NOTE(brendan): pass line-number to translate-phrases with 
+                ; lambda function
+                (map (λ (s) (translate-phrases s line-number)) raw-sentence)) 
+           lst)) 
+       (make-lst-iter new-lst in (+ line-number 1))]
+      [else (make-lst-iter lst in (+ line-number 1))]))
+  (begin
+    (define in (open-input-file filename))
+    (define sentence-lst (make-lst-iter empty in 1))
+    (close-input-port in)
+    sentence-lst))
