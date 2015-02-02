@@ -307,7 +307,7 @@ output phrase	thanks		Thanks / Thank you / Gracias / My thanks / Wonderful, ((th
 phrase	what_are_you		((what_are)) ((you))				40	
 phrase	what_are		what are / what				40	
 phrase	you		you / ya / cha				40	
-phrase	qo		so, 
+phrase	qo		so, / well, / hmm, 
 output phrase	qo		So / May I ask, / Question. / Here's a question. / I'm wondering. / I'm curious. / Just curious. / May I / Hey / So. / I have a question. / [BLANK] / [BLANK] / [BLANK] / [BLANK] / [BLANK]				40	random, different
 phrase	instructions1		Please sit me down inside your car and plug me in. 				40	
 phrase	instructions2		Always begin a sentence with 'Hitch Bot' or I won't be able to respond. Keep the radio quiet, and the window by me closed. Avoid noise while talking to me.				40	

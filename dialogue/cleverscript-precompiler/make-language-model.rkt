@@ -13,7 +13,7 @@
                              [else ""]))
     (string-join
       (map (λ (str) (string-normalize-spaces str))
-           (take lst take-num))
+           (take (shuffle lst) take-num))
       "\n"
       #:after-last after-last))
 
@@ -32,6 +32,8 @@
   (define my-sentences (make-sentence-lst input-file))
   (print-sentences my-sentences output-file max-per-input))
 
+;; TODO(brendan): Put these in a function for convenience of defining new
+;; command-line variables.
 (define input-file
   (cond
     [(< (vector-length (current-command-line-arguments)) 1)
