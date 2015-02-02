@@ -152,6 +152,7 @@
     (translate-phrases phrase-ht)))
 
 ;; Read in inputs into a list of sentences.
+;; TODO(brendan): Confirm that this returns a list of lists of sentences?
 (define (make-sentence-lst filename)
   (define phrase-ht (make-phrase-ht filename))
   ;; Map any symbols in a list to its phrase in the phrase hash-table.
@@ -176,7 +177,7 @@
                (phrase null))])]
         [else maybe-symbol]))
     (map picky-symb->phrase lst))
-  ; TOOD(brendan): move line-number to sentence struct?
+  ; TODO(brendan): move line-number to sentence struct?
   (define (make-lst-iter lst in line-number)
     (define next-line (read-line in))
     (cond
@@ -186,7 +187,7 @@
          (cdr (get-raw-fragment next-line)))
        (define new-lst 
          (append 
-           (map sentence 
+           (map sentence
                 ; NOTE(brendan): pass line-number to translate-phrases with 
                 ; lambda function
                 (map (λ (s) (translate-phrases s line-number)) raw-sentence)) 

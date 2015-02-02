@@ -11,10 +11,18 @@ Racket can be downloaded from racket-lang.org.
 
 To run:
 raco make make-language-model.rkt
-racket make-language-model.rkt input-file output-file
+racket make-language-model.rkt input-file output-file max-per-input
 
-where input-file is some input file-name and output-file is some output file-name.
+where input-file is some input file-name and output-file is some output 
+file-name, and max-per-input is a number >= 0 that represents how many
+output sentences you want (maximum) per CleverScript input line.
 
 E.g.,
 
-racket make-language-model.rkt hello.txt test-output
+racket make-language-model.rkt hello.txt test-output 10
+
+will output about 2000 output lines to test-output and,
+
+racket make-language-model.rkt hello.txt test-output 20
+
+will output about 3300 output lines to test-output, etc.
