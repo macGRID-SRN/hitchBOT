@@ -1,0 +1,5 @@
+input	base_how_long		((!?qo)) wie lange stehst ((du1)) schon (?da) (?draußen)? / ((!?qo)) wie lange wartest ((du1) schon da draußen (?da) (?draußen)? / wie lange hast ((du1)) (?da) (?draußen) gewartet? / ((ÄÉÖÜßäéöü))				20	
+phrase	qo		so / ähhh / also / eine frage an dich / ich hätte da eine Frage an dich / ((qo)) ((hitchBOTT)) / erzähl doch mal / hmmm / ich würde gerne folgendes wissen / Frage / darf ich dich was fragen / so /					
+phrase	hitchBOTT		hitchBOT
+phrase	du1		du / Sie / Hitchbott / der Roboter / ein Roboter / du als Roboter / zufälliges_Objekt					
+phrase	ÄÉÖÜßäéöü		Ä / É / Ö / Ü / ß / ä / é / ö / ü
