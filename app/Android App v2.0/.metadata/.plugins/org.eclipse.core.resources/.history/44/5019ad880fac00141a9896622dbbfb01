@@ -109,7 +109,6 @@ public class OfflineRecognizer implements RecognitionListener {
 
 					@Override
 					public void run() {
-						if(isListening)
 						getResult();						
 					}
 					
@@ -117,7 +116,7 @@ public class OfflineRecognizer implements RecognitionListener {
 
 			}
 
-		}, 15 * 1000);
+		}, 10 * 1000);
 		recognizer.startListening(searchName);
 	}
 
@@ -129,8 +128,7 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	@Override
 	public void onEndOfSpeech() {
-		if(isListening)
-		recognizer.stop();
+		getResult();
 
 	}
 
@@ -164,24 +162,23 @@ public class OfflineRecognizer implements RecognitionListener {
 			speechController.getSpeechOut().Speak(
 					speechController.getCleverScriptHelper()
 							.getResponseFromCleverScript(
-									""));
+									"I didn't quite catch that!"));
 		}
 	}
 
 	public void getResult() {
-		Log.i(TAG, isListening + "");
-		Log.i(TAG, "Recognition was hung, then unhung");
-
-		recognizer.cancel();
-		isListening = false;
-		speechController.getSpeechOut().Speak(
-				speechController.getCleverScriptHelper()
-						.getResponseFromCleverScript(
-								""));
+		recognizer.stop();
 	}
 
 	public void pauseRecognizer() {
 		recognizer.cancel();
+	}
+
+	public void getRunningTime() {
+		if (isListening) {
+			Log.i(TAG, "Recognition was hung, then unhung");
+			getResult();
+		}
 	}
 
 }

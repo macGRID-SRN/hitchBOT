@@ -97,7 +97,7 @@ public class OfflineRecognizer implements RecognitionListener {
 	}
 
 	public void startListening(String searchName) {
-		this.isListening = true;
+		speechController.getSpeechIn().setIsListening(true);
 		startTime = System.currentTimeMillis() / 1000;
 		freezeHandler = new Handler();
 		freezeHandler.postDelayed(new Runnable() {
@@ -109,7 +109,6 @@ public class OfflineRecognizer implements RecognitionListener {
 
 					@Override
 					public void run() {
-						if(isListening)
 						getResult();						
 					}
 					
@@ -117,7 +116,7 @@ public class OfflineRecognizer implements RecognitionListener {
 
 			}
 
-		}, 15 * 1000);
+		}, 10 * 1000);
 		recognizer.startListening(searchName);
 	}
 
@@ -129,8 +128,7 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	@Override
 	public void onEndOfSpeech() {
-		if(isListening)
-		recognizer.stop();
+		getResult();
 
 	}
 
@@ -142,7 +140,6 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	@Override
 	public void onResult(Hypothesis hypothesis) {
-		this.isListening  = false;
 		((TextView) ((HitchActivity) Config.context)
 				.findViewById(R.id.textViewCaption)).setText("");
 		if (hypothesis != null) {
@@ -153,10 +150,12 @@ public class OfflineRecognizer implements RecognitionListener {
 					Uri.encode(text), Config.getUtcDate());
 			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 			Config.dQ.addItemToQueue(httpPost);
+			speechController.getSpeechIn().setIsListening(true);
 			speechController.getSpeechOut().Speak(
 					speechController.getCleverScriptHelper()
 							.getResponseFromCleverScript(text));
 		} else {
+			speechController.getSpeechIn().setIsListening(true);
 			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
 					Uri.encode("I didn't get that!"), Config.getUtcDate());
 			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
@@ -164,24 +163,22 @@ public class OfflineRecognizer implements RecognitionListener {
 			speechController.getSpeechOut().Speak(
 					speechController.getCleverScriptHelper()
 							.getResponseFromCleverScript(
-									""));
+									"I didn't quite catch that!"));
 		}
 	}
 
 	public void getResult() {
-		Log.i(TAG, isListening + "");
-		Log.i(TAG, "Recognition was hung, then unhung");
-
-		recognizer.cancel();
-		isListening = false;
-		speechController.getSpeechOut().Speak(
-				speechController.getCleverScriptHelper()
-						.getResponseFromCleverScript(
-								""));
+		recognizer.stop();
 	}
 
 	public void pauseRecognizer() {
 		recognizer.cancel();
+	}
+
+	public void getRunningTime() {
+		if (isListening) {
+			getResult();
+		}
 	}
 
 }

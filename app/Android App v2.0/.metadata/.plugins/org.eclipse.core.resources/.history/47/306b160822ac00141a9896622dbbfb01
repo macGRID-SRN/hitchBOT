@@ -39,8 +39,7 @@ public final class Config {
 	public static String spokePOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechSaid=%s&TimeTaken=%s";
 	public static String heardPOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechHeard=%s&TimeTaken=%s";
 	public static String startPOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&StartTime=%s";
-	public static String exceptionPOST = "http://hitchbotapi.azurewebsites.net/api/Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
-	
+
 	public static String getUtcDate() {
 		final Date date = new Date();
 		final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss", Locale.GERMANY);

@@ -2,8 +2,6 @@ package com.example.hitchbot;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,20 +48,6 @@ public class HitchActivity extends ActionBarActivity {
 		tP = new TakePicture();
 		speechController = new SpeechController();
 		setupHandlers();
-		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-			
-			@Override
-			public void uncaughtException(Thread thread, Throwable ex) {
-				StringWriter sw = new StringWriter();
-				ex.printStackTrace(new PrintWriter(sw));
-				String stackTrace = sw.toString();
-				String uri = String.format(Config.exceptionPOST, Config.HITCHBOT_ID,
-	 Uri.encode(stackTrace),Config.getUtcDate());
-					HttpPostDb eL = new HttpPostDb(uri, 0, 7);
-				Config.dQ.addItemToQueue(eL);
-				System.exit(2);
-			}
-		});
 	}
 
 	@Override

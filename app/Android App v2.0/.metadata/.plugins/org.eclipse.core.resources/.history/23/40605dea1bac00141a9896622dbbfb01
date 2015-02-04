@@ -164,7 +164,7 @@ public class OfflineRecognizer implements RecognitionListener {
 			speechController.getSpeechOut().Speak(
 					speechController.getCleverScriptHelper()
 							.getResponseFromCleverScript(
-									""));
+									"I didn't quite catch that!"));
 		}
 	}
 
@@ -177,7 +177,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		speechController.getSpeechOut().Speak(
 				speechController.getCleverScriptHelper()
 						.getResponseFromCleverScript(
-								""));
+								"I didn't quite catch that!"));
 	}
 
 	public void pauseRecognizer() {
