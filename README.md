@@ -12,8 +12,8 @@ Electronics
 - [X] Double-Headers
 - [X] Servo Motor
 - [X] Spare Arduino's
-- [ ] 12V Cig Adapter - 15A At least
-- [ ] 10A Coiled Wire for use in car
+- [X] 12V Cig Adapter - 15A At least
+- [X] 10A Coiled Wire for use in car - wasn't quite 10A - will work though
 - [X] Backup battery control system with batteries.
 - [X] 2x2 ATX male ends with cable and crimps.
 - [X] Another set of 5V 3A boards with board placement issues fixed.
