@@ -31,7 +31,7 @@ public class CleverScriptHelper {
 	
 	public void loadVariables()
 	{
-		cs.assignVariable("testvariable", "string");
+		cs.assignVariable("testvariable", "string to test");
 		//TODO Load default variables
 	}
 	

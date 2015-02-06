@@ -97,7 +97,6 @@ public class OfflineRecognizer implements RecognitionListener {
 	}
 
 	public void startListening(String searchName) {
-		Log.i(TAG,Config.cH.cs.retrieveVariable("testvariable"));
 		this.isListening = true;
 		startTime = System.currentTimeMillis() / 1000;
 		freezeHandler = new Handler();
