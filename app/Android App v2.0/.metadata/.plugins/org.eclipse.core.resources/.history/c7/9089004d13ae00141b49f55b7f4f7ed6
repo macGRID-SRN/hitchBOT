@@ -163,7 +163,7 @@ public class OfflineRecognizer implements RecognitionListener {
 	}
 
 	public void getResult() {
-		this.isListening = false;
+,		this.isListening = false;
 		Config.context.runOnUiThread(new Runnable() {
 
 			@Override

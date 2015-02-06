@@ -30,7 +30,6 @@ public class OfflineRecognizer implements RecognitionListener {
 	private long startTime;
 	private SpeechController speechController;
 	private Handler freezeHandler;
-	public boolean isListening = false;
 	private static final String TAG = "OfflineRecognizer";
 
 	public OfflineRecognizer() {
@@ -99,7 +98,7 @@ public class OfflineRecognizer implements RecognitionListener {
 	}
 
 	public void startListening(String searchName) {
-		this.isListening = true;
+		speechController.getSpeechIn().setIsListening(true);
 		startTime = System.currentTimeMillis() / 1000;
 		freezeHandler = new Handler();
 		freezeHandler.postDelayed(new Runnable() {
@@ -134,7 +133,6 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	@Override
 	public void onResult(Hypothesis hypothesis) {
-		this.isListening = false;
 		((TextView) ((HitchActivity) Config.context)
 				.findViewById(R.id.textViewCaption)).setText("");
 		if (hypothesis != null) {
@@ -163,16 +161,12 @@ public class OfflineRecognizer implements RecognitionListener {
 	}
 
 	public void getResult() {
-		this.isListening = false;
-		Config.context.runOnUiThread(new Runnable() {
+		Config.context.runOnUiThread(new Runnable()
+		{
 
 			@Override
 			public void run() {
-				recognizer.cancel();
-				speechController.getSpeechOut().Speak(
-						speechController.getCleverScriptHelper()
-								.getResponseFromCleverScript(
-										""));
+				recognizer.stop();				
 			}
 		});
 	}
