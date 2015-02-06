@@ -17,7 +17,8 @@ namespace hitchbotAPI.ApproveImagesPages
                 using (var db = new Models.Database())
                 {
                     int hitchBOTid = user.hitchBOT.ID;
-                    
+
+                    paginationNext.HRef = "?after=3";
                 }
             }
             else
