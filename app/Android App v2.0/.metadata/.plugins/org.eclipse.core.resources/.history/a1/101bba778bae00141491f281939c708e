@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.cleverscript.android.*;
 import com.example.hitchbot.Config;
+import com.example.hitchbot.Data.BasicNameValuePair;
+import com.example.hitchbot.Data.NameValuePair;
 
 public class CleverScriptHelper {
 

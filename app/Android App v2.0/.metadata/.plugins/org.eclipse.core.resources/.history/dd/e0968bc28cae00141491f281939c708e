@@ -94,7 +94,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/9624.dmp");
+		File languageModel = new File(modelsDir, "lm/9624.lm.dmp");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
 	}
 
@@ -106,7 +106,6 @@ public class OfflineRecognizer implements RecognitionListener {
 
 			@Override
 			public void run() {
-				if(isListening)
 				getResult();
 
 			}

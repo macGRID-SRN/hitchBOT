@@ -106,7 +106,6 @@ public class OfflineRecognizer implements RecognitionListener {
 
 			@Override
 			public void run() {
-				if(isListening)
 				getResult();
 
 			}

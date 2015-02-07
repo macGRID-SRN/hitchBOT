@@ -37,9 +37,9 @@ public class SpeechIn {
 	
 	public void switchSearch(String searchName) {
 		//if (Config.networkAvailable()) {
-		//	onlineRecognizer.startListening();
+			onlineRecognizer.startListening();
 		//} else {
-			offlineRecognizer.startListening(searchName);
+		//	offlineRecognizer.startListening(searchName);
 		//}
 	}
 

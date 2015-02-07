@@ -6,8 +6,8 @@
 #define DIGITAL_IN_PIN     1
 #define DATA 2
 #define WR   3
-#define CS   5
-#define CS2  4
+#define CS   4
+#define CS2  5
 #define CS3  6
 #define CS4  7
 #define servoPin 9
@@ -1921,7 +1921,7 @@ matrix.drawPixel(15 + offSet, 14, onOff);
 
 void flagHandHeartAnimation()
 {
-  flagTwo(24*2, 0);
+  //flagTwo(24*2, 0);
   hitchOne(24*3, 1);
   heartOne(24*2, 1);
   handOne(24, 1);
@@ -1939,13 +1939,14 @@ void flagHandHeartAnimation()
   handTwo(24, 0);
   hitchTwo(24*3, 0);
   heartTwo(24*2, 0);
+  heartOne(24*2, 1);
  // flagTwo(24*2, 0);
    handOne(24, 1);
   hitchOne(24*3, 1);
  // heartOne(24*2, 1);
-  flagOne(24*2, 1);
+ // flagOne(24*2, 1);
   delay(150);
-  flagOne(24*2, 0);
-  flagTwo(24*2, 1);
+  //flagOne(24*2, 0);
+  //flagTwo(24*2, 1);
 }
 

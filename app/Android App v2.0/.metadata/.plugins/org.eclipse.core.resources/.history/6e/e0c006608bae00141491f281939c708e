@@ -81,7 +81,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		recognizer = defaultSetup()
 				.setAcousticModel(new File(modelsDir, "hmm/de-ge"))
 				.setDictionary(
-						new File(modelsDir, "dict/9624.dic"))
+						new File(modelsDir, "dict/voxforge_de_sphinx.dic"))
 				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
 				.getRecognizer();
 		recognizer.addListener(this);
@@ -94,7 +94,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/9624.dmp");
+		File languageModel = new File(modelsDir, "lm/corpus.lm.DMP");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
 	}
 
@@ -106,7 +106,6 @@ public class OfflineRecognizer implements RecognitionListener {
 
 			@Override
 			public void run() {
-				if(isListening)
 				getResult();
 
 			}
@@ -165,11 +164,11 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	public void getResult() {
 		this.isListening = false;
-		recognizer.cancel();
 		Config.context.runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
+				recognizer.cancel();
 				speechController.getSpeechOut().Speak(
 						speechController.getCleverScriptHelper()
 								.getResponseFromCleverScript(
