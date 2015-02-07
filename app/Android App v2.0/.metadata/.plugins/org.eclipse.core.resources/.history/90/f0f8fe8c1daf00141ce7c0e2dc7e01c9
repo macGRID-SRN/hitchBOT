@@ -79,7 +79,7 @@ public class OfflineRecognizer implements RecognitionListener {
 	private void setupRecognizer(File assetsDir) {
 		File modelsDir = new File(assetsDir, "models");
 		recognizer = defaultSetup()
-				.setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
+				.setAcousticModel(new File(modelsDir, "hmm/de-ge"))
 				.setDictionary(
 						new File(modelsDir, "dict/ger.dic"))
 				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
@@ -140,7 +140,6 @@ public class OfflineRecognizer implements RecognitionListener {
 				.findViewById(R.id.textViewCaption)).setText("");
 		if (hypothesis != null) {
 			String text = hypothesis.getHypstr();
-			Log.i(TAG, text);
 			Toast.makeText(Config.context.getApplicationContext(), text,
 					Toast.LENGTH_SHORT).show();
 			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
@@ -152,8 +151,6 @@ public class OfflineRecognizer implements RecognitionListener {
 					speechController.getCleverScriptHelper()
 							.getResponseFromCleverScript(text));
 		} else {
-			Log.i(TAG, "null recognized result");
-
 			speechController.getSpeechIn().setIsListening(true);
 			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
 					Uri.encode(""), Config.getUtcDate());
