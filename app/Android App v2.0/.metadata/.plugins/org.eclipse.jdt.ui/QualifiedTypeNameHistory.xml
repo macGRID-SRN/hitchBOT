@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.example.hitchbot.R"/>
-<fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
 <fullyQualifiedTypeName name="com.cleverscript.android.CleverscriptAPI"/>
@@ -47,10 +45,8 @@
 <fullyQualifiedTypeName name="android.content.pm.PackageManager"/>
 <fullyQualifiedTypeName name="android.content.pm.PackageManager.NameNotFoundException"/>
 <fullyQualifiedTypeName name="android.speech.RecognitionListener"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="android.speech.SpeechRecognizer"/>
 <fullyQualifiedTypeName name="android.content.Intent"/>
-<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 <fullyQualifiedTypeName name="android.speech.RecognizerIntent"/>
 <fullyQualifiedTypeName name="edu.cmu.pocketsphinx.RecognitionListener"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
@@ -60,4 +56,8 @@
 <fullyQualifiedTypeName name="com.example.hitchbot.Models.HttpPostDb"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="java.io.StringWriter"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.apache.http.NameValuePair"/>
+<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 </qualifiedTypeNameHistroy>

@@ -1,13 +1,9 @@
 package com.example.hitchbot;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import org.apache.http.NameValuePair;
 
 import com.example.hitchbot.Speech.CleverScriptHelper;
 
@@ -33,7 +29,7 @@ public final class Config {
 	public static String searchName = "searchName";
 	public static String cleverAPIKey = "7enqnc08c975f729ca03352d399efa2dc986a";//"e5f8vac6354c12086c404362878d5d27e5c4e";
 	public static String cleverDB = "hbtestvariable.db";
-	public static List<NameValuePair> cleverPair = new ArrayList<NameValuePair>();
+	//public static NameValuePair<String,String>
 	
 	
 	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image";

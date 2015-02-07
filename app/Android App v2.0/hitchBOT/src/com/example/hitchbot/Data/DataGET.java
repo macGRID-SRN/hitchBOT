@@ -10,6 +10,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import com.example.hitchbot.Config;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -54,7 +56,7 @@ public class DataGET extends AsyncTask<String, Void, String>{
 	    if(result != null)
 	    {
 		Log.i(TAG, result + " ");
-	    //TODO do somethign with json result
+		Config.cH.getInformationForVariables(result);
 	    }							
 
 	}

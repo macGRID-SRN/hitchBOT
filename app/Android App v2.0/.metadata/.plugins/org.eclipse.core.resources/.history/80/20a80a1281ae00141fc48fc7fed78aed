@@ -1,7 +1,5 @@
 package com.example.hitchbot.Speech;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,26 +31,21 @@ public class CleverScriptHelper {
 	
 	public void loadVariables()
 	{
-		//cs.assignVariable("test", "string");
-		for(NameValuePair pair : Config.cleverPair)
-		{
-			cs.assignVariable(pair.getName(), pair.getValue());
-		}
-		
+		cs.assignVariable("test", "string");
 		//TODO Load default variables
 	}
 	
 	public void sendCleverScriptResponse(String message)
 	{
 		loadVariables();
-		//Log.i(TAG, cs.retrieveVariable("test"));
+		Log.i(TAG, cs.retrieveVariable("test"));
 		speechController.getSpeechOut().Speak(cs.sendMessage(message));
 	}
 	
 	public String getResponseFromCleverScript(String message)
 	{
 		loadVariables();
-		//Log.i(TAG, cs.retrieveVariable("test"));
+		Log.i(TAG, cs.retrieveVariable("test"));
 		return cs.sendMessage(message);
 	}
 	
@@ -73,9 +66,6 @@ public class CleverScriptHelper {
 			for(int j = 0 ; j < jO.length() ; j ++)
 			{
 				JSONObject jobj = jO.getJSONObject(j);
-				
-				NameValuePair nvP = new BasicNameValuePair(jobj.getString("key"), (String) jobj.getString("value"));
-				Config.cleverPair.add(nvP);
 				
 				cs.assignVariable((String) jobj.getString("key"), (String) jobj.getString("value"));
 				Log.i(TAG, (String) jobj.getString("key") + " ");

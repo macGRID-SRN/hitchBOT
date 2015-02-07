@@ -175,17 +175,10 @@ public class OfflineRecognizer implements RecognitionListener {
 
 		recognizer.cancel();
 		isListening = false;
-		this.isListening = false;
-		Config.context.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				speechController.getSpeechOut().Speak(
-						speechController.getCleverScriptHelper()
-								.getResponseFromCleverScript(
-										""));
-			}
-		});
+		speechController.getSpeechOut().Speak(
+				speechController.getCleverScriptHelper()
+						.getResponseFromCleverScript(
+								""));
 	}
 
 	public void pauseRecognizer() {
