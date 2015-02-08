@@ -23,14 +23,16 @@ namespace hitchbotAPI.ApproveImagesPages
         {
             using (var db = new Models.Database())
             {
+                // Get current user, HitchBOT and Project
                 this.user = (Models.Password)Session["New"];
                 this.HitchBOT = db.hitchBOTs.First(l => l.ID == this.user.hitchBOT.ID);
                 this.Project = db.Projects.Where(p => p.EndTime == null).ToArray().Last();
-                System.Diagnostics.Debug.WriteLine(this.Project.ToString());
+
+                // Create new builder to build JS files
                 GoogleMapsBuilder = new Helpers.Location.GoogleMapsBuilder(this.HitchBOT.ID, this.Project.ID, this.user.ID);
-                System.Diagnostics.Debug.WriteLine("Building JS");
+
+                // Build JS using GoogleMapsBuilder
                 GoogleMapsBuilder.BuildJS();
-                System.Diagnostics.Debug.WriteLine("Done.");
             }
         }
     }

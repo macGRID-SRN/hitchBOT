@@ -51,8 +51,8 @@ namespace hitchbotAPI.Helpers.Location
                             Latitude = (this.Project.StartLocation.Latitude + this.Project.EndLocation.Latitude) / 2,
                             Longitude = (this.Project.StartLocation.Longitude + this.Project.EndLocation.Longitude) / 2
                         };
+                    // Get all target mapmarkers
                     this.targets = db.MapMarkers.Include(t => t.TargetLocation).Where(t => t.Project.ID == this.Project.ID).ToList();
-                    //System.Diagnostics.Debug.WriteLine(targets);
                 }
 
                 //same deal as projectID, although the account does kind of come with a default hitchBOT.
@@ -125,6 +125,7 @@ namespace hitchbotAPI.Helpers.Location
                         {
                             if (lang == "en")
                             {
+                                // Create marker detail for English
                                 builder += "{LatLng: new google.maps.LatLng(" + l.TargetLocation.Latitude + ", ";
                                 builder += l.TargetLocation.Longitude + "), info_text: {info_header: '" + new System.Web.HtmlString(l.HeaderText);
                                 builder += "', info_body: '" + new System.Web.HtmlString(l.BodyText) + "'}, touched: ";
@@ -133,20 +134,23 @@ namespace hitchbotAPI.Helpers.Location
                             }
                             else
                             {
+                                // Create marker detail for German
                                 builder += "{LatLng: new google.maps.LatLng(" + l.TargetLocation.Latitude + ", ";
                                 builder += l.TargetLocation.Longitude + "), info_text: {info_header: '" + new System.Web.HtmlString(l.HeaderTextGerman);
                                 builder += "', info_body: '" + new System.Web.HtmlString(l.BodyTextGerman) + "'}, touched: ";
                                 builder += l.HasBeenVisited ? "true" : "false";
                                 builder += ", number: " +num+ "},";
                             }
+                            // Increment marker number
                             num = num + 1;
                         }
                     }
-
+                    // Close locations JS array
                     builder += "];";
                 }
                 else
                 {
+                    // If there's no locations, define it as empty
                     builder = "var targetCoordinates = []; ";
                 }
             }
@@ -161,12 +165,10 @@ namespace hitchbotAPI.Helpers.Location
         /// <summary>
         /// Builds the function for a path on a google map. It loads the data from the hitchBOT entity and builds it from its locations.
         /// </summary>
-        /// <param name="PolyPathNumber">If there were to be more than one hitchBOTS, you can number these functions.</param>
         /// <returns></returns>
         private string BuildPolyPath(int PolyPathNumber)
         {
-            const string functionName = "AddPolyFill";
-            //get all the locations from before launch--messy
+            //get all the locations from before launch--messy TODO update this for the current launch date
             var locations = this.HitchBOT.Locations.Where(l => l.TakenTime > new DateTime(2014, 07, 27, 13, 30, 0)).OrderBy(l => l.TakenTime).ToList();
 
             string builder = string.Empty;
@@ -179,8 +181,10 @@ namespace hitchbotAPI.Helpers.Location
 
                     builder = "var flightPlanCoordinates = [ ";
 
+                    // Slim locations
                     foreach (Models.Location myLocation in slimmedLocations)
                     {
+                        // Add each location to a JS array.
                         builder += "\n new google.maps.LatLng(" + myLocation.Latitude + "," + myLocation.Longitude + "), ";
                     }
 
@@ -192,16 +196,9 @@ namespace hitchbotAPI.Helpers.Location
                     builder = @"var flightPlanCoordinates = [];
                     ";
                 }
-
-                this.AddFunctionCall(functionName, PolyPathNumber);
-
             }
             return builder;
         }
 
-        private void AddFunctionCall(string functionName, int functionNumber)
-        {
-            this.FunctionCalls += "\t" + functionName + functionNumber.ToString() + "(map);";
-        }
     }
 }
