@@ -12,3 +12,5 @@ models/lm/0945.dmp
 models/dict/0945.dic
 models/lm/3829.dmp
 models/dict/3829.dic
+models/dict/ger.dic
+models/lm/fc.lm.dmp

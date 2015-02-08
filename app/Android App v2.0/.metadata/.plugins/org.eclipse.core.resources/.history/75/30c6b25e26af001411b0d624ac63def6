@@ -80,7 +80,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		File modelsDir = new File(assetsDir, "models");
 		recognizer = defaultSetup()
 				.setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-				.setDictionary(new File(modelsDir, "dict/ger.dic"))
+				.setDictionary(new File(modelsDir, "dict/3829.dic"))
 				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
 				.getRecognizer();
 		recognizer.addListener(this);
@@ -92,7 +92,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/fc.lm.dmp");
+		File languageModel = new File(modelsDir, "lm/3829.dmp");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
 	}
 
