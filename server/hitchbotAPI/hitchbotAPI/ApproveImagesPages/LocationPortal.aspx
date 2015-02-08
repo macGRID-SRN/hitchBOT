@@ -12,7 +12,14 @@
             <br />
             <iframe seamless="seamless" height=600 width=850 src="DynamicMap.aspx?hbID=3" frameBorder="0"></iframe>
         </div>
+    <form id="form1" runat="server">
+   
+        <asp:Button ID="buttonSubmit" runat="server" Text="Force Map Update" class="btn btn-success" OnClick="reload_JS" />
+
+    </form>
     </div>
+ 
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="endScripts" runat="server">
 </asp:Content>
