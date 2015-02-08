@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ApproveImagesPages/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="AddMapMarker.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.AddMapMarker" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ApproveImagesPages/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="AddMapMarker.aspx.cs" Inherits="hitchbotAPI.ApproveImagesPages.AddMapMarker" validateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
 

@@ -126,16 +126,16 @@ namespace hitchbotAPI.Helpers.Location
                             if (lang == "en")
                             {
                                 builder += "{LatLng: new google.maps.LatLng(" + l.TargetLocation.Latitude + ", ";
-                                builder += l.TargetLocation.Longitude + "), info_text: {info_header: '" + l.HeaderText;
-                                builder += "', info_body: '" + l.BodyText + "'}, touched: ";
+                                builder += l.TargetLocation.Longitude + "), info_text: {info_header: '" + new System.Web.HtmlString(l.HeaderText);
+                                builder += "', info_body: '" + new System.Web.HtmlString(l.BodyText) + "'}, touched: ";
                                 builder += l.HasBeenVisited ? "true" : "false";
                                 builder += ", number: " +num+ "},";
                             }
                             else
                             {
                                 builder += "{LatLng: new google.maps.LatLng(" + l.TargetLocation.Latitude + ", ";
-                                builder += l.TargetLocation.Longitude + "), info_text: {info_header: '" + l.HeaderTextGerman;
-                                builder += "', info_body: '" + l.BodyTextGerman + "'}, touched: ";
+                                builder += l.TargetLocation.Longitude + "), info_text: {info_header: '" + new System.Web.HtmlString(l.HeaderTextGerman);
+                                builder += "', info_body: '" + new System.Web.HtmlString(l.BodyTextGerman) + "'}, touched: ";
                                 builder += l.HasBeenVisited ? "true" : "false";
                                 builder += ", number: " +num+ "},";
                             }
