@@ -20,7 +20,7 @@ namespace hitchbotAPI.ApproveImagesPages
                 using (var db = new Models.Database())
                 {
                     int hitchBOTid = user.hitchBOT.ID;
-                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved == null && i.TimeDenied == null) && DbFunctions.DiffDays(i.TimeTaken, DateTime.UtcNow) <= 500).OrderBy(i => i.TimeTaken).ToList();
+                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved == null && i.TimeDenied == null) && DbFunctions.DiffDays(i.TimeTaken, DateTime.UtcNow) <= 1).OrderBy(i => i.TimeTaken).ToList();
 
                     if (imgs.Count == 0)
                         Label1.Text = "No recent images! Uh oh!";
