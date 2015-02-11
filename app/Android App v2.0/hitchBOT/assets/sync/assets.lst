@@ -23,4 +23,3 @@ models/lm/corpus.lm.DMP
 models/dict/voxforge_de_sphinx.dic
 models/dict/dictxsampa.dic
 models/dict/ger.dic
-models/lm/fc.lm.dmp

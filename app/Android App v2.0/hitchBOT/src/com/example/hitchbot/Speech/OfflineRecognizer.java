@@ -27,7 +27,6 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	private SpeechRecognizer recognizer;
 	private HashMap<String, Integer> captions;
-	private long startTime;
 	private SpeechController speechController;
 	private Handler freezeHandler;
 	public boolean isListening = false;
@@ -78,12 +77,12 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	private void setupRecognizer(File assetsDir) {
 		File modelsDir = new File(assetsDir, "models");
-		recognizer = defaultSetup()
-				.setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-				.setDictionary(
-						new File(modelsDir, "dict/ger.dic"))
+	 	recognizer = defaultSetup()
+				.setAcousticModel(new File(modelsDir, "hmm/de-ge"))
+				.setDictionary(new File(modelsDir, "dict/9624.dic"))
 				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
-				.getRecognizer();
+				.getRecognizer();	
+	 	
 		recognizer.addListener(this);
 
 		// Create keyword-activation search.
@@ -94,24 +93,29 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/fc.lm.DMP");
+		File languageModel = new File(modelsDir, "lm/9624.dmp");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
 	}
 
 	public void startListening(String searchName) {
 		this.isListening = true;
-		startTime = System.currentTimeMillis() / 1000;
 		freezeHandler = new Handler();
 		freezeHandler.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
-				if(isListening)
-				getResult();
+				Config.context.runOnUiThread(new Runnable() {
 
+					@Override
+					public void run() {
+						if (isListening)
+							getResult();
+					}
+
+				});
 			}
 
-		}, 10 * 1000);
+		}, 15 * 1000);
 		recognizer.startListening(searchName);
 	}
 
@@ -123,7 +127,8 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	@Override
 	public void onEndOfSpeech() {
-		getResult();
+		if (isListening)
+			recognizer.stop();
 
 	}
 
@@ -161,41 +166,27 @@ public class OfflineRecognizer implements RecognitionListener {
 			Config.dQ.addItemToQueue(httpPost);
 			speechController.getSpeechOut().Speak(
 					speechController.getCleverScriptHelper()
-							.getResponseFromCleverScript(
-									""));
+							.getResponseFromCleverScript(""));
 		}
 	}
 
 	public void getResult() {
-		this.isListening = false;
 		recognizer.cancel();
+		isListening = false;
+		this.isListening = false;
 		Config.context.runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
 				speechController.getSpeechOut().Speak(
 						speechController.getCleverScriptHelper()
-								.getResponseFromCleverScript(
-										""));
+								.getResponseFromCleverScript(""));
 			}
 		});
 	}
 
 	public void pauseRecognizer() {
 		recognizer.cancel();
-	}
-
-	public boolean getRunningTime() {
-		if (speechController.getSpeechIn().getIsListening() == true) {
-			if ((System.currentTimeMillis() / 1000) - startTime <= 10) {
-				return true;
-			} else {
-				getResult();
-				return false;
-			}
-		} else {
-			return false;
-		}
 	}
 
 }

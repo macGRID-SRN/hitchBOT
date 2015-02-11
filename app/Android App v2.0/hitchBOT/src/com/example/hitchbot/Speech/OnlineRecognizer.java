@@ -23,9 +23,11 @@ public class OnlineRecognizer implements RecognitionListener{
 	private SpeechController speechController;
 	private static final String TAG = "GoogleSpeechRecognizer";
 	private boolean stopRecognizer = false;
+	AudioManager aM;
 	
 	public OnlineRecognizer()
 	{
+		aM = (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
 		mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(Config.context);
 	    mSpeechRecognizer.setRecognitionListener(this); 
 		mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -56,6 +58,7 @@ public class OnlineRecognizer implements RecognitionListener{
 	
 	public void startListening()
 	{
+		aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
 		stopRecognizer = false;
 		speechController.getSpeechIn().setIsListening(true);
 		mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
@@ -103,6 +106,8 @@ public class OnlineRecognizer implements RecognitionListener{
 
 	@Override
 	public void onResults(Bundle results) {
+		aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+				-				aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		 ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 		 String message = matches.get(0);
 		 Log.i(TAG, message + " ");
