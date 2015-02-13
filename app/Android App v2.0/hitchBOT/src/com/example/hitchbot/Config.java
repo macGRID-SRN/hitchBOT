@@ -19,7 +19,7 @@ import android.net.NetworkInfo;
 public final class Config {
 
 	public static HitchActivity context = null;
-	public static String HITCHBOT_ID = "10";
+	public static String HITCHBOT_ID = "9";
 	public static int HOUR = 1000 * 60 * 60;
 	public static int FIFTEEN_MINUTES = 1000 * 60 * 15;
 	public static int HALF_HOUR = 1000 * 60 * 30;
@@ -34,8 +34,8 @@ public final class Config {
     private static final long TICKS_PER_MILLISECOND = 10000;
 
 	public static String searchName = "searchName";
-	public static String cleverAPIKey = "b3ixc716aeb41a9e63036b1700c8fb0fe1453";//"jjug8608a0d3fa3697162435a5a786e4c3995";
-	public static String cleverDB = "hbPROD2.db";
+	public static String cleverAPIKey = "t5xgnf9b0b27ed7690bea298d2210410286bd";//"jjug8608a0d3fa3697162435a5a786e4c3995";
+	public static String cleverDB = "hbPROD4.db";
 	public static List<NameValuePair> cleverPair = new ArrayList<NameValuePair>();
 	public static boolean accessok = true;
 	
