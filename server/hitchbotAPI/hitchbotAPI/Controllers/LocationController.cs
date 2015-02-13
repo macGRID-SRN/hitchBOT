@@ -52,6 +52,13 @@ namespace hitchbotAPI.Controllers
             return Helpers.LocationHelper.gmapsString + poly + Helpers.LocationHelper.gAPIkey;
         }
 
+        [HttpGet]
+        public void BuildJS(int hitchBotIdJS)
+        {
+            var builer = new Helpers.Location.GoogleMapsBuilder(hitchBotIdJS);
+            builer.BuildJsAndUpload();
+        }
+
         private string GetRegionText(int HitchBotID)
         {
 

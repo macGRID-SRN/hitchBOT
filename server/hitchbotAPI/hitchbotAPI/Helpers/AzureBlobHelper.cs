@@ -19,7 +19,7 @@ namespace hitchbotAPI.Helpers
         private const string JS_CONTAINER_NAME = "hbjs";
         private static Random randy = new Random();
 
-        public static string UploadLocationJsAndGetPublicUrl(string localRootFileDirectory, string fileName, int ID)
+        public static string UploadLocationJsAndGetPublicUrl(string localRootFileDirectory, string fileName, int ID, string lang)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
@@ -27,7 +27,7 @@ namespace hitchbotAPI.Helpers
 
             CloudBlobContainer imgContainer = blobClient.GetContainerReference(JS_CONTAINER_NAME);
 
-            CloudBlockBlob newBlob = imgContainer.GetBlockBlobReference(JS_LOCATION_FILE_NAME + ID + JS_FILE_EXTENSION);
+            CloudBlockBlob newBlob = imgContainer.GetBlockBlobReference(JS_LOCATION_FILE_NAME + lang + ID + JS_FILE_EXTENSION);
 
             newBlob.DeleteIfExists();
 
@@ -71,11 +71,11 @@ namespace hitchbotAPI.Helpers
             return true;
         }
 
-        public static void UploadJStoAzure(int hitchbotID)
+        public static void UploadJStoAzure(int hitchbotID, string language)
         {
             string TargetLocation = Helpers.PathHelper.GetJsBuildPath();
             //this is a mess!
-            Helpers.AzureBlobHelper.UploadLocationJsAndGetPublicUrl(TargetLocation, Helpers.AzureBlobHelper.JS_LOCATION_FILE_NAME + hitchbotID + Helpers.AzureBlobHelper.JS_FILE_EXTENSION, hitchbotID);
+            Helpers.AzureBlobHelper.UploadLocationJsAndGetPublicUrl(TargetLocation, Helpers.AzureBlobHelper.JS_LOCATION_FILE_NAME + language + hitchbotID + Helpers.AzureBlobHelper.JS_FILE_EXTENSION, hitchbotID, language);
         }
 
         public static async Task<string> UploadImageAndGetPublicUrl(string localRootFileDirectory, string fileName)

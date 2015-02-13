@@ -32,7 +32,7 @@ namespace hitchbotAPI.ApproveImagesPages
                 GoogleMapsBuilder = new Helpers.Location.GoogleMapsBuilder(this.HitchBOT.ID, this.Project.ID, this.user.ID);
 
                 // Build JS using GoogleMapsBuilder
-                GoogleMapsBuilder.BuildJS();
+                GoogleMapsBuilder.BuildJsAndUpload();
             }
         }
     }

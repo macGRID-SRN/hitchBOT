@@ -346,18 +346,36 @@
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.Images.imageForm">
+        <member name="F:hitchbotAPI.ApproveImagesPages.Images.form1">
             <summary>
-            imageForm control.
+            form1 control.
             </summary>
             <remarks>
             Auto-generated field.
             To modify move field declaration from designer file to code-behind file.
             </remarks>
         </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.Images.paginationNext">
+        <member name="F:hitchbotAPI.ApproveImagesPages.Images.HyperLink1">
             <summary>
-            paginationNext control.
+            HyperLink1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Images.Label1">
+            <summary>
+            Label1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:hitchbotAPI.ApproveImagesPages.Images.tableViewImage">
+            <summary>
+            tableViewImage control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -493,24 +511,6 @@
         <member name="F:hitchbotAPI.ApproveImagesPages.LedPanelPreview.Button2">
             <summary>
             Button2 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.form1">
-            <summary>
-            form1 control.
-            </summary>
-            <remarks>
-            Auto-generated field.
-            To modify move field declaration from designer file to code-behind file.
-            </remarks>
-        </member>
-        <member name="F:hitchbotAPI.ApproveImagesPages.LocationPortal.buttonSubmit">
-            <summary>
-            buttonSubmit control.
             </summary>
             <remarks>
             Auto-generated field.
@@ -1298,7 +1298,6 @@
             <summary>
             Builds the function for a path on a google map. It loads the data from the hitchBOT entity and builds it from its locations.
             </summary>
-            <param name="PolyPathNumber">If there were to be more than one hitchBOTS, you can number these functions.</param>
             <returns></returns>
         </member>
         <member name="T:hitchbotAPI.Helpers.TestHelper">
