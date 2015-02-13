@@ -22,7 +22,7 @@ public class OnlineRecognizer implements RecognitionListener{
 	private Intent mSpeechRecognizerIntent; 
 	private SpeechController speechController;
 	private static final String TAG = "GoogleSpeechRecognizer";
-	private boolean stopRecognizer = false;
+	private boolean listening = false;
 	AudioManager aM;
 	
 	public OnlineRecognizer()
@@ -52,14 +52,14 @@ public class OnlineRecognizer implements RecognitionListener{
 	
 	public void stopRecognizer()
 	{
-		stopRecognizer = true;
+		listening = false;
 		mSpeechRecognizer.stopListening();
 	}
 	
 	public void startListening()
 	{
 		aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
-		stopRecognizer = false;
+		listening = true;
 		speechController.getSpeechIn().setIsListening(true);
 		mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 	}
@@ -96,18 +96,17 @@ public class OnlineRecognizer implements RecognitionListener{
 
 	@Override
 	public void onError(int error) {
-		if(stopRecognizer){
-		}
-		else
-		{
-			Config.cH.sendCleverScriptResponse("I didn't catch that.");
-		}
+
+			Log.i(TAG, String.valueOf(error));
+			mSpeechRecognizer.cancel();
+			Config.cH.sendCleverScriptResponse("");
 	}
 
 	@Override
 	public void onResults(Bundle results) {
-		aM.setStreamVolume(AudioManager.STREAM_MUSIC,
-				-				aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+		mSpeechRecognizer.cancel();
+	//	aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+		//					aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		 ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 		 String message = matches.get(0);
 		 Log.i(TAG, message + " ");
