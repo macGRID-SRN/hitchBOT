@@ -10,7 +10,7 @@ namespace FormatCorpus
     {
         static void Main(string[] args)
         {
-            var lines = File.ReadAllLines("corpus.txt").ToList().Where(l => !string.IsNullOrEmpty(l)).Select(l => "<s> " + l.ToUpper().Replace("\"", "").Replace("?", "").Replace(",", "") + " </s>");
+            var lines = File.ReadAllLines("output").ToList().Where(l => !string.IsNullOrEmpty(l)).Select(l => "<s> " + l.ToUpper().Replace("\"", "").Replace("?", "").Replace(",", "").Replace("~", "").Replace(".", "") + " </s>");
 
             File.WriteAllLines("fc.txt", lines);
         }
