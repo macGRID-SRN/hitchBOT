@@ -32,16 +32,22 @@ public class CleverScriptHelper {
 	public void loadVariables()
 	{
 
-		//TODO Load default variables
-	}
+		for(org.apache.http.NameValuePair pair : Config.cleverPair)
+		{
+			cs.assignVariable(pair.getName(), pair.getValue());
+		}	}
 	
 	public void sendCleverScriptResponse(String message)
 	{
+		//loadVariables();
+
 		speechController.getSpeechOut().Speak(cs.sendMessage(message));
 	}
 	
 	public String getResponseFromCleverScript(String message)
 	{
+		//loadVariables();
+
 		return cs.sendMessage(message);
 	}
 	
@@ -58,16 +64,18 @@ public class CleverScriptHelper {
 		{
 			JSONObject obj = new JSONObject(jsonString);
 			JSONArray jO = obj.getJSONArray("data");
-
+			Config.accessok = false;
 			for(int j = 0 ; j < jO.length() ; j ++)
 			{
 				JSONObject jobj = jO.getJSONObject(j);
-				
-				cs.assignVariable((String) jobj.getString("key"), (String) jobj.getString("value"));
+				org.apache.http.NameValuePair nvP = new org.apache.http.message.BasicNameValuePair(jobj.getString("key"), (String) jobj.getString("value"));
+				Config.cleverPair.add(nvP);
+				//cs.assignVariable((String) jobj.getString("key"), (String) jobj.getString("value"));
 				Log.i(TAG, (String) jobj.getString("key") + " ");
 				Log.i(TAG, (String) jobj.getString("value") + " ");
-
+				
 			}
+			Config.accessok = true;
 		}
 		catch(Exception e)
 		{

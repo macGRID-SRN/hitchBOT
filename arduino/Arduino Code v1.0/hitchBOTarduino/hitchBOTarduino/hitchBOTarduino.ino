@@ -6,11 +6,11 @@
 #define DIGITAL_IN_PIN     1
 #define DATA 2
 #define WR   3
-#define CS   5
-#define CS2  4
+#define CS   4
+#define CS2  5
 #define CS3  6
 #define CS4  7
-#define servoPin 9
+#define servoPin 8
 
 
 const int servoFwd  = 180; 
@@ -26,6 +26,7 @@ void setup()
 { 
   myServo.attach(servoPin);
   Serial.begin(9600);
+  myServo.write(5);
   pinMode(DIGITAL_OUT_PIN, OUTPUT);
   pinMode(DIGITAL_IN_PIN, INPUT);
   matrix.begin(HT1632_COMMON_16NMOS);  
@@ -303,16 +304,16 @@ int getRandomNumber()
 void chooseRandomGesture(int offSet)
 {
   int timeDelay = random(20, 35);
-  int chooser = random(0, 11);
-  if (chooser == 0)
+  int chooser = random(0, 22);
+  if (chooser == 0 || chooser == 7)
   {
     makeWink(offSet, timeDelay);
   }
-  if(chooser == 1)
+  if(chooser == 1 || chooser == 6)
   {
     makeBlink(offSet, timeDelay);
   }
-  if (chooser == 3)
+  if (chooser == 3 || chooser == 5)
   {
     transitionToMouth(0, timeDelay);
     delay(getRandomNumber());
@@ -322,16 +323,19 @@ void chooseRandomGesture(int offSet)
   }
   if(chooser == 4 )
   {
-     myServo.write(0);
+    int moreRandom = random(0,50);
+    if(moreRandom == 5){
+     myServo.write(5);
     delay(2000);
         myServo.write(160);
      delay(2000);
-     myServo.write(0);
+     myServo.write(5);
      delay(1000);
+    }
 
   }
 
-  if(chooser > 4)
+  if(chooser > 8)
   {
    delay(1000);
   }
@@ -1921,7 +1925,7 @@ matrix.drawPixel(15 + offSet, 14, onOff);
 
 void flagHandHeartAnimation()
 {
-  flagTwo(24*2, 0);
+  //flagTwo(24*2, 0);
   hitchOne(24*3, 1);
   heartOne(24*2, 1);
   handOne(24, 1);
@@ -1939,13 +1943,14 @@ void flagHandHeartAnimation()
   handTwo(24, 0);
   hitchTwo(24*3, 0);
   heartTwo(24*2, 0);
+  heartOne(24*2, 1);
  // flagTwo(24*2, 0);
    handOne(24, 1);
   hitchOne(24*3, 1);
  // heartOne(24*2, 1);
-  flagOne(24*2, 1);
+ // flagOne(24*2, 1);
   delay(150);
-  flagOne(24*2, 0);
-  flagTwo(24*2, 1);
+  //flagOne(24*2, 0);
+  //flagTwo(24*2, 1);
 }
 

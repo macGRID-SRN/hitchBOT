@@ -80,6 +80,7 @@ public class FileUpload implements Runnable {
 			// Open a HTTP connection to the URL
 			HttpURLConnection conn = (HttpURLConnection) connectURL
 					.openConnection();
+			Log.i(TAG, connectURL.toString());
 
 			// Allow Inputs
 			conn.setDoInput(true);
@@ -164,7 +165,6 @@ public class FileUpload implements Runnable {
 			if (s.contains("true")) {
 				boolean deleted = new File(filePath).delete();
 				Config.dQ.markAsUploadedToServer(fileUpload);
-				Log.i(TAG, String.valueOf(deleted));
 			}
 		} catch (MalformedURLException ex) {
 			Log.e(TAG, "URL error: " + ex.getMessage(), ex);

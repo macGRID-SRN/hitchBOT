@@ -27,9 +27,9 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	private SpeechRecognizer recognizer;
 	private HashMap<String, Integer> captions;
-	private long startTime;
 	private SpeechController speechController;
 	private Handler freezeHandler;
+	public boolean isListening = false;
 	private static final String TAG = "OfflineRecognizer";
 
 	public OfflineRecognizer() {
@@ -77,12 +77,12 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	private void setupRecognizer(File assetsDir) {
 		File modelsDir = new File(assetsDir, "models");
-		recognizer = defaultSetup()
+	 	recognizer = defaultSetup()
 				.setAcousticModel(new File(modelsDir, "hmm/de-ge"))
-				.setDictionary(
-						new File(modelsDir, "dict/voxforge_de_sphinx.dic"))
+				.setDictionary(new File(modelsDir, "dict/9624.dic"))
 				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
-				.getRecognizer();
+				.getRecognizer();	
+	 	
 		recognizer.addListener(this);
 
 		// Create keyword-activation search.
@@ -93,23 +93,29 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/corpus.lm.DMP");
+		File languageModel = new File(modelsDir, "lm/9624.dmp");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
 	}
 
 	public void startListening(String searchName) {
-		speechController.getSpeechIn().setIsListening(true);
-		startTime = System.currentTimeMillis() / 1000;
+		this.isListening = true;
 		freezeHandler = new Handler();
 		freezeHandler.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
-				getResult();
+				Config.context.runOnUiThread(new Runnable() {
 
+					@Override
+					public void run() {
+						if (isListening)
+							getResult();
+					}
+
+				});
 			}
 
-		}, 10 * 1000);
+		}, 15 * 1000);
 		recognizer.startListening(searchName);
 	}
 
@@ -121,7 +127,8 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	@Override
 	public void onEndOfSpeech() {
-		getResult();
+		if (isListening)
+			recognizer.stop();
 
 	}
 
@@ -133,10 +140,12 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	@Override
 	public void onResult(Hypothesis hypothesis) {
+		this.isListening = false;
 		((TextView) ((HitchActivity) Config.context)
 				.findViewById(R.id.textViewCaption)).setText("");
 		if (hypothesis != null) {
 			String text = hypothesis.getHypstr();
+			Log.i(TAG, text);
 			Toast.makeText(Config.context.getApplicationContext(), text,
 					Toast.LENGTH_SHORT).show();
 			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
@@ -148,44 +157,36 @@ public class OfflineRecognizer implements RecognitionListener {
 					speechController.getCleverScriptHelper()
 							.getResponseFromCleverScript(text));
 		} else {
+			Log.i(TAG, "null recognized result");
+
 			speechController.getSpeechIn().setIsListening(true);
 			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
-					Uri.encode("I didn't get that!"), Config.getUtcDate());
+					Uri.encode(""), Config.getUtcDate());
 			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 			Config.dQ.addItemToQueue(httpPost);
 			speechController.getSpeechOut().Speak(
 					speechController.getCleverScriptHelper()
-							.getResponseFromCleverScript(
-									"I didn't quite catch that!"));
+							.getResponseFromCleverScript(""));
 		}
 	}
 
 	public void getResult() {
-		Config.context.runOnUiThread(new Runnable()
-		{
+		recognizer.cancel();
+		isListening = false;
+		this.isListening = false;
+		Config.context.runOnUiThread(new Runnable() {
 
 			@Override
 			public void run() {
-				recognizer.stop();				
+				speechController.getSpeechOut().Speak(
+						speechController.getCleverScriptHelper()
+								.getResponseFromCleverScript(""));
 			}
 		});
 	}
 
 	public void pauseRecognizer() {
 		recognizer.cancel();
-	}
-
-	public boolean getRunningTime() {
-		if (speechController.getSpeechIn().getIsListening() == true) {
-			if ((System.currentTimeMillis() / 1000) - startTime <= 10) {
-				return true;
-			} else {
-				getResult();
-				return false;
-			}
-		} else {
-			return false;
-		}
 	}
 
 }

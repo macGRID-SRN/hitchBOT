@@ -19,6 +19,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,22 +48,24 @@ public class HitchActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_hitch);
 		Config.context = this;
 		Config.dQ = DatabaseQueue.getHelper(this);
-		//To ensure app crashes and will be rebooted automatically with autostart and stay
-		//Also logs the error that caused the crash
-	Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-		
-		@Override
-		public void uncaughtException(Thread thread, Throwable ex) {
-			StringWriter sw = new StringWriter();
-			ex.printStackTrace(new PrintWriter(sw));
-			String stackTrace = sw.toString();
-			String uri = String.format(Config.exceptionPOST, Config.HITCHBOT_ID,
- Uri.encode(stackTrace),Config.getUtcDate());
+		// To ensure app crashes and will be rebooted automatically with
+		// autostart and stay
+		// Also logs the error that caused the crash
+		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+
+			@Override
+			public void uncaughtException(Thread thread, Throwable ex) {
+				StringWriter sw = new StringWriter();
+				ex.printStackTrace(new PrintWriter(sw));
+				String stackTrace = sw.toString();
+				String uri = String.format(Config.exceptionPOST,
+						Config.HITCHBOT_ID, Uri.encode(stackTrace),
+						Config.getUtcDate());
 				HttpPostDb eL = new HttpPostDb(uri, 0, 7);
-			Config.dQ.addItemToQueue(eL);
-			System.exit(2);
-		}
-	});
+				Config.dQ.addItemToQueue(eL);
+				System.exit(2);
+			}
+		});
 		tP = new TakePicture();
 		speechController = new SpeechController();
 		setupHandlers();
@@ -132,7 +135,8 @@ public class HitchActivity extends ActionBarActivity {
 					Log.i(TAG, String.valueOf(fileQueue.size()));
 					uploadFile(fileQueue.toArray(dbFileArray));
 					new DataGET().execute(Config.cleverGET);
-					internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
+					internetHandler.postDelayed(this,
+							Config.FIFTEEN_MINUTES * 2);
 				}
 			}
 		}, Config.ONE_MINUTE);
