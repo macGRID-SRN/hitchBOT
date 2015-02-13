@@ -10,7 +10,7 @@
             <h2>Most Recent Location</h2>
             
             <br />
-            <iframe seamless="seamless" height=600 width=850 src="DynamicMap.aspx?hbID=3" frameBorder="0"></iframe>
+            <iframe seamless="seamless" height=600 width=850 src="DynamicMap.aspx?hbID=10&lang=de" frameBorder="0"></iframe>
 
         </div>
     </div>

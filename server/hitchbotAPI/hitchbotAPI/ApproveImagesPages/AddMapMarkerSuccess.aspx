@@ -13,7 +13,7 @@
                     </form>
                 </div>
                 <div class="col-md-2">
-                    <form action="ViewMap.aspx">
+                    <form action="LocationPortal.aspx">
                         <button type="submit" class="btn btn-lg">View Map (May not be updated yet)</button>
 
                     </form>
