@@ -1,0 +1,10 @@
+<s> BITTE FORTFAHREN </s>
+<s> UND WAS NOCH </s>
+<s> RED WEITER </s>
+<s> UND DANN </s>
+<s> RED WEITER </s>
+<s> ERZÄHL WEITER </s>
+<s> UND WAS NOCH </s>
+<s> SCHLECHT  </s>
+<s> UNGEZOGEN  </s>
+<s> ÜBEL  </s>
