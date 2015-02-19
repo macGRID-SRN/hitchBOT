@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Data.Entity;
 using System.Globalization;
 using System.Web.Http;
+using hitchbotAPI.ApproveImagesPages;
 
 namespace hitchbotAPI.Controllers
 {
@@ -57,6 +58,7 @@ namespace hitchbotAPI.Controllers
         {
             var builer = new Helpers.Location.GoogleMapsBuilder(hitchBotIdJS);
             builer.BuildJsAndUpload();
+            LandingPage.Map_Generation_Time = DateTime.UtcNow;
         }
 
         private string GetRegionText(int HitchBotID)

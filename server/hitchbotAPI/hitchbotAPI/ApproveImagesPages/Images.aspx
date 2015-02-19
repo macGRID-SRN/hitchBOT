@@ -81,9 +81,9 @@
     <form id="form1" runat="server">
         <div class="container">
             <h2>Approve/Delete hitchBot Images</h2>
-            <h4>Note: Images are never really deleted. Removing them does just removes them from this page, and not from the databn</h4>
+            <h4>Note: Images are not deleted. Removing them only hides them from this page. Images are displayed on this page for up to 3 days.</h4>
     
-            <asp:Label ID="Label1" runat="server" Text="" Font-Strikeout="True"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="" Font-Strikeout="false"></asp:Label>
     
             <asp:Table ID="tableViewImage" runat="server">
             </asp:Table>

@@ -9,6 +9,8 @@ namespace hitchbotAPI.ApproveImagesPages
 {
     public partial class LandingPage : System.Web.UI.Page
     {
+        public static DateTime Map_Generation_Time = DateTime.UtcNow;
+
         const int DEFAULT_PROJECT_ID = 0;
         int projectID = DEFAULT_PROJECT_ID;
 
@@ -28,7 +30,15 @@ namespace hitchbotAPI.ApproveImagesPages
                     if (user.Projects.FirstOrDefault() != null)
                         this.projectID = user.Projects.First().ID;
 
-                    //this.DynamicMapsTestButton.NavigateUrl = "DynamicMap.aspx?hbID=" + this.hitchbotID;
+                    var lastLocationTime = db.Locations.Where(l => l.HitchBOT.ID == this.hitchbotID)
+                        .OrderByDescending(l => l.TakenTime)
+                        .First().TakenTime;
+
+                    if (!IsPostBack)
+                    {
+                        LocationLBL.Text += lastLocationTime.ToString() + " (UTC)";
+                        MapTimeLBL.Text += Map_Generation_Time.ToString() + " (UTC)";
+                    }
                 }
             }
             else

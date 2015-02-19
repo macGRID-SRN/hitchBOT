@@ -9,6 +9,7 @@ using System.Web.Http.Description;
 using System.Data.Entity;
 using System.Configuration;
 using System.Globalization;
+using System.Diagnostics;
 using LinqToTwitter;
 using System.Threading.Tasks;
 
@@ -87,8 +88,8 @@ namespace hitchbotAPI.Controllers
 
                     string file1 = provider.FileData.First().LocalFileName;
                     // this is the file name on the server where the file was saved this should be passed on to upload it to azure
-
-                    Helpers.AzureBlobHelper.UploadImageAndAddToDb(HitchBotID, TimeTaken, root, file1);
+                    Debug.WriteLine(file1);
+                    Helpers.AzureBlobHelper.UploadImageAndAddToDb(HitchBotID, TimeTaken, "", file1);
 
                     return new HttpResponseMessage()
                     {
@@ -100,6 +101,37 @@ namespace hitchbotAPI.Controllers
             //TODO: Actually upload the image to azure blob (very easy code, the question is how to thread it).
             return task;
         }
+
+        //public Task<HttpResponseMessage> PostImage()
+        //{
+        //    HttpRequestMessage request = this.Request;
+        //    if (!request.Content.IsMimeMultipartContent())
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+        //    }
+
+        //    string root = System.Web.HttpContext.Current.Server.MapPath("~/App_Data/uploads/img");
+        //    var provider = new MultipartFormDataStreamProvider(root);
+
+        //    var task = request.Content.ReadAsMultipartAsync(provider).
+        //        ContinueWith<HttpResponseMessage>(o =>
+        //        {
+
+        //            string file1 = provider.FileData.First().LocalFileName;
+        //            // this is the file name on the server where the file was saved this should be passed on to upload it to azure
+
+        //            //Helpers.AzureBlobHelper.UploadImageAndAddToDb(HitchBotID, TimeTaken, root, file1);
+
+        //            return new HttpResponseMessage()
+        //            {
+        //                Content = new StringContent("File uploaded."),
+        //                StatusCode = HttpStatusCode.OK
+        //            };
+        //        }
+        //    );
+        //    //TODO: Actually upload the image to azure blob (very easy code, the question is how to thread it).
+        //    return task;
+        //}
 
         [HttpPost]
         public bool AcceptImage(int ImageAcceptID)
