@@ -11,7 +11,9 @@
                 Welcome to the new API! Colin finally got around to making this thing look nice. (well, kind of..)
             </p>
             <p>
-                Take a peek at what is new below!
+                <asp:Label ID="LocationLBL" runat="server" Text="LAST LOCATION UPDATE RECEIVED: " Font-Bold="True"></asp:Label>
+                <br/>
+                <asp:Label ID="MapTimeLBL" runat="server" Text="MAP LAST GENERATED AT: " Font-Bold="True"></asp:Label>
             </p>
         </div>
     </div>

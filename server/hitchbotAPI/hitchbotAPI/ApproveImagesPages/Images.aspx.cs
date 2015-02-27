@@ -20,10 +20,10 @@ namespace hitchbotAPI.ApproveImagesPages
                 using (var db = new Models.Database())
                 {
                     int hitchBOTid = user.hitchBOT.ID;
-                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeApproved == null && i.TimeDenied == null) && DbFunctions.DiffDays(i.TimeTaken, DateTime.UtcNow) <= 1).OrderBy(i => i.TimeTaken).ToList();
+                    var imgs = db.Images.Include(i => i.HitchBOT).Where(i => i.HitchBOT.ID == hitchBOTid && (i.TimeDenied == null) && DbFunctions.DiffDays(i.TimeTaken, DateTime.UtcNow) <= 3).OrderBy(i => i.TimeTaken).ToList();
 
                     if (imgs.Count == 0)
-                        Label1.Text = "No recent images! Uh oh!";
+                        Label1.Text = "No recent images! Come back soon.";
                     TableRow tr = new TableRow();
                     for (int i = 0; i < imgs.Count; i++)
                     {
@@ -35,7 +35,7 @@ namespace hitchbotAPI.ApproveImagesPages
                         TableCell upper = new TableCell();
 
                         Image newImage = new Image();
-                        newImage.ImageUrl = "http://imgur.com/" + img.url + ".jpg";
+                        newImage.ImageUrl = img.url;
                         newImage.Width = 400;
                         newImage.ImageAlign = ImageAlign.Right;
                         newImage.Style.Add("transform", "rotate(90deg)");

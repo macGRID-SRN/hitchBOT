@@ -1,0 +1,1 @@
+The purpose of these documents is to improve understanding in the initial planning and research process. All requirements should be documented and justified.

@@ -86,7 +86,7 @@ namespace hitchbotAPI.Helpers
 
             CloudBlobContainer imgContainer = blobClient.GetContainerReference("imgfromhb");
 
-            CloudBlockBlob newBlob = imgContainer.GetBlockBlobReference(randy.Next() + " - " + fileName);
+            CloudBlockBlob newBlob = imgContainer.GetBlockBlobReference(randy.Next() + " - " + DateTime.UtcNow.Ticks + ".jpg");
 
             using (var fileString = System.IO.File.OpenRead(localRootFileDirectory + fileName))
             {
