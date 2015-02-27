@@ -327,4 +327,14 @@ public class DatabaseQueue extends SQLiteOpenHelper{
 		db.close();
 	}
 	
+	//For testing only
+		public void launchFileMissles()
+		{
+			//dangerous use only in extreme circumstances
+			SQLiteDatabase db = this.getWritableDatabase();
+			db.delete(TABLE_FILEUPLOAD, null, null);
+
+			db.close();
+		}
+	
 }

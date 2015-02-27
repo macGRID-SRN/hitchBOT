@@ -7,7 +7,6 @@
 <fullyQualifiedTypeName name="org.apache.http.HttpResponse"/>
 <fullyQualifiedTypeName name="org.apache.http.StatusLine"/>
 <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
-<fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpGet"/>
 <fullyQualifiedTypeName name="org.apache.http.impl.client.DefaultHttpClient"/>
 <fullyQualifiedTypeName name="java.net.URL"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 <fullyQualifiedTypeName name="android.media.AudioManager"/>
+<fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
 </qualifiedTypeNameHistroy>

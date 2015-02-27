@@ -19,7 +19,7 @@ import android.net.NetworkInfo;
 public final class Config {
 
 	public static HitchActivity context = null;
-	public static String HITCHBOT_ID = "9";
+	public static String HITCHBOT_ID = "10";
 	public static int HOUR = 1000 * 60 * 60;
 	public static int FIFTEEN_MINUTES = 1000 * 60 * 15;
 	public static int HALF_HOUR = 1000 * 60 * 30;
@@ -31,14 +31,14 @@ public final class Config {
 	public static DatabaseQueue dQ;
 	public static CleverScriptHelper cH = null;
 	private static final long TICKS_AT_EPOCH = 621355968000000000L;
-    private static final long TICKS_PER_MILLISECOND = 10000;
+	private static final long TICKS_PER_MILLISECOND = 10000;
 
 	public static String searchName = "searchName";
-	public static String cleverAPIKey = "t5xgnf9b0b27ed7690bea298d2210410286bd";//"jjug8608a0d3fa3697162435a5a786e4c3995";
-	public static String cleverDB = "hbPROD4.db";
+	public static String cleverAPIKey = "pyuypc768beb3a174232f656d70173925fa40";//"t5xgnf9b0b27ed7690bea298d2210410286bd"; //"jjug8608a0d3fa3697162435a5a786e4c3995";
+	public static String cleverDB = "hbPROD3.db";
 	public static List<NameValuePair> cleverPair = new ArrayList<NameValuePair>();
 	public static boolean accessok = true;
-	
+
 	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s";
 	public static String cleverGET = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
 	public static String audioPOST = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
@@ -49,10 +49,11 @@ public final class Config {
 	public static String heardPOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotId=%s&SpeechHeard=%s&TimeTaken=%s";
 	public static String startPOST = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&StartTime=%s";
 	public static String exceptionPOST = "http://hitchbotapi.azurewebsites.net/api/Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
-	
+
 	public static String getUtcDate() {
 		final Date date = new Date();
-		final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss", Locale.GERMANY);
+		final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss",
+				Locale.GERMANY);
 		final TimeZone utc = TimeZone.getTimeZone("UTC");
 		sdf.setTimeZone(utc);
 		return sdf.format(date);
@@ -65,16 +66,20 @@ public final class Config {
 				.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
-	
-	public static long convertTicksToMillis(String ticks)
-	{
-		long tick = Long.parseLong(ticks);
-		Date date = new Date((tick - TICKS_AT_EPOCH) / TICKS_PER_MILLISECOND);
-        //System.out.println(date);
 
-        TimeZone utc = TimeZone.getTimeZone("UTC");
-        Calendar calendar = Calendar.getInstance(utc);
-        calendar.setTime(date);
-        return calendar.getTimeInMillis();
+	public static long convertTicksToMillis(String ticks) {
+		long tick;
+		try {
+			tick = Long.parseLong(ticks);
+		} catch (Exception e) {
+			tick = System.currentTimeMillis();
+		}
+		Date date = new Date((tick - TICKS_AT_EPOCH) / TICKS_PER_MILLISECOND);
+		// System.out.println(date);
+
+		TimeZone utc = TimeZone.getTimeZone("UTC");
+		Calendar calendar = Calendar.getInstance(utc);
+		calendar.setTime(date);
+		return calendar.getTimeInMillis();
 	}
 }

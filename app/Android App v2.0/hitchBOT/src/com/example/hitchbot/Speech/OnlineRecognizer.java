@@ -97,7 +97,7 @@ public class OnlineRecognizer implements RecognitionListener{
 	@Override
 	public void onError(int error) {
 
-			Log.i(TAG, String.valueOf(error));
+			Log.i(TAG, String.valueOf(error) + "");
 			mSpeechRecognizer.cancel();
 			Config.cH.sendCleverScriptResponse("");
 	}
@@ -105,8 +105,8 @@ public class OnlineRecognizer implements RecognitionListener{
 	@Override
 	public void onResults(Bundle results) {
 		mSpeechRecognizer.cancel();
-	//	aM.setStreamVolume(AudioManager.STREAM_MUSIC,
-		//					aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+		aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+							aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		 ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 		 String message = matches.get(0);
 		 Log.i(TAG, message + " ");

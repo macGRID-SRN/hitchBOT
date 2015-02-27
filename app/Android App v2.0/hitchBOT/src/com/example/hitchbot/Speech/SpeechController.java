@@ -22,7 +22,7 @@ public class SpeechController {
 		speechIn = new SpeechIn();
 		speechOut = new SpeechOut();
 		setControllers();
-		storyHandler = new Handler();
+		//storyHandler = new Handler();
 		//TODO reset stuff setupHandlers();
 	}
 

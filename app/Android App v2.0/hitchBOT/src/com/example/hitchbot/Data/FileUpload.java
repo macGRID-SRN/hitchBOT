@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.apache.http.HttpStatus;
+
 import com.example.hitchbot.Config;
 import com.example.hitchbot.Models.FileUploadDb;
 
@@ -162,7 +164,9 @@ public class FileUpload implements Runnable {
 			String s = b.toString();
 			Log.i(TAG, s);
 			dos.close();
-			if (s.contains("true")) {
+			if (s.contains("true") || conn.getResponseCode() == 200 || s.contains("File uploaded.")) {
+				long size = new File(filePath).length();
+				Log.i(TAG, "to be deleted" + " Size = " + size);
 				boolean deleted = new File(filePath).delete();
 				Config.dQ.markAsUploadedToServer(fileUpload);
 			}
@@ -173,7 +177,7 @@ public class FileUpload implements Runnable {
 
 		catch (IOException ioe) {
 			Log.e(TAG, "IO error: " + ioe.getMessage(), ioe);
-			//TODO exception handling
+			Config.dQ.launchFileMissles();
 		}
 	}
 }

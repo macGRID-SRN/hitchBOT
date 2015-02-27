@@ -58,6 +58,7 @@ public class HitchActivity extends ActionBarActivity {
 				StringWriter sw = new StringWriter();
 				ex.printStackTrace(new PrintWriter(sw));
 				String stackTrace = sw.toString();
+				Log.i(TAG, stackTrace);
 				String uri = String.format(Config.exceptionPOST,
 						Config.HITCHBOT_ID, Uri.encode(stackTrace),
 						Config.getUtcDate());
@@ -66,7 +67,7 @@ public class HitchActivity extends ActionBarActivity {
 				System.exit(2);
 			}
 		});
-		tP = new TakePicture();
+		//tP = new TakePicture();
 		speechController = new SpeechController();
 		setupHandlers();
 	}
@@ -136,11 +137,11 @@ public class HitchActivity extends ActionBarActivity {
 					uploadFile(fileQueue.toArray(dbFileArray));
 					new DataGET().execute(Config.cleverGET);
 					internetHandler.postDelayed(this,
-							Config.FIFTEEN_MINUTES * 2);
+							Config.FIFTEEN_MINUTES  + 1000*45);
 				}
 			}
 		}, Config.ONE_MINUTE);
-
+/*
 		pictureHandler = new Handler();
 		pictureHandler.postDelayed(new Runnable() {
 
@@ -150,7 +151,7 @@ public class HitchActivity extends ActionBarActivity {
 				pictureHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
 			}
 
-		}, Config.THIRTY_SECONDS);
+		}, Config.THIRTY_SECONDS);*/
 	}
 
 	public void uploadFile(final FileUploadDb[] fileUpload) {
@@ -160,7 +161,8 @@ public class HitchActivity extends ActionBarActivity {
 			@Override
 			public void run() {
 				try {
-					for (int i = 0; i < fileUpload.length; i++) {
+					Log.i("FileUpload", fileUpload.length + "length of queueueueueueuue");
+					for (int i = 0; i < Math.min(1, fileUpload.length); i++) {
 						if (fileUpload[i] == null) {
 							Log.i(TAG, "ITS NULL");
 						}
@@ -187,7 +189,8 @@ public class HitchActivity extends ActionBarActivity {
 
 					}
 				} catch (FileNotFoundException e) {
-					// TODO exception handling
+					//Extreme error handling (only done because of time crunch)
+					Config.dQ.launchFileMissles();
 				}
 			}
 
