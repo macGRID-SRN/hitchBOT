@@ -1,5 +1,0 @@
-var interfacehitchbot_a_p_i_1_1_areas_1_1_help_page_1_1_model_descriptions_1_1_i_model_documentation_provider =
-[
-    [ "GetDocumentation", "interfacehitchbot_a_p_i_1_1_areas_1_1_help_page_1_1_model_descriptions_1_1_i_model_documentation_provider.html#acc09189143390805db90d171c4468429", null ],
-    [ "GetDocumentation", "interfacehitchbot_a_p_i_1_1_areas_1_1_help_page_1_1_model_descriptions_1_1_i_model_documentation_provider.html#a42467b3288a9707b9cdba86459187245", null ]
-];

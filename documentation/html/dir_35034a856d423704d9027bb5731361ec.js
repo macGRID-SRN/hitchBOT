@@ -1,4 +1,0 @@
-var dir_35034a856d423704d9027bb5731361ec =
-[
-    [ "New Tab_files", "dir_3a04442b91f31446967c8bfc6133647e.html", "dir_3a04442b91f31446967c8bfc6133647e" ]
-];

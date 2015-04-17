@@ -1,4 +1,0 @@
-var dir_15f431826231314731f596175493a329 =
-[
-    [ "Current Version", "dir_4bb3e3ac633c1d174ee3287179695419.html", "dir_4bb3e3ac633c1d174ee3287179695419" ]
-];
