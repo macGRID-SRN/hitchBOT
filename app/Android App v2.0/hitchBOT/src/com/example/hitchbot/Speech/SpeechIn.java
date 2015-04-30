@@ -1,8 +1,5 @@
 package com.example.hitchbot.Speech;
 
-import android.content.Context;
-import android.media.AudioManager;
-
 import com.example.hitchbot.Config;
 
 public class SpeechIn {
@@ -39,9 +36,9 @@ public class SpeechIn {
 
 	public void switchSearch(String searchName) {
 		// if (Config.networkAvailable()) {
-		//onlineRecognizer.startListening();
-		// } else {
-		 offlineRecognizer.startListening(searchName);
+		onlineRecognizer.startListening();
+		//} else {
+		// offlineRecognizer.startListening(searchName, 6000);
 		// }
 	}
 

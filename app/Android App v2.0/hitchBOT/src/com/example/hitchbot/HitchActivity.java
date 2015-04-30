@@ -14,19 +14,14 @@ import com.example.hitchbot.Models.FileUploadDb;
 import com.example.hitchbot.Models.HttpPostDb;
 import com.example.hitchbot.Speech.SpeechController;
 
-import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PowerManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class HitchActivity extends ActionBarActivity {
 
@@ -47,19 +42,20 @@ public class HitchActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_hitch);
 		Config.context = this;
 		Config.dQ = DatabaseQueue.getHelper(this);
-		tP = new TakePicture();
+		// tP = new TakePicture();
 		speechController = new SpeechController();
-		setupHandlers();
+		//setupHandlers();
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-			
+
 			@Override
 			public void uncaughtException(Thread thread, Throwable ex) {
 				StringWriter sw = new StringWriter();
 				ex.printStackTrace(new PrintWriter(sw));
 				String stackTrace = sw.toString();
-				String uri = String.format(Config.exceptionPOST, Config.HITCHBOT_ID,
-	 Uri.encode(stackTrace),Config.getUtcDate());
-					HttpPostDb eL = new HttpPostDb(uri, 0, 7);
+				String uri = String.format(Config.exceptionPOST,
+						Config.HITCHBOT_ID, Uri.encode(stackTrace),
+						Config.getUtcDate());
+				HttpPostDb eL = new HttpPostDb(uri, 0, 7);
 				Config.dQ.addItemToQueue(eL);
 				System.exit(2);
 			}
@@ -134,17 +130,15 @@ public class HitchActivity extends ActionBarActivity {
 				}
 			}
 		}, Config.ONE_MINUTE);
-
-		pictureHandler = new Handler();
-		pictureHandler.postDelayed(new Runnable() {
-
-			@Override
-			public void run() {
-				takePicture();
-				pictureHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
-			}
-
-		}, Config.THIRTY_SECONDS);
+		/*
+		 * pictureHandler = new Handler(); pictureHandler.postDelayed(new
+		 * Runnable() {
+		 * 
+		 * @Override public void run() { takePicture();
+		 * pictureHandler.postDelayed(this, Config.FIFTEEN_MINUTES); }
+		 * 
+		 * }, Config.THIRTY_SECONDS);
+		 */
 	}
 
 	public void uploadFile(final FileUploadDb[] fileUpload) {

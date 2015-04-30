@@ -46,10 +46,29 @@ public class SpeechOut {
 		 //String.valueOf(AudioManager.STREAM_ALARM));
 		myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
 				"SOME MESSAGE");
+		//message = messageOk(message);
+		
 		queueSpoke(message);
 		isStopping = false;
-		Log.i(TAG, message);
+		Log.i(TAG, message + "");
+
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
+	}
+
+	private String messageOk(String message) {
+		String cheese = "cheese";
+		message = message.toLowerCase(Locale.CANADA);
+		message = message.replace("god", cheese);
+		message = message.replace("jesus", cheese);
+		message = message.replace("christian", cheese);
+		message = message.replace("church", cheese);
+		message = message.replace("religious", cheese);
+		message = message.replace("religi", cheese);
+		message = message.replace("savior", cheese);
+		message = message.replace("christ", cheese);
+		message = message.replace("idiot", cheese);
+		message = message.replace("stupid", cheese);
+		return message;
 	}
 
 	public void pauseTts() {
@@ -61,8 +80,9 @@ public class SpeechOut {
 		int listenerResult = mTts
 				.setOnUtteranceProgressListener(new UtteranceProgressListener() {
 					@Override
-					public void onDone(String utteranceId) {						
-						if (speechController.getSpeechIn() != null && isStopping == false) {
+					public void onDone(String utteranceId) {
+						if (speechController.getSpeechIn() != null
+								&& isStopping == false) {
 							Config.context.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
@@ -73,9 +93,7 @@ public class SpeechOut {
 									}
 								}
 							});
-						}
-						else
-						{
+						} else {
 							isStopping = false;
 						}
 
@@ -105,9 +123,8 @@ public class SpeechOut {
 	public boolean isSpeaking() {
 		return mTts.isSpeaking();
 	}
-	
-	public void setIsStopping(boolean stop)
-	{
+
+	public void setIsStopping(boolean stop) {
 		this.isStopping = stop;
 	}
 

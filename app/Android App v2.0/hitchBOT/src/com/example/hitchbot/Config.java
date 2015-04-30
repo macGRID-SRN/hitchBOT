@@ -31,8 +31,8 @@ public final class Config {
 	public static CleverScriptHelper cH = null;
 
 	public static String searchName = "searchName";
-	public static String cleverAPIKey = "7enqnc08c975f729ca03352d399efa2dc986a";//"e5f8vac6354c12086c404362878d5d27e5c4e";
-	public static String cleverDB = "hbtestvariable.db";
+	public static String cleverAPIKey = "5iz418c4102c2bc496902e135045ba9fe87f7";//"jptdn4c8be32ab94a1050ee3551af67adef87";// 
+	public static String cleverDB = "hbEnglish.db"; //"phonemetest.db";
 	public static List<NameValuePair> cleverPair = new ArrayList<NameValuePair>();
 	
 	

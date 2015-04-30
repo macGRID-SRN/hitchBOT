@@ -134,6 +134,8 @@ server/hitchbotAPI/hitchbotAPI/Properties/PublishProfiles/
 /server/databaseBuilder
 server/hitchbotAPI/hitchbotAPI/Web.config
 server/hitchbotAPI/hitchbotAPI/Web.config
+app/Android App v2.0/hitchBOT/assets/*.db.jpg
+app/Android App v2.0/hitchBOT/assets/*.dbe.jpg
 app/Android App v2.0/hitchBOT/libs/cleverscriptapi.jar
 app/Android App v2.0/hitchBOT/libs/armeabi/libcleverscriptapi.so
 dialogue/PowerShell Corpus2lm/out/

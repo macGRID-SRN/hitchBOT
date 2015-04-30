@@ -78,11 +78,20 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	private void setupRecognizer(File assetsDir) {
 		File modelsDir = new File(assetsDir, "models");
-		recognizer = defaultSetup()
-				.setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-				.setDictionary(new File(modelsDir, "dict/ger.dic"))
-				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
-				.getRecognizer();
+		try {
+			recognizer = defaultSetup()
+					.setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
+					.setDictionary(new File(modelsDir, "dict/3829.dic"))
+					//.setRawLogDir(assetsDir)
+					// Threshold to tune for keyphrase to balance between false alarms and misses
+					.setKeywordThreshold(1e-27f)            
+					// Use context-independent phonetic search, context-dependent is too slow for mobile
+					//.setBoolean("-allphone_ci", true)
+					.getRecognizer();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		recognizer.addListener(this);
 		// Create keyword-activation search.
 		// recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
@@ -92,12 +101,14 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/fc.lm.dmp");
+		File languageModel = new File(modelsDir, "lm/3829.dmp");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
+		//File phoneticModel = new File(modelsDir, "phone/en-phone.dmp");
+		 //   recognizer.addAllphoneSearch(Config.searchName, phoneticModel);
 	}
 
-	public void startListening(String searchName) {
-		Log.i(TAG,Config.cH.cs.retrieveVariable("testvariable"));
+	public void startListening(String searchName, int timeout) {
+		//Log.i(TAG,Config.cH.cs.retrieveVariable("testvariable"));
 		this.isListening = true;
 		startTime = System.currentTimeMillis() / 1000;
 		freezeHandler = new Handler();
@@ -118,8 +129,8 @@ public class OfflineRecognizer implements RecognitionListener {
 
 			}
 
-		}, 15 * 1000);
-		recognizer.startListening(searchName);
+		}, 10 * 1000);
+		recognizer.startListening(searchName, timeout);
 	}
 
 	@Override
@@ -148,12 +159,15 @@ public class OfflineRecognizer implements RecognitionListener {
 				.findViewById(R.id.textViewCaption)).setText("");
 		if (hypothesis != null) {
 			String text = hypothesis.getHypstr();
-			Toast.makeText(Config.context.getApplicationContext(), text,
-					Toast.LENGTH_SHORT).show();
+			
 			String uri = String.format(Config.heardPOST, Config.HITCHBOT_ID,
 					Uri.encode(text), Config.getUtcDate());
 			HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 			Config.dQ.addItemToQueue(httpPost);
+			text = text.replace('+', ' ');
+			Toast.makeText(Config.context.getApplicationContext(), text,
+					Toast.LENGTH_LONG).show();
+			Log.i(TAG, text);
 			speechController.getSpeechOut().Speak(
 					speechController.getCleverScriptHelper()
 							.getResponseFromCleverScript(text));
@@ -170,8 +184,8 @@ public class OfflineRecognizer implements RecognitionListener {
 	}
 
 	public void getResult() {
-		Log.i(TAG, isListening + "");
-		Log.i(TAG, "Recognition was hung, then unhung");
+		//Log.i(TAG, isListening + "");
+		//Log.i(TAG, "Recognition was hung, then unhung");
 
 		recognizer.cancel();
 		isListening = false;
@@ -190,6 +204,17 @@ public class OfflineRecognizer implements RecognitionListener {
 
 	public void pauseRecognizer() {
 		recognizer.cancel();
+	}
+
+	@Override
+	public void onError(Exception arg0) {
+		getResult();								
+	}
+
+	@Override
+	public void onTimeout() {
+		getResult();						
+		
 	}
 
 }

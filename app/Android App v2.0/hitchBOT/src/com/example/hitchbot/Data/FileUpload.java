@@ -42,8 +42,8 @@ public class FileUpload implements Runnable {
 				fileExtension = ".jpg";
 				break;
 				default:
-					fileExtension = ".mp4";
-					break;
+				fileExtension = ".mp4";
+				break;
 			}
 		} catch (Exception ex) {
 			Log.i(TAG, "URL Malformatted");
