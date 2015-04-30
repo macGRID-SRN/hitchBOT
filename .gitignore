@@ -17,6 +17,8 @@ TestResults
 [Dd]ebug/
 [Rr]elease/
 x64/
+*.db
+*.dbe
 *_i.c
 *_p.c
 *.ilk
@@ -127,6 +129,7 @@ documentation/latex/MakeFile
 app/GPSBasics/libs/armeabi/libcleverscriptapi.so
 app/GPSBasics/libs/cleverscriptapi.jar
 app/Android App/libs/armeabi/libcleverscriptapi.so
+app/Android App/libs/armeabi-v7a/libcleverscriptapi.so
 app/Android App/libs/cleverscriptapi.jar
 server/hitchbotAPI/hitchbotAPI/Web.config
 server/hitchbotAPI/hitchbotAPI/Properties/PublishProfiles/hitchbotAPI (2).pubxml
@@ -138,4 +141,5 @@ app/Android App v2.0/hitchBOT/assets/*.db.jpg
 app/Android App v2.0/hitchBOT/assets/*.dbe.jpg
 app/Android App v2.0/hitchBOT/libs/cleverscriptapi.jar
 app/Android App v2.0/hitchBOT/libs/armeabi/libcleverscriptapi.so
+app/Android App v2.0/hitchBOT/libs/armeabi-v7a/libcleverscriptapi.so
 dialogue/PowerShell Corpus2lm/out/
