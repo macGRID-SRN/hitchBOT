@@ -5,3 +5,8 @@ hitchBOT is a collaborative art project by researchers with backgrounds in commu
 
 
 hitchBOT has traveled across Canada (August 2014) and across Germany (February 2015).
+
+
+### "I'm curious, can you tell me a one minute story; yes or no?" ###
+
+### "Any love for video games?" ###
