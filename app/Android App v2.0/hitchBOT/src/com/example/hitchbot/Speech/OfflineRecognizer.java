@@ -81,7 +81,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		try {
 			recognizer = defaultSetup()
 					.setAcousticModel(new File(modelsDir, "hmm/en-us-semi"))
-					.setDictionary(new File(modelsDir, "dict/3829.dic"))
+					.setDictionary(new File(modelsDir, "dict/1489.dic"))
 					//.setRawLogDir(assetsDir)
 					// Threshold to tune for keyphrase to balance between false alarms and misses
 					.setKeywordThreshold(1e-27f)            
@@ -101,7 +101,7 @@ public class OfflineRecognizer implements RecognitionListener {
 		// File digitsGrammar = new File(modelsDir, "grammar/digits.gram");
 		// recognizer.addGrammarSearch(DIGITS_SEARCH, digitsGrammar);
 		// Create language model search.
-		File languageModel = new File(modelsDir, "lm/3829.dmp");
+		File languageModel = new File(modelsDir, "lm/1489.dmp");
 		recognizer.addNgramSearch(Config.searchName, languageModel);
 		//File phoneticModel = new File(modelsDir, "phone/en-phone.dmp");
 		 //   recognizer.addAllphoneSearch(Config.searchName, phoneticModel);

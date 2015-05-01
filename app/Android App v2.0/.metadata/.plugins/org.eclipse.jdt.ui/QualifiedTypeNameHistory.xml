@@ -58,6 +58,6 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.apache.http.NameValuePair"/>
-<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Speech.OfflineRecognizer"/>
+<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 </qualifiedTypeNameHistroy>

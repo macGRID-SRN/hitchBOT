@@ -16,3 +16,5 @@ models/dict/ger.dic
 models/lm/fc.lm.dmp
 models/phone/en-phone.dmp
 models/dict/cmudict-en-us.dict
+models/lm/1489.dmp
+models/dict/1489.dic

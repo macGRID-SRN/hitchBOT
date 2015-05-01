@@ -38,8 +38,8 @@ public class SpeechIn {
 		// if (Config.networkAvailable()) {
 		onlineRecognizer.startListening();
 		//} else {
-		// offlineRecognizer.startListening(searchName, 6000);
-		// }
-	}
+		 //offlineRecognizer.startListening(searchName, 6000);
+		}
+	//}
 
 }
