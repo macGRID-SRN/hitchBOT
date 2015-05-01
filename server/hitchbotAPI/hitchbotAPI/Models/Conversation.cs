@@ -28,4 +28,23 @@ namespace hitchbotAPI.Models
         public virtual List<SpeechEvent> SpeechEvents { get; set; }
         public DateTime TimeAdded { get; set; }
     }
+
+    public class SpeechLogEvent
+    {
+        public int ID { get; set; }
+
+        public int HitchBOTID { get; set; }
+        public virtual hitchBOT HitchBOT { get; set; }
+
+        public string SpeechSaid { get; set; }
+
+        public string SpeechHeard { get; set; }
+
+        public string Person { get; set; }
+
+        public string Notes { get; set; }
+
+        public DateTime TimeOccured { get; set; }
+        public DateTime TimeAdded { get; set; }
+    }
 }

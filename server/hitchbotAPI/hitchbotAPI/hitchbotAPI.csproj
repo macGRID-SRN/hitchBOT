@@ -430,6 +430,10 @@
     <Compile Include="Migrations\201501261656275_UpdateMapMarker.Designer.cs">
       <DependentUpon>201501261656275_UpdateMapMarker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505012017360_AddEnhancedSpeechLogEvent.cs" />
+    <Compile Include="Migrations\201505012017360_AddEnhancedSpeechLogEvent.Designer.cs">
+      <DependentUpon>201505012017360_AddEnhancedSpeechLogEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -632,6 +636,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501261656275_UpdateMapMarker.resx">
       <DependentUpon>201501261656275_UpdateMapMarker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505012017360_AddEnhancedSpeechLogEvent.resx">
+      <DependentUpon>201505012017360_AddEnhancedSpeechLogEvent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

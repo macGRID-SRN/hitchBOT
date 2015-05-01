@@ -90,6 +90,40 @@ namespace hitchbotAPI.Controllers
         }
 
         /// <summary>
+        /// Add's a SpeechEvent - Something a HitchBot says.
+        /// </summary>
+        /// <param name="HitchBotID">The ID for the HitchBot to add conversation.</param>
+        /// <param name="SpeechSaid">The text which HitchBot said.</param>
+        /// <param name="TimeTaken">When HitchBot said this.</param>
+        /// <returns>The ID of the newly created SpeechEvent.</returns>
+        [HttpPost]
+        public bool AddSpeechListen(int HitchBotID, string SpeechSaid, string SpeechHeard, string TimeTaken, string Person, string Notes)
+        {
+            using (var db = new Models.Database())
+            {
+                var OccuredTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+
+                var speechEvent = new Models.SpeechLogEvent()
+                {
+                    HitchBOTID = HitchBotID,
+                    Notes = Notes,
+                    Person = Person,
+                    SpeechHeard = SpeechHeard,
+                    SpeechSaid = SpeechSaid,
+                    TimeOccured = OccuredTime,
+                    TimeAdded = DateTime.UtcNow
+
+                };
+
+                //db.SpeecgLogEvents
+
+                //db.SpeechEvents.Add(speechEvent);
+                db.SaveChanges();
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Add's a ListenEvent - Something a HitchBot hears.
         /// </summary>
         /// <param name="HitchBotID">The ID of the HitchBOT to add conversation to.</param>
