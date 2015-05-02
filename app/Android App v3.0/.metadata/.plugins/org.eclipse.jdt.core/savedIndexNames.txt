@@ -1,0 +1,1 @@
+INDEX VERSION 1.126+C:\Users\Dom\workspace\hitchBOT\app\Android App v3.0\.metadata\.plugins\org.eclipse.jdt.core
