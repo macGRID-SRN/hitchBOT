@@ -1,6 +1,5 @@
 package com.example.hitchbot.Activities;
 
-import com.example.hitchbot.Config;
 import com.example.hitchbot.R;
 
 import android.app.Activity;
@@ -14,7 +13,7 @@ public class SpeechActivity extends Activity{
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_speech);
-	        Config.context = this;
+	        
        
 	    }
 	

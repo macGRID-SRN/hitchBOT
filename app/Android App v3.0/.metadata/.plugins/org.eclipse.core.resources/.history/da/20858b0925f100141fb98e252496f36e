@@ -60,8 +60,6 @@ public class HitchActivity extends Activity{
 	 		}
 	 		else
 	 		{
-	 			Config.name = name;
-	 			Config.specInfo = specInfo;
 	 			Intent intent = new Intent(this, SpeechActivity.class);	
 	 			startActivity(intent);
 	 		}
