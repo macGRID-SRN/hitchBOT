@@ -8,12 +8,14 @@ import java.util.TimeZone;
 
 import com.example.hitchbot.Activities.HitchActivity;
 
+import Speech.CleverScriptHelper;
 import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public final class Config {
+	
 	public static Activity context = null;
 	public static String name = "";
 	public static String specInfo = "";

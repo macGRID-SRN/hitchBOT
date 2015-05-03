@@ -18,7 +18,7 @@ public class GoogleRecognizer implements RecognitionListener {
 
 	private SpeechRecognizer mSpeechRecognizer;
 	private Intent mSpeechRecognizerIntent; 
-	private SpeechController speechController;
+	private CleverScriptHelper csh;
 	private static final String TAG = "GoogleRecognizer";
 	private boolean isListening = false;
 	private boolean isSetup = false;
@@ -28,6 +28,11 @@ public class GoogleRecognizer implements RecognitionListener {
 	{
 		aM = (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
 		setupRecognizer();
+	}
+	
+	public void setCleverHandler(CleverScriptHelper csh)
+	{
+		this.csh = csh;
 	}
 	
 	private void setupRecognizer(){
@@ -125,8 +130,9 @@ public class GoogleRecognizer implements RecognitionListener {
 	
 	private void handleError(String cleverText)
 	{
+		isListening = false;
 		mSpeechRecognizer.cancel();
-		Config.cH.sendCleverScriptResponse(cleverText);
+		csh.sendCleverScriptResponse(cleverText);
 	}
 
 	@Override
@@ -137,7 +143,7 @@ public class GoogleRecognizer implements RecognitionListener {
 		ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 		String message = matches.get(0);
 		Log.i(TAG, message + " ");
-		Config.cH.sendCleverScriptResponse(message);
+		csh.sendCleverScriptResponse(message);
 		
 	}
 
