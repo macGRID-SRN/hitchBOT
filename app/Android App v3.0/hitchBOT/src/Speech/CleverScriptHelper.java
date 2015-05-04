@@ -44,6 +44,7 @@ public class CleverScriptHelper {
 	}
 
 	public String getResponseFromCleverScript(String message) {
+		Log.i(TAG, message);
 		return cs.sendMessage(message);
 	}
 
