@@ -3,6 +3,7 @@ package Speech;
 import java.util.ArrayList;
 
 import com.example.hitchbot.Config;
+import com.example.hitchbot.Activities.SpeechActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -52,7 +53,7 @@ public class GoogleRecognizer implements RecognitionListener {
 	{
 		if(!isSetup)
 			setupRecognizer();
-		aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+		//aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
 		isListening = true;
 		mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 	}
@@ -138,11 +139,12 @@ public class GoogleRecognizer implements RecognitionListener {
 	@Override
 	public void onResults(Bundle results) {
 		isListening = false;
-		aM.setStreamVolume(AudioManager.STREAM_MUSIC,
-							aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+		//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+		//					aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 		String message = matches.get(0);
 		Log.i(TAG, message + " ");
+		((SpeechActivity)Config.context).updateYourChat(message);
 		csh.sendCleverScriptResponse(message);
 		
 	}
