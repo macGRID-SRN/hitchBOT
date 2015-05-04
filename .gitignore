@@ -17,6 +17,7 @@ TestResults
 [Dd]ebug/
 [Rr]elease/
 x64/
+*.jpg
 *.jar
 *.so
 *_i.c
