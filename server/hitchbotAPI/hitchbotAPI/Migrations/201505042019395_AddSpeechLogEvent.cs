@@ -3,7 +3,7 @@ namespace hitchbotAPI.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddEnhancedSpeechLogEvent : DbMigration
+    public partial class AddSpeechLogEvent : DbMigration
     {
         public override void Up()
         {
@@ -17,6 +17,8 @@ namespace hitchbotAPI.Migrations
                         SpeechHeard = c.String(),
                         Person = c.String(),
                         Notes = c.String(),
+                        EnvironmentType = c.Int(),
+                        RmsDecibalLevel = c.Double(),
                         TimeOccured = c.DateTime(nullable: false),
                         TimeAdded = c.DateTime(nullable: false),
                     })
