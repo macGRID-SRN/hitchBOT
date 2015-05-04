@@ -7,13 +7,13 @@ namespace hitchbotAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class AddEnhancedSpeechLogEvent : IMigrationMetadata
+    public sealed partial class AddSpeechLogEvent : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddEnhancedSpeechLogEvent));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddSpeechLogEvent));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505012017360_AddEnhancedSpeechLogEvent"; }
+            get { return "201505042019395_AddSpeechLogEvent"; }
         }
         
         string IMigrationMetadata.Source

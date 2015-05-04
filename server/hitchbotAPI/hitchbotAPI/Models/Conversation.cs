@@ -44,6 +44,10 @@ namespace hitchbotAPI.Models
 
         public string Notes { get; set; }
 
+        public int? EnvironmentType { get; set; }
+
+        public double? RmsDecibalLevel { get; set; }
+
         public DateTime TimeOccured { get; set; }
         public DateTime TimeAdded { get; set; }
     }

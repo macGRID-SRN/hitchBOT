@@ -97,11 +97,12 @@ namespace hitchbotAPI.Controllers
         /// <param name="TimeTaken">When HitchBot said this.</param>
         /// <returns>The ID of the newly created SpeechEvent.</returns>
         [HttpPost]
-        public bool AddSpeechListen(int HitchBotID, string SpeechSaid, string SpeechHeard, string TimeTaken, string Person, string Notes)
+        public bool AddSpeechListen(int HitchBotID, string SpeechSaid, string SpeechHeard, string TimeTaken, string Person, string Notes, string RmsDecibelLevel = "", int? EnvironmentType = null)
         {
             using (var db = new Models.Database())
             {
                 var OccuredTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+
 
                 var speechEvent = new Models.SpeechLogEvent()
                 {
@@ -111,13 +112,19 @@ namespace hitchbotAPI.Controllers
                     SpeechHeard = SpeechHeard,
                     SpeechSaid = SpeechSaid,
                     TimeOccured = OccuredTime,
-                    TimeAdded = DateTime.UtcNow
-
+                    TimeAdded = DateTime.UtcNow,
+                    EnvironmentType = EnvironmentType
                 };
 
-                //db.SpeecgLogEvents
+                if (!string.IsNullOrWhiteSpace(RmsDecibelLevel))
+                {
+                    double tempRMS;
+                    if (double.TryParse(RmsDecibelLevel, out tempRMS))
+                        speechEvent.RmsDecibalLevel = tempRMS;
+                }
 
-                //db.SpeechEvents.Add(speechEvent);
+                db.SpeechLogEvents.Add(speechEvent);
+
                 db.SaveChanges();
                 return true;
             }
