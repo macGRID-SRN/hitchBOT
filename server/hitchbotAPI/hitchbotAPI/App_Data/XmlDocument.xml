@@ -1164,14 +1164,19 @@
             <param name="TimeTaken">When HitchBot said this.</param>
             <returns>The ID of the newly created SpeechEvent.</returns>
         </member>
-        <member name="M:hitchbotAPI.Controllers.ConversationController.AddSpeechListen(System.Int32,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:hitchbotAPI.Controllers.ConversationController.AddSpeechListen(System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32})">
             <summary>
-            Add's a SpeechEvent - Something a HitchBot says.
+            Add's a SpeechEventLog - A testing version of speech interaction. Records something someone said to hitchbot and records what it said in return.
             </summary>
-            <param name="HitchBotID">The ID for the HitchBot to add conversation.</param>
-            <param name="SpeechSaid">The text which HitchBot said.</param>
-            <param name="TimeTaken">When HitchBot said this.</param>
-            <returns>The ID of the newly created SpeechEvent.</returns>
+            <param name="HitchBotID">The ID of the HitchBOT in question.</param>
+            <param name="SpeechHeard">The text that was said to HitchBOT.</param>
+            <param name="SpeechSaid">What HitchBOT said in response.</param>
+            <param name="TimeTaken">The time this occurred at.</param>
+            <param name="Person">Who was testing?</param>
+            <param name="Notes">What else should be know about the person/environment testing scenario. Was there a train going by?</param>
+            <param name="RmsDecibelLevel">Option parameter for the decibel level given by the speech recognition engine.</param>
+            <param name="EnvironmentType">Some kind of sortable enumerator which I do not have to worry about!!!!</param>
+            <returns>Success.</returns>
         </member>
         <member name="M:hitchbotAPI.Controllers.ConversationController.AddListen(System.Int32,System.String,System.String)">
             <summary>

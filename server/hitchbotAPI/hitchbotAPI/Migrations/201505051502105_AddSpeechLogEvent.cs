@@ -17,6 +17,8 @@ namespace hitchbotAPI.Migrations
                         SpeechHeard = c.String(),
                         Person = c.String(),
                         Notes = c.String(),
+                        MatchedLineLabel = c.String(),
+                        MatchAccuracy = c.Int(),
                         EnvironmentType = c.Int(),
                         RmsDecibalLevel = c.Double(),
                         TimeOccured = c.DateTime(nullable: false),
