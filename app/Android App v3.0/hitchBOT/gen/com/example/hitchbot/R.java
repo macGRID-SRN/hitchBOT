@@ -47,6 +47,8 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f060002;
         public static final int app_name=0x7f060000;
+        public static final int clever_apikey=0x7f060004;
+        public static final int clever_db=0x7f060005;
         public static final int hello_world=0x7f060001;
         public static final int missing_info=0x7f060003;
     }

@@ -1,6 +1,7 @@
 package Speech;
 
 import com.example.hitchbot.Config;
+import com.example.hitchbot.R;
 
 import android.widget.Toast;
 
@@ -14,7 +15,8 @@ public class SpeechController {
 	{
 		recognizer = new GoogleRecognizer();
 		speechOut = new SpeechOut();
-        csh = new CleverScriptHelper("","");
+        csh = new CleverScriptHelper(Config.context.getString(R.string.clever_db), 
+        		Config.context.getString(R.string.clever_apikey));
         setup();
 	}
 	
