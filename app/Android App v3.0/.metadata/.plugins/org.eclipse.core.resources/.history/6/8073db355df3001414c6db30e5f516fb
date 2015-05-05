@@ -23,8 +23,6 @@ public class GoogleRecognizer implements RecognitionListener {
 	private static final String TAG = "GoogleRecognizer";
 	private boolean isListening = false;
 	private boolean isSetup = false;
-	private double rmsDbLevel = 0.0;
-	private int rmsCounter = 0;
 	AudioManager aM;
 	
 	public GoogleRecognizer ()
@@ -53,8 +51,6 @@ public class GoogleRecognizer implements RecognitionListener {
 	
 	public void startListening()
 	{
-		rmsDbLevel = 0.0;
-		rmsCounter = 0;
 		if(!isSetup)
 			setupRecognizer();
 		//aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
@@ -76,8 +72,8 @@ public class GoogleRecognizer implements RecognitionListener {
 
 	@Override
 	public void onRmsChanged(float rmsdB) {
-		rmsDbLevel += rmsdB;
-		rmsCounter+=1;
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -137,7 +133,7 @@ public class GoogleRecognizer implements RecognitionListener {
 	{
 		isListening = false;
 		mSpeechRecognizer.cancel();
-		csh.sendCleverScriptResponse(cleverText, rmsDbLevel / rmsCounter);
+		csh.sendCleverScriptResponse(cleverText);
 	}
 
 	@Override
@@ -149,8 +145,7 @@ public class GoogleRecognizer implements RecognitionListener {
 		String message = matches.get(0);
 		Log.i(TAG, message + " ");
 		((SpeechActivity)Config.context).updateYourChat(message);
-		
-		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter);
+		csh.sendCleverScriptResponse(message);
 		
 	}
 
