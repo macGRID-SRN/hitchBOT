@@ -13,7 +13,7 @@ namespace hitchbotAPI.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201505042019395_AddSpeechLogEvent"; }
+            get { return "201505051502105_AddSpeechLogEvent"; }
         }
         
         string IMigrationMetadata.Source

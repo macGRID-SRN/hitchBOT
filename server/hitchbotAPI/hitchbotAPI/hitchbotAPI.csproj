@@ -430,9 +430,9 @@
     <Compile Include="Migrations\201501261656275_UpdateMapMarker.Designer.cs">
       <DependentUpon>201501261656275_UpdateMapMarker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505042019395_AddSpeechLogEvent.cs" />
-    <Compile Include="Migrations\201505042019395_AddSpeechLogEvent.Designer.cs">
-      <DependentUpon>201505042019395_AddSpeechLogEvent.cs</DependentUpon>
+    <Compile Include="Migrations\201505051502105_AddSpeechLogEvent.cs" />
+    <Compile Include="Migrations\201505051502105_AddSpeechLogEvent.Designer.cs">
+      <DependentUpon>201505051502105_AddSpeechLogEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
@@ -637,8 +637,8 @@
     <EmbeddedResource Include="Migrations\201501261656275_UpdateMapMarker.resx">
       <DependentUpon>201501261656275_UpdateMapMarker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505042019395_AddSpeechLogEvent.resx">
-      <DependentUpon>201505042019395_AddSpeechLogEvent.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505051502105_AddSpeechLogEvent.resx">
+      <DependentUpon>201505051502105_AddSpeechLogEvent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

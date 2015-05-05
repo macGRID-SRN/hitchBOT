@@ -44,6 +44,9 @@ namespace hitchbotAPI.Models
 
         public string Notes { get; set; }
 
+        public string MatchedLineLabel { get; set; }
+        public int? MatchAccuracy { get; set; }
+
         public int? EnvironmentType { get; set; }
 
         public double? RmsDecibalLevel { get; set; }
