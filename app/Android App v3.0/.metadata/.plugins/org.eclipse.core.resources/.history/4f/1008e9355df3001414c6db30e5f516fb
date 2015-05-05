@@ -3,7 +3,6 @@ package Data;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -18,7 +17,7 @@ import Models.HttpPostDb;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class DataPOST extends AsyncTask<HttpPostDb, Void, Void> {
+public class DataPOST extends AsyncTask<HttpPostDb, Void, Boolean> {
 	
 	private String TAG = "DataPOST";
 
@@ -28,7 +27,7 @@ public class DataPOST extends AsyncTask<HttpPostDb, Void, Void> {
 	}
 	
 	@Override
-	protected Void doInBackground(HttpPostDb... params) {
+	protected Boolean doInBackground(HttpPostDb... params) {
 		for(int i = 0; i < params.length ; i ++){
 			HttpClient hC = new DefaultHttpClient();
 			HttpPost hP = new HttpPost(params[i].getUri());
@@ -53,8 +52,8 @@ public class DataPOST extends AsyncTask<HttpPostDb, Void, Void> {
 				HttpResponse hR = hC.execute(hP);
 				String responseCheck = EntityUtils.toString(hR.getEntity());
 				Log.i(TAG, responseCheck );
-		        int status = hR.getStatusLine().getStatusCode();
-				if(responseCheck.equals("true")  || HttpStatus.SC_OK == status)
+				
+				if(responseCheck.equals("true"))
 				{
 					Config.dQ.markAsUploadedToServer(params[i]);
 				}
@@ -70,6 +69,18 @@ public class DataPOST extends AsyncTask<HttpPostDb, Void, Void> {
 			}
 		}
 		return true;
+	}
+	
+	@Override
+	protected void onPostExecute(Boolean result) {
+		if(result)
+		{
+			//Config.dQ.markAsUploadedToServer(httpPost);
+		}
+		else
+		{
+			//do nothing (stays in queue)
+		}
 	}
 
 }
