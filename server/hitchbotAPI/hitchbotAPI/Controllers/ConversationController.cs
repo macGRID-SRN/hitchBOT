@@ -90,14 +90,19 @@ namespace hitchbotAPI.Controllers
         }
 
         /// <summary>
-        /// Add's a SpeechEvent - Something a HitchBot says.
+        /// Add's a SpeechEventLog - A testing version of speech interaction. Records something someone said to hitchbot and records what it said in return.
         /// </summary>
-        /// <param name="HitchBotID">The ID for the HitchBot to add conversation.</param>
-        /// <param name="SpeechSaid">The text which HitchBot said.</param>
-        /// <param name="TimeTaken">When HitchBot said this.</param>
-        /// <returns>The ID of the newly created SpeechEvent.</returns>
+        /// <param name="HitchBotID">The ID of the HitchBOT in question.</param>
+        /// <param name="SpeechHeard">The text that was said to HitchBOT.</param>
+        /// <param name="SpeechSaid">What HitchBOT said in response.</param>
+        /// <param name="TimeTaken">The time this occurred at.</param>
+        /// <param name="Person">Who was testing?</param>
+        /// <param name="Notes">What else should be know about the person/environment testing scenario. Was there a train going by?</param>
+        /// <param name="RmsDecibelLevel">Option parameter for the decibel level given by the speech recognition engine.</param>
+        /// <param name="EnvironmentType">Some kind of sortable enumerator which I do not have to worry about!!!!</param>
+        /// <returns>Success.</returns>
         [HttpPost]
-        public bool AddSpeechListen(int HitchBotID, string SpeechSaid, string SpeechHeard, string TimeTaken, string Person, string Notes, string RmsDecibelLevel = "", int? EnvironmentType = null)
+        public async Task<HttpResponseMessage> AddSpeechListen(int HitchBotID, string SpeechSaid, string SpeechHeard, string TimeTaken, string Person, string Notes, string MatchedLineLabel, int? MatchAccuracy = null, string RmsDecibelLevel = "", int? EnvironmentType = null)
         {
             using (var db = new Models.Database())
             {
@@ -113,7 +118,9 @@ namespace hitchbotAPI.Controllers
                     SpeechSaid = SpeechSaid,
                     TimeOccured = OccuredTime,
                     TimeAdded = DateTime.UtcNow,
-                    EnvironmentType = EnvironmentType
+                    EnvironmentType = EnvironmentType,
+                    MatchAccuracy = MatchAccuracy,
+                    MatchedLineLabel = MatchedLineLabel
                 };
 
                 if (!string.IsNullOrWhiteSpace(RmsDecibelLevel))
@@ -126,7 +133,7 @@ namespace hitchbotAPI.Controllers
                 db.SpeechLogEvents.Add(speechEvent);
 
                 db.SaveChanges();
-                return true;
+                return Request.CreateResponse(HttpStatusCode.OK, true);
             }
         }
 
@@ -156,25 +163,5 @@ namespace hitchbotAPI.Controllers
                 return true;
             }
         }
-
-
-        //[HttpGet]
-        //public async Task<bool> ToggleConversationTweet(int HitchBotID)
-        //{
-        //    using (var db = new Models.Database())
-        //    {
-        //        var hitchy = db.hitchBOTs.Include(l => l.Conversations).First(h => h.ID == HitchBotID);
-
-        //        var conversations = db.SpeechEvents.Include(l => l.Conversation).Where(l => l.Conversation.ID == hitchy.CurrentConversation.ID).ToList();
-
-        //        if (conversations != null)
-        //        {
-        //            Random randy = new Random();
-        //            var selectedSpeechEvent = conversations[randy.Next(conversations.Count)];
-        //            await Helpers.TwitterHelper.PostTweetWithLocation(HitchBotID, 1, selectedSpeechEvent.SpeechSaid); //location ID for now because reasons
-        //        }
-        //    }
-        //    return true;
-        //}
     }
 }
