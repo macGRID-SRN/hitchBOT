@@ -50,7 +50,7 @@ public class SpeechActivity extends Activity {
 	public void modifySpeechCycle(View view) {
 		if (speechIsGo) {
 			speechIsGo = false;
-			speechButton.setClickable(false);
+			speechButton.setEnabled(false);
 			speechButton.setText("Start Speech");
 			speechController.stopCycle();
 		} else {
@@ -61,7 +61,7 @@ public class SpeechActivity extends Activity {
 	}
 
 	public void setButtonEnable() {
-		speechButton.setClickable(true);
+		speechButton.setEnabled(true);
 	}
 
 	private void setUnCaughtExceptionHandler()
