@@ -54,9 +54,8 @@ public class DataPOST extends AsyncTask<HttpPostDb, Void, Void> {
 				String responseCheck = EntityUtils.toString(hR.getEntity());
 				Log.i(TAG, responseCheck );
 		        int status = hR.getStatusLine().getStatusCode();
-				if(HttpStatus.SC_OK == status)
+				if(responseCheck.equals("true")  || HttpStatus.SC_OK == status)
 				{
-					Log.i(TAG, "Upload Successful");
 					Config.dQ.markAsUploadedToServer(params[i]);
 				}
 
@@ -70,7 +69,7 @@ public class DataPOST extends AsyncTask<HttpPostDb, Void, Void> {
 				Log.i(TAG, e.toString() );
 			}
 		}
-		return null;
+		return true;
 	}
 
 }

@@ -23,14 +23,13 @@ public class GoogleRecognizer implements RecognitionListener {
 	private static final String TAG = "GoogleRecognizer";
 	private boolean isListening = false;
 	private boolean isSetup = false;
-	private int errorCounter = 0;
 	private double rmsDbLevel = 0.0;
 	private int rmsCounter = 0;
 	AudioManager aM;
 	
 	public GoogleRecognizer ()
 	{
-		//aM = (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
+		aM = (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
 		setupRecognizer();
 	}
 	
@@ -54,7 +53,6 @@ public class GoogleRecognizer implements RecognitionListener {
 	
 	public void startListening()
 	{
-		//aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
 		rmsDbLevel = 0.0;
 		rmsCounter = 0;
 		if(!isSetup)
@@ -137,24 +135,13 @@ public class GoogleRecognizer implements RecognitionListener {
 	
 	private void handleError(String cleverText)
 	{
-		errorCounter++;
 		isListening = false;
 		mSpeechRecognizer.cancel();
-		//Want to slow down responses if it is responding too fast.
-		if(errorCounter > 4){
-			//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
-			//		aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-			errorCounter = 0;
-			csh.sendCleverScriptResponse(cleverText, rmsDbLevel / rmsCounter);
-		}
-		else
-			startListening();
+		csh.sendCleverScriptResponse(cleverText, rmsDbLevel / rmsCounter);
 	}
 
 	@Override
 	public void onResults(Bundle results) {
-		//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
-		//		aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		isListening = false;
 		//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
 		//					aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);

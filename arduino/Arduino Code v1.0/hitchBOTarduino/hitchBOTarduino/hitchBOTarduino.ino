@@ -1,5 +1,4 @@
 #include "HT1632.h"
-#include <ble_mini.h>
 #include "Servo.h"
 
 #define DIGITAL_OUT_PIN    0

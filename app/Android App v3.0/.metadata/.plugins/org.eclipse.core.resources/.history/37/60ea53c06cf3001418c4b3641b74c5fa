@@ -50,7 +50,7 @@ public class SpeechActivity extends Activity {
 	public void modifySpeechCycle(View view) {
 		if (speechIsGo) {
 			speechIsGo = false;
-			speechButton.setClickable(false);
+			speechButton.setEnabled(false);
 			speechButton.setText("Start Speech");
 			speechController.stopCycle();
 		} else {
@@ -61,7 +61,7 @@ public class SpeechActivity extends Activity {
 	}
 
 	public void setButtonEnable() {
-		speechButton.setClickable(true);
+		speechButton.setEnabled(true);
 	}
 
 	private void setUnCaughtExceptionHandler()
@@ -101,14 +101,14 @@ public class SpeechActivity extends Activity {
 	}
 
 	public void updateYourChat(String text) {
-		String preamble = "<font color=#ff0000>YOU: </font>";
+		String preamble = "<font color=#004c00>YOU: </font>";
 		String message = preamble + text + "<br />";
 		String tempText = chatHistory.getText().toString();
 		if (tempText.length() > 1000) {
 			tempText = tempText.substring(0, 500);
 		}
 		tempText = tempText.replace("YOU:",
-				"<br /> <font color=#ff0000>YOU: </font>");
+				"<br /> <font color=#004c00>YOU: </font>");
 		tempText = tempText.replace("hitchBOT:",
 				"<br /> <font color=#236B8E>hitchBOT: </font>");
 		message = message.replaceFirst("<br />", "");
@@ -123,7 +123,7 @@ public class SpeechActivity extends Activity {
 		}
 		String message = preamble + text + "<br />";
 		tempText = tempText.replace("YOU:",
-				"<br /> <font color=#ff0000>YOU: </font>");
+				"<br /> <font color=#004c00>YOU: </font>");
 		tempText = tempText.replace("hitchBOT:",
 				"<br /> <font color=#236B8E>hitchBOT: </font>");
 		message = message.replaceFirst("<br />", "");

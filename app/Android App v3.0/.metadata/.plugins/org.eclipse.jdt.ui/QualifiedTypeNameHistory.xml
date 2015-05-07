@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="android.view.MenuItem"/>
-<fullyQualifiedTypeName name="android.widget.EditText"/>
-<fullyQualifiedTypeName name="com.example.hitchbot.R.layout"/>
 <fullyQualifiedTypeName name="android.app.AlertDialog"/>
 <fullyQualifiedTypeName name="android.content.DialogInterface"/>
 <fullyQualifiedTypeName name="android.net.ConnectivityManager"/>
@@ -46,18 +43,21 @@
 <fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="android.database.sqlite.SQLiteDatabase"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="android.database.Cursor"/>
 <fullyQualifiedTypeName name="android.content.ContentValues"/>
 <fullyQualifiedTypeName name="Data.FileUploadDb"/>
-<fullyQualifiedTypeName name="Models.DatabaseConfig"/>
 <fullyQualifiedTypeName name="org.apache.http.protocol.HTTP"/>
 <fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.R"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.R.string"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
-<fullyQualifiedTypeName name="android.net.Uri"/>
 <fullyQualifiedTypeName name="android.os.Handler"/>
 <fullyQualifiedTypeName name="Models.HttpPostDb"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="Data.DataPOST"/>
+<fullyQualifiedTypeName name="Models.DatabaseConfig"/>
+<fullyQualifiedTypeName name="java.io.StringWriter"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="android.net.Uri"/>
 </qualifiedTypeNameHistroy>
