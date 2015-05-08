@@ -9,11 +9,14 @@ public class SpeechController {
 	//The flow of speech is recognizer -> cleverscript -> text to speech .. repeat
 	SpeechOut speechOut;
 	CleverScriptHelper csh;
-	GoogleRecognizer recognizer;
+	GoogleRecognizer gRecognizer;
+	PocketRecognizer pRecognizer;
 	
 	public SpeechController()
 	{
-		recognizer = new GoogleRecognizer();
+		gRecognizer = new GoogleRecognizer();
+		pRecognizer = new PocketRecognizer();
+		pRecognizer.setController(this);
 		speechOut = new SpeechOut();
         csh = new CleverScriptHelper(Config.context.getString(R.string.clever_db), 
         		Config.context.getString(R.string.clever_apikey));
@@ -22,14 +25,19 @@ public class SpeechController {
 	
 	private void setup()
 	{
-		recognizer.setCleverHandler(csh);
-		speechOut.setRecognizer(recognizer);
+		gRecognizer.setCleverHandler(csh);
+		pRecognizer.setCleverHandler(csh);
+		speechOut.setRecognizer(pRecognizer);
+		speechOut.setRecognizer(gRecognizer);
 		csh.setSpeechOut(speechOut);
 	}
 
 	public void startCycle()
 	{
-		recognizer.startListening();
+		if(Config.networkAvailable())
+			gRecognizer.startListening();
+		else
+			pRecognizer.startListening(Config.searchName);
 	}
 	
 	public void stopCycle()

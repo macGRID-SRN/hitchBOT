@@ -52,7 +52,6 @@
 <fullyQualifiedTypeName name="com.example.hitchbot.R.string"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 <fullyQualifiedTypeName name="android.os.Handler"/>
-<fullyQualifiedTypeName name="Models.HttpPostDb"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="Data.DataPOST"/>
 <fullyQualifiedTypeName name="Models.DatabaseConfig"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="android.net.Uri"/>
+<fullyQualifiedTypeName name="Models.HttpPostDb"/>
 </qualifiedTypeNameHistroy>

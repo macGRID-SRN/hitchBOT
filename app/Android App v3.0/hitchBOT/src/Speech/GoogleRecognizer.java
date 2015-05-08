@@ -66,8 +66,7 @@ public class GoogleRecognizer implements RecognitionListener {
 	
 	@Override
 	public void onReadyForSpeech(Bundle params) {
-		// TODO Auto-generated method stub
-		
+		Log.i(TAG, "onreadyforspeach called");		
 	}
 
 	@Override
@@ -137,18 +136,18 @@ public class GoogleRecognizer implements RecognitionListener {
 	
 	private void handleError(String cleverText)
 	{
-		errorCounter++;
+		//errorCounter++;
 		isListening = false;
-		mSpeechRecognizer.cancel();
+		//mSpeechRecognizer.cancel();
 		//Want to slow down responses if it is responding too fast.
-		if(errorCounter > 4){
+		//if(errorCounter > 4){
 			//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
 			//		aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-			errorCounter = 0;
-			csh.sendCleverScriptResponse(cleverText, rmsDbLevel / rmsCounter);
-		}
-		else
-			startListening();
+		//	errorCounter = 0;
+		//	csh.sendCleverScriptResponse(cleverText, rmsDbLevel / rmsCounter);
+		//}
+		//else
+		startListening();
 	}
 
 	@Override
@@ -161,8 +160,6 @@ public class GoogleRecognizer implements RecognitionListener {
 		ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 		String message = matches.get(0);
 		Log.i(TAG, message + " ");
-		((SpeechActivity)Config.context).updateYourChat(message);
-		
 		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter);
 		
 	}
@@ -175,6 +172,7 @@ public class GoogleRecognizer implements RecognitionListener {
 
 	@Override
 	public void onEvent(int eventType, Bundle params) {
+		Log.i(TAG, params.toString() + "");
 		// TODO Auto-generated method stub
 		
 	}

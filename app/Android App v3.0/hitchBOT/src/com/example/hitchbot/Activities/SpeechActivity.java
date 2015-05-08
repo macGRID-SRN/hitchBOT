@@ -44,7 +44,6 @@ public class SpeechActivity extends Activity {
 		speechButton = (Button) findViewById(R.id.buttonSpeech);
 		setupHandler();
 		speechController = new SpeechController();
-		speechController.startCycle();
 	}
 
 	public void modifySpeechCycle(View view) {

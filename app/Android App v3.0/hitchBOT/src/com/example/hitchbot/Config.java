@@ -19,9 +19,10 @@ public final class Config {
 	
 	public static Activity context = null;
 	public static DatabaseConfig dQ = null;
-	public static String conversationPost = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&SpeechSaid=%s&SpeechHeard=%s&TimeTaken=%s&Person=%s&Notes=%s&MatchedLineLabel=%s&MatchAccuracy=%s&RmsDecibelLevel=%s&EnvironmentType=%s";
+	public static String conversationPost = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&SpeechSaid=%s&SpeechHeard=%s&TimeTaken=%s&Person=%s&Notes=%s&MatchedLineLabel=%s&MatchAccuracy=%s&RmsDecibelLevel=%s&EnvironmentType=%s&RecognitionScore=%s&ResponseScore=%s&RecognizerEnum=%s";
 	public static String exceptionPOST = "http://hitchbotapi.azurewebsites.net/api/Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
 	public static String name = "";
+	public static String searchName = "searchName";
 	public static final int ID = 14; //14-18
 	public static String specInfo = "";
 	public static int HOUR = 1000 * 60 * 60;

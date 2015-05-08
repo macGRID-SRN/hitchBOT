@@ -13,7 +13,8 @@ import android.util.Log;
 public class SpeechOut {
 
 	public TextToSpeech mTts;
-	private GoogleRecognizer recognizer;
+	private GoogleRecognizer gRecognizer;
+	private PocketRecognizer pRecognizer;
 	private boolean stopCycle = false;
 	private static final String TAG = "SpeechOut";
 
@@ -32,7 +33,11 @@ public class SpeechOut {
 	}
 
 	public void setRecognizer(GoogleRecognizer recognizer) {
-		this.recognizer = recognizer;
+		this.gRecognizer = recognizer;
+	}
+	
+	public void setRecognizer(PocketRecognizer recognizer) {
+		this.pRecognizer = recognizer;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -62,7 +67,10 @@ public class SpeechOut {
 							Config.context.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
-									recognizer.startListening();
+									if(Config.networkAvailable())
+										gRecognizer.startListening();
+									else
+										pRecognizer.startListening(Config.searchName);
 								}
 							});
 						} else {
