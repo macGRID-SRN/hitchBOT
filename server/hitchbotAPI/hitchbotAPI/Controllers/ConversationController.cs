@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Globalization;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using hitchbotAPI.Models;
 
 namespace hitchbotAPI.Controllers
 {
@@ -102,12 +103,11 @@ namespace hitchbotAPI.Controllers
         /// <param name="EnvironmentType">Some kind of sortable enumerator which I do not have to worry about!!!!</param>
         /// <returns>Success.</returns>
         [HttpPost]
-        public async Task<HttpResponseMessage> AddSpeechListen(int HitchBotID, string SpeechSaid, string SpeechHeard, string TimeTaken, string Person, string Notes, string MatchedLineLabel, int? MatchAccuracy = null, string RmsDecibelLevel = "", int? EnvironmentType = null)
+        public async Task<HttpResponseMessage> AddSpeechListen(int HitchBotID, string SpeechSaid, string SpeechHeard, string TimeTaken, string Person, string Notes, string MatchedLineLabel, int? MatchAccuracy = null, string RmsDecibelLevel = "", int? EnvironmentType = null, int? RecognitionScore = null, int? ResponseScore = null, int? RecognizerEnum = null)
         {
             using (var db = new Models.Database())
             {
                 var OccuredTime = DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-
 
                 var speechEvent = new Models.SpeechLogEvent()
                 {
@@ -120,7 +120,10 @@ namespace hitchbotAPI.Controllers
                     TimeAdded = DateTime.UtcNow,
                     EnvironmentType = EnvironmentType,
                     MatchAccuracy = MatchAccuracy,
-                    MatchedLineLabel = MatchedLineLabel
+                    MatchedLineLabel = MatchedLineLabel,
+                    RecognitionScore = RecognitionScore,
+                    ResponseScore = ResponseScore,
+                    RecognizerType = (RecognizerType)(RecognizerEnum ?? 0)
                 };
 
                 if (!string.IsNullOrWhiteSpace(RmsDecibelLevel))
