@@ -434,6 +434,10 @@
     <Compile Include="Migrations\201505051502105_AddSpeechLogEvent.Designer.cs">
       <DependentUpon>201505051502105_AddSpeechLogEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505080242068_AddSpeechLogScoreAndType.cs" />
+    <Compile Include="Migrations\201505080242068_AddSpeechLogScoreAndType.Designer.cs">
+      <DependentUpon>201505080242068_AddSpeechLogScoreAndType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CleverScriptAPIkey.cs" />
     <Compile Include="Models\ContextPacket.cs" />
@@ -639,6 +643,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505051502105_AddSpeechLogEvent.resx">
       <DependentUpon>201505051502105_AddSpeechLogEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505080242068_AddSpeechLogScoreAndType.resx">
+      <DependentUpon>201505080242068_AddSpeechLogScoreAndType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
