@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import com.example.hitchbot.Config;
+import com.example.hitchbot.Activities.SpeechActivity;
 
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
@@ -44,7 +45,7 @@ public class SpeechOut {
 				"SOME MESSAGE");
 
 		Log.i(TAG, message + "");
-
+		((SpeechActivity) Config.context).updateHitchBotChat(message);
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 	}
 
@@ -65,6 +66,7 @@ public class SpeechOut {
 								}
 							});
 						} else {
+							((SpeechActivity)Config.context).setButtonEnable();
 							stopCycle = false;
 						}
 

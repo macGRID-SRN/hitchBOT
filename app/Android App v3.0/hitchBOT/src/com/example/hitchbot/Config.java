@@ -8,6 +8,7 @@ import java.util.TimeZone;
 
 import com.example.hitchbot.Activities.HitchActivity;
 
+import Models.DatabaseConfig;
 import Speech.CleverScriptHelper;
 import android.app.Activity;
 import android.content.Context;
@@ -17,9 +18,14 @@ import android.net.NetworkInfo;
 public final class Config {
 	
 	public static Activity context = null;
+	public static DatabaseConfig dQ = null;
+	public static String conversationPost = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&SpeechSaid=%s&SpeechHeard=%s&TimeTaken=%s&Person=%s&Notes=%s&MatchedLineLabel=%s&MatchAccuracy=%s&RmsDecibelLevel=%s&EnvironmentType=%s";
+	public static String exceptionPOST = "http://hitchbotapi.azurewebsites.net/api/Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
 	public static String name = "";
+	public static final int ID = 14; //14-18
 	public static String specInfo = "";
 	public static int HOUR = 1000 * 60 * 60;
+	public static int FIVE_MINUTES = 1000 * 60 * 5;
 	public static int FIFTEEN_MINUTES = 1000 * 60 * 15;
 	public static int HALF_HOUR = 1000 * 60 * 30;
 	public static int TEN_MINUTES = 1000 * 60 * 30;

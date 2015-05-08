@@ -44,11 +44,28 @@ namespace hitchbotAPI.Models
 
         public string Notes { get; set; }
 
+        public string MatchedLineLabel { get; set; }
+        public int? MatchAccuracy { get; set; }
+
         public int? EnvironmentType { get; set; }
+
+        public int? RecognitionScore { get; set; }
+
+        public int? ResponseScore { get; set; }
+
+        public RecognizerType? RecognizerType { get; set; }
 
         public double? RmsDecibalLevel { get; set; }
 
         public DateTime TimeOccured { get; set; }
         public DateTime TimeAdded { get; set; }
+    }
+
+    public enum RecognizerType
+    {
+        Unknown = 0,
+        GoogleOnline = 1,
+        GoogleOffline = 2,
+        PocketSphinx = 3
     }
 }
