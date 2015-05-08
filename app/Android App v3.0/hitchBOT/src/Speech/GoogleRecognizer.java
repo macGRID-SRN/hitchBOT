@@ -23,11 +23,14 @@ public class GoogleRecognizer implements RecognitionListener {
 	private static final String TAG = "GoogleRecognizer";
 	private boolean isListening = false;
 	private boolean isSetup = false;
+	private int errorCounter = 0;
+	private double rmsDbLevel = 0.0;
+	private int rmsCounter = 0;
 	AudioManager aM;
 	
 	public GoogleRecognizer ()
 	{
-		aM = (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
+		//aM = (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
 		setupRecognizer();
 	}
 	
@@ -51,6 +54,9 @@ public class GoogleRecognizer implements RecognitionListener {
 	
 	public void startListening()
 	{
+		//aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+		rmsDbLevel = 0.0;
+		rmsCounter = 0;
 		if(!isSetup)
 			setupRecognizer();
 		//aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
@@ -72,8 +78,8 @@ public class GoogleRecognizer implements RecognitionListener {
 
 	@Override
 	public void onRmsChanged(float rmsdB) {
-		// TODO Auto-generated method stub
-		
+		rmsDbLevel += rmsdB;
+		rmsCounter+=1;
 	}
 
 	@Override
@@ -93,25 +99,25 @@ public class GoogleRecognizer implements RecognitionListener {
 		Log.i(TAG, "Speech Error: " + error);
 		switch(error){
 		case SpeechRecognizer.ERROR_AUDIO:
-			handleError("");
+			handleError("3");
 			break;
 		case SpeechRecognizer.ERROR_CLIENT:
-			handleError("");
+			handleError("5");
 			break;
 		case SpeechRecognizer.ERROR_NETWORK:
-			handleError("");
+			handleError("2");
 			break;
 		case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-			handleError("");
+			handleError("1");
 			break;
 		case SpeechRecognizer.ERROR_NO_MATCH:
 			handleError("7");
 			break;
 		case SpeechRecognizer.ERROR_SERVER:
-			handleError("");
+			handleError("4");
 			break;
 		case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-			handleError("");
+			handleError("6");
 			break;
 		case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
 			killRecognizer();
@@ -131,13 +137,24 @@ public class GoogleRecognizer implements RecognitionListener {
 	
 	private void handleError(String cleverText)
 	{
+		errorCounter++;
 		isListening = false;
 		mSpeechRecognizer.cancel();
-		csh.sendCleverScriptResponse(cleverText);
+		//Want to slow down responses if it is responding too fast.
+		if(errorCounter > 4){
+			//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+			//		aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+			errorCounter = 0;
+			csh.sendCleverScriptResponse(cleverText, rmsDbLevel / rmsCounter);
+		}
+		else
+			startListening();
 	}
 
 	@Override
 	public void onResults(Bundle results) {
+		//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+		//		aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		isListening = false;
 		//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
 		//					aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -145,7 +162,8 @@ public class GoogleRecognizer implements RecognitionListener {
 		String message = matches.get(0);
 		Log.i(TAG, message + " ");
 		((SpeechActivity)Config.context).updateYourChat(message);
-		csh.sendCleverScriptResponse(message);
+		
+		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter);
 		
 	}
 

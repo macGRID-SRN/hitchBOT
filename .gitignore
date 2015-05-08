@@ -124,7 +124,9 @@ documentation/latex/*.sty
 documentation/latex/MakeFile
 /documentation/README.html
 /app/.metadata
+
 /server/hitchbotAPI/hitchbotAPI/Properties/PublishProfiles/hitchbotAPI.pubxml
+/app/Android App v3.0/hitchBOT/res/values/strings.xml
 /server/hitchbotAPI/PublishScripts
 /server/databaseBuilder/SecretTwitterAccounts.linq
 app/GPSBasics/libs/armeabi/libcleverscriptapi.so

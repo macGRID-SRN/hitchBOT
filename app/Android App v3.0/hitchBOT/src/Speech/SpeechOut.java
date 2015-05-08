@@ -66,6 +66,7 @@ public class SpeechOut {
 								}
 							});
 						} else {
+							((SpeechActivity)Config.context).setButtonEnable();
 							stopCycle = false;
 						}
 
