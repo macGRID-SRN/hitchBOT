@@ -101,9 +101,13 @@ namespace hitchbotAPI.Controllers
         /// <param name="Notes">What else should be know about the person/environment testing scenario. Was there a train going by?</param>
         /// <param name="RmsDecibelLevel">Option parameter for the decibel level given by the speech recognition engine.</param>
         /// <param name="EnvironmentType">Some kind of sortable enumerator which I do not have to worry about!!!!</param>
+        /// <param name="GoogleRecognitionScore">The score the Google Speech Recognizer gives the speech heard.</param>
+        /// <param name="RecognitionScore">A user based score for how well the recognizer picked up their words.</param>
+        /// <param name="ResponseScore">A user based score for how well cleverscript responded to what they said</param>
+        /// <param name="RecognizerEnum">What recognizer was used?</param>
         /// <returns>Success.</returns>
         [HttpPost]
-        public async Task<HttpResponseMessage> AddSpeechListen(int HitchBotID, string SpeechSaid, string SpeechHeard, string TimeTaken, string Person, string Notes, string MatchedLineLabel, int? MatchAccuracy = null, string RmsDecibelLevel = "", int? EnvironmentType = null, int? RecognitionScore = null, int? ResponseScore = null, int? RecognizerEnum = null)
+        public async Task<HttpResponseMessage> AddSpeechListen(int HitchBotID, string SpeechSaid, string SpeechHeard, string TimeTaken, string Person, string Notes, string MatchedLineLabel, int? MatchAccuracy = null, string RmsDecibelLevel = "", int? EnvironmentType = null, int? GoogleRecognitionScore = null, int? RecognitionScore = null, int? ResponseScore = null, int? RecognizerEnum = null)
         {
             using (var db = new Models.Database())
             {
@@ -122,6 +126,7 @@ namespace hitchbotAPI.Controllers
                     MatchAccuracy = MatchAccuracy,
                     MatchedLineLabel = MatchedLineLabel,
                     RecognitionScore = RecognitionScore,
+                    GoogleRecognitionScore = GoogleRecognitionScore,
                     ResponseScore = ResponseScore,
                     RecognizerType = (RecognizerType)(RecognizerEnum ?? 0)
                 };
