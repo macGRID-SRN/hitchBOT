@@ -142,10 +142,10 @@ server/hitchbotAPI/hitchbotAPI/Web.config
 app/Android App v2.0/hitchBOT/libs/cleverscriptapi.jar
 app/Android App v2.0/hitchBOT/libs/armeabi/libcleverscriptapi.so
 dialogue/PowerShell Corpus2lm/out/
-app\Android App v2.0\hitchBOT\assets\hbPROD2.db
-app\Android App v2.0\hitchBOT\assets\hbPROD3.db
-app\Android App v2.0\hitchBOT\assets\hbPROD4.db.jpg
-app\Android App v2.0\hitchBOT\assets\hbPROD4.dbe.jpg
-
+app/Android App v2.0/hitchBOT/assets/hbPROD2.db
+app/Android App v2.0/hitchBOT/assets/hbPROD3.db
+app/Android App v2.0/hitchBOT/assets/hbPROD4.db.jpg
+app/Android App v2.0/hitchBOT/assets/hbPROD4.dbe.jpg
+app/Android App v3.0/hitchBOT/assets/sync
 # Ignore tilde
 *~
