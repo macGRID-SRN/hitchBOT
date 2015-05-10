@@ -51,6 +51,8 @@ namespace hitchbotAPI.Models
 
         public int? RecognitionScore { get; set; }
 
+        public int? GoogleRecognitionScore { get; set; }
+
         public int? ResponseScore { get; set; }
 
         public RecognizerType? RecognizerType { get; set; }

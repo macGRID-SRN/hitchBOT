@@ -8,6 +8,7 @@ namespace hitchbotAPI.Migrations
         public override void Up()
         {
             AddColumn("dbo.SpeechLogEvents", "RecognitionScore", c => c.Int());
+            AddColumn("dbo.SpeechLogEvents", "GoogleRecognitionScore", c => c.Int());
             AddColumn("dbo.SpeechLogEvents", "ResponseScore", c => c.Int());
             AddColumn("dbo.SpeechLogEvents", "RecognizerType", c => c.Int());
         }
@@ -16,6 +17,7 @@ namespace hitchbotAPI.Migrations
         {
             DropColumn("dbo.SpeechLogEvents", "RecognizerType");
             DropColumn("dbo.SpeechLogEvents", "ResponseScore");
+            DropColumn("dbo.SpeechLogEvents", "GoogleRecognitionScore");
             DropColumn("dbo.SpeechLogEvents", "RecognitionScore");
         }
     }
