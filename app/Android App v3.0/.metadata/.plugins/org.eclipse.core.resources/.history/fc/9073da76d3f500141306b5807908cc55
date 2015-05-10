@@ -42,7 +42,7 @@ public class CleverScriptHelper {
 		String output = getResponseFromCleverScript(message);
 		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),
 				Uri.encode(message), Config.getUtcDate(), Uri.encode(Config.name), Uri.encode(Config.specInfo),
-				Uri.encode(getRecentOutputLabel()), getAccuracy(), rmsDbLevel, "", "", "", "");
+				Uri.encode(getRecentOutputLabel()), getAccuracy(), rmsDbLevel, "");
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 		Config.dQ.addItemToQueue(httpPost);
 		speechOut.Speak(output);

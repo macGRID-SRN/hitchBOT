@@ -1,7 +1,0 @@
-package com.example.hitchbot.Fragments;
-
-import android.app.Fragment;
-
-public class SpeechFragment extends Fragment{
-
-}

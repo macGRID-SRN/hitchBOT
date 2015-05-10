@@ -6,7 +6,7 @@
 <booleanAttribute key="com.android.ide.eclipse.adt.nobootanim" value="false"/>
 <booleanAttribute key="com.android.ide.eclipse.adt.reuse.last.used.device" value="false"/>
 <intAttribute key="com.android.ide.eclipse.adt.speed" value="0"/>
-<stringAttribute key="com.android.ide.eclipse.adt.target" value="AUTO"/>
+<stringAttribute key="com.android.ide.eclipse.adt.target" value="MANUAL"/>
 <booleanAttribute key="com.android.ide.eclipse.adt.wipedata" value="false"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/hitchBOT"/>
