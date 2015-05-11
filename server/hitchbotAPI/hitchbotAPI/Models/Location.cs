@@ -69,10 +69,5 @@ namespace hitchbotAPI.Models
             public int activityCount { get; set; }
             public ICollection<Message> messages { get; set; }
         }
-
-        public class Response
-        {
-            public FeedMessageResponse feedMessageResponse { get; set; }
-        }
     }
 }

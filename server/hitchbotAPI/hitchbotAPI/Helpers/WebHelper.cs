@@ -38,7 +38,13 @@ namespace hitchbotAPI.Helpers
 
         public static T GetAndDeserialize<T>(string url)
         {
-            return JsonConvert.DeserializeObject<T>(GetRequest(url));
+            var unstringy = GetRequest(url);
+            return JsonConvert.DeserializeObject<JsonResponse<T>>(unstringy).response;
+        }
+
+        private sealed class JsonResponse<T>
+        {
+            public T response;
         }
     }
 }
