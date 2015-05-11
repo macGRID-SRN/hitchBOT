@@ -1,0 +1,11 @@
+models/hmm/cmusphinx-en-us-5.2/README
+models/hmm/cmusphinx-en-us-5.2/feat.params
+models/hmm/cmusphinx-en-us-5.2/mdef
+models/hmm/cmusphinx-en-us-5.2/mixture_weights
+models/hmm/cmusphinx-en-us-5.2/feature_transform
+models/hmm/cmusphinx-en-us-5.2/means
+models/hmm/cmusphinx-en-us-5.2/noisedict
+models/hmm/cmusphinx-en-us-5.2/transition_matrices
+models/hmm/cmusphinx-en-us-5.2/variances
+models/lm/1489.dmp
+models/dict/1489.dic

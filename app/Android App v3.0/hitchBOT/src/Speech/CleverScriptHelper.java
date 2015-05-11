@@ -1,17 +1,12 @@
 package Speech;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import Models.HttpPostDb;
 import android.net.Uri;
 import android.util.Log;
 
 import com.cleverscript.android.CleverscriptAPI;
 import com.example.hitchbot.Config;
-import com.example.hitchbot.R;
+import com.example.hitchbot.Activities.SpeechActivity;
 
 public class CleverScriptHelper {
 
@@ -43,10 +38,22 @@ public class CleverScriptHelper {
 	 */
 
 	public void sendCleverScriptResponse(String message, double rmsDbLevel) {
+		((SpeechActivity)Config.context).updateYourChat(message);
 		String output = getResponseFromCleverScript(message);
 		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),
 				Uri.encode(message), Config.getUtcDate(), Uri.encode(Config.name), Uri.encode(Config.specInfo),
-				Uri.encode(getRecentOutputLabel()), getAccuracy(), rmsDbLevel, "");
+				Uri.encode(getRecentOutputLabel()), getAccuracy(), rmsDbLevel, "", "", "", "");
+		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
+		Config.dQ.addItemToQueue(httpPost);
+		speechOut.Speak(output);
+	}
+	
+	public void sendCleverScriptResponse(String message) {
+		((SpeechActivity)Config.context).updateYourChat(message);
+		String output = getResponseFromCleverScript(message);
+		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),
+				Uri.encode(message), Config.getUtcDate(), Uri.encode(Config.name), Uri.encode(Config.specInfo),
+				Uri.encode(getRecentOutputLabel()), getAccuracy(), "", "");
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 		Config.dQ.addItemToQueue(httpPost);
 		speechOut.Speak(output);
