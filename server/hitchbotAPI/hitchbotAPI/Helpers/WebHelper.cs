@@ -7,7 +7,7 @@ using Microsoft.Internal.Web.Utils;
 using System.IO;
 using System.Web.Script.Serialization;
 using System.Web.Script;
-
+using Newtonsoft.Json;
 
 namespace hitchbotAPI.Helpers
 {
@@ -18,6 +18,7 @@ namespace hitchbotAPI.Helpers
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(URL);
             request.Method = "GET";
             String test = String.Empty;
+
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {
                 Stream dataStream = response.GetResponseStream();
@@ -33,6 +34,17 @@ namespace hitchbotAPI.Helpers
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             return serializer.Deserialize<dynamic>(jsonString);
+        }
+
+        public static T GetAndDeserialize<T>(string url)
+        {
+            var unstringy = GetRequest(url);
+            return JsonConvert.DeserializeObject<JsonResponse<T>>(unstringy).response;
+        }
+
+        private sealed class JsonResponse<T>
+        {
+            public T response;
         }
     }
 }
