@@ -157,7 +157,7 @@ public class LocationInfo {
 			isFine = false;
 			locationManager.removeUpdates(locationListenerNETWORK);
 			locationManager.removeUpdates(locationListenerGPS);
-			//postCourseLocation();
+			postCourseLocation();
 
 		}
 

@@ -40,7 +40,7 @@ public class LocationInfo {
 		// LocationManager.NETWORK_PROVIDER, 1000, 0,
 		// locationListenerNETWORK);
 	}
-/*
+
 	private void postFineLocation() {
 		String hitchBOTid = String.valueOf(Config.ID);
 		String sLatitude = String.valueOf(latitude);
@@ -55,9 +55,8 @@ public class LocationInfo {
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 1);
 		Config.dQ.addItemToQueue(httpPost);
 
-	}*/
+	}
 
-	/*
 	private void postCourseLocation() {
 		String hitchBOTid = String.valueOf(Config.ID);
 		String sLatitude = String.valueOf(latitude);
@@ -69,7 +68,7 @@ public class LocationInfo {
 
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 1);
 		Config.dQ.addItemToQueue(httpPost);
-	}*/
+	}
 
 	LocationListener locationListenerGPS = new LocationListener() {
 		@Override
@@ -83,7 +82,7 @@ public class LocationInfo {
 			isFine = true;
 			locationManager.removeUpdates(locationListenerGPS);
 			locationManager.removeUpdates(locationListenerNETWORK);
-			//postFineLocation();
+			postFineLocation();
 
 		}
 
@@ -157,7 +156,7 @@ public class LocationInfo {
 			isFine = false;
 			locationManager.removeUpdates(locationListenerNETWORK);
 			locationManager.removeUpdates(locationListenerGPS);
-			//postCourseLocation();
+			postCourseLocation();
 
 		}
 

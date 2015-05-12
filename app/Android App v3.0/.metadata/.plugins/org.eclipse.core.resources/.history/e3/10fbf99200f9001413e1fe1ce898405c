@@ -28,17 +28,7 @@ public class HttpPostDb {
 		this.setUploadType(uT);
 	}
 	
-	//just query string
-	public HttpPostDb(String uri, int uploadedToServer, int uT)
-	{
-		this.uploadToServer = uploadToServer;
-		this.setUri(uri);
-		this.dateCreated = Config.getUtcDate();
-		this.setUploadType(uT);
-	}
-	
-	//general httpdb post
-	public HttpPostDb(String uri, int uploadedToServer, List<NameValuePair> header, List<NameValuePair> body,int uT)
+	public HttpPostDb(String uri, int uploadedToServer, List<NameValuePair> body, List<NameValuePair> header,int uT)
 	{
 		this.uploadToServer = uploadToServer;
 		this.setUri(uri);

@@ -16,10 +16,10 @@ public class HttpPostDb {
 	private List<NameValuePair> body;
 	private List<NameValuePair> header;
 	// 0 image, 1 location, 2 spokenphrase, 3 heardphrase, 4 battery, 5 image, 6 audio
-	//7 exception --- These aren't really needed at this point, for future use!
+	//7 exception
 	private int uploadType;
 	
-	public HttpPostDb(int ID, String uri, int uploadedToServer, String dateCreated, int uT)
+	public HttpPostDb(int ID, String uri, int uploadToServer, String dateCreated, int uT)
 	{
 		this.ID = ID;
 		this.uploadToServer = uploadToServer;
@@ -28,17 +28,7 @@ public class HttpPostDb {
 		this.setUploadType(uT);
 	}
 	
-	//just query string
-	public HttpPostDb(String uri, int uploadedToServer, int uT)
-	{
-		this.uploadToServer = uploadToServer;
-		this.setUri(uri);
-		this.dateCreated = Config.getUtcDate();
-		this.setUploadType(uT);
-	}
-	
-	//general httpdb post
-	public HttpPostDb(String uri, int uploadedToServer, List<NameValuePair> header, List<NameValuePair> body,int uT)
+	public HttpPostDb(String uri, int uploadToServer, int uT)
 	{
 		this.uploadToServer = uploadToServer;
 		this.setUri(uri);
