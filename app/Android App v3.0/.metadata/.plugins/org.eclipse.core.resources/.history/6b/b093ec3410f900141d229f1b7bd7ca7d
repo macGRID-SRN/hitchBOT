@@ -110,7 +110,7 @@ public class PocketRecognizer implements RecognitionListener {
 					});
 				}
 
-			}, 10 * 1000);
+			}, 15 * 1000);
 			recognizer.startListening(searchName);
 		}
 	}

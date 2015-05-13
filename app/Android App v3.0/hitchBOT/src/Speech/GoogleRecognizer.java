@@ -158,9 +158,10 @@ public class GoogleRecognizer implements RecognitionListener {
 		//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
 		//					aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+		 float [] scores = results.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
 		String message = matches.get(0);
 		Log.i(TAG, message + " ");
-		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter);
+		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter, 0, scores[0]);
 		
 	}
 

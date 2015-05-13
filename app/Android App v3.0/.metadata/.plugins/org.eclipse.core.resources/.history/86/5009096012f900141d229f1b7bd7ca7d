@@ -37,23 +37,12 @@ public class CleverScriptHelper {
 	 * // TODO Load default variables }
 	 */
 
-	public void sendCleverScriptResponse(String message, double rmsDbLevel, float accuracy, int recognizer) {
+	public void sendCleverScriptResponse(String message, double rmsDbLevel) {
 		((SpeechActivity)Config.context).updateYourChat(message);
 		String output = getResponseFromCleverScript(message);
 		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),
 				Uri.encode(message), Config.getUtcDate(), Uri.encode(Config.name), Uri.encode(Config.specInfo),
-				Uri.encode(getRecentOutputLabel()), getAccuracy(), rmsDbLevel, "", "", accuracy, recognizer);
-		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
-		Config.dQ.addItemToQueue(httpPost);
-		speechOut.Speak(output);
-	}
-	
-	public void sendCleverScriptResponse(String message, float accuracy, int recognizer) {
-		((SpeechActivity)Config.context).updateYourChat(message);
-		String output = getResponseFromCleverScript(message);
-		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),
-				Uri.encode(message), Config.getUtcDate(), Uri.encode(Config.name), Uri.encode(Config.specInfo),
-				Uri.encode(getRecentOutputLabel()), getAccuracy(), "", "", "", accuracy, recognizer);
+				Uri.encode(getRecentOutputLabel()), getAccuracy(), rmsDbLevel, "", "", "", "");
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 		Config.dQ.addItemToQueue(httpPost);
 		speechOut.Speak(output);
@@ -64,7 +53,7 @@ public class CleverScriptHelper {
 		String output = getResponseFromCleverScript(message);
 		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),
 				Uri.encode(message), Config.getUtcDate(), Uri.encode(Config.name), Uri.encode(Config.specInfo),
-				Uri.encode(getRecentOutputLabel()), getAccuracy(), "", "", "", "", "");
+				Uri.encode(getRecentOutputLabel()), getAccuracy(), "", "");
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 		Config.dQ.addItemToQueue(httpPost);
 		speechOut.Speak(output);
