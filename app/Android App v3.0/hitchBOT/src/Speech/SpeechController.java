@@ -34,10 +34,10 @@ public class SpeechController {
 
 	public void startCycle()
 	{
-		if(Config.networkAvailable())
+		//if(Config.networkAvailable())
 			gRecognizer.startListening();
-		else
-			pRecognizer.startListening(Config.searchName);
+		//else
+		//	pRecognizer.startListening(Config.searchName);
 	}
 	
 	public void stopCycle()

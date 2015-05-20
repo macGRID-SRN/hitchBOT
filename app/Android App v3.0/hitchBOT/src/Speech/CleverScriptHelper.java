@@ -48,7 +48,7 @@ public class CleverScriptHelper {
 		speechOut.Speak(output);
 	}
 	
-	public void sendCleverScriptResponse(String message, float accuracy, int recognizer) {
+	public void sendCleverScriptResponse(String message, int accuracy, int recognizer) {
 		((SpeechActivity)Config.context).updateYourChat(message);
 		String output = getResponseFromCleverScript(message);
 		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),

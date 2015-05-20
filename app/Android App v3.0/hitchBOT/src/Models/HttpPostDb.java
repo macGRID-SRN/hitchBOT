@@ -3,6 +3,9 @@ package Models;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.example.hitchbot.Config;
 
@@ -42,6 +45,8 @@ public class HttpPostDb {
 	{
 		this.uploadToServer = uploadToServer;
 		this.setUri(uri);
+		this.header = header;
+		this.body = body;
 		this.dateCreated = Config.getUtcDate();
 		this.setUploadType(uT);
 	}
@@ -88,6 +93,36 @@ public class HttpPostDb {
 
 	public List<NameValuePair> getBody() {
 		return body;
+	}
+	
+	public String getSerializedHeader() {
+		JSONObject jO = new JSONObject();
+		if(header != null && header.size() > 0){
+			for(NameValuePair nvp : header){
+				try {
+					jO.put(nvp.getName(), nvp.getValue());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return jO.toString();
+	}
+	
+	public String getSerializedBody() {
+		JSONObject jO = new JSONObject();
+		if(body != null && body.size() > 0){
+			for(NameValuePair nvp : body){
+				try {
+					jO.put(nvp.getName(), nvp.getValue());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return jO.toString();
 	}
 
 	public void setBody(List<NameValuePair> body) {

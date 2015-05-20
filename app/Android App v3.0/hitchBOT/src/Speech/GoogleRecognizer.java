@@ -134,20 +134,20 @@ public class GoogleRecognizer implements RecognitionListener {
 		isSetup = false;
 	}
 	
-	private void handleError(String cleverText)
+	private void handleError(String error)
 	{
-		//errorCounter++;
+		errorCounter++;
 		isListening = false;
 		//mSpeechRecognizer.cancel();
 		//Want to slow down responses if it is responding too fast.
-		//if(errorCounter > 4){
+		if(errorCounter > 4){
 			//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
 			//		aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-		//	errorCounter = 0;
-		//	csh.sendCleverScriptResponse(cleverText, rmsDbLevel / rmsCounter);
-		//}
-		//else
-		startListening();
+			errorCounter = 0;
+			csh.sendCleverScriptResponse(error);
+		}
+		else
+			startListening();
 	}
 
 	@Override
@@ -161,7 +161,11 @@ public class GoogleRecognizer implements RecognitionListener {
 		 float [] scores = results.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
 		String message = matches.get(0);
 		Log.i(TAG, message + " ");
-		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter, 0, scores[0]);
+		float score = -1.0f;
+		if(scores != null && scores.length > 0){
+			score = scores[0];
+		}
+		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter,score, 0);
 		
 	}
 

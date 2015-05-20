@@ -72,9 +72,10 @@ public class PocketRecognizer implements RecognitionListener {
 		File modelsDir = new File(assetsDir, "models");
 		recognizer = defaultSetup()
 				.setAcousticModel(
-						new File(modelsDir, "hmm/cmusphinx-en-us-5.2"))
+						new File(modelsDir, "hmm/cmusphinx-en-us-5.2-8"))
+				//.setFloat("-samprate", (float) 16000.0)
 				.setDictionary(new File(modelsDir, "dict/1489.dic"))
-				.setRawLogDir(assetsDir).setKeywordThreshold(1e-20f)
+				.setRawLogDir(assetsDir).setKeywordThreshold(1e-40f)
 				.getRecognizer();
 
 		recognizer.addListener(this);
@@ -93,21 +94,14 @@ public class PocketRecognizer implements RecognitionListener {
 
 	public void startListening(String searchName) {
 		if (isInit) {
-			this.isListening = true;
+			isListening = true;
 			freezeHandler = new Handler();
 			freezeHandler.postDelayed(new Runnable() {
 
 				@Override
 				public void run() {
-					Config.context.runOnUiThread(new Runnable() {
-
-						@Override
-						public void run() {
-							if (isListening)
-								getResult();
-						}
-
-					});
+					if (isListening)
+						getResult();
 				}
 
 			}, 10 * 1000);
@@ -123,8 +117,10 @@ public class PocketRecognizer implements RecognitionListener {
 
 	@Override
 	public void onEndOfSpeech() {
-		if (isListening)
+		if (isListening) {
+			isListening = false;
 			recognizer.stop();
+		}
 
 	}
 
@@ -136,12 +132,13 @@ public class PocketRecognizer implements RecognitionListener {
 
 	@Override
 	public void onResult(Hypothesis hypothesis) {
-		this.isListening = false;
+		isListening = false;
 		if (hypothesis != null) {
 			String text = hypothesis.getHypstr();
+			int score = hypothesis.getBestScore();
 			Log.i(TAG, text);
 			// TODO send data to cleverscript
-			csh.sendCleverScriptResponse(text);
+			csh.sendCleverScriptResponse(text, score, 1);
 		} else {
 			Log.i(TAG, "null recognized result");
 			csh.sendCleverScriptResponse("garbage");
