@@ -5,8 +5,11 @@ import java.io.StringWriter;
 import java.util.List;
 
 import com.example.hitchbot.Config;
+import com.example.hitchbot.LocationInfo;
 import com.example.hitchbot.R;
+import com.example.hitchbot.TabletInfo;
 
+import Camera.PictureTaker;
 import Data.DataPOST;
 import Models.DatabaseConfig;
 import Models.HttpPostDb;
@@ -28,9 +31,10 @@ public class SpeechActivity extends Activity {
 
 	SpeechController speechController;
 	private boolean speechIsGo = true;
-	Button speechButton;
-	TextView chatHistory;
-	Handler conversationHandler;
+	public PictureTaker tP;
+	private Handler pictureHandler;
+	private Handler dataCollectionHandler;
+	private Handler internetHandler;
 	private static String TAG = SpeechActivity.class.getName();
 
 	@Override
@@ -40,28 +44,15 @@ public class SpeechActivity extends Activity {
 		Config.context = this;
 		Config.dQ = DatabaseConfig.getHelper(this);
 		setUnCaughtExceptionHandler();
-		chatHistory = (TextView) findViewById(R.id.textViewSpeechHistory);
-		speechButton = (Button) findViewById(R.id.buttonSpeech);
+		tP = new PictureTaker();
 		setupHandler();
+		// queue location info
+		LocationInfo lu = new LocationInfo(Config.context);
+		lu.setupProvider();
 		speechController = new SpeechController();
 	}
 
-	public void modifySpeechCycle(View view) {
-		if (speechIsGo) {
-			speechIsGo = false;
-			speechButton.setClickable(false);
-			speechButton.setText("Start Speech");
-			speechController.stopCycle();
-		} else {
-			speechIsGo = true;
-			speechButton.setText("Stop Speech");
-			speechController.startCycle();
-		}
-	}
 
-	public void setButtonEnable() {
-		speechButton.setClickable(true);
-	}
 
 	private void setUnCaughtExceptionHandler()
 	{
@@ -84,49 +75,49 @@ public class SpeechActivity extends Activity {
 	}
 	
 	private void setupHandler() {
-		conversationHandler = new Handler();
-		conversationHandler.postDelayed(new Runnable() {
+		internetHandler = new Handler();
+		internetHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				if (Config.networkAvailable()) {
 					List<HttpPostDb> postQueue = Config.dQ
 							.serverPostUploadQueue();
 					HttpPostDb[] dbPostArray = new HttpPostDb[postQueue.size()];
-					conversationHandler.postDelayed(this, Config.FIVE_MINUTES);
 					new DataPOST().execute(postQueue.toArray(dbPostArray));
+					internetHandler.postDelayed(this, Config.FIVE_MINUTES);
 				}
 			}
 		}, Config.ONE_MINUTE);
+		
+		dataCollectionHandler = new Handler();
+		dataCollectionHandler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				// get environment and tablet info
+				TabletInfo tI = new TabletInfo();
+				tI.queueBatteryUpdates();
+
+				dataCollectionHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
+
+			}
+
+		}, Config.THIRTY_SECONDS);
+		
+		pictureHandler = new Handler();
+		pictureHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				takePicture();
+				pictureHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
+			}
+		}, Config.THIRTY_SECONDS);
+
 	}
 
-	public void updateYourChat(String text) {
-		String preamble = "<font color=#ff0000>YOU: </font>";
-		String message = preamble + text + "<br />";
-		String tempText = chatHistory.getText().toString();
-		if (tempText.length() > 1000) {
-			tempText = tempText.substring(0, 500);
-		}
-		tempText = tempText.replace("YOU:",
-				"<br /> <font color=#ff0000>YOU: </font>");
-		tempText = tempText.replace("hitchBOT:",
-				"<br /> <font color=#236B8E>hitchBOT: </font>");
-		message = message.replaceFirst("<br />", "");
-		chatHistory.setText(Html.fromHtml(message + tempText));
-	}
-
-	public void updateHitchBotChat(String text) {
-		String preamble = "<font color=#236B8E>hitchBOT: </font>";
-		String tempText = chatHistory.getText().toString();
-		if (tempText.length() > 1000) {
-			tempText = tempText.substring(0, 500);
-		}
-		String message = preamble + text + "<br />";
-		tempText = tempText.replace("YOU:",
-				"<br /> <font color=#ff0000>YOU: </font>");
-		tempText = tempText.replace("hitchBOT:",
-				"<br /> <font color=#236B8E>hitchBOT: </font>");
-		message = message.replaceFirst("<br />", "");
-		chatHistory.setText(Html.fromHtml(message + tempText));
+	
+	public void takePicture() {
+		tP.captureHandler();
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import Data.FileUploadDb;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -21,6 +20,8 @@ public class DatabaseConfig extends SQLiteOpenHelper{
 	public static final String COLUMN_UPLOAD_TO_SERVER = "UploadToServer";
 	public static final String COLUMN_UPLOADTYPE = " UploadType";
 	public static final String COLUMN_DATE = "DateCreated";
+	public static final String COLUMN_HEADER = "PostHeaders";
+	public static final String COLUMN_BODY = "PostBody";
 	
 	public static final String TABLE_FILEUPLOAD = "FileUpload";
 	public static final String COLUMN_FILEID = "_id";
@@ -30,7 +31,7 @@ public class DatabaseConfig extends SQLiteOpenHelper{
 	public static final String COLUMN_DATECREATED = "DateCreated";
 	
 	private static final String DATABASE_NAME = "hitchBOT.db";
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 3;
 	
 	//because writing to sqlite across threads sucks
 	private static final ReadWriteLock rwLock = new ReentrantReadWriteLock(true);
@@ -49,7 +50,9 @@ public class DatabaseConfig extends SQLiteOpenHelper{
 		      + COLUMN_URI + " TEXT," 
 		      + COLUMN_UPLOAD_TO_SERVER + " INTEGER," 
 		      + COLUMN_UPLOADTYPE + " INTEGER,"
-		      +COLUMN_DATE +" TEXT"+");";
+		      +COLUMN_DATE +" TEXT,"
+		      +COLUMN_HEADER + " TEXT,"
+		      + COLUMN_BODY + " TEXT,"+ ");";
 
 	 private static final String FILEUPLOAD_TABLE_CREATE = "CREATE TABLE "
 		      + TABLE_FILEUPLOAD + "(" + COLUMN_FILEID
@@ -142,7 +145,8 @@ public class DatabaseConfig extends SQLiteOpenHelper{
 					htpD.setUploadToServer(Integer.parseInt(cursor.getString(2)));
 					htpD.setUploadType((Integer.parseInt(cursor.getString(3))));
 					htpD.setDateCreated(cursor.getString(4));
-					
+					htpD.setSerializedHeader(cursor.getString(5));
+					htpD.setSerializedBody(cursor.getString(6));
 					databasePosts.add(htpD);
 					
 				}while(cursor.moveToNext());
@@ -182,6 +186,9 @@ public class DatabaseConfig extends SQLiteOpenHelper{
 			newRecord.put(COLUMN_UPLOAD_TO_SERVER, httpPost.getUploadToServer());
 			newRecord.put(COLUMN_DATE, httpPost.getDateCreated());
 			newRecord.put(COLUMN_UPLOADTYPE, httpPost.getUploadType());
+			newRecord.put(COLUMN_HEADER, httpPost.getSerializedHeader());
+			newRecord.put(COLUMN_BODY, httpPost.getSerializedBody());
+
 			database.insert(TABLE_HTTPPOSTQUEUE, null, newRecord);
 		}catch (Exception e)
 		{

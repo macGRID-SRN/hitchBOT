@@ -6,9 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.example.hitchbot.Config;
+import com.example.hitchbot.R;
 import com.example.hitchbot.Activities.SpeechActivity;
 
-import Data.FileUploadDb;
+import Models.FileUploadDb;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;

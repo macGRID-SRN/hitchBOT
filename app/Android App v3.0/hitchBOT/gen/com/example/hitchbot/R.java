@@ -25,14 +25,13 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090007;
-        public static final int buttonSpeech=0x7f090006;
+        public static final int action_settings=0x7f090006;
         public static final int buttonStart=0x7f090003;
         public static final int editTextName=0x7f090002;
         public static final int editTextSpecInfo=0x7f090004;
+        public static final int frameLayout=0x7f090005;
         public static final int textViewName=0x7f090000;
         public static final int textViewSpecInfo=0x7f090001;
-        public static final int textViewSpeechHistory=0x7f090005;
     }
     public static final class integer {
         public static final int max_speech_history=0x7f050000;

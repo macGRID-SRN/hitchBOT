@@ -5,9 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import com.example.hitchbot.Activities.HitchActivity;
-
 import Models.DatabaseConfig;
 import Speech.CleverScriptHelper;
 import android.app.Activity;

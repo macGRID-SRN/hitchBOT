@@ -38,7 +38,6 @@ public class CleverScriptHelper {
 	 */
 
 	public void sendCleverScriptResponse(String message, double rmsDbLevel, float accuracy, int recognizer) {
-		((SpeechActivity)Config.context).updateYourChat(message);
 		String output = getResponseFromCleverScript(message);
 		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),
 				Uri.encode(message), Config.getUtcDate(), Uri.encode(Config.name), Uri.encode(Config.specInfo),
@@ -49,7 +48,6 @@ public class CleverScriptHelper {
 	}
 	
 	public void sendCleverScriptResponse(String message, int accuracy, int recognizer) {
-		((SpeechActivity)Config.context).updateYourChat(message);
 		String output = getResponseFromCleverScript(message);
 		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),
 				Uri.encode(message), Config.getUtcDate(), Uri.encode(Config.name), Uri.encode(Config.specInfo),
@@ -60,7 +58,6 @@ public class CleverScriptHelper {
 	}
 	
 	public void sendCleverScriptResponse(String message) {
-		((SpeechActivity)Config.context).updateYourChat(message);
 		String output = getResponseFromCleverScript(message);
 		String uri = String.format(Config.conversationPost, Config.ID, Uri.encode(output),
 				Uri.encode(message), Config.getUtcDate(), Uri.encode(Config.name), Uri.encode(Config.specInfo),

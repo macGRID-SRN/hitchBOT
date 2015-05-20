@@ -50,7 +50,6 @@ public class SpeechOut {
 				"SOME MESSAGE");
 
 		Log.i(TAG, message + "");
-		((SpeechActivity) Config.context).updateHitchBotChat(message);
 		mTts.speak(message, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 	}
 
@@ -67,15 +66,13 @@ public class SpeechOut {
 							Config.context.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
-									if(Config.networkAvailable())
 										gRecognizer.startListening();
-									else
-										pRecognizer.startListening(Config.searchName);
+									//else
+									//	pRecognizer.startListening(Config.searchName);
 								}
 							});
 						} else {
-							((SpeechActivity)Config.context).setButtonEnable();
-							stopCycle = false;
+							//TODO maybe put in timeout here (for hitchbot sleep?)
 						}
 
 					}
