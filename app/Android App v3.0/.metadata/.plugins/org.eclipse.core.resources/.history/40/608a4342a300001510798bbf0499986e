@@ -167,7 +167,6 @@ public class GoogleRecognizer implements RecognitionListener {
 		if(scores != null && scores.length > 0){
 			score = scores[0];
 		}
-		Toast.makeText(Config.context, message, Toast.LENGTH_LONG).show();
 		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter,score, 0);
 		
 	}
