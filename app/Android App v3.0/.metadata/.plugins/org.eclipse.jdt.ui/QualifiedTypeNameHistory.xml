@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.TimeZone"/>
-<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
-<fullyQualifiedTypeName name="java.util.Calendar"/>
-<fullyQualifiedTypeName name="android.app.Activity"/>
-<fullyQualifiedTypeName name="android.speech.RecognitionListener"/>
-<fullyQualifiedTypeName name="android.speech.SpeechRecognizer"/>
-<fullyQualifiedTypeName name="android.content.Intent"/>
-<fullyQualifiedTypeName name="android.media.AudioManager"/>
-<fullyQualifiedTypeName name="android.speech.RecognizerIntent"/>
-<fullyQualifiedTypeName name="com.cleverscript.android.CleverscriptAPI"/>
-<fullyQualifiedTypeName name="Speech.CleverScriptHelper"/>
-<fullyQualifiedTypeName name="android.speech.tts.TextToSpeech"/>
-<fullyQualifiedTypeName name="java.util.Locale"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="android.speech.tts.UtteranceProgressListener"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="Speech.SpeechController"/>
@@ -37,15 +22,12 @@
 <fullyQualifiedTypeName name="java.util.concurrent.locks.ReadWriteLock"/>
 <fullyQualifiedTypeName name="java.util.concurrent.locks.ReentrantReadWriteLock"/>
 <fullyQualifiedTypeName name="android.database.sqlite.SQLiteDatabase"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="android.database.Cursor"/>
 <fullyQualifiedTypeName name="android.content.ContentValues"/>
 <fullyQualifiedTypeName name="Data.FileUploadDb"/>
 <fullyQualifiedTypeName name="org.apache.http.protocol.HTTP"/>
 <fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
-<fullyQualifiedTypeName name="com.example.hitchbot.R"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.R.string"/>
-<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="Data.DataPOST"/>
 <fullyQualifiedTypeName name="Models.DatabaseConfig"/>
@@ -59,5 +41,23 @@
 <fullyQualifiedTypeName name="Models.HttpPostDb"/>
 <fullyQualifiedTypeName name="android.location.LocationListener"/>
 <fullyQualifiedTypeName name="android.os.Bundle"/>
+<fullyQualifiedTypeName name="com.example.hitchbot.R"/>
+<fullyQualifiedTypeName name="com.example.hitchbot.LocationInfo"/>
+<fullyQualifiedTypeName name="com.example.hitchbot.TabletInfo"/>
+<fullyQualifiedTypeName name="org.json.JSONException"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="Models.FileUploadDb"/>
+<fullyQualifiedTypeName name="org.apache.http.NameValuePair"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="org.json.JSONArray"/>
+<fullyQualifiedTypeName name="org.apache.http.message.BasicNameValuePair"/>
+<fullyQualifiedTypeName name="Data.FileUpload"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="Data.DataGET"/>
+<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
+<fullyQualifiedTypeName name="Camera.PictureTaker"/>
+<fullyQualifiedTypeName name="android.hardware.Camera.ErrorCallback"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
 </qualifiedTypeNameHistroy>

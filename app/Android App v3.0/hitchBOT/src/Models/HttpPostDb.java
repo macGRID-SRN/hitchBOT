@@ -1,8 +1,11 @@
 package Models;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,8 +18,8 @@ public class HttpPostDb {
 	// 0 is no, 1 is yes
 	private int uploadToServer;
 	private String dateCreated;
-	private String serializedBody;
-	private String serializedHeader;
+	private String serializedBody = "";
+	private String serializedHeader = "";
 	private List<NameValuePair> body;
 	private List<NameValuePair> header;
 	// 0 image, 1 location, 2 spokenphrase, 3 heardphrase, 4 battery, 5 image, 6
@@ -99,7 +102,24 @@ public class HttpPostDb {
 	}
 
 	public List<NameValuePair> getHeader() {
-		return header;
+		if (serializedHeader != "") {
+			try {
+				List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+				JSONObject jO = new JSONObject(serializedHeader);
+				Iterator<String> keys = jO.keys();
+				while (keys.hasNext()) {
+					String key = keys.next();
+					nvp.add(new BasicNameValuePair(key, jO.getString(key)));
+				}
+				return nvp;
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				return null;
+			}
+		} else if(header != null)
+			return header;
+		else
+			return null;
 	}
 
 	public void setHeader(List<NameValuePair> header) {
@@ -107,7 +127,24 @@ public class HttpPostDb {
 	}
 
 	public List<NameValuePair> getBody() {
-		return body;
+		if (serializedBody != "") {
+			try {
+				List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+				JSONObject jO = new JSONObject(serializedBody);
+				Iterator<String> keys = jO.keys();
+				while (keys.hasNext()) {
+					String key = keys.next();
+					nvp.add(new BasicNameValuePair(key, jO.getString(key)));
+				}
+				return nvp;
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				return null;
+			}
+		} else if(body != null)
+			return body;		
+		else
+			return null;
 	}
 
 	public void setBody(List<NameValuePair> body) {

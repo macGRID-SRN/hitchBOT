@@ -6,8 +6,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 
 public class LocationInfo {
 	Context context;
@@ -32,7 +30,7 @@ public class LocationInfo {
 		locationManager = (LocationManager) context
 				.getSystemService(Context.LOCATION_SERVICE);
 		locationManager.requestLocationUpdates(
-				LocationManager.PASSIVE_PROVIDER, 1000, 1,
+				LocationManager.PASSIVE_PROVIDER, Config.FIVE_MINUTES, 20,
 				locationListenerPASSIVE);
 		// locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 		// 1000, 0, locationListenerGPS);
@@ -40,7 +38,7 @@ public class LocationInfo {
 		// LocationManager.NETWORK_PROVIDER, 1000, 0,
 		// locationListenerNETWORK);
 	}
-/*
+
 	private void postFineLocation() {
 		String hitchBOTid = String.valueOf(Config.ID);
 		String sLatitude = String.valueOf(latitude);
@@ -48,64 +46,56 @@ public class LocationInfo {
 		String sAltitude = String.valueOf(altitude);
 		String Accuracy = String.valueOf(accuracy);
 		String sSpeed = String.valueOf(speed);
-		String timeStamp = Config.getUtcDate();
 
 		String uri = String.format(Config.locationPOST_FINE, hitchBOTid,
-				sLatitude, sLongitude, sAltitude, Accuracy, sSpeed, timeStamp);
+				sLatitude, sLongitude, sAltitude, Accuracy, sSpeed,  Config.millis2UtcDate(timeObtained));
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 1);
 		Config.dQ.addItemToQueue(httpPost);
 
-	}*/
+	}
 
-	/*
 	private void postCourseLocation() {
 		String hitchBOTid = String.valueOf(Config.ID);
 		String sLatitude = String.valueOf(latitude);
 		String sLongitude = String.valueOf(longitude);
-		String timeStamp = Config.getUtcDate();
 
 		String uri = String.format(Config.locationPOST_COURSE, hitchBOTid,
-				sLatitude, sLongitude, timeStamp);
+				sLatitude, sLongitude, Config.millis2UtcDate(timeObtained));
 
 		HttpPostDb httpPost = new HttpPostDb(uri, 0, 1);
 		Config.dQ.addItemToQueue(httpPost);
-	}*/
+	}
 
-	LocationListener locationListenerGPS = new LocationListener() {
-		@Override
-		public void onLocationChanged(Location location) {
-			speed = location.getSpeed();
-			latitude = location.getLatitude();
-			longitude = location.getLongitude();
-			altitude = location.getAltitude();
-			accuracy = location.getAccuracy();
-			haveLocation = true;
-			isFine = true;
-			locationManager.removeUpdates(locationListenerGPS);
-			locationManager.removeUpdates(locationListenerNETWORK);
-			//postFineLocation();
-
-		}
-
-		@Override
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void onProviderEnabled(String provider) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void onProviderDisabled(String provider) {
-			// TODO Auto-generated method stub
-
-		}
-
-	};
+	/*
+	 * LocationListener locationListenerGPS = new LocationListener() {
+	 * 
+	 * @Override public void onLocationChanged(Location location) { speed =
+	 * location.getSpeed(); latitude = location.getLatitude(); longitude =
+	 * location.getLongitude(); altitude = location.getAltitude(); accuracy =
+	 * location.getAccuracy(); haveLocation = true; isFine = true;
+	 * locationManager.removeUpdates(locationListenerGPS);
+	 * locationManager.removeUpdates(locationListenerNETWORK);
+	 * //postFineLocation();
+	 * 
+	 * }
+	 * 
+	 * @Override public void onStatusChanged(String provider, int status, Bundle
+	 * extras) { // TODO Auto-generated method stub
+	 * 
+	 * }
+	 * 
+	 * @Override public void onProviderEnabled(String provider) { // TODO
+	 * Auto-generated method stub
+	 * 
+	 * }
+	 * 
+	 * @Override public void onProviderDisabled(String provider) { // TODO
+	 * Auto-generated method stub
+	 * 
+	 * }
+	 * 
+	 * };
+	 */
 
 	LocationListener locationListenerPASSIVE = new LocationListener() {
 
@@ -118,9 +108,9 @@ public class LocationInfo {
 				speed = location.getSpeed();
 				altitude = location.getAltitude();
 				accuracy = location.getAccuracy();
-				//TODO post fine
+				postFineLocation();
 			} else {
-					//TODO post course
+				postCourseLocation();
 			}
 
 		}
@@ -145,39 +135,35 @@ public class LocationInfo {
 
 	};
 
-	LocationListener locationListenerNETWORK = new LocationListener() {
-
-		@Override
-		public void onLocationChanged(Location location) {
-
-			latitude = location.getLatitude();
-			longitude = location.getLongitude();
-
-			haveLocation = true;
-			isFine = false;
-			locationManager.removeUpdates(locationListenerNETWORK);
-			locationManager.removeUpdates(locationListenerGPS);
-			//postCourseLocation();
-
-		}
-
-		@Override
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void onProviderEnabled(String provider) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void onProviderDisabled(String provider) {
-			// TODO Auto-generated method stub
-
-		}
-
-	};
+	/*
+	 * LocationListener locationListenerNETWORK = new LocationListener() {
+	 * 
+	 * @Override public void onLocationChanged(Location location) {
+	 * 
+	 * latitude = location.getLatitude(); longitude = location.getLongitude();
+	 * 
+	 * haveLocation = true; isFine = false;
+	 * locationManager.removeUpdates(locationListenerNETWORK);
+	 * locationManager.removeUpdates(locationListenerGPS);
+	 * //postCourseLocation();
+	 * 
+	 * }
+	 * 
+	 * @Override public void onStatusChanged(String provider, int status, Bundle
+	 * extras) { // TODO Auto-generated method stub
+	 * 
+	 * }
+	 * 
+	 * @Override public void onProviderEnabled(String provider) { // TODO
+	 * Auto-generated method stub
+	 * 
+	 * }
+	 * 
+	 * @Override public void onProviderDisabled(String provider) { // TODO
+	 * Auto-generated method stub
+	 * 
+	 * }
+	 * 
+	 * };
+	 */
 }

@@ -50,7 +50,7 @@ public class PictureTaker {
 
 	public void captureHandler() {
 		if (takePicture) {
-
+			
 			cameraPreview.capture(jpegHandler);
 
 		} else {
@@ -58,12 +58,17 @@ public class PictureTaker {
 			frameNew.bringChildToFront(cameraPreview);
 			imageResult.setImageBitmap(null);
 			try {
+				//if()
 				cameraPreview.camera.startPreview();
 				Thread.sleep(1000);
 				captureHandler();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			catch(NullPointerException e)
+			{
+				Log.i(TAG, e.getMessage().toString());
 			}
 		}
 	}

@@ -52,7 +52,7 @@ public class DatabaseConfig extends SQLiteOpenHelper{
 		      + COLUMN_UPLOADTYPE + " INTEGER,"
 		      +COLUMN_DATE +" TEXT,"
 		      +COLUMN_HEADER + " TEXT,"
-		      + COLUMN_BODY + " TEXT,"+ ");";
+		      + COLUMN_BODY + " TEXT"+ ");";
 
 	 private static final String FILEUPLOAD_TABLE_CREATE = "CREATE TABLE "
 		      + TABLE_FILEUPLOAD + "(" + COLUMN_FILEID

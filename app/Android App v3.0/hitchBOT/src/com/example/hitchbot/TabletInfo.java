@@ -78,10 +78,10 @@ public class TabletInfo {
 	public void queueBatteryUpdates()
 	{
 		String timeTaken = Config.getUtcDate();	
-		//String uri = String.format(Config.batteryPOST,Config.ID, timeTaken,
-		//		isCharging, voltage, batteryPercent, temp);
-		//HttpPostDb postDb = new HttpPostDb(uri, 0, 4);
-		//Config.dQ.addItemToQueue(postDb);
+		String uri = String.format(Config.batteryPOST,Config.ID, timeTaken,
+				isCharging, voltage, batteryPercent, temp);
+		HttpPostDb postDb = new HttpPostDb(uri, 0, 4);
+		Config.dQ.addItemToQueue(postDb);
 	}
 
 }

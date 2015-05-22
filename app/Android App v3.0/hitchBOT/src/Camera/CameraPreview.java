@@ -4,6 +4,8 @@ import com.example.hitchbot.Activities.SpeechActivity;
 
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
+import android.hardware.Camera.ErrorCallback;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -17,6 +19,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 	boolean takePicture = false;
 	SpeechActivity context;
 	private PictureTaker tP;
+	private static String TAG = "CameraPreview";
 
 	public CameraPreview(SpeechActivity context, PictureTaker tP) {
 		super(context);
@@ -75,6 +78,26 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 		
 	};
 	
+	public static ErrorCallback _errorCallback = new ErrorCallback()
+	{
+
+		@Override
+		public void onError(int error, Camera camera) {
+				switch(error)
+				{
+				case Camera.CAMERA_ERROR_SERVER_DIED:
+					Log.i(TAG, "Camera error server died");
+					break;
+				case Camera.CAMERA_ERROR_UNKNOWN:
+					Log.i(TAG, "Camera error unknown");
+					break;
+				default:
+					break;
+				}
+		}
+		
+	};
+	
 	@SuppressWarnings("deprecation")
 	public void capture(Camera.PictureCallback jpegHandler)
 	{		
@@ -82,11 +105,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
 	}
 
+	
 	@SuppressWarnings("deprecation")
 	private static Camera getCameraInstance(){
 	    Camera c = null;
 	    try {
 	        c = Camera.open(); // attempt to get a Camera instance
+	        c.setErrorCallback(_errorCallback);
 	    }
 	    catch (Exception e){
 	        // Camera is not available (in use or does not exist)

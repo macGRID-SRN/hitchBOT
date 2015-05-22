@@ -110,13 +110,13 @@ public class GoogleRecognizer implements RecognitionListener {
 			handleError("1");
 			break;
 		case SpeechRecognizer.ERROR_NO_MATCH:
-			handleError("7");
+			handleError("");
 			break;
 		case SpeechRecognizer.ERROR_SERVER:
 			handleError("4");
 			break;
 		case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-			handleError("6");
+			handleError("");
 			break;
 		case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
 			killRecognizer();

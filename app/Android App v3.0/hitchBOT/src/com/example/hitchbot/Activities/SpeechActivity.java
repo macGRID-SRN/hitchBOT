@@ -1,5 +1,7 @@
 package com.example.hitchbot.Activities;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
@@ -10,22 +12,20 @@ import com.example.hitchbot.R;
 import com.example.hitchbot.TabletInfo;
 
 import Camera.PictureTaker;
+import Data.DataGET;
 import Data.DataPOST;
+import Data.FileUpload;
 import Models.DatabaseConfig;
+import Models.FileUploadDb;
 import Models.HttpPostDb;
-import Speech.CleverScriptHelper;
 import Speech.SpeechController;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class SpeechActivity extends Activity {
 
@@ -35,6 +35,7 @@ public class SpeechActivity extends Activity {
 	private Handler pictureHandler;
 	private Handler dataCollectionHandler;
 	private Handler internetHandler;
+	private Handler fileUploadHandler;
 	private static String TAG = SpeechActivity.class.getName();
 
 	@Override
@@ -50,6 +51,7 @@ public class SpeechActivity extends Activity {
 		LocationInfo lu = new LocationInfo(Config.context);
 		lu.setupProvider();
 		speechController = new SpeechController();
+		speechController.startCycle();
 	}
 
 
@@ -84,10 +86,17 @@ public class SpeechActivity extends Activity {
 							.serverPostUploadQueue();
 					HttpPostDb[] dbPostArray = new HttpPostDb[postQueue.size()];
 					new DataPOST().execute(postQueue.toArray(dbPostArray));
-					internetHandler.postDelayed(this, Config.FIVE_MINUTES);
+					List<FileUploadDb> fileQueue = Config.dQ
+							.serverFileUploadQueue();
+					FileUploadDb[] dbFileArray = new FileUploadDb[fileQueue
+							.size()];
+					Log.i(TAG, String.valueOf(fileQueue.size()));
+					uploadFile(fileQueue.toArray(dbFileArray));
+					new DataGET().execute(Config.cleverGET);
 				}
+				internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
 			}
-		}, Config.ONE_MINUTE);
+		}, Config.TWENTY_SECONDS);
 		
 		dataCollectionHandler = new Handler();
 		dataCollectionHandler.postDelayed(new Runnable() {
@@ -137,6 +146,50 @@ public class SpeechActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void uploadFile(final FileUploadDb[] fileUpload) {
+		fileUploadHandler = new Handler();
+		fileUploadHandler.post(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					Log.i("FileUpload", fileUpload.length + "length of queueueueueueuue");
+					for (int i = 0; i < Math.min(2, fileUpload.length); i++) {
+						if (fileUpload[i] == null) {
+							Log.i(TAG, "ITS NULL");
+						}
+						FileInputStream fstrm = new FileInputStream(
+								fileUpload[i].getUri());
+						String uploadUrl;
+						switch (fileUpload[i].getFileType()) {
+						case 0:
+							uploadUrl = Config.audioPOST;
+							break;
+						case 1:
+							uploadUrl = String.format(Config.imagePOST,
+									Config.ID,
+									fileUpload[i].getDateCreated());
+							break;
+						default:
+							uploadUrl = Config.audioPOST;
+							break;
+						}
+						FileUpload hfu = new FileUpload(uploadUrl,
+								fileUpload[i]);
+
+						hfu.send_Now(fstrm);
+
+					}
+				} catch (FileNotFoundException e) {
+					//Extreme error handling (only done because of time crunch)
+					Config.dQ.launchFileMissles();
+				}
+			}
+
+		});
+
 	}
 
 }
