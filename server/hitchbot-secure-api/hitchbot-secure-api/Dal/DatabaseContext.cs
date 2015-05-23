@@ -11,13 +11,16 @@ namespace hitchbot_secure_api.Dal
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext() : base("Database")
+        public DatabaseContext()
+            : base("name=Database")
         {
-            
+
         }
 
-        //Dbsets go here.
-
+        public DbSet<Journey> Journeys { get; set; }
+        public DbSet<HitchBot> HitchBots { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<SpeechLogEvent> SpeechLogEvents { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
