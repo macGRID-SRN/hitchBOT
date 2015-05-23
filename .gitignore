@@ -134,6 +134,10 @@ app/GPSBasics/libs/cleverscriptapi.jar
 app/Android App/libs/armeabi/libcleverscriptapi.so
 app/Android App/libs/cleverscriptapi.jar
 server/hitchbotAPI/hitchbotAPI/Web.config
+server/hitchbot-secure-api/hitchbot-secure-api/Web.config
+server/hitchbot-secure-api/hitchbot-secure-api/Web.Debug.config
+server/hitchbot-secure-api/hitchbot-secure-api/Web.Release.config
+
 server/hitchbotAPI/hitchbotAPI/Properties/PublishProfiles/hitchbotAPI (2).pubxml
 server/hitchbotAPI/hitchbotAPI/Properties/PublishProfiles/
 /server/databaseBuilder
