@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using hitchbot_secure_api.Controllers.ReturnObjects;
 using hitchbot_secure_api.Models;
 
 namespace hitchbot_secure_api.Controllers
 {
-    public partial class Controller
+    public partial class SpeechController
     {
-        public class ReturnSpeech : ReturnObjects.GenericHitchBot
+        public class ReturnSpeech : GenericHitchBot
         {
             public string Said { get; set; }
             public string Heard { get; set; }

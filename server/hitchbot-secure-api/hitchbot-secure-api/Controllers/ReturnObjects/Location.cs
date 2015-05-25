@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using hitchbot_secure_api.Controllers.ReturnObjects;
 using hitchbot_secure_api.Models;
 
 namespace hitchbot_secure_api.Controllers
 {
     public partial class LocationController
     {
-        public class ReturnLocation : ReturnObjects.GenericHitchBot
+        public class ReturnLocation : GenericHitchBot
         {
             public decimal Latitude { get; set; }
             public decimal Longitude { get; set; }

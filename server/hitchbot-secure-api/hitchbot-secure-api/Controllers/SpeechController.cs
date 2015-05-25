@@ -7,14 +7,15 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Mvc;
 using hitchbot_secure_api.Models;
 
 namespace hitchbot_secure_api.Controllers
 {
-    public class SpeechController : ApiController
+    public partial class SpeechController : ApiController
     {
-        [HttpPost]
-        public async Task<IHttpActionResult> AddSpeechLog([FromBody] Controller.ReturnSpeech context)
+        [System.Web.Http.HttpPost]
+        public async Task<IHttpActionResult> AddSpeechLog([FromBody] ReturnSpeech context)
         {
             using (var db = new Dal.DatabaseContext())
             {

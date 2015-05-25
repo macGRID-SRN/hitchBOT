@@ -35,7 +35,7 @@ namespace hitchbot_secure_api.Models
             TimeAdded = DateTime.UtcNow;
         }
 
-        public SpeechLogEvent(Controller.ReturnSpeech context)
+        public SpeechLogEvent(SpeechController.ReturnSpeech context)
             : this()
         {
             TimeOccured = context.DateTime;
