@@ -19,11 +19,11 @@ namespace hitchbot_secure_api.Controllers
             public decimal? Accuracy { get; set; }
             public decimal? Velocity { get; set; }
 
-            public int LocationProviderEnum { get; set; }
+            public int? LocationProviderEnum { get; set; }
 
             public LocationProvider _LocationProvider
             {
-                get { return ((LocationProvider)LocationProviderEnum); }
+                get { return ((LocationProvider)(LocationProviderEnum ?? 0)); }
             }
         }
     }
