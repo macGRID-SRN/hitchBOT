@@ -153,3 +153,5 @@ app/Android App v2.0/hitchBOT/assets/hbPROD4.dbe.jpg
 app/Android App v3.0/hitchBOT/assets/sync
 # Ignore tilde
 *~
+# Ignore VS publish profiles. nice try password grabber bots!
+*.pubxml
