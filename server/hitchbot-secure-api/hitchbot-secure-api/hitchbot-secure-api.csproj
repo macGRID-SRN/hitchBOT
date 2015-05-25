@@ -220,6 +220,8 @@
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ReturnObjects\GenericHitchBot.cs" />
     <Compile Include="Controllers\ReturnObjects\Location.cs" />
+    <Compile Include="Controllers\ReturnObjects\Speech.cs" />
+    <Compile Include="Controllers\SpeechController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dal\DatabaseContext.cs" />
     <Compile Include="Global.asax.cs">

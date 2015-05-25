@@ -11,22 +11,22 @@ namespace hitchbot_secure_api.Controllers.ReturnObjects
     {
         public int HitchBotId { get; set; }
 
-        public int? TimeTakenUnix { get; set; }
+        public int? TimeUnix { get; set; }
 
-        public string TimeTaken { get; set; }
+        public string Time { get; set; }
 
-        public DateTime TakenTime
+        public DateTime DateTime
         {
             get
             {
-                if (TimeTakenUnix.HasValue)
+                if (TimeUnix.HasValue)
                 {
-                    return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds((double)TimeTakenUnix);
+                    return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds((double)TimeUnix);
                 }
 
-                if (!string.IsNullOrWhiteSpace(TimeTaken))
+                if (!string.IsNullOrWhiteSpace(Time))
                 {
-                    return DateTime.ParseExact(TimeTaken, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                    return DateTime.ParseExact(Time, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
                 }
 
                 return DateTime.UtcNow;

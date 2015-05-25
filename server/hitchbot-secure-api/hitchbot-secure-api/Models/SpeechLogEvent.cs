@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using hitchbot_secure_api.Controllers;
 
 namespace hitchbot_secure_api.Models
 {
@@ -32,6 +33,13 @@ namespace hitchbot_secure_api.Models
         public SpeechLogEvent()
         {
             TimeAdded = DateTime.UtcNow;
+        }
+
+        public SpeechLogEvent(Controller.ReturnSpeech context)
+            : this()
+        {
+            TimeOccured = context.DateTime;
+            HitchBotId = context.HitchBotId;
         }
     }
 

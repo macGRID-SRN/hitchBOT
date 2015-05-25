@@ -38,7 +38,7 @@ namespace hitchbot_secure_api.Models
             : this()
         {
             HitchBotId = context.HitchBotId;
-            TakenTime = context.TakenTime;
+            TakenTime = context.DateTime;
         }
     }
 

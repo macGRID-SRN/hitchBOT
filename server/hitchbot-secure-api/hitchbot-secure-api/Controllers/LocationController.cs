@@ -23,7 +23,7 @@ namespace hitchbot_secure_api.Controllers
                     Altitude = Context.Altitude,
                     Accuracy = Context.Accuracy,
                     Velocity = Context.Velocity,
-                    LocationProvider = Context._LocationProvider,
+                    LocationProvider = Context._LocationProvider
                 });
 
                 await db.SaveChangesAsync();
