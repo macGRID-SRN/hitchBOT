@@ -17,6 +17,9 @@ namespace hitchbot_secure_api.Controllers
         [System.Web.Http.HttpPost]
         public async Task<IHttpActionResult> AddSpeechLog([FromBody] ReturnSpeech context)
         {
+            if (!ModelState.IsValid)
+                return BadRequest("Model sent was not valid.");
+
             using (var db = new Dal.DatabaseContext())
             {
                 var speechEvent = new SpeechLogEvent(context)

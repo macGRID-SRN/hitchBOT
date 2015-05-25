@@ -14,6 +14,9 @@ namespace hitchbot_secure_api.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> AddException([FromBody] ReturnException context)
         {
+            if (!ModelState.IsValid)
+                return BadRequest("Model sent was not valid.");
+
             using (var db = new Dal.DatabaseContext())
             {
                 db.ExceptionLogs.Add(new ExceptionLog(context)

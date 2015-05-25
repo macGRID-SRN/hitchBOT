@@ -13,6 +13,9 @@ namespace hitchbot_secure_api.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> UpdateTabletStatus([FromBody] ReturnTabletStatus context)
         {
+            if (!ModelState.IsValid)
+                return BadRequest("Model sent was not valid.");
+
             using (var db = new Dal.DatabaseContext())
             {
                 db.TabletStatuses.Add(new TabletStatus(context)
