@@ -17,7 +17,7 @@ namespace hitchbot_secure_api.Migrations
                         Arguments = c.String(),
                         Method = c.String(),
                         TimeOccured = c.DateTime(nullable: false),
-                        TimeAdded = c.DateTime(),
+                        TimeAdded = c.DateTime(nullable: false),
                         Data = c.String(),
                         Action = c.String(),
                         HitchBotId = c.Int(nullable: false),
