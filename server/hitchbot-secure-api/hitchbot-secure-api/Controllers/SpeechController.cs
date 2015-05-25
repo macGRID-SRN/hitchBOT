@@ -15,7 +15,7 @@ namespace hitchbot_secure_api.Controllers
     public partial class SpeechController : ApiController
     {
         [System.Web.Http.HttpPost]
-        public async Task<IHttpActionResult> AddSpeechLog([FromBody] ReturnSpeech context)
+        public async Task<IHttpActionResult> LogSpeech([FromBody] ReturnSpeech context)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Model sent was not valid.");

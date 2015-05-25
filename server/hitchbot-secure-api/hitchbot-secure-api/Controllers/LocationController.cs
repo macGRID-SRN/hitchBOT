@@ -11,7 +11,7 @@ namespace hitchbot_secure_api.Controllers
     public partial class LocationController : ApiController
     {
         [HttpPost]
-        public async Task<IHttpActionResult> UpdateLocation([FromBody] ReturnLocation Context)
+        public async Task<IHttpActionResult> LogLocation([FromBody] ReturnLocation Context)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Model sent was not valid.");

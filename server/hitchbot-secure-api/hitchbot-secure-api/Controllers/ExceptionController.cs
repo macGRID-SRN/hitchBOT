@@ -12,7 +12,7 @@ namespace hitchbot_secure_api.Controllers
     public partial class ExceptionController : ApiController
     {
         [HttpPost]
-        public async Task<IHttpActionResult> AddException([FromBody] ReturnException context)
+        public async Task<IHttpActionResult> LogException([FromBody] ReturnException context)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Model sent was not valid.");

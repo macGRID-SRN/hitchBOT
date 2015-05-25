@@ -11,7 +11,7 @@ namespace hitchbot_secure_api.Controllers
     public partial class TabletController : ApiController
     {
         [HttpPost]
-        public async Task<IHttpActionResult> UpdateTabletStatus([FromBody] ReturnTabletStatus context)
+        public async Task<IHttpActionResult> LogTabletStatus([FromBody] ReturnTabletStatus context)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Model sent was not valid.");
