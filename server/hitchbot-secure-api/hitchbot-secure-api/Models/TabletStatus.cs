@@ -8,7 +8,7 @@ namespace hitchbot_secure_api.Models
 {
     public class TabletStatus
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int HitchBotId { get; set; }
         public virtual HitchBot HitchBot { get; set; }
         public DateTime TimeTaken { get; set; }

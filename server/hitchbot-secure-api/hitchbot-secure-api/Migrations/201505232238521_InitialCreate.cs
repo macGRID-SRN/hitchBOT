@@ -8,6 +8,25 @@ namespace hitchbot_secure_api.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.ExceptionLogs",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Message = c.String(),
+                        Exception = c.String(),
+                        Arguments = c.String(),
+                        Method = c.String(),
+                        TimeOccured = c.DateTime(nullable: false),
+                        TimeAdded = c.DateTime(),
+                        Data = c.String(),
+                        Action = c.String(),
+                        HitchBotId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.HitchBots", t => t.HitchBotId, cascadeDelete: true)
+                .Index(t => t.HitchBotId);
+            
+            CreateTable(
                 "dbo.HitchBots",
                 c => new
                     {
@@ -62,7 +81,7 @@ namespace hitchbot_secure_api.Migrations
                 "dbo.SpeechLogEvents",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         HitchBotId = c.Int(nullable: false),
                         Speech_Said = c.String(),
                         Speech_Heard = c.String(),
@@ -79,7 +98,24 @@ namespace hitchbot_secure_api.Migrations
                         TimeOccured = c.DateTime(nullable: false),
                         TimeAdded = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.ID)
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.HitchBots", t => t.HitchBotId, cascadeDelete: true)
+                .Index(t => t.HitchBotId);
+            
+            CreateTable(
+                "dbo.TabletStatus",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        HitchBotId = c.Int(nullable: false),
+                        TimeTaken = c.DateTime(nullable: false),
+                        TimeAdded = c.DateTime(nullable: false),
+                        BatteryTemp = c.Double(nullable: false),
+                        BatteryVoltage = c.Double(nullable: false),
+                        IsCharging = c.Boolean(nullable: false),
+                        BatteryPercentage = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.HitchBots", t => t.HitchBotId, cascadeDelete: true)
                 .Index(t => t.HitchBotId);
             
@@ -87,20 +123,26 @@ namespace hitchbot_secure_api.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.TabletStatus", "HitchBotId", "dbo.HitchBots");
+            DropForeignKey("dbo.ExceptionLogs", "HitchBotId", "dbo.HitchBots");
             DropForeignKey("dbo.SpeechLogEvents", "HitchBotId", "dbo.HitchBots");
             DropForeignKey("dbo.HitchBots", "JourneyId", "dbo.Journeys");
             DropForeignKey("dbo.Journeys", "StartLocation_Id", "dbo.Locations");
             DropForeignKey("dbo.Journeys", "EndLocation_Id", "dbo.Locations");
             DropForeignKey("dbo.Locations", "HitchBotId", "dbo.HitchBots");
+            DropIndex("dbo.TabletStatus", new[] { "HitchBotId" });
             DropIndex("dbo.SpeechLogEvents", new[] { "HitchBotId" });
             DropIndex("dbo.Locations", new[] { "HitchBotId" });
             DropIndex("dbo.Journeys", new[] { "StartLocation_Id" });
             DropIndex("dbo.Journeys", new[] { "EndLocation_Id" });
             DropIndex("dbo.HitchBots", new[] { "JourneyId" });
+            DropIndex("dbo.ExceptionLogs", new[] { "HitchBotId" });
+            DropTable("dbo.TabletStatus");
             DropTable("dbo.SpeechLogEvents");
             DropTable("dbo.Locations");
             DropTable("dbo.Journeys");
             DropTable("dbo.HitchBots");
+            DropTable("dbo.ExceptionLogs");
         }
     }
 }

@@ -10,7 +10,7 @@ namespace hitchbot_secure_api.Models
 {
     public class SpeechLogEvent
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public int HitchBotId { get; set; }
         public virtual HitchBot HitchBot { get; set; }

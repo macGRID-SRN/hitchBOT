@@ -237,6 +237,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContextPacket.cs" />
+    <Compile Include="Models\ExceptionLog.cs" />
     <Compile Include="Models\HitchBot.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Journey.cs" />
