@@ -31,7 +31,14 @@ namespace hitchbot_secure_api.Models
 
         public Location()
         {
-            this.TimeAdded = DateTime.UtcNow;
+            TimeAdded = DateTime.UtcNow;
+        }
+
+        public Location(Controllers.ReturnObjects.GenericHitchBot context)
+            : this()
+        {
+            HitchBotId = context.HitchBotId;
+            TakenTime = context.TakenTime;
         }
     }
 
