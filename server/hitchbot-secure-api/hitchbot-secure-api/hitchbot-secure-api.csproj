@@ -221,7 +221,9 @@
     <Compile Include="Controllers\ReturnObjects\GenericHitchBot.cs" />
     <Compile Include="Controllers\ReturnObjects\Location.cs" />
     <Compile Include="Controllers\ReturnObjects\Speech.cs" />
+    <Compile Include="Controllers\ReturnObjects\TabletStatus.cs" />
     <Compile Include="Controllers\SpeechController.cs" />
+    <Compile Include="Controllers\TabletController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dal\DatabaseContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,6 +242,7 @@
     <Compile Include="Models\Journey.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\SpeechLogEvent.cs" />
+    <Compile Include="Models\TabletStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

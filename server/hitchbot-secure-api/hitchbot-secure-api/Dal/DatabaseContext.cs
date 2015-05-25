@@ -21,6 +21,7 @@ namespace hitchbot_secure_api.Dal
         public DbSet<HitchBot> HitchBots { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<SpeechLogEvent> SpeechLogEvents { get; set; }
+        public DbSet<TabletStatus> TabletStatuses { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
