@@ -49,7 +49,7 @@ public class HttpPostDb {
 			List<NameValuePair> header, List<NameValuePair> body, int uT) {
 		this.uploadToServer = uploadToServer;
 		this.header = header;
-		this.body = setPrimaryBodyParameters(body);
+		this.body = body;
 		this.setUri(uri);
 		this.dateCreated = Config.getUtcDate();
 		this.setUploadType(uT);
@@ -69,14 +69,6 @@ public class HttpPostDb {
 
 	}
 
-	private static List<NameValuePair> setPrimaryBodyParameters(List<NameValuePair> params)
-	{
-		params.add(new BasicNameValuePair("HitchBotId",String.valueOf(Config.ID)));
-		params.add(new BasicNameValuePair("TimeUnix",String.valueOf(System.currentTimeMillis())));
-		params.add(new BasicNameValuePair("Time",Config.getUtcDate()));
-		return params;
-	}
-	
 	public int getUploadToServer() {
 		return uploadToServer;
 	}

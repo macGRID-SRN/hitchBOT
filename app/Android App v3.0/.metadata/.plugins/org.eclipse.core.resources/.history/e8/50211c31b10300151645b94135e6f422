@@ -1,11 +1,5 @@
 package com.example.hitchbot;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
 import Models.HttpPostDb;
 import android.content.Context;
 import android.location.Location;
@@ -46,36 +40,29 @@ public class LocationInfo {
 	}
 
 	private void postFineLocation() {
+		String hitchBOTid = String.valueOf(Config.ID);
 		String sLatitude = String.valueOf(latitude);
 		String sLongitude = String.valueOf(longitude);
 		String sAltitude = String.valueOf(altitude);
 		String Accuracy = String.valueOf(accuracy);
 		String sSpeed = String.valueOf(speed);
 
-		//String uri = String.format(Config.locationPOST_FINE, hitchBOTid,
-		//		sLatitude, sLongitude, sAltitude, Accuracy, sSpeed,  Config.millis2UtcDate(timeObtained));
-		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
-		nvp.add(new BasicNameValuePair("Latitude", sLatitude));
-		nvp.add(new BasicNameValuePair("Longitude", sLongitude));
-		nvp.add(new BasicNameValuePair("Altitude", sAltitude));
-		nvp.add(new BasicNameValuePair("Accuracy", Accuracy));
-		nvp.add(new BasicNameValuePair("Velocity", sSpeed));
-
-		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST_FINE, 0,null, nvp, 1);
+		String uri = String.format(Config.locationPOST_FINE, hitchBOTid,
+				sLatitude, sLongitude, sAltitude, Accuracy, sSpeed,  Config.millis2UtcDate(timeObtained));
+		HttpPostDb httpPost = new HttpPostDb(uri, 0, 1);
 		Config.dQ.addItemToQueue(httpPost);
 
 	}
 
 	private void postCourseLocation() {
+		String hitchBOTid = String.valueOf(Config.ID);
 		String sLatitude = String.valueOf(latitude);
 		String sLongitude = String.valueOf(longitude);
 
-		//String uri = String.format(Config.locationPOST_COURSE, hitchBOTid,
-		//		sLatitude, sLongitude, List<E>ig.millis2UtcDate(timeObtained));
-		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
-		nvp.add(new BasicNameValuePair("Latitude", sLatitude));
-		nvp.add(new BasicNameValuePair("Longitude", sLongitude));
-		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST_COURSE, 0, null,nvp, 1);
+		String uri = String.format(Config.locationPOST_COURSE, hitchBOTid,
+				sLatitude, sLongitude, Config.millis2UtcDate(timeObtained));
+
+		HttpPostDb httpPost = new HttpPostDb(uri, 0, 1);
 		Config.dQ.addItemToQueue(httpPost);
 	}
 
