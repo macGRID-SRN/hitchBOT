@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using hitchbot_secure_api.Controllers;
+using hitchbot_secure_api.Controllers.ReturnObjects;
 
 namespace hitchbot_secure_api.Models
 {
@@ -35,7 +36,7 @@ namespace hitchbot_secure_api.Models
             TimeAdded = DateTime.UtcNow;
         }
 
-        public SpeechLogEvent(SpeechController.ReturnSpeech context)
+        public SpeechLogEvent(GenericHitchBot context)
             : this()
         {
             TimeOccured = context.DateTime;
