@@ -61,7 +61,7 @@ public class LocationInfo {
 		nvp.add(new BasicNameValuePair("Accuracy", Accuracy));
 		nvp.add(new BasicNameValuePair("Velocity", sSpeed));
 
-		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST_FINE, 0,null, nvp, 1);
+		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST, 0,null, nvp, 1);
 		Config.dQ.addItemToQueue(httpPost);
 
 	}
@@ -75,7 +75,7 @@ public class LocationInfo {
 		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
 		nvp.add(new BasicNameValuePair("Latitude", sLatitude));
 		nvp.add(new BasicNameValuePair("Longitude", sLongitude));
-		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST_COURSE, 0, null,nvp, 1);
+		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST, 0, null,nvp, 1);
 		Config.dQ.addItemToQueue(httpPost);
 	}
 

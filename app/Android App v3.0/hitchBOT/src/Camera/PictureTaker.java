@@ -56,8 +56,8 @@ public class PictureTaker {
 		} else {
 			takePicture = true;
 			frameNew.bringChildToFront(cameraPreview);
-			imageResult.setImageBitmap(null);
 			try {
+				imageResult.setImageBitmap(null);
 				//if()
 				cameraPreview.camera.startPreview();
 				Thread.sleep(1000);
@@ -68,6 +68,7 @@ public class PictureTaker {
 			}
 			catch(NullPointerException e)
 			{
+				setUpCamera();
 				Log.i(TAG, e.getMessage().toString());
 			}
 		}

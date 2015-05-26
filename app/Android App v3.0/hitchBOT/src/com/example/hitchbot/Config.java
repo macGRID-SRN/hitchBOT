@@ -18,11 +18,11 @@ public final class Config {
 	public static DatabaseConfig dQ = null;
 	//I would use a resource for these, but they don't play nicely with strings.xml, and the api
 	//will change drastically soon anyways
-	public static String conversationPost = "http://hitchbotapi.azurewebsites.net/api/Conversation?HitchBotID=%s&SpeechSaid=%s&SpeechHeard=%s&TimeTaken=%s&Person=%s&Notes=%s&MatchedLineLabel=%s&MatchAccuracy=%s&RmsDecibelLevel=%s&EnvironmentType=%s&RecognitionScore=%s&ResponseScore=%s&RecognizerEnum=%s";
-	public static String exceptionPOST = "http://hitchbotapi.azurewebsites.net/api/Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
-	public static String locationPOST_FINE = "http://hitchbotapi.azurewebsites.net/api/Location/LogLocation"; //?HitchBotID=%s&Latitude=%s&Longitude=%s&Altitude=%s&Accuracy=%s&Velocity=%s&TakenTime=%s";
-	public static String locationPOST_COURSE = "http://hitchbotapi.azurewebsites.net/api/Location/LogLocation"; //Location?HitchBotID=%s&Latitude=%s&Longitude=%s&TakenTime=%s
-	public static String batteryPOST = "http://hitchbotapi.azurewebsites.net/api/Tablet?HitchBotID=%s&timeTaken=%s&isPluggedIn=%s&BatteryVoltage=%s&BatteryPercent=%s&BatteryTemp=%s";
+	public static String serverURL = "http://hitchbot-secure-api.azurewebsites.net/api/";
+	public static String conversationPost = serverURL + "Speech/LogSpeech";//"Conversation?HitchBotID=%s&SpeechSaid=%s&SpeechHeard=%s&TimeTaken=%s&Person=%s&Notes=%s&MatchedLineLabel=%s&MatchAccuracy=%s&RmsDecibelLevel=%s&EnvironmentType=%s&RecognitionScore=%s&ResponseScore=%s&RecognizerEnum=%s";
+	public static String exceptionPOST = serverURL + "Exception/LogException";//"Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
+	public static String locationPOST = serverURL + "Location/LogLocation"; //?HitchBotID=%s&Latitude=%s&Longitude=%s&Altitude=%s&Accuracy=%s&Velocity=%s&TakenTime=%s";
+	public static String batteryPOST = serverURL + "Tablet/LogTabletStatus";//"http://hitchbotapi.azurewebsites.net/api/Tablet?HitchBotID=%s&timeTaken=%s&isPluggedIn=%s&BatteryVoltage=%s&BatteryPercent=%s&BatteryTemp=%s";
 	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s";
 	public static String audioPOST = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
 	public static String cleverGET = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";

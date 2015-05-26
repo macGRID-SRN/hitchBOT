@@ -1,5 +1,11 @@
 package com.example.hitchbot;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import Models.HttpPostDb;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -75,12 +81,17 @@ public class TabletInfo {
 		return temp;
 	}
 
-	public void queueBatteryUpdates()
+	public void queueBatNameValuePair()
 	{
-		String timeTaken = Config.getUtcDate();	
-		String uri = String.format(Config.batteryPOST,Config.ID, timeTaken,
-				isCharging, voltage, batteryPercent, temp);
-		HttpPostDb postDb = new HttpPostDb(uri, 0, 4);
+		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+		nvp.add(new BasicNameValuePair("BatteryTemp",temp));
+		nvp.add(new BasicNameValuePair("BatteryVoltage",voltage));
+		nvp.add(new BasicNameValuePair("IsCharging",isCharging));
+		nvp.add(new BasicNameValuePair("BatteryPercentage",batteryPercent));
+
+		//String uri = String.format(Config.batteryPOST,Config.ID, timeTaken,
+		//		isCharging, voltage, batteryPercent, temp);
+		HttpPostDb postDb = new HttpPostDb(Config.batteryPOST, 0,null, nvp, 4);
 		Config.dQ.addItemToQueue(postDb);
 	}
 

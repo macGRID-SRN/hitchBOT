@@ -1,5 +1,8 @@
 package Speech;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -45,12 +48,26 @@ public class CleverScriptHelper {
 	public void sendCleverScriptResponse(String message, double rmsDbLevel,
 			float accuracy, int recognizer) {
 		String output = getResponseFromCleverScript(message);
-		String uri = String.format(Config.conversationPost, Config.ID,
-				Uri.encode(output), Uri.encode(message), Config.getUtcDate(),
-				Uri.encode(Config.name), Uri.encode(Config.specInfo),
-				Uri.encode(getRecentOutputLabel()), getAccuracy(), rmsDbLevel,
-				"", "", accuracy, recognizer);
-		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
+		
+		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+		nvp.add(new BasicNameValuePair("Said",Uri.encode(output)));
+		nvp.add(new BasicNameValuePair("Heard",Uri.encode(message)));
+		nvp.add(new BasicNameValuePair("Person",Uri.encode(Config.name)));
+		nvp.add(new BasicNameValuePair("Notes",Uri.encode(Config.specInfo)));
+		nvp.add(new BasicNameValuePair("MatchedLineLabel",Uri.encode(getRecentOutputLabel())));
+		nvp.add(new BasicNameValuePair("MatchAccuracy",getAccuracy()));
+		nvp.add(new BasicNameValuePair("EnvironmentType",""));
+		nvp.add(new BasicNameValuePair("RecognitionScore",String.valueOf(accuracy)));
+		nvp.add(new BasicNameValuePair("GoogleRecognitionScore",String.valueOf(accuracy)));
+		nvp.add(new BasicNameValuePair("ResponseScore",""));
+		nvp.add(new BasicNameValuePair("RecognizerTypeEnum",String.valueOf(recognizer)));
+		nvp.add(new BasicNameValuePair("RmsDecibalLevel",String.valueOf(rmsDbLevel)));
+		//String uri = String.format(Config.conversationPost, Config.ID,
+		//		Uri.encode(output), Uri.encode(message), Config.getUtcDate(),
+		//		Uri.encode(Config.name), Uri.encode(Config.specInfo),
+		//		Uri.encode(getRecentOutputLabel()), getAccuracy(), rmsDbLevel,
+		//		"", "", accuracy, recognizer);
+		HttpPostDb httpPost = new HttpPostDb(Config.conversationPost, 0,null, nvp, 3);
 		Config.dQ.addItemToQueue(httpPost);
 		speechOut.Speak(output);
 	}
@@ -58,24 +75,45 @@ public class CleverScriptHelper {
 	public void sendCleverScriptResponse(String message, int accuracy,
 			int recognizer) {
 		String output = getResponseFromCleverScript(message);
-		String uri = String.format(Config.conversationPost, Config.ID,
-				Uri.encode(output), Uri.encode(message), Config.getUtcDate(),
-				Uri.encode(Config.name), Uri.encode(Config.specInfo),
-				Uri.encode(getRecentOutputLabel()), getAccuracy(), "", "", "",
-				accuracy, recognizer);
-		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
+		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+		nvp.add(new BasicNameValuePair("Said",Uri.encode(output)));
+		nvp.add(new BasicNameValuePair("Heard",Uri.encode(message)));
+		nvp.add(new BasicNameValuePair("Person",""));
+		nvp.add(new BasicNameValuePair("Notes",""));
+		nvp.add(new BasicNameValuePair("MatchedLineLabel",Uri.encode(getRecentOutputLabel())));
+		nvp.add(new BasicNameValuePair("MatchAccuracy",getAccuracy()));
+		nvp.add(new BasicNameValuePair("EnvironmentType",""));
+		nvp.add(new BasicNameValuePair("RecognitionScore",String.valueOf(accuracy)));
+		nvp.add(new BasicNameValuePair("GoogleRecognitionScore",""));
+		nvp.add(new BasicNameValuePair("ResponseScore",""));
+		nvp.add(new BasicNameValuePair("RecognizerTypeEnum",""));
+		nvp.add(new BasicNameValuePair("RmsDecibalLevel",""));
+
+		//String uri = String.format(Config.conversationPost, Config.ID,
+		//		Uri.encode(output), Uri.encode(message), Config.getUtcDate(),
+		//		Uri.encode(Config.name), Uri.encode(Config.specInfo),
+		//		Uri.encode(getRecentOutputLabel()), getAccuracy(), "", "", "",
+		//		accuracy, recognizer);
+		HttpPostDb httpPost = new HttpPostDb(Config.conversationPost, 0,null, nvp, 3);
 		Config.dQ.addItemToQueue(httpPost);
 		speechOut.Speak(output);
 	}
 
 	public void sendCleverScriptResponse(String message) {
 		String output = getResponseFromCleverScript(message);
-		String uri = String.format(Config.conversationPost, Config.ID,
-				Uri.encode(output), Uri.encode(message), Config.getUtcDate(),
-				Uri.encode(Config.name), Uri.encode(Config.specInfo),
-				Uri.encode(getRecentOutputLabel()), getAccuracy(), "", "", "",
-				"", "");
-		HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
+		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+		nvp.add(new BasicNameValuePair("Said",Uri.encode(output)));
+		nvp.add(new BasicNameValuePair("Heard",Uri.encode(message)));
+		nvp.add(new BasicNameValuePair("Person",""));
+		nvp.add(new BasicNameValuePair("Notes",""));
+		nvp.add(new BasicNameValuePair("MatchedLineLabel",Uri.encode(getRecentOutputLabel())));
+		nvp.add(new BasicNameValuePair("MatchAccuracy",getAccuracy()));
+		//String uri = String.format(Config.conversationPost, Config.ID,
+		//		Uri.encode(output), Uri.encode(message), Config.getUtcDate(),
+		//		Uri.encode(Config.name), Uri.encode(Config.specInfo),
+		//		Uri.encode(getRecentOutputLabel()), getAccuracy(), "", "", "",
+		//		"", "");
+		HttpPostDb httpPost = new HttpPostDb(Config.conversationPost, 0,null, nvp, 3);
 		Config.dQ.addItemToQueue(httpPost);
 		speechOut.Speak(output);
 	}
@@ -115,7 +153,7 @@ public class CleverScriptHelper {
 					Log.i(TAG, (String) jobj.getString("value") + " ");
 
 				}
-			} catch (Exception e) { // stuff
+			} catch (Exception e) { 
 			}
 		}
 	}

@@ -9,6 +9,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.example.hitchbot.Config;
 
 public class HttpPostDb {
@@ -22,6 +24,7 @@ public class HttpPostDb {
 	private String serializedHeader = "";
 	private List<NameValuePair> body;
 	private List<NameValuePair> header;
+	private static String TAG = "HttpPostDb";
 	// 0 image, 1 location, 2 spokenphrase, 3 heardphrase, 4 battery, 5 image, 6
 	// audio
 	// 7 exception --- These aren't really needed at this point, for future use!
@@ -178,8 +181,10 @@ public class HttpPostDb {
 					e.printStackTrace();
 				}
 			}
+			Log.i(TAG, "jason " + jO.toString());
 			return jO.toString();
 		} else
+			Log.i(TAG, "already serialized" + serializedBody);
 			return serializedBody;
 	}
 
