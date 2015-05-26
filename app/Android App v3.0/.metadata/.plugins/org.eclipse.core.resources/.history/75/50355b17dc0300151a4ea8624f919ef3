@@ -67,7 +67,7 @@ public class LocationInfo {
 	}
 
 	private void postCourseLocation() {
-		double sLatitude = latitude;
+		double sLatitude = latitude);
 		double sLongitude = longitude;
 
 		//String uri = String.format(Config.locationPOST_COURSE, hitchBOTid,

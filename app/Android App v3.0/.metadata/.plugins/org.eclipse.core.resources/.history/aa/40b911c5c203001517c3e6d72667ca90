@@ -81,7 +81,7 @@ public class TabletInfo {
 		return temp;
 	}
 
-	public void queueBatteryUpdates()
+	public void queueBatNameValuePair()
 	{
 		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
 		nvp.add(new BasicNameValuePair("BatteryTemp",temp));
