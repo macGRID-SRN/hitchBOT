@@ -7,7 +7,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import Models.HttpPostDb;
-import TransitionModels.LocationPack;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -47,18 +46,36 @@ public class LocationInfo {
 	}
 
 	private void postFineLocation() {
+		double sLatitude = latitude;
+		double sLongitude = longitude;
+		double sAltitude = altitude;
+		double Accuracy = accuracy;
+		double sSpeed = speed;
 
-		LocationPack locPack = new LocationPack(latitude, longitude, altitude, accuracy, speed);
-		
-		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST, 0,null, locPack.toJson(), 1);
+		//String uri = String.format(Config.locationPOST_FINE, hitchBOTid,
+		//		sLatitude, sLongitude, sAltitude, Accuracy, sSpeed,  Config.millis2UtcDate(timeObtained));
+		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+		nvp.add(new BasicNameValuePair("Latitude", Double.toString(sLatitude)));
+		nvp.add(new BasicNameValuePair("Longitude", Double.toString(sLongitude)));
+		nvp.add(new BasicNameValuePair("Altitude", Double.toString(sAltitude)));
+		nvp.add(new BasicNameValuePair("Accuracy", Double.toString(Accuracy)));
+		nvp.add(new BasicNameValuePair("Velocity", Double.toString(sSpeed)));
+
+		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST, 0,null, nvp, 1);
 		Config.dQ.addItemToQueue(httpPost);
 
 	}
 
 	private void postCourseLocation() {
-		
-		LocationPack locPack = new LocationPack(latitude, longitude);
-		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST, 0, null,locPack.toJson(), 1);
+		double sLatitude = latitude;
+		double sLongitude = longitude;
+
+		//String uri = String.format(Config.locationPOST_COURSE, hitchBOTid,
+		//		sLatitude, sLongitude, List<E>ig.millis2UtcDate(timeObtained));
+		List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+		nvp.add(new BasicNameValuePair("Latitude", Double.toString(sLatitude)));
+		nvp.add(new BasicNameValuePair("Longitude", Double.toString(sLongitude)));
+		HttpPostDb httpPost = new HttpPostDb(Config.locationPOST, 0, null,nvp, 1);
 		Config.dQ.addItemToQueue(httpPost);
 	}
 

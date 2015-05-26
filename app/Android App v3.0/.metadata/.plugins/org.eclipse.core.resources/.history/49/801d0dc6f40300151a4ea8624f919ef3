@@ -20,9 +20,9 @@ public class HttpPostDb {
 	// 0 is no, 1 is yes
 	private int uploadToServer;
 	private String dateCreated;
-	private String serializedHeader = "";
 	private String serializedBody = "";
-	private JSONObject body;
+	private String serializedHeader = "";
+	private List<NameValuePair> body;
 	private List<NameValuePair> header;
 	private static String TAG = "HttpPostDb";
 	// 0 image, 1 location, 2 spokenphrase, 3 heardphrase, 4 battery, 5 image, 6
@@ -33,7 +33,7 @@ public class HttpPostDb {
 	public HttpPostDb(int ID, String uri, int uploadedToServer,
 			String dateCreated, int uT) {
 		this.ID = ID;
-		this.uploadToServer = uploadedToServer;
+		this.uploadToServer = uploadToServer;
 		this.setUri(uri);
 		this.dateCreated = dateCreated;
 		this.setUploadType(uT);
@@ -41,7 +41,7 @@ public class HttpPostDb {
 
 	// just query string
 	public HttpPostDb(String uri, int uploadedToServer, int uT) {
-		this.uploadToServer = uploadedToServer;
+		this.uploadToServer = uploadToServer;
 		this.setUri(uri);
 		this.dateCreated = Config.getUtcDate();
 		this.setUploadType(uT);
@@ -49,11 +49,10 @@ public class HttpPostDb {
 
 	// general httpdb post
 	public HttpPostDb(String uri, int uploadedToServer,
-			List<NameValuePair> header, JSONObject body, int uT) {
-		this.uploadToServer = uploadedToServer;
+			List<NameValuePair> header, List<NameValuePair> body, int uT) {
+		this.uploadToServer = uploadToServer;
 		this.header = header;
-		this.setBody(body);
-		this.serializedBody = body.toString();
+		this.body = setPrimaryBodyParameters(body);
 		this.setUri(uri);
 		this.dateCreated = Config.getUtcDate();
 		this.setUploadType(uT);
@@ -61,9 +60,9 @@ public class HttpPostDb {
 
 	public HttpPostDb(String uri, int uploadedToServer, String header,
 			String body, int uT) {
-		this.uploadToServer = uploadedToServer;
+		this.uploadToServer = uploadToServer;
 		this.serializedHeader = header;
-		this.setSerializedBody(body);
+		this.serializedBody = body;
 		this.setUri(uri);
 		this.dateCreated = Config.getUtcDate();
 		this.setUploadType(uT);
@@ -71,6 +70,14 @@ public class HttpPostDb {
 
 	public HttpPostDb() {
 
+	}
+
+	private static List<NameValuePair> setPrimaryBodyParameters(List<NameValuePair> params)
+	{
+		params.add(new BasicNameValuePair("HitchBotId",String.valueOf(Config.ID)));
+		params.add(new BasicNameValuePair("TimeUnix",String.valueOf(System.currentTimeMillis())));
+		params.add(new BasicNameValuePair("Time",Config.getUtcDate()));
+		return params;
 	}
 	
 	public int getUploadToServer() {
@@ -130,12 +137,59 @@ public class HttpPostDb {
 		this.header = header;
 	}
 
+	public List<NameValuePair> getBody() {
+		if (serializedBody != "") {
+			try {
+				List<NameValuePair> nvp = new ArrayList<NameValuePair>();
+				JSONObject jO = new JSONObject(serializedBody);
+				Iterator<String> keys = jO.keys();
+				while (keys.hasNext()) {
+					String key = keys.next();
+					nvp.add(new BasicNameValuePair(key, jO.getString(key)));
+				}
+				return nvp;
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				return null;
+			}
+		} else if(body != null)
+			return body;		
+		else
+			return null;
+	}
+
+	public void setBody(List<NameValuePair> body) {
+		this.body = body;
+	}
+
 	public int getUploadType() {
 		return uploadType;
 	}
 
 	public void setUploadType(int uploadType) {
 		this.uploadType = uploadType;
+	}
+
+	public String getSerializedBody() {
+		JSONObject jO = new JSONObject();
+		if (body != null && body.size() > 0) {
+			for (NameValuePair nvp : body) {
+				try {
+					jO.put(nvp.getName(), nvp.getValue());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			Log.i(TAG, "jason " + jO.toString());
+			return jO.toString();
+		} else
+			Log.i(TAG, "already serialized" + serializedBody);
+			return serializedBody;
+	}
+
+	public void setSerializedBody(String serializedBody) {
+		this.serializedBody = serializedBody;
 	}
 
 	public String getSerializedHeader() {
@@ -157,22 +211,6 @@ public class HttpPostDb {
 
 	public void setSerializedHeader(String serializedHeader) {
 		this.serializedHeader = serializedHeader;
-	}
-
-	public JSONObject getBody() {
-		return body;
-	}
-
-	public void setBody(JSONObject body) {
-		this.body = body;
-	}
-
-	public String getSerializedBody() {
-		return serializedBody;
-	}
-
-	public void setSerializedBody(String serializedBody) {
-		this.serializedBody = serializedBody;
 	}
 
 }

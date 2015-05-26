@@ -53,7 +53,6 @@ public class HttpPostDb {
 		this.uploadToServer = uploadedToServer;
 		this.header = header;
 		this.setBody(body);
-		this.serializedBody = body.toString();
 		this.setUri(uri);
 		this.dateCreated = Config.getUtcDate();
 		this.setUploadType(uT);
@@ -63,7 +62,7 @@ public class HttpPostDb {
 			String body, int uT) {
 		this.uploadToServer = uploadedToServer;
 		this.serializedHeader = header;
-		this.setSerializedBody(body);
+		this.serializedBody = body;
 		this.setUri(uri);
 		this.dateCreated = Config.getUtcDate();
 		this.setUploadType(uT);
@@ -165,14 +164,6 @@ public class HttpPostDb {
 
 	public void setBody(JSONObject body) {
 		this.body = body;
-	}
-
-	public String getSerializedBody() {
-		return serializedBody;
-	}
-
-	public void setSerializedBody(String serializedBody) {
-		this.serializedBody = serializedBody;
 	}
 
 }

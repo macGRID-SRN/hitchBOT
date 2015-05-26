@@ -53,7 +53,6 @@ public class HttpPostDb {
 		this.uploadToServer = uploadedToServer;
 		this.header = header;
 		this.setBody(body);
-		this.serializedBody = body.toString();
 		this.setUri(uri);
 		this.dateCreated = Config.getUtcDate();
 		this.setUploadType(uT);

@@ -14,14 +14,9 @@ public class ExceptionPack extends InfoPack {
 	private String Data;
 	private String Action;
 	
-	public ExceptionPack(String message)
+	public ExceptionPack()
 	{
-		this.Message = message;
-		this.Exception = "";
-		this.Arguments = "";
-		this.Method = "";
-		this.Data = "";
-		this.Action = "";
+		
 	}
 	
 	@Override
