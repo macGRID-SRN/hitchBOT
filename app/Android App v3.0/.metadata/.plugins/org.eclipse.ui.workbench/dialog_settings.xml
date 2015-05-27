@@ -26,4 +26,15 @@
 			<item value="com.android.ide.eclipse.wizards.category"/>
 		</list>
 	</section>
+	<section name="ShowViewDialog">
+		<item value="631" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="com.android.ide.eclipse.ddms.views.HeapView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+		<item value="573" key="DIALOG_HEIGHT"/>
+		<item value="1298" key="DIALOG_X_ORIGIN"/>
+		<item value="495" key="DIALOG_Y_ORIGIN"/>
+		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="com.android.ide.eclipse.ddms.views.category"/>
+		</list>
+	</section>
 </section>

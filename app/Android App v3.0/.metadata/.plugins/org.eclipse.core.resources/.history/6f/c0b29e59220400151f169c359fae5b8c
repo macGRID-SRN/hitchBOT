@@ -45,6 +45,7 @@ public class SpeechActivity extends Activity {
 		setContentView(R.layout.activity_speech);
 		Config.context = this;
 		Config.dQ = DatabaseConfig.getHelper(this);
+		Config.dQ.launchMissles();
 		setUnCaughtExceptionHandler();
 		tP = new PictureTaker();
 		setupHandler();

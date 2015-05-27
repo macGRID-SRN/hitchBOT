@@ -26,7 +26,22 @@ public class ExceptionPack extends InfoPack {
 			return null;
 		}
 		return jO;
+		/*JSONObject jO = new JSONObject();
+		try {
+			jO.put("HitchBotId", Config.ID);
+			jO.put("TimeUnix", System.currentTimeMillis() / 1000);
+			jO.put("Time", Config.getUtcDate());
 
+			jO.put("Message", this.Message);
+
+			return jO;
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;*/
 	}
 	
 }

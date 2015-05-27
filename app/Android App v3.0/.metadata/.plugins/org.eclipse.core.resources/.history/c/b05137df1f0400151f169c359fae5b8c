@@ -60,7 +60,7 @@ public class PictureTaker {
 				imageResult.setImageBitmap(null);
 				//if()
 				cameraPreview.camera.startPreview();
-				Thread.sleep(1500);
+				Thread.sleep(1000);
 				captureHandler();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -68,6 +68,7 @@ public class PictureTaker {
 			}
 			catch(NullPointerException e)
 			{
+				setUpCamera();
 				Log.i(TAG, e.getMessage().toString());
 			}
 		}

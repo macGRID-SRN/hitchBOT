@@ -73,7 +73,7 @@ public class SpeechActivity extends Activity {
 			}
 		});
 	}
-	
+
 	private void setupHandler() {
 		internetHandler = new Handler();
 		internetHandler.postDelayed(new Runnable() {
@@ -123,12 +123,7 @@ public class SpeechActivity extends Activity {
 	}
 
 	public void takePicture() {
-		try{
 		tP.captureHandler();
-		}
-		catch(NullPointerException e){
-			Log.i(TAG ,e.toString());
-		}
 	}
 
 	@Override

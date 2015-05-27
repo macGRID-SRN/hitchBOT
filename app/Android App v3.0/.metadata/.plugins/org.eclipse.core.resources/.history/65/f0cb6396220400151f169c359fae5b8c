@@ -35,6 +35,23 @@ public class TabletPack extends InfoPack {
 			e.printStackTrace();
 			return null;
 		}
-		return jO;
+		return jO;/*
+		JSONObject jO = new JSONObject();
+		try {
+			jO.put("HitchBotId", Config.ID);
+			jO.put("TimeUnix", System.currentTimeMillis() / 1000);
+			jO.put("Time", Config.getUtcDate());
+			
+			jO.put("BatteryTemp", this.BatteryTemp);
+			jO.put("BatteryVoltage", this.BatteryVoltage);
+			jO.put("IsCharging", this.IsCharging);
+			jO.put("BatteryPercentage ", this.BatteryPercentage);
+			return jO;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;*/
 	}
 }

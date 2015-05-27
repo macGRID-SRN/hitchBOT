@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.example.hitchbot.Activities.SpeechActivity"/>
-<fullyQualifiedTypeName name="android.text.Html"/>
-<fullyQualifiedTypeName name="org.apache.http.client.ClientProtocolException"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
@@ -53,11 +50,14 @@
 <fullyQualifiedTypeName name="org.apache.http.message.BasicNameValuePair"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="TransitionModels.SpeechPack"/>
 <fullyQualifiedTypeName name="TransitionModels.LocationPack"/>
 <fullyQualifiedTypeName name="TransitionModels.TabletPack"/>
 <fullyQualifiedTypeName name="org.apache.http.entity.StringEntity"/>
 <fullyQualifiedTypeName name="TransitionModels.ExceptionPack"/>
+<fullyQualifiedTypeName name="java.io.UnsupportedEncodingException"/>
+<fullyQualifiedTypeName name="org.apache.http.message.BasicHeader"/>
+<fullyQualifiedTypeName name="com.google.gson.Gson"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>
