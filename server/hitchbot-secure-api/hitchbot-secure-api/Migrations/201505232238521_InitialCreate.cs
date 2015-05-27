@@ -16,10 +16,10 @@ namespace hitchbot_secure_api.Migrations
                         Exception = c.String(),
                         Arguments = c.String(),
                         Method = c.String(),
-                        TimeOccured = c.DateTime(nullable: false),
-                        TimeAdded = c.DateTime(nullable: false),
                         Data = c.String(),
                         Action = c.String(),
+                        TimeOccured = c.DateTime(nullable: false),
+                        TimeAdded = c.DateTime(nullable: false),
                         HitchBotId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -90,8 +90,8 @@ namespace hitchbot_secure_api.Migrations
                         Speech_MatchedLineLabel = c.String(),
                         MatchAccuracy = c.Int(),
                         EnvironmentType = c.Int(),
-                        RecognitionScore = c.Int(),
-                        GoogleRecognitionScore = c.Int(),
+                        RecognitionScore = c.Double(),
+                        GoogleRecognitionScore = c.Double(),
                         ResponseScore = c.Int(),
                         RecognizerType = c.Int(),
                         RmsDecibalLevel = c.Double(),

@@ -20,8 +20,8 @@ namespace hitchbot_secure_api.Models
 
         public int? MatchAccuracy { get; set; }
         public int? EnvironmentType { get; set; }
-        public int? RecognitionScore { get; set; }
-        public int? GoogleRecognitionScore { get; set; }
+        public double? RecognitionScore { get; set; }
+        public double? GoogleRecognitionScore { get; set; }
         public int? ResponseScore { get; set; }
 
         public RecognizerType? RecognizerType { get; set; }
