@@ -21,7 +21,7 @@ namespace hitchbot_secure_api.Controllers.ReturnObjects
             {
                 if (TimeUnix.HasValue)
                 {
-                    return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds((double)TimeUnix);
+                    return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(((double)TimeUnix)/1000);
                 }
 
                 if (!string.IsNullOrWhiteSpace(Time))
