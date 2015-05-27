@@ -39,7 +39,7 @@ public class LocationPack extends InfoPack {
 		JSONObject jO = new JSONObject();
 		try {
 			jO.put("HitchBotId", Config.ID);
-			jO.put("TimeUnix", System.currentTimeMillis());
+			jO.put("TimeUnix", System.currentTimeMillis() / 1000);
 			jO.put("Time", Config.getUtcDate());
 
 			jO.put("Latitude", this.Latitude);

@@ -1,6 +1,7 @@
 package Data;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -8,7 +9,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -34,20 +37,25 @@ public class DataPOST extends AsyncTask<HttpPostDb, Void, Void> {
 			HttpPost hP = new HttpPost(params[i].getUri());
 			Log.i(TAG, params[i].getUri() );
 
-			if (params[i].getHeader() != null)
+			/*if (params[i].getHeader() != null)
 			{
 				for(int j = 0; j < params[i].getHeader().size(); j ++)
 				{
 			hP.addHeader(params[i].getHeader().get(j).getName(),params[i].getHeader().get(j).getValue());
 			Log.i(TAG, "header isn't null" );
 				}
-			}
+			}*/
+			hP.setHeader("Accept", "application/json");
+			hP.setHeader("Content-type", "application/json");
 			
 			try
 			{
-				if(params[i].getBody() != null)
+				if(params[i].getSerializedBody() != null || params[i].getSerializedBody() != "")
 				{
-				hP.setEntity(new UrlEncodedFormEntity(params[i].getBody(), HTTP.UTF_8));
+				Log.i(TAG, params[i].getSerializedBody() + "");
+				StringEntity se = new StringEntity(params[i].getSerializedBody(), HTTP.UTF_8);
+
+				hP.setEntity(se);
 				}
 				
 				HttpResponse hR = hC.execute(hP);

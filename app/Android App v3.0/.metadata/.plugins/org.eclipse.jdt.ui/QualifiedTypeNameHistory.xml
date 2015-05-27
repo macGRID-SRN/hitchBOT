@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="android.widget.Toast"/>
-<fullyQualifiedTypeName name="Speech.SpeechController"/>
-<fullyQualifiedTypeName name="android.view.View"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="com.example.hitchbot.R.id"/>
-<fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="com.example.hitchbot.Activities.SpeechActivity"/>
 <fullyQualifiedTypeName name="android.text.Html"/>
 <fullyQualifiedTypeName name="org.apache.http.client.ClientProtocolException"/>
@@ -46,18 +40,24 @@
 <fullyQualifiedTypeName name="java.util.Iterator"/>
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
 <fullyQualifiedTypeName name="Models.FileUploadDb"/>
-<fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
 <fullyQualifiedTypeName name="Data.FileUpload"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="Data.DataGET"/>
 <fullyQualifiedTypeName name="Camera.PictureTaker"/>
 <fullyQualifiedTypeName name="android.hardware.Camera.ErrorCallback"/>
-<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.apache.http.NameValuePair"/>
 <fullyQualifiedTypeName name="org.apache.http.message.BasicNameValuePair"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.example.hitchbot.Config"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="TransitionModels.SpeechPack"/>
+<fullyQualifiedTypeName name="TransitionModels.LocationPack"/>
+<fullyQualifiedTypeName name="TransitionModels.TabletPack"/>
+<fullyQualifiedTypeName name="org.apache.http.entity.StringEntity"/>
+<fullyQualifiedTypeName name="TransitionModels.ExceptionPack"/>
 </qualifiedTypeNameHistroy>

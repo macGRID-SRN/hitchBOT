@@ -188,6 +188,7 @@ public class DatabaseConfig extends SQLiteOpenHelper{
 			newRecord.put(COLUMN_UPLOADTYPE, httpPost.getUploadType());
 			newRecord.put(COLUMN_HEADER, httpPost.getSerializedHeader());
 			newRecord.put(COLUMN_BODY, httpPost.getSerializedBody());
+			Log.i(TAG, httpPost.getSerializedBody());
 
 			database.insert(TABLE_HTTPPOSTQUEUE, null, newRecord);
 		}catch (Exception e)

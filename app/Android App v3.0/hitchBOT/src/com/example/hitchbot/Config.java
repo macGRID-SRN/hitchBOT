@@ -29,7 +29,7 @@ public final class Config {
 
 	public static String name = "";
 	public static String searchName = "searchName";
-	public static final int ID = 15; //14-18
+	public static final int ID = 1; //14-18
 	public static String specInfo = "";
 	public static CleverScriptHelper csh = null;
 	public static int HOUR = 1000 * 60 * 60;

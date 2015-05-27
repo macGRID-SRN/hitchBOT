@@ -40,7 +40,7 @@ public class SpeechPack extends InfoPack {
 		JSONObject jO = new JSONObject();
 		try {
 			jO.put("HitchBotId", Config.ID);
-			jO.put("TimeUnix", System.currentTimeMillis());
+			jO.put("TimeUnix", System.currentTimeMillis() / 1000);
 			jO.put("Time", Config.getUtcDate());
 
 			jO.put("Said", this.Said);
@@ -51,6 +51,7 @@ public class SpeechPack extends InfoPack {
 			jO.put("GoogleRecognitionScore", this.GoogleRecognitionScore);
 			jO.put("MatchAccuracy", this.MatchAccuracy);
 			jO.put("RmsDecibalLevel", this.RmsDecibalLevel);
+			jO.put("RecognizerType", 2);
 
 			return jO;
 		} catch (JSONException e) {
