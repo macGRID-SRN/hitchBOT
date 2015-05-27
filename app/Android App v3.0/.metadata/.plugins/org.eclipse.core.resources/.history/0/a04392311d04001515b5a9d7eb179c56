@@ -17,17 +17,10 @@ public class ExceptionPack extends InfoPack {
 	}
 	
 	@Override
-	public JSONObject toJson() {
+	public String toJson() {
 		Gson gs = new Gson();
 		String json = gs.toJson(this);
-		JSONObject jO;
-		try {
-			jO = new JSONObject(json);
-		} catch (JSONException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return jO;
+		return json;
 		/*JSONObject jO = new JSONObject();
 		try {
 			jO.put("HitchBotId", Config.ID);

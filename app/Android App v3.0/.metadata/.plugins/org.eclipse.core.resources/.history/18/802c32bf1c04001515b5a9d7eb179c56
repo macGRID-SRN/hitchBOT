@@ -4,16 +4,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.hitchbot.Config;
-import com.google.gson.Gson;
 
 public class LocationPack extends InfoPack {
 
-	public double Latitude;
-	public double Longitude;
-	public double Altitude;
-	public double Accuracy;
-	public double Velocity;
-	public boolean isPrecise;
+	private double Latitude;
+	private double Longitude;
+	private double Altitude;
+	private double Accuracy;
+	private double Velocity;
+	private boolean isPrecise;
 
 	public LocationPack(double lat, double longitude) {
 		this.Latitude = lat;
@@ -37,17 +36,6 @@ public class LocationPack extends InfoPack {
 
 	@Override
 	public JSONObject toJson() {
-		Gson gs = new Gson();
-		String json = gs.toJson(this);
-		JSONObject jO;
-		try {
-			jO = new JSONObject(json);
-		} catch (JSONException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return jO;
-		/*
 		JSONObject jO = new JSONObject();
 		try {
 			jO.put("HitchBotId", Config.ID);
@@ -68,7 +56,7 @@ public class LocationPack extends InfoPack {
 			e.printStackTrace();
 		}
 
-		return null;*/
+		return null;
 	}
 
 }

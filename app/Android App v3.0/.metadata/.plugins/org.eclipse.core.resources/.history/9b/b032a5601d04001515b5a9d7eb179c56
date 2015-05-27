@@ -20,14 +20,7 @@ public class ExceptionPack extends InfoPack {
 	public JSONObject toJson() {
 		Gson gs = new Gson();
 		String json = gs.toJson(this);
-		JSONObject jO;
-		try {
-			jO = new JSONObject(json);
-		} catch (JSONException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return jO;
+		return json;
 		/*JSONObject jO = new JSONObject();
 		try {
 			jO.put("HitchBotId", Config.ID);
