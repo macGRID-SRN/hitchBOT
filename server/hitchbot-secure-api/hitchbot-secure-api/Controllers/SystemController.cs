@@ -14,7 +14,6 @@ namespace hitchbot_secure_api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest("Model state is not valid");
 
-
             return Ok();
         }
 
