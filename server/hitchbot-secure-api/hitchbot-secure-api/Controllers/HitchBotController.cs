@@ -21,20 +21,46 @@ namespace hitchbot_secure_api.Controllers
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetCleverscriptContext()
+        public async Task<IHttpActionResult> GetCleverscriptContext(int? HitchBotId)
         {
-            using (var db = new DatabaseContext())
+            if (!HitchBotId.HasValue)
             {
-                var result = new ContextPacket
+                var result = new
                 {
-                    data = new List<KeyValuePair>
+                    data = new List<VariableValuePair>
                     {
-                        new KeyValuePair
+                        new VariableValuePair
                         {
                             key = "current_city_name",
                             value = "Hamilton"
                         }
                     }
+                };
+
+                return Ok(result);
+            }
+
+            using (var db = new DatabaseContext())
+            {
+
+                var packets =
+                    db.ContextPackets.Where(l => l.HitchBotId == HitchBotId)
+                        .OrderByDescending(l => l.TimeCreated)
+                        .FirstOrDefault();
+
+                if (packets == null)
+                {
+                    BadRequest(string.Format("No cleverscript variables found for hitchBOT with ID: {0}.", HitchBotId));
+                }
+
+                var variables = db.VariableValuePairs.Where(l => l.ContextPacketId == packets.Id);
+
+                if (!variables.Any())
+                    BadRequest(string.Format("No cleverscript variables found for hitchBOT with ID: {0}.", HitchBotId));
+
+                var result = new
+                {
+                    data = variables.ToList()
                 };
 
                 return Ok(result);

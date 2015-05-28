@@ -8,19 +8,12 @@ namespace hitchbot_secure_api.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.ExceptionLogs",
+                "dbo.ContextPackets",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Message = c.String(),
-                        Exception = c.String(),
-                        Arguments = c.String(),
-                        Method = c.String(),
-                        Data = c.String(),
-                        Action = c.String(),
-                        TimeOccured = c.DateTime(nullable: false),
-                        TimeAdded = c.DateTime(nullable: false),
                         HitchBotId = c.Int(nullable: false),
+                        TimeCreated = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.HitchBots", t => t.HitchBotId, cascadeDelete: true)
@@ -103,6 +96,38 @@ namespace hitchbot_secure_api.Migrations
                 .Index(t => t.HitchBotId);
             
             CreateTable(
+                "dbo.VariableValuePairs",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        key = c.String(),
+                        value = c.String(),
+                        ContextPacketId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ContextPackets", t => t.ContextPacketId, cascadeDelete: true)
+                .Index(t => t.ContextPacketId);
+            
+            CreateTable(
+                "dbo.ExceptionLogs",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Message = c.String(),
+                        Exception = c.String(),
+                        Arguments = c.String(),
+                        Method = c.String(),
+                        Data = c.String(),
+                        Action = c.String(),
+                        TimeOccured = c.DateTime(nullable: false),
+                        TimeAdded = c.DateTime(nullable: false),
+                        HitchBotId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.HitchBots", t => t.HitchBotId, cascadeDelete: true)
+                .Index(t => t.HitchBotId);
+            
+            CreateTable(
                 "dbo.TabletStatus",
                 c => new
                     {
@@ -125,24 +150,30 @@ namespace hitchbot_secure_api.Migrations
         {
             DropForeignKey("dbo.TabletStatus", "HitchBotId", "dbo.HitchBots");
             DropForeignKey("dbo.ExceptionLogs", "HitchBotId", "dbo.HitchBots");
+            DropForeignKey("dbo.VariableValuePairs", "ContextPacketId", "dbo.ContextPackets");
+            DropForeignKey("dbo.ContextPackets", "HitchBotId", "dbo.HitchBots");
             DropForeignKey("dbo.SpeechLogEvents", "HitchBotId", "dbo.HitchBots");
             DropForeignKey("dbo.HitchBots", "JourneyId", "dbo.Journeys");
             DropForeignKey("dbo.Journeys", "StartLocation_Id", "dbo.Locations");
             DropForeignKey("dbo.Journeys", "EndLocation_Id", "dbo.Locations");
             DropForeignKey("dbo.Locations", "HitchBotId", "dbo.HitchBots");
             DropIndex("dbo.TabletStatus", new[] { "HitchBotId" });
+            DropIndex("dbo.ExceptionLogs", new[] { "HitchBotId" });
+            DropIndex("dbo.VariableValuePairs", new[] { "ContextPacketId" });
             DropIndex("dbo.SpeechLogEvents", new[] { "HitchBotId" });
             DropIndex("dbo.Locations", new[] { "HitchBotId" });
             DropIndex("dbo.Journeys", new[] { "StartLocation_Id" });
             DropIndex("dbo.Journeys", new[] { "EndLocation_Id" });
             DropIndex("dbo.HitchBots", new[] { "JourneyId" });
-            DropIndex("dbo.ExceptionLogs", new[] { "HitchBotId" });
+            DropIndex("dbo.ContextPackets", new[] { "HitchBotId" });
             DropTable("dbo.TabletStatus");
+            DropTable("dbo.ExceptionLogs");
+            DropTable("dbo.VariableValuePairs");
             DropTable("dbo.SpeechLogEvents");
             DropTable("dbo.Locations");
             DropTable("dbo.Journeys");
             DropTable("dbo.HitchBots");
-            DropTable("dbo.ExceptionLogs");
+            DropTable("dbo.ContextPackets");
         }
     }
 }
