@@ -6,6 +6,7 @@ import com.example.hitchbot.Config;
 
 public abstract class InfoPack {
 	
+	public String Message;
 	public int HitchBotId; 
 	public long TimeUnix;
 	public String Time;

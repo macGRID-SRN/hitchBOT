@@ -8,8 +8,6 @@ import com.google.gson.Gson;
 
 public class ExceptionPack extends InfoPack {
 
-	public String Message;
-
 	
 	public ExceptionPack(String message)
 	{
