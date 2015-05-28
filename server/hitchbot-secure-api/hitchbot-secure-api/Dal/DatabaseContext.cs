@@ -23,6 +23,8 @@ namespace hitchbot_secure_api.Dal
         public DbSet<SpeechLogEvent> SpeechLogEvents { get; set; }
         public DbSet<TabletStatus> TabletStatuses { get; set; }
         public DbSet<ExceptionLog> ExceptionLogs { get; set; }
+        public DbSet<ContextPacket> ContextPackets { get; set; }
+        public DbSet<VariableValuePair> VariableValuePairs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
