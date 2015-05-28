@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -65,6 +66,36 @@ namespace hitchbot_secure_api.Controllers
 
                 return Ok(result);
             }
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> AddPairToHb(int HitchBotId, string key, string value)
+        {
+            if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(value))
+                return BadRequest("One or more of the parameters was null or whitespace.");
+
+            using (var db = new DatabaseContext())
+            {
+                var packets =
+                    await db.ContextPackets.Where(l => l.HitchBotId == HitchBotId)
+                        .OrderByDescending(l => l.TimeCreated)
+                        .FirstOrDefaultAsync();
+
+                if (packets == null)
+                {
+                    BadRequest(string.Format("No cleverscript variables found for hitchBOT with ID: {0}.", HitchBotId));
+                }
+
+                db.VariableValuePairs.Add(new VariableValuePair()
+                {
+                    key = key,
+                    value = value,
+                    ContextPacketId = packets.Id
+                });
+
+                await db.SaveChangesAsync();
+            }
+            return Ok();
         }
     }
 }
