@@ -19,6 +19,7 @@ import Models.DatabaseConfig;
 import Models.FileUploadDb;
 import Models.HttpPostDb;
 import Speech.SpeechController;
+import TransitionModels.ExceptionPack;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -48,15 +49,13 @@ public class SpeechActivity extends Activity {
 		tP = new PictureTaker();
 		setupHandler();
 		// queue location info
-		//LocationInfo lu = new LocationInfo(Config.context);
-		//lu.setupProvider();
-		//speechController = new SpeechController();
+		LocationInfo lu = new LocationInfo(Config.context);
+		lu.setupProvider();
+		speechController = new SpeechController();
+		speechController.startCycle();
 	}
 
-
-
-	private void setUnCaughtExceptionHandler()
-	{
+	private void setUnCaughtExceptionHandler() {
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 
 			@Override
@@ -65,10 +64,10 @@ public class SpeechActivity extends Activity {
 				ex.printStackTrace(new PrintWriter(sw));
 				String stackTrace = sw.toString();
 				Log.i(TAG, stackTrace);
-				String uri = String.format(Config.exceptionPOST,
-						Config.ID, Uri.encode(stackTrace),
-						Config.getUtcDate());
-				HttpPostDb eL = new HttpPostDb(uri, 0, 7);
+	
+				ExceptionPack exPack = new ExceptionPack(stackTrace);
+				HttpPostDb eL = new HttpPostDb(Config.exceptionPOST, 0, null,
+						exPack.toJson(), 7);
 				Config.dQ.addItemToQueue(eL);
 				System.exit(2);
 			}
@@ -96,7 +95,7 @@ public class SpeechActivity extends Activity {
 				internetHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
 			}
 		}, Config.TWENTY_SECONDS);
-		
+
 		dataCollectionHandler = new Handler();
 		dataCollectionHandler.postDelayed(new Runnable() {
 
@@ -111,21 +110,25 @@ public class SpeechActivity extends Activity {
 			}
 
 		}, Config.THIRTY_SECONDS);
-		
+
 		pictureHandler = new Handler();
 		pictureHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				takePicture();
-				pictureHandler.postDelayed(this, 1000*10);//Config.FIFTEEN_MINUTES);
+				pictureHandler.postDelayed(this, Config.FIFTEEN_MINUTES);
 			}
 		}, Config.THIRTY_SECONDS);
 
 	}
 
-	
 	public void takePicture() {
+		try{
 		tP.captureHandler();
+		}
+		catch(NullPointerException e){
+			Log.i(TAG ,e.toString());
+		}
 	}
 
 	@Override
@@ -146,7 +149,7 @@ public class SpeechActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void uploadFile(final FileUploadDb[] fileUpload) {
 		fileUploadHandler = new Handler();
 		fileUploadHandler.post(new Runnable() {
@@ -154,7 +157,8 @@ public class SpeechActivity extends Activity {
 			@Override
 			public void run() {
 				try {
-					Log.i("FileUpload", fileUpload.length + "length of queueueueueueuue");
+					Log.i("FileUpload", fileUpload.length
+							+ "length of queueueueueueuue");
 					for (int i = 0; i < Math.min(2, fileUpload.length); i++) {
 						if (fileUpload[i] == null) {
 							Log.i(TAG, "ITS NULL");
@@ -168,8 +172,7 @@ public class SpeechActivity extends Activity {
 							break;
 						case 1:
 							uploadUrl = String.format(Config.imagePOST,
-									Config.ID,
-									fileUpload[i].getDateCreated());
+									Config.ID, fileUpload[i].getDateCreated());
 							break;
 						default:
 							uploadUrl = Config.audioPOST;
@@ -182,7 +185,7 @@ public class SpeechActivity extends Activity {
 
 					}
 				} catch (FileNotFoundException e) {
-					//Extreme error handling (only done because of time crunch)
+					// Extreme error handling (only done because of time crunch)
 					Config.dQ.launchFileMissles();
 				}
 			}

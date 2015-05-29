@@ -18,6 +18,7 @@ public final class Config {
 	public static DatabaseConfig dQ = null;
 	//I would use a resource for these, but they don't play nicely with strings.xml, and the api
 	//will change drastically soon anyways
+	public static final int ID = 1; //14-18
 	public static String serverURL = "http://hitchbot-secure-api.azurewebsites.net/api/";
 	public static String conversationPost = serverURL + "Speech/LogSpeech";//"Conversation?HitchBotID=%s&SpeechSaid=%s&SpeechHeard=%s&TimeTaken=%s&Person=%s&Notes=%s&MatchedLineLabel=%s&MatchAccuracy=%s&RmsDecibelLevel=%s&EnvironmentType=%s&RecognitionScore=%s&ResponseScore=%s&RecognizerEnum=%s";
 	public static String exceptionPOST = serverURL + "Exception/LogException";//"Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
@@ -25,11 +26,10 @@ public final class Config {
 	public static String batteryPOST = serverURL + "Tablet/LogTabletStatus";//"http://hitchbotapi.azurewebsites.net/api/Tablet?HitchBotID=%s&timeTaken=%s&isPluggedIn=%s&BatteryVoltage=%s&BatteryPercent=%s&BatteryTemp=%s";
 	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s";
 	public static String audioPOST = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
-	public static String cleverGET = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
+	public static String cleverGET = serverURL + "HitchBot/GetCleverscriptContext?HitchBotId=" + ID;
 
 	public static String name = "";
 	public static String searchName = "searchName";
-	public static final int ID = 1; //14-18
 	public static String specInfo = "";
 	public static CleverScriptHelper csh = null;
 	public static int HOUR = 1000 * 60 * 60;
