@@ -25,7 +25,7 @@ public class CleverScriptHelper {
 		cs.setApiKey(APIkey);
 		cs.setDebugLevel(4);
 		cs.loadDatabase();
-	    loadVariables();
+		// loadVariables();
 	}
 
 	public void setSpeechOut(SpeechOut speechOut) {

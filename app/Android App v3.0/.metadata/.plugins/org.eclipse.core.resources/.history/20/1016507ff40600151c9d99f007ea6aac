@@ -21,7 +21,6 @@ public class SpeechController {
         csh = new CleverScriptHelper(Config.context.getString(R.string.clever_db), 
         		Config.context.getString(R.string.clever_apikey));
         setup();
-        Config.csh = csh;
 	}
 	
 	private void setup()

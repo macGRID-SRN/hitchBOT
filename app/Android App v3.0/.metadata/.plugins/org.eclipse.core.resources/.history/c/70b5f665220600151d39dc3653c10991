@@ -1,8 +1,5 @@
 package Speech;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import Models.HttpPostDb;
 import android.net.Uri;
 import android.util.Log;
@@ -25,20 +22,20 @@ public class CleverScriptHelper {
 		cs.setApiKey(APIkey);
 		cs.setDebugLevel(4);
 		cs.loadDatabase();
-	    loadVariables();
+		// loadVariables();
 	}
 
 	public void setSpeechOut(SpeechOut speechOut) {
 		this.speechOut = speechOut;
 	}
 
-	public void loadVariables() {
-		cs.assignVariable("current_velocity", "2");
-		cs.assignVariable("weather_status", "fog");
-		cs.assignVariable("weather_temperatureC", "9001");
-		cs.assignVariable("localtime", "100");
-		cs.assignVariable("current_city_name", "Toronto");
-	}
+	/*
+	 * public void loadVariables() { // cs.assignVariable("test", "string"); for
+	 * (NameValuePair pair : Config.cleverPair) {
+	 * cs.assignVariable(pair.getName(), pair.getValue()); }
+	 * 
+	 * // TODO Load default variables }
+	 */
 
 	public void sendCleverScriptResponse(String message, double rmsDbLevel,
 			float accuracy, int recognizer) {
@@ -102,6 +99,11 @@ public class CleverScriptHelper {
 
 				for (int j = 0; j < jO.length(); j++) {
 					JSONObject jobj = jO.getJSONObject(j);
+
+					NameValuePair nvP = new BasicNameValuePair(
+							jobj.getString("key"),
+							(String) jobj.getString("value"));
+					Config.cleverPair.add(nvP);
 
 					cs.assignVariable((String) jobj.getString("key"),
 							(String) jobj.getString("value"));
