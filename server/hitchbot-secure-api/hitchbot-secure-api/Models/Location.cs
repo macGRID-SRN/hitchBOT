@@ -12,11 +12,11 @@ namespace hitchbot_secure_api.Models
         [Key]
         public int Id { get; set; }
 
-        public decimal Latitude { get; set; }
-        public decimal Longitude { get; set; }
-        public decimal? Altitude { get; set; }
-        public decimal? Accuracy { get; set; }
-        public decimal? Velocity { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public double? Altitude { get; set; }
+        public double? Accuracy { get; set; }
+        public double? Velocity { get; set; }
 
         public LocationProvider LocationProvider { get; set; }
 

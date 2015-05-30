@@ -24,5 +24,14 @@ namespace hitchbot_secure_api.Controllers
                 return Ok(db.Database.Exists());
             }
         }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> BuildJs(int hitchBotId)
+        {
+            var builer = new Helpers.Location.GoogleMapsBuilder(hitchBotId);
+            builer.BuildJsAndUpload();
+
+            return Ok(string.Format("Map was successfully updated."));
+        } 
     }
 }

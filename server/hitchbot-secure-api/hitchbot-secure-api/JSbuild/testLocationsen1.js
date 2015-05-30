@@ -1,0 +1,6 @@
+var flightPlanCoordinates = [ 
+ new google.maps.LatLng(43.29,-79.86), 
+ new google.maps.LatLng(46.00,-35.00), 
+ new google.maps.LatLng(46.00,-35.00), ];
+                    var currentPoint = new google.maps.LatLng(46.00,-35.00);
+                    function AddPolyFill0(e){var t=new google.maps.Polyline({path:flightPlanCoordinates,geodesic:true,strokeColor:"#E57373",strokeOpacity:1,strokeWeight:4});t.setMap(e)}function AddCurrentMarker(e){var t=new google.maps.MarkerImage("http://hitchbotimg.blob.core.windows.net/img/hitchicon2.png",new google.maps.Size(64,64),new google.maps.Point(0,0),new google.maps.Point(32,64));var n=new google.maps.Marker({position:currentPoint,map:e,animation:google.maps.Animation.DROP,icon:t});return}function AutoCenter(e){var t=new google.maps.LatLngBounds;t.extend(currentPoint);for(i=0;i<targetCoordinates.length;i++){t.extend(targetCoordinates[i].LatLng)}e.fitBounds(t)}function initialize(){var e={center:centerPoint,zoom:centerZoom};var t=new google.maps.Map(document.getElementById("map-canvas"),e);AddPolyFill0(t);if(autocenter){AutoCenter(t)}AddCurrentMarker(t)}var centerPoint=new google.maps.LatLng(48.1384,11.573399999999992);var centerZoom=9;var autocenter=true;google.maps.event.addDomListener(window,"load",initialize);var targetCoordinates = []; 

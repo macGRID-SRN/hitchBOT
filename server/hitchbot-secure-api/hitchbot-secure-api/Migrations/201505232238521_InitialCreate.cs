@@ -55,11 +55,11 @@ namespace hitchbot_secure_api.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Latitude = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Longitude = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Altitude = c.Decimal(precision: 18, scale: 2),
-                        Accuracy = c.Decimal(precision: 18, scale: 2),
-                        Velocity = c.Decimal(precision: 18, scale: 2),
+                        Latitude = c.Double(nullable: false),
+                        Longitude = c.Double(nullable: false),
+                        Altitude = c.Double(),
+                        Accuracy = c.Double(),
+                        Velocity = c.Double(),
                         LocationProvider = c.Int(nullable: false),
                         NearestCity = c.String(),
                         ForceProduction = c.Boolean(nullable: false),

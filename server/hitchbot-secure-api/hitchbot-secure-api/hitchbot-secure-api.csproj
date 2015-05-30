@@ -259,6 +259,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AzureBlobHelper.cs" />
+    <Compile Include="Helpers\Location\GoogleMapsBuilder.cs" />
+    <Compile Include="Helpers\Location\GoogleMapsHelper.cs" />
+    <Compile Include="Helpers\Location\LocationHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Map\live.aspx.cs">
       <DependentUpon>live.aspx</DependentUpon>
@@ -325,6 +328,7 @@
     <None Include="Properties\PublishProfiles\hitchbot-secure-api.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
+    <Content Include="JSbuild\testLocationsen1.js" />
     <Content Include="Map\live.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -37,14 +37,14 @@ namespace hitchbot_secure_api.Migrations
                 new Location()
                 {
                     NearestCity  = "SeedLocation1",
-                    Latitude = 43.2423582m,
-                    Longitude = -79.8391097m //also the true birthplace of hitchBOT
+                    Latitude = 43.2423582,
+                    Longitude = -79.8391097 //also the true birthplace of hitchBOT
                 },
                 new Location()
                 {
                     NearestCity = "SeedLocation2",
-                    Latitude = 43.7m,
-                    Longitude = -79.4m,
+                    Latitude = 43.7,
+                    Longitude = -79.4,
                 },
                 new Location()
                 {
