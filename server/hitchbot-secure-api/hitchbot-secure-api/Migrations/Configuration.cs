@@ -51,14 +51,14 @@ namespace hitchbot_secure_api.Migrations
                     NearestCity = "SeedHitchBOTLocation1",
                     Latitude = 45,
                     Longitude = -34,
-                    TakenTime = DateTime.UtcNow.AddMinutes(-1)
+                    TakenTime = DateTime.UtcNow.AddMinutes(-20)
                 },
                 new Location()
                 {
                     NearestCity = "SeedHitchBOTLocation2",
                     Latitude = 46,
                     Longitude = -35,
-                    TakenTime = DateTime.UtcNow.AddMinutes(-1)
+                    TakenTime = DateTime.UtcNow.AddMinutes(-20)
                 },
                 new Location()
                 {
