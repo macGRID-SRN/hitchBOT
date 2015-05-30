@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Web.Mvc;
 using hitchbot_secure_api.Models;
 
 namespace hitchbot_secure_api.Migrations
@@ -38,7 +39,8 @@ namespace hitchbot_secure_api.Migrations
                 {
                     NearestCity  = "SeedLocation1",
                     Latitude = 43.2423582,
-                    Longitude = -79.8391097 //also the true birthplace of hitchBOT
+                    Longitude = -79.8391097, //also the true birthplace of hitchBOT
+                    TakenTime = DateTime.UtcNow
                 },
                 new Location()
                 {

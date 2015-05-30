@@ -60,6 +60,7 @@ namespace hitchbot_secure_api.Migrations
                         Altitude = c.Double(),
                         Accuracy = c.Double(),
                         Velocity = c.Double(),
+                        SpotID = c.Int(),
                         LocationProvider = c.Int(nullable: false),
                         NearestCity = c.String(),
                         ForceProduction = c.Boolean(nullable: false),

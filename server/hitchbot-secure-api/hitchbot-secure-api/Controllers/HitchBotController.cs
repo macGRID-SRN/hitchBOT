@@ -7,9 +7,12 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Management;
 using Newtonsoft.Json;
 using hitchbot_secure_api.Dal;
+using hitchbot_secure_api.Helpers;
 using hitchbot_secure_api.Models;
+using System.Configuration;
 
 namespace hitchbot_secure_api.Controllers
 {
@@ -22,6 +25,54 @@ namespace hitchbot_secure_api.Controllers
             return repeat;
         }
 
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateGpsFromSpotFeed(int HitchBotId)
+        {
+            using (var db = new DatabaseContext())
+            {
+                var spotCurrentIdsTask =
+                    db.Locations.Where(l => l.LocationProvider == LocationProvider.SpotGPS && l.HitchBotId == HitchBotId)
+                        .Select(l => new { l.SpotID })
+                        .ToListAsync();
+
+                var feed_id = ConfigurationManager.AppSettings["spot-feed-id"];
+                var url = string.Format(
+                        "https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/{0}/message.json",
+                        feed_id);
+
+                var spotty = WebApiHelper._download_serialized_json_data<SpotApiCall>(url);
+
+                var previousIds = await spotCurrentIdsTask;
+
+                var messages = spotty.response.feedMessageResponse.messages.message
+                    .Where(l => l.messageType == "EXTREME-TRACK")
+                    .Where(l => previousIds.All(h => h.SpotID != l.id))
+                    .Select(l => new LocationController.SpotDto
+                    {
+                        latitude = l.latitude,
+                        longitude = l.longitude,
+                        spotId = l.id,
+                        unixTime = l.unixTime
+                    }).ToList();
+
+                messages.ForEach(l =>
+                {
+                    db.Locations.Add(new Location()
+                    {
+                        Latitude = l.latitude,
+                        Longitude = l.longitude,
+                        TakenTime = l.Time,
+                        LocationProvider = LocationProvider.SpotGPS,
+                        HitchBotId = HitchBotId,
+                        SpotID = l.spotId
+                    });
+                });
+
+                await db.SaveChangesAsync();
+
+                return Ok();
+            }
+        }
 
         public async Task<IHttpActionResult> UpdateCleverscriptVariables(int HitchBotId)
         {
