@@ -260,6 +260,13 @@
     </Compile>
     <Compile Include="Helpers\AzureBlobHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="Map\live.aspx.cs">
+      <DependentUpon>live.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Map\live.aspx.designer.cs">
+      <DependentUpon>live.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201505232238521_InitialCreate.cs" />
     <Compile Include="Migrations\201505232238521_InitialCreate.Designer.cs">
       <DependentUpon>201505232238521_InitialCreate.cs</DependentUpon>
@@ -318,6 +325,7 @@
     <None Include="Properties\PublishProfiles\hitchbot-secure-api.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
+    <Content Include="Map\live.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
