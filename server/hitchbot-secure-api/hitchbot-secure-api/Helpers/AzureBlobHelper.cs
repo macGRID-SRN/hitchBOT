@@ -43,7 +43,7 @@ namespace hitchbot_secure_api.Helpers
             return newBlob.Uri.ToString();
         }
 
-        private static TimeSpan JS_REBUILD_INTERVAL = new TimeSpan(1, 0, 0);
+        private static TimeSpan JS_REBUILD_INTERVAL = new TimeSpan(0, 5, 0);
 
         /// <summary>
         /// Determines if the javascript file containing the map data should be rebuilt based on the time passed since it was last built.
@@ -74,7 +74,7 @@ namespace hitchbot_secure_api.Helpers
         {
             string TargetLocation = Helpers.PathHelper.GetJsBuildPath();
             //this is a mess!
-            Helpers.AzureBlobHelper.UploadLocationJsAndGetPublicUrl(TargetLocation, Helpers.AzureBlobHelper.JS_LOCATION_FILE_NAME + language + hitchbotID + Helpers.AzureBlobHelper.JS_FILE_EXTENSION, hitchbotID, language);
+            UploadLocationJsAndGetPublicUrl(TargetLocation, JS_LOCATION_FILE_NAME + language + hitchbotID + JS_FILE_EXTENSION, hitchbotID, language);
         }
 
         public static async Task<string> UploadImageAndGetPublicUrl(string localRootFileDirectory, string fileName)
