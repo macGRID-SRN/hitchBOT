@@ -22,24 +22,7 @@ namespace hitchbot_secure_api.Helpers
             private owData _owCurrentWeather; //Holds the deserialized data
 
             //From: http://www.codeproject.com/Tips/397574/Use-Csharp-to-get-JSON-Data-from-the-Web-and-Map-i
-            private static T _download_serialized_json_data<T>(string url) where T : new()
-            {
-                using (var w = new WebClient())
-                {
-                    string jsonData = string.Empty;
-                    // attempt to download JSON data as a string
-                    try
-                    {
-                        jsonData = w.DownloadString(url);
-                    }
-                    catch (Exception)
-                    {
-                        // ignored
-                    }
-                    // if string with JSON data is not empty, deserialize it to class and return its instance 
-                    return !string.IsNullOrEmpty(jsonData) ? JsonConvert.DeserializeObject<T>(jsonData) : new T();
-                }
-            }
+
 
             public VariableValuePair GetCityNamePair()
             {
@@ -74,7 +57,7 @@ namespace hitchbot_secure_api.Helpers
                 try
                 {
                     string url = "http://api.openweathermap.org/data/2.5/weather?APPID=" + AppId + "&lat=" + lat + "&lon=" + lon;
-                    _owCurrentWeather = _download_serialized_json_data<owData>(url);
+                    _owCurrentWeather = WebApiHelper._download_serialized_json_data<owData>(url);
                 }
                 catch (Exception er)
                 {

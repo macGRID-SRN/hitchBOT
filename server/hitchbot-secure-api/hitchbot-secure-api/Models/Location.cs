@@ -18,6 +18,8 @@ namespace hitchbot_secure_api.Models
         public double? Accuracy { get; set; }
         public double? Velocity { get; set; }
 
+        public int? SpotID { get; set; }
+
         public LocationProvider LocationProvider { get; set; }
 
         public string NearestCity { get; set; }
@@ -53,5 +55,61 @@ namespace hitchbot_secure_api.Models
         ManualInsert, /*Sometimes a point is added as the map can get confusing at times if weird things happen.*/
         TabletAGPS,
         SpotGPS
+    }
+
+
+    //used http://json2csharp.com/ to get this. haha feels like such a dirty cheat.
+    public class SpotApiCall
+    {
+        public class Feed
+        {
+            public string id { get; set; }
+            public string name { get; set; }
+            public string description { get; set; }
+            public string status { get; set; }
+            public int usage { get; set; }
+            public int daysRange { get; set; }
+            public bool detailedMessageShown { get; set; }
+        }
+
+        public class Message
+        {
+            public int id { get; set; }
+            public string messengerId { get; set; }
+            public string messengerName { get; set; }
+            public int unixTime { get; set; }
+            public string messageType { get; set; }
+            public double latitude { get; set; }
+            public double longitude { get; set; }
+            public string modelId { get; set; }
+            public string showCustomMsg { get; set; }
+            public string dateTime { get; set; }
+            public string batteryState { get; set; }
+            public int hidden { get; set; }
+            public string messageContent { get; set; }
+        }
+
+        public class Messages
+        {
+            public List<Message> message { get; set; }
+        }
+
+        public class FeedMessageResponse
+        {
+            public int count { get; set; }
+            public Feed feed { get; set; }
+            public int totalCount { get; set; }
+            public int activityCount { get; set; }
+            public Messages messages { get; set; }
+        }
+
+        public class Response
+        {
+            public FeedMessageResponse feedMessageResponse { get; set; }
+        }
+
+
+        public Response response { get; set; }
+
     }
 }

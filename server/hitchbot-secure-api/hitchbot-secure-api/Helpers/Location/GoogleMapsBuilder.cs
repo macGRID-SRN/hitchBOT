@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
+using hitchbot_secure_api.Models;
 
 namespace hitchbot_secure_api.Helpers.Location
 {
@@ -145,7 +146,7 @@ namespace hitchbot_secure_api.Helpers.Location
             //get all the locations from before launch--messy TODO update this for the current launch date
             using (var db = new Dal.DatabaseContext())
             {
-                var locations = db.Locations.Where(l => l.HitchBotId == hitchBotId).OrderBy(l => l.TakenTime).ToList();
+                var locations = db.Locations.Where(l => l.HitchBotId == hitchBotId && l.LocationProvider == LocationProvider.SpotGPS).OrderBy(l => l.TakenTime).ToList();
 
                 string builder = string.Empty;
 
