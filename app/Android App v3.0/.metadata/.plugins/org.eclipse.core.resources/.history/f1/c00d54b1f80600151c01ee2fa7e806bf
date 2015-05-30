@@ -31,14 +31,13 @@ public class CleverScriptHelper {
 		cs.setApiKey(APIkey);
 		cs.setDebugLevel(4);
 		cs.loadDatabase();
-		loadVariables();
+		// loadVariables();
 	}
 
 	public void setSpeechOut(SpeechOut speechOut) {
 		this.speechOut = speechOut;
 	}
 
-	//temporary defaults for testing purposes!
 	public void loadVariables() {
 		cs.assignVariable("current_velocity", "2");
 		cs.assignVariable("weather_status", "fog");
