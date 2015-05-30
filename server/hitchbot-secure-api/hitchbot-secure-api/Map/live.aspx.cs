@@ -17,7 +17,7 @@ namespace hitchbot_secure_api.Map
             {
                 hitchbotID = int.Parse(Request.QueryString["hbID"]);
 
-                jsDataLocation.Text = @"<script type=""text/javascript"" src=""http://hbsecure.blob.core.windows.net/hbjs/testLocations" + hitchbotID + @".js""></script>";
+                jsDataLocation.Text = @"<script type=""text/javascript"" src=""http://hbsecure.blob.core.windows.net/hbjs/testLocationsen" + hitchbotID + @".js""></script>";
 
                 gmapsString.Text = string.Format(@"<script type=""text/javascript"" src=""https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-d9jbUEWesRS6LRsWCWZpKZdOmXCUWA""></script>");
             }

@@ -21,6 +21,11 @@ namespace hitchbot_secure_api.Controllers
             return repeat;
         }
 
+        public async Task<IHttpActionResult> UpdateCleverscriptVariables()
+        {
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<IHttpActionResult> GetCleverscriptContext(int? HitchBotId)
         {
