@@ -26,6 +26,8 @@ namespace hitchbot_secure_api.Models
         public int? HitchBotId { get; set; }
         public virtual HitchBot HitchBot { get; set; }
 
+        public virtual ICollection<Image> Images { get; set; }
+
         public DateTime? TakenTime { get; set; }
         public DateTime TimeAdded { get; set; }
 

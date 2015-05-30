@@ -32,22 +32,23 @@ namespace hitchbot_secure_api.Migrations
                 .Index(t => t.JourneyId);
             
             CreateTable(
-                "dbo.Journeys",
+                "dbo.Images",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        StartTime = c.DateTime(nullable: false),
-                        EndTime = c.DateTime(),
-                        TimeCreated = c.DateTime(nullable: false),
-                        EndLocation_Id = c.Int(),
-                        StartLocation_Id = c.Int(),
+                        Url = c.String(),
+                        HitchBotId = c.Int(nullable: false),
+                        LocationId = c.Int(),
+                        TimeTaken = c.DateTime(nullable: false),
+                        TimeApproved = c.DateTime(),
+                        TimeDenied = c.DateTime(),
+                        TimeAdded = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Locations", t => t.EndLocation_Id)
-                .ForeignKey("dbo.Locations", t => t.StartLocation_Id)
-                .Index(t => t.EndLocation_Id)
-                .Index(t => t.StartLocation_Id);
+                .ForeignKey("dbo.HitchBots", t => t.HitchBotId, cascadeDelete: true)
+                .ForeignKey("dbo.Locations", t => t.LocationId)
+                .Index(t => t.HitchBotId)
+                .Index(t => t.LocationId);
             
             CreateTable(
                 "dbo.Locations",
@@ -69,6 +70,24 @@ namespace hitchbot_secure_api.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.HitchBots", t => t.HitchBotId)
                 .Index(t => t.HitchBotId);
+            
+            CreateTable(
+                "dbo.Journeys",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        StartTime = c.DateTime(nullable: false),
+                        EndTime = c.DateTime(),
+                        TimeCreated = c.DateTime(nullable: false),
+                        EndLocation_Id = c.Int(),
+                        StartLocation_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Locations", t => t.EndLocation_Id)
+                .ForeignKey("dbo.Locations", t => t.StartLocation_Id)
+                .Index(t => t.EndLocation_Id)
+                .Index(t => t.StartLocation_Id);
             
             CreateTable(
                 "dbo.SpeechLogEvents",
@@ -156,22 +175,27 @@ namespace hitchbot_secure_api.Migrations
             DropForeignKey("dbo.HitchBots", "JourneyId", "dbo.Journeys");
             DropForeignKey("dbo.Journeys", "StartLocation_Id", "dbo.Locations");
             DropForeignKey("dbo.Journeys", "EndLocation_Id", "dbo.Locations");
+            DropForeignKey("dbo.Images", "LocationId", "dbo.Locations");
             DropForeignKey("dbo.Locations", "HitchBotId", "dbo.HitchBots");
+            DropForeignKey("dbo.Images", "HitchBotId", "dbo.HitchBots");
             DropIndex("dbo.TabletStatus", new[] { "HitchBotId" });
             DropIndex("dbo.ExceptionLogs", new[] { "HitchBotId" });
             DropIndex("dbo.VariableValuePairs", new[] { "ContextPacketId" });
             DropIndex("dbo.SpeechLogEvents", new[] { "HitchBotId" });
-            DropIndex("dbo.Locations", new[] { "HitchBotId" });
             DropIndex("dbo.Journeys", new[] { "StartLocation_Id" });
             DropIndex("dbo.Journeys", new[] { "EndLocation_Id" });
+            DropIndex("dbo.Locations", new[] { "HitchBotId" });
+            DropIndex("dbo.Images", new[] { "LocationId" });
+            DropIndex("dbo.Images", new[] { "HitchBotId" });
             DropIndex("dbo.HitchBots", new[] { "JourneyId" });
             DropIndex("dbo.ContextPackets", new[] { "HitchBotId" });
             DropTable("dbo.TabletStatus");
             DropTable("dbo.ExceptionLogs");
             DropTable("dbo.VariableValuePairs");
             DropTable("dbo.SpeechLogEvents");
-            DropTable("dbo.Locations");
             DropTable("dbo.Journeys");
+            DropTable("dbo.Locations");
+            DropTable("dbo.Images");
             DropTable("dbo.HitchBots");
             DropTable("dbo.ContextPackets");
         }
