@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,9 +22,32 @@ namespace hitchbot_secure_api.Controllers
             return repeat;
         }
 
-        public async Task<IHttpActionResult> UpdateCleverscriptVariables()
+
+        public async Task<IHttpActionResult> UpdateCleverscriptVariables(int HitchBotId)
         {
-            return Ok();
+            using (var db = new DatabaseContext())
+            {
+                var location = await db.Locations.Where(l => l.HitchBotId == HitchBotId).OrderByDescending(l => l.TakenTime).FirstAsync();
+                var weatherApi = new Helpers.WeatherHelper.OpenWeatherApi();
+
+                weatherApi.LoadWeatherData(location.Latitude, location.Longitude);
+
+                var contextpacket = new Models.ContextPacket()
+                {
+                    HitchBotId = HitchBotId,
+                    Variables = new List<VariableValuePair>()
+                };
+
+                contextpacket.Variables.Add(weatherApi.GetCityNamePair());
+                contextpacket.Variables.Add(weatherApi.GetTempCPair());
+                contextpacket.Variables.Add(weatherApi.GetWeatherStatusPair());
+
+                db.ContextPackets.Add(contextpacket);
+
+                await db.SaveChangesAsync();
+
+                return Ok("Variables were updated successfully");
+            }
         }
 
         [HttpGet]

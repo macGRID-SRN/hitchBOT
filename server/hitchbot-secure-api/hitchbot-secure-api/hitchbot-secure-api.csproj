@@ -263,6 +263,7 @@
     <Compile Include="Helpers\Location\GoogleMapsHelper.cs" />
     <Compile Include="Helpers\Location\LocationHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="Helpers\WeatherHelper.cs" />
     <Compile Include="Map\live.aspx.cs">
       <DependentUpon>live.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
