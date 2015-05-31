@@ -146,7 +146,7 @@ public class GoogleRecognizer implements RecognitionListener {
 			//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
 			//		aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 			errorCounter = 0;
-			csh.sendCleverScriptResponse("");
+			csh.sendCleverScriptResponse(error);
 		}
 		else
 			startListening();

@@ -24,7 +24,7 @@ public final class Config {
 	public static String name = "";
 	public static String searchName = "searchName";
 	public static final int ID = 14; //14-18
-	public static String cleverGET = serverURL + "HitchBot/GetCleverscriptContext?HitchBotId=1";
+	public static String cleverGET = serverURL + "HitchBot/GetCleverscriptContext?HitchBotId=" + ID;
 	public static String specInfo = "";
 	public static int HOUR = 1000 * 60 * 60;
 	public static int FIVE_MINUTES = 1000 * 60 * 5;
