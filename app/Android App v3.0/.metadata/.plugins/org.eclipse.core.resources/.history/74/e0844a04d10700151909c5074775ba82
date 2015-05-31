@@ -21,8 +21,6 @@ import Models.HttpPostDb;
 import Speech.SpeechController;
 import TransitionModels.ExceptionPack;
 import android.app.Activity;
-import android.content.Context;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,7 +38,6 @@ public class SpeechActivity extends Activity {
 	private Handler dataCollectionHandler;
 	private Handler internetHandler;
 	private Handler fileUploadHandler;
-	private AudioManager aM;
 	private static String TAG = SpeechActivity.class.getName();
 
 	@Override
@@ -56,9 +53,6 @@ public class SpeechActivity extends Activity {
 		// queue location info
 		LocationInfo lu = new LocationInfo(Config.context);
 		lu.setupProvider();
-		 aM = (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
-		 aM.setStreamVolume(AudioManager.STREAM_MUSIC,
-			 aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		speechController = new SpeechController();
 		speechController.startCycle();
 	}
