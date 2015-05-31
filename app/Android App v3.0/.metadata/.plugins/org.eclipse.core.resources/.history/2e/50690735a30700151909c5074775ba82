@@ -14,7 +14,6 @@ public class LocationPack extends InfoPack {
 	public double Accuracy;
 	public double Velocity;
 	public boolean isPrecise;
-	public int LocationProviderEnum;
 
 	public LocationPack(double lat, double longitude) {
 		this.Latitude = lat;
@@ -30,7 +29,6 @@ public class LocationPack extends InfoPack {
 		this.Accuracy = accuracy;
 		this.Velocity = velocity;
 		this.isPrecise = true;
-		this.LocationProviderEnum = 2;
 	}
 
 	protected LocationPack() {

@@ -142,7 +142,7 @@ public class GoogleRecognizer implements RecognitionListener {
 
 	private void handleError(String error) {
 		errorCounter++;
-		if ((timeSinceLastError - System.currentTimeMillis()) < 2000) {
+		if ((timeSinceLastError - System.currentTimeMillis()) / 1000 <= 2) {
 			new Handler().postDelayed(new Runnable() {
 
 				@Override

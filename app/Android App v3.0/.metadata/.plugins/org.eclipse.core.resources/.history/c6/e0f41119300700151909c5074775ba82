@@ -45,7 +45,6 @@ public class CleverScriptHelper {
 		cs.assignVariable("weather_temperatureC", "9001");
 		cs.assignVariable("localtime", "100");
 		cs.assignVariable("current_city_name", "Toronto");
-		cs.assignVariable("trip", "netherlands");
 	}
 
 	public void sendCleverScriptResponse(String message, double rmsDbLevel,

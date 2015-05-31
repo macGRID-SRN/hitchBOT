@@ -24,7 +24,7 @@ public final class Config {
 	public static String exceptionPOST = serverURL + "Exception/LogException";//"Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
 	public static String locationPOST = serverURL + "Location/LogLocation"; //?HitchBotID=%s&Latitude=%s&Longitude=%s&Altitude=%s&Accuracy=%s&Velocity=%s&TakenTime=%s";
 	public static String batteryPOST = serverURL + "Tablet/LogTabletStatus";//"http://hitchbotapi.azurewebsites.net/api/Tablet?HitchBotID=%s&timeTaken=%s&isPluggedIn=%s&BatteryVoltage=%s&BatteryPercent=%s&BatteryTemp=%s";
-	public static String imagePOST = serverURL + "Image/PostImage?HitchBotID=%s&timeTaken=%s";
+	public static String imagePOST = "http://hitchbotapi.azurewebsites.net/api/Image?HitchBotID=%s&timeTaken=%s";
 	public static String audioPOST = "http://hitchbotapi.azurewebsites.net/api/hitchBOT";
 	public static String cleverGET = serverURL + "HitchBot/GetCleverscriptContext?HitchBotId=" + ID;
 
