@@ -67,13 +67,9 @@ namespace hitchbot_secure_api.Helpers.Location
             {
                 var current_loc =
                     db.Locations.Where(l => l.HitchBotId == hitchBotId)
-                        .OrderBy(l => l.TakenTime)
-                        .ToArray()
-                        .LastOrDefault();
-                return @"
-                    var currentPoint = new google.maps.LatLng(" + current_loc.Latitude + "," + current_loc.Longitude +
-                       @");
-                    ";
+                        .OrderByDescending(l => l.TakenTime)
+                        .FirstOrDefault();
+                return @"var currentPoint = new google.maps.LatLng(" + current_loc.Latitude + "," + current_loc.Longitude +");";
             }
         }
 
@@ -132,7 +128,62 @@ namespace hitchbot_secure_api.Helpers.Location
 
         private string BuildGoogleMapsJsBody()
         {
-            return @"function AddPolyFill0(e){var t=new google.maps.Polyline({path:flightPlanCoordinates,geodesic:true,strokeColor:""#E57373"",strokeOpacity:1,strokeWeight:4});t.setMap(e)}function AddCurrentMarker(e){var t=new google.maps.MarkerImage(""http://hitchbotimg.blob.core.windows.net/img/hitchicon2.png"",new google.maps.Size(64,64),new google.maps.Point(0,0),new google.maps.Point(32,64));var n=new google.maps.Marker({position:currentPoint,map:e,animation:google.maps.Animation.DROP,icon:t});return}function AutoCenter(e){var t=new google.maps.LatLngBounds;t.extend(currentPoint);for(i=0;i<targetCoordinates.length;i++){t.extend(targetCoordinates[i].LatLng)}e.fitBounds(t)}function initialize(){var e={center:centerPoint,zoom:centerZoom};var t=new google.maps.Map(document.getElementById(""map-canvas""),e);AddPolyFill0(t);if(autocenter){AutoCenter(t)}AddCurrentMarker(t)}var centerPoint=new google.maps.LatLng(48.1384,11.573399999999992);var centerZoom=6;var autocenter=true;google.maps.event.addDomListener(window,""load"",initialize);";
+            var stringy =
+@"function AddPolyFill0(e){
+	var t=new google.maps.Polyline({
+		path:flightPlanCoordinates,
+		geodesic:true,
+		strokeColor:""#E57373"",
+		strokeOpacity:1,
+		strokeWeight:4
+	});
+	t.setMap(e)
+}
+
+function AddCurrentMarker(e){
+	var t=new google.maps.MarkerImage(""http://hitchbotimg.blob.core.windows.net/img/hitchicon2.png"",
+		new google.maps.Size(64,64),
+		new google.maps.Point(0,0),
+		new google.maps.Point(32,64));
+
+	var n=new google.maps.Marker({
+		position:currentPoint,
+		map:e,
+		animation:google.maps.Animation.DROP,
+		icon:t});
+		return;
+}
+function AutoCenter(e){
+	var t=new google.maps.LatLngBounds;
+	t.extend(currentPoint);
+	for(i=0;i<flightPlanCoordinates.length;i++){
+		t.extend(flightPlanCoordinates[i])
+	}
+	e.fitBounds(t)
+}
+
+function initialize(){
+
+var e={
+	center:centerPoint,
+	zoom:centerZoom
+};
+var t=new google.maps.Map(document.getElementById(""map-canvas""),e);
+
+AddPolyFill0(t);
+
+AddCurrentMarker(t);
+if(autocenter){AutoCenter(t)}
+
+}
+
+var centerPoint=new google.maps.LatLng(48.1384,11.573399999999992);
+
+var centerZoom=10;
+var autocenter=true;
+google.maps.event.addDomListener(window,""load"",initialize);";
+
+            return stringy;
         }
 
         //function addTargetMarkers(e){pinColor_touched=""65ba4a"";pinColor_untouched=""ff796c"";var t=[];for(o=0;o<targetCoordinates.length;o++){var n=targetCoordinates[o];if(n.touched==false||n.touched==""false""||n.touched==0||n.touched==""no""||typeof n.touched==""undefined""){n.touched=false}else{n.touched=true}var r=new google.maps.MarkerImage(""http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=""+n.number.toString()+""|""+(n.touched==true?pinColor_touched:pinColor_untouched)+""|000000"",new google.maps.Size(21,34),new google.maps.Point(0,0),new google.maps.Point(10,34));var i=""<div id='content'>""+""<div id='siteNotice'></div>""+""<h1 id='firstHeading' class='firstHeading'>""+n.info_text.info_header+""</h1>""+""<div id='bodyContent'><p>""+n.info_text.info_body+""</p></div></div>"";var s=new google.maps.Marker({position:n.LatLng,map:e,title:n.info_text.info_header,html:i,icon:r});t.push(s)}for(var o=0;o<t.length;o++){var s=t[o];google.maps.event.addListener(s,""click"",function(){infowindow.setContent(this.html);infowindow.close();infowindow.open(e,this)})}}
@@ -150,28 +201,20 @@ namespace hitchbot_secure_api.Helpers.Location
 
                 string builder = string.Empty;
 
-                if (locations != null)
+                if (locations.Count > 0)
                 {
-                    if (locations.Count > 0)
-                    {
-                        var slimmedLocations = LocationHelper.SlimLocations(locations);
+                    builder = "var flightPlanCoordinates = [ ";
 
-                        builder = "var flightPlanCoordinates = [ ";
+                    var slimmedLocations = LocationHelper.SlimLocations(locations)
+                        .Select(l => string.Format("new google.maps.LatLng({0},{1})", l.Latitude, l.Longitude));
 
-                        // Slim locations
-                        foreach (Models.Location myLocation in slimmedLocations)
-                        {
-                            // Add each location to a JS array.
-                            builder += "\n new google.maps.LatLng(" + myLocation.Latitude + "," + myLocation.Longitude +
-                                       "), ";
-                        }
+                    builder += string.Join(",\n", slimmedLocations);
 
-                        builder += @"];";
-                    }
-                    else
-                    {
-                        builder = @"var flightPlanCoordinates = [];";
-                    }
+                    builder += @"];";
+                }
+                else
+                {
+                    builder = @"var flightPlanCoordinates = [];";
                 }
                 return builder;
             }
