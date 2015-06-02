@@ -146,7 +146,7 @@ public class GoogleRecognizer implements RecognitionListener {
 		errorCounter++;
 		if (((timeSinceLastError - System.currentTimeMillis()) < 2000 || errorCounter > 6)
 				&& finishedSampling()) {
-			numberOfSamplets = 0;
+			numberOfSamples = 0;
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
@@ -163,8 +163,12 @@ public class GoogleRecognizer implements RecognitionListener {
 			isListening = false;
 			// mSpeechRecognizer.cancel();
 			// Want to slow down responses if it is responding too fast.
+			if (errorCounter > 4) {
+				csh.sendCleverScriptResponse(error);
+			} else {
 				numberOfSamples++;
 				startListening();
+			}
 		}
 	}
 

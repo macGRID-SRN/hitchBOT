@@ -28,14 +28,12 @@ public class GoogleRecognizer implements RecognitionListener {
 	private int errorCounter = 0;
 	private double rmsDbLevel = 0.0;
 	private int rmsCounter = 0;
-	private int numberOfSamples;
 	private long timeSinceLastError;
-	private int timeToDelaySpeech;
 	AudioManager aM;
 
 	public GoogleRecognizer() {
-		timeToDelaySpeech = 2000;
-		numberOfSamples = 0;
+		// aM =
+		// (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
 		setupRecognizer();
 	}
 
@@ -144,41 +142,44 @@ public class GoogleRecognizer implements RecognitionListener {
 
 	private void handleError(String error) {
 		errorCounter++;
-		if (((timeSinceLastError - System.currentTimeMillis()) < 2000 || errorCounter > 6)
-				&& finishedSampling()) {
-			numberOfSamplets = 0;
+		if ((timeSinceLastError - System.currentTimeMillis()) < 2000) {
 			new Handler().postDelayed(new Runnable() {
 
 				@Override
 				public void run() {
 					Config.context.runOnUiThread(new Runnable() {
+
 						@Override
 						public void run() {
 							startListening();
 						}
+
 					});
+
 				}
-			}, getTimeToDelaySpeech());
+
+			}, 2000);
 		} else {
 			isListening = false;
 			// mSpeechRecognizer.cancel();
 			// Want to slow down responses if it is responding too fast.
-				numberOfSamples++;
+			if (errorCounter > 4) {
+				// aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+				// aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+				errorCounter = 0;
+				csh.sendCleverScriptResponse(error);
+			} else
 				startListening();
 		}
 	}
-
-	private boolean finishedSampling() {
-		return numberOfSamples >= 2;
-	}
-
+	
 	@Override
 	public void onResults(Bundle results) {
 		// aM.setStreamVolume(AudioManager.STREAM_MUSIC,
 		// aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-		timeToDelaySpeech = 2000;
-		errorCounter = 0;
 		isListening = false;
+		// aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+		// aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		ArrayList<String> matches = results
 				.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 		float[] scores = results
@@ -204,14 +205,6 @@ public class GoogleRecognizer implements RecognitionListener {
 		Log.i(TAG, params.toString() + "");
 		// TODO Auto-generated method stub
 
-	}
-
-	private int getTimeToDelaySpeech() {
-		if (errorCounter > 6) {
-			timeToDelaySpeech *= 2;
-		}
-		// return the less of 30 seconds or doubled time factor
-		return Math.min(timeToDelaySpeech, 60 * 1000);
 	}
 
 }

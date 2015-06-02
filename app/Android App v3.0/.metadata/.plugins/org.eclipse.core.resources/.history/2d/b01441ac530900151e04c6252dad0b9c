@@ -60,7 +60,7 @@ public class SpeechActivity extends Activity {
 				.getSystemService(Context.AUDIO_SERVICE);
 		aM.setStreamVolume(AudioManager.STREAM_MUSIC,
 				aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-		//aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+		aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 		speechController = new SpeechController();
 		speechController.startCycle();
 	}

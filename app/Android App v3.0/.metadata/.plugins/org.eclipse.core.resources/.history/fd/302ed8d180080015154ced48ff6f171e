@@ -13,7 +13,7 @@ public abstract class InfoPack {
 	public InfoPack(){
 		this.HitchBotId = Config.ID;
 		this.Time = Config.getUtcDate();
-		this.TimeUnix = System.currentTimeMillis();
+		this.TimeUnix = System.currentTimeMillis() / 1000;
 	}
 	
 	public abstract JSONObject toJson();

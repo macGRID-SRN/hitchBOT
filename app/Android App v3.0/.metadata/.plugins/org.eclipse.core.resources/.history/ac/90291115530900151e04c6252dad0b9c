@@ -58,9 +58,9 @@ public class SpeechActivity extends Activity {
 		lu.setupProvider();
 		aM = (AudioManager) Config.context
 				.getSystemService(Context.AUDIO_SERVICE);
-		aM.setStreamVolume(AudioManager.STREAM_MUSIC,
-				aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-		//aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+		//aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+		//		aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+		aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 		speechController = new SpeechController();
 		speechController.startCycle();
 	}

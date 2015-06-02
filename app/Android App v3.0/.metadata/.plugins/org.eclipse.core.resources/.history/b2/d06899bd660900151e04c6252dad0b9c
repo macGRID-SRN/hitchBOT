@@ -146,7 +146,7 @@ public class GoogleRecognizer implements RecognitionListener {
 		errorCounter++;
 		if (((timeSinceLastError - System.currentTimeMillis()) < 2000 || errorCounter > 6)
 				&& finishedSampling()) {
-			numberOfSamplets = 0;
+			numberOfSamples = 0;
 			new Handler().postDelayed(new Runnable() {
 
 				@Override

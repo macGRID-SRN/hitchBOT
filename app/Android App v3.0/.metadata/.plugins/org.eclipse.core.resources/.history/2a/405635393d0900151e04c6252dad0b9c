@@ -56,11 +56,9 @@ public class SpeechActivity extends Activity {
 		// queue location info
 		LocationInfo lu = new LocationInfo(Config.context);
 		lu.setupProvider();
-		aM = (AudioManager) Config.context
-				.getSystemService(Context.AUDIO_SERVICE);
-		aM.setStreamVolume(AudioManager.STREAM_MUSIC,
-				aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-		//aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+		 aM = (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
+		 aM.setStreamVolume(AudioManager.STREAM_MUSIC,
+			 aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 		speechController = new SpeechController();
 		speechController.startCycle();
 	}
@@ -74,7 +72,7 @@ public class SpeechActivity extends Activity {
 				ex.printStackTrace(new PrintWriter(sw));
 				String stackTrace = sw.toString();
 				Log.i(TAG, stackTrace);
-
+	
 				ExceptionPack exPack = new ExceptionPack(stackTrace);
 				HttpPostDb eL = new HttpPostDb(Config.exceptionPOST, 0, null,
 						exPack.toJson(), 7);
@@ -83,7 +81,7 @@ public class SpeechActivity extends Activity {
 			}
 		});
 	}
-
+	
 	private void setupHandler() {
 		internetHandler = new Handler();
 		internetHandler.postDelayed(new Runnable() {
@@ -133,10 +131,11 @@ public class SpeechActivity extends Activity {
 	}
 
 	public void takePicture() {
-		try {
-			tP.captureHandler();
-		} catch (NullPointerException e) {
-			Log.i(TAG, e.toString());
+		try{
+		tP.captureHandler();
+		}
+		catch(NullPointerException e){
+			Log.i(TAG ,e.toString());
 		}
 	}
 
