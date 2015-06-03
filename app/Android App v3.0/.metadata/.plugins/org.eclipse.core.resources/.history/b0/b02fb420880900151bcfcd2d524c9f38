@@ -203,10 +203,10 @@ public class GoogleRecognizer implements RecognitionListener {
 
 	private int getTimeToDelaySpeech() {
 		if (errorCounter > 6) {
-			// return the less of 30 seconds or doubled time factor
-			timeToDelaySpeech = Math.min(timeToDelaySpeech * 2, 60 * 1000);
+			timeToDelaySpeech *= 2;
 		}
-		return timeToDelaySpeech;
+		// return the less of 30 seconds or doubled time factor
+		return Math.min(timeToDelaySpeech, 60 * 1000);
 	}
 
 	@Override

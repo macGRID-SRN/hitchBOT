@@ -102,7 +102,7 @@ public class CleverScriptHelper {
 
 				for (int j = 0; j < jO.length(); j++) {
 					JSONObject jobj = jO.getJSONObject(j);
-					
+
 					cs.assignVariable((String) jobj.getString("key"),
 							(String) jobj.getString("value"));
 					Log.i(TAG, (String) jobj.getString("key") + " ");

@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class GoogleRecognizer implements RecognitionListener {
 
 	private SpeechRecognizer mSpeechRecognizer;
-	private Intent mSpeechRecognizerIntent;
+	private Intent mSpeechRecognizerIntent; 
 	private CleverScriptHelper csh;
 	private static final String TAG = "GoogleRecognizer";
 	private boolean isListening = false;
@@ -31,85 +31,78 @@ public class GoogleRecognizer implements RecognitionListener {
 	private int timeToDelaySpeech;
 	private int rmsCounter = 0;
 	AudioManager aM;
-
-	public GoogleRecognizer() {
-		timeToDelaySpeech = 2000;
-		numberOfSamples = 0;
-		// aM =
-		// (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
+	
+	public GoogleRecognizer ()
+	{
+		//aM = (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
 		setupRecognizer();
 	}
-
-	public void setCleverHandler(CleverScriptHelper csh) {
+	
+	public void setCleverHandler(CleverScriptHelper csh)
+	{
 		this.csh = csh;
 	}
-
-	private void setupRecognizer() {
+	
+	private void setupRecognizer(){
 		isSetup = true;
-		mSpeechRecognizer = SpeechRecognizer
-				.createSpeechRecognizer(Config.context);
-		mSpeechRecognizer.setRecognitionListener(this);
-		mSpeechRecognizerIntent = new Intent(
-				RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-		mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-				RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-		mSpeechRecognizerIntent
-				.putExtra(
-						RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS,
-						1000 * 3);
-		mSpeechRecognizerIntent.putExtra(
-				RecognizerIntent.EXTRA_CALLING_PACKAGE,
-				Config.context.getPackageName());
-		// mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
-		// "de-DE");
-		// mSpeechRecognizerIntent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES",
-		// new String[]{});
+		mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(Config.context);
+	    mSpeechRecognizer.setRecognitionListener(this); 
+		mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+	    mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+	                                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+	    mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 
+	    		1000 * 3);
+	    mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,
+	                                     Config.context.getPackageName());
+	   // mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "de-DE");
+	   // mSpeechRecognizerIntent.putExtra("android.speech.extra.EXTRA_ADDITIONAL_LANGUAGES", new String[]{});
 	}
-
-	public void startListening() {
-		// aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+	
+	public void startListening()
+	{
+		//aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
 		rmsDbLevel = 0.0;
 		rmsCounter = 0;
-		if (!isSetup)
+		if(!isSetup)
 			setupRecognizer();
-		// aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+		//aM.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
 		isListening = true;
 		mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 	}
-
+	
 	@Override
 	public void onReadyForSpeech(Bundle params) {
-		Log.i(TAG, "onreadyforspeach called");
+		Log.i(TAG, "onreadyforspeach called");		
 	}
 
 	@Override
 	public void onBeginningOfSpeech() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void onRmsChanged(float rmsdB) {
 		rmsDbLevel += rmsdB;
-		rmsCounter += 1;
+		rmsCounter+=1;
 	}
 
 	@Override
 	public void onBufferReceived(byte[] buffer) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void onEndOfSpeech() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void onError(int error) {
 		Log.i(TAG, "Speech Error: " + error);
-		switch (error) {
+		switch(error){
 		case SpeechRecognizer.ERROR_AUDIO:
 			handleError("3");
 			break;
@@ -140,12 +133,13 @@ public class GoogleRecognizer implements RecognitionListener {
 			break;
 		}
 	}
-
-	private void killRecognizer() {
+	
+	private void killRecognizer()
+	{
 		mSpeechRecognizer.destroy();
 		isSetup = false;
 	}
-
+	
 	private void handleError(String error) {
 		errorCounter++;
 		if (((timeSinceLastError - System.currentTimeMillis()) < 2000 || errorCounter > 6)
@@ -167,53 +161,50 @@ public class GoogleRecognizer implements RecognitionListener {
 			isListening = false;
 			// mSpeechRecognizer.cancel();
 			// Want to slow down responses if it is responding too fast.
-			numberOfSamples++;
-			startListening();
+				numberOfSamples++;
+				startListening();
 		}
 	}
 
 	@Override
 	public void onResults(Bundle results) {
-		numberOfSamples = 0;
 		isListening = false;
-		ArrayList<String> matches = results
-				.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-		float[] scores = results
-				.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
+		ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+		 float [] scores = results.getFloatArray(RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
 		String message = matches.get(0);
 		Log.i(TAG, message + " ");
 		float score = -1.0f;
-		if (scores != null && scores.length > 0) {
+		if(scores != null && scores.length > 0){
 			score = scores[0];
 		}
 		Toast.makeText(Config.context, message, Toast.LENGTH_LONG).show();
-		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter, score, 0);
-
+		csh.sendCleverScriptResponse(message, rmsDbLevel / rmsCounter,score, 0);
+		
 	}
 
 	@Override
 	public void onPartialResults(Bundle partialResults) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	private boolean finishedSampling() {
 		return numberOfSamples >= 2;
 	}
-
+	
 	private int getTimeToDelaySpeech() {
 		if (errorCounter > 6) {
-			// return the less of 30 seconds or doubled time factor
-			timeToDelaySpeech = Math.min(timeToDelaySpeech * 2, 60 * 1000);
+			timeToDelaySpeech *= 2;
 		}
-		return timeToDelaySpeech;
+		// return the less of 30 seconds or doubled time factor
+		return Math.min(timeToDelaySpeech, 60 * 1000);
 	}
 
 	@Override
 	public void onEvent(int eventType, Bundle params) {
 		Log.i(TAG, params.toString() + "");
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

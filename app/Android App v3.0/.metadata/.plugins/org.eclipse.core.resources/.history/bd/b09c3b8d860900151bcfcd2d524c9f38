@@ -33,8 +33,6 @@ public class GoogleRecognizer implements RecognitionListener {
 	AudioManager aM;
 
 	public GoogleRecognizer() {
-		timeToDelaySpeech = 2000;
-		numberOfSamples = 0;
 		// aM =
 		// (AudioManager)Config.context.getSystemService(Context.AUDIO_SERVICE);
 		setupRecognizer();
@@ -203,10 +201,10 @@ public class GoogleRecognizer implements RecognitionListener {
 
 	private int getTimeToDelaySpeech() {
 		if (errorCounter > 6) {
-			// return the less of 30 seconds or doubled time factor
-			timeToDelaySpeech = Math.min(timeToDelaySpeech * 2, 60 * 1000);
+			timeToDelaySpeech *= 2;
 		}
-		return timeToDelaySpeech;
+		// return the less of 30 seconds or doubled time factor
+		return Math.min(timeToDelaySpeech, 60 * 1000);
 	}
 
 	@Override
