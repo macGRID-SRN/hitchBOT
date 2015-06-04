@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpPost"/>
 <fullyQualifiedTypeName name="org.apache.http.impl.client.DefaultHttpClient"/>
@@ -25,7 +23,6 @@
 <fullyQualifiedTypeName name="android.net.Uri"/>
 <fullyQualifiedTypeName name="android.location.LocationManager"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
-<fullyQualifiedTypeName name="android.os.Handler"/>
 <fullyQualifiedTypeName name="android.location.Location"/>
 <fullyQualifiedTypeName name="Models.HttpPostDb"/>
 <fullyQualifiedTypeName name="android.location.LocationListener"/>
@@ -37,10 +34,8 @@
 <fullyQualifiedTypeName name="java.util.Iterator"/>
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
 <fullyQualifiedTypeName name="Models.FileUploadDb"/>
-<fullyQualifiedTypeName name="org.json.JSONArray"/>
 <fullyQualifiedTypeName name="Data.FileUpload"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
-<fullyQualifiedTypeName name="Data.DataGET"/>
 <fullyQualifiedTypeName name="Camera.PictureTaker"/>
 <fullyQualifiedTypeName name="android.hardware.Camera.ErrorCallback"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
@@ -58,6 +53,11 @@
 <fullyQualifiedTypeName name="java.io.UnsupportedEncodingException"/>
 <fullyQualifiedTypeName name="org.apache.http.message.BasicHeader"/>
 <fullyQualifiedTypeName name="com.google.gson.Gson"/>
-<fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="android.view.WindowManager"/>
+<fullyQualifiedTypeName name="org.json.JSONArray"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="Speech.CleverScriptHelper"/>
+<fullyQualifiedTypeName name="Data.DataGET"/>
+<fullyQualifiedTypeName name="android.os.Handler"/>
 </qualifiedTypeNameHistroy>

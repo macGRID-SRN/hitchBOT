@@ -56,10 +56,11 @@ public class SpeechActivity extends Activity {
 		// queue location info
 		LocationInfo lu = new LocationInfo(Config.context);
 		lu.setupProvider();
-		aM = (AudioManager) Config.context
-				.getSystemService(Context.AUDIO_SERVICE);
+		//aM = (AudioManager) Config.context
+		//		.getSystemService(Context.AUDIO_SERVICE);
 		aM.setStreamVolume(AudioManager.STREAM_MUSIC,
-			aM.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+			0, 0);
+		aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 		speechController = new SpeechController();
 		speechController.startCycle();
 	}

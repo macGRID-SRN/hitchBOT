@@ -6,7 +6,6 @@ import java.util.Locale;
 import com.example.hitchbot.Config;
 import com.example.hitchbot.Activities.SpeechActivity;
 
-import android.media.AudioManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
