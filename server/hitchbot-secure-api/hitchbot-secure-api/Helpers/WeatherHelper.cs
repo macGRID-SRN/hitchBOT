@@ -26,7 +26,7 @@ namespace hitchbot_secure_api.Helpers
 
             public VariableValuePair GetCityNamePair()
             {
-                return new VariableValuePair()
+                return new VariableValuePair
                 {
                     key = "current_city_name",
                     value = GetCityName()
@@ -35,16 +35,25 @@ namespace hitchbot_secure_api.Helpers
 
             public VariableValuePair GetTempCPair()
             {
-                return new VariableValuePair()
+                return new VariableValuePair
                 {
                     key = "weather_temperatureC",
-                    value = Math.Round(GetTempInC()).ToString(CultureInfo.InvariantCulture)
+                    value = Convert.ToInt32(GetTempInC()).ToString()
+                };
+            }
+
+            public VariableValuePair GetTempTextCPair()
+            {
+                return new VariableValuePair
+                {
+                    key = "weather_ctext",
+                    value = Helpers.HumanFriendlyInteger.IntegerToWritten(Convert.ToInt32(GetTempInC()))
                 };
             }
 
             public VariableValuePair GetWeatherStatusPair()
             {
-                return new VariableValuePair()
+                return new VariableValuePair
                 {
                     key = "weather_status",
                     value = GetWeatherCondition()
