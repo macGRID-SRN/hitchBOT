@@ -39,7 +39,8 @@ namespace hitchbot_secure_api.Helpers.Location
             //always add the last value - map always updated then plus other things rely on it!
             outList.Add(inList.Last());
 
-            return outList;
+            //return outList;
+            return inList;
         }
 
         //code taken and modified from http://stackoverflow.com/questions/3852268/c-sharp-implementation-of-googles-encoded-polyline-algorithm

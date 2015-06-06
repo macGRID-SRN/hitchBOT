@@ -45,7 +45,7 @@ namespace hitchbot_secure_api.Controllers
                 var previousIds = await spotCurrentIdsTask;
 
                 var messages = spotty.response.feedMessageResponse.messages.message
-                    .Where(l => l.messageType == "EXTREME-TRACK")
+                    .Where(l => l.messageType == "EXTREME-TRACK" || l.messageType == "NEWMOVEMENT")
                     .Where(l => previousIds.All(h => h.SpotID != l.id))
                     .Select(l => new LocationController.SpotDto
                     {
