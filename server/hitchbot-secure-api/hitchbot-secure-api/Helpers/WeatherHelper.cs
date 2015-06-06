@@ -38,7 +38,7 @@ namespace hitchbot_secure_api.Helpers
                 return new VariableValuePair()
                 {
                     key = "weather_temperatureC",
-                    value = GetTempInC().ToString(CultureInfo.InvariantCulture)
+                    value = Math.Round(GetTempInC()).ToString(CultureInfo.InvariantCulture)
                 };
             }
 
