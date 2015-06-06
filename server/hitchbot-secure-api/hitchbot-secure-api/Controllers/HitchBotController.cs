@@ -79,11 +79,11 @@ namespace hitchbot_secure_api.Controllers
             using (var db = new DatabaseContext())
             {
                 var location = await db.Locations.Where(l => l.HitchBotId == HitchBotId).OrderByDescending(l => l.TakenTime).FirstAsync();
-                var weatherApi = new Helpers.WeatherHelper.OpenWeatherApi();
+                var weatherApi = new WeatherHelper.OpenWeatherApi();
 
                 weatherApi.LoadWeatherData(location.Latitude, location.Longitude);
 
-                var contextpacket = new Models.ContextPacket()
+                var contextpacket = new ContextPacket()
                 {
                     HitchBotId = HitchBotId,
                     Variables = new List<VariableValuePair>()
@@ -91,6 +91,7 @@ namespace hitchbot_secure_api.Controllers
 
                 contextpacket.Variables.Add(weatherApi.GetCityNamePair());
                 contextpacket.Variables.Add(weatherApi.GetTempCPair());
+                contextpacket.Variables.Add(weatherApi.GetTempTextCPair());
                 contextpacket.Variables.Add(weatherApi.GetWeatherStatusPair());
 
                 db.ContextPackets.Add(contextpacket);

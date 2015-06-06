@@ -259,6 +259,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AzureBlobHelper.cs" />
+    <Compile Include="Helpers\HumanReadableInt.cs" />
     <Compile Include="Helpers\Location\GoogleMapsBuilder.cs" />
     <Compile Include="Helpers\Location\GoogleMapsHelper.cs" />
     <Compile Include="Helpers\Location\LocationHelper.cs" />
