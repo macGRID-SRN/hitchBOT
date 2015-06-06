@@ -9,6 +9,7 @@ namespace hitchbot_secure_api.Controllers
 {
     public partial class SystemController : ApiController
     {
+        public static DateTime MAP_LAST_UPDATED = DateTime.UtcNow;
         public async Task<IHttpActionResult> TestModel([FromBody] ReturnTest Context)
         {
             if (!ModelState.IsValid)
@@ -30,8 +31,12 @@ namespace hitchbot_secure_api.Controllers
         {
             var builer = new Helpers.Location.GoogleMapsBuilder(hitchBotId);
             builer.BuildJsAndUpload();
+            //HALLELIHA THE MAP WAS UPDATED
+            MAP_LAST_UPDATED = DateTime.UtcNow;
 
+            //Also basically this.
+            //TIME_SINCE_LAST_MAP_UPDATE_EMAIL { get { return DateTime.UtcNow; } }
             return Ok(string.Format("Map was successfully updated."));
-        } 
+        }
     }
 }
