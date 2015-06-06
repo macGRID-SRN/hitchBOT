@@ -67,6 +67,7 @@ namespace hitchbot_secure_api.Helpers.Location
             {
                 var current_loc =
                     db.Locations.Where(l => l.HitchBotId == hitchBotId)
+                        .Where(l=>l.LocationProvider == LocationProvider.SpotGPS)
                         .OrderByDescending(l => l.TakenTime)
                         .FirstOrDefault();
                 return @"var currentPoint = new google.maps.LatLng(" + current_loc.Latitude + "," + current_loc.Longitude + ");";
