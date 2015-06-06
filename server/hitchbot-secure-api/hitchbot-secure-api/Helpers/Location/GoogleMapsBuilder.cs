@@ -69,7 +69,7 @@ namespace hitchbot_secure_api.Helpers.Location
                     db.Locations.Where(l => l.HitchBotId == hitchBotId)
                         .OrderByDescending(l => l.TakenTime)
                         .FirstOrDefault();
-                return @"var currentPoint = new google.maps.LatLng(" + current_loc.Latitude + "," + current_loc.Longitude +");";
+                return @"var currentPoint = new google.maps.LatLng(" + current_loc.Latitude + "," + current_loc.Longitude + ");";
             }
         }
 
@@ -197,7 +197,7 @@ google.maps.event.addDomListener(window,""load"",initialize);";
             //get all the locations from before launch--messy TODO update this for the current launch date
             using (var db = new Dal.DatabaseContext())
             {
-                var locations = db.Locations.Where(l => l.HitchBotId == hitchBotId && l.LocationProvider == LocationProvider.SpotGPS).OrderBy(l => l.TakenTime).ToList();
+                var locations = db.Locations.Where(l => l.HitchBotId == hitchBotId && l.TakenTime > l.HitchBot.Journey.StartTime && l.LocationProvider == LocationProvider.SpotGPS).OrderBy(l => l.TakenTime).ToList();
 
                 string builder = string.Empty;
 
