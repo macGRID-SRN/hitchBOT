@@ -1,7 +1,0 @@
-package TransitionModels;
-
-public abstract class InfoPack {
-	
-	public abstract String toJson();
-
-}

@@ -17,6 +17,7 @@ TestResults
 [Dd]ebug/
 [Rr]elease/
 x64/
+*.apk
 *.jpg
 *.jar
 *.so

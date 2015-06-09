@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpPost"/>
 <fullyQualifiedTypeName name="org.apache.http.impl.client.DefaultHttpClient"/>
 <fullyQualifiedTypeName name="org.apache.http.util.EntityUtils"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="Speech.CleverScriptHelper"/>
 <fullyQualifiedTypeName name="Data.DataGET"/>
 <fullyQualifiedTypeName name="android.os.Handler"/>
+<fullyQualifiedTypeName name="android.media.AudioManager"/>
 </qualifiedTypeNameHistroy>
