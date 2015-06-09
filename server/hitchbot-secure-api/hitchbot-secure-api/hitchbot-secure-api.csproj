@@ -277,6 +277,10 @@
     <Compile Include="Migrations\201505232238521_InitialCreate.Designer.cs">
       <DependentUpon>201505232238521_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506091447356_AddSpotMessageType.cs" />
+    <Compile Include="Migrations\201506091447356_AddSpotMessageType.Designer.cs">
+      <DependentUpon>201506091447356_AddSpotMessageType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -377,6 +381,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505232238521_InitialCreate.resx">
       <DependentUpon>201505232238521_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506091447356_AddSpotMessageType.resx">
+      <DependentUpon>201506091447356_AddSpotMessageType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

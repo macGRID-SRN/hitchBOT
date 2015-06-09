@@ -37,12 +37,25 @@ namespace hitchbot_secure_api.Controllers
 
             public int unixTime { get; set; }
 
+            public SpotGpsMessageType SpotGpsMessageType { get; set; }
+
             public DateTime Time
             {
                 get
                 {
                     return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixTime);
+                }
+            }
 
+            public bool ShouldHideFromProduction
+            {
+                get
+                {
+                    if (SpotGpsMessageType == SpotGpsMessageType.Stop 
+                        || SpotGpsMessageType == SpotGpsMessageType.ExtremeTrack 
+                        || SpotGpsMessageType == SpotGpsMessageType.NewMovement)
+                        return false;
+                    return true;
                 }
             }
         }
