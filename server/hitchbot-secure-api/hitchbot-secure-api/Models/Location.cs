@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace hitchbot_secure_api.Models
 {
@@ -19,11 +20,12 @@ namespace hitchbot_secure_api.Models
         public double? Velocity { get; set; }
 
         public int? SpotID { get; set; }
-
+        public SpotGpsMessageType? SpotGpsMessageType { get; set; }
         public LocationProvider LocationProvider { get; set; }
 
         public string NearestCity { get; set; }
         public bool ForceProduction { get; set; } /*force this point into being used in production*/
+        public bool HideFromProduction { get; set; }
 
         public int? HitchBotId { get; set; }
         public virtual HitchBot HitchBot { get; set; }
@@ -57,6 +59,38 @@ namespace hitchbot_secure_api.Models
         SpotGPS
     }
 
+    public enum SpotGpsMessageType
+    {
+        Unknown,
+        Ok,
+        Track,
+        ExtremeTrack,
+        UnlimitedTrack,
+        NewMovement,
+        Help,
+        HelpCancel,
+        Custom,
+        Poi,
+        Stop,
+        PowerOff
+    }
+
+    public class SpotApiMapping
+    {
+        public static readonly Dictionary<string, SpotGpsMessageType> SpotMap = new Dictionary<string, SpotGpsMessageType>
+        {
+            {"OK", SpotGpsMessageType.Ok},
+            {"TRACK", SpotGpsMessageType.Track},
+            {"EXTREME-TRACK", SpotGpsMessageType.ExtremeTrack},
+            {"UNLIMITED-TRACK", SpotGpsMessageType.UnlimitedTrack},
+            {"NEWMOVEMENT", SpotGpsMessageType.NewMovement},
+            {"NEW", SpotGpsMessageType.Help},
+            {"HELP-CANCEL", SpotGpsMessageType.HelpCancel},
+            {"CUSTOM", SpotGpsMessageType.Custom},
+            {"POI", SpotGpsMessageType.Poi},
+            {"STOP",SpotGpsMessageType.Stop}
+        };
+    }
 
     //used http://json2csharp.com/ to get this. haha feels like such a dirty cheat.
     public class SpotApiCall
@@ -87,6 +121,16 @@ namespace hitchbot_secure_api.Models
             public string batteryState { get; set; }
             public int hidden { get; set; }
             public string messageContent { get; set; }
+            [JsonIgnore]
+            public SpotGpsMessageType _messageType
+            {
+                get
+                {
+                    if (SpotApiMapping.SpotMap.ContainsKey(messageType))
+                        return SpotApiMapping.SpotMap[messageType];
+                    return SpotGpsMessageType.Unknown;
+                }
+            }
         }
 
         public class Messages

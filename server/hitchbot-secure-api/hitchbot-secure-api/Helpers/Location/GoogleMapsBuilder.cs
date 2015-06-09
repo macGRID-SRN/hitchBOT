@@ -200,9 +200,10 @@ google.maps.event.addDomListener(window,""load"",initialize);";
             {
                 var locations = db.Locations
                     .Where(l => 
-                        (l.HitchBotId == hitchBotId && l.TakenTime > l.HitchBot.Journey.StartTime && l.LocationProvider == LocationProvider.SpotGPS) 
-                        || 
-                        (l.ForceProduction))
+                        ((l.HitchBotId == hitchBotId && l.TakenTime > l.HitchBot.Journey.StartTime && l.LocationProvider == LocationProvider.SpotGPS) 
+                        || (l.ForceProduction)) 
+                        
+                        && !l.HideFromProduction)
                     .OrderBy(l => l.TakenTime).ToList();
 
                 string builder = string.Empty;
