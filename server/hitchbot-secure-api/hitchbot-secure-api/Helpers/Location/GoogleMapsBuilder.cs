@@ -166,7 +166,7 @@ function AutoCenter(e){
 function initialize(){
 
 var e={
-	center:centerPoint,
+	center:currentPoint,
 	zoom:centerZoom
 };
 var t=new google.maps.Map(document.getElementById(""map-canvas""),e);
@@ -180,8 +180,8 @@ if(autocenter){AutoCenter(t)}
 
 var centerPoint=new google.maps.LatLng(48.1384,11.573399999999992);
 
-var centerZoom=10;
-var autocenter=true;
+var centerZoom=7;
+var autocenter=false;
 google.maps.event.addDomListener(window,""load"",initialize);";
 
             return stringy;
