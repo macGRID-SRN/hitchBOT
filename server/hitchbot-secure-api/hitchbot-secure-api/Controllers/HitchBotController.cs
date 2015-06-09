@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Management;
-using Newtonsoft.Json;
 using hitchbot_secure_api.Dal;
 using hitchbot_secure_api.Helpers;
 using hitchbot_secure_api.Models;
