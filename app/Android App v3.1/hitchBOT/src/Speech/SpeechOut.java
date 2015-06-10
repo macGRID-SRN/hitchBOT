@@ -15,7 +15,6 @@ public class SpeechOut {
 
 	public TextToSpeech mTts;
 	private GoogleRecognizer gRecognizer;
-	private PocketRecognizer pRecognizer;
 	private boolean stopCycle = false;
 	private static final String TAG = "SpeechOut";
 
@@ -35,10 +34,6 @@ public class SpeechOut {
 
 	public void setRecognizer(GoogleRecognizer recognizer) {
 		this.gRecognizer = recognizer;
-	}
-	
-	public void setRecognizer(PocketRecognizer recognizer) {
-		this.pRecognizer = recognizer;
 	}
 
 	@SuppressWarnings("deprecation")
