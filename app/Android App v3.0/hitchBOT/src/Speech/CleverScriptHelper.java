@@ -64,44 +64,14 @@ public class CleverScriptHelper {
 		
 		HttpPostDb httpPost = new HttpPostDb(Config.conversationPost, 0,null, speechPack.toJson(), 3);
 		Config.dQ.addItemToQueue(httpPost);
-		speechOut.Speak(output);
+		speechOut.Speak(output, isSpanishPhrase());
 	}
 
-	public void sendCleverScriptResponse(String message, int accuracy,
-			int recognizer) {
-		String output = getResponseFromCleverScript(message);
-		
-		int cleverAccuracy = 0;
-		try{
-			cleverAccuracy = Integer.parseInt(getAccuracy());
-		}catch(Exception e){
-			//do nothing
-		}
-
-		SpeechPack speechPack  = new SpeechPack(output, message, getRecentOutputLabel(),
-				cleverAccuracy, accuracy, 0.0);
-
-		HttpPostDb httpPost = new HttpPostDb(Config.conversationPost, 0,null, speechPack.toJson(), 3);
-		Config.dQ.addItemToQueue(httpPost);
-		speechOut.Speak(output);
+	private boolean isSpanishPhrase(){
+		return getRecentOutputLabel().startsWith("es_");
 	}
 
-	public void sendCleverScriptResponse(String message) {
-		String output = getResponseFromCleverScript(message);
-		int cleverAccuracy = 0;
-		try{
-			cleverAccuracy = Integer.parseInt(getAccuracy());
-		}catch(Exception e){
-			//do nothing
-		}
-		SpeechPack speechPack  = new SpeechPack(output, message, getRecentOutputLabel(),
-				cleverAccuracy, 0, 0.0);
-		
-		HttpPostDb httpPost = new HttpPostDb(Config.conversationPost, 0,null, speechPack.toJson(), 3);
-		Config.dQ.addItemToQueue(httpPost);
-		speechOut.Speak(output);
-	}
-
+	
 	public String getResponseFromCleverScript(String message) {
 		Log.i(TAG, message);
 		return cs.sendMessage(message);

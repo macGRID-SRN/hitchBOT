@@ -15,7 +15,6 @@ public class SpeechOut {
 
 	public TextToSpeech mTts;
 	private GoogleRecognizer gRecognizer;
-	private PocketRecognizer pRecognizer;
 	private boolean stopCycle = false;
 	private static final String TAG = "SpeechOut";
 
@@ -36,14 +35,10 @@ public class SpeechOut {
 	public void setRecognizer(GoogleRecognizer recognizer) {
 		this.gRecognizer = recognizer;
 	}
-	
-	public void setRecognizer(PocketRecognizer recognizer) {
-		this.pRecognizer = recognizer;
-	}
 
 	@SuppressWarnings("deprecation")
-	public void Speak(String message) {
-
+	public void Speak(String message, boolean isSpanish) {
+		if(isSpanish){switchToSpanish();}
 		HashMap<String, String> myHashAlarm = new HashMap<String, String>();
 		// myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
 		// String.valueOf(AudioManager.STREAM_ALARM));
@@ -67,6 +62,7 @@ public class SpeechOut {
 							Config.context.runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
+									mTts.setLanguage(Locale.US);
 										gRecognizer.startListening();
 									//else
 									//	pRecognizer.startListening(Config.searchName);
@@ -99,7 +95,13 @@ public class SpeechOut {
 	 * Config.getUtcDate()); HttpPostDb httpPost = new HttpPostDb(uri, 0, 3);
 	 * Config.dQ.addItemToQueue(httpPost); }
 	 */
-
+	
+	private void switchToSpanish(){
+		Locale loc = new Locale("es-MX");
+		mTts.setLanguage(loc);
+	}
+	
+	
 	public boolean isSpeaking() {
 		return mTts.isSpeaking();
 	}
