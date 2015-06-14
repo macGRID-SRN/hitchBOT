@@ -209,6 +209,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Access\Shared\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Shared\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Access\Shared\PageWithHeader.master.cs">
+      <DependentUpon>PageWithHeader.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Shared\PageWithHeader.master.designer.cs">
+      <DependentUpon>PageWithHeader.master</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -286,6 +307,10 @@
     <Compile Include="Migrations\201506091447356_AddSpotMessageType.Designer.cs">
       <DependentUpon>201506091447356_AddSpotMessageType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506140056112_AddUserAccount.cs" />
+    <Compile Include="Migrations\201506140056112_AddUserAccount.Designer.cs">
+      <DependentUpon>201506140056112_AddUserAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -296,6 +321,7 @@
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Journey.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\LoginAccount.cs" />
     <Compile Include="Models\SpeechLogEvent.cs" />
     <Compile Include="Models\TabletStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -304,6 +330,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Access\Login.aspx" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -337,6 +364,8 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Access\Shared\Main.Master" />
+    <Content Include="Access\Shared\PageWithHeader.master" />
     <None Include="Properties\PublishProfiles\hitchbot-secure-api-dev.pubxml" />
     <None Include="Properties\PublishProfiles\hitchbot-secure-api.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
@@ -390,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506091447356_AddSpotMessageType.resx">
       <DependentUpon>201506091447356_AddSpotMessageType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506140056112_AddUserAccount.resx">
+      <DependentUpon>201506140056112_AddUserAccount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
