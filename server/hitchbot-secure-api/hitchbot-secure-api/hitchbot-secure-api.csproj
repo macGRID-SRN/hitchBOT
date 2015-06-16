@@ -311,9 +311,14 @@
     <Compile Include="Migrations\201506140056112_AddUserAccount.Designer.cs">
       <DependentUpon>201506140056112_AddUserAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506160136500_AddCleverscriptEntries.cs" />
+    <Compile Include="Migrations\201506160136500_AddCleverscriptEntries.Designer.cs">
+      <DependentUpon>201506160136500_AddCleverscriptEntries.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CleverscriptContent.cs" />
     <Compile Include="Models\ContextPacket.cs" />
     <Compile Include="Models\ExceptionLog.cs" />
     <Compile Include="Models\HitchBot.cs" />
@@ -422,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506140056112_AddUserAccount.resx">
       <DependentUpon>201506140056112_AddUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506160136500_AddCleverscriptEntries.resx">
+      <DependentUpon>201506160136500_AddCleverscriptEntries.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
