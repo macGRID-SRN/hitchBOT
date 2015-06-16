@@ -73,11 +73,11 @@
         }
 
         function initialize() {
-            var myLatlng = new google.maps.LatLng(50.983027, 10.445880);
+            var myLatlng = new google.maps.LatLng(39.011902, -98.484246);
 
             var mapOptions = {
                 center: myLatlng,
-                zoom: 5
+                zoom: 4
             };
 
             map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -189,11 +189,11 @@
 
                 <div class="form-group">
                     <label for="inputName">Name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Wikipedia Entry" runat="server">
+                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Cleverscript Entry" runat="server">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Cleverscript Entries (One Per Line) <span class="wiki-lines-detect"></span></label>
-                    <textarea class="form-control wiki-entries" id="inputWiki1" placeholder="Wikipedia Entries" rows="5" runat="server"></textarea>
+                    <textarea class="form-control wiki-entries" id="inputWiki1" placeholder="Cleverscript Entries" rows="5" runat="server"></textarea>
                 </div>
                 <div class="form-group">
                     <asp:Button ID="buttonSubmit" runat="server" Text="Submit" class="btn btn-success" OnClick="buttonSubmit_Click" />
