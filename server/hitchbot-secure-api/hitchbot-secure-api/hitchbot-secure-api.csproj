@@ -209,6 +209,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\AddTargetLocation.aspx.cs">
+      <DependentUpon>AddTargetLocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\AddTargetLocation.aspx.designer.cs">
+      <DependentUpon>AddTargetLocation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Access\LandingPage.aspx.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\LandingPage.aspx.designer.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Access\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -229,6 +243,13 @@
     </Compile>
     <Compile Include="Access\Shared\PageWithHeader.master.designer.cs">
       <DependentUpon>PageWithHeader.master</DependentUpon>
+    </Compile>
+    <Compile Include="Access\Unauthorized.aspx.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Unauthorized.aspx.designer.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -335,7 +356,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Access\AddTargetLocation.aspx" />
+    <Content Include="Access\LandingPage.aspx" />
     <Content Include="Access\Login.aspx" />
+    <Content Include="Access\Unauthorized.aspx" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
