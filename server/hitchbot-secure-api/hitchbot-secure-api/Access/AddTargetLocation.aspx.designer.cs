@@ -67,6 +67,33 @@ namespace hitchbot_secure_api.Access {
         protected global::System.Web.UI.HtmlControls.HtmlInputText inputName;
         
         /// <summary>
+        /// inputTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inputTag;
+        
+        /// <summary>
+        /// selectedLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField selectedLabelID;
+        
+        /// <summary>
+        /// labelLiterals control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal labelLiterals;
+        
+        /// <summary>
         /// inputWiki1 control.
         /// </summary>
         /// <remarks>
