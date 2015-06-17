@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Access/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="AddTargetLocation.aspx.cs" Inherits="hitchbot_secure_api.Access.AddTargetLocation" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
-      <style type="text/css">
+    <style type="text/css">
         html, body, #map-canvas {
             height: 100%;
             margin: 0;
@@ -136,21 +137,20 @@
                                 <div class="input-group-btn" id="inputRadius">
                                     <a class="btn btn-default dropdown-toggle btn-select2 fake-link select-button-radius" data-toggle="dropdown">Select<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="fake-link">5 km</a></li>
-                                        <li><a class="fake-link">10 km</a></li>
-                                        <li><a class="fake-link">15 km</a></li>
-                                        <li><a class="fake-link">25 km</a></li>
-                                        <li><a class="fake-link">50 km</a></li>
-                                        <li><a class="fake-link">75 km</a></li>
-                                        <li><a class="fake-link">100 km</a></li>
-                                        <li><a class="fake-link">125 km</a></li>
-                                        <li><a class="fake-link">150 km</a></li>
-                                        <li><a class="fake-link">175 km</a></li>
-                                        <li><a class="fake-link">200 km</a></li>
+                                        <li><a class="fake-link radius-option">5 km</a></li>
+                                        <li><a class="fake-link radius-option">10 km</a></li>
+                                        <li><a class="fake-link radius-option">15 km</a></li>
+                                        <li><a class="fake-link radius-option">25 km</a></li>
+                                        <li><a class="fake-link radius-option">50 km</a></li>
+                                        <li><a class="fake-link radius-option">75 km</a></li>
+                                        <li><a class="fake-link radius-option">100 km</a></li>
+                                        <li><a class="fake-link radius-option">125 km</a></li>
+                                        <li><a class="fake-link radius-option">150 km</a></li>
+                                        <li><a class="fake-link radius-option">175 km</a></li>
+                                        <li><a class="fake-link radius-option">200 km</a></li>
                                     </ul>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -186,10 +186,29 @@
                         </p>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputName">Name</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Cleverscript Entry" runat="server"></input>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputRadius">Select a Label</label>
 
-                <div class="form-group">
-                    <label for="inputName">Name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name of Cleverscript Entry" runat="server">
+                            <div class="input-group radius-select">
+                                <input id="inputTag" type="text" class="form-control input-tag" aria-label="..." runat="server" disabled="True"/>
+                                <div class="input-group-btn" id="inputLabel">
+                                    <asp:HiddenField ID="selectedLabelID" runat="server" />
+                                    <a class="btn btn-default dropdown-toggle btn-select2 fake-link select-button-radius" data-toggle="dropdown">Select Label<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <asp:Literal ID="labelLiterals" runat="server"></asp:Literal>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Cleverscript Entries (One Per Line) <span class="wiki-lines-detect"></span></label>
@@ -205,71 +224,83 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="endScripts" runat="server">
-     <script>
+    <script>
         <%-- Updates the radius value when the dropdown is used --%>
-         $(".dropdown-menu li a").click(function () {
-             var selText = $(this).text();
-             $(this).parents('.input-group-btn').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
-             markerCircleRadius = parseInt(selText.split(" ")[0]);
+        $(".dropdown-menu li .radius-option").click(function () {
+            var selText = $(this).text();
+            $(this).parents('.input-group-btn').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+            markerCircleRadius = parseInt(selText.split(" ")[0]);
 
-             markerCircle.setRadius(markerCircleRadius * 1000);
+            markerCircle.setRadius(markerCircleRadius * 1000);
 
-             var hiddenRadiusVal = $('.inputRadiusValue');
-             hiddenRadiusVal.val(markerCircleRadius);
-         });
+            var hiddenRadiusVal = $('.inputRadiusValue');
+            hiddenRadiusVal.val(markerCircleRadius);
+        });
+
+                <%-- Updates the radius value when the dropdown is used --%>
+        $(".dropdown-menu li .label-option").click(function () {
+            var selText = $(this).text();
+            $(this).parents('.input-group-btn').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
+
+
+            $('#<% =selectedLabelID.ClientID %>').val($(this).attr('value'));
+
+            $('#<% =inputTag.ClientID %>').val(selText);
+        });
+
 
         <%-- Updates the radius value as seen on the map when the value is changed in the input box --%>
-         $(".inputRadiusValue").bind("change paste keyup", function () {
+        $(".inputRadiusValue").bind("change paste keyup", function () {
 
-             var value = parseInt($(this).val());
-             markerCircle.setRadius(value * 1000);
+            var value = parseInt($(this).val());
+            markerCircle.setRadius(value * 1000);
 
-             $('.input-group-btn').find('.dropdown-toggle').html(value.toString() + ' km<span class="caret"></span>');
-         });
+            $('.input-group-btn').find('.dropdown-toggle').html(value.toString() + ' km<span class="caret"></span>');
+        });
 
-         $("#btnSearch").click(function () {
-             alert($('.btn-select').text() + ", " + $('.btn-select2').text());
-         });
+        $("#btnSearch").click(function () {
+            alert($('.btn-select').text() + ", " + $('.btn-select2').text());
+        });
 
-         $(".latValue").bind("change paste keyup", UpdateCoordsOnMap);
-         $(".lngValue").bind("change paste keyup", UpdateCoordsOnMap);
+        $(".latValue").bind("change paste keyup", UpdateCoordsOnMap);
+        $(".lngValue").bind("change paste keyup", UpdateCoordsOnMap);
 
-         $(".LocationCheckBox").change(function () {
+        $(".LocationCheckBox").change(function () {
 
-             if ($(this).prop('checked')) {
-                 $('.inputRadiusValue').prop('disabled', false);
-                 $('.latValue').prop('disabled', false);
-                 $('.lngValue').prop('disabled', false);
-                 $('.select-button-radius').prop('disabled', false);
-                 $('.select-button-radius').removeClass('disabled-location');
-                 marker.setDraggable(true);
+            if ($(this).prop('checked')) {
+                $('.inputRadiusValue').prop('disabled', false);
+                $('.latValue').prop('disabled', false);
+                $('.lngValue').prop('disabled', false);
+                $('.select-button-radius').prop('disabled', false);
+                $('.select-button-radius').removeClass('disabled-location');
+                marker.setDraggable(true);
 
-             }
-             else {
-                 $('.inputRadiusValue').prop('disabled', true);
-                 $('.latValue').prop('disabled', true);
-                 $('.lngValue').prop('disabled', true);
-                 $('.select-button-radius').addClass('disabled-location');
-                 $('.select-button-radius').prop('disabled', true);
-                 marker.setDraggable(false);
-             }
-         });
+            }
+            else {
+                $('.inputRadiusValue').prop('disabled', true);
+                $('.latValue').prop('disabled', true);
+                $('.lngValue').prop('disabled', true);
+                $('.select-button-radius').addClass('disabled-location');
+                $('.select-button-radius').prop('disabled', true);
+                marker.setDraggable(false);
+            }
+        });
 
-         $(".wiki-entries").bind("change paste keyup", function () {
-             var text = $(this).val();
-             var numLines = text.split("\n").length;
-             var outputText = "";
-             if (text.length == 0) {
-                 outputText = "No ";
-             }
-             else {
-                 outputText = numLines.toString() + " ";
-             }
+        $(".wiki-entries").bind("change paste keyup", function () {
+            var text = $(this).val();
+            var numLines = text.split("\n").length;
+            var outputText = "";
+            if (text.length == 0) {
+                outputText = "No ";
+            }
+            else {
+                outputText = numLines.toString() + " ";
+            }
 
-             outputText += " line(s) are detected.";
+            outputText += " line(s) are detected.";
 
-             $(".wiki-lines-detect").text(outputText);
-         });
+            $(".wiki-lines-detect").text(outputText);
+        });
 
     </script>
 </asp:Content>

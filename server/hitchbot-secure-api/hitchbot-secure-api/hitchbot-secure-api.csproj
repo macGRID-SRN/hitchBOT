@@ -237,6 +237,7 @@
     <Compile Include="Access\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Access\SessionInfo.cs" />
     <Compile Include="Access\Shared\Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

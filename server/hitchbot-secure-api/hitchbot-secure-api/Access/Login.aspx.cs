@@ -50,6 +50,7 @@ namespace hitchbot_secure_api.Access
                         return;
                     }
 
+                    Session[SessionInfo.HitchBotId] = user.HitchBotId;
                     Session["New"] = user;
                     Response.Redirect("LandingPage.aspx");
                 }

@@ -1,4 +1,4 @@
-﻿\<%@ Page Title="" Language="C#" MasterPageFile="~/Access/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="AddTargetSuccess.aspx.cs" Inherits="hitchbot_secure_api.Access.AddTargetSuccess" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Access/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="AddTargetSuccess.aspx.cs" Inherits="hitchbot_secure_api.Access.AddTargetSuccess" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
@@ -11,12 +11,12 @@
                         <button type="submit" class="btn btn-lg btn-primary">Add Another</button>
                     </form>
                 </div>
-                <div class="col-md-2">
+<%--                <div class="col-md-2">
                     <form action="TargetLocationPreview.aspx">
                         <button type="submit" class="btn btn-lg">View Entries</button>
 
                     </form>
-                </div>
+                </div>--%>
             </div>
         </div>
     </div>

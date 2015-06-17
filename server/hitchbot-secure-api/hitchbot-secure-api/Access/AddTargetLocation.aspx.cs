@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,7 +14,18 @@ namespace hitchbot_secure_api.Access
         {
             if (Session["New"] != null)
             {
-                
+                int hitchBotId = (int)Session[SessionInfo.HitchBotId];
+
+                using (var db = new Dal.DatabaseContext())
+                {
+                    var labels = db.CleverscriptContexts.Where(l => l.HitchBotId == hitchBotId).Select(l => new
+                    {
+                        l.Id,
+                        l.HumanReadableBaseLabel
+                    }).AsEnumerable();
+
+                    labelLiterals.Text += string.Join("", labels.Select(l => string.Format(@"<li><a class=""fake-link label-option"" value=""{1}"">{0}</a></li>", l.HumanReadableBaseLabel, l.Id)));
+                }
             }
             else
             {
@@ -41,6 +53,15 @@ namespace hitchbot_secure_api.Access
                     var hitchbotId = user.HitchBotId;
 
                     Models.Location location = null;
+
+                    var contextID = int.Parse(selectedLabelID.Value);
+                    var context = db.CleverscriptContexts.FirstOrDefault(l => l.Id == contextID);
+
+                    if (context == null)
+                    {
+                        setErrorMessage("Error with the cleverscript label!!");
+                        return;
+                    }
 
                     if (LocationCheckBox.Checked)
                     {
@@ -79,7 +100,6 @@ namespace hitchbot_secure_api.Access
 
                         db.Locations.Add(location);
                         db.SaveChanges();
-
                     }
 
                     var wiki = new Models.CleverscriptContent
@@ -89,7 +109,8 @@ namespace hitchbot_secure_api.Access
                         EntryName = name,
                         RadiusKm = radiusActual,
                         HitchBotId = hitchbotId,
-                        TimeAdded = DateTime.UtcNow
+                        TimeAdded = DateTime.UtcNow,
+                        CleverscriptContextId = context.Id
                     };
 
                     db.CleverscriptContents.Add(wiki);
