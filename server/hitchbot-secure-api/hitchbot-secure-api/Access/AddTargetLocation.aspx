@@ -148,6 +148,13 @@
                                         <li><a class="fake-link radius-option">150 km</a></li>
                                         <li><a class="fake-link radius-option">175 km</a></li>
                                         <li><a class="fake-link radius-option">200 km</a></li>
+                                        <li><a class="fake-link radius-option">225 km</a></li>
+                                        <li><a class="fake-link radius-option">250 km</a></li>
+                                        <li><a class="fake-link radius-option">275 km</a></li>
+                                        <li><a class="fake-link radius-option">300 km</a></li>
+                                        <li><a class="fake-link radius-option">325 km</a></li>
+                                        <li><a class="fake-link radius-option">350 km</a></li>
+                                        <li><a class="fake-link radius-option">375 km</a></li>
                                     </ul>
                                 </div>
                             </div>
