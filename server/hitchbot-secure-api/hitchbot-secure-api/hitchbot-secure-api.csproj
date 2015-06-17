@@ -216,6 +216,13 @@
     <Compile Include="Access\AddTargetLocation.aspx.designer.cs">
       <DependentUpon>AddTargetLocation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Access\AddTargetSuccess.aspx.cs">
+      <DependentUpon>AddTargetSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\AddTargetSuccess.aspx.designer.cs">
+      <DependentUpon>AddTargetSuccess.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Access\LandingPage.aspx.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -357,6 +364,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Access\AddTargetLocation.aspx" />
+    <Content Include="Access\AddTargetSuccess.aspx" />
     <Content Include="Access\LandingPage.aspx" />
     <Content Include="Access\Login.aspx" />
     <Content Include="Access\Unauthorized.aspx" />
