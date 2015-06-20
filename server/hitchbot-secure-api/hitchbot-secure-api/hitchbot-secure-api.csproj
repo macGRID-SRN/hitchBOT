@@ -237,6 +237,13 @@
     <Compile Include="Access\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Access\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Access\PreviewMapCoverage.aspx.cs">
       <DependentUpon>PreviewMapCoverage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -375,6 +382,7 @@
     <Content Include="Access\AddTargetSuccess.aspx" />
     <Content Include="Access\LandingPage.aspx" />
     <Content Include="Access\Login.aspx" />
+    <Content Include="Access\Logout.aspx" />
     <Content Include="Access\PreviewMapCoverage.aspx" />
     <Content Include="Access\Unauthorized.aspx" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
