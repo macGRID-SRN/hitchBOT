@@ -7,7 +7,7 @@
             <h2>Your entry was successfully added!</h2>
             <div class="row">
                 <div class="col-md-2">
-                    <form action="AddTargetLocations.aspx">
+                    <form action="AddTargetLocation.aspx">
                         <button type="submit" class="btn btn-lg btn-primary">Add Another</button>
                     </form>
                 </div>
