@@ -11,12 +11,12 @@
                         <button type="submit" class="btn btn-lg btn-primary">Add Another</button>
                     </form>
                 </div>
-<%--                <div class="col-md-2">
+                <div class="col-md-2">
                     <form action="TargetLocationPreview.aspx">
                         <button type="submit" class="btn btn-lg">View Entries</button>
 
                     </form>
-                </div>--%>
+                </div>
             </div>
         </div>
     </div>
