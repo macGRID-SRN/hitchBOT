@@ -32,12 +32,17 @@
             map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
 
+            var infowindow = new google.maps.InfoWindow({
+                content: "Nothing here!"
+
+            });
+
             for (i = 0; i < coords.length; i++) {
+
                 var tempMarker = new google.maps.Marker({
                     position: coords[i].coord,
                     map: map,
-                    draggable: false,
-                    title: "Drag me!"
+                    draggable: false
                 });
 
                 var circleOptions = {
@@ -50,6 +55,14 @@
                     center: coords[i].coord,
                     radius: coords[i].radius * 1000
                 };
+
+                tempMarker.html = '<b>' + coords[i].title + '</b>' + '<p>' + coords[i].content + '</p>';
+
+
+                google.maps.event.addListener(tempMarker, 'click', function () {
+                    infowindow.setContent(this.html);
+                    infowindow.open(map, this);
+                });
 
                 var TempCircle = new google.maps.Circle(circleOptions);
             }

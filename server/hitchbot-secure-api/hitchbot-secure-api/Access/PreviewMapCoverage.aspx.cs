@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -36,6 +37,8 @@ namespace hitchbot_secure_api.Access
                             l.Location,
                             l.CleverText,
                             l.CleverscriptContext.HumanReadableBaseLabel,
+                            l.Id,
+                            l.EntryName,
                             l.RadiusKm
                         }).ToList();
 
@@ -45,7 +48,10 @@ namespace hitchbot_secure_api.Access
 
                 buildOutput.Append(@"var coords = [");
 
-                buildOutput.Append(string.Join(",\n", locations.Select(coord => string.Format("{{ coord : new google.maps.LatLng({0},{1}), radius : {2} }}", coord.Location.Latitude, coord.Location.Longitude, coord.RadiusKm)).ToList()));
+                buildOutput.Append(string.Join(",\n", locations.Select(coord => string.Format("{{ coord : new google.maps.LatLng({0},{1}), radius : {2}, title : '{3}', content : '{4}'}}", coord.Location.Latitude, coord.Location.Longitude,
+                    coord.RadiusKm,
+                    "Id: " + coord.Id + " - " + coord.EntryName + " - " + coord.HumanReadableBaseLabel,
+                    EntryToParagraphs(coord.CleverText).Replace("'", "\'"))).ToList()));
 
                 buildOutput.Append(@"];");
 
@@ -54,6 +60,12 @@ namespace hitchbot_secure_api.Access
 
                 coordsOutput.Text = buildOutput.ToString();
             }
+        }
+
+        private string EntryToParagraphs(string entry)
+        {
+            entry = entry.Replace("'", "").Replace("\r", "");
+            return "<p>" + string.Join("<p/><p>", entry.Split('\n')) + "<p/>";
         }
     }
 }
