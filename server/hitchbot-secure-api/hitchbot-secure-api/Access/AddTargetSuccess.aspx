@@ -7,9 +7,15 @@
         <div class="jumbotron">
             <h2>Your entry was successfully added!</h2>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <form action="AddTargetLocation.aspx">
-                        <button type="submit" class="btn btn-lg btn-primary">Add Another</button>
+                        <button type="submit" class="btn btn-lg btn-primary">Add Another (Circle)</button>
+                    </form>
+                </div>
+
+                <div class="col-md-3">
+                    <form action="AddTargetLocationPolygon.aspx">
+                        <button type="submit" class="btn btn-lg btn-primary">Add Another (Polygon)</button>
                     </form>
                 </div>
                 <div class="col-md-2">
@@ -17,6 +23,7 @@
                         <button type="submit" class="btn btn-lg">View Entries</button>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>

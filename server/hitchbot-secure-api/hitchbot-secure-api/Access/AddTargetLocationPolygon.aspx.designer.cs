@@ -22,42 +22,6 @@ namespace hitchbot_secure_api.Access {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorAlert;
         
         /// <summary>
-        /// inputRadiusValue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText inputRadiusValue;
-        
-        /// <summary>
-        /// inputLat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl inputLat;
-        
-        /// <summary>
-        /// inputLong control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl inputLong;
-        
-        /// <summary>
-        /// LocationCheckBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox LocationCheckBox;
-        
-        /// <summary>
         /// bucketCheckBox control.
         /// </summary>
         /// <remarks>
@@ -65,6 +29,15 @@ namespace hitchbot_secure_api.Access {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox bucketCheckBox;
+        
+        /// <summary>
+        /// locationArray control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField locationArray;
         
         /// <summary>
         /// inputName control.

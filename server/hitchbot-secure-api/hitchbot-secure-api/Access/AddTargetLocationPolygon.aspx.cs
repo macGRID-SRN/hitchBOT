@@ -37,100 +37,101 @@ namespace hitchbot_secure_api.Access
             try
             {
                 var wikiEntry = inputWiki1.InnerText;
-                var radius = inputRadiusValue.Value;
                 var name = inputName.Value;
-                var lat = inputLat.Value;
-                var lng = inputLong.Value;
+                int? contextIdNullable = null;
 
-                double? radiusActual = null;
-                double latActual;
-                double lngActual;
+                var locations = locationArray.Value.Split(',').Select(l =>
+                {
+                    var coord = l.Split(':');
+                    return new Models.Location
+                    {
+                        Latitude = double.Parse(coord[0]),
+                        Longitude = double.Parse(coord[1])
+                    };
+                }).ToList();
 
                 using (var db = new Dal.DatabaseContext())
                 {
                     var user = (Models.LoginAccount)Session["New"];
                     var hitchbotId = user.HitchBotId;
 
-                    Models.Location location = null;
+                    int contextID;
 
-                    var contextID = int.Parse(selectedLabelID.Value);
-                    var context = db.CleverscriptContexts.FirstOrDefault(l => l.Id == contextID);
-
-                    if (context == null)
+                    if (!bucketCheckBox.Checked)
                     {
-                        setErrorMessage("Error with the cleverscript label!!");
+                        if (!int.TryParse(selectedLabelID.Value, out contextID))
+                        {
+                            setErrorMessage("Error with the cleverscript label!!");
+                            return;
+                        }
+                        contextIdNullable = contextID;
+                    }
+
+                    if (locations.Count < 3)
+                    {
+                        setErrorMessage("More than 2 locations must be selected.");
                         return;
                     }
 
-                    if (LocationCheckBox.Checked)
+                    locations.ForEach(l =>
                     {
-                        /*
-                        nullable double parse code borrowed from
-                        http://stackoverflow.com/questions/3390750/how-to-use-int-tryparse-with-nullable-int
-                        */
-                        double tmp;
-
-                        if (!double.TryParse(radius, out tmp))
-                        {
-                            setErrorMessage("Selected Radius is not valid!");
-                            return;
-                        }
-                        radiusActual = tmp;
-
-                        if (!double.TryParse(lat, out latActual))
-                        {
-                            setErrorMessage("Latitude is not valid number!");
-                            return;
-                        }
-
-                        if (!double.TryParse(lng, out lngActual))
-                        {
-                            setErrorMessage("Longitude is not valid number!");
-                            return;
-                        }
-
-                        location = new Models.Location
-                        {
-                            Latitude = latActual,
-                            Longitude = lngActual,
-                            TimeAdded = DateTime.UtcNow,
-                            TakenTime = DateTime.UtcNow
-                        };
-
-                        db.Locations.Add(location);
-                        db.SaveChanges();
-                    }
+                        db.Locations.Add(l);
+                    });
 
                     var wiki = new Models.CleverscriptContent
                     {
-                        LocationId = location.Id,
                         CleverText = wikiEntry,
                         EntryName = name,
-                        RadiusKm = radiusActual,
                         HitchBotId = hitchbotId,
+                        CleverscriptContextId = contextIdNullable,
                         TimeAdded = DateTime.UtcNow,
-                        CleverscriptContextId = context.Id,
                         isBucketList = bucketCheckBox.Checked
                     };
 
                     db.CleverscriptContents.Add(wiki);
 
                     db.SaveChanges();
+
+                    locations.ForEach(l =>
+                    {
+                        db.PolgonVertices.Add(new Models.PolgonVertex
+                        {
+                            LocationId = l.Id,
+                            CleverscriptContentId = wiki.Id
+                        });
+                    });
+
+
+                    db.SaveChanges();
                 }
 
                 Response.Redirect("AddTargetSuccess.aspx");
             }
-            catch
+            catch (Exception ex)
             {
                 setErrorMessage("An unknown error occurred. let the sys admin know you saw this message.");
             }
         }
 
+
         protected void setErrorMessage(string error)
         {
+            error += " Please refresh the page and try again.";
             this.errorAlert.Attributes.Remove("class");
             this.errorAlert.Attributes.Add("class", "alert alert-danger");
             this.errorAlert.InnerText = error;
         }
+    }
+
+    //taken from http://stackoverflow.com/questions/521687/c-sharp-foreach-with-index
+    //TODO: move this class to its own file.
+    public static class LinqExtensions
+    {
+        public static void Each<T>(this IEnumerable<T> ie, Action<T, int> action)
+        {
+            var i = 0;
+            foreach (var e in ie) action(e, i++);
+        }
+
     }
 }

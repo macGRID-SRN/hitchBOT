@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using System.Data.Entity;
 
 namespace hitchbot_secure_api.Access
 {
@@ -43,6 +44,19 @@ namespace hitchbot_secure_api.Access
                             l.isBucketList
                         }).ToList();
 
+
+                var polys =
+                    db.CleverscriptContents.Include(l => l.PolgonVertices)
+                        .Where(l => l.HitchBotId == hitchbotID && l.Location == null)
+                        .Select(l => new
+                        {
+                            poly = l.PolgonVertices.Select(a => a.Location),
+                            l.CleverText,
+                            l.CleverscriptContext.HumanReadableBaseLabel,
+                            l.Id,
+                            l.EntryName,
+                            l.isBucketList
+                        }).ToList();
                 StringBuilder buildOutput = new StringBuilder();
 
                 buildOutput.Append(@"<script type=""text/javascript"">");
@@ -52,10 +66,21 @@ namespace hitchbot_secure_api.Access
                 buildOutput.Append(string.Join(",\n", locations.Select(coord => string.Format("{{ coord : new google.maps.LatLng({0},{1}), radius : {2}, title : '{3}', content : '{4}', bucketList: {5}}}", coord.Location.Latitude, coord.Location.Longitude,
                     coord.RadiusKm,
                     "Id: " + coord.Id + " - " + coord.EntryName + " - " + coord.HumanReadableBaseLabel,
-                    EntryToParagraphs(coord.CleverText).Replace("'", "\'"), coord.isBucketList)).ToList()));
+                    EntryToParagraphs(coord.CleverText).Replace("'", "\'"), coord.isBucketList.ToString().ToLower())).ToList()));
+
+                buildOutput.Append(@"];" + "\n");
+
+                buildOutput.Append(@"var polys = [");
+
+
+                buildOutput.Append(string.Join(",\n",
+                    polys.Select(coords => string.Format("{{ coord: [{0}], title : '{1}', content : '{2}', bucketList: {3}}}",
+                        string.Join(",", coords.poly.Select(loc => string.Format("new google.maps.LatLng({0},{1})", loc.Latitude, loc.Longitude))),
+                        "Id: " + coords.Id + " - " + coords.EntryName + " - " + coords.HumanReadableBaseLabel,
+                        EntryToParagraphs(coords.CleverText).Replace("'", "\'"), coords.isBucketList.ToString().ToLower()
+                        ))));
 
                 buildOutput.Append(@"];");
-
 
                 buildOutput.Append(@"</script>");
 

@@ -58,13 +58,36 @@
 
                 tempMarker.html = '<b>' + coords[i].title + '</b>' + '<p>' + coords[i].content + '</p>';
 
-
                 google.maps.event.addListener(tempMarker, 'click', function () {
                     infowindow.setContent(this.html);
                     infowindow.open(map, this);
                 });
 
                 var TempCircle = new google.maps.Circle(circleOptions);
+            }
+
+            for (i = 0; i < polys.length; i++) {
+                var coord = polys[i];
+
+                var poly = new google.maps.Polygon({
+                    paths: coord.coord,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35
+                });
+
+
+                poly.html = '<b>' + coord.title + '</b>' + '<p>' + coord.content + '</p>';
+
+                poly.setMap(map);
+
+                google.maps.event.addListener(poly, 'click', function () {
+                    infowindow.setContent(this.html);
+                    infowindow.setPosition(this.getPath().getArray()[0]);
+                    infowindow.open(map, this);
+                });
             }
         }
         google.maps.event.addDomListener(window, 'load', initialize);

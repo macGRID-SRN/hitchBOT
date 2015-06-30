@@ -26,7 +26,19 @@ namespace hitchbot_secure_api.Models
         //mark this with a timestamp when hitchbot has visited this location, marking it off of the bucket list
         public DateTime? TimeVisited { get; set; }
 
+        public virtual ICollection<PolgonVertex> PolgonVertices { get; set; }
+
         public DateTime TimeAdded { get; set; }
+    }
+
+    public class PolgonVertex
+    {
+        public int Id { get; set; }
+        public int? LocationId { get; set; }
+        public virtual Location Location { get; set; }
+
+        public int? CleverscriptContentId { get; set; }
+        public virtual CleverscriptContent CleverscriptContent { get; set; }
     }
 
     public class CleverscriptContext

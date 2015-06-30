@@ -29,6 +29,7 @@ namespace hitchbot_secure_api.Dal
         public DbSet<LoginAccount> LoginAccounts { get; set; }
         public DbSet<CleverscriptContext> CleverscriptContexts { get; set; }
         public DbSet<CleverscriptContent> CleverscriptContents { get; set; }
+        public DbSet<PolgonVertex> PolgonVertices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
