@@ -386,6 +386,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\LoginAccount.cs" />
     <Compile Include="Models\SpeechLogEvent.cs" />
+    <Compile Include="Models\TabletSerial.cs" />
     <Compile Include="Models\TabletStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />

@@ -9,7 +9,9 @@ namespace hitchbot_secure_api.Controllers.ReturnObjects
 {
     public class GenericHitchBot
     {
-        public int HitchBotId { get; set; }
+        public int? HitchBotId { get; set; }
+
+        public string TabletSerial { get; set; }
 
         public long? TimeUnix { get; set; }
 
@@ -21,7 +23,7 @@ namespace hitchbot_secure_api.Controllers.ReturnObjects
             {
                 if (TimeUnix.HasValue)
                 {
-                    return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(((double)TimeUnix)/1000);
+                    return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(((double)TimeUnix) / 1000);
                 }
 
                 if (!string.IsNullOrWhiteSpace(Time))
