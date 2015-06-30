@@ -39,7 +39,8 @@ namespace hitchbot_secure_api.Access
                             l.CleverscriptContext.HumanReadableBaseLabel,
                             l.Id,
                             l.EntryName,
-                            l.RadiusKm
+                            l.RadiusKm,
+                            l.isBucketList
                         }).ToList();
 
                 StringBuilder buildOutput = new StringBuilder();
@@ -48,10 +49,10 @@ namespace hitchbot_secure_api.Access
 
                 buildOutput.Append(@"var coords = [");
 
-                buildOutput.Append(string.Join(",\n", locations.Select(coord => string.Format("{{ coord : new google.maps.LatLng({0},{1}), radius : {2}, title : '{3}', content : '{4}'}}", coord.Location.Latitude, coord.Location.Longitude,
+                buildOutput.Append(string.Join(",\n", locations.Select(coord => string.Format("{{ coord : new google.maps.LatLng({0},{1}), radius : {2}, title : '{3}', content : '{4}', bucketList: {5}}}", coord.Location.Latitude, coord.Location.Longitude,
                     coord.RadiusKm,
                     "Id: " + coord.Id + " - " + coord.EntryName + " - " + coord.HumanReadableBaseLabel,
-                    EntryToParagraphs(coord.CleverText).Replace("'", "\'"))).ToList()));
+                    EntryToParagraphs(coord.CleverText).Replace("'", "\'"), coord.isBucketList)).ToList()));
 
                 buildOutput.Append(@"];");
 

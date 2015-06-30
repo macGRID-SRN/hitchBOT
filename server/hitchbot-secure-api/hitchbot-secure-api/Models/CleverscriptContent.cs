@@ -21,6 +21,11 @@ namespace hitchbot_secure_api.Models
         public string EntryName { get; set; }
         public double? RadiusKm { get; set; }
 
+        //mark this entry as something on hitchbots bucketlist.
+        public bool isBucketList { get; set; }
+        //mark this with a timestamp when hitchbot has visited this location, marking it off of the bucket list
+        public DateTime? TimeVisited { get; set; }
+
         public DateTime TimeAdded { get; set; }
     }
 

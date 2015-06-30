@@ -216,6 +216,13 @@
     <Compile Include="Access\AddTargetLocation.aspx.designer.cs">
       <DependentUpon>AddTargetLocation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Access\AddTargetLocationPolygon.aspx.cs">
+      <DependentUpon>AddTargetLocationPolygon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\AddTargetLocationPolygon.aspx.designer.cs">
+      <DependentUpon>AddTargetLocationPolygon.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Access\AddTargetSuccess.aspx.cs">
       <DependentUpon>AddTargetSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -358,6 +365,10 @@
     <Compile Include="Migrations\201506160136500_AddCleverscriptEntries.Designer.cs">
       <DependentUpon>201506160136500_AddCleverscriptEntries.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506301430112_AddBucketList.cs" />
+    <Compile Include="Migrations\201506301430112_AddBucketList.Designer.cs">
+      <DependentUpon>201506301430112_AddBucketList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -379,6 +390,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Access\AddTargetLocation.aspx" />
+    <Content Include="Access\AddTargetLocationPolygon.aspx" />
     <Content Include="Access\AddTargetSuccess.aspx" />
     <Content Include="Access\LandingPage.aspx" />
     <Content Include="Access\Login.aspx" />
@@ -479,6 +491,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506160136500_AddCleverscriptEntries.resx">
       <DependentUpon>201506160136500_AddCleverscriptEntries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506301430112_AddBucketList.resx">
+      <DependentUpon>201506301430112_AddBucketList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -27,7 +27,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cleverscript<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="AddTargetLocation.aspx">Add New Content</a></li>
+                            <li><a href="AddTargetLocation.aspx">Add New Content (Circle)</a></li>
                             <li><a href="PreviewMapCoverage.aspx">View Entered Content</a></li>
                         </ul>
                     </li>

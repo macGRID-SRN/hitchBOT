@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -8,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace hitchbot_secure_api.Access
 {
-    public partial class AddTargetLocation : System.Web.UI.Page
+    public partial class AddTargetLocationPolygon : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

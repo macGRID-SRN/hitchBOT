@@ -10,7 +10,7 @@
 namespace hitchbot_secure_api.Access {
     
     
-    public partial class AddTargetLocation {
+    public partial class AddTargetLocationPolygon {
         
         /// <summary>
         /// errorAlert control.

@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Access/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="AddTargetLocation.aspx.cs" Inherits="hitchbot_secure_api.Access.AddTargetLocation" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Access/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="AddTargetLocationPolygon.aspx.cs" Inherits="hitchbot_secure_api.Access.AddTargetLocationPolygon" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
     <style type="text/css">
         html, body, #map-canvas {
