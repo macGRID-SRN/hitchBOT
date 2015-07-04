@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Access/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="PreviewMapCoverage.aspx.cs" Inherits="hitchbot_secure_api.Access.PreviewMapCoverage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
-     <style type="text/css">
+    <style type="text/css">
         html, body, #map-canvas {
             height: 100%;
             margin: 0;
@@ -20,6 +21,9 @@
     <script type="text/javascript">
 
         var map;
+        var hitchbotId = <%=HitchBotId%>;
+        var currentHbPosition = new google.maps.LatLng(<%=lat%>, <%=lng%>);
+        var marker;
 
         function initialize() {
             var myLatlng = new google.maps.LatLng(39.011902, -98.484246);
@@ -34,7 +38,6 @@
 
             var infowindow = new google.maps.InfoWindow({
                 content: "Nothing here!"
-
             });
 
             for (i = 0; i < coords.length; i++) {
@@ -56,7 +59,7 @@
                     radius: coords[i].radius * 1000
                 };
 
-                tempMarker.html = '<b>' + coords[i].title + '</b>' + '<p>' + coords[i].content + '</p>';
+                tempMarker.html = getFormattedContent(coords[i]);
 
                 google.maps.event.addListener(tempMarker, 'click', function () {
                     infowindow.setContent(this.html);
@@ -79,7 +82,7 @@
                 });
 
 
-                poly.html = '<b>' + coord.title + '</b>' + '<p>' + coord.content + '</p>';
+                poly.html = getFormattedContent(coord);
 
                 poly.setMap(map);
 
@@ -89,20 +92,95 @@
                     infowindow.open(map, this);
                 });
             }
+            
+            //draw the hb mark on the map. Should end up where hitchbot is sitting last.
+            var t =new google.maps.MarkerImage("http://hitchbotimg.blob.core.windows.net/img/hitchicon2.png",
+		        new google.maps.Size(64,64),
+		        new google.maps.Point(0,0),
+		        new google.maps.Point(32,64));
+
+            marker = new google.maps.Marker({
+                position: currentHbPosition,
+                map: map,
+                animation:google.maps.Animation.DROP,
+                draggable: true,
+                icon: t
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function(e) {
+                $("#content").html(getPolyResult(e.latLng) + getCircleResult(e.latLng));
+            } );
         }
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+    <%--The following was referenced from http://stackoverflow.com/questions/4463907/how-do-i-know-if-a-lat-lng-point-is-contained-within-a-circle --%>
+    <script type="text/javascript">
+        
+        function getPolyResult(latlng) {
+            var result = "";
+
+            for (var i = 0; i < polys.length; i++) {
+
+                coord = polys[i];
+
+                var poly = new google.maps.Polygon({
+                    paths: coord.coord,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35
+                });
+
+                if (google.maps.geometry.poly.containsLocation(latlng, poly)) {
+                    result += getFormattedContent(coord) + '<br/>';
+                }
+
+            }
+            return result;
+        }
+
+        function getCircleResult(latlng) {
+            var result = "";
+            for (var i = 0; i < coords.length; i++) {
+                var coord = coords[i];
+
+                if (circleInRadius(latlng, coord.coord, coord.radius)) {
+                    result += getFormattedContent(coord) + '<br/>';
+                }
+            }
+            return result;
+        }
+        
+        function circleInRadius(base, latlng, radius) {
+
+            return google.maps.geometry.spherical.computeDistanceBetween(base, latlng) <= radius *1000;
+        }
+
+        
+        function getFormattedContent(coord) {
+            return '<b>' + coord.title + '</b>' + '<p>' + coord.content + '</p>';
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
-    <div class="container">
-        <div class="jumbotron">
-            <h2>Cleverscript Entries</h2>
-            <div class="map-wrapper">
-                <div id="map-canvas">
+    <form runat="server">
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+        <div class="container">
+            <div class="jumbotron">
+                <h2>Cleverscript Entries</h2>
+                <div class="map-wrapper">
+                    <div id="map-canvas">
+                    </div>
+                </div>
+                <div id="content">
+                    <p>
+                        Move the hB marker to see what hitchBOT says in that location.
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="endScripts" runat="server">
 </asp:Content>

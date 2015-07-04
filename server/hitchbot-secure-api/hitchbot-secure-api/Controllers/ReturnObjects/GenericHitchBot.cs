@@ -9,9 +9,9 @@ namespace hitchbot_secure_api.Controllers.ReturnObjects
 {
     public class GenericHitchBot
     {
-        public int? HitchBotId { get; set; }
+        public int HitchBotId { get; set; }
 
-        public string TabletSerial { get; set; }
+        //public string TabletSerial { get; set; }
 
         public long? TimeUnix { get; set; }
 

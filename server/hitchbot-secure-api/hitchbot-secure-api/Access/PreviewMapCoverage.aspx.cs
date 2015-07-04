@@ -7,15 +7,25 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
 using System.Data.Entity;
+using System.Web.Caching;
+using hitchbot_secure_api.Models;
 
 namespace hitchbot_secure_api.Access
 {
     public partial class PreviewMapCoverage : System.Web.UI.Page
     {
+        protected int HitchBotId;
+
+        private Location currentLocation;
+        protected double lat { get { return currentLocation.Latitude; } }
+        protected double lng { get { return currentLocation.Longitude; } }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["New"] != null)
+
+            if (!Page.IsPostBack && Session["New"] != null)
             {
+                HitchBotId = (int)Session[SessionInfo.HitchBotId];
                 Build_Javascript_Coords();
             }
             else
@@ -28,10 +38,15 @@ namespace hitchbot_secure_api.Access
         {
             using (var db = new Dal.DatabaseContext())
             {
-                var hitchbotID = (int)Session[SessionInfo.HitchBotId];
+                currentLocation =
+                    db.Locations.Where(l => l.HitchBotId == HitchBotId)
+                        .Where(l => !l.HideFromProduction)
+                        .Where(l => l.LocationProvider == LocationProvider.SpotGPS)
+                        .OrderByDescending(l => l.TakenTime)
+                        .First();
 
                 var locations = db.CleverscriptContents
-                    .Where(k => k.HitchBotId == hitchbotID && k.Location != null)
+                    .Where(k => k.HitchBotId == HitchBotId && k.Location != null)
                     .Select(l =>
                         new
                         {
@@ -44,10 +59,9 @@ namespace hitchbot_secure_api.Access
                             l.isBucketList
                         }).ToList();
 
-
                 var polys =
                     db.CleverscriptContents.Include(l => l.PolgonVertices)
-                        .Where(l => l.HitchBotId == hitchbotID && l.Location == null)
+                        .Where(l => l.HitchBotId == HitchBotId && l.Location == null)
                         .Select(l => new
                         {
                             poly = l.PolgonVertices.Select(a => a.Location),
