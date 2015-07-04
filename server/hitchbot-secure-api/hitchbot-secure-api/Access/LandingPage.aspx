@@ -16,21 +16,21 @@
             <div class="panel-heading"><h3>What's new?</h3></div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <h4 class="list-grou-item-heading">Review Entered Cleverscript Content!
+                    <h4 class="list-group-item-heading">Review Entered Cleverscript Content!
                     </h4>
                     <p class="list-group-item-text">
                         Ready for use. You can use this tool to view Cleverscript sentences previously entered.
                     </p>
                 </li>
                 <li class="list-group-item">
-                    <h4 class="list-grou-item-heading">Geo-relevant Cleverscript Entries!
+                    <h4 class="list-group-item-heading">Geo-relevant Cleverscript Entries!
                     </h4>
                     <p class="list-group-item-text">
                         Ready for use. You can use this tool to enter Cleverscript sentences and info that will be read by hitchBOT itself!
                     </p>
                 </li>
                 <li class="list-group-item">
-                    <h4 class="list-grou-item-heading">Website Styling!
+                    <h4 class="list-group-item-heading">Website Styling!
                     </h4>
                     <p class="list-group-item-text">
                         V extra pretty.

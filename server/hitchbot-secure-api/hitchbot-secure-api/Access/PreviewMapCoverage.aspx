@@ -108,7 +108,10 @@
             });
 
             google.maps.event.addListener(marker, 'dragend', function(e) {
-                $("#content").html(getPolyResult(e.latLng) + getCircleResult(e.latLng));
+                var result = getPolyResult(e.latLng) + getCircleResult(e.latLng);
+                if (!result)
+                    result = getFormattedList({title: 'hitchBOT doesn\'t say anything here!', content: 'Maybe you should add something!!'});
+                    $("#content").html(result);
             } );
         }
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -133,7 +136,7 @@
                 });
 
                 if (google.maps.geometry.poly.containsLocation(latlng, poly)) {
-                    result += getFormattedContent(coord) + '<br/>';
+                    result += getFormattedList(coord);
                 }
 
             }
@@ -146,7 +149,7 @@
                 var coord = coords[i];
 
                 if (circleInRadius(latlng, coord.coord, coord.radius)) {
-                    result += getFormattedContent(coord) + '<br/>';
+                    result += getFormattedList(coord);
                 }
             }
             return result;
@@ -157,7 +160,14 @@
             return google.maps.geometry.spherical.computeDistanceBetween(base, latlng) <= radius *1000;
         }
 
-        
+        function getFormattedList(coord){
+            return '<li class="list-group-item">'+
+                '<h4 class="list-group-item-heading">' + coord.title +
+                '</h4>' +
+                '<p class="list-group-item-text">'+ coord.content +
+                '</p></li>';
+        }
+
         function getFormattedContent(coord) {
             return '<b>' + coord.title + '</b>' + '<p>' + coord.content + '</p>';
         }
@@ -173,11 +183,23 @@
                     <div id="map-canvas">
                     </div>
                 </div>
-                <div id="content">
-                    <p>
-                        Move the hB marker to see what hitchBOT says in that location.
-                    </p>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="panel-default panel">
+                <div class="panel-heading">
+                    <h3>What will hitchBOT say?</h3>
                 </div>
+                <ul class="list-group" id="content">
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading">Move the hB marker to see what hitchBOT says in that location.
+                        </h4>
+                        <p class="list-group-item-text">
+                            Pretty cool eh?
+                        </p>
+                    </li>
+                </ul>
             </div>
         </div>
     </form>
