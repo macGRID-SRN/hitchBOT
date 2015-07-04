@@ -82,7 +82,7 @@ namespace hitchbot_secure_api.Migrations
             locations.ForEach(l => context.Locations.AddOrUpdate(s => s.NearestCity, l));
             context.SaveChanges();
 
-            context.Journeys.AddOrUpdate(
+            context.Journeys.AddOrUpdate(l => l.Name,
                new Journey
                 {
                     Name = "SeedJourney",
