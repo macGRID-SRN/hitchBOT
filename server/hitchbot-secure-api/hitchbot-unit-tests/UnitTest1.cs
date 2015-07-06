@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DotSpatial.Projections;
-using DotSpatial.Data;
-using DotSpatial.Topology;
+using hitchbot_secure_api.Helpers.Location;
+using hitchbot_secure_api.Models;
 
 namespace hitchbot_unit_tests
 {
@@ -16,56 +15,81 @@ namespace hitchbot_unit_tests
         /// TODO: move this into the main project and create test cases based on the google maps coordinate system. MUST ENSURE there are border cases (large and small polygons with points very close to the edges)
         /// </summary>
         [TestMethod]
-        public void TestPolygonIntersection()
+        public void TestPolygonIntersectionTriangle()
         {
-            // this feature can be see visually here http://www.allhx.ca/on/toronto/westmount-park-road/25/
-            string feature = "43.328174695525846,-79.851722717285156 43.18565317214177,-79.668388366699219 43.190659573987446,-80.028190612792969";
-
-            string[] coordinates = feature.Split(' ');
-
-            // dotspatial takes the x,y in a single array, and z in a separate array.  I'm sure there's a 
-            // reason for this, but I don't know what it is.
-            double[] xy = new double[coordinates.Length * 2];
-            double[] z = new double[coordinates.Length];
-            for (int i = 0; i < coordinates.Length; i++)
+            //coordinates of the polygon
+            var coords = new List<Location>
             {
-                double lon = double.Parse(coordinates[i].Split(',')[0]);
-                double lat = double.Parse(coordinates[i].Split(',')[1]);
-                xy[i * 2] = lon;
-                xy[i * 2 + 1] = lat;
-                z[i] = 0;
-            }
+                new Location
+                {
+                    Latitude = 43.328174695525846,
+                    Longitude = -79.851722717285156
+                },
+                new Location
+                {
+                    Latitude = 43.18565317214177,
+                    Longitude = -79.668388366699219
+                },
+                new Location
+                {
+                    Latitude = 43.190659573987446,
+                    Longitude = -80.028190612792969
+                }
+            };
 
-            ProjectionInfo pStart = KnownCoordinateSystems.Geographic.World.WGS1984;
-
-            //which UTM zone to use can be found here http://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system
-            //the feature is in Toronto, Canada which is Zone17.  Technically, should use 17T I think but this isn't defined
-            //so am just using 17N - not sure what impact this has.
-            //ProjectionInfo pEnd = KnownCoordinateSystems.Projected.UtmNad1927.NAD1927UTMZone17N;
-            ProjectionInfo pEnd = KnownCoordinateSystems.Projected.NorthAmerica.USAContiguousLambertConformalConic;
-
-            // do the actual reprojection
-            Reproject.ReprojectPoints(xy, z, pStart, pEnd, 0, coordinates.Length);
-
-
-            double[] pointXy = { 43.2423582, -79.8391097 };
-
-            Reproject.ReprojectPoints(pointXy, z, pStart, pEnd, 0, 1);
-
-            // build up a list of Coordinate, to create the polygon
-            List<Coordinate> co = new List<Coordinate>();
-            for (int i = 0; i < coordinates.Length; i++)
+            //points which SHOULD be in the polygon
+            var point = new List<Location>
             {
-                co.Add(new Coordinate(xy[i * 2], xy[i * 2 + 1]));
-            }
+                new Location
+                {
+                    Latitude = 43.2423582,
+                    Longitude = -79.8391097
+                },
+                new Location
+                {
+                    Latitude = 43.25333024838933,
+                    Longitude = -79.94622639921874
+                },
+                new Location
+                {
+                    Latitude = 43.328007170292935,
+                    Longitude = -79.85172681120605
+                },
+                new Location
+                {
+                    Latitude = 43.18760993929186,
+                    Longitude = -79.80247227778312
+                }
+            };
 
-            var middle = GeometryFactory.Default.CreatePoint(new Coordinate(pointXy[0], pointXy[1]));
+            //points which are outside the triangle
+            var outsidePoints = new List<Location>
+            {
+                new Location()
+                {
+                    Latitude = 49.667627822621917,
+                    Longitude = -112.060546875
+                },
+                new Location()
+                {
+                    Latitude = 52.855864177853995,
+                    Longitude = -75.234375
+                },
+                new Location()
+                {
+                    Latitude = 43.253861607960644,
+                    Longitude = -79.94897298125
+                },
+                new Location()
+                {
+                    Latitude = 43.31606502446367,
+                    Longitude = -79.8360841682312
+                }
+            };
 
-            Polygon polygon = new Polygon(co);
+            point.ForEach(l => Assert.IsTrue(LocationHelper.PointInPolygon(coords, l)));
 
-            Assert.IsTrue(middle.Within(polygon));
-
-            double area = polygon.Area;
+            outsidePoints.ForEach(k => Assert.IsFalse(LocationHelper.PointInPolygon(coords, k)));
         }
     }
 }

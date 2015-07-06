@@ -76,6 +76,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\hitchbot-secure-api\hitchbot-secure-api.csproj">
+      <Project>{513f19d5-0eb1-46cf-8d1f-8b45e028e6f0}</Project>
+      <Name>hitchbot-secure-api</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
