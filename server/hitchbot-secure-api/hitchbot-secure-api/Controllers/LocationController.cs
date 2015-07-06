@@ -19,7 +19,7 @@ namespace hitchbot_secure_api.Controllers
             using (var db = new Dal.DatabaseContext())
             {
                 db.Locations.Add(
-                    new Location(Context)
+                    new Models.Location(Context)
                 {
                     Latitude = Context.Latitude,
                     Longitude = Context.Longitude,
@@ -32,6 +32,11 @@ namespace hitchbot_secure_api.Controllers
                 await db.SaveChangesAsync();
             }
             return Ok();
+        }
+
+        [HttpGet]
+        public void FindGeoArea(int hitchBotId)
+        {
         }
     }
 }
