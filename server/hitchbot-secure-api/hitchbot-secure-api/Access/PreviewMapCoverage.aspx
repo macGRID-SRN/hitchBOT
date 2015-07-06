@@ -59,6 +59,11 @@
                     radius: coords[i].radius * 1000
                 };
 
+                if (coords[i].bucketList) {
+                    circleOptions.fillColor = '#4CAF50';
+                    circleOptions.strokeColor = '#4CAF50';
+                }
+
                 tempMarker.html = getFormattedContent(coords[i]);
 
                 google.maps.event.addListener(tempMarker, 'click', function () {
@@ -80,6 +85,11 @@
                     fillColor: '#FF0000',
                     fillOpacity: 0.35
                 });
+
+                if (coord.bucketList) {
+                    poly.fillColor = '#4CAF50';
+                    poly.strokeColor = '#4CAF50';
+                }
 
 
                 poly.html = getFormattedContent(coord);
@@ -111,7 +121,10 @@
                 var result = getPolyResult(e.latLng) + getCircleResult(e.latLng);
                 if (!result)
                     result = getFormattedList({title: 'hitchBOT doesn\'t say anything here!', content: 'Maybe you should add something!!'});
-                    $("#content").html(result);
+                $("#content").html(result);
+                var coordString = e.latLng.lat() + ', ' + e.latLng.lng();
+                console.log(coordString);
+                $('#current-coords').html('Location: ' + coordString);
             } );
         }
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -161,15 +174,26 @@
         }
 
         function getFormattedList(coord){
+
+            var title = coord.title;
+            if (coord.bucketList) {
+                title += ' bucket list';
+            }
+
             return '<li class="list-group-item">'+
-                '<h4 class="list-group-item-heading">' + coord.title +
+                '<h4 class="list-group-item-heading">' + title +
                 '</h4>' +
                 '<p class="list-group-item-text">'+ coord.content +
                 '</p></li>';
         }
 
         function getFormattedContent(coord) {
-            return '<b>' + coord.title + '</b>' + '<p>' + coord.content + '</p>';
+
+            var title = coord.title;
+            if (coord.bucketList) {
+                title += ' bucket list';
+            }
+            return '<b>' + title + '</b>' + '<p>' + coord.content + '</p>';
         }
     </script>
 </asp:Content>
@@ -190,6 +214,7 @@
             <div class="panel-default panel">
                 <div class="panel-heading">
                     <h3>What will hitchBOT say?</h3>
+                    <h5 id="current-coords"></h5>
                 </div>
                 <ul class="list-group" id="content">
                     <li class="list-group-item">
