@@ -10,6 +10,11 @@ namespace hitchbot_unit_tests
     [TestClass]
     public class UnitTest1
     {
+        /// <summary>
+        /// Method was adapted from here:https://groups.google.com/forum/#!topic/nettopologysuite/gl2g2O807X0
+        /// and here: http://gis.stackexchange.com/questions/13447/how-to-reproject-spatial-data-using-free-libraries
+        /// TODO: move this into the main project and create test cases based on the google maps coordinate system. MUST ENSURE there are border cases (large and small polygons with points very close to the edges)
+        /// </summary>
         [TestMethod]
         public void TestPolygonIntersection()
         {

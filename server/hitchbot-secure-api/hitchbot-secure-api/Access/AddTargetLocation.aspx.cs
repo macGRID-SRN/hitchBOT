@@ -54,13 +54,18 @@ namespace hitchbot_secure_api.Access
 
                     Models.Location location = null;
 
-                    var contextID = int.Parse(selectedLabelID.Value);
-                    var context = db.CleverscriptContexts.FirstOrDefault(l => l.Id == contextID);
+                    Models.CleverscriptContext context = null;
 
-                    if (context == null)
+                    if (!bucketCheckBox.Checked)
                     {
-                        setErrorMessage("Error with the cleverscript label!!");
-                        return;
+                        var contextID = int.Parse(selectedLabelID.Value);
+                        context = db.CleverscriptContexts.FirstOrDefault(l => l.Id == contextID);
+
+                        if (context == null)
+                        {
+                            setErrorMessage("Error with the cleverscript label!!");
+                            return;
+                        }
                     }
 
                     if (LocationCheckBox.Checked)
@@ -110,9 +115,13 @@ namespace hitchbot_secure_api.Access
                         RadiusKm = radiusActual,
                         HitchBotId = hitchbotId,
                         TimeAdded = DateTime.UtcNow,
-                        CleverscriptContextId = context.Id,
                         isBucketList = bucketCheckBox.Checked
                     };
+
+                    if (context != null)
+                    {
+                        wiki.CleverscriptContextId = context.Id;
+                    }
 
                     db.CleverscriptContents.Add(wiki);
 
