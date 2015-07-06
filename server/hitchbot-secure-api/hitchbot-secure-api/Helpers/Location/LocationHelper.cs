@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotSpatial.Projections;
+using DotSpatial.Topology;
 
 namespace hitchbot_secure_api.Helpers.Location
 {
@@ -19,7 +21,48 @@ namespace hitchbot_secure_api.Helpers.Location
 
         private const int maxLocations = 350;
 
-       
+        public static void TransformCoords(ref double[] xy, ref double[] z, int numCoords)
+        {
+            // dotspatial takes the x,y in a single array, and z in a separate array.
+            ProjectionInfo pStart = KnownCoordinateSystems.Geographic.World.WGS1984;
+
+            //previous projection type. I do not believe this one worked.
+            //ProjectionInfo pEnd = KnownCoordinateSystems.Projected.UtmNad1927.NAD1927UTMZone17N;
+            ProjectionInfo pEnd = KnownCoordinateSystems.Projected.NorthAmerica.USAContiguousLambertConformalConic;
+
+            Reproject.ReprojectPoints(xy, z, pStart, pEnd, 0, numCoords);
+        }
+
+        public static bool PointInPolygon(List<Models.Location> PolyLine, Models.Location Location)
+        {
+            double[] xy = new double[PolyLine.Count * 2];
+            double[] z = new double[PolyLine.Count];
+            for (int i = 0; i < PolyLine.Count; i++)
+            {
+                xy[i * 2] = PolyLine[i].Latitude;
+                xy[i * 2 + 1] = PolyLine[i].Longitude;
+                z[i] = 0;
+            }
+
+            TransformCoords(ref xy, ref z, PolyLine.Count);
+
+            double[] pointXy = { Location.Latitude, Location.Longitude };
+            var pointZ = new double[] { 0 };
+
+            TransformCoords(ref pointXy, ref pointZ, 1);
+
+            List<Coordinate> co = new List<Coordinate>();
+            for (int i = 0; i < PolyLine.Count; i++)
+            {
+                co.Add(new Coordinate(xy[i * 2], xy[i * 2 + 1]));
+            }
+
+            var middle = GeometryFactory.Default.CreatePoint(new Coordinate(pointXy[0], pointXy[1]));
+
+            Polygon polygon = new Polygon(co);
+
+            return middle.Within(polygon);
+        }
 
         public static List<Models.Location> SlimLocations(List<Models.Location> inList)
         {
