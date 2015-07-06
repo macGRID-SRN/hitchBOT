@@ -77,6 +77,9 @@
 
         function placeMarker(location) {
 
+            var coordString = location.lat() + ', ' + location.lng();
+            console.log(coordString);
+
             verticies.push(location);
 
             //send a string back to the server via a hidden field .. yes there is probably a better way to do this.
