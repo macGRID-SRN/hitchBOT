@@ -18,7 +18,7 @@ public final class Config {
 	public static DatabaseConfig dQ = null;
 	//I would use a resource for these, but they don't play nicely with strings.xml, and the api
 	//will change drastically soon anyways
-	public static final int ID = 3; //14-18
+	public static final int ID = 6; //14-18
 	public static String serverURL = "http://hitchbot-secure-api.azurewebsites.net/api/";
 	public static String conversationPost = serverURL + "Speech/LogSpeech";//"Conversation?HitchBotID=%s&SpeechSaid=%s&SpeechHeard=%s&TimeTaken=%s&Person=%s&Notes=%s&MatchedLineLabel=%s&MatchAccuracy=%s&RmsDecibelLevel=%s&EnvironmentType=%s&RecognitionScore=%s&ResponseScore=%s&RecognizerEnum=%s";
 	public static String exceptionPOST = serverURL + "Exception/LogException";//"Exception?HitchBotID=%s&Message=%s&TimeOccured=%s";
