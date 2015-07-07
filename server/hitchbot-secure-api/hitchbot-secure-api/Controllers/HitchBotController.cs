@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Management;
-using Newtonsoft.Json;
 using hitchbot_secure_api.Dal;
 using hitchbot_secure_api.Helpers;
 using hitchbot_secure_api.Models;
@@ -45,24 +40,26 @@ namespace hitchbot_secure_api.Controllers
                 var previousIds = await spotCurrentIdsTask;
 
                 var messages = spotty.response.feedMessageResponse.messages.message
-                    .Where(l => l.messageType == "EXTREME-TRACK" || l.messageType == "NEWMOVEMENT" || l.messageType== "STOP")
                     .Where(l => previousIds.All(h => h.SpotID != l.id))
                     .Select(l => new LocationController.SpotDto
                     {
                         latitude = l.latitude,
                         longitude = l.longitude,
                         spotId = l.id,
-                        unixTime = l.unixTime
+                        unixTime = l.unixTime,
+                        SpotGpsMessageType = l._messageType
                     }).ToList();
 
                 messages.ForEach(l =>
                 {
-                    db.Locations.Add(new Location()
+                    db.Locations.Add(new Location
                     {
                         Latitude = l.latitude,
                         Longitude = l.longitude,
                         TakenTime = l.Time,
                         LocationProvider = LocationProvider.SpotGPS,
+                        SpotGpsMessageType = l.SpotGpsMessageType,
+                        HideFromProduction = l.ShouldHideFromProduction,
                         HitchBotId = HitchBotId,
                         SpotID = l.spotId
                     });

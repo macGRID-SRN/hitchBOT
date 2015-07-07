@@ -124,6 +124,10 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleCrypto, Version=26.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -140,6 +144,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -205,6 +210,77 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\AddTargetLocation.aspx.cs">
+      <DependentUpon>AddTargetLocation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\AddTargetLocation.aspx.designer.cs">
+      <DependentUpon>AddTargetLocation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Access\AddTargetLocationPolygon.aspx.cs">
+      <DependentUpon>AddTargetLocationPolygon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\AddTargetLocationPolygon.aspx.designer.cs">
+      <DependentUpon>AddTargetLocationPolygon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Access\AddTargetSuccess.aspx.cs">
+      <DependentUpon>AddTargetSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\AddTargetSuccess.aspx.designer.cs">
+      <DependentUpon>AddTargetSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Access\LandingPage.aspx.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\LandingPage.aspx.designer.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Access\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Access\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Access\PreviewMapCoverage.aspx.cs">
+      <DependentUpon>PreviewMapCoverage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\PreviewMapCoverage.aspx.designer.cs">
+      <DependentUpon>PreviewMapCoverage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Access\SessionInfo.cs" />
+    <Compile Include="Access\Shared\Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Shared\Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Access\Shared\PageWithHeader.master.cs">
+      <DependentUpon>PageWithHeader.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Shared\PageWithHeader.master.designer.cs">
+      <DependentUpon>PageWithHeader.master</DependentUpon>
+    </Compile>
+    <Compile Include="Access\Unauthorized.aspx.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\Unauthorized.aspx.designer.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -258,6 +334,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AccountHelper.cs" />
     <Compile Include="Helpers\AzureBlobHelper.cs" />
     <Compile Include="Helpers\HumanReadableInt.cs" />
     <Compile Include="Helpers\Location\GoogleMapsBuilder.cs" />
@@ -277,9 +354,30 @@
     <Compile Include="Migrations\201505232238521_InitialCreate.Designer.cs">
       <DependentUpon>201505232238521_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506091447356_AddSpotMessageType.cs" />
+    <Compile Include="Migrations\201506091447356_AddSpotMessageType.Designer.cs">
+      <DependentUpon>201506091447356_AddSpotMessageType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506140056112_AddUserAccount.cs" />
+    <Compile Include="Migrations\201506140056112_AddUserAccount.Designer.cs">
+      <DependentUpon>201506140056112_AddUserAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506160136500_AddCleverscriptEntries.cs" />
+    <Compile Include="Migrations\201506160136500_AddCleverscriptEntries.Designer.cs">
+      <DependentUpon>201506160136500_AddCleverscriptEntries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506301430112_AddBucketList.cs" />
+    <Compile Include="Migrations\201506301430112_AddBucketList.Designer.cs">
+      <DependentUpon>201506301430112_AddBucketList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506301547223_AddPolygonVertices.cs" />
+    <Compile Include="Migrations\201506301547223_AddPolygonVertices.Designer.cs">
+      <DependentUpon>201506301547223_AddPolygonVertices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CleverscriptContent.cs" />
     <Compile Include="Models\ContextPacket.cs" />
     <Compile Include="Models\ExceptionLog.cs" />
     <Compile Include="Models\HitchBot.cs" />
@@ -287,7 +385,9 @@
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Journey.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\LoginAccount.cs" />
     <Compile Include="Models\SpeechLogEvent.cs" />
+    <Compile Include="Models\TabletSerial.cs" />
     <Compile Include="Models\TabletStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -295,6 +395,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Access\AddTargetLocation.aspx" />
+    <Content Include="Access\AddTargetLocationPolygon.aspx" />
+    <Content Include="Access\AddTargetSuccess.aspx" />
+    <Content Include="Access\LandingPage.aspx" />
+    <Content Include="Access\Login.aspx" />
+    <Content Include="Access\Logout.aspx" />
+    <Content Include="Access\PreviewMapCoverage.aspx" />
+    <Content Include="Access\Unauthorized.aspx" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -328,6 +436,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Access\Shared\Main.Master" />
+    <Content Include="Access\Shared\PageWithHeader.master" />
+    <None Include="Properties\PublishProfiles\hitchbot-secure-api-dev.pubxml" />
     <None Include="Properties\PublishProfiles\hitchbot-secure-api.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Icon.png" />
@@ -377,6 +488,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505232238521_InitialCreate.resx">
       <DependentUpon>201505232238521_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506091447356_AddSpotMessageType.resx">
+      <DependentUpon>201506091447356_AddSpotMessageType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506140056112_AddUserAccount.resx">
+      <DependentUpon>201506140056112_AddUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506160136500_AddCleverscriptEntries.resx">
+      <DependentUpon>201506160136500_AddCleverscriptEntries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506301430112_AddBucketList.resx">
+      <DependentUpon>201506301430112_AddBucketList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506301547223_AddPolygonVertices.resx">
+      <DependentUpon>201506301547223_AddPolygonVertices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

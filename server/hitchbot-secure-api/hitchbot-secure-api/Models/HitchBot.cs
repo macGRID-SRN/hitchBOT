@@ -17,8 +17,10 @@ namespace hitchbot_secure_api.Models
 
         public virtual ICollection<Location> Locations { get; set; }
         public virtual ICollection<SpeechLogEvent> SpeechLogEvents { get; set; }
-
+        public virtual ICollection<CleverscriptContent> CleverscriptContents { get; set; }
+        public virtual ICollection<CleverscriptContext> CleverscriptContexts { get; set; }
         public virtual ICollection<Image> Images { get; set; }
+        //public virtual ICollection<TabletSerial> TabletSerials { get; set; }
         public int JourneyId { get; set; }
         [Required]
         public virtual Journey Journey { get; set; }
