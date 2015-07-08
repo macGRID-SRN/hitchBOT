@@ -11,7 +11,7 @@ namespace hitchbot_secure_api.Controllers.ReturnObjects
     {
         public int HitchBotId { get; set; }
 
-        //public string TabletSerial { get; set; }
+        public string TabletSerial { get; set; }
 
         public long? TimeUnix { get; set; }
 

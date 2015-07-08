@@ -18,6 +18,11 @@ namespace hitchbot_secure_api.Controllers
 
             using (var db = new Dal.DatabaseContext())
             {
+                if (!db.TabletSerials.Where(l => l.TabletSerialNumber == Context.TabletSerial)
+                        .Any(l => l.HitchBotId == Context.HitchBotId))
+                {
+                    return BadRequest("Tablet Serial Number is not registered to this hitchBOT OR Tablet Serial is invalid.");
+                }
                 db.Locations.Add(
                     new Models.Location(Context)
                 {
