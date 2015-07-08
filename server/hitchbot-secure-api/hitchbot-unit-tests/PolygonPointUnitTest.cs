@@ -327,5 +327,202 @@ namespace hitchbot_unit_tests
 
             outsidePoints.ForEach(k => Assert.IsFalse(LocationHelper.PointInPolygon(coords, k)));
         }
+
+        /// <summary>
+        /// Method was adapted from here:https://groups.google.com/forum/#!topic/nettopologysuite/gl2g2O807X0
+        /// and here: http://gis.stackexchange.com/questions/13447/how-to-reproject-spatial-data-using-free-libraries
+        /// TODO: move this into the main project and create test cases based on the google maps coordinate system. MUST ENSURE there are border cases (large and small polygons with points very close to the edges)
+        /// </summary>
+        [TestMethod]
+        public void TestPolygonIntersectionSouthAmerica()
+        {
+            //coordinates of the polygon
+            var coords = new List<Location>
+            {
+                new Location
+                {
+                    Latitude = -38.32442042700653,
+                    Longitude = -64.951171875
+                },
+                new Location
+                {
+                    Latitude = -40.7472569628042,
+                    Longitude = -65.2587890625
+                },
+                new Location
+                {
+                    Latitude = -41.11246878918085,
+                    Longitude = -62.490234375
+                },
+				new Location
+				{
+					Latitude = -40.530501775743204,
+					Longitude = -61.67724609375
+				},
+				new Location
+				{
+					Latitude = -39.50404070558415,
+					Longitude = -62.9736328125
+				},
+				new Location
+				{
+					Latitude = -37.99616267972812,
+					Longitude = -63.69873046875
+				}
+            };
+
+            //points which SHOULD be in the polygon
+            var point = new List<Location>
+            {
+                new Location
+                {
+                    Latitude =  -40.064245174172065,
+                    Longitude = -63.744138996874995
+                },
+                new Location
+                {
+                    Latitude = -40.53050149101196,
+                    Longitude = -61.6772602459547
+                },
+                new Location
+                {
+                    Latitude = -40.529463305491795,
+                    Longitude = -61.67856849340171
+                },
+                new Location
+                {
+                    Latitude = -39.50404507299803,
+                    Longitude = -62.973628189241595
+                }
+            };
+
+            //points which are outside the polygon
+            var outsidePoints = new List<Location>
+            {
+                new Location()
+                {
+                    Latitude = -40.530499962031854,
+                    Longitude = -61.67724817601413
+                },
+                new Location()
+                {
+                    Latitude = -39.50404714253596,
+                    Longitude = -62.973612095987505
+                },
+                new Location()
+                {
+                    Latitude = -57.287977345866345,
+                    Longitude = -62.55353524891109
+                },
+                new Location()
+                {
+                    Latitude = 13.822028428951164,
+                    Longitude = -61.85041024891109
+                }
+            };
+
+            point.ForEach(l => Assert.IsTrue(LocationHelper.PointInPolygon(coords, l)));
+
+            outsidePoints.ForEach(k => Assert.IsFalse(LocationHelper.PointInPolygon(coords, k)));
+        }
+
+
+        /// <summary>
+        /// Method was adapted from here:https://groups.google.com/forum/#!topic/nettopologysuite/gl2g2O807X0
+        /// and here: http://gis.stackexchange.com/questions/13447/how-to-reproject-spatial-data-using-free-libraries
+        /// TODO: move this into the main project and create test cases based on the google maps coordinate system. MUST ENSURE there are border cases (large and small polygons with points very close to the edges)
+        /// </summary>
+        [TestMethod]
+        public void TestPolygonIntersectionRussia()
+        {
+            //coordinates of the polygon
+            var coords = new List<Location>
+            {
+                new Location
+                {
+                    Latitude = 52.93539665862318,
+                    Longitude = 23.5986328125
+                },
+                new Location
+                {
+                    Latitude = 45.67548217560647,
+                    Longitude = 25.3125
+                },
+                new Location
+                {
+                    Latitude = 46.86019101567027,
+                    Longitude = 46.86019101567027
+                },
+				new Location
+				{
+					Latitude = 49.32512199104001,
+					Longitude = 65.0390625
+				},
+				new Location
+				{
+					Latitude = 59.712097173322924,
+					Longitude = 47.4609375
+				},
+				new Location
+				{
+					Latitude = 56.8970039212726,
+					Longitude = 21.6650390625
+				}
+            };
+
+            //points which SHOULD be in the polygon
+            var point = new List<Location>
+            {
+                new Location
+                {
+                    Latitude =  50.469005451461314,
+                    Longitude = 30.529542643750005
+                },
+                new Location
+                {
+                    Latitude = 46.02477054707349,
+                    Longitude = 25.739503581250005
+                },
+                new Location
+                {
+                    Latitude = 48.412026716676024,
+                    Longitude = 55.007081706250005
+                },
+                new Location
+                {
+                    Latitude = 59.61023683281112,
+                    Longitude = 47.360597331250005
+                }
+            };
+
+            //points which are outside the polygon
+            var outsidePoints = new List<Location>
+            {
+                new Location()
+                {
+                    Latitude = 59.89799984145697,
+                    Longitude = 46.789308268750005
+                },
+                new Location()
+                {
+                    Latitude = 56.69029725267831,
+                    Longitude = 21.608644206250005
+                },
+                new Location()
+                {
+                    Latitude = 50.13216125899563,
+                    Longitude = 24.113527018750005
+                },
+                new Location()
+                {
+                    Latitude = 52.35979854180613,
+                    Longitude = 18.971925456250005
+                }
+            };
+
+            point.ForEach(l => Assert.IsTrue(LocationHelper.PointInPolygon(coords, l)));
+
+            outsidePoints.ForEach(k => Assert.IsFalse(LocationHelper.PointInPolygon(coords, k)));
+        }
     }
 }
