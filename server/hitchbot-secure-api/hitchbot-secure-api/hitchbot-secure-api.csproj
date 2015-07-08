@@ -406,6 +406,10 @@
     <Compile Include="Migrations\201506301547223_AddPolygonVertices.Designer.cs">
       <DependentUpon>201506301547223_AddPolygonVertices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507081410473_AddTabletSerial.cs" />
+    <Compile Include="Migrations\201507081410473_AddTabletSerial.Designer.cs">
+      <DependentUpon>201507081410473_AddTabletSerial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -535,6 +539,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506301547223_AddPolygonVertices.resx">
       <DependentUpon>201506301547223_AddPolygonVertices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507081410473_AddTabletSerial.resx">
+      <DependentUpon>201507081410473_AddTabletSerial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
