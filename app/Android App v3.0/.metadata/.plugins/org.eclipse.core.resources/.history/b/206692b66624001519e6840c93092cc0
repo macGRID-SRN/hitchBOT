@@ -14,6 +14,7 @@ public class SpeechOut {
 
 	public TextToSpeech mTts;
 	private GoogleRecognizer gRecognizer;
+	private PocketRecognizer pRecognizer;
 	private boolean stopCycle = false;
 	private static final String TAG = "SpeechOut";
 
@@ -70,6 +71,7 @@ public class SpeechOut {
 							});
 						} else {
 							((SpeechActivity)Config.context).setButtonEnable();
+							stopCycle = false;
 						}
 
 					}
@@ -102,9 +104,5 @@ public class SpeechOut {
 
 	public void stopRecognition() {
 		this.stopCycle = true;
-	}
-	
-	public void startRecognition(){
-		this.stopCycle = false;
 	}
 }

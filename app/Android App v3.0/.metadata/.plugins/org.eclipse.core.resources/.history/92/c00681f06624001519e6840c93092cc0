@@ -19,7 +19,6 @@ public class SpeechController {
         		Config.context.getString(R.string.clever_apikey));
         setup();
         Config.csh = csh;
-        startCycle();
 	}
 	
 	private void setup()
@@ -31,7 +30,6 @@ public class SpeechController {
 
 	public void startCycle()
 	{
-		speechOut.startRecognition();
 		//if(Config.networkAvailable())
 			gRecognizer.startListening();
 		//else

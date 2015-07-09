@@ -10,28 +10,31 @@ public class SpeechController {
 	SpeechOut speechOut;
 	CleverScriptHelper csh;
 	GoogleRecognizer gRecognizer;
+	PocketRecognizer pRecognizer;
 	
 	public SpeechController()
 	{
 		gRecognizer = new GoogleRecognizer();
+		pRecognizer = new PocketRecognizer();
+		pRecognizer.setController(this);
 		speechOut = new SpeechOut();
         csh = new CleverScriptHelper(Config.context.getString(R.string.clever_db), 
         		Config.context.getString(R.string.clever_apikey));
         setup();
         Config.csh = csh;
-        startCycle();
 	}
 	
 	private void setup()
 	{
 		gRecognizer.setCleverHandler(csh);
+		pRecognizer.setCleverHandler(csh);
+		speechOut.setRecognizer(pRecognizer);
 		speechOut.setRecognizer(gRecognizer);
 		csh.setSpeechOut(speechOut);
 	}
 
 	public void startCycle()
 	{
-		speechOut.startRecognition();
 		//if(Config.networkAvailable())
 			gRecognizer.startListening();
 		//else

@@ -31,7 +31,6 @@ public class SpeechController {
 
 	public void startCycle()
 	{
-		speechOut.startRecognition();
 		//if(Config.networkAvailable())
 			gRecognizer.startListening();
 		//else

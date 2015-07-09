@@ -70,6 +70,7 @@ public class SpeechOut {
 							});
 						} else {
 							((SpeechActivity)Config.context).setButtonEnable();
+							stopCycle = false;
 						}
 
 					}
@@ -102,9 +103,5 @@ public class SpeechOut {
 
 	public void stopRecognition() {
 		this.stopCycle = true;
-	}
-	
-	public void startRecognition(){
-		this.stopCycle = false;
 	}
 }
