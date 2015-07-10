@@ -33,91 +33,91 @@ namespace hitchbot_secure_api.Migrations
             //    );
             //
 
-            var locations = new List<Location>()
-            {
-                new Location()
-                {
-                    NearestCity  = "SeedLocation1",
-                    Latitude = 43.2423582,
-                    Longitude = -79.8391097, //also the true birthplace of hitchBOT
-                    TakenTime = DateTime.UtcNow,
-                    LocationProvider = LocationProvider.SpotGPS
-                },
-                new Location()
-                {
-                    NearestCity = "SeedLocation2",
-                    Latitude = 43.7,
-                    Longitude = -79.4,
-                },
-                new Location()
-                {
-                    NearestCity = "SeedHitchBOTLocation1",
-                    Latitude = 45,
-                    Longitude = -34,
-                    TakenTime = DateTime.UtcNow.AddMinutes(-20)
-                },
-                new Location()
-                {
-                    NearestCity = "SeedHitchBOTLocation2",
-                    Latitude = 46,
-                    Longitude = -35,
-                    TakenTime = DateTime.UtcNow.AddMinutes(-20)
-                },
-                new Location()
-                {
-                    NearestCity = "SeedHitchBOT2Location1",
-                    Latitude = 49,
-                    Longitude = -12,
-                    TakenTime = DateTime.UtcNow.AddMinutes(-1)
-                },
-                new Location()
-                {
-                    NearestCity = "SeedHitchBOT2Location2",
-                    Latitude = 12,
-                    Longitude = -7,
-                    TakenTime = DateTime.UtcNow.AddMinutes(-1)
-                }
-            };
+            //var locations = new List<Location>()
+            //{
+            //    new Location()
+            //    {
+            //        NearestCity  = "SeedLocation1",
+            //        Latitude = 43.2423582,
+            //        Longitude = -79.8391097, //also the true birthplace of hitchBOT
+            //        TakenTime = DateTime.UtcNow,
+            //        LocationProvider = LocationProvider.SpotGPS
+            //    },
+            //    new Location()
+            //    {
+            //        NearestCity = "SeedLocation2",
+            //        Latitude = 43.7,
+            //        Longitude = -79.4,
+            //    },
+            //    new Location()
+            //    {
+            //        NearestCity = "SeedHitchBOTLocation1",
+            //        Latitude = 45,
+            //        Longitude = -34,
+            //        TakenTime = DateTime.UtcNow.AddMinutes(-20)
+            //    },
+            //    new Location()
+            //    {
+            //        NearestCity = "SeedHitchBOTLocation2",
+            //        Latitude = 46,
+            //        Longitude = -35,
+            //        TakenTime = DateTime.UtcNow.AddMinutes(-20)
+            //    },
+            //    new Location()
+            //    {
+            //        NearestCity = "SeedHitchBOT2Location1",
+            //        Latitude = 49,
+            //        Longitude = -12,
+            //        TakenTime = DateTime.UtcNow.AddMinutes(-1)
+            //    },
+            //    new Location()
+            //    {
+            //        NearestCity = "SeedHitchBOT2Location2",
+            //        Latitude = 12,
+            //        Longitude = -7,
+            //        TakenTime = DateTime.UtcNow.AddMinutes(-1)
+            //    }
+            //};
 
-            locations.ForEach(l => context.Locations.AddOrUpdate(s => s.NearestCity, l));
-            context.SaveChanges();
+            //locations.ForEach(l => context.Locations.AddOrUpdate(s => s.NearestCity, l));
+            //context.SaveChanges();
 
-            context.Journeys.AddOrUpdate(l => l.Name,
-               new Journey
-                {
-                    Name = "SeedJourney",
-                    StartLocation = context.Locations.Single(l => l.NearestCity == "SeedLocation1"),
-                    EndLocation = context.Locations.Single(l => l.NearestCity == "SeedLocation2"),
-                    StartTime = DateTime.UtcNow,
-                }
-            );
-            context.SaveChanges();
+            //context.Journeys.AddOrUpdate(l => l.Name,
+            //   new Journey
+            //    {
+            //        Name = "SeedJourney",
+            //        StartLocation = context.Locations.Single(l => l.NearestCity == "SeedLocation1"),
+            //        EndLocation = context.Locations.Single(l => l.NearestCity == "SeedLocation2"),
+            //        StartTime = DateTime.UtcNow,
+            //    }
+            //);
+            //context.SaveChanges();
 
-            var hitchBots = new List<HitchBot>()
-            {
-                new HitchBot
-                {
-                    Name = "SeedHitchBot1",
-                    JourneyId = context.Journeys.Single(l=>l.Name == "SeedJourney").Id,
-                    Locations = new List<Location>()
-                    {
-                        context.Locations.Single(l=>l.NearestCity == "SeedHitchBOTLocation1"),
-                        context.Locations.Single(l=>l.NearestCity == "SeedHitchBOTLocation2")
-                    }
-                },
-                new HitchBot
-                {
-                    Name = "SeedHitchBot2",
-                    JourneyId = context.Journeys.Single(l=>l.Name == "SeedJourney").Id,
-                    Locations = new List<Location>()
-                    {
-                        context.Locations.Single(l=>l.NearestCity == "SeedHitchBOT2Location1"),
-                        context.Locations.Single(l=>l.NearestCity == "SeedHitchBOT2Location2")
-                    }
-                }
-            };
+            //var hitchBots = new List<HitchBot>()
+            //{
+            //    new HitchBot
+            //    {
+            //        Name = "SeedHitchBot1",
+            //        JourneyId = context.Journeys.Single(l=>l.Name == "SeedJourney").Id,
+            //        Locations = new List<Location>()
+            //        {
+            //            context.Locations.Single(l=>l.NearestCity == "SeedHitchBOTLocation1"),
+            //            context.Locations.Single(l=>l.NearestCity == "SeedHitchBOTLocation2")
+            //        }
+            //    },
+            //    new HitchBot
+            //    {
+            //        Name = "SeedHitchBot2",
+            //        JourneyId = context.Journeys.Single(l=>l.Name == "SeedJourney").Id,
+            //        Locations = new List<Location>()
+            //        {
+            //            context.Locations.Single(l=>l.NearestCity == "SeedHitchBOT2Location1"),
+            //            context.Locations.Single(l=>l.NearestCity == "SeedHitchBOT2Location2")
+            //        }
+            //    }
+            //};
 
-            hitchBots.ForEach(l => context.HitchBots.AddOrUpdate(s => s.Name, l));
+            //hitchBots.ForEach(l => context.HitchBots.AddOrUpdate(s => s.Name, l));
         }
     }
 }
