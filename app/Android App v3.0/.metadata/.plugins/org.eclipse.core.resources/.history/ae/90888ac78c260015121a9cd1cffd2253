@@ -54,6 +54,7 @@ public class SpeechActivity extends Activity {
 		setUnCaughtExceptionHandler();
 		TelephonyManager tManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 		Config.tabletID =tManager.getDeviceId();
+		Log.i(TAG, Config.tabletID);
 		tP = new PictureTaker();
 		setupHandler();
 		// queue location info

@@ -26,7 +26,6 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,8 +51,6 @@ public class SpeechActivity extends Activity {
 		Config.context = this;
 		Config.dQ = DatabaseConfig.getHelper(this);
 		setUnCaughtExceptionHandler();
-		TelephonyManager tManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-		Config.tabletID =tManager.getDeviceId();
 		tP = new PictureTaker();
 		setupHandler();
 		// queue location info
