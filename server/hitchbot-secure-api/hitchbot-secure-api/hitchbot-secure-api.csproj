@@ -263,6 +263,13 @@
     <Compile Include="Access\AddTargetSuccess.aspx.designer.cs">
       <DependentUpon>AddTargetSuccess.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Access\imageGrid.master.cs">
+      <DependentUpon>imageGrid.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\imageGrid.master.designer.cs">
+      <DependentUpon>imageGrid.master</DependentUpon>
+    </Compile>
     <Compile Include="Access\LandingPage.aspx.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -368,6 +375,7 @@
     </Compile>
     <Compile Include="Helpers\AccountHelper.cs" />
     <Compile Include="Helpers\AzureBlobHelper.cs" />
+    <Compile Include="Helpers\BucketListHelper.cs" />
     <Compile Include="Helpers\HumanReadableInt.cs" />
     <Compile Include="Helpers\Location\GoogleMapsBuilder.cs" />
     <Compile Include="Helpers\Location\GoogleMapsHelper.cs" />
@@ -474,6 +482,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Access\Shared\Main.Master" />
     <Content Include="Access\Shared\PageWithHeader.master" />
+    <Content Include="Access\imageGrid.master" />
     <None Include="Properties\PublishProfiles\hitchbot-secure-api-dev.pubxml" />
     <None Include="Properties\PublishProfiles\hitchbot-secure-api.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />

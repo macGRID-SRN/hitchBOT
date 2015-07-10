@@ -35,6 +35,27 @@ namespace hitchbot_secure_api.Helpers.Location
 
         public static bool PointInPolygon(List<Models.Location> PolyLine, Models.Location Location)
         {
+            double[] pointXy = { Location.Latitude, Location.Longitude };
+            var pointZ = new double[] { 0 };
+
+            TransformCoords(ref pointXy, ref pointZ, 1);
+
+            var middle = GeometryFactory.Default.CreatePoint(new Coordinate(pointXy[0], pointXy[1]));
+
+            var polygon = MakePolygon(PolyLine, true);
+
+            return middle.Within(polygon);
+        }
+
+        public static double GetDistance(Polygon poly, Models.Location location)
+        {
+            var point = GeometryFactory.Default.CreatePoint(new Coordinate(location.Latitude, location.Longitude));
+
+            return poly.Distance(point);
+        }
+
+        public static Polygon MakePolygon(List<Models.Location> PolyLine, bool shouldTransform = false)
+        {
             double[] xy = new double[PolyLine.Count * 2];
             double[] z = new double[PolyLine.Count];
             for (int i = 0; i < PolyLine.Count; i++)
@@ -44,12 +65,8 @@ namespace hitchbot_secure_api.Helpers.Location
                 z[i] = 0;
             }
 
-            TransformCoords(ref xy, ref z, PolyLine.Count);
-
-            double[] pointXy = { Location.Latitude, Location.Longitude };
-            var pointZ = new double[] { 0 };
-
-            TransformCoords(ref pointXy, ref pointZ, 1);
+            if (shouldTransform)
+                TransformCoords(ref xy, ref z, PolyLine.Count);
 
             List<Coordinate> co = new List<Coordinate>();
             for (int i = 0; i < PolyLine.Count; i++)
@@ -57,11 +74,7 @@ namespace hitchbot_secure_api.Helpers.Location
                 co.Add(new Coordinate(xy[i * 2], xy[i * 2 + 1]));
             }
 
-            var middle = GeometryFactory.Default.CreatePoint(new Coordinate(pointXy[0], pointXy[1]));
-
-            Polygon polygon = new Polygon(co);
-
-            return middle.Within(polygon);
+            return new Polygon(co);
         }
 
         public static List<Models.Location> SlimLocations(List<Models.Location> inList)

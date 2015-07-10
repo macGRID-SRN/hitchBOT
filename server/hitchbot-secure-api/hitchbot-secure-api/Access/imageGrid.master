@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Access/Shared/PageWithHeader.master" AutoEventWireup="true" CodeBehind="imageGrid.master.cs" Inherits="hitchbot_secure_api.Access.imageGrid" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="StyleContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
+    <form runat="server">
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+        <div class="container">
+            <div class="jumbotron">
+                <h3>Images</h3>
+            </div>
+        </div>
+        <div class="container">
+            <asp:Repeater ID="imageRepeater" SelectMethod="GetImages" ItemType="hitchbot_secure_api.Models.Image" runat="server">
+                <HeaderTemplate>
+                    
+                </HeaderTemplate>
+                <ItemTemplate>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+    </form>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="endScripts" runat="server">
+</asp:Content>
