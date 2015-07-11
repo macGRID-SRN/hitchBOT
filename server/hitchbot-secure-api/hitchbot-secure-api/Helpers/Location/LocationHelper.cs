@@ -28,12 +28,19 @@ namespace hitchbot_secure_api.Helpers.Location
 
             //previous projection type. I do not believe this one worked.
             //ProjectionInfo pEnd = KnownCoordinateSystems.Projected.UtmNad1927.NAD1927UTMZone17N;
-            ProjectionInfo pEnd = KnownCoordinateSystems.Projected.NorthAmerica.USAContiguousLambertConformalConic;
+            ProjectionInfo pEnd = KnownCoordinateSystems.Projected.NorthAmerica.NorthAmericaEquidistantConic;
 
             Reproject.ReprojectPoints(xy, z, pStart, pEnd, 0, numCoords);
         }
 
         public static bool PointInPolygon(List<Models.Location> PolyLine, Models.Location Location)
+        {
+            var polygon = MakePolygon(PolyLine, true);
+
+            return PointInPolygon(polygon, Location);
+        }
+
+        public static bool PointInPolygon(Polygon polygon, Models.Location Location)
         {
             double[] pointXy = { Location.Latitude, Location.Longitude };
             var pointZ = new double[] { 0 };
@@ -41,8 +48,6 @@ namespace hitchbot_secure_api.Helpers.Location
             TransformCoords(ref pointXy, ref pointZ, 1);
 
             var middle = GeometryFactory.Default.CreatePoint(new Coordinate(pointXy[0], pointXy[1]));
-
-            var polygon = MakePolygon(PolyLine, true);
 
             return middle.Within(polygon);
         }
