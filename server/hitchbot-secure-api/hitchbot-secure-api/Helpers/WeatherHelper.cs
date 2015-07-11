@@ -33,6 +33,24 @@ namespace hitchbot_secure_api.Helpers
                 };
             }
 
+            public VariableValuePair GetTempFPair()
+            {
+                return new VariableValuePair
+                {
+                    key = "weather_temperatureC",
+                    value = Convert.ToInt32(GetTempInC() * 1.8 + 32).ToString()
+                };
+            }
+
+            public VariableValuePair GetTempTextFPair()
+            {
+                return new VariableValuePair
+                {
+                    key = "weather_ctext",
+                    value = Helpers.HumanFriendlyInteger.IntegerToWritten(Convert.ToInt32(GetTempInC() * 1.8 + 32))
+                };
+            }
+
             public VariableValuePair GetTempCPair()
             {
                 return new VariableValuePair
