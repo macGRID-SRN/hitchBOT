@@ -8,6 +8,8 @@ using hitchbot_secure_api.Dal;
 using hitchbot_secure_api.Helpers;
 using hitchbot_secure_api.Models;
 using System.Configuration;
+using hitchbot_secure_api.Helpers.Location;
+using Microsoft.Ajax.Utilities;
 
 namespace hitchbot_secure_api.Controllers
 {
@@ -39,6 +41,9 @@ namespace hitchbot_secure_api.Controllers
 
                 var previousIds = await spotCurrentIdsTask;
 
+                var bucketList = db.CleverscriptContents.Where(k => k.isBucketList && k.HitchBotId == HitchBotId)
+                .Where(l => !l.TimeVisited.HasValue).Select(l => new { Locations = l.PolgonVertices.Select(a => a.Location).ToList(), Visited = l.TimeVisited, Id = l.Id }).ToListAsync();
+
                 var messages = spotty.response.feedMessageResponse.messages.message
                     .Where(l => previousIds.All(h => h.SpotID != l.id))
                     .Select(l => new LocationController.SpotDto
@@ -50,9 +55,8 @@ namespace hitchbot_secure_api.Controllers
                         SpotGpsMessageType = l._messageType
                     }).ToList();
 
-                messages.ForEach(l =>
-                {
-                    db.Locations.Add(new Location
+                var locations = messages.Select(l =>
+                    new Location
                     {
                         Latitude = l.latitude,
                         Longitude = l.longitude,
@@ -62,10 +66,33 @@ namespace hitchbot_secure_api.Controllers
                         HideFromProduction = l.ShouldHideFromProduction,
                         HitchBotId = HitchBotId,
                         SpotID = l.spotId
+                    }
+                ).ToList();
+
+                var bucketResult = await bucketList;
+
+                db.Locations.AddRange(locations);
+                db.SaveChanges();
+
+                locations.ForEach(l =>
+                {
+                    bucketResult.ForEach(a =>
+                    {
+                        if (LocationHelper.PointInPolygon(a.Locations, l) && !a.Visited.HasValue)
+                        {
+                            var entry = db.CleverscriptContents.First(s => s.Id == a.Id);
+                            entry.TimeVisited = l.TakenTime;
+                            db.SaveChanges();
+                        }
                     });
                 });
 
-                await db.SaveChangesAsync();
+                //sloppy..
+
+                messages.ForEach(l =>
+                {
+
+                });
 
                 return Ok();
             }
@@ -87,12 +114,12 @@ namespace hitchbot_secure_api.Controllers
                 };
 
                 contextpacket.Variables.Add(weatherApi.GetCityNamePair());
-                contextpacket.Variables.Add(weatherApi.GetTempCPair());
-                contextpacket.Variables.Add(weatherApi.GetTempTextCPair());
+                contextpacket.Variables.Add(weatherApi.GetTempFPair());
+                contextpacket.Variables.Add(weatherApi.GetTempTextFPair());
                 contextpacket.Variables.Add(weatherApi.GetWeatherStatusPair());
 
-
                 BucketListHelper.GetBucketList(db, HitchBotId, location).ForEach(l => contextpacket.Variables.Add(l));
+                BucketListHelper.GetContentList(db, HitchBotId, location).ForEach(l => contextpacket.Variables.Add(l));
 
                 db.ContextPackets.Add(contextpacket);
 

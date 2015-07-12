@@ -47,7 +47,7 @@ namespace hitchbot_secure_api.Helpers
                 k.Intersects = LocationHelper.PointInPolygon(k.Locations, location);
             });
 
-            var content = entries.Where(l=>l.Intersects).SelectMany(l => l.CleverList).Shuffle().Take(Math.Min(alpha.Length, _numBucketList));
+            var content = entries.Where(l => l.Intersects).SelectMany(l => l.CleverList).Shuffle().Take(alpha.Length);
 
             var iter = 0;
 
@@ -72,7 +72,7 @@ namespace hitchbot_secure_api.Helpers
             return source.ShuffleIterator(rng);
         }
 
-        private class CleverPoly
+        public class CleverPoly
         {
             public List<Models.Location> Locations { get; set; }
             public string Clevertext { get; set; }
@@ -83,13 +83,13 @@ namespace hitchbot_secure_api.Helpers
             }
         }
 
-        private class CleverPolyDistance : CleverPoly
+        public class CleverPolyDistance : CleverPoly
         {
             public double Distance { get; set; }
 
         }
 
-        private class CleverPolyIntersection : CleverPoly
+        public class CleverPolyIntersection : CleverPoly
         {
             public bool Intersects { get; set; }
         }
