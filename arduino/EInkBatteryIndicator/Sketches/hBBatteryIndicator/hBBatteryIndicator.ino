@@ -171,7 +171,7 @@ int lastIMG = 0; //The last image displayed, we only change image if we notice a
 
 //Reading the charging status
 boolean getCharging(){
-  if (analogRead(chargingREAD) > 2.0) {
+  if (analogRead(chargingREAD) * (5.0 / 1023.0) > 2.0) {
     return true;
   } else {
     return false;
