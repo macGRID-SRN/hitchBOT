@@ -8,13 +8,15 @@ const int servoRev = 100;
 Servo myServo;
 
 void setup() {
-  myServo.attach(servoPin);
-  pinMode(servoEnable, HIGH);
-  myServo.write(5);
-  delay(100);
-  pinMode(servoEnable, LOW);
+  pinMode(servoEnable, OUTPUT);
   
-
+  myServo.attach(servoPin);
+  
+  
+  digitalWrite(servoEnable, HIGH);
+  myServo.write(5);
+  delay(2000);
+  digitalWrite(servoEnable, LOW);
 }
 
 void loop() {
@@ -26,16 +28,18 @@ void loop() {
 }
 
 void moveServoForward(){
-  pinMode(servoEnable, HIGH);
+  digitalWrite(servoEnable, HIGH);
+  delay(50);
   myServo.write(servoFwd);
-  delay(100);
-  pinMode(servoEnable, LOW);
+  delay(2000);
+  digitalWrite(servoEnable, LOW);
 }
 
 void moveServoBackward(){
-  pinMode(servoEnable, HIGH);
+  digitalWrite(servoEnable, HIGH);
+  delay(50);
   myServo.write(servoRev);
-  delay(100);
-  pinMode(servoEnable, LOW);
+  delay(2000);
+  digitalWrite(servoEnable, LOW);
 }
 
