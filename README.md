@@ -9,6 +9,8 @@ hitchBOT has traveled across Canada (August 2014) and across Germany (February 2
 
 Some of our favourite hitchBOT phrases:
 
+### "Oh hey, it's degrees" ###
+
 ### "Sort of a human that is also sort of a dragon." ###
 
 ### "I ask you and you ask me back. Great!" ###
