@@ -313,6 +313,13 @@
     <Compile Include="Access\Shared\PageWithHeader.master.designer.cs">
       <DependentUpon>PageWithHeader.master</DependentUpon>
     </Compile>
+    <Compile Include="Access\ViewImages.aspx.cs">
+      <DependentUpon>ViewImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\ViewImages.aspx.designer.cs">
+      <DependentUpon>ViewImages.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Access\Unauthorized.aspx.cs">
       <DependentUpon>Unauthorized.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -418,6 +425,10 @@
     <Compile Include="Migrations\201507081410473_AddTabletSerial.Designer.cs">
       <DependentUpon>201507081410473_AddTabletSerial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507141554246_AddPastCleverText.cs" />
+    <Compile Include="Migrations\201507141554246_AddPastCleverText.Designer.cs">
+      <DependentUpon>201507141554246_AddPastCleverText.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -446,6 +457,7 @@
     <Content Include="Access\Login.aspx" />
     <Content Include="Access\Logout.aspx" />
     <Content Include="Access\PreviewMapCoverage.aspx" />
+    <Content Include="Access\ViewImages.aspx" />
     <Content Include="Access\Unauthorized.aspx" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -551,6 +563,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507081410473_AddTabletSerial.resx">
       <DependentUpon>201507081410473_AddTabletSerial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507141554246_AddPastCleverText.resx">
+      <DependentUpon>201507141554246_AddPastCleverText.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
