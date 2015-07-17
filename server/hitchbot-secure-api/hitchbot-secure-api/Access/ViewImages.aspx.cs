@@ -30,7 +30,9 @@ namespace hitchbot_secure_api.Access
                     var imageList = db.Images.Where(l => !l.TimeDenied.HasValue && l.HitchBotId == hitchBotId).OrderByDescending(l=>l.TimeTaken).Skip(skipOver).Take(50).ToList();
                     var master = Master as imageGrid;
 
+                    master.SetImageSkip(currentSkip);
                     master.SetImages(imageList);
+
                 }
             }
             else
