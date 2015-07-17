@@ -166,7 +166,7 @@ function AutoCenter(e){
 function initialize(){
 
 var e={
-	center:currentPoint,
+	center:centerPoint,
 	zoom:centerZoom
 };
 var t=new google.maps.Map(document.getElementById(""map-canvas""),e);
@@ -178,9 +178,9 @@ if(autocenter){AutoCenter(t)}
 
 }
 
-var centerPoint=new google.maps.LatLng(48.1384,11.573399999999992);
+var centerPoint=new google.maps.LatLng(39.011902,-98.484246);
 
-var centerZoom=7;
+var centerZoom=4;
 var autocenter=false;
 google.maps.event.addDomListener(window,""load"",initialize);";
 
@@ -201,7 +201,7 @@ google.maps.event.addDomListener(window,""load"",initialize);";
                 var locations = db.Locations
                     .Where(l => 
                         ((l.HitchBotId == hitchBotId && l.TakenTime > l.HitchBot.Journey.StartTime && l.LocationProvider == LocationProvider.SpotGPS) 
-                        || (l.ForceProduction)) 
+                        || (l.ForceProduction && l.HitchBotId == hitchBotId)) 
                         
                         && !l.HideFromProduction)
                     .OrderBy(l => l.TakenTime).ToList();

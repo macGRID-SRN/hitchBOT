@@ -37,12 +37,13 @@ namespace hitchbot_secure_api.Controllers
                         "https://api.findmespot.com/spot-main-web/consumer/rest-api/2.0/public/feed/{0}/message.json",
                         feed_id);
 
+                //at this time there is a bug when there is only a single message in the API call result. This happens after 7 days of no activity.
                 var spotty = WebApiHelper._download_serialized_json_data<SpotApiCall>(url);
 
                 var previousIds = await spotCurrentIdsTask;
 
                 var bucketList = db.CleverscriptContents.Where(k => k.isBucketList && k.HitchBotId == HitchBotId)
-                .Where(l => !l.TimeVisited.HasValue).Select(l => new { Locations = l.PolgonVertices.Select(a => a.Location).ToList(), Visited = l.TimeVisited, Id = l.Id }).ToListAsync();
+                .Where(l => !l.TimeVisited.HasValue).Select(l => new { Locations = l.PolgonVertices.Select(a => a.Location).ToList(), Visited = l.TimeVisited, l.Id }).ToListAsync();
 
                 var messages = spotty.response.feedMessageResponse.messages.message
                     .Where(l => previousIds.All(h => h.SpotID != l.id))
@@ -71,9 +72,11 @@ namespace hitchbot_secure_api.Controllers
 
                 var bucketResult = await bucketList;
 
+                //ensure the locations make it to the database (the next step could fail or timeout.
                 db.Locations.AddRange(locations);
                 db.SaveChanges();
 
+                //check each location for intersection for with each bucket list area. This is not optimized as the polygons are made many times. TODO: optimize this process.
                 locations.ForEach(l =>
                 {
                     bucketResult.ForEach(a =>
@@ -85,13 +88,6 @@ namespace hitchbot_secure_api.Controllers
                             db.SaveChanges();
                         }
                     });
-                });
-
-                //sloppy..
-
-                messages.ForEach(l =>
-                {
-
                 });
 
                 return Ok();
@@ -119,6 +115,8 @@ namespace hitchbot_secure_api.Controllers
                 contextpacket.Variables.Add(weatherApi.GetWeatherStatusPair());
 
                 BucketListHelper.GetBucketList(db, HitchBotId, location).ForEach(l => contextpacket.Variables.Add(l));
+                BucketListHelper.GetBucketFutureList(db, HitchBotId, location).ForEach(l => contextpacket.Variables.Add(l));
+                BucketListHelper.GetBucketPastList(db, HitchBotId, location).ForEach(l => contextpacket.Variables.Add(l));
                 BucketListHelper.GetContentList(db, HitchBotId, location).ForEach(l => contextpacket.Variables.Add(l));
 
                 db.ContextPackets.Add(contextpacket);

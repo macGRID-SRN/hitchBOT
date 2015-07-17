@@ -18,6 +18,7 @@ namespace hitchbot_secure_api.Models
         public virtual HitchBot HitchBot { get; set; }
 
         public string CleverText { get; set; }
+        public string VisitedCleverText { get; set; }
         public string EntryName { get; set; }
         public double? RadiusKm { get; set; }
 
