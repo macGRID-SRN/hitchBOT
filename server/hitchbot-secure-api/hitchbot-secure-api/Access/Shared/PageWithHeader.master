@@ -36,6 +36,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Images<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="ViewImages.aspx">Image Gallery</a></li>
+                            <li><a href="ViewSavedImages.aspx">Saved Images</a></li>
                            <%-- <li><a href="SavedImages.aspx">Saved Images</a></li>
                             <li><a href="ImageHelp.aspx">Image Help</a></li>--%>
                         </ul>

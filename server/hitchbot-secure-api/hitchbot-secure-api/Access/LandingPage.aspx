@@ -16,6 +16,13 @@
             <div class="panel-heading"><h3>What's new?</h3></div>
             <ul class="list-group">
                 <li class="list-group-item">
+                    <h4 class="list-group-item-heading">Image Gallery
+                    </h4>
+                    <p class="list-group-item-text">
+                        View the latest pictures from hitchBOT.
+                    </p>
+                </li>
+                <li class="list-group-item">
                     <h4 class="list-group-item-heading">Review Entered Cleverscript Content!
                     </h4>
                     <p class="list-group-item-text">

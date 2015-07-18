@@ -327,6 +327,13 @@
     <Compile Include="Access\Unauthorized.aspx.designer.cs">
       <DependentUpon>Unauthorized.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Access\ViewSavedImages.aspx.cs">
+      <DependentUpon>ViewSavedImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Access\ViewSavedImages.aspx.designer.cs">
+      <DependentUpon>ViewSavedImages.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -459,6 +466,7 @@
     <Content Include="Access\PreviewMapCoverage.aspx" />
     <Content Include="Access\ViewImages.aspx" />
     <Content Include="Access\Unauthorized.aspx" />
+    <Content Include="Access\ViewSavedImages.aspx" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
