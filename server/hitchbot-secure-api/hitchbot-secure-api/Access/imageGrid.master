@@ -9,6 +9,11 @@
             -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
             transform: rotate(90deg);
         }
+
+        .table-header {
+            font-weight: bold;
+
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" runat="server">
@@ -16,20 +21,26 @@
         <div class="container">
             <div class="jumbotron">
                 <h3>Images</h3>
+                <h4>
+                    Newest at the top. All times are EST
+                </h4>
             </div>
         </div>
         <div class="container">
             <asp:Repeater ID="imageRepeater" SelectMethod="GetImages" ItemType="hitchbot_secure_api.Models.Image" runat="server">
                 <HeaderTemplate>
                     <table class="table table-hover">
-                    <tr>
+                    <tr class="table-header">
                         <td>Image
                         </td>
-                        <td>Time Taken
+                        <td>Time Taken (EST Time Zone)
                         </td>
-                        <td>Direct Link
+                        <td>
+                            Time Sent By hitchBOT (EST Time Zone)
                         </td>
-                        <td>Delete</td>
+                        <td>Direct Link To Image
+                        </td>
+                        <td>Save or Delete</td>
                     </tr>
                 </HeaderTemplate>
                 <ItemTemplate>
@@ -41,6 +52,22 @@
                             <p>
                                 <%#Item.TimeTaken.GetEstReadable() %>
                             </p>
+                            <p>
+                                Snapped <%#Item.TimeTaken.GetDelayFromNow() %>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <%#Item.TimeAdded.GetEstReadable() %>
+                            </p>
+                            <p>
+                                Received <%#Item.TimeAdded.GetDelayFromNow() %>
+                            </p>
+                            <br/>
+                            <p>
+                                hitchBOT delayed sending this image by 
+                                <%#Item.TimeAdded.GetDelayFromThen(Item.TimeTaken) %>
+                            </p>
                         </td>
                         <td>
                             <asp:HyperLink NavigateUrl="<%#Item.Url.GetRotatedLink()%>" Target="_blank" runat="server">
@@ -48,6 +75,8 @@
                             </asp:HyperLink>
                         </td>
                         <td>
+                            <asp:Button Text="Save" OnClick="OnClickSave" CommandArgument="<%#Item.Id %>" runat="server"/>
+                            <br/>
                             <asp:Button Text="Delete" CommandArgument="<%#Item.Id %>" OnClick="OnClickDelete" runat="server" />
                         </td>
                     </tr>

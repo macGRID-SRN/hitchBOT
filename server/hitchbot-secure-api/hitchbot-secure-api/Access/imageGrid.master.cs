@@ -61,7 +61,22 @@ namespace hitchbot_secure_api.Access
 
         protected void OnClickMove(object sender, EventArgs e)
         {
-            Response.Redirect("ViewImages.aspx?skip=" + (skipNumber + 50));
+            var path = new UriBuilder(Request.Url) {Query = string.Empty}.Uri;
+            Response.Redirect(path + "?skip=" + (skipNumber + 50));
+        }
+
+        protected void OnClickSave(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+
+            var imageId = int.Parse(button.CommandArgument);
+
+            using (var db = new DatabaseContext())
+            {
+                var image = db.Images.First(l => l.Id == imageId);
+                image.TimeApproved = DateTime.UtcNow;
+                db.SaveChanges();
+            }
         }
     }
 
@@ -73,6 +88,16 @@ namespace hitchbot_secure_api.Access
             return TimeZoneInfo.ConvertTimeFromUtc(date, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")).ToString("F");
         }
 
+        public static string GetDelayFromNow(this DateTime date)
+        {
+            return FormatTimeSpan(DateTime.UtcNow - date) + " ago";
+        }
+
+        public static string GetDelayFromThen(this DateTime date1, DateTime now)
+        {
+            return FormatTimeSpan(now - date1);
+        }
+
         public static string GetThumbnailLink(this string url)
         {
             return string.Format("{0}/400x300/smart/{1}", _thumborEndpoint, url).GetRotatedLink();
@@ -81,6 +106,11 @@ namespace hitchbot_secure_api.Access
         public static string GetRotatedLink(this string url)
         {
             return string.Format("{0}/filters:rotate(270)/{1}", _thumborEndpoint, url);
+        }
+
+        public static string FormatTimeSpan(TimeSpan span)
+        {
+            return string.Format("{0:%h} hour(s) {0:%m} minute(s)", span);
         }
     }
 }
