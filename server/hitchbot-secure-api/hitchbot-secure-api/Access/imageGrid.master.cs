@@ -93,6 +93,16 @@ namespace hitchbot_secure_api.Access
             return FormatTimeSpan(DateTime.UtcNow - date) + " ago";
         }
 
+        public static string GetDelayFromNow(this DateTime? date)
+        {
+            if (date.HasValue)
+            {
+                var notNull = date ?? DateTime.Now;
+                return FormatTimeSpan(DateTime.UtcNow - notNull) + " ago";
+            }
+            return "Unknown";
+        }
+
         public static string GetDelayFromThen(this DateTime date1, DateTime now)
         {
             return FormatTimeSpan(now - date1);

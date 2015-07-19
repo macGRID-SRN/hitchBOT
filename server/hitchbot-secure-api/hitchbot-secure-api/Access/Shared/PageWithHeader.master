@@ -41,8 +41,8 @@
                             <li><a href="ImageHelp.aspx">Image Help</a></li>--%>
                         </ul>
                     </li>
+                    <li><a href="ViewStats.aspx">Health Status</a></li>
                     <%--
-                    <li><a href="HealthStatus.aspx">Health Status</a></li>
                     <li><a href="LedPanelDesigner.aspx">LED Panel Designer</a></li>--%>
                 </ul>
                 <form class="navbar-form navbar-right" action="Logout.aspx">
