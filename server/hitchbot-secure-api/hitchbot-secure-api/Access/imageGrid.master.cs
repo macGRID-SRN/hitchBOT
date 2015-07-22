@@ -61,7 +61,7 @@ namespace hitchbot_secure_api.Access
 
         protected void OnClickMove(object sender, EventArgs e)
         {
-            var path = new UriBuilder(Request.Url) {Query = string.Empty}.Uri;
+            var path = new UriBuilder(Request.Url) { Query = string.Empty }.Uri;
             Response.Redirect(path + "?skip=" + (skipNumber + 50));
         }
 
@@ -105,7 +105,7 @@ namespace hitchbot_secure_api.Access
 
         public static string GetDelayFromThen(this DateTime date1, DateTime now)
         {
-            return FormatTimeSpan(now - date1);
+            return FormatTimeSpan(date1 - now);
         }
 
         public static string GetThumbnailLink(this string url)
@@ -120,7 +120,7 @@ namespace hitchbot_secure_api.Access
 
         public static string FormatTimeSpan(TimeSpan span)
         {
-            return string.Format("{0:%h} hour(s) {0:%m} minute(s)", span);
+            return string.Format("{0} hour(s) {1:%m} minute(s)", (int)span.TotalHours, span);
         }
     }
 }
