@@ -110,9 +110,10 @@ namespace hitchbot_secure_api.Helpers
 
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
         {
-            var rng = new Random();
-            return source.Shuffle(rng);
+            return source.Shuffle(randy);
         }
+
+        private static Random randy = new Random();
 
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random rng)
         {
