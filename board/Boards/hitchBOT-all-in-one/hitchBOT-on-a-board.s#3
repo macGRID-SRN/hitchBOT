@@ -95,23 +95,6 @@
 <text x="4.9" y="5" size="1.27" layer="25">+</text>
 <text x="5.2" y="-5.7" size="1.27" layer="25">-</text>
 </package>
-<package name="INDUCTOR-M8365">
-<pad name="P$1" x="10.033" y="0" drill="1.4" diameter="3.81" shape="offset"/>
-<pad name="P$2" x="-10.033" y="0" drill="1.4" diameter="3.81" shape="offset" rot="R180"/>
-<circle x="0" y="0" radius="11.43" width="0.127" layer="21"/>
-<circle x="0" y="0" radius="2.83980625" width="0.127" layer="21"/>
-<text x="3.81" y="3.81" size="1.27" layer="25">IND</text>
-<text x="1.27" y="-6.35" size="1.27" layer="25">&gt;NAME</text>
-</package>
-<package name="DO-214AB">
-<smd name="IN" x="-3.302" y="0" dx="5.334" dy="2.032" layer="1" rot="R90"/>
-<smd name="OUT" x="3.302" y="0" dx="5.334" dy="2.032" layer="1" rot="R90"/>
-<wire x1="-5.08" y1="3.81" x2="5.08" y2="3.81" width="0.127" layer="21"/>
-<wire x1="5.08" y1="3.81" x2="5.08" y2="-3.81" width="0.127" layer="21"/>
-<wire x1="5.08" y1="-3.81" x2="-5.08" y2="-3.81" width="0.127" layer="21"/>
-<wire x1="-5.08" y1="-3.81" x2="-5.08" y2="3.81" width="0.127" layer="21"/>
-<wire x1="1.27" y1="2.54" x2="1.27" y2="-2.54" width="0.6096" layer="21"/>
-</package>
 </packages>
 <symbols>
 <symbol name="SMD-CAPACITOR">
@@ -120,24 +103,6 @@
 <pin name="P+" x="0" y="5.08" length="middle" rot="R270"/>
 <pin name="P-" x="0" y="-7.62" length="middle" rot="R90"/>
 <text x="2.54" y="-7.62" size="1.27" layer="94">&gt;NAME</text>
-</symbol>
-<symbol name="INDUCTOR-9A">
-<wire x1="-5.08" y1="0" x2="5.08" y2="0" width="0.254" layer="94" curve="-180"/>
-<wire x1="-15.24" y1="0" x2="-5.08" y2="0" width="0.254" layer="94" curve="-180"/>
-<wire x1="5.08" y1="0" x2="15.24" y2="0" width="0.254" layer="94" curve="-180"/>
-<text x="7.62" y="0" size="1.778" layer="95">IND</text>
-<pin name="P$1" x="-20.32" y="0" length="middle"/>
-<pin name="P$2" x="20.32" y="0" length="middle" rot="R180"/>
-</symbol>
-<symbol name="GENERICDIODE">
-<wire x1="-5.08" y1="0" x2="0" y2="7.62" width="0.254" layer="94"/>
-<wire x1="0" y1="7.62" x2="5.08" y2="0" width="0.254" layer="94"/>
-<wire x1="5.08" y1="0" x2="-5.08" y2="0" width="0.254" layer="94"/>
-<wire x1="-5.08" y1="7.62" x2="5.08" y2="7.62" width="0.254" layer="94"/>
-<pin name="OUT" x="0" y="10.16" length="middle" rot="R270"/>
-<pin name="IN" x="0" y="-2.54" length="middle" rot="R90"/>
-<wire x1="-5.08" y1="7.62" x2="-5.08" y2="5.08" width="0.254" layer="94"/>
-<wire x1="5.08" y1="7.62" x2="5.08" y2="10.16" width="0.254" layer="94"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -166,38 +131,6 @@
 <connects>
 <connect gate="G$1" pin="P+" pad="P+"/>
 <connect gate="G$1" pin="P-" pad="P-"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="INDUCTOR-M8365">
-<gates>
-<gate name="G$1" symbol="INDUCTOR-9A" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="INDUCTOR-M8365">
-<connects>
-<connect gate="G$1" pin="P$1" pad="P$1"/>
-<connect gate="G$1" pin="P$2" pad="P$2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="DO-214AB">
-<gates>
-<gate name="G$1" symbol="GENERICDIODE" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="DO-214AB">
-<connects>
-<connect gate="G$1" pin="IN" pad="IN"/>
-<connect gate="G$1" pin="OUT" pad="OUT"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -3263,52 +3196,6 @@ type 0309, grid 2.5 mm</description>
 </deviceset>
 </devicesets>
 </library>
-<library name="Molex">
-<packages>
-<package name="2X2MOLEX">
-<pad name="POWERL" x="-2.1" y="3.37" drill="1.8"/>
-<pad name="POWERR" x="2.1" y="3.37" drill="1.8"/>
-<pad name="GNDR" x="2.1" y="-2.1" drill="1.8"/>
-<pad name="GNDL" x="-2.1" y="-2.1" drill="1.8"/>
-<hole x="0" y="-10.05" drill="3"/>
-<wire x1="-6" y1="-16" x2="6" y2="-16" width="0.127" layer="21"/>
-<wire x1="6" y1="-16" x2="6" y2="-6" width="0.127" layer="21"/>
-<wire x1="6" y1="-6" x2="6" y2="5.905" width="0.127" layer="21"/>
-<wire x1="6" y1="5.905" x2="-6" y2="5.905" width="0.127" layer="21"/>
-<wire x1="-6" y1="5.905" x2="-6" y2="-6" width="0.127" layer="21"/>
-<wire x1="-6" y1="-6" x2="-6" y2="-16" width="0.127" layer="21"/>
-<wire x1="-6" y1="-6" x2="6" y2="-6" width="0.127" layer="21"/>
-</package>
-</packages>
-<symbols>
-<symbol name="2X2MOLEX">
-<wire x1="-7.62" y1="10.16" x2="7.62" y2="10.16" width="0.254" layer="94"/>
-<wire x1="7.62" y1="10.16" x2="7.62" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="7.62" y1="-5.08" x2="-7.62" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="-7.62" y1="-5.08" x2="-7.62" y2="10.16" width="0.254" layer="94"/>
-<pin name="GND" x="2.54" y="12.7" length="middle" rot="R270"/>
-<pin name="POWER" x="-2.54" y="12.7" length="middle" rot="R270"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="2X2-MOLEX">
-<gates>
-<gate name="G$1" symbol="2X2MOLEX" x="0" y="-2.54"/>
-</gates>
-<devices>
-<device name="" package="2X2MOLEX">
-<connects>
-<connect gate="G$1" pin="GND" pad="GNDL GNDR"/>
-<connect gate="G$1" pin="POWER" pad="POWERL POWERR"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 </libraries>
 <attributes>
 </attributes>
@@ -3328,20 +3215,6 @@ type 0309, grid 2.5 mm</description>
 <part name="U$2" library="macgrid" deviceset="SMD-CAP-PANASONIC-E-FT-10MM" device=""/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="R1" library="resistor" deviceset="R-US_" device="R1206"/>
-<part name="U$3" library="macgrid" deviceset="INDUCTOR-M8365" device=""/>
-<part name="U$4" library="Molex" deviceset="2X2-MOLEX" device=""/>
-<part name="U$5" library="Molex" deviceset="2X2-MOLEX" device=""/>
-<part name="U$6" library="Molex" deviceset="2X2-MOLEX" device=""/>
-<part name="U$7" library="macgrid" deviceset="DO-214AB" device=""/>
-<part name="U$8" library="macgrid" deviceset="DO-214AB" device=""/>
-<part name="U$9" library="macgrid" deviceset="DO-214AB" device=""/>
-<part name="GND3" library="supply1" deviceset="GND" device=""/>
-<part name="GND4" library="supply1" deviceset="GND" device=""/>
-<part name="GND5" library="supply1" deviceset="GND" device=""/>
-<part name="U$10" library="Molex" deviceset="2X2-MOLEX" device=""/>
-<part name="U$11" library="Molex" deviceset="2X2-MOLEX" device=""/>
-<part name="GND6" library="supply1" deviceset="GND" device=""/>
-<part name="GND7" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3357,20 +3230,6 @@ type 0309, grid 2.5 mm</description>
 <instance part="U$2" gate="G$1" x="144.78" y="58.42"/>
 <instance part="GND2" gate="1" x="139.7" y="38.1"/>
 <instance part="R1" gate="G$1" x="121.92" y="76.2"/>
-<instance part="U$3" gate="G$1" x="2.54" y="63.5"/>
-<instance part="U$4" gate="G$1" x="-71.12" y="83.82" rot="R270"/>
-<instance part="U$5" gate="G$1" x="-71.12" y="119.38" rot="R270"/>
-<instance part="U$6" gate="G$1" x="-71.12" y="101.6" rot="R270"/>
-<instance part="U$7" gate="G$1" x="-40.64" y="121.92" rot="R270"/>
-<instance part="U$8" gate="G$1" x="-40.64" y="104.14" rot="R270"/>
-<instance part="U$9" gate="G$1" x="-40.64" y="86.36" rot="R270"/>
-<instance part="GND3" gate="1" x="-55.88" y="96.52"/>
-<instance part="GND4" gate="1" x="-55.88" y="114.3"/>
-<instance part="GND5" gate="1" x="-55.88" y="78.74"/>
-<instance part="U$10" gate="G$1" x="68.58" y="96.52" rot="R270"/>
-<instance part="U$11" gate="G$1" x="175.26" y="96.52" rot="R270"/>
-<instance part="GND6" gate="1" x="86.36" y="88.9"/>
-<instance part="GND7" gate="1" x="190.5" y="88.9"/>
 </instances>
 <busses>
 </busses>
@@ -3383,19 +3242,7 @@ type 0309, grid 2.5 mm</description>
 <pinref part="C3" gate="G$1" pin="P+"/>
 <wire x1="63.5" y1="63.5" x2="78.74" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="C4" gate="G$1" pin="P+"/>
-<wire x1="78.74" y1="63.5" x2="91.44" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="91.44" y1="63.5" x2="93.98" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="76.2" x2="99.06" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="76.2" x2="91.44" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="76.2" x2="91.44" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="P$2"/>
-<wire x1="22.86" y1="63.5" x2="48.26" y2="63.5" width="0.1524" layer="91"/>
-<junction x="91.44" y="63.5"/>
-<pinref part="U$10" gate="G$1" pin="POWER"/>
-<wire x1="81.28" y1="99.06" x2="99.06" y2="99.06" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="99.06" x2="99.06" y2="76.2" width="0.1524" layer="91"/>
-<junction x="99.06" y="76.2"/>
+<wire x1="78.74" y1="63.5" x2="93.98" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -3411,7 +3258,6 @@ type 0309, grid 2.5 mm</description>
 <wire x1="63.5" y1="45.72" x2="60.96" y2="45.72" width="0.1524" layer="91"/>
 <pinref part="GND1" gate="1" pin="GND"/>
 <wire x1="60.96" y1="45.72" x2="60.96" y2="43.18" width="0.1524" layer="91"/>
-<junction x="63.5" y="50.8"/>
 </segment>
 <segment>
 <pinref part="GND2" gate="1" pin="GND"/>
@@ -3421,82 +3267,6 @@ type 0309, grid 2.5 mm</description>
 <pinref part="U$2" gate="G$1" pin="P-"/>
 <wire x1="139.7" y1="40.64" x2="144.78" y2="40.64" width="0.1524" layer="91"/>
 <wire x1="144.78" y1="40.64" x2="144.78" y2="50.8" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U$5" gate="G$1" pin="GND"/>
-<pinref part="GND4" gate="1" pin="GND"/>
-<wire x1="-58.42" y1="116.84" x2="-55.88" y2="116.84" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U$6" gate="G$1" pin="GND"/>
-<pinref part="GND3" gate="1" pin="GND"/>
-<wire x1="-58.42" y1="99.06" x2="-55.88" y2="99.06" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U$4" gate="G$1" pin="GND"/>
-<pinref part="GND5" gate="1" pin="GND"/>
-<wire x1="-58.42" y1="81.28" x2="-55.88" y2="81.28" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U$10" gate="G$1" pin="GND"/>
-<pinref part="GND6" gate="1" pin="GND"/>
-<wire x1="81.28" y1="93.98" x2="86.36" y2="93.98" width="0.1524" layer="91"/>
-<wire x1="86.36" y1="93.98" x2="86.36" y2="91.44" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U$11" gate="G$1" pin="GND"/>
-<pinref part="GND7" gate="1" pin="GND"/>
-<wire x1="187.96" y1="93.98" x2="190.5" y2="93.98" width="0.1524" layer="91"/>
-<wire x1="190.5" y1="93.98" x2="190.5" y2="91.44" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$2" class="0">
-<segment>
-<pinref part="R1" gate="G$1" pin="2"/>
-<pinref part="U$1" gate="G$1" pin="P+"/>
-<wire x1="127" y1="76.2" x2="132.08" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="132.08" y1="76.2" x2="132.08" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="P+"/>
-<wire x1="132.08" y1="76.2" x2="144.78" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="144.78" y1="76.2" x2="144.78" y2="63.5" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$3" class="0">
-<segment>
-<pinref part="U$5" gate="G$1" pin="POWER"/>
-<pinref part="U$7" gate="G$1" pin="IN"/>
-<wire x1="-58.42" y1="121.92" x2="-43.18" y2="121.92" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$4" class="0">
-<segment>
-<pinref part="U$6" gate="G$1" pin="POWER"/>
-<pinref part="U$8" gate="G$1" pin="IN"/>
-<wire x1="-58.42" y1="104.14" x2="-43.18" y2="104.14" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$5" class="0">
-<segment>
-<pinref part="U$4" gate="G$1" pin="POWER"/>
-<pinref part="U$9" gate="G$1" pin="IN"/>
-<wire x1="-58.42" y1="86.36" x2="-43.18" y2="86.36" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$6" class="0">
-<segment>
-<pinref part="U$9" gate="G$1" pin="OUT"/>
-<wire x1="-30.48" y1="86.36" x2="-22.86" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="-22.86" y1="86.36" x2="-22.86" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="P$1"/>
-<wire x1="-22.86" y1="63.5" x2="-17.78" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="-22.86" y1="86.36" x2="-22.86" y2="104.14" width="0.1524" layer="91"/>
-<pinref part="U$8" gate="G$1" pin="OUT"/>
-<wire x1="-22.86" y1="104.14" x2="-30.48" y2="104.14" width="0.1524" layer="91"/>
-<pinref part="U$7" gate="G$1" pin="OUT"/>
-<wire x1="-30.48" y1="121.92" x2="-22.86" y2="121.92" width="0.1524" layer="91"/>
-<wire x1="-22.86" y1="121.92" x2="-22.86" y2="104.14" width="0.1524" layer="91"/>
-<junction x="-22.86" y="104.14"/>
-<junction x="-22.86" y="86.36"/>
 </segment>
 </net>
 </nets>
