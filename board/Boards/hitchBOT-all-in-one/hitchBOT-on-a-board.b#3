@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="0.5" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -52,7 +52,7 @@
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
@@ -71,10 +71,18 @@
 </layers>
 <board>
 <plain>
-<wire x1="0" y1="0" x2="160" y2="0" width="0" layer="20"/>
-<wire x1="160" y1="0" x2="160" y2="100" width="0" layer="20"/>
-<wire x1="160" y1="100" x2="0" y2="100" width="0" layer="20"/>
-<wire x1="0" y1="100" x2="0" y2="0" width="0" layer="20"/>
+<wire x1="0" y1="54" x2="0" y2="1" width="0" layer="20"/>
+<wire x1="0" y1="1" x2="1" y2="0" width="0" layer="20" curve="90"/>
+<wire x1="1" y1="0" x2="99" y2="0" width="0" layer="20"/>
+<wire x1="99" y1="0" x2="100" y2="1" width="0" layer="20" curve="90"/>
+<wire x1="100" y1="1" x2="100" y2="54" width="0" layer="20"/>
+<wire x1="100" y1="54" x2="99" y2="55" width="0" layer="20" curve="90"/>
+<wire x1="99" y1="55" x2="1" y2="55" width="0" layer="20"/>
+<wire x1="1" y1="55" x2="0" y2="54" width="0" layer="20" curve="90"/>
+<hole x="2" y="2" drill="2"/>
+<hole x="2" y="53" drill="2"/>
+<hole x="98" y="53" drill="2"/>
+<hole x="98" y="2" drill="2"/>
 </plain>
 <libraries>
 <library name="macgrid">
@@ -100,6 +108,23 @@
 <text x="1.8" y="-0.9" size="1.27" layer="25">E FT</text>
 <text x="4.9" y="5" size="1.27" layer="25">+</text>
 <text x="5.2" y="-5.7" size="1.27" layer="25">-</text>
+</package>
+<package name="INDUCTOR-M8365">
+<pad name="P$1" x="10.033" y="0" drill="1.4" diameter="3.81" shape="offset"/>
+<pad name="P$2" x="-10.033" y="0" drill="1.4" diameter="3.81" shape="offset" rot="R180"/>
+<circle x="0" y="0" radius="11.43" width="0.127" layer="21"/>
+<circle x="0" y="0" radius="2.83980625" width="0.127" layer="21"/>
+<text x="3.81" y="3.81" size="1.27" layer="25">IND</text>
+<text x="1.27" y="-6.35" size="1.27" layer="25">&gt;NAME</text>
+</package>
+<package name="DO-214AB">
+<smd name="IN" x="-3.302" y="0" dx="5.334" dy="2.032" layer="1" rot="R90"/>
+<smd name="OUT" x="3.302" y="0" dx="5.334" dy="2.032" layer="1" rot="R90"/>
+<wire x1="-5.08" y1="3.81" x2="5.08" y2="3.81" width="0.127" layer="21"/>
+<wire x1="5.08" y1="3.81" x2="5.08" y2="-3.81" width="0.127" layer="21"/>
+<wire x1="5.08" y1="-3.81" x2="-5.08" y2="-3.81" width="0.127" layer="21"/>
+<wire x1="-5.08" y1="-3.81" x2="-5.08" y2="3.81" width="0.127" layer="21"/>
+<wire x1="1.27" y1="2.54" x2="1.27" y2="-2.54" width="0.6096" layer="21"/>
 </package>
 </packages>
 </library>
@@ -1192,6 +1217,110 @@ chip</description>
 </package>
 </packages>
 </library>
+<library name="Molex">
+<packages>
+<package name="2X2MOLEX">
+<pad name="POWERL" x="-2.1" y="3.37" drill="1.8"/>
+<pad name="POWERR" x="2.1" y="3.37" drill="1.8"/>
+<pad name="GNDR" x="2.1" y="-2.1" drill="1.8"/>
+<pad name="GNDL" x="-2.1" y="-2.1" drill="1.8"/>
+<hole x="0" y="-10.05" drill="3"/>
+<wire x1="-6" y1="-16" x2="6" y2="-16" width="0.127" layer="21"/>
+<wire x1="6" y1="-16" x2="6" y2="-6" width="0.127" layer="21"/>
+<wire x1="6" y1="-6" x2="6" y2="5.905" width="0.127" layer="21"/>
+<wire x1="6" y1="5.905" x2="-6" y2="5.905" width="0.127" layer="21"/>
+<wire x1="-6" y1="5.905" x2="-6" y2="-6" width="0.127" layer="21"/>
+<wire x1="-6" y1="-6" x2="-6" y2="-16" width="0.127" layer="21"/>
+<wire x1="-6" y1="-6" x2="6" y2="-6" width="0.127" layer="21"/>
+</package>
+</packages>
+</library>
+<library name="transistor-fet">
+<description>&lt;b&gt;Field Effect Transistors&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;&lt;p&gt;
+&lt;p&gt;
+Symbols changed according to IEC617&lt;p&gt; 
+All types, packages and assignment to symbols and pins checked&lt;p&gt;
+Package outlines partly checked&lt;p&gt;
+&lt;p&gt;
+JFET = junction FET&lt;p&gt;
+IGBT-x = insulated gate bipolar transistor&lt;p&gt;
+x=N: NPN; x=P: PNP&lt;p&gt;
+IGFET-mc-nnn; (IGFET=insulated gate field effect transistor)&lt;P&gt;
+m=D: depletion mode (Verdr&amp;auml;ngungstyp)&lt;p&gt;
+m=E: enhancement mode (Anreicherungstyp)&lt;p&gt;
+c: N=N-channel; P=P-Channel&lt;p&gt;
+GDSB: gate, drain, source, bulk&lt;p&gt;
+&lt;p&gt;
+by R. Vogg  15.March.2002</description>
+<packages>
+<package name="TO252">
+<description>&lt;b&gt;SMALL OUTLINE TRANSISTOR&lt;/b&gt;&lt;p&gt;
+TS-003</description>
+<wire x1="3.2766" y1="3.8354" x2="3.277" y2="-2.159" width="0.2032" layer="21"/>
+<wire x1="3.277" y1="-2.159" x2="-3.277" y2="-2.159" width="0.2032" layer="21"/>
+<wire x1="-3.277" y1="-2.159" x2="-3.2766" y2="3.8354" width="0.2032" layer="21"/>
+<wire x1="-3.277" y1="3.835" x2="3.2774" y2="3.8346" width="0.2032" layer="51"/>
+<wire x1="-3.973" y1="5.983" x2="3.973" y2="5.983" width="0.0508" layer="39"/>
+<wire x1="3.973" y1="-5.983" x2="-3.973" y2="-5.983" width="0.0508" layer="39"/>
+<wire x1="-3.973" y1="-5.983" x2="-3.973" y2="5.983" width="0.0508" layer="39"/>
+<wire x1="3.973" y1="5.983" x2="3.973" y2="-5.983" width="0.0508" layer="39"/>
+<wire x1="-2.5654" y1="3.937" x2="-2.5654" y2="4.6482" width="0.2032" layer="51"/>
+<wire x1="-2.5654" y1="4.6482" x2="-2.1082" y2="5.1054" width="0.2032" layer="51"/>
+<wire x1="-2.1082" y1="5.1054" x2="2.1082" y2="5.1054" width="0.2032" layer="51"/>
+<wire x1="2.1082" y1="5.1054" x2="2.5654" y2="4.6482" width="0.2032" layer="51"/>
+<wire x1="2.5654" y1="4.6482" x2="2.5654" y2="3.937" width="0.2032" layer="51"/>
+<wire x1="2.5654" y1="3.937" x2="-2.5654" y2="3.937" width="0.2032" layer="51"/>
+<smd name="3" x="0" y="2.5" dx="5.4" dy="6.2" layer="1"/>
+<smd name="1" x="-2.28" y="-4.8" dx="1" dy="1.6" layer="1"/>
+<smd name="2" x="2.28" y="-4.8" dx="1" dy="1.6" layer="1"/>
+<text x="-3.81" y="-2.54" size="1.27" layer="25" rot="R90">&gt;NAME</text>
+<text x="5.08" y="-2.54" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+<rectangle x1="-2.7178" y1="-5.1562" x2="-1.8542" y2="-2.2606" layer="51"/>
+<rectangle x1="1.8542" y1="-5.1562" x2="2.7178" y2="-2.2606" layer="51"/>
+<rectangle x1="-0.4318" y1="-3.0226" x2="0.4318" y2="-2.2606" layer="21"/>
+<polygon width="0.1998" layer="51">
+<vertex x="-2.5654" y="3.937"/>
+<vertex x="-2.5654" y="4.6482"/>
+<vertex x="-2.1082" y="5.1054"/>
+<vertex x="2.1082" y="5.1054"/>
+<vertex x="2.5654" y="4.6482"/>
+<vertex x="2.5654" y="3.937"/>
+</polygon>
+</package>
+</packages>
+</library>
+<library name="ic-package">
+<description>&lt;b&gt;IC Packages an Sockets&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="SOCKET-08">
+<description>&lt;b&gt;Dual In Line Socket&lt;/b&gt;</description>
+<wire x1="5.08" y1="5.08" x2="-5.08" y2="5.08" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="-5.08" x2="5.08" y2="-5.08" width="0.1524" layer="21"/>
+<wire x1="5.08" y1="5.08" x2="5.08" y2="2.54" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="5.08" x2="-5.08" y2="2.54" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="-5.08" x2="-5.08" y2="-2.54" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="1.016" x2="-5.08" y2="-1.016" width="0.1524" layer="21" curve="-180"/>
+<wire x1="-5.08" y1="2.54" x2="5.08" y2="2.54" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="2.54" x2="-5.08" y2="1.016" width="0.1524" layer="21"/>
+<wire x1="5.08" y1="2.54" x2="5.08" y2="-2.54" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="-2.54" x2="5.08" y2="-2.54" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="-2.54" x2="-5.08" y2="-1.016" width="0.1524" layer="21"/>
+<wire x1="5.08" y1="-2.54" x2="5.08" y2="-5.08" width="0.1524" layer="21"/>
+<pad name="1" x="-3.81" y="-3.81" drill="0.8128" shape="long" rot="R90"/>
+<pad name="2" x="-1.27" y="-3.81" drill="0.8128" shape="long" rot="R90"/>
+<pad name="5" x="3.81" y="3.81" drill="0.8128" shape="long" rot="R90"/>
+<pad name="6" x="1.27" y="3.81" drill="0.8128" shape="long" rot="R90"/>
+<pad name="3" x="1.27" y="-3.81" drill="0.8128" shape="long" rot="R90"/>
+<pad name="4" x="3.81" y="-3.81" drill="0.8128" shape="long" rot="R90"/>
+<pad name="7" x="-1.27" y="3.81" drill="0.8128" shape="long" rot="R90"/>
+<pad name="8" x="-3.81" y="3.81" drill="0.8128" shape="long" rot="R90"/>
+<text x="-3.048" y="-0.508" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<text x="-5.461" y="-2.667" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1378,13 +1507,29 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="C1" library="macgrid" package="SMD-CAP-8MM" value="SMD-CAP-NICHICON-8MM" x="54.61" y="7.62"/>
-<element name="C2" library="macgrid" package="SMD-CAP-8MM" value="SMD-CAP-NICHICON-8MM" x="45.72" y="7.62"/>
-<element name="C3" library="macgrid" package="SMD-CAP-8MM" value="SMD-CAP-NICHICON-8MM" x="27.94" y="7.62"/>
-<element name="C4" library="macgrid" package="SMD-CAP-8MM" value="SMD-CAP-NICHICON-8MM" x="36.83" y="7.62"/>
-<element name="U$1" library="macgrid" package="SMD-CAP-10MM" value="SMD-CAP-PANASONIC-E-FT-10MM" x="67.31" y="7.62" rot="R270"/>
-<element name="U$2" library="macgrid" package="SMD-CAP-10MM" value="SMD-CAP-PANASONIC-E-FT-10MM" x="81.28" y="7.62" rot="R90"/>
-<element name="R1" library="resistor" package="R1206" value="" x="72.39" y="15.24"/>
+<element name="C1" library="macgrid" package="SMD-CAP-8MM" value="SMD-CAP-NICHICON-8MM" x="6.81" y="22.72"/>
+<element name="C2" library="macgrid" package="SMD-CAP-8MM" value="SMD-CAP-NICHICON-8MM" x="15.68" y="11.48" rot="R180"/>
+<element name="C3" library="macgrid" package="SMD-CAP-8MM" value="SMD-CAP-NICHICON-8MM" x="15.64" y="22.72"/>
+<element name="C4" library="macgrid" package="SMD-CAP-8MM" value="SMD-CAP-NICHICON-8MM" x="6.87" y="11.48" rot="R180"/>
+<element name="U$1" library="macgrid" package="SMD-CAP-10MM" value="SMD-CAP-PANASONIC-E-FT-10MM" x="10.43" y="48.14"/>
+<element name="U$2" library="macgrid" package="SMD-CAP-10MM" value="SMD-CAP-PANASONIC-E-FT-10MM" x="23.9" y="48.14"/>
+<element name="R1" library="resistor" package="R1206" value="" x="26.61" y="37.58" rot="R90"/>
+<element name="U$3" library="macgrid" package="INDUCTOR-M8365" value="INDUCTOR-M8365" x="42.6" y="42.61" rot="R315"/>
+<element name="U$4" library="Molex" package="2X2MOLEX" value="2X2-MOLEX" x="39.47" y="16.51"/>
+<element name="U$5" library="Molex" package="2X2MOLEX" value="2X2-MOLEX" x="52.17" y="16.51"/>
+<element name="U$6" library="Molex" package="2X2MOLEX" value="2X2-MOLEX" x="26.77" y="16.51"/>
+<element name="U$7" library="macgrid" package="DO-214AB" value="DO-214AB" x="46.76" y="26.57" rot="R180"/>
+<element name="U$8" library="macgrid" package="DO-214AB" value="DO-214AB" x="26.77" y="27.94" rot="R90"/>
+<element name="U$9" library="macgrid" package="DO-214AB" value="DO-214AB" x="36.14" y="26.63"/>
+<element name="U$10" library="Molex" package="2X2MOLEX" value="2X2-MOLEX" x="16.51" y="34.96" rot="R270"/>
+<element name="U$11" library="Molex" package="2X2MOLEX" value="2X2-MOLEX" x="82.71" y="43.37" rot="R90"/>
+<element name="Q1" library="transistor-fet" package="TO252" value="SPD30P06PTO252" x="-10.8" y="0.9"/>
+<element name="Q2" library="transistor-fet" package="TO252" value="SPD30P06PTO252" x="-21.9" y="0.9"/>
+<element name="Q3" library="transistor-fet" package="TO252" value="SPD30P06PTO252" x="-33" y="0.9"/>
+<element name="IC1" library="ic-package" package="SOCKET-08" value="" x="-31.3" y="-11.1"/>
+<element name="R2" library="resistor" package="R1206" value="" x="-36" y="-19.9"/>
+<element name="R3" library="resistor" package="R1206" value="" x="-36" y="-23.8"/>
+<element name="R4" library="resistor" package="R1206" value="" x="-36" y="-27.7"/>
 </elements>
 <signals>
 <signal name="N$1">
@@ -1393,10 +1538,19 @@ design rules under a new name.</description>
 <contactref element="C3" pad="P+"/>
 <contactref element="C4" pad="P+"/>
 <contactref element="R1" pad="1"/>
-<wire x1="45.72" y1="10.87" x2="54.61" y2="10.87" width="0" layer="19" extent="1-1"/>
-<wire x1="36.83" y1="10.87" x2="45.72" y2="10.87" width="0" layer="19" extent="1-1"/>
-<wire x1="27.94" y1="10.87" x2="36.83" y2="10.87" width="0" layer="19" extent="1-1"/>
-<wire x1="70.968" y1="15.24" x2="27.94" y2="10.87" width="0" layer="19" extent="1-1"/>
+<contactref element="U$3" pad="P$2"/>
+<contactref element="U$10" pad="POWERL"/>
+<contactref element="U$10" pad="POWERR"/>
+<polygon width="0.4064" layer="1" isolate="0.4064">
+<vertex x="-5" y="-5"/>
+<vertex x="-5" y="60"/>
+<vertex x="38.7" y="60"/>
+<vertex x="38.7" y="34.4"/>
+<vertex x="22.7" y="34.4"/>
+<vertex x="22.7" y="23"/>
+<vertex x="20" y="23"/>
+<vertex x="20" y="-5"/>
+</polygon>
 </signal>
 <signal name="GND">
 <contactref element="C1" pad="P-"/>
@@ -1405,18 +1559,99 @@ design rules under a new name.</description>
 <contactref element="C4" pad="P-"/>
 <contactref element="U$1" pad="P-"/>
 <contactref element="U$2" pad="P-"/>
-<wire x1="45.72" y1="4.37" x2="54.61" y2="4.37" width="0" layer="19" extent="1-1"/>
-<wire x1="36.83" y1="4.37" x2="45.72" y2="4.37" width="0" layer="19" extent="1-1"/>
-<wire x1="27.94" y1="4.37" x2="36.83" y2="4.37" width="0" layer="19" extent="1-1"/>
-<wire x1="62.96" y1="7.62" x2="27.94" y2="4.37" width="0" layer="19" extent="1-1"/>
-<wire x1="85.63" y1="7.62" x2="62.96" y2="7.62" width="0" layer="19" extent="1-1"/>
+<contactref element="U$5" pad="GNDL"/>
+<contactref element="U$5" pad="GNDR"/>
+<contactref element="U$6" pad="GNDL"/>
+<contactref element="U$6" pad="GNDR"/>
+<contactref element="U$4" pad="GNDL"/>
+<contactref element="U$4" pad="GNDR"/>
+<polygon width="0.4064" layer="16" isolate="0.3048">
+<vertex x="-5" y="-5"/>
+<vertex x="-5" y="60"/>
+<vertex x="105" y="60"/>
+<vertex x="105" y="-5"/>
+</polygon>
+<contactref element="U$10" pad="GNDL"/>
+<contactref element="U$10" pad="GNDR"/>
+<contactref element="U$11" pad="GNDL"/>
+<contactref element="U$11" pad="GNDR"/>
+<contactref element="IC1" pad="4"/>
+<contactref element="Q1" pad="2"/>
+<contactref element="Q2" pad="2"/>
+<contactref element="Q3" pad="2"/>
+<wire x1="84.81" y1="41.27" x2="84.81" y2="45.47" width="0" layer="19" extent="1-1"/>
+<wire x1="54.27" y1="14.41" x2="84.81" y2="41.27" width="0" layer="19" extent="1-1"/>
+<wire x1="50.07" y1="14.41" x2="54.27" y2="14.41" width="0" layer="19" extent="1-1"/>
+<wire x1="41.57" y1="14.41" x2="50.07" y2="14.41" width="0" layer="19" extent="1-1"/>
+<wire x1="37.37" y1="14.41" x2="41.57" y2="14.41" width="0" layer="19" extent="1-1"/>
+<wire x1="28.87" y1="14.41" x2="37.37" y2="14.41" width="0" layer="19" extent="1-1"/>
+<wire x1="24.67" y1="14.41" x2="28.87" y2="14.41" width="0" layer="19" extent="1-1"/>
+<wire x1="15.68" y1="14.73" x2="24.67" y2="14.41" width="0" layer="19" extent="1-1"/>
+<wire x1="15.64" y1="19.47" x2="15.68" y2="14.73" width="0" layer="19" extent="1-1"/>
+<wire x1="6.81" y1="19.47" x2="15.64" y2="19.47" width="0" layer="19" extent="1-1"/>
+<wire x1="6.87" y1="14.73" x2="6.81" y2="19.47" width="0" layer="19" extent="1-1"/>
+<wire x1="14.41" y1="32.86" x2="15.64" y2="19.47" width="0" layer="19" extent="1-1"/>
+<wire x1="14.41" y1="37.06" x2="14.41" y2="32.86" width="0" layer="19" extent="1-1"/>
+<wire x1="10.43" y1="43.79" x2="14.41" y2="37.06" width="0" layer="19" extent="1-1"/>
+<wire x1="23.9" y1="43.79" x2="14.41" y2="37.06" width="0" layer="19" extent="1-1"/>
+<wire x1="-8.52" y1="-3.9" x2="6.87" y2="14.73" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.62" y1="-3.9" x2="-8.52" y2="-3.9" width="0" layer="19" extent="1-1"/>
+<wire x1="-30.72" y1="-3.9" x2="-19.62" y2="-3.9" width="0" layer="19" extent="1-1"/>
+<wire x1="-27.49" y1="-14.91" x2="-30.72" y2="-3.9" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="R1" pad="2"/>
 <contactref element="U$1" pad="P+"/>
 <contactref element="U$2" pad="P+"/>
-<wire x1="76.93" y1="7.62" x2="73.812" y2="15.24" width="0" layer="19" extent="1-1"/>
-<wire x1="71.66" y1="7.62" x2="76.93" y2="7.62" width="0" layer="19" extent="1-1"/>
+<wire x1="10.43" y1="52.49" x2="23.9" y2="52.49" width="0" layer="19" extent="1-1"/>
+<wire x1="26.61" y1="39.002" x2="23.9" y2="52.49" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$3">
+<contactref element="U$5" pad="POWERL"/>
+<contactref element="U$5" pad="POWERR"/>
+<contactref element="U$7" pad="IN"/>
+<wire x1="50.07" y1="19.88" x2="50.062" y2="26.57" width="0" layer="19" extent="1-1"/>
+<wire x1="54.27" y1="19.88" x2="50.07" y2="19.88" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$4">
+<contactref element="U$6" pad="POWERL"/>
+<contactref element="U$6" pad="POWERR"/>
+<contactref element="U$8" pad="IN"/>
+<wire x1="28.87" y1="19.88" x2="26.77" y2="24.638" width="0" layer="19" extent="1-1"/>
+<wire x1="24.67" y1="19.88" x2="28.87" y2="19.88" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$5">
+<contactref element="U$4" pad="POWERL"/>
+<contactref element="U$4" pad="POWERR"/>
+<contactref element="U$9" pad="IN"/>
+<wire x1="37.37" y1="19.88" x2="41.57" y2="19.88" width="0" layer="19" extent="1-1"/>
+<wire x1="32.838" y1="26.63" x2="37.37" y2="19.88" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$6">
+<contactref element="U$9" pad="OUT"/>
+<contactref element="U$3" pad="P$1"/>
+<contactref element="U$8" pad="OUT"/>
+<contactref element="U$7" pad="OUT"/>
+<polygon width="0.4064" layer="1" isolate="0.4064">
+<vertex x="23.3" y="33.6"/>
+<vertex x="39.4" y="33.6"/>
+<vertex x="39.4" y="56.1"/>
+<vertex x="55.4" y="56.1"/>
+<vertex x="55.4" y="22.3"/>
+<vertex x="23.3" y="22.3"/>
+</polygon>
+</signal>
+<signal name="N$7">
+<contactref element="R2" pad="2"/>
+<contactref element="IC1" pad="1"/>
+<wire x1="-35.11" y1="-14.91" x2="-34.578" y2="-19.9" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$8">
+<contactref element="U$11" pad="POWERL"/>
+<contactref element="U$11" pad="POWERR"/>
+<contactref element="R2" pad="1"/>
+<wire x1="79.34" y1="41.27" x2="79.34" y2="45.47" width="0" layer="19" extent="1-1"/>
+<wire x1="-37.422" y1="-19.9" x2="79.34" y2="41.27" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>
