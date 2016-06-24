@@ -1525,11 +1525,12 @@ design rules under a new name.</description>
 <element name="U$11" library="Molex" package="2X2MOLEX" value="2X2-MOLEX" x="82.71" y="43.37" rot="R90"/>
 <element name="Q1" library="transistor-fet" package="TO252" value="SPD30P06PTO252" x="-10.8" y="0.9"/>
 <element name="Q2" library="transistor-fet" package="TO252" value="SPD30P06PTO252" x="-21.9" y="0.9"/>
-<element name="Q3" library="transistor-fet" package="TO252" value="SPD30P06PTO252" x="-33" y="0.9"/>
 <element name="IC1" library="ic-package" package="SOCKET-08" value="" x="-31.3" y="-11.1"/>
 <element name="R2" library="resistor" package="R1206" value="" x="-36" y="-19.9"/>
 <element name="R3" library="resistor" package="R1206" value="" x="-36" y="-23.8"/>
 <element name="R4" library="resistor" package="R1206" value="" x="-36" y="-27.7"/>
+<element name="U$12" library="Molex" package="2X2MOLEX" value="2X2-MOLEX" x="-44.6" y="-12.6"/>
+<element name="U$13" library="Molex" package="2X2MOLEX" value="2X2-MOLEX" x="-56.8" y="-12.6"/>
 </elements>
 <signals>
 <signal name="N$1">
@@ -1578,7 +1579,6 @@ design rules under a new name.</description>
 <contactref element="IC1" pad="4"/>
 <contactref element="Q1" pad="2"/>
 <contactref element="Q2" pad="2"/>
-<contactref element="Q3" pad="2"/>
 <wire x1="84.81" y1="41.27" x2="84.81" y2="45.47" width="0" layer="19" extent="1-1"/>
 <wire x1="54.27" y1="14.41" x2="84.81" y2="41.27" width="0" layer="19" extent="1-1"/>
 <wire x1="50.07" y1="14.41" x2="54.27" y2="14.41" width="0" layer="19" extent="1-1"/>
@@ -1596,8 +1596,7 @@ design rules under a new name.</description>
 <wire x1="23.9" y1="43.79" x2="14.41" y2="37.06" width="0" layer="19" extent="1-1"/>
 <wire x1="-8.52" y1="-3.9" x2="6.87" y2="14.73" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.62" y1="-3.9" x2="-8.52" y2="-3.9" width="0" layer="19" extent="1-1"/>
-<wire x1="-30.72" y1="-3.9" x2="-19.62" y2="-3.9" width="0" layer="19" extent="1-1"/>
-<wire x1="-27.49" y1="-14.91" x2="-30.72" y2="-3.9" width="0" layer="19" extent="1-1"/>
+<wire x1="-27.49" y1="-14.91" x2="-19.62" y2="-3.9" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="R1" pad="2"/>
@@ -1650,8 +1649,47 @@ design rules under a new name.</description>
 <contactref element="U$11" pad="POWERL"/>
 <contactref element="U$11" pad="POWERR"/>
 <contactref element="R2" pad="1"/>
+<contactref element="U$12" pad="POWERL"/>
+<contactref element="U$12" pad="POWERR"/>
+<contactref element="U$13" pad="POWERL"/>
+<contactref element="U$13" pad="POWERR"/>
 <wire x1="79.34" y1="41.27" x2="79.34" y2="45.47" width="0" layer="19" extent="1-1"/>
 <wire x1="-37.422" y1="-19.9" x2="79.34" y2="41.27" width="0" layer="19" extent="1-1"/>
+<wire x1="-42.5" y1="-9.23" x2="-37.422" y2="-19.9" width="0" layer="19" extent="1-1"/>
+<wire x1="-46.7" y1="-9.23" x2="-42.5" y2="-9.23" width="0" layer="19" extent="1-1"/>
+<wire x1="-54.7" y1="-9.23" x2="-46.7" y2="-9.23" width="0" layer="19" extent="1-1"/>
+<wire x1="-58.9" y1="-9.23" x2="-54.7" y2="-9.23" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$9">
+<contactref element="Q1" pad="3"/>
+<contactref element="U$13" pad="GNDL"/>
+<contactref element="U$13" pad="GNDR"/>
+<wire x1="-54.7" y1="-14.7" x2="-58.9" y2="-14.7" width="0" layer="19" extent="1-1"/>
+<wire x1="-10.8" y1="3.4" x2="-54.7" y2="-14.7" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$10">
+<contactref element="Q2" pad="3"/>
+<contactref element="U$12" pad="GNDL"/>
+<contactref element="U$12" pad="GNDR"/>
+<wire x1="-42.5" y1="-14.7" x2="-46.7" y2="-14.7" width="0" layer="19" extent="1-1"/>
+<wire x1="-21.9" y1="3.4" x2="-42.5" y2="-14.7" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$11">
+<contactref element="Q2" pad="1"/>
+<contactref element="R4" pad="2"/>
+<contactref element="IC1" pad="7"/>
+<wire x1="-32.57" y1="-7.29" x2="-34.578" y2="-27.7" width="0" layer="19" extent="1-1"/>
+<wire x1="-24.18" y1="-3.9" x2="-32.57" y2="-7.29" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$12">
+<contactref element="Q1" pad="1"/>
+<contactref element="R3" pad="2"/>
+<wire x1="-13.08" y1="-3.9" x2="-34.578" y2="-23.8" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$13">
+<contactref element="R3" pad="1"/>
+<contactref element="IC1" pad="5"/>
+<wire x1="-27.49" y1="-7.29" x2="-37.422" y2="-23.8" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>
