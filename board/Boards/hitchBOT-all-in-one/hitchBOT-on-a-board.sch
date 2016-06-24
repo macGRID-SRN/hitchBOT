@@ -97,8 +97,8 @@
 <text x="5.2" y="-5.7" size="1.27" layer="25">-</text>
 </package>
 <package name="INDUCTOR-M8365">
-<pad name="P$1" x="10.033" y="0" drill="1.4" diameter="3.81" shape="offset"/>
-<pad name="P$2" x="-10.033" y="0" drill="1.4" diameter="3.81" shape="offset" rot="R180"/>
+<pad name="P$1" x="10.033" y="0" drill="1.5" diameter="3.81" shape="offset"/>
+<pad name="P$2" x="-10.033" y="0" drill="1.5" diameter="3.81" shape="offset" rot="R180"/>
 <circle x="0" y="0" radius="11.43" width="0.127" layer="21"/>
 <circle x="0" y="0" radius="2.83980625" width="0.127" layer="21"/>
 <text x="3.81" y="3.81" size="1.27" layer="25">IND</text>
