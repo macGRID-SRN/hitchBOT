@@ -12203,6 +12203,32 @@ wire to board 2.54 mm (.1 inch) pitch header</description>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="108,1,48.26,63.5,N$1,,,,,"/>
+<approved hash="108,1,63.5,63.5,N$1,,,,,"/>
+<approved hash="108,1,78.74,63.5,N$1,,,,,"/>
+<approved hash="108,1,99.06,96.52,N$1,,,,,"/>
+<approved hash="108,1,78.74,50.8,GND,,,,,"/>
+<approved hash="108,1,139.7,40.64,GND,,,,,"/>
+<approved hash="108,1,182.88,33.02,GND,,,,,"/>
+<approved hash="108,1,172.72,30.48,GND,,,,,"/>
+<approved hash="108,1,132.08,76.2,N$2,,,,,"/>
+<approved hash="108,1,208.28,99.06,N$8,,,,,"/>
+<approved hash="108,1,193.04,43.18,N$8,,,,,"/>
+<approved hash="108,1,264.16,93.98,N$11,,,,,"/>
+<approved hash="108,1,264.16,71.12,N$13,,,,,"/>
+<approved hash="108,1,246.38,91.44,N$15,,,,,"/>
+<approved hash="108,1,312.42,43.18,N$15,,,,,"/>
+<approved hash="108,1,276.86,132.08,N$19,,,,,"/>
+<approved hash="113,1,121.92,77.1948,R1,,,,,"/>
+<approved hash="113,1,238.76,83.748,IC1,,,,,"/>
+<approved hash="113,1,220.98,87.3548,R2,,,,,"/>
+<approved hash="113,1,263.165,66.04,R3,,,,,"/>
+<approved hash="113,1,263.165,88.9,R4,,,,,"/>
+<approved hash="113,1,275.865,127,R6,,,,,"/>
+<approved hash="113,1,312.742,39.37,LED1,,,,,"/>
+<approved hash="113,1,311.425,27.94,R7,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 </eagle>
